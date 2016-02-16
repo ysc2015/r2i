@@ -1,16 +1,3 @@
-"use strict";
-//DB component
-var db = function() {
-    var initDB = function() {
-        console.log('init DB');
-    };
-    return {
-        init: function () {
-            //run initApp function
-            initDB();
-        }
-    };
-}();
 // Application component
 var app = function() {
     //OT Object
@@ -20,7 +7,7 @@ var app = function() {
     var jqmReadyDeferred;
     //app events
     var applicationDidFinishLoading = function() {
-      console.log('applicationDidFinishLoading');
+        console.log('applicationDidFinishLoading');
         db.init();
     };
     var devicePluginsDidLoad = function() {
@@ -58,4 +45,11 @@ var app = function() {
     };
 }();
 
+//initialze app on body load(fade anim)
+$(window).bind("load", function() {
+    // code here
+    console.log('window load');
+    $("body").fadeIn(1000);
+});
 app.init();
+

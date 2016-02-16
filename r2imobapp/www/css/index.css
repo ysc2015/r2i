@@ -1,0 +1,7 @@
+body {
+    display: none;
+}
+
+#listview > .ui-li {
+    min-height: 100px;
+}
