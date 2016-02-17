@@ -5,9 +5,10 @@ var app = function() {
     //
     var deviceReadyDeferred;
     var jqmReadyDeferred;
-    //app events
+    //Callbacks functions
     var applicationDidFinishLoading = function() {
         console.log('applicationDidFinishLoading');
+        state.init();
         db.init();
     };
     var devicePluginsDidLoad = function() {
