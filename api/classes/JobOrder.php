@@ -27,7 +27,7 @@ class JobOrder {
         $bind = array(
             ":flag" => 'update'
         );
-        $result = $this->db->select("job_rooms", "flag = :flag", $bind);
+        $result = $this->db->select("job_orders", "flag = :flag", $bind);
         return (!empty($result)?$result:false);
     }
 
