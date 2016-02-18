@@ -37,6 +37,18 @@ class mobileApi extends api {
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$jobs)));
     }
 
+    /**
+     * Reset update flag for job_orders
+     * @return JSON
+     */
+    private function reset_flag_job_orders($list) {
+        $job = new JobOrder();
+        if($job->resetUpdateFlagFromList($list))
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'RESET OK')));
+        else
+            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'RESET ERROR')));
+    }
+
 }// END class
 
 $api = new mobileApi();
