@@ -31,5 +31,18 @@ class JobOrder {
         return (!empty($result)?$result:false);
     }
 
+    /**
+     * Update from list
+     * @return bool
+     */
+    public function resetUpdateFlagFromList($list) {
+        //SQL
+        $sql = "update job_orders ";
+        $sql .="set flag = '' ";
+        $sql .="where job_order_id in ".$list['list'];
+        $result = $this->db->run($sql);
+        return $result;
+    }
+
 
 }// END class
