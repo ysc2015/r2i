@@ -30,6 +30,13 @@ class mobileApi extends api {
 
     //requested methods here
 
+    //get Job Orders
+    function get_job_orders() {
+        $job = new JobOrder();
+        $jobs = $job->getUpdate();
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$jobs)));
+    }
+
 }// END class
 
 $api = new r2iApi();
