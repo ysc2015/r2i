@@ -16,7 +16,6 @@ if(isset($_GET['id_OT'])){
 	mysqli_close($db);
 	echo json_encode($response); 
 } else if(isset($_GET['ids_OT'])) {
-	$data = $_GET['ids_OT'];
 	$id_OT = json_decode($_GET['ids_OT']);
 	$updatecond = "";
 	foreach($id_OT as $k => $v) {
@@ -37,6 +36,7 @@ if(isset($_GET['id_OT'])){
 		$response["message"]="échec de mise à jour "."UPDATE `OT` SET `status`='yes' WHERE id_OT='$id_OT'".$_GET['ids_OT']."' - ".mysqli_error($db);
 	}
 	mysqli_close($db);
+$response['debug'] = "UPDATE `OT` SET `status`='yes' WHERE id_OT IN ($updatecond)";
 	echo json_encode($response); 
 
 }
