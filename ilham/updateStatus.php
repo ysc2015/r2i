@@ -18,7 +18,6 @@ if(isset($_GET['id_OT'])){
 } else if(isset($_GET['ids_OT'])) {
 	$data = $_GET['ids_OT'];
 	$id_OT = json_decode($_GET['ids_OT']);
-	$data .= " - ". $id_OT;
 	$updatecond = "";
 	foreach($id_OT as $k => $v) {
 		$updatecond .= $v . ',';	
@@ -39,6 +38,6 @@ if(isset($_GET['id_OT'])){
 	}
 	mysqli_close($db);
 	echo json_encode($response); 
-	file_put_contents ( "logloglog.log" , $data);
+
 }
 ?>
