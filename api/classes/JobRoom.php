@@ -25,7 +25,7 @@ class JobRoom {
      */
     public function getRoomsToSynchronize() {
         $bind = array(
-            ":flag" => 'yes'
+            ":flag" => 'dd'
         );
         //SQL
         $sql = "select * from rooms_list ";
