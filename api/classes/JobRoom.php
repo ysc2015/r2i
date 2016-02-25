@@ -29,7 +29,7 @@ class JobRoom {
         );
         //SQL
         $result = $this->db->select("rooms_list", "flag = :flag", $bind);
-        return (!empty($result)?$result:false);
+        return $result;
     }
 
 
