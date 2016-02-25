@@ -34,7 +34,7 @@ class mobileApi extends api {
     function get_job_orders() {
         $job = new JobOrder();
         $jobs = $job->getUpdate();
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$jobs)));
+        $this->sendResponse(200,$jobs);
     }
 
     /**
