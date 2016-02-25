@@ -56,7 +56,7 @@ class mobileApi extends api {
     private function check_update() {
         $room = new JobRoom();
         $rooms = $room->getRoomsToSynchronize();
-        echo json_encode(array('data'=>$rooms ));
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$rooms)));
     }
 
 }// END class
