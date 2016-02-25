@@ -16,7 +16,7 @@ if(isset($_GET['room_id'])){
 	mysqli_close($db);
 	echo json_encode($response); 
 } else if(isset($_GET['room_ids'])) {
-	$room_ids = json_decode($_GET['room_ids']);
+	$room_id = json_decode($_GET['room_ids']);
 	$updatecond = "";
 	foreach($room_id as $k => $v) {
 		$updatecond .= $v . ',';	
@@ -36,6 +36,7 @@ if(isset($_GET['room_id'])){
 		$response["message"]="échec de mise à jour "."UPDATE `rooms_list` SET `flag`='yes' WHERE room_id='$room_id'".$_GET['room_ids']."' - ".mysqli_error($db);
 	}
 	mysqli_close($db);
+$response['debug'] = "UPDATE `rooms_list` SET `flag`='yes' WHERE room_id IN ($updatecond)";
 	echo json_encode($response); 
 
 }
