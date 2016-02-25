@@ -36,7 +36,6 @@ if(isset($_GET['room_id'])){
 		$response["message"]="échec de mise à jour "."UPDATE `rooms_list` SET `flag`='yes' WHERE room_id='$room_id'".$_GET['room_ids']."' - ".mysqli_error($db);
 	}
 	mysqli_close($db);
-$response['debug'] = "UPDATE `OT` SET `status`='yes' WHERE id_OT IN ($updatecond)";
 	echo json_encode($response); 
 
 }
