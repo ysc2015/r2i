@@ -1,7 +1,7 @@
 <?php
 include_once 'config.php';
  
-$result = mysqli_query($db,"SELECT * FROM `rooms_list`");
+$result = mysqli_query($db,"SELECT * FROM `rooms_list2`");
  while($row=mysqli_fetch_assoc($result)){
 foreach($row as $k => $v)
 		$row[$k] = utf8_encode($v);
