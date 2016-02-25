@@ -28,9 +28,7 @@ class JobRoom {
             ":flag" => 'yes'
         );
         //SQL
-        $sql = "select * from rooms_list ";
-        $sql .="where flag = :flag ";
-        $result = $this->db->run($sql,$bind);
+        $result = $this->db->select("rooms_list", "flag = :flag", $bind);
         return (!empty($result)?$result:false);
     }
 
