@@ -41,7 +41,7 @@ class JobOrder {
         $sql .="set flag = '' ";
         $sql .="where job_order_id in ".$list['list'];
         $result = $this->db->run($sql);
-        return $result;
+        return (!empty($result)?$result:false);
     }
 
 
