@@ -29,8 +29,8 @@ class JobRoom {
         );
         //SQL
         $sql = "select * from rooms_list ";
-        $sql .="where flag = :flag ";
-        $result = $this->db->run($sql,$bind);
+        $sql .="where flag = 'yes' ";
+        $result = $this->db->run($sql);
         return $result;
     }
 
