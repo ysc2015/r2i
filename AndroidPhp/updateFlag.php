@@ -11,7 +11,7 @@ if(isset($_GET['room_id'])){
 		$response["message"]="la mise à jour est faite";
 	} else {
 		$response["success"]=0;
-		$response["messae"]="échec de mise à jour "."UPDATE `rooms_list` SET `flag`='yes' WHERE id_OT='$id_OT'".mysql_error();
+		$response["messae"]="échec de mise à jour "."UPDATE `rooms_list` SET `flag`='yes' WHERE room_id='$room_id'".mysql_error();
 	}
 	mysqli_close($db);
 	echo json_encode($response); 
@@ -36,7 +36,6 @@ if(isset($_GET['room_id'])){
 		$response["message"]="échec de mise à jour "."UPDATE `rooms_list` SET `flag`='yes' WHERE room_id='$room_id'".$_GET['room_ids']."' - ".mysqli_error($db);
 	}
 	mysqli_close($db);
-$response['debug'] = "UPDATE `OT` SET `status`='yes' WHERE id_OT IN ($updatecond)";
 	echo json_encode($response); 
 
 }
