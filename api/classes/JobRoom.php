@@ -31,7 +31,7 @@ class JobRoom {
         $sql = "select * from rooms_list ";
         $sql .="where flag = :flag ";
         $result = $this->db->run($sql,$bind);
-        return json_encode(array('data' => $result));
+        return $result;
     }
 
 
