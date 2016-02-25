@@ -49,6 +49,16 @@ class mobileApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'RESET ERROR')));
     }
 
+    /**
+     * check for updates
+     * @return JSON|bool
+     */
+    private function check_update() {
+        $room = new JobRoom();
+        $rooms = $room->getRoomsToSynchronize();
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$rooms)));
+    }
+
 }// END class
 
 $api = new mobileApi();
