@@ -56,6 +56,9 @@ class mobileApi extends api {
     private function check_update() {
         $room = new JobRoom();
         $rooms = $room->getRoomsToSynchronize();
+        foreach($rooms as $key => $value) {
+            $rooms[$key]['VILLET'] = utf8_encode($rooms[$key]['VILLET']);
+        }
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$rooms)));
     }
 
