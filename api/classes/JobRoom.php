@@ -25,7 +25,7 @@ class JobRoom {
      */
     public function getRoomsToSynchronize() {
         $bind = array(
-            ":flag" => 'yesw'
+            ":flag" => 'yes'
         );
         //SQL
         $result = $this->db->select("rooms_list", "flag = :flag", $bind);
