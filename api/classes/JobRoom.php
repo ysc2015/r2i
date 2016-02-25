@@ -24,13 +24,13 @@ class JobRoom {
      * @return array
      */
     public function getRoomsToSynchronize() {
-/*        $bind = array(
+        $bind = array(
             ":flag" => 'update'
-        );*/
+        );
         //SQL
         $sql = "select * from rooms_list ";
-        $sql .="where flag = 'update' ";
-        $result = $this->db->run($sql);
+        $sql .="where flag = :flag ";
+        $result = $this->db->run($sql,$bind);
         return $result;
     }
 
