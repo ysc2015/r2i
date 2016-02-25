@@ -42,12 +42,25 @@ class mobileApi extends api {
      * @return JSON
      */
     private function reset_flag_job_orders($list) {
+        $room = new JobRoom();
+        if($room->resetUpdateFlagFromList($list))
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'RESET OK')));
+        else
+            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'RESET ERROR')));
+    }
+
+    /**
+     * Reset update flag for rooms_list
+     * @return JSON
+     */
+    private function reset_flag_rooms_list($list) {
         $job = new JobOrder();
         if($job->resetUpdateFlagFromList($list))
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'RESET OK')));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'RESET ERROR')));
     }
+
 
     /**
      * check for updates
