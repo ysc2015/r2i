@@ -15,7 +15,7 @@ else {
               return false;
             }//else
 	}//else
-}//storeOT
+}
 $json = $_POST["OtJSON"];
 if (get_magic_quotes_gpc()){
 	$json = stripslashes($json);
@@ -25,7 +25,6 @@ $a=array();
 $b=array();
 for($i=0; $i<count($data) ; $i++) {
 $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$data[$i]->longitude,$data[$i]->altitude,$data[$i]->accuracy,$data[$i]->altitudeAccuracy,$data[$i]->speed,$data[$i]->timestamp,,$data[$i]->imageTabURI,$data[$i]->imageSrvURL,$data[$i]->flag,$db);
-    //Based on inserttion, create JSON response
     if($res){
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'yes';
@@ -36,7 +35,6 @@ $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$
         array_push($a,$b);
     }
 }
-//Post JSON response back to Android Application
 echo json_encode($a);
 
 
