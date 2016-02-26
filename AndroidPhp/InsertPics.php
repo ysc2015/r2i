@@ -26,30 +26,18 @@ $data = json_decode(utf8_encode($json));
 $a=array();
 $b=array();
 for($i=0; $i<count($data) ; $i++) {
-    $res = storePics(
-        $data[$i]->room_pic_id,
-        $data[$i]->room_id,
-        $data[$i]->latitude,
-        $data[$i]->longitude,
-        $data[$i]->altitude,
-        $data[$i]->accuracy,
-        $data[$i]->altitudeAccuracy,
-        $data[$i]->speed,
-        $data[$i]->timestamp,
-        $data[$i]->imageTabURI,
-        $data[$i]->imageSrvURL,
-        $data[$i]->flag,
-        $db);
-    if($res){
+    $res = storePics($data[$i]->room_pic_id, $data[$i]->room_id, $data[$i]->latitude, $data[$i]->longitude, $data[$i]->altitude,
+        $data[$i]->accuracy, $data[$i]->altitudeAccuracy, $data[$i]->speed, $data[$i]->timestamp, $data[$i]->imageTabURI,
+        $data[$i]->imageSrvURL, $data[$i]->flag, $db);
+    if($res) {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'yes';
         array_push($a,$b);
-    }else{
+    } else {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'no';
         array_push($a,$b);
     }
 }
 echo json_encode($a);
-
 ?>
