@@ -31,7 +31,6 @@ $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$
         $b["flag"] = 'yes';
         array_push($a,$b);
     }else{
-	$log .= "MYSQLI ERROR : " . mysqli_error($db)."\n\n";
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'no';
         array_push($a,$b);
