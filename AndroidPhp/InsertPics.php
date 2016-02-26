@@ -8,8 +8,11 @@ function storePics(
     $longitude,$altitude,$accuracy,
     $altitudeAccuracy,$heading,$speed,
      $timestamp,$imageTabURI,$imageSrvURL,$flag,$db) {
-    $result = mysqli_query($db,"INSERT INTO room_pics2(`room_pic_id`,`room_id`,`latitude`,`longitude`,`altitude`,`accuracy`,`altitudeAccuracy`,`heading`,`speed`, `timestamp`,`imageTabURI`,`imageSrvURL`,`flag`) VALUES ($room_pic_id,$room_id,'$latitude','$longitude','$altitude','$accuracy','$altitudeAccuracy','$heading','$speed','$timestamp',
-   '$imageTabURI','$imageSrvURL','YES')");
+    $result = mysqli_query($db,"INSERT INTO room_pics2(`room_pic_id`,`room_id`,`latitude`,`longitude`,`altitude`,`accuracy`,`altitudeAccuracy`,`heading`,`speed`, `timestamp`,`imageTabURI`,`imageSrvURL`,`flag`) VALUES 
+($room_pic_id,$room_id,'$latitude',
+'$longitude','$altitude','$accuracy',
+'$altitudeAccuracy','$heading','$speed',
+'$timestamp','$imageTabURI','$imageSrvURL','YES')");
         if ($result) {
             return true;
         } else {
