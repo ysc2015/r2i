@@ -2,7 +2,6 @@
 ini_set('display_errors', 1);
 include_once 'config.php';
 
-
 function storePics(
     $room_pic_id,$room_id,$latitude,
     $longitude,$altitude,$accuracy,
@@ -46,4 +45,5 @@ for($i=0; $i<count($data) ; $i++) {
     }
 }
 echo json_encode($a);
+var_dump(json_last_error(), json_last_error_msg());
 ?>
