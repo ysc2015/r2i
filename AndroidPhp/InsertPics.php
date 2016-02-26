@@ -19,16 +19,20 @@ function storePics(
 }
 echo "Ilham";
 
-
-$json = $_POST["OtJSON"];
-if (get_magic_quotes_gpc()){
-	$json = stripslashes($json);
+$json = "";
+if(isset($_POST['OtJSON'])) {
+    $json = $_POST["OtJSON"];
+    if (get_magic_quotes_gpc()){
+    	$json = stripslashes($json);
+    }
+    $data = json_decode(utf8_encode($json));
+} else {
+    $data = array();
 }
-$data = json_decode(utf8_encode($json));
 $a=array();
 $b=array();
 for($i=0; $i<count($data) ; $i++) {
-$res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$data[$i]->longitude,$data[$i]->altitude,$data[$i]->accuracy,$data[$i]->altitudeAccuracy,$data[$i]->speed,$data[$i]->timestamp,,$data[$i]->imageTabURI,$data[$i]->imageSrvURL,$data[$i]->flag,$db);
+    $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$data[$i]->longitude,$data[$i]->altitude,$data[$i]->accuracy,$data[$i]->altitudeAccuracy,$data[$i]->speed,$data[$i]->timestamp,,$data[$i]->imageTabURI,$data[$i]->imageSrvURL,$data[$i]->flag,$db);
     if($res){
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'yes';
