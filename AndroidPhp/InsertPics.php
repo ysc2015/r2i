@@ -18,7 +18,8 @@ function storePics(
 	   }
 }
 echo "Ilham";
-/*
+
+
 $json = $_POST["OtJSON"];
 if (get_magic_quotes_gpc()){
 	$json = stripslashes($json);
@@ -40,5 +41,4 @@ $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$
 }
 echo json_encode($a);
 
-*/
 ?>
