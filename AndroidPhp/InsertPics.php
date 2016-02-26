@@ -4,9 +4,12 @@ include_once 'config.php';
 
 
 function storePics(
-    $room_pic_id,$room_id,$latitude,$longitude,$altitude,$accuracy,$altitudeAccuracy,
-    $heading,$speed,$timestamp,$imageTabURI,$imageSrvURL,$flag,$db) {
-    $result = mysqli_query($db,"INSERT INTO room_pics2(`room_pic_id`,`room_id`,`latitude`,`longitude`,`altitude`,`accuracy`,`altitudeAccuracy`,`heading`,`speed`, `timestamp`,`imageTabURI`,`imageSrvURL`,`flag`) VALUES ($room_pic_id,$room_id,'$latitude','$longitude','$altitude','$accuracy','$altitudeAccuracy','$heading','$speed','$timestamp','$imageTabURI','$imageSrvURL','YES')");
+    $room_pic_id,$room_id,$latitude,
+    $longitude,$altitude,$accuracy,
+    $altitudeAccuracy,$heading,$speed,
+     $timestamp,$imageTabURI,$imageSrvURL,$flag,$db) {
+    $result = mysqli_query($db,"INSERT INTO room_pics2(`room_pic_id`,`room_id`,`latitude`,`longitude`,`altitude`,`accuracy`,`altitudeAccuracy`,`heading`,`speed`, `timestamp`,`imageTabURI`,`imageSrvURL`,`flag`) VALUES ($room_pic_id,$room_id,'$latitude','$longitude','$altitude','$accuracy','$altitudeAccuracy','$heading','$speed','$timestamp',
+   '$imageTabURI','$imageSrvURL','YES')");
         if ($result) {
             return true;
         } else {
@@ -27,7 +30,7 @@ $a=array();
 $b=array();
 for($i=0; $i<count($data) ; $i++) {
     $res = storePics($data[$i]->room_pic_id, $data[$i]->room_id, $data[$i]->latitude, $data[$i]->longitude, $data[$i]->altitude,
-        $data[$i]->accuracy, $data[$i]->altitudeAccuracy, $data[$i]->speed, $data[$i]->timestamp, $data[$i]->imageTabURI,
+        $data[$i]->accuracy, $data[$i]->altitudeAccuracy,$data[$i]->heading,$data[$i]->speed, $data[$i]->timestamp, $data[$i]->imageTabURI,
         $data[$i]->imageSrvURL, $data[$i]->flag, $db);
     if($res) {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
