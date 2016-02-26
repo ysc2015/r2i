@@ -26,13 +26,11 @@ if(isset($_POST['OtJSON'])) {
     	$json = stripslashes($json);
     }
     $data = json_decode(utf8_encode($json));
-} else {
-    $data = array();
 }
-$a=array();
-$b=array();
-for($i=0; $i<count($data) ; $i++) {
-    $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$data[$i]->longitude,$data[$i]->altitude,$data[$i]->accuracy,$data[$i]->altitudeAccuracy,$data[$i]->speed,$data[$i]->timestamp,,$data[$i]->imageTabURI,$data[$i]->imageSrvURL,$data[$i]->flag,$db);
+    $a=array();
+    $b=array();
+    for($i=0; $i<count($data) ; $i++) {
+    //$res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$data[$i]->longitude,$data[$i]->altitude,$data[$i]->accuracy,$data[$i]->altitudeAccuracy,$data[$i]->speed,$data[$i]->timestamp,,$data[$i]->imageTabURI,$data[$i]->imageSrvURL,$data[$i]->flag,$db);
     if($res){
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'yes';
