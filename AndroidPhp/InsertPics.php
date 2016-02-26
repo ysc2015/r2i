@@ -17,11 +17,9 @@ function storePics(
             }
 	   }
 }
-echo "Ilham";
 
-$json = "";
 $json = $_POST["OtJSON"];
-if (get_magic_quotes_gpc()){
+if (get_magic_quotes_gpc()) {
     $json = stripslashes($json);
 }
 $data = json_decode(utf8_encode($json));
