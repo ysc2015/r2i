@@ -11,25 +11,17 @@ function storePics($room_pic_id,$room_id,$latitude,$longitude,$altitude,$accurac
               return true;
             } //if
 else {
-              
-      return false;
+              return false;
             }//else
 	}//else
 }//storeOT
-
-$log = "";
-
 $json = $_POST["OtJSON"];
-$log = "json : ".$json."\n\n";
-
 if (get_magic_quotes_gpc()){
 	$json = stripslashes($json);
 }
 $data = json_decode(utf8_encode($json));
-$log .= json_last_error_msg() . "\n\n";
 $a=array();
 $b=array();
-
 for($i=0; $i<count($data) ; $i++) {
 $res = storePics($data[$i]->room_pic_id,$data[$i]->room_id,$data[$i]->latitude,$data[$i]->longitude,$data[$i]->altitude,$data[$i]->accuracy,$data[$i]->altitudeAccuracy,$data[$i]->speed,$data[$i]->timestamp,,$data[$i]->imageTabURI,$data[$i]->imageSrvURL,$data[$i]->flag,$db);
     //Based on inserttion, create JSON response
