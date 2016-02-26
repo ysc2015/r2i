@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 include_once 'config.php';
+die('Test');
 function storePics($room_pic_id,$room_id,$latitude,$longitude,$altitude,$accuracy,$altitudeAccuracy,$heading,$speed,$timestamp,$imageTabURI,$imageSrvURL,$flag,$db) {
   $result = mysqli_query($db,"INSERT INTO room_pics2(`room_pic_id`,`room_id`,`latitude`,`longitude`,`altitude`,`accuracy`,`altitudeAccuracy`,`heading`,`speed`, `timestamp`,`imageTabURI`,`imageSrvURL`,`flag`) VALUES ($room_pic_id,$room_id,'$latitude','$longitude','$altitude','$accuracy','$altitudeAccuracy','$heading','$speed','$timestamp','$imageTabURI','$imageSrvURL','YES')");
         if ($result) {
