@@ -1,6 +1,6 @@
 <?php
 //ini_set('display_errors', 1);
-//include_once 'config.php';
+include_once 'config.php';
 echo ('Test');
 exit();
 /*
