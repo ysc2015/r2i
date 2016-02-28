@@ -3,6 +3,8 @@
  * mobile api class
  **/
 
+header("access-control-allow-origin: *");
+
 require_once 'autoLoader.php';
 
 require 'api.php';
