@@ -81,7 +81,7 @@ class mobileApi extends api {
 
 $api = new mobileApi();
 if(isset($_POST['method']) && $_POST['method']!="") {
-    sleep(1);//test loader
+    //sleep(1);//test loader
     $api->processApi($_POST['method']);
 }
 
