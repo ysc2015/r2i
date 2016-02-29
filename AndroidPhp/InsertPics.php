@@ -1,4 +1,5 @@
 <?php
+/* ilham Amara* 2016*/
 ini_set('display_errors', 1);
 include_once 'config.php';
 
