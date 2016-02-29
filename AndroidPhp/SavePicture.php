@@ -4,6 +4,7 @@ include_once 'config.php';
 //header('Content-type : bitmap; charset=utf-8');
 echo 'FIRST';
 var_dump($_POST);
+chmod('Photo',777);
  if(isset($_POST["encoded_string"])){
  	echo 'Test';
 	$encoded_string = $_POST["encoded_string"];
