@@ -1,7 +1,7 @@
 <?php
 /* ilham Amara* 2016*/
 include_once 'config.php';
-header('Content-type : bitmap; charset=utf-8');
+//header('Content-type : bitmap; charset=utf-8');
  if(isset($_POST["encoded_string"])){
  	
 	$encoded_string = $_POST["encoded_string"];
@@ -11,12 +11,8 @@ header('Content-type : bitmap; charset=utf-8');
 	
 	$path = 'Photo/'.$image_name;
 	
-	$file = fopen($path, 'wb');
-	
-	$is_written = fwrite($file, $decoded_string);
-	fclose($file);
-	
-	
+	echo file_put_contents($path,$decoded_string);
  }
+
 
 ?>
