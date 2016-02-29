@@ -12,7 +12,7 @@ echo 'FIRST';
 	
 	$path = 'Photo/'.$image_name;
 	
-	if(file_put_contents($path,$decoded_string) === false)
+	if(file_put_contents($path,$decoded_string) == false)
 		echo 'FALSE';
 	else
 		echo 'TRUE';
