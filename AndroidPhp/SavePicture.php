@@ -13,7 +13,7 @@ file_put_contents('myFile.txt','data');
 
 	$decoded_string = base64_decode($encoded_string);
 	
-	$path = 'Photo/'$image_name;
+	$path = 'Photo/'.$image_name;
 	
 	if(file_put_contents($path,$decoded_string) == false)
 		echo 'FALSE';
