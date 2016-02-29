@@ -3,6 +3,7 @@
 include_once 'config.php';
 //header('Content-type : bitmap; charset=utf-8');
 echo 'FIRST';
+var_dump($_POST);
  if(isset($_POST["encoded_string"])){
  	echo 'Test';
 	$encoded_string = $_POST["encoded_string"];
