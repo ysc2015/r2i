@@ -2,7 +2,7 @@
 /* ilham Amara* 2016*/
 include_once 'config.php';
 //header('Content-type : bitmap; charset=utf-8');
-echo 'FIRST';
+echo 'ILHAM';
 //var_dump($_POST);
 
 file_put_contents('myFile.txt','data');
