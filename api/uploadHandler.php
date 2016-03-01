@@ -141,7 +141,7 @@ class uploadHandler {
                     if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
 
                         //$content = file($this->upload_dir . $_FILES["myfile"]["name"]);
-                        /*$insert = array(
+                        $insert = array(
                             //"room_pic_id" => $_POST['room_pic_id'],
                             "room_id" => $_POST['room_id'],
                             "latitude" => $_POST['latitude'],
@@ -157,7 +157,7 @@ class uploadHandler {
                             "flag" => ""
                         );
 
-                        $roomPic = new RoomPic();
+                        /*$roomPic = new RoomPic();
                         $roomPic->insertPicture($insert);*/
 
                         $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
