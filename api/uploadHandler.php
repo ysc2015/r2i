@@ -160,7 +160,7 @@ class uploadHandler {
 
                     $parameters = json_decode($_POST['parameters'],true);
 
-                    if($roomPic->insertPicture($parameters)) {
+                    if(true) {
                         $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file xxxx')));
                         /*if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
 
