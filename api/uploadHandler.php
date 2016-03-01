@@ -158,9 +158,11 @@ class uploadHandler {
                         );
 
                         $roomPic = new RoomPic();
-                        $roomPic->insertPicture($insert);
 
-                        $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
+                        if($roomPic->insertPicture($insert))
+                            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
+                        else
+                            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered with no infos !')));
                     }
 
                 } else {
