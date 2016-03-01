@@ -157,8 +157,8 @@ class uploadHandler {
                             "flag" => ""
                         );
 
-                        $roomPic = new RoomPic();
-                        $roomPic->insertPicture($insert);
+                        /*$roomPic = new RoomPic();
+                        $roomPic->insertPicture($insert);*/
 
                         $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
                     }
