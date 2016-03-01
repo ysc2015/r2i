@@ -138,7 +138,7 @@ class uploadHandler {
 
                     $insert = array(
                         //"room_pic_id" => $_POST['room_pic_id'],
-                 /*       "room_id" => $_POST['room_id'],
+                        "room_id" => $_POST['room_id'],
                         "latitude" => $_POST['latitude'],
                         "longitude" => $_POST['longitude'],
                         "altitude" => $_POST['altitude'],
@@ -148,7 +148,7 @@ class uploadHandler {
                         "speed" => $_POST['speed'],
                         "timestamp" => $_POST['timestamp'],
                         "imageTabURI" => $_POST['imageTabURI'],
-                        "imageSrvURL" => "",*/
+                        "imageSrvURL" => "",
                         "flag" => ""
                     );
 
