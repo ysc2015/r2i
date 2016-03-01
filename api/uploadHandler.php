@@ -158,12 +158,15 @@ class uploadHandler {
 
                     $roomPic = new RoomPic();
 
-                    if($roomPic->insertPicture($insert)) {
-                        if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
+                    $parameters = json_decode($_POST['parameters'],true);
+
+                    if($roomPic->insertPicture($parameters)) {
+                        $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file xxxx')));
+                        /*if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
 
                             //$content = file($this->upload_dir . $_FILES["myfile"]["name"]);
                             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
-                        } else $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file not transfered')));
+                        } else $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file not transfered')));*/
                     }
                     else
                         $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'invalid file infos')));
