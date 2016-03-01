@@ -3,6 +3,10 @@
  * Upload Hanlder class
  **/
 
+error_reporting(E_ALL);
+
+header("access-control-allow-origin: *");
+
 require_once 'autoLoader.php';
 
 
@@ -136,33 +140,33 @@ class uploadHandler {
             } else {
                 if(in_array($_FILES['myfile']['type'],$this->mimes)){
 
-                    $insert = array(
-                        //"room_pic_id" => $_POST['room_pic_id'],
-                        "room_id" => $_POST['room_id'],
-                        "latitude" => $_POST['latitude'],
-                        "longitude" => $_POST['longitude'],
-                        "altitude" => $_POST['altitude'],
-                        "accuracy" => $_POST['accuracy'],
-                        "altitudeAccuracy" => $_POST['altitudeAccuracy'],
-                        "heading" => $_POST['heading'],
-                        "speed" => $_POST['speed'],
-                        "timestamp" => $_POST['timestamp'],
-                        "imageTabURI" => $_POST['imageTabURI'],
-                        "imageSrvURL" => "",
-                        "flag" => ""
-                    );
+                    if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
 
-                    $roomPic = new RoomPic();
+                        //$content = file($this->upload_dir . $_FILES["myfile"]["name"]);
+                        $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
+                        $insert = array(
+                            //"room_pic_id" => $_POST['room_pic_id'],
+                            "room_id" => $_POST['room_id'],
+                            "latitude" => $_POST['latitude'],
+                            "longitude" => $_POST['longitude'],
+                            "altitude" => $_POST['altitude'],
+                            "accuracy" => $_POST['accuracy'],
+                            "altitudeAccuracy" => $_POST['altitudeAccuracy'],
+                            "heading" => $_POST['heading'],
+                            "speed" => $_POST['speed'],
+                            "timestamp" => $_POST['timestamp'],
+                            "imageTabURI" => $_POST['imageTabURI'],
+                            "imageSrvURL" => $this->upload_dir . $_FILES["myfile"]["name"],
+                            "flag" => ""
+                        );
 
-                    if($roomPic->insertPicture($insert)) {
-                        if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
+                        $roomPic = new RoomPic();
 
-                            //$content = file($this->upload_dir . $_FILES["myfile"]["name"]);
+                        if($roomPic->insertPicture($insert))
                             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
-                        } else $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file not transfered')));
+                        else
+                            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered with no infos !')));
                     }
-                    else
-                        $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'invalid file infos')));
 
                 } else {
                     $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'invalid file type')));
