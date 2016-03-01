@@ -156,7 +156,7 @@ class uploadHandler {
                             "speed" => $_POST['speed'],
                             "timestamp" => $_POST['timestamp'],
                             "imageTabURI" => $_POST['imageTabURI'],
-                            "imageSrvURL" => $this->upload_dir . $_FILES["myfile"]["name"],
+                            "imageSrvURL" => $_FILES["myfile"]["name"],
                             "flag" => ""
                         );
 
