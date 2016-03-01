@@ -3,10 +3,6 @@
  * Upload Hanlder class
  **/
 
-error_reporting(E_ALL);
-
-header("access-control-allow-origin: *");
-
 require_once 'autoLoader.php';
 
 
