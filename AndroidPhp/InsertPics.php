@@ -38,10 +38,12 @@ for($i=0; $i<count($data) ; $i++) {
     if($res) {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'yes';
+	$b["time"] = $data[$i]->timestamp;
         array_push($a,$b);
     } else {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'no';
+	$b["time"] = $data[$i]->timestamp;
         array_push($a,$b);
     }
 }
