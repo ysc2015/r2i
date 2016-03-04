@@ -145,7 +145,7 @@ class uploadHandler {
                         //$content = file($this->upload_dir . $_FILES["myfile"]["name"]);
                         $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'file transfered')));
                         $insert = array(
-                            //"room_pic_id" => $_POST['room_pic_id'],
+                            "room_pic_id" => $_POST['room_pic_id'],
                             "room_id" => $_POST['room_id'],
                             "latitude" => $_POST['latitude'],
                             "longitude" => $_POST['longitude'],
