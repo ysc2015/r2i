@@ -39,13 +39,13 @@ for($i=0; $i<count($data) ; $i++) {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'yes';
 	$b["time"] = $data[$i]->timestamp;
-        $b["latitude"] = $data[$i]->latitude;
+        $b["altitude"] = $data[$i]->altitude;
         array_push($a,$b);
     } else {
         $b["room_pic_id"] = $data[$i]->room_pic_id;
         $b["flag"] = 'no';
 	$b["time"] = $data[$i]->timestamp;
-        $b["latitude"] = $data[$i]->latitude;
+        $b["altitude"] = $data[$i]->altitude;
         array_push($a,$b);
     }
 }
