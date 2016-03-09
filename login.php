@@ -1,5 +1,5 @@
 <?php
-require 'api/loginProcess.php';
+require 'public/api/loginProcess.php';
 
 $login = new loginProcess();
 if ($login->login_check() == true)

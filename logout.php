@@ -1,6 +1,6 @@
 <?php
 
-require 'api/autoLoader.php';
+require 'public/api/autoLoader.php';
 
 $session = new session();
 $session->sec_session_start();
