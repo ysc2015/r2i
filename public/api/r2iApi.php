@@ -113,7 +113,7 @@ class r2iApi extends api {
      * @return JSON
      */
     private function inject_rooms_file() {
-        $roomsfile = new RoomsFile();
+        $roomsfile = new Room();
         $result = $roomsfile->injectRoomsFile();
         $this->sendResponse(200,json_encode($result));
     }
