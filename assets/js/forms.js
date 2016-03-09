@@ -27,7 +27,7 @@ function formhash(form, password, bk_str) {
 
     //send login ajax request
     $.ajax({
-        url: bk_str+'api/loginProcess.php',
+        url: bk_str+'public/api/loginProcess.php',
         type: 'POST',
         dataType: 'json',
         data: {email : formData.email, p : formData.p},
