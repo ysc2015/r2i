@@ -103,7 +103,7 @@ class r2iApi extends api {
      * @return JSON
      */
     private function get_all_rooms_files() {
-        $roomsfile = new RoomsFile();
+        $roomsfile = new Room();
         $roomsfiles = $roomsfile->getAllRoomsFiles();
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$roomsfiles)));
     }
