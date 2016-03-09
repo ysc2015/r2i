@@ -38,6 +38,7 @@
                         </li>
                     </ul>
                     <h3 class="block-title">Weekly Overview</h3>
+                    <h3 class="block-title">Utilisateurs</h3>
                 </div>
                 <div class="block-content block-content-full bg-gray-lighter text-center">
                     <!-- Chart.js Charts (initialized in js/pages/base_pages_dashboard.js), for more examples you can check out http://www.chartjs.org/docs/ -->
