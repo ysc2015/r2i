@@ -73,7 +73,7 @@ $one->main_nav                     = array(
     array(
         'name'  => '<span class="sidebar-mini-hide">Utilisateurs</span>',
         'icon'  => 'si si-rocket',
-        'url'   => '?page=users_list'
+        'url'   => '?page=utilisateurs'
     ),
     array(
         'name'  => '<span class="sidebar-mini-hide">Application mobile</span>',
