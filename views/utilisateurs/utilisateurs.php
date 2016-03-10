@@ -1,5 +1,5 @@
 <!-- Page Content -->
-<?php require 'public/api/classes/User.php';?>
+<?php require '../../public/api/classes/User.php';?>
 <div class="content">
     <div class="row">
         <div class="col-lg-8">
@@ -21,9 +21,7 @@
                             <th>Mot de passe</th>
                         </tr>
                         <tr><th>
-                                <?php
-                                $user = new User();
-                                $result = $user->getAllUsers();?>
+
                             </th>
                         </tr>
                     </table>
