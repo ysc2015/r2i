@@ -20,7 +20,7 @@
                         <th>firstname</th>
                         <th>lastname</th>
                         <th>email</th>
-                        <th class="text-center" style="width: 10%;">"3Actions</th>
+                        <th class="text-center" style="width: 10%;">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -162,89 +162,7 @@
                     </div>
                     <!-- END Slick slider -->
                 </div>
-                <div class="block-content">
-                    <ul class="list list-timeline pull-t">
-                        <!-- Twitter Notification -->
-                        <li>
-                            <div class="list-timeline-time">12 hrs ago</div>
-                            <i class="fa fa-twitter list-timeline-icon bg-info"></i>
-                            <div class="list-timeline-content">
-                                <p class="font-w600">+ 1150 Followers</p>
-                                <p class="font-s13">You’re getting more and more followers, keep it up!</p>
-                            </div>
-                        </li>
-                        <!-- END Twitter Notification -->
 
-                        <!-- Generic Notification -->
-                        <li>
-                            <div class="list-timeline-time">4 hrs ago</div>
-                            <i class="fa fa-briefcase list-timeline-icon bg-city"></i>
-                            <div class="list-timeline-content">
-                                <p class="font-w600">+ 3 New Products were added!</p>
-                                <p class="font-s13">Congratulations!</p>
-                            </div>
-                        </li>
-                        <!-- END Generic Notification -->
-
-                        <!-- System Notification -->
-                        <li>
-                            <div class="list-timeline-time">1 day ago</div>
-                            <i class="fa fa-check list-timeline-icon bg-success"></i>
-                            <div class="list-timeline-content">
-                                <p class="font-w600">Database backup completed!</p>
-                                <p class="font-s13">Download the <a href="javascript:void(0)">latest backup</a>.</p>
-                            </div>
-                        </li>
-                        <!-- END System Notification -->
-
-
-
-                        <!-- Social Notification -->
-                        <li>
-                            <div class="list-timeline-time">2 days ago</div>
-                            <i class="fa fa-user-plus list-timeline-icon bg-modern"></i>
-                            <div class="list-timeline-content">
-                                <p class="font-w600">+ 3 Friend Requests</p>
-                                <ul class="nav-users push-10-t push">
-                                    <li>
-                                        <a href="base_pages_profile.php">
-                                            <?php $one->get_avatar('', 'male'); ?>
-                                            <i class="fa fa-circle text-success"></i> <?php $one->get_name('male'); echo "\n"; ?>
-                                            <div class="font-w400 text-muted"><small>Graphic Designer</small></div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="base_pages_profile.php">
-                                            <?php $one->get_avatar('', 'female'); ?>
-                                            <i class="fa fa-circle text-warning"></i> <?php $one->get_name('female'); echo "\n"; ?>
-                                            <div class="font-w400 text-muted"><small>Photographer</small></div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="base_pages_profile.php">
-                                            <?php $one->get_avatar('', 'male'); ?>
-                                            <i class="fa fa-circle text-danger"></i> <?php $one->get_name('male'); echo "\n"; ?>
-                                            <div class="font-w400 text-muted"><small>UI Designer</small></div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- END Social Notification -->
-
-                        <!-- System Notification -->
-                        <li class="push-5">
-                            <div class="list-timeline-time">1 week ago</div>
-                            <i class="fa fa-cog list-timeline-icon bg-primary-dark"></i>
-                            <div class="list-timeline-content">
-                                <p class="font-w600">System updated to v2.02</p>
-                                <p class="font-s13">Check the complete changelog at the
-                                    <a href="javascript:void(0)">activity page</a>.</p>
-                            </div>
-                        </li>
-                        <!-- END System Notification -->
-                    </ul>
-                </div>
             </div>
             <!-- END News -->
         </div>
