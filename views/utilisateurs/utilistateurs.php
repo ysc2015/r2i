@@ -58,7 +58,7 @@
                     <div class="js-slider remove-margin-b" data-slider-autoplay="true" data-slider-autoplay-speed="4000">
 
                         <div>
-                          
+
                         </div>
                         <div>
 
