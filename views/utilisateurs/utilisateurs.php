@@ -20,7 +20,11 @@
                             <th>Email</th>
                             <th>Mot de passe</th>
                         </tr>
-                        <tr><th></th>
+                        <tr><th>
+                                <?php
+                                $user = new User();
+                                $result = $user->getAllUsers();?>
+                            </th>
                         </tr>
                     </table>
                 </div>
