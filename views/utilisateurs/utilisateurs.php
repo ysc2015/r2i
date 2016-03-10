@@ -43,9 +43,14 @@
                 <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
                 <form class="js-validation-bootstrap form-horizontal"">
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="profil_id">Profil Id <span class="text-danger">*</span></label>
+                    <label class="col-md-4 control-label" for="profil_id">Profil <span class="text-danger">*</span></label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" id="profil_id" name="city">
+                        <select class="form-control" id="type_profil" name="type_profil">
+                            <option value="">Séléctionnez un type</option>
+                            <option value="1">ADMIN</option>
+                            <option value="1">User</option>
+
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
