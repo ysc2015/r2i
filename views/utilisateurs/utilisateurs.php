@@ -15,9 +15,12 @@
 
                     <h3 class="block-title">Utilisateurs</h3>
                     <table>
-                        <tr><th>utilisateur</th>
-                            <th>Email</th>
-                            <th>Mot de passe</th>
+                        <tr>
+                              <th>utilisateur</th>
+                            <th>  </th>
+                               <th>Email</th>
+
+                               <th>Mot de passe</th>
                         </tr>
                         <tr><th>
 
