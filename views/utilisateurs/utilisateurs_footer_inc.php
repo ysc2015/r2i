@@ -1,12 +1,13 @@
-<!-- Page Plugins -->
-<script src="<?php echo $one->assets_folder; ?>/js/plugins/slick/slick.min.js"></script>
-<script src="<?php echo $one->assets_folder; ?>/js/plugins/chartjs/Chart.min.js"></script>
-
-<!-- Page JS Code -->
-<script src="<?php echo $one->assets_folder; ?>/js/pages/base_pages_dashboard.js"></script>
-<script>
-    $(function(){
-        // Init page helpers (Slick Slider plugin)
-        App.initHelpers('slick');
-    });
-</script>
+<!-- Page JS Plugins -->
+<?php if($action == "list"): ?>
+    <script src="<?php echo $one->assets_folder; ?>/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<?php endif; ?>
+<?php if($action == "add"): ?>
+    <!-- Page JS Plugins -->
+    <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="<?php echo $one->assets_folder; ?>/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-upload-file/jquery.uploadfile.min.js"></script>
+<?php endif; ?>
+<?php if($action == "sdfiles"): ?>
+    <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-upload-file/jquery.uploadfile.min.js"></script>
+<?php endif; ?>
