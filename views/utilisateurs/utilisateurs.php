@@ -16,24 +16,12 @@
                     <thead>
                     <tr>
                         <th class="text-center">Id</th>
+                        <th>profile</th>
                         <th>firstname</th>
-                        <th class="hidden-xs">lastname</th>
-                        <th class="hidden-xs">Email</th>
-                        <th class="hidden-xs">Password</th>
-                        <th class="text-center" style="width: 10%;">Actions</th>
-                        <?php
-                        $vars = new User();
-                        $users = $vars->getAllUsers();
-                        foreach($users as $user) {
-                            echo "<tr><th>".$user['user_id']."</th>";
-                            echo "<th>".$user['user_firstname']."</th>";
-                            echo "<th>".$user['user_lastname']."</th>";
-                            echo "<th>".$user['email']."</th>";
-                            echo "<th>".$user['password']."</br></th></tr>";
-
-                        }
-                        ?>
-
+                        <th>lastname</th>
+                        <th>email</th>
+                        <th class="text-center" style="width: 10%;">"3Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -168,24 +156,9 @@
                     <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
                     <div class="js-slider remove-margin-b" data-slider-autoplay="true" data-slider-autoplay-speed="4000">
 
-                        <div>
 
-                        </div>
-                        <div>
 
-                        </div>
-                        <div>
-                            <blockquote>
-                                <p>Every child is an artist. The problem is how to remain an artist once he grows up.</p>
-                                <footer>Pablo Picasso</footer>
-                            </blockquote>
-                        </div>
-                        <div>
-                            <blockquote>
-                                <p>There is only one way to avoid criticism: do nothing, say nothing, and be nothing.</p>
-                                <footer>Aristotle</footer>
-                            </blockquote>
-                        </div>
+
                     </div>
                     <!-- END Slick slider -->
                 </div>
@@ -265,7 +238,8 @@
                             <i class="fa fa-cog list-timeline-icon bg-primary-dark"></i>
                             <div class="list-timeline-content">
                                 <p class="font-w600">System updated to v2.02</p>
-                                <p class="font-s13">Check the complete changelog at the <a href="javascript:void(0)">activity page</a>.</p>
+                                <p class="font-s13">Check the complete changelog at the
+                                    <a href="javascript:void(0)">activity page</a>.</p>
                             </div>
                         </li>
                         <!-- END System Notification -->
