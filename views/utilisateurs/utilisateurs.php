@@ -1,53 +1,168 @@
-<!-- Page Content -->
-<?php
-//require_once "../../public/api/classes/User.php";
-?>
-<div class="content">
-    <div class="row">
-        <div class="col-lg-8">
-            <!-- Stats -->
-            <h3>Utilisateurs</h3>
-            <!-- Main Dashboard Chart -->
-            <div class="block">
-                <div class="block-header">
-                    <ul class="block-options">
-                        <li>
-                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-                        </li>
-                    </ul>
 
-                    <h3 class="block-title">Utilisateurs</h3>
-                    <table>
-                        <tr>
-                              <th>utilisateur</th>
-                            <th>  </th>
-                               <th>Email</th>
+<?php if($action == "list"): ?>
+    <div class="content">
+        <!-- Dynamic Table Full -->
+        <div class="block">
+            <div class="block-header">
+                <button type="button" class="btn btn-minw btn-default push-5-r push-10 open-add-form" id="add_utilisateur">
+                    <i class="fa fa-plus">
 
-                               <th>Mot de passe</th>
-                        </tr>
-                        <tr><th>
+                    </i> Ajouter Utilisateur</button>
+                <h3 class="block-title">Liste des Utilisateurs</h3>
+            </div>
+            <div class="block-content">
+                <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+                <table class="table table-bordered table-striped js-dataTable-full">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th>firstname</th>
+                        <th class="hidden-xs">lastname</th>
+                        <th class="hidden-xs">Email</th>
+                        <th class="hidden-xs">Password</th>
+                        <th class="text-center" style="width: 10%;">Actions</th>
+                        <?php
+                        $vars = new User();
+                        $users = $vars->getAllUsers();
+                        foreach($users as $user) {
+                            echo "<tr><th>".$user['user_id']."</th>";
+                            echo "<th>".$user['user_firstname']."</th>";
+                            echo "<th>".$user['user_lastname']."</th>";
+                            echo "<th>".$user['email']."</th>";
+                            echo "<th>".$user['password']."</br></th></tr>";
 
-                            </th>
-                        </tr>
-                    </table>
+                        }
+                        ?>
+
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Dynamic Table Full -->
+    </div>
+<?php endif; ?>
+<?php if($action == "add"): ?>
+    <div class="content">
+        <h2 class="content-heading">Ajout Utilsateur</h2>
+        <!-- Bootstrap Forms Validation -->
+        <div class="block">
+            <div class="block-header">
+            </div>
+            <div class="block-content block-content-narrow">
+                <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/base_forms_validation.js) -->
+                <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+                <form class="js-validation-bootstrap form-horizontal"">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="profil_id">Profil Id <span class="text-danger">*</span></label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="profil_id" name="city">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="firstname">Firstname <span class="text-danger">
+                            *</span></label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="firstname" name="firstname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="lastname">Lastname<span class="text-danger">
+                            *</span></label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="lastname" name="lastname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="email">Email<span class="text-danger">
+                            *</span></label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="email" name="email">
+                    </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="password">Password <span class="text-danger">
+                            *</span></label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="password" name="password" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="salt">Salt <span class="text-danger">
+                            *</span></label>
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" id="salt" name="salt" >
+                    </div>
+                </div>
+                </form>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-4">
+                        <button class="btn btn-sm btn-primary add-project" type="button">Enregistrer</button>
+                    </div>
+                </div>
             </div>
-            <!-- END Main Dashboard Chart -->
         </div>
+        <!-- Bootstrap Forms Validation -->
     </div>
+<?php endif; ?>
+<?php if($action == "mod"): ?>
+    <?php echo "mod"?>
+<?php endif; ?>
+<?php if($action == "sdfiles"): ?>
+    <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
+        <div class="content">
+            <div class="row items-push push-20-t nice-copy">
+                <div class="col-md-6">
+                    <!-- Dynamic Table Full -->
+                    <div class="block">
+                        <div class="block-header">
+                            <h3 class="block-title">Liste des fichiers</h3>
+                        </div>
+                        <div class="block-content">
+                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+                            <table class="table table-bordered table-striped js-dataTable-full">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Id</th>
+                                    <th>Name</th>
+                                    <th class="hidden-xs">Email</th>
+                                    <th class="hidden-xs">Access</th>
+                                    <th class="hidden-xs">Access</th>
+                                    <th class="text-center" style="width: 10%;">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END Dynamic Table Full -->
+                </div>
+                <div class="col-md-6">
+                    <div id="fileuploader">Ajouter fichiers</div>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div>pas possible d'afficher sd</div>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+
+
+
+
+
+<div class="content">
+
     <div class="row">
         <div class="col-lg-8">
             <!-- News -->
             <div class="block">
-                <div class="block-header">
-                    <ul class="block-options">
-                        <li>
-                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-                        </li>
-                    </ul>
-                    <h3 class="block-title"> Updates</h3>
-                </div>
+
                 <div class="block-content bg-gray-lighter">
                     <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
                     <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
