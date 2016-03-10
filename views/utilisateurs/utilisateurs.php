@@ -33,7 +33,7 @@
 <?php endif; ?>
 <?php if($action == "add"): ?>
     <div class="content">
-        <h2 class="content-heading">Ajout Utilsateur</h2>
+        <h2 class="content-heading">Formulaire Utilsateur</h2>
         <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
@@ -47,7 +47,7 @@
                     <div class="col-md-7">
                         <select class="form-control" id="type_profil" name="type_profil">
                             <option value="">Séléctionnez un type</option>
-                            <option value="1">ADMIN</option>
+                            <option value="1">Admin</option>
                             <option value="1">User</option>
 
                         </select>
@@ -92,7 +92,7 @@
                 </form>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <button class="btn btn-sm btn-primary add-project" type="button">Enregistrer</button>
+                        <button class="btn btn-sm btn-primary add-user" type="button">Enregistrer</button>
                     </div>
                 </div>
             </div>
