@@ -1,5 +1,5 @@
 <!-- Page Content -->
-
+<?php require '../../public/api/classes/User.php';?>
 <div class="content">
     <div class="row">
         <div class="col-lg-8">
