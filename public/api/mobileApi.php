@@ -83,7 +83,8 @@ class mobileApi extends api {
      */
     private function user_login() {
         $user = new User();
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$user->login())));
+        $user->login();
+        //$this->sendResponse(200,json_encode(array('status'=>'success','data'=>$user->login())));
     }
 
 
