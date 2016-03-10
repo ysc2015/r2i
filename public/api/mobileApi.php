@@ -6,7 +6,6 @@
 header("access-control-allow-origin: *");
 require_once('lib/JWT/JWT.php');
 require_once 'autoLoader.php';
-
 require 'api.php';
 
 class mobileApi extends api {
