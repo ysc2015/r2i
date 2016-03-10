@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-8">
             <!-- Stats -->
-            <h3>TEST</h3>
+            <h3>Utilisateurs</h3>
             <!-- Main Dashboard Chart -->
             <div class="block">
                 <div class="block-header">
@@ -12,31 +12,20 @@
                             <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Weekly Overview</h3>
+
                     <h3 class="block-title">Utilisateurs</h3>
+                    <table>
+                        <tr><th>utilisateur</th>
+                            <th>Email</th>
+                            <th>Mot de passe</th>
+                        </tr>
+                        <tr><th></th>
+                        </tr>
+                    </table>
                 </div>
 
             </div>
             <!-- END Main Dashboard Chart -->
-        </div>
-        <div class="col-lg-4">
-            <!-- Latest Sales Widget -->
-            <div class="block">
-                <div class="block-header">
-                    <ul class="block-options">
-                        <li>
-                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-                        </li>
-                    </ul>
-                    <h3 class="block-title">Latest Sales</h3>
-                </div>
-                <div class="block-content bg-gray-lighter">
-                    <div class="row items-push">
-                    </div>
-                </div>
-
-            </div>
-            <!-- END Latest Sales Widget -->
         </div>
     </div>
     <div class="row">
@@ -112,16 +101,7 @@
                         </li>
                         <!-- END System Notification -->
 
-                        <!-- Facebook Notification -->
-                        <li>
-                            <div class="list-timeline-time">3 hrs ago</div>
-                            <i class="fa fa-facebook list-timeline-icon bg-default"></i>
-                            <div class="list-timeline-content">
-                                <p class="font-w600">+ 290 Page Likes</p>
-                                <p class="font-s13">This is great, keep it up!</p>
-                            </div>
-                        </li>
-                        <!-- END Facebook Notification -->
+
 
                         <!-- Social Notification -->
                         <li>
