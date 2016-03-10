@@ -110,6 +110,6 @@ class User {
     public function login() {
         $token = array();
         $token['id'] = 1;
-        return JWT::encode($token,'secret_server_key');
+        echo JWT::encode($token,'secret_server_key');
     }
 }// END class
