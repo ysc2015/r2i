@@ -4,6 +4,7 @@
  **/
 
 require_once('lib/PHPExcel/PHPExcel/IOFactory.php');
+require_once('lib/JWT/JWT.php');
 require_once 'autoLoader.php';
 
 require 'api.php';
@@ -102,10 +103,10 @@ class r2iApi extends api {
      * Select all Rooms Files from DB
      * @return JSON
      */
-    private function get_all_rooms_files() {
-        $roomsfile = new Room();
-        $roomsfiles = $roomsfile->getAllRoomsFiles();
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$roomsfiles)));
+    private function get_all_rooms() {
+        $room = new Room();
+        $rooms = $room->getAllRooms();
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$rooms)));
     }
 
     /**
@@ -116,6 +117,20 @@ class r2iApi extends api {
         $roomsfile = new Room();
         $result = $roomsfile->injectRoomsFile();
         $this->sendResponse(200,json_encode($result));
+    }
+
+    /**
+     * Users methods
+     */
+
+    /**
+     * Select STT users from DB
+     * @return JSON
+     */
+    private function get_stt_users() {
+        $user = new User();
+        $users = $user->getUserByProfilId(2);
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$users)));
     }
 
     /**

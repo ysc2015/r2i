@@ -53,14 +53,16 @@ class Room {
     }
 
     /**
-     * Select all rooms files from DB
+     * Select all rooms from DB
      * @return array
      */
-    public function getAllRoomsFiles() {
+    public function getAllRooms() {
         //build sql query
-        $sql ="SELECT rooms_file_id,injected_filename,saved_filename,injection_date ";
-        $sql .="FROM rooms_files ";
-        $sql .="ORDER BY rooms_files.rooms_file_id ASC";
+        $sql ="SELECT room_id,user_id,injected_filename,stored_filename, ";
+        $sql .="REF_CHAMBR,VILLET,SOUS_PROJET,REF_NOTE, ";
+        $sql .="CODE_CH1,CODE_CH2,GPS,flag,injected_datetime ";
+        $sql .="FROM rooms ";
+        $sql .="ORDER BY room_id ASC";
 
         //run & retun sql result(array)
         return $this->db->run($sql);
