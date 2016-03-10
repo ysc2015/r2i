@@ -56,6 +56,19 @@ class User {
     }
 
     /**
+     * Select user by profil id
+     * @param int $profilid profil id
+     * @return array() / boolean(false)
+     */
+    public function getUserByProfilId($profilid) {
+        $bind = array(
+            ":profil_id" => $profilid
+        );
+        $result = $this->db->select("users", "profil_id = :profil_id", $bind);
+        return (!empty($result)?$result:false);
+    }
+
+    /**
      * Select count of login attempts
      * @param int $userid user id
      * @return int
@@ -87,5 +100,16 @@ class User {
             "time" => time()
         );
         $this->db->insert("login_attempts", $insert);
+    }
+
+    /**
+     * login
+     * @param int $userid user id
+     * @return Boolean
+     */
+    public function login() {
+        $token = array();
+        $token['id'] = 1;
+        return JWT::encode($token,'secret_server_key');
     }
 }// END class

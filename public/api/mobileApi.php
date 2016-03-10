@@ -4,7 +4,7 @@
  **/
 
 header("access-control-allow-origin: *");
-
+require_once('lib/JWT/JWT.php');
 require_once 'autoLoader.php';
 
 require 'api.php';
@@ -66,7 +66,7 @@ class mobileApi extends api {
 
     /**
      * check for updates
-     * @return JSON|bool
+     * @return JSON
      */
     private function check_update() {
         $room = new JobRoom();
@@ -76,6 +76,17 @@ class mobileApi extends api {
         }
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$rooms)));
     }
+
+    /**
+     * login
+     * @return JSON
+     */
+    private function user_login() {
+        $user = new User();
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$user->login())));
+    }
+
+
 
 }// END class
 
