@@ -29,7 +29,7 @@ $action = ((!isset($_GET['action']) || (isset($_GET['action']) && !isset($action
 <?php require 'inc/views/template_head_end.php'; ?>
 <?php require 'inc/views/base_head.php'; ?>
 <!-- Page Content -->
-<?php require 'views/'.$activePage.'/'.$activePage.'.php'?>
+<?php require 'views/'.$activePage.'/'.$activePage.'.php'; ?>
 <!-- END Page Content -->
 <!-- All pages loader -->
 <div id="loadingScreen"></div>
