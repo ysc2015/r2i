@@ -45,26 +45,26 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="profil_id">Profil <span class="text-danger">*</span></label>
                     <div class="col-md-7">
-                        <select class="form-control" id="type_profil" name="type_profil">
+                        <select class="form-control" id="profil_id" name="profil_id">
                             <option value="">Séléctionnez un type</option>
                             <option value="1">Admin</option>
-                            <option value="1">User</option>
+                            <option value="2">User</option>
 
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="firstname">Firstname <span class="text-danger">
+                    <label class="col-md-4 control-label" for="user_firstname">Firstname <span class="text-danger">
                             *</span></label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" id="firstname" name="firstname">
+                        <input class="form-control" type="text" id="user_firstname" name="user_firstname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="lastname">Lastname<span class="text-danger">
+                    <label class="col-md-4 control-label" for="user_lastname">Lastname<span class="text-danger">
                             *</span></label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" id="lastname" name="lastname">
+                        <input class="form-control" type="text" id="user_lastname" name="user_lastname">
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,7 +92,7 @@
                 </form>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <button class="btn btn-sm btn-primary add-user" type="button">Enregistrer</button>
+                        <button class="btn btn-sm btn-primary" id="add-user" type="button">Enregistrer</button>
                     </div>
                 </div>
             </div>
@@ -106,37 +106,7 @@
 <?php if($action == "sdfiles"): ?>
     <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
         <div class="content">
-            <div class="row items-push push-20-t nice-copy">
-                <div class="col-md-6">
-                    <!-- Dynamic Table Full -->
-                    <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">Liste des fichiers</h3>
-                        </div>
-                        <div class="block-content">
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                            <table class="table table-bordered table-striped js-dataTable-full">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">Id</th>
-                                    <th>Name</th>
-                                    <th class="hidden-xs">Email</th>
-                                    <th class="hidden-xs">Access</th>
-                                    <th class="hidden-xs">Access</th>
-                                    <th class="text-center" style="width: 10%;">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- END Dynamic Table Full -->
-                </div>
-                <div class="col-md-6">
-                    <div id="fileuploader">Ajouter fichiers</div>
-                </div>
-            </div>
+
         </div>
     <?php else: ?>
         <div>pas possible d'afficher sd</div>
