@@ -21,10 +21,6 @@ class User {
         $this->db = DB::getInstance();
     }
 
-    /**
-     * Select all users from DB
-     * @return array
-     */
     public function getAllUsers() {
         return $this->db->select("users");
     }
@@ -48,7 +44,8 @@ class User {
         $bind = array(
             ":user_id" => $delete['user_id']
         );
-        return $this->db->delete("users","user_id = :user_id", $bind);
+        $ret = $this->db->delete("users","user_id = :user_id", $bind);
+        return $ret;
     }
     /**
      * Select user by email
