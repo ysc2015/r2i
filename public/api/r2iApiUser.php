@@ -61,8 +61,10 @@ class r2iApiUser extends api {
         $user = new User();
         if($user->deleteUser($delete))
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'DELETE OK')));
-        else
+        else{
+
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'DELETE ERROR')));
+        }
     }
 
     /**
