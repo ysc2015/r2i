@@ -51,25 +51,20 @@ var ProjectFormValidation = function() {
     };
 
     // Add a project
-    var addProject = function() {
+    var addUser = function() {
         var $form = jQuery('.js-validation-bootstrap');
         var $row = {}; // default row value;
         // When the add project form is submitted
-        jQuery('.add_utilisateur').on('click', function(){
+        jQuery('#add-user').on('click', function(){
             console.log('Enregistrement projet');
-            console.log(uploadObj);
+
             if($form.valid()) {
-                if(uploadObj.selectedFiles > 0) {
-                    selectedFilesCounter = uploadObj.selectedFiles;
-                    $form.find('input,textarea,select').each(function () {
-                        $row[$(this).attr('name')] = $(this).val();
-                    });
-                    console.log(JSON.stringify($row));
-                    //call ajax
-                    executeMethod('insert_user',JSON.stringify($row));
-                } else {
-                    alert('Ajouter des fichiers au projet !');
-                }
+                $form.find('input,textarea,select').each(function () {
+                    $row[$(this).attr('name')] = $(this).val();
+                });
+                console.log(JSON.stringify($row));
+                //call ajax
+                executeMethod('insert_user',JSON.stringify($row));
             }
             return false;
         });
@@ -104,10 +99,9 @@ var ProjectFormValidation = function() {
 
     return {
         init: function () {
-            //Add upload plugin functionality
-            initUpload();
+
             // Update Event functionality
-            addProject();
+            addUser();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
