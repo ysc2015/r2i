@@ -1,11 +1,7 @@
 <?php
 header("Content-type: application/javascript");
 ?>
-/*
- *
- *  Author     : ilham
- *
- */
+
 
 var ProjectFormValidation = function() {
     var API_URL = 'public/api/r2iApiUser.php';
@@ -50,7 +46,6 @@ var ProjectFormValidation = function() {
         });
     };
 
-    // Add a project
     var addUser = function() {
         var $form = jQuery('.js-validation-bootstrap');
         var $row = {}; // default row value;
