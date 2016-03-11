@@ -69,6 +69,19 @@ class Room {
     }
 
     /**
+     * Select room records to synchronize with mobile app
+     * @return array
+     */
+    public function getRoomsToSynchronize() {
+        $bind = array(
+            ":flag" => 'yes'
+        );
+        //SQL
+        $result = $this->db->select("rooms", "flag = :flag", $bind);
+        return $result;
+    }
+
+    /**
      * Add a room
      * @param array $insert values
      * @return array|bool|int
