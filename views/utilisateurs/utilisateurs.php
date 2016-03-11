@@ -101,15 +101,15 @@
     </div>
 <?php endif; ?>
 <?php if($action == "mod"): ?>
-    <?php echo "
-                <form class=\"js-validation-bootstrap form-horizontal\"\">
+
+    <?php
+
+    echo "
+          <form class=\"js-validation-bootstrap form-horizontal\"\">
                 <div class=\"form-group\">
                     <label class=\"col-md-4 control-label\" for=\"profil_id\">Profil <span class=\"text-danger\"></span></label>
                     <div class=\"col-md-7\">
-                        <select class=\"form-control\" id=\"profil_id\" name=\"profil_id\">
-                            <option value=\"1\">Admin</option>
-                            <option value=\"2\">User</option>
-
+                       <input class=\"form-control\" type=\"text\" id=\"user_firstname\" name=\"user_firstname\">
                         </select>
                     </div>
                 </div>
@@ -144,20 +144,13 @@
                         <input class=\"form-control\" type=\"text\" id=\"salt\" name=\"salt\" >
                     </div>
                 </div>
-                </form>"?>
+                </form>
+                  <div class=\"form-group\">
+                    <div class=\"col-md-8 col-md-offset-4\">
+                        <button class=\"btn btn-sm btn-primary\" id=\"update-user\" type=\"button\">Valider</button>
+                    </div>
+                </div>";
+
+
+?>
 <?php endif; ?>
-<?php if($action == "sdfiles"): ?>
-    <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
-        <div class="content">
-
-        </div>
-    <?php else: ?>
-        <div>pas possible d'afficher sd</div>
-    <?php endif; ?>
-<?php endif; ?>
-
-
-<div class="content">
-
-</div>
-<!-- END Page Content -->
