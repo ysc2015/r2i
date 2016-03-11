@@ -79,7 +79,7 @@
                     <label class="col-md-4 control-label" for="password">Password <span class="text-danger">
                             *</span></label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" id="password" name="password" >
+                        <input class="form-control" type="password" id="password" name="password" >
                     </div>
                 </div>
                 <div class="form-group">
