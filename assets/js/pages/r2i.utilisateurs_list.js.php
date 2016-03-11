@@ -3,7 +3,7 @@ header("Content-type: application/javascript");
 ?>
 
 function deleteProject(idp) {
-    alert('deleteProject' + idp);
+    alert('delete user ' + idp);
 }
 //
 function showProjectSDFiles(idp) {
@@ -69,9 +69,9 @@ var UsersListDatatables = function() {
                     "sClass": 'text-center',
                     mRender: function (data, type, row) {
                         html = '<div class="btn-group">';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="showProjectModify('+row.project_id+')" data-toggle="tooltip" title="Modifier Projet"><i class="fa fa-pencil"></i></button>';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteProject('+row.project_id+')" data-toggle="tooltip" title="Supprimer Projet"><i class="fa fa-times"></i></button>';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="showProjectSDFiles('+row.project_id+')" data-toggle="tooltip" title="Fichiers Projet (SD)"><i class="fa fa-folder-open"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="showProjectModify('+row.user_id+')" data-toggle="tooltip" title="Modifier Projet"><i class="fa fa-pencil"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteProject('+row.user_id+')" data-toggle="tooltip" title="Supprimer Projet"><i class="fa fa-times"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="showProjectSDFiles('+row.user_id+')" data-toggle="tooltip" title="Fichiers Projet (SD)"><i class="fa fa-folder-open"></i></button>';
                         html += '</div>';
                         return html;
                     }
