@@ -29,26 +29,15 @@ class r2iApiUser extends api {
         } else call_user_func(array($this,$method));
     }
 
-    //requested methods here
 
-    /**
-     * Projects methods
-     */
 
-    /**
-     * Select all projects from DB
-     * @return JSON
-     */
     private function get_all_users() {
         $user= new User();
         $users = $user->getAllUsers();
         $this->sendResponse(200,json_encode(array('status'=>'success','data' => $users)));
     }
 
-    /**
-     * Insert a project
-     * @return JSON
-     */
+
     private function insert_user($insert) {
         $user= new User();
         $result = $user->insertUser($insert);
@@ -58,10 +47,7 @@ class r2iApiUser extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
     }
 
-    /**
-     * Update a project
-     * @return JSON
-     */
+
     private function update_user($update) {
         $user = new User();
         if($user->updateUser($update))
@@ -70,52 +56,13 @@ class r2iApiUser extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
     }
 
-    /**
-     * Delete a project
-     * @return JSON
-     */
+
     private function delete_user($delete) {
         $user = new User();
         if($user->deleteUser($delete))
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'DELETE OK')));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'DELETE ERROR')));
-    }
-
-    /**
-     * Inject a project file
-     * @return JSON
-     */
-    private function insert_file($insert) {
-        $file = new File();
-        if($file->insertFile($insert))
-            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'INSERT OK')));
-        else
-            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
-    }
-
-    /**
-     * Rooms Files methods
-     */
-
-    /**
-     * Select all Rooms Files from DB
-     * @return JSON
-     */
-    private function get_all_rooms_files() {
-        $roomsfile = new Room();
-        $roomsfiles = $roomsfile->getAllRoomsFiles();
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$roomsfiles)));
-    }
-
-    /**
-     * Inject rooms file
-     * @return JSON
-     */
-    private function inject_rooms_file() {
-        $roomsfile = new Room();
-        $result = $roomsfile->injectRoomsFile();
-        $this->sendResponse(200,json_encode($result));
     }
 
     /**
