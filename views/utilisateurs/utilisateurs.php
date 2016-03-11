@@ -104,10 +104,9 @@
     <?php echo "
                 <form class=\"js-validation-bootstrap form-horizontal\"\">
                 <div class=\"form-group\">
-                    <label class=\"col-md-4 control-label\" for=\"profil_id\">Profil <span class=\"text-danger\">*</span></label>
+                    <label class=\"col-md-4 control-label\" for=\"profil_id\">Profil <span class=\"text-danger\"></span></label>
                     <div class=\"col-md-7\">
                         <select class=\"form-control\" id=\"profil_id\" name=\"profil_id\">
-                            <option value=\"\">Séléctionnez un type</option>
                             <option value=\"1\">Admin</option>
                             <option value=\"2\">User</option>
 
@@ -115,37 +114,32 @@
                     </div>
                 </div>
                 <div class=\"form-group\">
-                    <label class=\"col-md-4 control-label\" for=\"user_firstname\">Firstname <span class=\"text-danger\">
-                            *</span></label>
+                    <label class=\"col-md-4 control-label\" for=\"user_firstname\">Firstname </label>
                     <div class=\"col-md-7\">
                         <input class=\"form-control\" type=\"text\" id=\"user_firstname\" name=\"user_firstname\">
                     </div>
                 </div>
                 <div class=\"form-group\">
-                    <label class=\"col-md-4 control-label\" for=\"user_lastname\">Lastname<span class=\"text-danger\">
-                            *</span></label>
+                    <label class=\"col-md-4 control-label\" for=\"user_lastname\">Lastname</label>
                     <div class=\"col-md-7\">
                         <input class=\"form-control\" type=\"text\" id=\"user_lastname\" name=\"user_lastname\">
                     </div>
                 </div>
                 <div class=\"form-group\">
-                    <label class=\"col-md-4 control-label\" for=\"email\">Email<span class=\"text-danger\">
-                            *</span></label>
+                    <label class=\"col-md-4 control-label\" for=\"email\">Email</label>
                     <div class=\"col-md-7\">
                         <input class=\"form-control\" type=\"text\" id=\"email\" name=\"email\">
                     </div>
                 </div>
 
                 <div class=\"form-group\">
-                    <label class=\"col-md-4 control-label\" for=\"password\">Password <span class=\"text-danger\">
-                            *</span></label>
+                    <label class=\"col-md-4 control-label\" for=\"password\">Password </label>
                     <div class=\"col-md-7\">
                         <input class=\"form-control\" type=\"password\" id=\"password\" name=\"password\" >
                     </div>
                 </div>
                 <div class=\"form-group\">
-                    <label class=\"col-md-4 control-label\" for=\"salt\">Salt <span class=\"text-danger\">
-                            *</span></label>
+                    <label class=\"col-md-4 control-label\" for=\"salt\">Salt </label>
                     <div class=\"col-md-7\">
                         <input class=\"form-control\" type=\"text\" id=\"salt\" name=\"salt\" >
                     </div>
