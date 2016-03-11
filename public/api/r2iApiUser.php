@@ -23,7 +23,11 @@ class r2iApiUser extends api {
     function processApi($method="") {
 
         if(isset($_POST['parameters'])) {
-            $parameters = json_decode($_POST['parameters'],true);
+            if(is_array($_POST['parameters']) || is_object($_POST['parameters'])) {
+                $parameters = $_POST['parameters']; // json_decode($_POST['parameters'],true);
+            } else {
+                $parameters = json_decode($_POST['parameters'],true);
+            }
             array_push($this->arrOfParams,$parameters);
             call_user_func_array(array($this,$method),$this->arrOfParams);
         } else call_user_func(array($this,$method));
@@ -48,17 +52,19 @@ class r2iApiUser extends api {
     }
     private function get_user_by_id($id_user) {
         $user = new User();
-        if($user->getUserById($id_user))
-            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK')));
+        $user = $user->getUserById($id_user['user_id']);
+        if($user)
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'SELECT OK','user' => json_encode($user))));
         else
-            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
+            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'SELECT ERROR')));
     }
 
 
     private function update_user($update) {
         $user = new User();
-        if($user->updateUser($update))
-            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK')));
+        $user = $user->updateUser($update);
+        if($user)
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK','user' => json_encode($user))));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
     }
@@ -89,7 +95,7 @@ class r2iApiUser extends api {
 }// END class
 
 $api = new r2iApiUser();
-if(isset($_POST['method']) && $_POST['method']!="") {
+if(isset($_POST['method']) && $_POST['method'] != "") {
     sleep(1);//test loader
     $api->processApi($_POST['method']);
 }
