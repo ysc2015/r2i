@@ -2,9 +2,9 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.projects_add.js.php
- *  Author     : RR
- *  Description: Custom JS code used in Admin Page Projects ADD
+ *
+ *  Author     : ilham
+ *
  */
 
 var ProjectFormValidation = function() {
@@ -56,7 +56,7 @@ var ProjectFormValidation = function() {
         var $row = {}; // default row value;
         // When the add project form is submitted
         jQuery('#add-user').on('click', function(){
-            console.log('Enregistrement projet');
+            console.log('Enregistrement Utilisateur');
 
             if($form.valid()) {
                 $form.find('input,textarea,select').each(function () {
