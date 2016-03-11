@@ -27,6 +27,24 @@ function showUSERSDFiles(idp) {
 }
 //
 function showUserModify(idp) {
+
+    $.ajax({
+        url: API_URL,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            parameters: '{"user_id":' + idp + '}',
+            method : 'get_user_by_id'
+        },
+        success: function (response) {
+            console.log(response);
+
+        },
+        error: function (e) {
+            console.log(e.responseText);
+        }
+    });
+
     window.open('?page=utilisateurs&action=mod&id='+idp);
 }
 
