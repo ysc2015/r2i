@@ -8,6 +8,4 @@
     <script src="<?php echo $one->assets_folder; ?>/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-upload-file/jquery.uploadfile.min.js"></script>
 <?php endif; ?>
-<?php if($action == "sdfiles"): ?>
-    <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-upload-file/jquery.uploadfile.min.js"></script>
-<?php endif; ?>
+
