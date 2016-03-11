@@ -117,6 +117,8 @@ var UsersListDatatables = function() {
         });
     };
 
+
+
     // DataTables Bootstrap integration
     var bsDataTables = function() {
         var $DataTable = jQuery.fn.dataTable;
