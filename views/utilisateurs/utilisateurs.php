@@ -101,7 +101,7 @@
     </div>
 <?php endif; ?>
 <?php if($action == "mod"): ?>
-    <?php echo "mod"?>
+    <?php echo ""?>
 <?php endif; ?>
 <?php if($action == "sdfiles"): ?>
     <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
