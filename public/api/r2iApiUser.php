@@ -62,9 +62,9 @@ class r2iApiUser extends api {
      * Update a project
      * @return JSON
      */
-    private function update_project($update) {
-        $project = new Project();
-        if($project->updateProject($update))
+    private function update_user($update) {
+        $user = new User();
+        if($user->updateUser($update))
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK')));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
@@ -74,9 +74,9 @@ class r2iApiUser extends api {
      * Delete a project
      * @return JSON
      */
-    private function delete_project($delete) {
-        $project = new Project();
-        if($project->deleteProject($delete))
+    private function delete_user($delete) {
+        $user = new User();
+        if($user->deleteUser($delete))
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'DELETE OK')));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'DELETE ERROR')));
