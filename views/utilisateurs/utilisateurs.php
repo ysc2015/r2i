@@ -102,11 +102,55 @@
 <?php endif; ?>
 <?php if($action == "mod"): ?>
     <?php echo "
+                <form class=\"js-validation-bootstrap form-horizontal\"\">
                 <div class=\"form-group\">
-                    <div class=\"col-md-8 col-md-offset-4\">
-                        <button class=\"btn btn-sm btn-primary\" id=\"add-user\" type=\"button\">Enregistrer</button>
+                    <label class=\"col-md-4 control-label\" for=\"profil_id\">Profil <span class=\"text-danger\">*</span></label>
+                    <div class=\"col-md-7\">
+                        <select class=\"form-control\" id=\"profil_id\" name=\"profil_id\">
+                            <option value=\"\">Séléctionnez un type</option>
+                            <option value=\"1\">Admin</option>
+                            <option value=\"2\">User</option>
+
+                        </select>
                     </div>
-                </div>"?>
+                </div>
+                <div class=\"form-group\">
+                    <label class=\"col-md-4 control-label\" for=\"user_firstname\">Firstname <span class=\"text-danger\">
+                            *</span></label>
+                    <div class=\"col-md-7\">
+                        <input class=\"form-control\" type=\"text\" id=\"user_firstname\" name=\"user_firstname\">
+                    </div>
+                </div>
+                <div class=\"form-group\">
+                    <label class=\"col-md-4 control-label\" for=\"user_lastname\">Lastname<span class=\"text-danger\">
+                            *</span></label>
+                    <div class=\"col-md-7\">
+                        <input class=\"form-control\" type=\"text\" id=\"user_lastname\" name=\"user_lastname\">
+                    </div>
+                </div>
+                <div class=\"form-group\">
+                    <label class=\"col-md-4 control-label\" for=\"email\">Email<span class=\"text-danger\">
+                            *</span></label>
+                    <div class=\"col-md-7\">
+                        <input class=\"form-control\" type=\"text\" id=\"email\" name=\"email\">
+                    </div>
+                </div>
+
+                <div class=\"form-group\">
+                    <label class=\"col-md-4 control-label\" for=\"password\">Password <span class=\"text-danger\">
+                            *</span></label>
+                    <div class=\"col-md-7\">
+                        <input class=\"form-control\" type=\"password\" id=\"password\" name=\"password\" >
+                    </div>
+                </div>
+                <div class=\"form-group\">
+                    <label class=\"col-md-4 control-label\" for=\"salt\">Salt <span class=\"text-danger\">
+                            *</span></label>
+                    <div class=\"col-md-7\">
+                        <input class=\"form-control\" type=\"text\" id=\"salt\" name=\"salt\" >
+                    </div>
+                </div>
+                </form>"?>
 <?php endif; ?>
 <?php if($action == "sdfiles"): ?>
     <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
