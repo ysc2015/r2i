@@ -28,7 +28,10 @@ class User {
     public function getAllUsers() {
         return $this->db->select("users");
     }
-
+    public function insertUser($insert) {
+        $result = $this->db->insert("users", $insert);
+        return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
+    }
     /**
      * Select user by email
      * @param string $email user email
