@@ -101,7 +101,12 @@
     </div>
 <?php endif; ?>
 <?php if($action == "mod"): ?>
-    <?php echo ""?>
+    <?php echo "
+                <div class=\"form-group\">
+                    <div class=\"col-md-8 col-md-offset-4\">
+                        <button class=\"btn btn-sm btn-primary\" id=\"add-user\" type=\"button\">Enregistrer</button>
+                    </div>
+                </div>"?>
 <?php endif; ?>
 <?php if($action == "sdfiles"): ?>
     <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
