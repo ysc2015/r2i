@@ -46,6 +46,13 @@ class r2iApiUser extends api {
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
     }
+    private function get_user_by_id($id_user) {
+        $user = new User();
+        if($user->getUserById($id_user))
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK')));
+        else
+            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
+    }
 
 
     private function update_user($update) {
