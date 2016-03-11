@@ -33,9 +33,9 @@ class User {
         $bind = array(
             ":user_id" => $update['user_id']
         );
-        if($this->isValidData())
-            return $this->db->update("users", $update, "user_id = :user_id", $bind);
-        else return false;
+        var_dump($update);
+
+        return $this->db->update("users", $update['info'], "user_id = :user_id", $bind);
     }
 //delete
 
@@ -70,7 +70,8 @@ class User {
             ":user_id" => $user_id
         );
         $result = $this->db->select("users", "user_id = :user_id", $bind);
-        return (!empty($result)?$result[0]:false);
+
+        return (!empty($result) ? $result[0] : false);
     }
 
     /**
