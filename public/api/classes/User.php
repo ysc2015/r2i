@@ -65,9 +65,9 @@ class User {
      * @param int $userid user id
      * @return array() / boolean(false)
      */
-    public function getUserById($userid) {
+    public function getUserById($user_id) {
         $bind = array(
-            ":user_id" => $userid
+            ":user_id" => $user_id
         );
         $result = $this->db->select("users", "user_id = :user_id", $bind);
         return (!empty($result)?$result[0]:false);
