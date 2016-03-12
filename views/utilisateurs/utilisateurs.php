@@ -50,6 +50,7 @@
                             <option value="">Séléctionnez un type</option>
                             <option value="1">Admin</option>
                             <option value="2">User</option>
+                            <option value="3">test</option>
 
                         </select>
                     </div>
