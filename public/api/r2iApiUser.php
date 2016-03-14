@@ -45,7 +45,9 @@ class r2iApiUser extends api {
     private function insert_user($insert) {
         $user= new User();
         $result = $user->insertUser($insert);
+        var_dump($result);
         if($result)
+
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'INSERT OK', "idp" => $result['insertedId'])));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
