@@ -33,6 +33,7 @@ class Project {
         $sql .="ORDER BY projects.project_id ASC";
 
         //run & retun sql result(array)
+
         return $this->db->run($sql);
     }
 
