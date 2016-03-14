@@ -2,24 +2,24 @@
 <div class="content bg-white border-b">
     <div class="row items-push text-uppercase">
         <div class="col-xs-6 col-sm-3">
-            <div class="font-w700 text-gray-darker animated fadeIn">Product Sales</div>
-            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> Today</small></div>
-            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">300</a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Projets validé</div>
+            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> Aujourd'hui</small></div>
+            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">30</a>
         </div>
         <div class="col-xs-6 col-sm-3">
-            <div class="font-w700 text-gray-darker animated fadeIn">Product Sales</div>
-            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> This Month</small></div>
-            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">8,790</a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Projets en cours</div>
+            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> Ce mois</small></div>
+            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">10</a>
         </div>
         <div class="col-xs-6 col-sm-3">
-            <div class="font-w700 text-gray-darker animated fadeIn">Total Earnings</div>
-            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> All Time</small></div>
-            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">$ 93,880</a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Projets en stand-By</div>
+            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> ce mois</small></div>
+            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">20</a>
         </div>
         <div class="col-xs-6 col-sm-3">
-            <div class="font-w700 text-gray-darker animated fadeIn">Average Sale</div>
-            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> All Time</small></div>
-            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">$ 270</a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Productivité</div>
+            <div class="text-muted animated fadeIn"><small><i class="si si-calendar"></i> ce mois</small></div>
+            <a class="h2 font-w300 text-primary animated flipInX" href="base_comp_charts.php">50%</a>
         </div>
     </div>
 </div>
