@@ -36,6 +36,15 @@ class Project {
         return $this->db->run($sql);
     }
 
+
+
+    public function getProjectsbyid($project_id) {
+        $bind = array(
+            ":project_id" => $project_id
+        );
+        $result = $this->db->select("projects", "project_id = :project_id", $bind);
+        return (!empty($result) ? $result[0] : false);
+    }
     /**
      * Select project files by folder
      * @param Int $idp values
