@@ -82,6 +82,7 @@ class mobileApi extends api {
      */
     private function user_login($params) {
         $user = new User();
+        $password = hash('sha512', $params['p'] . "8b19a4911f14d7012ab9c88ead65aff72f4b983aaf693a9b04e0dce3ba748edaf99eed070457ea6f47a4d4106036247d7712b2ff3a70b0813057c9446bd55361");
         $this->sendResponse(200,json_encode($params));
     }
 
