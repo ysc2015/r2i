@@ -7,6 +7,7 @@ $(function () {
     function Update(){
         var obj = new Object();
         obj.project_id= project_id;
+        console.log(project_id);
         obj.info = new Object();
         obj.info.ceation_date = $('#ceation_date').val();
         obj.info.attribution_date = $('#attribution_date').val();
