@@ -8,7 +8,25 @@ header("Content-type: application/javascript");
 */
 
 //
+var API_URL = 'public/api/r2iApi.php';
 function deleteProject(idp) {
+
+    $.ajax({
+        url: API_URL,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            parameters: '{"project_id":' + idp + '}',
+            method : 'delete_project'
+        },
+        success: function (response) {
+            console.log(response);
+
+        },
+        error: function (e) {
+            console.log(e.responseText);
+        }
+    });
     alert('deleteProject' + idp);
 }
 //
@@ -17,6 +35,22 @@ function showProjectSDFiles(idp) {
 }
 //
 function showProjectModify(idp) {
+    $.ajax({
+        url: API_URL,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            parameters: '{"project_id":' + idp + '}',
+            method : 'get_projects_by_id'
+        },
+        success: function (response) {
+            console.log(response);
+
+        },
+        error: function (e) {
+            console.log(e.responseText);
+        }
+    });
     window.open('?page=projects&action=mod&id='+idp);
 }
 
