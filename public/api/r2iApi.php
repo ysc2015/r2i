@@ -30,6 +30,12 @@ class r2iApi extends api {
         } else call_user_func(array($this,$method));
     }
 
+    //requested methods here
+
+    /**
+     * Projects methods
+     */
+
     /**
      * Select all projects from DB
      * @return JSON
@@ -63,14 +69,18 @@ class r2iApi extends api {
 
     private function update_project($update) {
         $project = new Project();
-        var_dump("les parametres "+$update);
+        var_dump($update);
         $project = $project->updateProject($update);
+        var_dump($project);
         if($project)
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK','project' => json_encode($project))));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
     }
-   /**
+
+
+
+    /**
      * Delete a project
      * @return JSON
      */
@@ -94,7 +104,9 @@ class r2iApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
     }
 
-
+    /**
+     * Rooms Files methods
+     */
 
     /**
      * Select all Rooms Files from DB
