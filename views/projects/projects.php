@@ -114,6 +114,7 @@
 <?php if($action == "mod"): ?>
     <script>
         var project_id = <?php echo $_GET['id']; ?>
+
     </script>
     <div class="content">
 
