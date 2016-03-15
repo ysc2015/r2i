@@ -39,13 +39,7 @@ class Project {
 
 
 
-    public function getProjectsbyid($project_id) {
-        $bind = array(
-            ":project_id" => $project_id
-        );
-        $result = $this->db->select("projects", "project_id = :project_id", $bind);
-        return (!empty($result) ? $result[0] : false);
-    }
+
     /**
      * Select project files by folder
      * @param Int $idp values
@@ -82,15 +76,22 @@ class Project {
      * @param array $update values
      * @return array|bool|int
      */
+
     public function updateProject($update) {
         $bind = array(
             ":project_id" => $update['project_id']
         );
-        if($this->isValidData())
-            return $this->db->update("projects", $update, "project_id = :project_id", $bind);
-        else return false;
+        return $this->db->update("projects", $update['info'], "project_id = :project_id", $bind);
     }
 
+
+    public function getProjectsbyid($project_id) {
+        $bind = array(
+            ":project_id" => $project_id
+        );
+        $result = $this->db->select("projects", "project_id = :project_id", $bind);
+        return (!empty($result) ? $result[0] : false);
+    }
     /**
      * Delete a project
      * @param array $delete
