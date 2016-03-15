@@ -71,7 +71,6 @@ class r2iApi extends api {
         $project = new Project();
         var_dump($update);
         $project = $project->updateProject($update);
-        var_dump($project);
         if($project)
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK','project' => json_encode($project))));
         else
