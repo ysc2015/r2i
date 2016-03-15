@@ -7,12 +7,14 @@ $(function () {
     function Update(){
         var obj = new Object();
         obj.project_id= project_id;
-        console.log(project_id);
+        console.log(obj.project_id);
         obj.info = new Object();
         obj.info.ceation_date = $('#ceation_date').val();
+        console.log(obj.info.ceation_date);
         obj.info.attribution_date = $('#attribution_date').val();
         obj.info.project_name = $('#project_name').val();
         obj.info.city = $('#city').val();
+        console.log(obj.info.city);
         obj.info.plate_dept_code = $('#plate_dept_code').val();
         obj.info.type_site_id = $('#type_site_id').val();
         obj.info.size = $('#size').val();
