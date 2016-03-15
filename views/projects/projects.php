@@ -125,7 +125,8 @@
 
                 <form class="js-validation-bootstrap form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="ceation_date">date de creation</label>
+                        <label class="col-md-4 control-label" for="ceation_date">date de creation     <h3><?php echo "ID"+$_GET['id'];?></h3></label>
+
                         <div class="col-md-7">
                             <input class="form-control" type="text" id="ceation_date" name="ceation_date">
 
