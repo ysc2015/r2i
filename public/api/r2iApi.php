@@ -149,7 +149,6 @@ class r2iApi extends api {
 
 $api = new r2iApi();
 if(isset($_POST['method']) && $_POST['method']!="") {
-    sleep(1);//test loader
     $api->processApi($_POST['method']);
 }
 
