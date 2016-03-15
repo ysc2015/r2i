@@ -113,7 +113,7 @@
 <?php endif; ?>
 <?php if($action == "mod"): ?>
     <script>
-        var project_id = <?php echo $_GET['id']; ?>
+        var project_id = <?php echo "ID"+$_GET['id']; ?>
 
     </script>
     <div class="content">
