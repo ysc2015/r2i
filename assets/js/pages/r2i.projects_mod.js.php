@@ -29,7 +29,6 @@ $(function () {
             data: {
                 parameters: obj,
                 method: 'update_project',
-
             },
             success: function (response) {
                 if(response.status == 'success') {
