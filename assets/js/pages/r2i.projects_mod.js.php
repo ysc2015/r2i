@@ -20,7 +20,9 @@ $(function () {
         obj.info.size = $('#size').val();
         obj.info.orig_site_state_id = $('#orig_site_state_id').val();
         obj.info.orig_site_provision_date = $('#orig_site_provision_date').val();
+        console.log(obj);
         $.ajax({
+
             url: API_URL,
             type: 'POST',
             dataType: 'json',
