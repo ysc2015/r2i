@@ -110,6 +110,7 @@ class User {
     public function login($param) {
         $result = $this->getUserByEmail($param['email']);
         if($result !== false) {
+            return array('connected' => false,'msg' => 'email ok','token' => '');
             //user exists in database with $param['email']
             // hash the password with the unique salt.
             $password = hash('sha512', $param['p'] . $result['salt']);
