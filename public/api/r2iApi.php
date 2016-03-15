@@ -45,7 +45,14 @@ class r2iApi extends api {
         $projects = $project->getAllProjects();
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$projects)));
     }
-
+    private function get_projects_by_id($id_project) {
+        $project = new Project();
+        $project = $project->getProjectsbyid($id_project['project_id']);
+        if($project)
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'SELECT OK','project' => json_encode($project))));
+        else
+            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'SELECT ERROR')));
+    }
     /**
      * Insert a project
      * @return JSON
@@ -59,17 +66,18 @@ class r2iApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
     }
 
-    /**
-     * Update a project
-     * @return JSON
-     */
+
     private function update_project($update) {
         $project = new Project();
-        if($project->updateProject($update))
-            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK')));
+        $project = $project->updateProject($update);
+        var_dump($update);
+        if($project)
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK','project' => json_encode($project))));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
     }
+
+
 
     /**
      * Delete a project
@@ -119,6 +127,7 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode($result));
     }
 
+
     /**
      * Users methods
      */
@@ -133,10 +142,7 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$users)));
     }
 
-    /**
-     * Send mail
-     * @return JSON
-     */
+
     private function send_mail() {
         $mail = new MailNotifier();
         if($mail->sendMail())
