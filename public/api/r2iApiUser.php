@@ -64,6 +64,7 @@ class r2iApiUser extends api {
 
     private function update_user($update) {
         $user = new User();
+        var_dump($update);
         $user = $user->updateUser($update);
         if($user)
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK','user' => json_encode($user))));
