@@ -53,32 +53,17 @@ class Room {
     }
 
     /**
-     * Select all rooms from DB
+     * Select all rooms files from DB
      * @return array
      */
-    public function getAllRooms() {
+    public function getAllRoomsFiles() {
         //build sql query
-        $sql ="SELECT room_id,user_id,injected_filename,stored_filename, ";
-        $sql .="REF_CHAMBR,VILLET,SOUS_PROJET,REF_NOTE, ";
-        $sql .="CODE_CH1,CODE_CH2,GPS,flag,injected_datetime ";
+        $sql ="SELECT room_id,injected_filename,saved_filename,injection_date ";
         $sql .="FROM rooms ";
         $sql .="ORDER BY room_id ASC";
 
         //run & retun sql result(array)
         return $this->db->run($sql);
-    }
-
-    /**
-     * Select room records to synchronize with mobile app
-     * @return array
-     */
-    public function getRoomsToSynchronize() {
-        $bind = array(
-            ":flag" => 'yes'
-        );
-        //SQL
-        $result = $this->db->select("rooms", "flag = :flag", $bind);
-        return $result;
     }
 
     /**
