@@ -6,11 +6,7 @@
 
 class User {
 
-    /**
-     * Database Instance
-     * @var PDO object
-     * @access private
-     */
+  
     private $db;
 
     /**
@@ -24,7 +20,6 @@ class User {
     public function getAllUsers() {
         return $this->db->select("users");
     }
-    //committt
     public function insertUser($insert) {
         $result = $this->db->insert("users", $insert);
         return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
@@ -36,8 +31,6 @@ class User {
         );
         return $this->db->update("users", $update['info'], "user_id = :user_id", $bind);
     }
-//dddddd
-
 
     public function deleteUser($delete) {
         $bind = array(
@@ -46,11 +39,7 @@ class User {
         $ret = $this->db->delete("users","user_id = :user_id", $bind);
         return $ret;
     }
-    /**
-     * Select user by email
-     * @param string $email user email
-     * @return a user array / boolean(false)
-     */
+   
     public function getUserByEmail($email) {
         $bind = array(
             ":email" => $email
