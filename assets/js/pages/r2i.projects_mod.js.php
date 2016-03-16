@@ -16,8 +16,8 @@ $(function () {
         object.info.city = $('#city').val();
         console.log(object.info.city);
         object.info.plate_dept_code = $('#plate_dept_code').val();
-        object.info.type_site_id = $('#type_site_id').val();
         object.info.site_code = $('#site_code').val();
+        object.info.type_site_id = $('#type_site_id').val();
         object.info.size = $('#size').val();
         object.info.orig_site_state_id = $('#orig_site_state_id').val();
         object.info.orig_site_provision_date = $('#orig_site_provision_date').val();
@@ -37,6 +37,7 @@ $(function () {
                 }
             },
             error: function (e) {
+                console.log("testEroor");
                 console.log(e.responseText);
             }
         });
