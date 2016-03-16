@@ -66,7 +66,7 @@ var RoomsFilesListDatatables = function() {
                 },
             },
             "columns": [
-                { "data": "rooms_file_id" },
+                { "data": "room_id" },
                 { "data": "injected_filename"},
                 { "data": "saved_filename" },
                 { "data": "injection_date"},
@@ -74,9 +74,9 @@ var RoomsFilesListDatatables = function() {
                     "sClass": 'text-center',
                     mRender: function (data, type, row) {
                         html = '<div class="btn-group">';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="downloadRoomsFile('+row.rooms_file_id+')" data-toggle="tooltip" title="télécharger fichier"><i class="fa fa-download"></i></button>';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="openRoomsFile('+row.rooms_file_id+')" data-toggle="tooltip" title="ouvrir fichier"><i class="fa fa-folder-open"></i></button>';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteRoomsFile('+row.rooms_file_id+')" data-toggle="tooltip" title="supprimer fichier"><i class="fa fa-close"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="downloadRoomsFile('+row.room_id+')" data-toggle="tooltip" title="télécharger fichier"><i class="fa fa-download"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="openRoomsFile('+row.room_id+')" data-toggle="tooltip" title="ouvrir fichier"><i class="fa fa-folder-open"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteRoomsFile('+row.room_id+')" data-toggle="tooltip" title="supprimer fichier"><i class="fa fa-close"></i></button>';
                         html += '</div>';
                         return html
                     }
