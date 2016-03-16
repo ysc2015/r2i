@@ -59,7 +59,9 @@ class r2iApi extends api {
      */
     private function insert_project($insert) {
         $project = new Project();
+        var_dump($insert);
         $result = $project->insertProject($insert);
+        var_dump($result);
         if($result)
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'INSERT OK', "idp" => $result['insertedId'])));
         else
