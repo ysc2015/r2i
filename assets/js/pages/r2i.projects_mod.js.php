@@ -17,6 +17,7 @@ $(function () {
         console.log(object.info.city);
         object.info.plate_dept_code = $('#plate_dept_code').val();
         object.info.type_site_id = $('#type_site_id').val();
+        object.info.site_code = $('#site_code').val();
         object.info.size = $('#size').val();
         object.info.orig_site_state_id = $('#orig_site_state_id').val();
         object.info.orig_site_provision_date = $('#orig_site_provision_date').val();
@@ -57,6 +58,7 @@ $(function () {
                 $('#project_name').val(project.project_name);
                 $('#city').val(project.city);
                 $('#plate_dept_code').val(project.plate_dept_code);
+                $('#site_code').val(project.site_code);
                 $('#type_site_id').val(project.type_site_id);
                 $('#size').val(project.size);
                 $('#orig_site_state_id').val(project.orig_site_state_id);
