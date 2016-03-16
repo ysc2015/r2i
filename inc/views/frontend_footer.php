@@ -75,7 +75,8 @@
             <div class="font-s12 push-20 clearfix">
                 <hr class="remove-margin-t">
                 <div class="pull-left">
-                    <a class="font-w600" href="javascript:void(0)" target="_blank"><?php echo $one->name . ' ' . $one->version; ?></a> &copy; <span class="js-year-copy"></span>
+                    <a class="font-w600" href="javascript:void(0)" target="_blank">
+                        <?php echo $one->name . ' ' . $one->version; ?></a> &copy; <span class="js-year-copy"></span>
                 </div>
             </div>
             <!-- END Copyright Info -->
