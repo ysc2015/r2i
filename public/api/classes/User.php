@@ -21,14 +21,31 @@ class User {
         $this->db = DB::getInstance();
     }
 
-    /**
-     * Select all users from DB
-     * @return array
-     */
     public function getAllUsers() {
         return $this->db->select("users");
     }
+    //committt
+    public function insertUser($insert) {
+        $result = $this->db->insert("users", $insert);
+        return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
+    }
+///update
+    public function updateUser($update) {
+        $bind = array(
+            ":user_id" => $update['user_id']
+        );
+        return $this->db->update("users", $update['info'], "user_id = :user_id", $bind);
+    }
+//dddddd
 
+
+    public function deleteUser($delete) {
+        $bind = array(
+            ":user_id" => $delete['user_id']
+        );
+        $ret = $this->db->delete("users","user_id = :user_id", $bind);
+        return $ret;
+    }
     /**
      * Select user by email
      * @param string $email user email
@@ -47,12 +64,14 @@ class User {
      * @param int $userid user id
      * @return array() / boolean(false)
      */
-    public function getUserById($userid) {
+    public function getUserById($user_id) {
         $bind = array(
-            ":user_id" => $userid
+            ":user_id" => $user_id
         );
+
         $result = $this->db->select("users", "user_id = :user_id", $bind);
-        return (!empty($result)?$result[0]:false);
+
+        return (!empty($result) ? $result[0] : false);
     }
 
     /**
@@ -104,35 +123,12 @@ class User {
 
     /**
      * login
-     * @param array $param email/password:p
-     * @return array
+     * @param int $userid user id
+     * @return Boolean
      */
-    public function login($param) {
-        $result = $this->getUserByEmail($param['email']);
-        if($result !== false) {
-            //user exists in database with $param['email']
-            // hash the password with the unique salt.
-            $password = hash('sha512', $param['p'] . $result['salt']);
-
-            // Check if the password in the database matches
-            // the password the user submitted.
-            if ($result['password'] == $password) {
-                //successfull connection
-                $token = array();
-                $token['id'] = $result['user_id'];
-                //TODO make a define for server secret key later on
-                return array('connected' => true,'msg' => 'connexion réussie','token' => JWT::encode($token,'secret_server_key'));
-
-            } else {
-                //incorrect password
-                return array('connected' => false,'msg' => 'login ou mot de passe incorrect','token' => '');
-            }
-
-        } else {
-            //user do not exists in database
-            return array('connected' => false,'msg' => 'login ou mot de passe incorrect','token' => '');
-        }
-
-        return array();
+    public function login() {
+        $token = array();
+        $token['id'] = 1;
+        return JWT::encode($token,'secret_server_key');
     }
 }// END class
