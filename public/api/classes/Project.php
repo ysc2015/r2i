@@ -81,6 +81,7 @@ class Project {
         $bind = array(
             ":project_id" => $update['project_id']
         );
+        var_dump($update);
         return $this->db->update("projects", $update['info'], "project_id = :project_id", $bind);
     }
 
