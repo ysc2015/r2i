@@ -4,7 +4,7 @@
  **/
 
 require_once('lib/PHPExcel/PHPExcel/IOFactory.php');
-require_once('lib/JWT/JWT.php');
+//require_once('lib/JWT/JWT.php');
 require_once 'autoLoader.php';
 
 require 'api.php';
@@ -24,7 +24,11 @@ class r2iApi extends api {
     function processApi($method="") {
 
         if(isset($_POST['parameters'])) {
-            $parameters = json_decode($_POST['parameters'],true);
+            if(is_array($_POST['parameters']) || is_object($_POST['parameters'])) {
+                $parameters = $_POST['parameters']; // json_decode($_POST['parameters'],true);
+            } else {
+                $parameters = json_decode($_POST['parameters'],true);
+            }
             array_push($this->arrOfParams,$parameters);
             call_user_func_array(array($this,$method),$this->arrOfParams);
         } else call_user_func(array($this,$method));
@@ -75,6 +79,11 @@ class r2iApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
     }
 
+    private function get_all_rooms_files() {
+        $roomsfile = new Room();
+        $roomsfiles = $roomsfile->getAllRoomsFiles();
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$roomsfiles)));
+    }
 
 
     /**
