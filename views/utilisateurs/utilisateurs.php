@@ -32,7 +32,7 @@
 <?php endif; ?>
 <?php if ($action == "add"): ?>
     <div class="content">
-        <h2 class="content-heading">Formulaire Utilsateur</h2>
+        <h2> class="content-heading">Formulaire Utilsateur</h2>
         <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
@@ -40,29 +40,27 @@
             <div class="block-content block-content-narrow">
                 <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/base_forms_validation.js) -->
                 <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                <form class="js-validation-bootstrap form-horizontal"
-                ">
+                <form class="js-validation-bootstrap form-horizontal"">
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="profil_id">Profil <span
-                            class="text-danger">*</span></label>
+                    <label class="col-md-4 control-label" for="profil_id">Profile
+                        <span class="text-danger">*</span></label>
                     <div class="col-md-7">
                         <select class="form-control" id="profil_id" name="profil_id">
                             <option value="">Séléctionnez un type</option>
                             <option value="1">Admin</option>
                             <option value="2">User</option>
-
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="user_firstname">Firstname <span class="text-danger">
+                    <label class="col-md-4 control-label" for="user_firstname">Prénom <span class="text-danger">
                             *</span></label>
                     <div class="col-md-7">
                         <input class="form-control" type="text" id="user_firstname" name="user_firstname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="user_lastname">Lastname<span class="text-danger">
+                    <label class="col-md-4 control-label" for="user_lastname">Nom<span class="text-danger">
                             *</span></label>
                     <div class="col-md-7">
                         <input class="form-control" type="text" id="user_lastname" name="user_lastname">
@@ -77,15 +75,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="password">Password <span class="text-danger">
+                    <label class="col-md-4 control-label" for="password">mot de passe <span class="text-danger">
                             *</span></label>
                     <div class="col-md-7">
                         <input class="form-control" type="password" id="password" name="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="salt">Salt <span class="text-danger">
-                            *</span></label>
+                    <label class="col-md-4 control-label" for="salt">Salt </label>
                     <div class="col-md-7">
                         <input class="form-control" type="text" id="salt" name="salt">
                     </div>
@@ -111,27 +108,25 @@
         <div class="block-header">
         </div>
         <div class="block-content block-content-narrow">
-
                 <form class="js-validation-bootstrap form-horizontal">
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="profil_id">Profil <span class="text-danger"></span></label>
+                    <label class="col-md-4 control-label" for="profil_id">Profile <span class="text-danger"></span></label>
                     <div class="col-md-7">
                         <select class="form-control" id="profil_id" name="profil_id">
                             <option value="">Séléctionnez un type</option>
                             <option value="1">Admin</option>
                             <option value="2">User</option>
                         </select>
-
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="user_firstname">Firstname </label>
+                    <label class="col-md-4 control-label" for="user_firstname">Prénom </label>
                     <div class="col-md-7">
                         <input class="form-control" type="text" id="user_firstname" name="user_firstname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="user_lastname">Lastname</label>
+                    <label class="col-md-4 control-label" for="user_lastname">Nom</label>
                     <div class="col-md-7">
                         <input class="form-control" type="text" id="user_lastname" name="user_lastname">
                     </div>
@@ -144,7 +139,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="password">Password </label>
+                    <label class="col-md-4 control-label" for="password">mot de passe </label>
                     <div class="col-md-7">
                         <input class="form-control" type="password" id="password" name="password" >
                     </div>
