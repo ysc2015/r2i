@@ -37,7 +37,6 @@ $(function () {
                 }
             },
             error: function (e) {
-                console.log("testEroor");
                 console.log(e.responseText);
             }
         });
