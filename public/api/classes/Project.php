@@ -76,6 +76,7 @@ class Project {
         var_dump($insert);
         var_dump($result);
         return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
+
     }
 
     /**
