@@ -66,6 +66,16 @@ class Room {
         return $this->db->run($sql);
     }
 
+
+    public function getAllRoomByUser($user) {
+        //build sql query
+        $sql ="SELECT room_id,injected_filename,saved_filename,injection_date ";
+        $sql .="FROM rooms ";
+        $sql .="ORDER BY room_id ASC";
+
+        //run & retun sql result(array)
+        return $this->db->run($sql);
+    }
     /**
      * Add a room
      * @param array $insert values
