@@ -70,6 +70,15 @@ class r2iApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
     }
 
+    private function insert_sous_project($insert) {
+        $project = new Project();
+        $result = $project->insert_sous_Project($insert);
+        if($result)
+            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'INSERT OK', "idp" => $result['insertedId'])));
+        else
+            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'INSERT ERROR')));
+    }
+
     private function update_project($update) {
         $project = new Project();
         $project = $project->updateProject($update);
