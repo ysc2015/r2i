@@ -53,12 +53,14 @@ class Room {
     }
 
     /**
-     * Select all rooms files from DB
+     * Select all rooms from DB
      * @return array
      */
-    public function getAllRoomsFiles() {
+    public function getAllRooms() {
         //build sql query
-        $sql ="SELECT room_id,injected_filename,saved_filename,injection_date ";
+        $sql ="SELECT room_id,user_id,injected_filename,stored_filename, ";
+        $sql .="REF_CHAMBR,VILLET,SOUS_PROJET,REF_NOTE, ";
+        $sql .="CODE_CH1,CODE_CH2,GPS,flag,injected_datetime ";
         $sql .="FROM rooms ";
         $sql .="ORDER BY room_id ASC";
 
@@ -66,16 +68,21 @@ class Room {
         return $this->db->run($sql);
     }
 
-
-    public function getAllRoomByUser($user) {
-        //build sql query
-        $sql ="SELECT room_id,injected_filename,saved_filename,injection_date ";
-        $sql .="FROM rooms ";
-        $sql .="ORDER BY room_id ASC";
-
-        //run & retun sql result(array)
-        return $this->db->run($sql);
+    /**
+     * Select room records to synchronize with mobile app
+     * @param array $param (user_id)
+     * @return array
+     */
+    public function getRoomsToSynchronize($param) {
+        $bind = array(
+            ":user_id" => $param['user_id'],
+            ":flag" => 'yes'
+        );
+        //SQL
+        $result = $this->db->select("rooms", "flag = :flag", $bind);
+        return $result;
     }
+
     /**
      * Add a room
      * @param array $insert values
