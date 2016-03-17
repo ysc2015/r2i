@@ -263,3 +263,25 @@
             <div>pas possible d'afficher sd</div>
     <?php endif; ?>
 <?php endif; ?>
+<?php if($action == "creerSousProjet"): ?>
+    <form class="js-validation-bootstrap form-horizontal">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="ceation_date">Réseau de Transport </label>
+
+            <div class="col-md-7">
+                <input class="form-control" type="text" id="ceation_date" name="ceation_date">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="attribution_date">Réseau de Distribution </label>
+            <div class="col-md-7">
+                <input class="form-control" type="text" id="attribution_date" name="attribution_date">
+
+            </div>
+        </div>
+    </form>
+
+
+<?php endif; ?>
