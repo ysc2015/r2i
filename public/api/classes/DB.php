@@ -220,8 +220,8 @@ class DB extends PDO {
 		} catch (PDOException $e) {
 			$this->error = $e->getMessage();	
 			$this->debug();
-			return false;
-			//return $this->sql;
+			//return false;
+			return $this->sql;
 		}
 	}
 
