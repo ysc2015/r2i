@@ -264,7 +264,15 @@
     <?php endif; ?>
 <?php endif; ?>
 <?php if($action == "creerSousProjet"): ?>
+    <script>
+        function desactiver() {
+            document.getElementById("Date_ret_Prev").disabled = true;
+        }
+        function activer() {
+            document.getElementById("Date_ret_Prev").disabled = false;
+        }
 
+    </script>
 <div class="content">
 
     <div class="block">
@@ -274,22 +282,159 @@
 
     <form class="js-validation-bootstrap form-horizontal">
         <div class="form-group">
-            <label class="col-md-4 control-label" for="ceation_date">Réseau de Transport </label>
-
-            <div class="col-md-7">
-                <input class="form-control" type="text" id="ceation_date" name="ceation_date">
+            <input type="radio" name="typeres" value="ResdeTrnsport" onclick="activer()"> Réseau de Transport <br>
+                <input type="radio" name="typeres" value="ResdeDistri" onclick="desactiver()"> Réseau de Distribution
 
             </div>
-        </div>
-
         <div class="form-group">
-            <label class="col-md-4 control-label" for="attribution_date">Réseau de Distribution </label>
-            <div class="col-md-7">
-                <input class="form-control" type="text" id="attribution_date" name="attribution_date">
+            <label class="col-md-4 control-label" for="aiguillage"> Aiguillage  </label>
+        </div>
+        <div class="form-group">
+
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="intervenantBE"> Intervenant BE : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="intervenantBE" name="intervenantBE">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="plans"> Plans : </label>
+                <div class="col-md-7">
+                    <select class="form-control" id="plans" name="plans">
+                        <option value="">Séléctionnez un champ</option>
+                        <option value="1">NON REALISES</option>
+                        <option value="2">EN COURS</option>
+                        <option value="3">OK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="lineaireReseau"> Linéaire de réseau : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="lineaireReseau" name="lineaireReseau">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="controleDesPlans"> Contrôle des plans : </label>
+                <div class="col-md-7">
+                        <select class="form-control" id="controleDesPlans" name="controleDesPlans">
+                            <option value="">Séléctionnez un champ</option>
+                            <option value="1">Non Contrôlés</option>
+                            <option value="2">EN COURS</option>
+                            <option value="3">OK</option>
+                        </select>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="date_trans_plans"> Date Transmission Plans : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="date" id="date_trans_plans" name="date_trans_plans">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="entreprise"> Entreprise : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="entreprise" name="entreprise">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="fichier"> FIchier : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="fichier" name="fichier">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="date_aiguillage"> Date Aiguillage : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="date" id="date_aiguillage" name="date_aiguillage">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="Date_ret_Prev"> Date  ret Prev : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="date" id="Date_ret_Prev" name="Date_ret_Prev">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="duree"> Durée (en jour): </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="duree" name="duree">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="controle_demarrage"> Contrôle démarrage effectif : </label>
+                <div class="col-md-7">
+                    <select class="form-control" id="controle_demarrage" name="controle_demarrage">
+                        <option value="">Séléctionnez un champ</option>
+                        <option value="1">OK</option>
+                        <option value="2">NOK COURS</option>
+                        <option value="3">Reporté</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="avancement">Avancement (%): </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="avancement" name="avancement">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="controleParallele">Contrôle parallèle : </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="controleParallele" name="controleParallele">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="DateRetour">Date Retour: </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="date" id="DateRetour" name="DateRetour">
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="EtatRetour">Etat Retour : </label>
+                <div class="col-md-7">
+                    <select class="form-control" id="EtatRetour" name="EtatRetour">
+                        <option value="">Séléctionnez un champ</option>
+                        <option value="1">PAS DE RETOUR</option>
+                        <option value="2">RETOUR OK</option>
+                        <option value="3">RETOUR NOK</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label class="col-md-4 control-label" for="ControleApreTrv">Contrôle après travaux: </label>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" id="ControleApreTrv" name="ControleApreTrv">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-8 col-md-offset-4">
+                <button class="btn btn-sm btn-primary" id="add-sous-project" type="button">Valider</button>
+            </div>
+    </form>
 
             </div>
-        </div>
-    </form>
             </div>
 </div>
 
