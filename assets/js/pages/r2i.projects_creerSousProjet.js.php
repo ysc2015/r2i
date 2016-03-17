@@ -6,37 +6,36 @@ var API_URL = 'public/api/r2iApi.php';
 $(function () {
 
     function creerSousProjet(){
-        var object = new Object();
-        object.project_id= project_id;
-        console.log(object.project_id);
-        object.info = new Object();
-        object.info.res_type = $('#res_type').val();
-        console.log(object.info.res_type);
-        object.info.intervenantBE = $('#intervenantBE').val();
-        object.info.lineaireReseau = $('#lineaireReseau').val();
-        object.info.controleDesPlans = $('#controleDesPlans').val();
-        console.log(object.info.controleDesPlans);
-        object.info.date_trans_plans = $('#date_trans_plans').val();
-        object.info.entreprise = $('#entreprise').val();
-        object.info.fichier = $('#fichier').val();
-        object.info.date_aiguillage = $('#date_aiguillage').val();
-        object.info.Date_ret_Prev = $('#Date_ret_Prev').val();
-        object.info.duree = $('#duree').val();
-        object.info.controle_demarrage = $('#controle_demarrage').val();
-        object.info.avancement = $('#avancement').val();
-        object.info.controleParallele = $('#controleParallele').val();
-        object.info.DateRetour = $('#DateRetour').val();
-        object.info.EtatRetour = $('#EtatRetour').val();
-        object.info.ControleApreTrv = $('#ControleApreTrv').val();
-
-        console.log(object);
+        var ob = new Object();
+        ob.project_id= project_id;
+        console.log(ob.project_id);
+        ob.info = new Object();
+        ob.info.res_type = $('#res_type').val();
+        console.log(ob.info.res_type);
+        ob.info.intervenantBE = $('#intervenantBE').val();
+        ob.info.plans = $('#plans').val();
+        ob.info.lineaireReseau = $('#lineaireReseau').val();
+        ob.info.controleDesPlans = $('#controleDesPlans').val();
+        console.log(ob.info.controleDesPlans);
+        ob.info.date_trans_plans = $('#date_trans_plans').val();
+        ob.info.entreprise = $('#entreprise').val();
+        ob.info.date_aiguillage = $('#date_aiguillage').val();
+        ob.info.Date_ret_Prev = $('#Date_ret_Prev').val();
+        ob.info.duree = $('#duree').val();
+        ob.info.controle_demarrage = $('#controle_demarrage').val();
+        ob.info.avancement = $('#avancement').val();
+        ob.info.controleParallele = $('#controleParallele').val();
+        ob.info.DateRetour = $('#DateRetour').val();
+        ob.info.EtatRetour = $('#EtatRetour').val();
+        ob.info.ControleApreTrv = $('#ControleApreTrv').val();
+        console.log(ob);
         $.ajax({
 
             url: API_URL,
             type: 'POST',
             dataType: 'json',
             data: {
-                parameters: object,
+                parameters: ob,
                 method: 'insert_sous_project',
             },
             success: function (response) {
