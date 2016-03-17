@@ -79,7 +79,7 @@ class Room {
             ":flag" => 'yes'
         );
         //SQL
-        $result = $this->db->select("rooms", "flag = :flag", $bind);
+        $result = $this->db->select("rooms", "flag = :flag AND user_id = :user_id", $bind);
         return $result;
     }
 
