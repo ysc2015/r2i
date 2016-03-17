@@ -75,7 +75,7 @@ class Room {
      */
     public function getRoomsToSynchronize($param) {
         $bind = array(
-            ":user_id" => $param['user_id'],
+            ":user_id" => $param['ui'],
             ":flag" => 'yes'
         );
         //SQL
