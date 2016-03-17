@@ -34,7 +34,7 @@ function showProjectSDFiles(idp) {
     window.open('?page=projects&action=sdfiles&idp='+idp);
 }
 //
-function showProjectModify(idp) {
+function creerSousProjet(idp) {
     $.ajax({
         url: API_URL,
         type: 'POST',
@@ -51,7 +51,7 @@ function showProjectModify(idp) {
             console.log(e.responseText);
         }
     });
-    window.open('?page=projects&action=mod&id='+idp);
+    window.open('?page=projects&action=creerSousProjet&id='+idp);
 }
 
 var ProjectsListDatatables = function() {
@@ -116,6 +116,7 @@ var ProjectsListDatatables = function() {
                         html += '<button class="btn btn-xs btn-default" type="button" onclick="showProjectModify('+row.project_id+')" data-toggle="tooltip" title="Modifier Projet"><i class="fa fa-pencil"></i></button>';
                         html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteProject('+row.project_id+')" data-toggle="tooltip" title="Supprimer Projet"><i class="fa fa-times"></i></button>';
                         html += '<button class="btn btn-xs btn-default" type="button" onclick="showProjectSDFiles('+row.project_id+')" data-toggle="tooltip" title="Fichiers Projet (SD)"><i class="fa fa-folder-open"></i></button>';
+                        html += '<button class="btn btn-xs btn-default" type="button" onclick="creerSousProjet('+row.project_id+')" data-toggle="tooltip" title="Ajouter sous projets"><i class="fa fa-plus"></i></button>';
                         html += '</div>';
                         return html
                     }
