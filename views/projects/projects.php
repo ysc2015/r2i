@@ -264,6 +264,14 @@
     <?php endif; ?>
 <?php endif; ?>
 <?php if($action == "creerSousProjet"): ?>
+
+<div class="content">
+
+    <div class="block">
+        <div class="block-header">
+        </div>
+        <div class="block-content block-content-narrow">
+
     <form class="js-validation-bootstrap form-horizontal">
         <div class="form-group">
             <label class="col-md-4 control-label" for="ceation_date">Réseau de Transport </label>
@@ -282,6 +290,7 @@
             </div>
         </div>
     </form>
-
+            </div>
+</div>
 
 <?php endif; ?>
