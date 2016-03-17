@@ -71,6 +71,10 @@ class Project {
         return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
     }
 
+    public function insert_sous_Project($insert) {
+        $result = $this->db->insert("sub_projects", $insert);
+        return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
+    }
     /**
      * Update a project
      * @param array $update values
