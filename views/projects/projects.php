@@ -264,7 +264,9 @@
     <?php endif; ?>
 <?php endif; ?>
 <?php if($action == "creerSousProjet"): ?>
+    <script> var project_id = <?php echo "ID"+$_GET['id']; ?></script>
     <script>
+
         function desactiver() {
             document.getElementById("Date_ret_Prev").disabled = true;
         }
@@ -282,8 +284,8 @@
 
     <form class="js-validation-bootstrap form-horizontal">
         <div class="form-group">
-            <input type="radio" name="typeres" value="ResdeTrnsport" onclick="activer()"> Réseau de Transport <br>
-                <input type="radio" name="typeres" value="ResdeDistri" onclick="desactiver()"> Réseau de Distribution
+            <input type="radio" id="res_type" name="res_type" value="ResdeTrnsport" onclick="activer()"> Réseau de Transport <br>
+                <input type="radio" id="res_type" name="res_type" value="ResdeDistri" onclick="desactiver()"> Réseau de Distribution
 
             </div>
         <div class="form-group">
