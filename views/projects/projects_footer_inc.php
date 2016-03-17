@@ -11,3 +11,6 @@
 <?php if($action == "sdfiles"): ?>
     <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-upload-file/jquery.uploadfile.min.js"></script>
 <?php endif; ?>
+<?php if($action == "ajouterSousProjet"): ?>
+    <link rel="stylesheet" href="<?php echo $one->assets_folder; ?>/js/plugins/datatables/jquery.dataTables.min.css">
+<?php endif; ?>
