@@ -35,22 +35,7 @@ function showProjectSDFiles(idp) {
 }
 //
 function creerSousProjet(idp) {
-    $.ajax({
-        url: API_URL,
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            parameters: '{"project_id":' + idp + '}',
-            method : 'get_projects_by_id'
-        },
-        success: function (response) {
-            console.log(response);
 
-        },
-        error: function (e) {
-            console.log(e.responseText);
-        }
-    });
     window.open('?page=projects&action=creerSousProjet&id='+idp);
 }
 
