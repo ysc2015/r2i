@@ -284,7 +284,7 @@
 
     <form class="js-validation-bootstrap form-horizontal">
         <div class="form-group">
-            <input type="radio" id="res_type" name="res_type" value="ResdeTrnsport" onclick="activer()"> Réseau de Transport <br>
+              <input type="radio" id="res_type" name="res_type" value="ResdeTrnsport" onclick="activer()"> Réseau de Transport <br>
                 <input type="radio" id="res_type" name="res_type" value="ResdeDistri" onclick="desactiver()"> Réseau de Distribution
 
             </div>
@@ -295,13 +295,18 @@
 
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="intervenantBE"> Intervenant BE : </label>
+                <label class="col-md-4 control-label" for="intervenantBE"> Intervenant BE :
+                    <span class="text-danger">*</span>
+                </label>
+
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="intervenantBE" name="intervenantBE">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label" for="plans"> Plans : </label>
+                <label class="col-md-4 control-label" for="plans"> Plans :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <select class="form-control" id="plans" name="plans">
                         <option value="">Séléctionnez un champ</option>
@@ -313,14 +318,18 @@
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="lineaireReseau"> Linéaire de réseau : </label>
+                <label class="col-md-4 control-label" for="lineaireReseau"> Linéaire de réseau :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="lineaireReseau" name="lineaireReseau">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="controleDesPlans"> Contrôle des plans : </label>
+                <label class="col-md-4 control-label" for="controleDesPlans"> Contrôle des plans :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                         <select class="form-control" id="controleDesPlans" name="controleDesPlans">
                             <option value="">Séléctionnez un champ</option>
@@ -334,48 +343,65 @@
 
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="date_trans_plans"> Date Transmission Plans : </label>
+                <label class="col-md-4 control-label" for="date_trans_plans"> Date Transmission Plans :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="date" id="date_trans_plans" name="date_trans_plans">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="entreprise"> Entreprise : </label>
+                <label class="col-md-4 control-label" for="entreprise"> Entreprise :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="entreprise" name="entreprise">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="fichier"> FIchier : </label>
-                <div class="col-md-7">
-                    <input class="form-control" type="text" id="fichier" name="fichier">
-                </div>
+                <label class="col-md-4 control-label" for="fichier"> FIchier :
+                    <span class="text-danger">*</span>
+                </label>
+
+                    <div class="col-md-7">
+                        <input type="file" name="fichier" />
+
+                    </div>
+
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="date_aiguillage"> Date Aiguillage : </label>
+                <label class="col-md-4 control-label" for="date_aiguillage"> Date Aiguillage :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="date" id="date_aiguillage" name="date_aiguillage">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="Date_ret_Prev"> Date  ret Prev : </label>
+                <label class="col-md-4 control-label" for="Date_ret_Prev"> Date  ret Prev :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="date" id="Date_ret_Prev" name="Date_ret_Prev">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="duree"> Durée (en jour): </label>
+                <label class="col-md-4 control-label" for="duree"> Durée (en jour):
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="duree" name="duree">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label" for="controle_demarrage"> Contrôle démarrage effectif : </label>
+                <label class="col-md-4 control-label" for="controle_demarrage"> Contrôle démarrage effectif :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <select class="form-control" id="controle_demarrage" name="controle_demarrage">
                         <option value="">Séléctionnez un champ</option>
@@ -387,14 +413,18 @@
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="avancement">Avancement (%): </label>
+                <label class="col-md-4 control-label" for="avancement">Avancement (%):
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="avancement" name="avancement">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="controleParallele">Contrôle parallèle : </label>
+                <label class="col-md-4 control-label" for="controleParallele">Contrôle parallèle :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="controleParallele" name="controleParallele">
                 </div>
@@ -403,14 +433,18 @@
 
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="DateRetour">Date Retour: </label>
+                <label class="col-md-4 control-label" for="DateRetour">Date Retour:
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="date" id="DateRetour" name="DateRetour">
                 </div>
             </div>
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="EtatRetour">Etat Retour : </label>
+                <label class="col-md-4 control-label" for="EtatRetour">Etat Retour :
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <select class="form-control" id="EtatRetour" name="EtatRetour">
                         <option value="">Séléctionnez un champ</option>
@@ -423,7 +457,9 @@
 
             <div class="form-group">
 
-                <label class="col-md-4 control-label" for="ControleApreTrv">Contrôle après travaux: </label>
+                <label class="col-md-4 control-label" for="ControleApreTrv">Contrôle après travaux:
+                    <span class="text-danger">*</span>
+                </label>
                 <div class="col-md-7">
                     <input class="form-control" type="text" id="ControleApreTrv" name="ControleApreTrv">
                 </div>
