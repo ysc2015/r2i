@@ -13,7 +13,8 @@ $actions = array('list' => 'action pour lister',
     'add' => 'action pour ajouter',
     'mod' => 'action pour modifier',
     'sdfiles' => 'gestion des fichiers SD pour le projet',
-    'addroomfile' => 'injection fichier chambres');
+    'addroomfile' => 'injection fichier chambres',
+    'creerSousProjet' => 'injection fichier chambres');
 
 $activePage = ((!isset($_GET['page']) || (isset($_GET['page']) && !isset($pages[$_GET['page']]))) ? "dashboard" : $_GET['page']);
 $action = ((!isset($_GET['action']) || (isset($_GET['action']) && !isset($actions[$_GET['action']]))) ? "list" : $_GET['action']);
