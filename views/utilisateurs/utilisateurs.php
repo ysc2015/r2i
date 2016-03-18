@@ -32,7 +32,8 @@
 <?php endif; ?>
 <?php if ($action == "add"): ?>
     <div class="content">
-        <h2> class="content-heading">Formulaire Utilsateur</h2>
+        <div class="content-heading">
+                Formulaire Utilsateur</div>
         <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
@@ -73,18 +74,12 @@
                         <input class="form-control" type="text" id="email" name="email">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="password">mot de passe <span class="text-danger">
                             *</span></label>
+
                     <div class="col-md-7">
                         <input class="form-control" type="password" id="password" name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="salt">Salt </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="salt" name="salt">
                     </div>
                 </div>
                 </form>
