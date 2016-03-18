@@ -34,6 +34,10 @@ function showProjectSDFiles(idp) {
     window.open('?page=projects&action=sdfiles&idp='+idp);
 }
 //
+function showProjectModify(idp) {
+
+    window.open('?page=projects&action=mod&id='+idp);
+}
 function creerSousProjet(idp) {
 
     window.open('?page=projects&action=creerSousProjet&id='+idp);
