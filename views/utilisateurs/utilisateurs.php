@@ -144,12 +144,7 @@
                         <input class="form-control" type="password" id="password" name="password" >
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="salt">Salt </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="salt" name="salt" >
-                    </div>
-                </div>
+
                 </form>
                   <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
