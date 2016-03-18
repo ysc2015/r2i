@@ -48,8 +48,10 @@
                     <div class="col-md-7">
                         <select class="form-control" id="profil_id" name="profil_id">
                             <option value="">Séléctionnez un type</option>
-                            <option value="1">Admin</option>
-                            <option value="2">User</option>
+                            <option value="1">Directeur Déploiement</option>
+                            <option value="2">Pilote de Projet</option>
+                            <option value="3">Chef de Projet</option>
+                            <option value="4">responsable de Pôle BE</option>
                         </select>
                     </div>
                 </div>
