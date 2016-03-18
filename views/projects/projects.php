@@ -103,7 +103,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <button class="btn btn-sm btn-primary" id="update-project" type="button">Valider</button>
+                        <button class="btn btn-sm btn-primary" id="add-project" type="button">Valider</button>
                     </div>
                 </div>
             </div>
