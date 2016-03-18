@@ -116,7 +116,7 @@ var ProjectFormValidation = function() {
         var $form = jQuery('.js-validation-bootstrap');
         var $row = {}; // default row value;
         // When the add project form is submitted
-        jQuery('.add-project').on('click', function(){
+        jQuery('#add-project').on('click', function(){
             console.log('Enregistrement projet');
             console.log(uploadObj);
             if($form.valid()) {
