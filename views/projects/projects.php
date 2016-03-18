@@ -366,7 +366,7 @@
                 </label>
 
                     <div class="col-md-7">
-                        <input type="file" name="fichier" />
+                        <input type="file" name="fichier" id="fichier"/>
 
                     </div>
 
