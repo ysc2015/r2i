@@ -88,7 +88,7 @@ class Room {
      */
     public function resetUpdateFlagFromList($list) {
         //SQL
-        $sql = "update rooms_list ";
+        $sql = "update rooms ";
         $sql .="set flag = '' ";
         $sql .="where room_id in ".$list['list'];
         $result = $this->db->run($sql);
