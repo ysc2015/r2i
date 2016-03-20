@@ -83,6 +83,19 @@ class Room {
     }
 
     /**
+     * Update from list
+     * @return bool
+     */
+    public function resetUpdateFlagFromList($list) {
+        //SQL
+        $sql = "update rooms_list ";
+        $sql .="set flag = '' ";
+        $sql .="where room_id in ".$list['list'];
+        $result = $this->db->run($sql);
+        return $result;
+    }
+
+    /**
      * Add a room
      * @param array $insert values
      * @return array|bool|int
