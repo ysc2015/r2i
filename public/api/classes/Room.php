@@ -75,11 +75,10 @@ class Room {
      */
     public function getRoomsToSynchronize($param) {
         $bind = array(
-            ":user_id" => $param['ui'],
             ":flag" => 'yes'
         );
         //SQL
-        $result = $this->db->select("rooms", "flag = :flag AND user_id = :user_id", $bind);
+        $result = $this->db->select("rooms", "flag = :flag", $bind);/* AND user_id = :user_id*/
         return $result;
     }
 
