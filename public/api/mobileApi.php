@@ -67,7 +67,7 @@ class mobileApi extends api {
      * check for updates
      * @return JSON
      */
-    private function check_update($param) {
+    private function check_rooms_update($param) {
         $room = new Room();
         $rooms = $room->getRoomsToSynchronize($param);
         /*foreach($rooms as $key => $value) {
