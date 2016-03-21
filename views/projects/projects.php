@@ -1,6 +1,6 @@
 <?php if($action == "list"): ?>
     <div class="content">
-        <!-- Dynamic Table Full -->
+
         <div class="block">
             <div class="block-header">
                 <button type="button" class="btn btn-minw btn-default push-5-r push-10 open-add-form" id="add_project"><i class="fa fa-plus"></i> Ajouter projet</button>
@@ -24,19 +24,17 @@
                 </table>
             </div>
         </div>
-        <!-- END Dynamic Table Full -->
+
     </div>
 <?php endif; ?>
 <?php if($action == "add"): ?>
     <div class="content">
         <h2 class="content-heading">Ajout Projet</h2>
-        <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
             </div>
             <div class="block-content block-content-narrow">
-                <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/base_forms_validation.js) -->
-                <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+
                 <form class="js-validation-bootstrap form-horizontal"">
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="city">Ville <span class="text-danger">*</span></label>
@@ -109,7 +107,6 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap Forms Validation -->
     </div>
 <?php endif; ?>
 <?php if($action == "mod"): ?>
@@ -118,19 +115,15 @@
 
     </script>
     <div class="content">
-
         <div class="block">
             <div class="block-header">
             </div>
             <div class="block-content block-content-narrow">
-
                 <form class="js-validation-bootstrap form-horizontal">
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="ceation_date">date de creation </label>
-
                         <div class="col-md-7">
                             <input class="form-control" type="text" id="ceation_date" name="ceation_date">
-
                         </div>
                     </div>
 
