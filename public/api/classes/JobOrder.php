@@ -20,15 +20,17 @@ class JobOrder {
     }
 
     /**
-     * Check & get update
-     * @return array|bool
+     * Select jobs orders records to synchronize with mobile app
+     * @param array $param (user_id)
+     * @return array
      */
-    public function getUpdate() {
+    public function getJobsToSynchronize($param) {
         $bind = array(
-            ":flag" => 'update'
+            ":flag" => 'yes'
         );
-        $result = $this->db->select("job_orders", "flag = :flag", $bind);
-        return (!empty($result)?$result:false);
+        //SQL
+        $result = $this->db->select("job_orders", "flag = :flag", $bind);/* AND user_id = :user_id*/
+        return $result;
     }
 
     /**
