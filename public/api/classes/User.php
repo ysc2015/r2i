@@ -121,7 +121,7 @@ class User {
                 $token = array();
                 $token['id'] = $result['user_id'];
                 //TODO make a define for server secret key later on
-                return array('connected' => true,'msg' => 'connexion réussie','token' => JWT::encode($token,'secret_server_key'), 'ui' => $result['user_id']);
+                return array('connected' => true,'msg' => 'connexion réussie','token' => JWT::encode($token,'secret_server_key'), 'uid' => $result['user_id']);
 
             } else {
                 //incorrect password
