@@ -26,10 +26,11 @@ class JobOrder {
      */
     public function getJobsToSynchronize($param) {
         $bind = array(
+            ":user_id" => $param['uid'],
             ":flag" => 'yes'
         );
         //SQL
-        $result = $this->db->select("job_orders", "flag = :flag", $bind);/* AND user_id = :user_id*/
+        $result = $this->db->select("job_orders", "flag = :flag  AND user_id = :user_id", $bind);/* AND user_id = :user_id*/
         return $result;
     }
 
