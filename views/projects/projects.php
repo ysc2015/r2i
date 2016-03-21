@@ -230,13 +230,13 @@
         <div class="content">
             <div class="row items-push push-20-t nice-copy">
                 <div class="col-md-6">
-                    <!-- Dynamic Table Full -->
+
                     <div class="block">
                         <div class="block-header">
                             <h3 class="block-title">Liste des fichiers</h3>
                         </div>
                         <div class="block-content">
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+
                             <table class="table table-bordered table-striped js-dataTable-full">
                                 <thead>
                                 <tr>
@@ -253,7 +253,7 @@
                             </table>
                         </div>
                     </div>
-                    <!-- END Dynamic Table Full -->
+
                 </div>
                 <div class="col-md-6">
                     <div id="fileuploader">Ajouter fichiers</div>
