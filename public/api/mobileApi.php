@@ -64,7 +64,7 @@ class mobileApi extends api {
 
 
     /**
-     * check for updates
+     * check for rooms updates
      * @return JSON
      */
     private function check_rooms_update($param) {
@@ -74,6 +74,16 @@ class mobileApi extends api {
             $rooms[$key]['VILLET'] = utf8_encode($rooms[$key]['VILLET']);
         }*/
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$rooms)));
+    }
+
+    /**
+     * check for jobs updates
+     * @return JSON
+     */
+    private function check_jobs_update($param) {
+        $job = new JobOrder();
+        $jobs = $job->getJobsToSynchronize($param);
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$jobs)));
     }
 
     /**
