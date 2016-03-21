@@ -103,7 +103,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <button class="btn btn-sm btn-primary" id="add-project" type="button">Valider</button>
+                        <button class="btn btn-sm btn-primary" id="add-project" type="button" >
+                            Valider</button>
                     </div>
                 </div>
             </div>
@@ -292,7 +293,18 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="aiguillage"> Aiguillage  </label>
         </div>
-
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="BureauEtude"> Bureau D'etude :
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-7">
+                <select class="form-control" id="BureauEtude" name="BureauEtude">
+                    <option value="">Séléctionnez un champ</option>
+                    <option value="BZN">BZN</option>
+                    <option value="MPL">MPL</option>
+                </select>
+            </div>
+        </div>
 
             <div class="form-group">
 
