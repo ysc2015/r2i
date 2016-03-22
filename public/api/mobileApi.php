@@ -74,6 +74,16 @@ class mobileApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'RESET ERROR')));
     }
 
+    /**
+     * check for jobs updates
+     * @return JSON
+     */
+    private function check_jobs_update($param) {
+        $job = new JobOrder();
+        $jobs = $job->getJobsToSynchronize($param);
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$jobs)));
+    }
+
 
     /**
      * check for rooms updates
@@ -89,13 +99,13 @@ class mobileApi extends api {
     }
 
     /**
-     * check for jobs updates
+     * check for pics updates
      * @return JSON
      */
-    private function check_jobs_update($param) {
-        $job = new JobOrder();
-        $jobs = $job->getJobsToSynchronize($param);
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$jobs)));
+    private function check_pics_update($param) {
+        $pic = new RoomPic();
+        $pics = $pic->getPicsToSynchronize($param);
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$pics)));
     }
 
     /**
