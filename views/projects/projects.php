@@ -29,7 +29,7 @@
 <?php endif; ?>
 <?php if($action == "add"): ?>
     <div class="content">
-        <h2 class="content-heading">Ajout Projet</h2>
+        <h2 class="content-heading"> </h2>
         <div class="block">
             <div class="block-header">
             </div>
@@ -221,7 +221,7 @@
 <?php if($action == "sdfiles"): ?>
     <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
         <div class="content">
-            <div class="row items-push push-20-t nice-copy">
+            <div class="row items-push push-20-t nice-opy">
                 <div class="col-md-6">
 
                     <div class="block">
@@ -477,9 +477,8 @@
                 <button class="btn btn-sm btn-primary" id="add-sous-project" type="button">Valider</button>
             </div>
     </form>
-
-            </div>
-            </div>
+        </div>
+    </div>
 </div>
 
 <?php endif; ?>
