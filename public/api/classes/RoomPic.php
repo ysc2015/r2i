@@ -28,5 +28,20 @@ class RoomPic {
         return $result = $this->db->insert("room_pics", $insert);
     }
 
+    /**
+     * Select room pics records to synchronize with mobile app
+     * @param array $param (room_id)
+     * @return array
+     */
+    public function getPicsToSynchronize($param) {
+        $bind = array(
+            ":room_id" => $param['rid'],
+            ":flag" => 'yes'
+        );
+        //SQL
+        $result = $this->db->select("rooms", "flag = :flag AND room_id = :room_id", $bind);/* AND user_id = :user_id*/
+        return $result;
+    }
+
 
 }// END class
