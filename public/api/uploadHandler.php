@@ -180,7 +180,9 @@ class uploadHandler {
     }
 }// END class
 
-if(isset($_POST['filetype'])) {
+/*if(isset($_POST['filetype'])) {
     $api = new uploadHandler($_POST['filetype']);
     $api->uploadFile($_POST['filetype']);
-} else $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'file type not specified')));
+} else $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'file type not specified')));*/
+
+$this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'file type not specified')));
