@@ -110,7 +110,7 @@ class uploadHandler {
      */
     function __construct($fileType) {
         //set upload directory
-        $this->upload_dir = "../uploads/";
+        $this->upload_dir = "../uploads/photoschambres/";
 
         //Set folder type from post
         //$this->foldertype = "SDFiles";
@@ -155,7 +155,9 @@ class uploadHandler {
                             "heading" => $_POST['heading'],
                             "speed" => $_POST['speed'],
                             "timestamp" => $_POST['timestamp'],
-                            "imageTabURI" => $_POST['imageTabURI'],
+                            "imageFilename" => $_POST['imageFilename'],
+                            "imageDesc" => $_POST['imageDesc'],
+                            "imageTitle" => $_POST['imageTitle'],
                             "imageSrvURL" => $_FILES["myfile"]["name"],
                             "flag" => ""
                         );
