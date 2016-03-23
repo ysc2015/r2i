@@ -33,7 +33,7 @@ class RoomPic {
         $this->db = DB::getInstance();
 
         //set upload directory
-        $this->upload_dir = '../../uploads/';
+        $this->upload_dir = "../../uploads/";
 
         //set allowed mimes types for download
         $this->mimes = array("application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -68,6 +68,8 @@ class RoomPic {
      * @return array
      */
     public function injectRoomPic() {
+
+        return(array('done' => false, 'msg' => "le fichier n'a pas été enregistré sur le serveur !"));
         //
         if (isset($_FILES["myfile"])) {
 
