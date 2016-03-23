@@ -116,6 +116,16 @@ class mobileApi extends api {
         $user = new User();
         $this->sendResponse(200,json_encode($user->login($params)));
     }
+    /**
+     * Inject room pic file
+     * @return JSON
+     */
+    private function inject_room_pic() {
+        $pic = new RoomPic();
+        $result = $pic->injectRoomPic();
+        $this->sendResponse(200,json_encode($result));
+    }
+
 
 
 
