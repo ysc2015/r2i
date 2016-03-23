@@ -72,7 +72,7 @@ class RoomPic {
 
                             //  DB insert
                             $insert = array(
-                                "room_pic_id" => $_POST['room_pic_id'],
+                                "tab_room_pic_id" => $_POST['tab_room_pic_id'],
                                 "room_id" => $_POST['room_id'],
                                 "latitude" => $_POST['latitude'],
                                 "longitude" => $_POST['longitude'],
