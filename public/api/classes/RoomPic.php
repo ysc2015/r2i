@@ -70,8 +70,9 @@ class RoomPic {
                     try {
                         if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $this->upload_dir . $_FILES["myfile"]["name"])) {
 
+                            return(array('done' => true, 'msg' => "uploaded !"));
                             //  DB insert
-                            $insert = array(
+                            /*$insert = array(
                                 "tab_room_pic_id" => $_POST['tab_room_pic_id'],
                                 "room_id" => $_POST['room_id'],
                                 "latitude" => $_POST['latitude'],
@@ -94,7 +95,7 @@ class RoomPic {
                                     return(array('done' => false, 'msg' => "insertion error !"));
                             } catch(Exception $e) {
                                 return(array('done' => false, 'msg' => "erreur insertion image !"));
-                            }
+                            }*/
 
                         }else
                             return(array('done' => false, 'msg' => "le fichier n'a pas été enregistré sur le serveur !"));
