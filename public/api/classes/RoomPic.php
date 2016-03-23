@@ -33,7 +33,7 @@ class RoomPic {
         $this->db = DB::getInstance();
 
         //set upload directory
-        $this->upload_dir = "../../uploads/photoschambres/";
+        $this->upload_dir = "../../uploads/";
 
         //set allowed mimes types for download
         $this->mimes = array("application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
