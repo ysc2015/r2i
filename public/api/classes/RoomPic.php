@@ -19,12 +19,21 @@ class RoomPic {
     private $mimes;
 
     /**
+     * Upload directory
+     * @var String
+     * @access private
+     */
+    private $upload_dir;
+
+    /**
      * Constructor function.
      */
     public function __construct() {
         //load database instance to $db member variable
         $this->db = DB::getInstance();
 
+        //set upload directory
+        $this->upload_dir = "../../uploads/photoschambres";
 
         //set allowed mimes types for download
         $this->mimes = array("application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
