@@ -185,4 +185,4 @@ class uploadHandler {
     $api->uploadFile($_POST['filetype']);
 } else $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'file type not specified')));*/
 
-$this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'file type not specified')));
+echo json_encode(array('status'=>'error','msg'=>'file type not specified'));
