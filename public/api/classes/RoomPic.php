@@ -69,7 +69,31 @@ class RoomPic {
      */
     public function injectRoomPic() {
 
-        return(array('done' => false, 'msg' => "le fichier n'a pas été enregistré sur le serveur !"));
+        //  DB insert
+        $insert = array(
+            "tab_room_pic_id" => $_POST['tab_room_pic_id'],
+            "room_id" => $_POST['room_id'],
+            "latitude" => $_POST['latitude'],
+            "longitude" => $_POST['longitude'],
+            "altitude" => $_POST['altitude'],
+            "accuracy" => $_POST['accuracy'],
+            "altitudeAccuracy" => $_POST['altitudeAccuracy'],
+            "heading" => $_POST['heading'],
+            "speed" => $_POST['speed'],
+            "timestamp" => $_POST['timestamp'],
+            "imageFilename" => $_POST['imageFilename'],
+            "imageDesc" => $_POST['imageDesc'],
+            "imageTitle" => $_POST['imageTitle'],
+            "imageSrvURL" => $_FILES["myfile"]["name"],
+            "flag" => ""
+        );
+        try {
+            $result = $this->insertPicture($insert);
+            if(!$result)
+                return(array('done' => false, 'msg' => "insertion error !"));
+        } catch(Exception $e) {
+            return(array('done' => false, 'msg' => "erreur insertion image !"));
+        }
         //
         if (isset($_FILES["myfile"])) {
 
