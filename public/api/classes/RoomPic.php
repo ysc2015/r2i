@@ -29,7 +29,7 @@ class RoomPic {
      * Constructor function.
      */
     public function __construct() {
-        //load database instance to $db member variable
+        //load database instance
         $this->db = DB::getInstance();
 
         //set upload directory
