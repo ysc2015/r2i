@@ -223,8 +223,7 @@
         <div class="content">
             <div class="row items-push push-20-t nice-opy">
                 <div class="col-md-6">
-
-                    <div class="block">
+                     <div class="block">
                         <div class="block-header">
                             <h3 class="block-title">Liste des fichiers</h3>
                         </div>
