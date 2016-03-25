@@ -110,7 +110,7 @@
         <div class="block-content block-content-narrow">
                 <form class="js-validation-bootstrap form-horizontal">
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="profil_id">Profile <span class="text-danger"></span></label>
+                    <label class="col-md-4 control-label" for="profil_id">Profile <span class="text-danger">*</span></label>
                     <div class="col-md-7">
                         <select class="form-control" id="profil_id" name="profil_id">
                             <option value="">Séléctionnez un type</option>
