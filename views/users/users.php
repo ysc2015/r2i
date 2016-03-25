@@ -126,32 +126,32 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="user_firstname">Prénom <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="user_firstname" name="user_firstname">
+                            <input class="form-control" type="text" id="user_firstname" name="user_firstname" value="<?php echo $actuser['user_firstname']?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="user_lastname">Nom <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="user_lastname" name="user_lastname">
+                            <input class="form-control" type="text" id="user_lastname" name="user_lastname" value="<?php echo $actuser['user_lastname']?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="email">Email <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="email" name="email">
+                            <input class="form-control" type="text" id="email" name="email" value="<?php echo $actuser['email']?>">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="password1">mot de passe <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="password1" id="password1" name="password" >
+                            <input class="form-control" type="password" id="password1" name="password1" value="<?php echo $actuser['password']?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="password2">confirmer le mot de passe <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="password2" id="password2" name="password" >
+                            <input class="form-control" type="password" id="password2" name="password2" value="<?php echo $actuser['password']?>">
                         </div>
                     </div>
                 </form>
