@@ -7,7 +7,7 @@ if ($login->login_check() == false)
 $pages = array('dashboard' => 'Tableau de bord',
     'projects' => 'projets',
     'rooms' => "chambres",
-    'utilisateurs' => "utilisateurs");
+    'users' => "utilisateurs");
 
 $actions = array('list' => 'action pour lister',
     'add' => 'action pour ajouter',
