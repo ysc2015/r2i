@@ -145,13 +145,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="password1">mot de passe <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="password" id="password1" name="password1" value="<?php echo $actuser['password']?>">
+                            <input class="form-control" type="password" id="password1" name="password1">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="password2">confirmer le mot de passe <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="password" id="password2" name="password2" value="<?php echo $actuser['password']?>">
+                            <input class="form-control" type="password" id="password2" name="password2">
                         </div>
                     </div>
                 </form>
