@@ -64,8 +64,7 @@ class User {
         $bind = array(
             ":profil_id" => $profilid
         );
-        $result = $this->db->select("users", "profil_id = :profil_id", $bind);
-        return (!empty($result)?$result:false);
+        return $this->db->select("users", "profil_id = :profil_id", $bind);
     }
 
     /**
