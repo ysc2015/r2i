@@ -5,7 +5,9 @@
 <?php if($action == "add"): ?>
     <!-- Page JS Plugins -->
     <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="<?php echo $one->assets_folder; ?>/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-upload-file/jquery.uploadfile.min.js"></script>
+<?php endif; ?>
+<?php if($action == "mod"): ?>
+    <!-- Page JS Plugins -->
+    <script src="<?php echo $one->assets_folder; ?>/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <?php endif; ?>
 
