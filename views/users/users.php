@@ -112,10 +112,12 @@
                             <select class="form-control" id="profil_id" name="profil_id">
                                 <option value="">Séléctionnez un profil</option>
                                 <?php
+                                    $user = new User();
+                                    $actuser = $user->getUserById($_GET['id']);
                                     $profil = new Profil();
                                     $profils = $profil->getAllProfils();
                                     foreach($profils as $key => $value) {
-                                        echo '<option value="'.$value['profil_id'].'" '.($value['profil_id']==$_GET['id'] ? "selected" : "").'>'.$value['profil_title'].' ('.$value['profil_abbrev'].')</option>';
+                                        echo '<option value="'.$value['profil_id'].'" '.($value['profil_id']==$actuser['profil_id'] ? "selected" : "").'>'.$value['profil_title'].' ('.$value['profil_abbrev'].')</option>';
                                     }
                                 ?>
                             </select>
