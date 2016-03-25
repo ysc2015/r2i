@@ -113,9 +113,14 @@
                         <label class="col-md-4 control-label" for="profil_id">Profile <span class="text-danger">*</span></label>
                         <div class="col-md-7">
                             <select class="form-control" id="profil_id" name="profil_id">
-                                <option value="">Séléctionnez un type</option>
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
+                                <option value="">Séléctionnez un profil</option>
+                                <?php
+                                    $profil = new Profil();
+                                    $profils = $profil->getAllProfils();
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['profil_id'].'" '.($value['profil_id']==$_GET[''] ? "selected" : "").'>'.$value['profil_title'].' ('.$value['profil_abbrev'].')</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
