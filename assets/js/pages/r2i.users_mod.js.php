@@ -24,9 +24,9 @@ var UserUpdateFormValidation = function() {
         });
     };
     // Init page helpers
-    var initPlugins = function() {
+    /*var initPlugins = function() {
         App.initHelpers(['datepicker']);
-    };
+    };*/
     // Init Bootstrap Forms Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
     var initValidationBootstrap = function(){
         jQuery('.js-validation-bootstrap').validate({
@@ -57,7 +57,7 @@ var UserUpdateFormValidation = function() {
             // Update Event functionality
             updateUser();
             //init page helpers
-            initPlugins();
+            //initPlugins();
             // Init Bootstrap Forms Validation
             initValidationBootstrap();
         }
