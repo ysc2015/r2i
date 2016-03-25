@@ -1,63 +1,68 @@
 <?php
 header("Content-type: application/javascript");
 ?>
-var API_URL = 'public/api/r2iApiUser.php';
 
-$(function () {
+var UserUpdateFormValidation = function() {
 
-    function Update(){
-        var obj = new Object();
-        obj.user_id = user_id;
-        obj.info = new Object();
-        obj.info.profil_id = $('#profil_id').val();
-        obj.info.user_firstname = $('#user_firstname').val();
-        obj.info.user_lastname = $('#user_lastname').val();
-        obj.info.email = $('#email').val();
-        obj.info.password = $('#password').val();
-        obj.info.salt = $('#salt').val();
+    var API_URL = 'public/api/r2iApiUser.php';
+    var $form = jQuery('.js-validation-bootstrap');
+    var $row = {}; // default row value;
 
-        $.ajax({
-            url: API_URL,
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                parameters: obj,
-                method: 'update_user',
+    var updateUser = function() {
+        // When the update form is submitted
+        jQuery('#update-user').on('click', function(){
+            console.log('mod user');
 
+            if($form.valid()) {
+                $form.find('input,textarea,select').each(function () {
+                    $row[$(this).attr('name')] = $(this).val();
+                });
+                console.log(JSON.stringify($row));
+                //call ajax
+            }
+            return false;
+        });
+    };
+    // Init page helpers
+    var initPlugins = function() {
+        App.initHelpers(['datepicker']);
+    };
+    // Init Bootstrap Forms Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
+    var initValidationBootstrap = function(){
+        jQuery('.js-validation-bootstrap').validate({
+            errorClass: 'help-block animated fadeInDown',
+            errorElement: 'div',
+            errorPlacement: function(error, e) {
+                jQuery(e).parents('.form-group > div').append(error);
             },
-            success: function (response) {
-                if(response.status == 'success') {
-                 console.log("upadte effectué");
-                }
+            highlight: function(e) {
+                jQuery(e).closest('.form-group').removeClass('has-error').addClass('has-error');
+                jQuery(e).closest('.help-block').remove();
             },
-            error: function (e) {
-                console.log(e.responseText);
+            success: function(e) {
+                jQuery(e).closest('.form-group').removeClass('has-error');
+                jQuery(e).closest('.help-block').remove();
+            },
+            //TODO add rules later
+            rules: {
+            },
+            messages: {
             }
         });
-    }
-    $('#update-user').click(Update);
+    };
 
-    $.ajax({
-        url: API_URL,
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            parameters: '{"user_id":' + user_id + '}',
-            method : 'get_user_by_id'
-        },
-        success: function (response) {
-            if(response.status == 'success') {
-                var user = $.parseJSON(response.user);
-                $('#profil_id').val(user.profil_id);
-                $('#user_firstname').val(user.user_firstname);
-                $('#user_lastname').val(user.user_lastname);
-                $('#email').val(user.email);
-                $('#password').val(user.password);
-                $('#salt').val(user.salt);
-            }
-        },
-        error: function (e) {
-            console.log(e.responseText);
+    return {
+        init: function () {
+
+            // Update Event functionality
+            updateUser();
+            //init page helpers
+            initPlugins();
+            // Init Bootstrap Forms Validation
+            initValidationBootstrap();
         }
-    });
-});
+    };
+}();
+
+// Initialize when page loads
+jQuery(function(){ UserUpdateFormValidation.init(); });
