@@ -109,47 +109,47 @@
         </div>
         <div class="block-content block-content-narrow">
                 <form class="js-validation-bootstrap form-horizontal">
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="profil_id">Profile <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <select class="form-control" id="profil_id" name="profil_id">
-                            <option value="">Séléctionnez un type</option>
-                            <option value="1">Admin</option>
-                            <option value="2">User</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="profil_id">Profile <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="profil_id" name="profil_id">
+                                <option value="">Séléctionnez un type</option>
+                                <option value="1">Admin</option>
+                                <option value="2">User</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="user_firstname">Prénom </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="user_firstname" name="user_firstname">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="user_firstname">Prénom <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="text" id="user_firstname" name="user_firstname">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="user_lastname">Nom</label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="user_lastname" name="user_lastname">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="user_lastname">Nom <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="text" id="user_lastname" name="user_lastname">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="email">Email</label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="email" name="email">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="email">Email <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="text" id="email" name="email">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="password">mot de passe </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="password" id="password" name="password" >
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="password1">mot de passe <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="password1" id="password1" name="password" >
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="salt">Salt </label>
-                    <div class="col-md-7">
-                        <input class="form-control" type="text" id="salt" name="salt" >
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="password2">confirmer le mot de passe <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="password2" id="password2" name="password" >
+                        </div>
                     </div>
-                </div>
                 </form>
                   <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
