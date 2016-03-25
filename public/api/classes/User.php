@@ -58,7 +58,7 @@ class User {
     /**
      * Select user by profil id
      * @param int $profilid profil id
-     * @return array() / boolean(false)
+     * @return array()
      */
     public function getUserByProfilId($profilid) {
         $bind = array(
