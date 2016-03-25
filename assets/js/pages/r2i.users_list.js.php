@@ -3,7 +3,7 @@ header("Content-type: application/javascript");
 ?>
 var API_URL = 'public/api/r2iApiUser.php';
 function deleteUser(idp) {
-    $.ajax({
+/*    $.ajax({
         url: API_URL,
         type: 'POST',
         dataType: 'json',
@@ -18,32 +18,11 @@ function deleteUser(idp) {
         error: function (e) {
             console.log(e.responseText);
         }
-    });
+    });*/
     alert('delete user ' + idp);
 }
 //
-function showUSERSDFiles(idp) {
-    window.open('?page=utilisateurs&action=sdfiles&idp='+idp);
-}
-//
-function showUserModify(idp) {
-
-    $.ajax({
-        url: API_URL,
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            parameters: '{"user_id":' + idp + '}',
-            method : 'get_user_by_id'
-        },
-        success: function (response) {
-            console.log(response);
-
-        },
-        error: function (e) {
-            console.log(e.responseText);
-        }
-    });
+function modUser(idp) {
 
     window.open('?page=utilisateurs&action=mod&id='+idp);
 }
@@ -54,7 +33,7 @@ var UsersListDatatables = function() {
     var openAddForm = function() {
         // When the add project form is submitted
         jQuery('.open-add-form').on('click', function(){
-            window.location.href = "?page=utilisateurs&action=add";
+            window.location.href = "?page=users&action=add";
         });
     };
     // Init full DataTable, for more examples you can check out https://www.datatables.net/
@@ -105,7 +84,6 @@ var UsersListDatatables = function() {
                         html = '<div class="btn-group">';
                         html += '<button class="btn btn-xs btn-default" type="button" onclick="showUserModify('+row.user_id+')" data-toggle="tooltip" title="Modifier utilisateur"><i class="fa fa-pencil"></i></button>';
                         html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteUser('+row.user_id+')" data-toggle="tooltip" title="Supprimer utilisateur"><i class="fa fa-times"></i></button>';
-                        html += '<button class="btn btn-xs btn-default" type="button" onclick="showUSERSDFiles('+row.user_id+')" data-toggle="tooltip" title="Fichiers utilisateur (SD)"><i class="fa fa-folder-open"></i></button>';
                         html += '</div>';
                         return html;
                     }
