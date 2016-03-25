@@ -99,9 +99,6 @@
     </div>
 <?php endif; ?>
 <?php if($action == "mod"): ?>
-<script>
-    var user_id = <?php echo $_GET['id']; ?>
-</script>
 <div class="content">
 
     <div class="block">
@@ -118,7 +115,7 @@
                                     $profil = new Profil();
                                     $profils = $profil->getAllProfils();
                                     foreach($profils as $key => $value) {
-                                        echo '<option value="'.$value['profil_id'].'" '.($value['profil_id']==$_GET[''] ? "selected" : "").'>'.$value['profil_title'].' ('.$value['profil_abbrev'].')</option>';
+                                        echo '<option value="'.$value['profil_id'].'" '.($value['profil_id']==$_GET['id'] ? "selected" : "").'>'.$value['profil_title'].' ('.$value['profil_abbrev'].')</option>';
                                     }
                                 ?>
                             </select>
