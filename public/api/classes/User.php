@@ -32,6 +32,23 @@ class User {
         $result = $this->db->insert("users", $insert);
         return array("data" =>$result,"insertedId" =>$this->db->lastInsertId());
     }
+    ///update
+    public function updateUser($update) {
+        $bind = array(
+            ":user_id" => $update['user_id']
+        );
+        return $this->db->update("users", $update['info'], "user_id = :user_id", $bind);
+    }
+//dddddd
+
+
+    public function deleteUser($delete) {
+        $bind = array(
+            ":user_id" => $delete['user_id']
+        );
+        $ret = $this->db->delete("users","user_id = :user_id", $bind);
+        return $ret;
+    }
     /**
      * Select user by email
      * @param string $email user email
