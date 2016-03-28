@@ -3,7 +3,7 @@ header("Content-type: application/javascript");
 ?>
 var API_URL = 'public/api/r2iApiUser.php';
 function deleteUser(idp) {
-/*    $.ajax({
+  $.ajax({
         url: API_URL,
         type: 'POST',
         dataType: 'json',
@@ -18,8 +18,9 @@ function deleteUser(idp) {
         error: function (e) {
             console.log(e.responseText);
         }
-    });*/
-    alert('delete user ' + idp);
+    });
+   // alert('delete user ' + idp);
+    window.alert('delete user ' + idp);
 }
 //
 function modUser(idp) {
