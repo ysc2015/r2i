@@ -47,8 +47,15 @@
                     <div class="col-md-7">
                         <select class="form-control" id="profil_id" name="profil_id">
                             <option value="">Séléctionnez un type</option>
-                            <option value="1">Admin</option>
-                            <option value="2">User</option>
+                            <option value="1">root</option>
+                            <option value="2">Directeur Déploiement Optique version V</option>
+                            <option value="2">Pilote Déploiement Optique version V</option>
+                            <option value="2">Bureau d’Etude Interne</option>
+                            <option value="2">Bureau d’Etude eXterne</option>
+                            <option value="2">Chef De Projet</option>
+                            <option value="2">Validation et Production Infrastructure</option>
+                            <option value="2">Production et Contrôle Infrastructure</option>
+                            <option value="2">Sous-Traitants</option>
                         </select>
                     </div>
                 </div>
