@@ -20,7 +20,8 @@ function deleteUser(idp) {
         }
     });
    // alert('delete user ' + idp);
-    window.alert('delete user ' + idp);
+   window.alert('delete user ' + idp);
+
 }
 //
 function modUser(idp) {
