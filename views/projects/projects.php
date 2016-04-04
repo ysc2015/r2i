@@ -49,7 +49,7 @@
             <button class="btn btn-minw btn-square btn-default open-add-form" type="button">ajouter projet</button>
             <button class="btn btn-minw btn-square btn-primary linked" type="button" disabled>ouvrir projet</button>
             <button class="btn btn-minw btn-square btn-danger open-delete-dialog linked" type="button" disabled>supprimer projet</button>
-            <button class="btn btn-minw btn-square btn-info linked" type="button" disabled>ajouter sous projet</button>
+            <button class="btn btn-minw btn-square btn-info linked open-add-zone-form" type="button" disabled>ajouter sous projet</button>
         </div>
     </div>
     <div id="dialog-confirm" title="Supprimer projet?" style="display: none;">
@@ -253,77 +253,6 @@
         </div>
     </div>
 <?php endif; ?>
-<?php if($action == "sdfiles"): ?>
-    <?php if(isset($_GET['idp']) && $_GET['idp'] !=""): ?>
-        <div class="content">
-            <div class="row items-push push-20-t nice-copy">
-                <div class="col-md-6">
-                    <!-- Dynamic Table Full -->
-                    <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">Liste des fichiers</h3>
-                        </div>
-                        <div class="block-content">
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                            <table class="table table-bordered table-striped js-dataTable-full">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">Id</th>
-                                    <th>Name</th>
-                                    <th class="hidden-xs">Email</th>
-                                    <th class="hidden-xs">Access</th>
-                                    <th class="hidden-xs">Access</th>
-                                    <th class="text-center" style="width: 10%;">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- END Dynamic Table Full -->
-                </div>
-                <div class="col-md-6">
-                    <div id="fileuploader">Ajouter fichiers</div>
-                </div>
-            </div>
-        </div>
-    <?php else: ?>
-            <div>pas possible d'afficher sd</div>
-    <?php endif; ?>
-<?php endif; ?>
-<?php if($action == "creerSousProjet"): ?>
-
-<div class="content">
-
-    <div class="block">
-        <div class="block-header">
-        </div>
-        <div class="block-content block-content-narrow">
-
-    <form class="js-validation-bootstrap form-horizontal">
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="ceation_date">Réseau de Transport </label>
-
-            <div class="col-md-7">
-                <input class="form-control" type="text" id="ceation_date" name="ceation_date">
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="attribution_date">Réseau de Distribution </label>
-            <div class="col-md-7">
-                <input class="form-control" type="text" id="attribution_date" name="attribution_date">
-
-            </div>
-        </div>
-    </form>
-            </div>
-</div>
-
-<?php endif; ?>
-
 
     <!-- loader Modal -->
     <div class="modal" id="loader" tabindex="-1" role="dialog" aria-hidden="true">

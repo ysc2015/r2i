@@ -28,7 +28,7 @@ var openDetails = function (elem,projectid) {
 
     if (oTable.fnIsOpen(nTr)) {
         console.log('1');
-        elem.src = "assets/img/misc/open.png";
+        elem.innerHTML = '<i class="fa fa-plus"></i>';
         oTable.fnClose(nTr);
     }
     else {
@@ -43,7 +43,7 @@ var openDetails = function (elem,projectid) {
                 console.log(response);
                 data = response.data;
 
-                elem.src = "assets/img/misc/close.png";
+                elem.innerHTML = '<i class="fa fa-minus"></i>';
                 oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
                 oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
                     "bJQueryUI": true,
@@ -107,9 +107,16 @@ var openDetails = function (elem,projectid) {
 var ProjectsListDatatables = function() {
     // Open add project form
     var openAddForm = function() {
-        // When the add project form is submitted
+        //add project form
         jQuery('.open-add-form').on('click', function(){
             window.location.href = "?page=projects&action=add";
+        });
+    };
+    // Open add sub project(zone) form
+    var openAddZoneForm = function() {
+        //add sub project form
+        jQuery('.open-add-zone-form').on('click', function(){
+            window.location.href = "?page=zones&projectid=1&action=add";
         });
     };
     var openDeleteDialog = function() {
@@ -202,7 +209,7 @@ var ProjectsListDatatables = function() {
                     "mDataProp": null,
                     "sClass": "center",
                     mRender: function (data, type, row) {
-                        html = '<img src="assets/img/misc/open.png" onclick="openDetails(this,'+row.project_id+');">';
+                        html = '<button class="btn btn-xs btn-default" type="button" onclick="openDetails(this,'+row.project_id+');" data-toggle="tooltip" title="Sous projets"><i class="fa fa-plus"></i></button>';
                         return html
                     }
                 },
@@ -414,6 +421,8 @@ var ProjectsListDatatables = function() {
         init: function() {
             //Add open project add-form functionality
             openAddForm();
+            //
+            openAddZoneForm();
             //
             openDeleteDialog();
             // Init Datatables
