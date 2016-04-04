@@ -1,0 +1,9 @@
+//$this->db->beginTransaction();
+
+/*try {
+         $this->db->insert("projects", $insert);
+      } catch (Exception $e) {
+            return false;
+}*/
+
+//$this->db->rollBack();
