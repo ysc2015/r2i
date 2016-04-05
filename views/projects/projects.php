@@ -34,10 +34,10 @@
             <table id="detailsTable" class="table table-bordered table-striped js-dataTable-full">
                 <thead>
                 <tr>
-                    <th>Info</th>
-                    <th>De</th>
-                    <th>Sous</th>
-                    <th>Projet</th>
+                    <th>DEP</th>
+                    <th>Ville</th>
+                    <th>Plaque</th>
+                    <th>Zone</th>
                     <th></th>
                 </tr>
                 </thead>

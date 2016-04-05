@@ -139,7 +139,7 @@ var ProjectFormValidation = function() {
 
     return {
         init: function () {
-            // Update Event functionality
+            // add events
             addProject();
             //init page helpers
             initPlugins();

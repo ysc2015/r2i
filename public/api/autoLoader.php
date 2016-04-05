@@ -11,7 +11,9 @@
 function autoload($classname)
 {
     if ((strpos($classname, 'PHPExcel') !== 0))
-        require 'classes/'.ucfirst($classname).'.php';
+        if(strpos($classname,"PDO"/*,strlen($classname) - 3*/)) {
+            require 'classes/PDO/'.ucfirst($classname).'.php';
+        } else require 'classes/'.ucfirst($classname).'.php';
 }
 
 if (version_compare(PHP_VERSION, '5.1.2', '>=')) {
