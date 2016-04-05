@@ -54,9 +54,9 @@ class r2iApi extends api {
      * @return JSON
      */
     private function get_sub_projects_by_project_id($param) {
-        $subproj = new SubProject();
-        $subprojects = $subproj->getSubProjectsByProjectId($param['projectid']);
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$subprojects)));
+        /*$subproj = new SubProject();
+        $subprojects = $subproj->getSubProjectsByProjectId($param['projectid']);*/
+        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>SubProjectPDO::getSubProjectsByProjectId($param['projectid']))));
     }
 
     private function get_projects_by_id($id_project) {
@@ -213,6 +213,14 @@ class r2iApi extends api {
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'MAIL OK')));
         else
             $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'MAIL ERROR')));
+    }
+
+    /**
+     * Add a sub project
+     * @return JSON
+     */
+    private function insert_sub_project($insert) {
+        $this->sendResponse(200,json_encode(SubProjectPDO::insertSubProject($insert)));
     }
 
 }// END class

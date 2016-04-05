@@ -19,5 +19,6 @@ switch($action) {
 ?>
 <!-- Page JS Plugins CSS -->
 <?php if($action == "add"): ?>
-
+    <link rel="stylesheet" href="<?php echo $r2i->assets_folder; ?>/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="<?php echo $r2i->assets_folder; ?>/js/plugins/jquery-ui/jquery-ui.min.css"></script>
 <?php endif; ?>

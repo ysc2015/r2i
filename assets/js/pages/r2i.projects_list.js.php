@@ -50,10 +50,10 @@ var openDetails = function (elem,projectid) {
                     "bFilter": false,
                     "bSort" : false, // disables sorting
                     "columns": [
-                        { "data": "res_type" },
-                        { "data": "aiguillage"},
-                        { "data": "intervenantBE" },
-                        { "data": "plans"},{
+                        { "data": "dep" },
+                        { "data": "city"},
+                        { "data": "plate" },
+                        { "data": "zone"},{
                             "sClass": 'text-center',
                             mRender: function (data, type, row) {
                                 html = '<div class="btn-group">';
