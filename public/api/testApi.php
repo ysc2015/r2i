@@ -15,8 +15,7 @@ class testApi extends api {
 
     // process api method
     function processApi($method="") {
-        $project = new Project();
-        print_r($project->getAllProjects());
+        print_r(ProjectPDO::getProjectbyid(3));
     }
 }// END class
 

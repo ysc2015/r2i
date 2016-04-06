@@ -19,7 +19,7 @@ var ProjectFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(cl,txt) {
+    var openDialog = function(id,txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -27,12 +27,9 @@ var ProjectFormValidation = function() {
             /*height:140,*/
             modal: true,
             buttons: {
-                "Ouvrir": function() {
+                "Fermer": function() {
                     $( this ).dialog( "close" );
-                },
-                Annuler: function() {
-                    $form[0].reset();
-                    $( this ).dialog( "close" );
+                    window.location.href = '?page=projects&action=edit&projectid='+id;
                 }
             }
         });
@@ -86,7 +83,7 @@ var ProjectFormValidation = function() {
                         console.log('insert_project:success');
                         console.log(response);
                         hideLoader();
-                        openDialog('dd', response.msg);
+                        openDialog(response.id, response.msg);
 
                     },
                     error: function (e) {

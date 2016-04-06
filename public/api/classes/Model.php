@@ -28,7 +28,7 @@ abstract class Model {
      * Log errors
      * @return void
      */
-    protected function logIt($message) {
+    protected static function logIt($message) {
         $ret = array("Log" => $message);
         var_dump($ret);
     }

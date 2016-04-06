@@ -71,6 +71,6 @@ class SubProjectPDO {
         self::initialize();
         $result = self::$db->insert(self::$table,$insert);
         if($result) return array("done" =>true,"msg" =>"sous projet enregistré");
-        else return array("done" =>true,"msg" =>"probléme enregistrement sous projet");
+        else return array("done" =>false,"msg" =>"probléme enregistrement sous projet");
     }
 }// END class
