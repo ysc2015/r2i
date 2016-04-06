@@ -47,7 +47,7 @@
         <!-- END Sub Projects Table (Details)-->
         <div class="row" style="margin: 20px;">
             <button class="btn btn-minw btn-square btn-default open-add-form" type="button">ajouter projet</button>
-            <button class="btn btn-minw btn-square btn-primary linked" type="button" disabled>ouvrir projet</button>
+            <button class="btn btn-minw btn-square btn-primary linked open-edit-form" type="button" disabled>ouvrir projet</button>
             <button class="btn btn-minw btn-square btn-danger open-delete-dialog linked" type="button" disabled>supprimer projet</button>
             <button class="btn btn-minw btn-square btn-info linked open-add-zone-form" type="button" disabled>ajouter sous projet</button>
         </div>
@@ -91,8 +91,8 @@
                             <select class="form-control" id="type_site_id" name="type_site_id">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="1">POP</option>
-                                <option value="1">NRO</option>
-                                <option value="1">NRA</option>
+                                <option value="2">NRO</option>
+                                <option value="3">NRA</option>
                             </select>
                         </div>
                     </div>
@@ -108,12 +108,12 @@
                             <select class="form-control" id="orig_site_state_id" name="orig_site_state_id">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="1">Promesse</option>
-                                <option value="1">Acquis</option>
-                                <option value="1">A Commander</option>
-                                <option value="1">Prêt pour Travaux</option>
-                                <option value="1">En Travaux</option>
-                                <option value="1">Recette OK</option>
-                                <option value="1">Prêt</option>
+                                <option value="2">Acquis</option>
+                                <option value="3">A Commander</option>
+                                <option value="4">Prêt pour Travaux</option>
+                                <option value="5">En Travaux</option>
+                                <option value="6">Recette OK</option>
+                                <option value="7">Prêt</option>
                             </select>
                         </div>
                     </div>
@@ -154,6 +154,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                            <input type="hidden" id="project_id" name="project_id" value="<?php echo $_GET['projectid'];?>">
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="city">Ville <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
@@ -177,9 +178,9 @@
                                 <div class="col-md-7">
                                     <select class="form-control" id="type_site_id" name="type_site_id" value="<?php echo $project['type_site_id']?>">
                                         <option value="">Séléctionnez un type</option>
-                                        <option value="1">POP</option>
-                                        <option value="2">NRO</option>
-                                        <option value="3">NRA</option>
+                                        <option value="1" <?php echo ($project['type_site_id'] == "1" ? "selected":"")?>>POP</option>
+                                        <option value="2" <?php echo ($project['type_site_id'] == "2" ? "selected":"")?>>NRO</option>
+                                        <option value="3" <?php echo ($project['type_site_id'] == "3" ? "selected":"")?>>NRA</option>
                                     </select>
                                 </div>
                             </div>
@@ -194,13 +195,13 @@
                                 <div class="col-md-7">
                                     <select class="form-control" id="orig_site_state_id" name="orig_site_state_id" value="<?php echo $project['orig_site_state_id']?>">
                                         <option value="">Séléctionnez un type</option>
-                                        <option value="1">Promesse</option>
-                                        <option value="2">Acquis</option>
-                                        <option value="3">A Commander</option>
-                                        <option value="4">Prêt pour Travaux</option>
-                                        <option value="5">En Travaux</option>
-                                        <option value="6">Recette OK</option>
-                                        <option value="7">Prêt</option>
+                                        <option value="1" <?php echo ($project['orig_site_state_id'] == "1" ? "selected":"")?>>Promesse</option>
+                                        <option value="2" <?php echo ($project['orig_site_state_id'] == "2" ? "selected":"")?>>Acquis</option>
+                                        <option value="3" <?php echo ($project['orig_site_state_id'] == "3" ? "selected":"")?>>A Commander</option>
+                                        <option value="4" <?php echo ($project['orig_site_state_id'] == "4" ? "selected":"")?>>Prêt pour Travaux</option>
+                                        <option value="5" <?php echo ($project['orig_site_state_id'] == "5" ? "selected":"")?>>En Travaux</option>
+                                        <option value="6" <?php echo ($project['orig_site_state_id'] == "6" ? "selected":"")?>>Recette OK</option>
+                                        <option value="7" <?php echo ($project['orig_site_state_id'] == "7" ? "selected":"")?>>Prêt</option>
                                     </select>
                                 </div>
                             </div>
@@ -230,11 +231,7 @@
                             <div class="block-header">
                                 <h3 class="block-title">Fichiers Contour</h3>
                             </div>
-                            <div class="block-content">
-                                <div class="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <i class="fa fa-check"></i><a class="alert-link" href="javascript:void(0)"> fdfdsfdsf.xls</a>
-                                </div>
+                            <div class="block-content" id="filescontainer">
                             </div>
                         </div>
                         <!-- END Notifications Widget -->

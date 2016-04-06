@@ -109,7 +109,13 @@ var ProjectsListDatatables = function() {
     var openAddForm = function() {
         //add project form
         jQuery('.open-add-form').on('click', function(){
-            window.location.href = "?page=projects&action=add";
+            window.location.href = '?page=projects&action=add';
+        });
+    };
+    var openEditForm = function() {
+        //open edit project form
+        jQuery('.open-edit-form').on('click', function(){
+            window.location.href = '?page=projects&action=edit&projectid='+projectData.project_id;
         });
     };
     // Open add sub project(zone) form
@@ -419,11 +425,10 @@ var ProjectsListDatatables = function() {
 
     return {
         init: function() {
-            //Add open project add-form functionality
+            //events
             openAddForm();
-            //
+            openEditForm();
             openAddZoneForm();
-            //
             openDeleteDialog();
             // Init Datatables
             bsDataTables();

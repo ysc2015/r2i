@@ -4,7 +4,7 @@
  * @author RR
  */
 
-class ProjectPDO {
+class ProjectPDO extends Model {
 
     /**
      * Database Instance
@@ -78,26 +78,11 @@ class ProjectPDO {
     }
 
     /**
-     * update a project
-     * @param array $update
-     * @return bool
-     */
-
-    public static function updateProject($update) {
-        self::initialize();
-        $bind = array(
-            ":project_id" => $update['project_id']
-        );
-        //var_dump($update);
-        return self::$db->update(self::$table, $update['info'], "project_id = :project_id", $bind);
-    }
-
-    /**
      * get a project by id
      * @param array $project_id
      * @return array
      */
-    public static function getProjectbyid($project_id) {
+    public static function getProjectById($project_id) {
         self::initialize();
         $bind = array(
             ":project_id" => $project_id
@@ -121,13 +106,17 @@ class ProjectPDO {
     /**
      * add a project
      * @param array $insert values
-     * @return bool
+     * @return array
      */
     public static function insertProject($insert) {
         self::initialize();
 
         $uploadedFiles = array();
         $errorFiles = array();
+
+        $date = new DateTime('now');
+        $toinsert = $insert;
+        $toinsert['createdAt'] = $date->format('Y-m-d H:i:s');
 
         //add project
         try {
@@ -169,7 +158,7 @@ class ProjectPDO {
                                             $errorFiles[]= $fileName;
                                         }
                                     } catch (Exception $e) {
-                                        //self::logIt($e->getMessage());
+                                        self::logIt($e->getMessage());
                                         $errorFiles[]= $fileName;
                                     }
                                 } else {
@@ -185,6 +174,92 @@ class ProjectPDO {
                     return array("done" => true, "msg" => $msg, "id" => $lastInsertId);
                 } else {
                     return array("done" => true,"msg" => "<p>projet crée !</p><p>les fichiers contour n'ont pas été sauvegardés.</p>","id" => $lastInsertId);
+                }
+            } else {
+                return array("done" =>false,"msg" =>"Erreur enregistrement projet !");
+            }
+        } catch (Exception $e) {
+            //self::logIt($e->getMessage());
+            return array("done" =>false,"msg" =>"Erreur interne !");
+        }
+
+    }
+
+    /**
+     * update a project
+     * @param array $insert values
+     * @return array
+     */
+    public static function updateProject($update) {
+        self::initialize();
+
+        $uploadedFiles = array();
+        $errorFiles = array();
+
+        $bind = array(
+            ":project_id" => $update['project_id']
+        );
+
+        $date = new DateTime('now');
+        $toupdate = $update;
+        $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
+
+        //add project
+        try {
+            $update['updatedAt'] = date('m/d/Y h:i:s a', time());
+            if(self::$db->update(self::$table, $toupdate, "project_id = :project_id", $bind)) {
+                // loop through the array of files
+                if(!empty($_FILES)) {
+                    foreach($_FILES as $index => $file) {
+                        //filename
+                        $fileName = $file['name'];
+                        //temp filename
+                        $fileTempName = $file['tmp_name'];
+                        // check if there is an error for particular entry in array
+                        if(!empty($file['error'][$index])) {
+                            // some error occurred with the file in index $index
+                            // yield an error here
+                            $errorFiles[]= $fileName;
+                        } else {
+                            // check temporary path and if uploaded file
+                            if(!empty($fileTempName) && is_uploaded_file($fileTempName)) {
+                                if(in_array($file['type'],self::$mimes)) {
+                                    try {
+                                        // move the file
+                                        if(move_uploaded_file($fileTempName, self::$upload_dir . $fileName)) {
+
+                                            $insert = array(
+                                                "project_id" => $update['project_id'],
+                                                "uploaded_filename" => $fileName,
+                                                "stored_filename" => $fileName
+                                            );
+                                            if(SDFilePDO::insertSDFile($insert)) {
+                                                $uploadedFiles[]= $fileName;
+                                            } else {
+                                                //sleep(2);//for test purpose
+                                                //delete uploaded file : no db trace
+                                                if(unlink(self::$upload_dir . $fileName)) $errorFiles[]= $fileName;
+                                            }
+                                        } else {
+                                            $errorFiles[]= $fileName;
+                                        }
+                                    } catch (Exception $e) {
+                                        //self::logIt($e->getMessage());
+                                        $errorFiles[]= $fileName;
+                                    }
+                                } else {
+                                    $errorFiles[]= $fileName;
+                                }
+                            } else {
+                                $errorFiles[]= $fileName;
+                            }
+                        }
+                    }
+                    $msg = "<p>Projet enregistré.</p>";
+                    $msg .= (empty($errorFiles) ? "<p>Tous les fichiers SD ont été enregistrés.</p>" : "<p>Un ou plusieurs fichiers SD n'ont pas été enregistrés.</p>");
+                    return array("done" => true, "msg" => $msg, "id" => $update['project_id']);
+                } else {
+                    return array("done" => true,"msg" => "<p>projet mis à jour !</p><p>les fichiers contour n'ont pas été sauvegardés.</p>","id" => $update['project_id']);
                 }
             } else {
                 return array("done" =>false,"msg" =>"Erreur enregistrement projet !");

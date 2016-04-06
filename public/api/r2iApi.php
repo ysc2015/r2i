@@ -67,7 +67,7 @@ class r2iApi extends api {
 
     private function get_projects_by_id($id_project) {
         $project = new Project();
-        $project = $project->getProjectsbyid($id_project['project_id']);
+        $project = $project->getProjectById($id_project['project_id']);
         if($project)
             $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'SELECT OK','project' => json_encode($project))));
         else
@@ -82,12 +82,7 @@ class r2iApi extends api {
     }
 
     private function update_project($update) {
-        $project = new Project();
-        $project = $project->updateProject($update);
-        if($project)
-            $this->sendResponse(200,json_encode(array('status'=>'success','msg'=>'UPDATE OK','project' => json_encode($project))));
-        else
-            $this->sendResponse(200,json_encode(array('status'=>'error','msg'=>'UPDATE ERROR')));
+        $this->sendResponse(200,json_encode(ProjectPDO::updateProject($update)));
     }
 
     /**
@@ -226,6 +221,14 @@ class r2iApi extends api {
      */
     private function insert_sub_project($insert) {
         $this->sendResponse(200,json_encode(SubProjectPDO::insertSubProject($insert)));
+    }
+
+    /**
+     * get project sd files
+     * @return JSON
+     */
+    private function get_project_files($param) {
+        $this->sendResponse(200,json_encode(SDFilePDO::getProjectFilesByProjectId($param['project_id'])));
     }
 
 }// END class

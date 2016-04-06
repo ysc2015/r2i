@@ -51,4 +51,19 @@ class SDFilePDO {
         /*if($result) return array("done" =>true,"msg" =>"fichier enregistré");
         else return array("done" =>false,"msg" =>"probléme enregistrement fichier");*/
     }
+
+    /**
+     * get sd files by project id
+     * @param array $project_id
+     * @return array
+     */
+    public static function getProjectFilesByProjectId($project_id) {
+        self::initialize();
+        $bind = array(
+            ":project_id" => $project_id
+        );
+        $result = self::$db->select(self::$table, "project_id = :project_id", $bind);
+        if($result) return array("done" => true,"msg" => "fichiers récupérés", "data" => $result);
+        else return array("done" =>false,"msg" =>"probléme récupération fichiers projets", "data" => []);
+    }
 }// END class

@@ -4,8 +4,6 @@
  * @author RR
  */
 
-require_once 'autoLoader.php';
-
 abstract class Model {
 
     /**
