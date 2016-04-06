@@ -8,6 +8,16 @@ require_once 'autoLoader.php';
 
 require 'api.php';
 
+//Turning errors into exceptions (disable warning in browsers console to allow loggin errors into db)
+set_error_handler(function($errno, $errstr, $errfile, $errline, array $errcontext) {
+    // error was suppressed with the @-operator
+    if (0 === error_reporting()) {
+        return false;
+    }
+
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+});
+
 class r2iApi extends api {
 
     private $arrOfParams;
@@ -40,13 +50,11 @@ class r2iApi extends api {
      */
 
     /**
-     * Select all projects from DB
+     * get all projects
      * @return JSON
      */
     private function get_all_projects() {
-        $project = new Project();
-        $projects = $project->getAllProjects();
-        $this->sendResponse(200,json_encode(array('status'=>'success','data'=>$projects)));
+        $this->sendResponse(200,json_encode(ProjectPDO::getAllProjects()));
     }
 
     /**
@@ -54,8 +62,6 @@ class r2iApi extends api {
      * @return JSON
      */
     private function get_sub_projects_by_project_id($param) {
-        /*$subproj = new SubProject();
-        $subprojects = $subproj->getSubProjectsByProjectId($param['projectid']);*/
         $this->sendResponse(200,json_encode(array('status'=>'success','data'=>SubProjectPDO::getSubProjectsByProjectId($param['projectid']))));
     }
 
@@ -72,8 +78,7 @@ class r2iApi extends api {
      * @return JSON
      */
     private function insert_project($insert) {
-        $project = new Project();
-        $this->sendResponse(200,json_encode($project->insertProject($insert)));
+        $this->sendResponse(200,json_encode(ProjectPDO::insertProject($insert)));
     }
 
     private function update_project($update) {
