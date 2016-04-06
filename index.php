@@ -1,5 +1,5 @@
 <?php
-error_reporting(1);
+//error_reporting(1);
 require 'public/api/loginProcess.php';
 $login = new loginProcess();
 if ($login->login_check() == false)
