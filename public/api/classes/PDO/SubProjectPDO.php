@@ -4,7 +4,7 @@
  * @author RR
  */
 
-class SubProjectPDO {
+class SubProjectPDO extends Model{
 
     /**
      * Database Instance
@@ -96,6 +96,10 @@ class SubProjectPDO {
         $toinsert = $insert;
         $toinsert['createdAt'] = $date->format('Y-m-d H:i:s');
 
+        $toinsert['auto_adduction_date'] = DateTime::createFromFormat('d/m/Y', $insert['auto_adduction_date'])->format('Y-m-d');
+        $toinsert['works_adduction_date'] = DateTime::createFromFormat('d/m/Y', $insert['works_adduction_date'])->format('Y-m-d');
+        $toinsert['adduction_recipe_date'] = DateTime::createFromFormat('d/m/Y', $insert['adduction_recipe_date'])->format('Y-m-d');
+
         $result = self::$db->insert(self::$table,$toinsert);
         if($result) return array("done" =>true,"msg" =>"sous projet enregistré");
         else return array("done" =>false,"msg" =>"probléme enregistrement sous projet");
@@ -116,8 +120,19 @@ class SubProjectPDO {
         $toupdate = $update;
         $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
 
-        $result = self::$db->update(self::$table, $toupdate, "sub_project_id = :sub_project_id", $bind);
-        if($result) return array("done" =>true,"msg" =>"sous projet mis à jour");
-        else return array("done" =>false,"msg" =>"probléme mise à jour sous projet");
+        $toupdate['auto_adduction_date'] = ($update['auto_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $update['auto_adduction_date'])->format('Y-m-d'):null);
+        $toupdate['works_adduction_date'] = ($update['works_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $update['works_adduction_date'])->format('Y-m-d'):null);
+        $toupdate['adduction_recipe_date'] = ($update['adduction_recipe_date']!=""?DateTime::createFromFormat('d/m/Y', $update['adduction_recipe_date'])->format('Y-m-d'):null);
+
+        try {
+            $result = self::$db->update(self::$table, $toupdate, "sub_project_id = :sub_project_id", $bind);
+            if($result) return array("done" =>true,"msg" =>"sous projet mis à jour");
+            else return array("done" =>false,"msg" =>"probléme mise à jour sous projet");
+        } catch(Exception $e) {
+            self::logIt($e->getMessage());
+            return array("done" =>false,"msg" =>"probléme mise à jour sous projet");
+        }
+
+        //return array("done" =>false,"msg" =>$toupdate['auto_adduction_date']);
     }
 }// END class
