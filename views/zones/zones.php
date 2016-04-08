@@ -302,8 +302,9 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-success update-sub-project" type="submit"><i class="fa fa-check push-5-r"></i> Valider</button>
+                                <button class="btn btn-success update-sub-project" type="submit"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                                 <button class="btn btn-danger back-to-projects" type="submit"><i class="fa fa-list-alt push-5-r"></i> Retour à la liste des projets</button>
+                                <button class="btn btn-danger go-to-advancement-menu" type="submit"><i class="fa fa-connectdevelop push-5-r"></i> Menu avancement ></button>
                             </div>
                         </div>
                     </div>
