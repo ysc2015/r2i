@@ -85,6 +85,10 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(ProjectPDO::updateProject($update)));
     }
 
+    private function update_sub_project($update) {
+        $this->sendResponse(200,json_encode(SubProjectPDO::updateSubProject($update)));
+    }
+
     /**
      * Update a user
      * @return JSON
