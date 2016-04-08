@@ -129,7 +129,7 @@ var ProjectsListDatatables = function() {
     var openAddZoneForm = function() {
         //add sub project form
         jQuery('.open-add-zone-form').on('click', function(){
-            window.location.href = "?page=zones&projectid=1&action=add";
+            window.location.href = '?page=zones&projectid='+projectData.project_id+'&action=add';
         });
     };
     var openDeleteDialog = function() {
