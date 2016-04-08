@@ -872,6 +872,7 @@ var App = function() {
         }(jQuery));
         // Init datepicker (with .js-datepicker and .input-daterange class)
         jQuery('.js-datepicker').add('.input-daterange').datepicker({
+            format: 'dd/mm/yyyy',
             weekStart: 1,
             autoclose: true,
             todayHighlight: true,

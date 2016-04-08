@@ -28,6 +28,7 @@ var SubProjectFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
+                    window.location.href = "?page=projects&action=list";
                 }
             }
         });
@@ -72,14 +73,6 @@ var SubProjectFormValidation = function() {
                     processData: false
                 });
             }
-        });
-    };
-    // back to projects list
-    var backToProjectsList = function() {
-        // When the back to project clicked
-        jQuery('.back-to-projects').on('click', function(){
-            console.log('backToProjectsList');
-            window.location.href = "?page=projects&action=list";
         });
     };
     // Init page helpers
