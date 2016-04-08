@@ -74,12 +74,18 @@ var SubProjectFormValidation = function() {
             }
         });
     };
-    // back to projects list
     var backToProjectsList = function() {
         // When the back to project clicked
         jQuery('.back-to-projects').on('click', function(){
             console.log('backToProjectsList');
             window.location.href = "?page=projects&action=list";
+        });
+    };
+    var openAdvanceMenu = function() {
+        // When the back to project clicked
+        jQuery('.go-to-advancement-menu').on('click', function(){
+            console.log('openAdvanceMenu');
+            window.location.href = '?page=menus&zoneid='+$('#sub_project_id').val();
         });
     };
     // Init page helpers
@@ -115,6 +121,7 @@ var SubProjectFormValidation = function() {
             //events
             updateSubProject();
             backToProjectsList();
+            openAdvanceMenu();
             //init page helpers
             initPlugins();
             //init Bootstrap Forms Validation
