@@ -119,9 +119,11 @@ class ProjectPDO extends Model {
         $toinsert = $insert;
         $toinsert['createdAt'] = $date->format('Y-m-d H:i:s');
 
+        $toinsert['orig_site_provision_date'] = ($insert['orig_site_provision_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['orig_site_provision_date'])->format('Y-m-d'):null);
+
         //add project
         try {
-            if(self::$db->insert(self::$table, $insert)) {
+            if(self::$db->insert(self::$table, $toinsert)) {
                 $lastInsertId = self::$db->lastInsertId();
                 // loop through the array of files
                 if(!empty($_FILES)) {
@@ -138,7 +140,7 @@ class ProjectPDO extends Model {
                         } else {
                             // check temporary path and if uploaded file
                             if(!empty($fileTempName) && is_uploaded_file($fileTempName)) {
-                                if(in_array($file['type'],self::$mimes)) {
+                                if(/*in_array($file['type'],self::$mimes)*/true) {
                                     try {
                                         // move the file
                                         if(move_uploaded_file($fileTempName, self::$upload_dir . $fileName)) {
@@ -205,6 +207,8 @@ class ProjectPDO extends Model {
         $toupdate = $update;
         $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
 
+        $toupdate['orig_site_provision_date'] = ($toupdate['orig_site_provision_date']!=""?DateTime::createFromFormat('d/m/Y', $toupdate['orig_site_provision_date'])->format('Y-m-d'):null);
+
         //add project
         try {
             if(self::$db->update(self::$table, $toupdate, "project_id = :project_id", $bind)) {
@@ -223,7 +227,7 @@ class ProjectPDO extends Model {
                         } else {
                             // check temporary path and if uploaded file
                             if(!empty($fileTempName) && is_uploaded_file($fileTempName)) {
-                                if(in_array($file['type'],self::$mimes)) {
+                                if(/*in_array($file['type'],self::$mimes)*/true) {
                                     try {
                                         // move the file
                                         if(move_uploaded_file($fileTempName, self::$upload_dir . $fileName)) {
@@ -259,7 +263,7 @@ class ProjectPDO extends Model {
                     $msg .= (empty($errorFiles) ? "<p>Tous les fichiers SD ont été enregistrés.</p>" : "<p>Un ou plusieurs fichiers SD n'ont pas été enregistrés.</p>");
                     return array("done" => true, "msg" => $msg, "id" => $update['project_id']);
                 } else {
-                    return array("done" => true,"msg" => "<p>projet mis à jour !</p><p>les fichiers contour n'ont pas été sauvegardés.</p>","id" => $update['project_id']);
+                    return array("done" => true,"msg" => "<p>projet mis à jour !</p><p>aucun fichier contour n'a été sauvegardé.</p>","id" => $update['project_id']);
                 }
             } else {
                 return array("done" =>false,"msg" =>"Erreur enregistrement projet !");
