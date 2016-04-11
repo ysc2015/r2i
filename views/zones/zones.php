@@ -15,7 +15,7 @@
                 <h3 class="block-title">Multiple Columns</h3>
             </div>-->
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal push-10-t push-10" action="base_forms_premade.php" method="post" onsubmit="return false;">
+                <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="row">
                         <input type="hidden" id="project_id" name="project_id" value="<?php echo $_GET['projectid']?>">
                         <h5 class="push"><span class="label label-info">Nom</span></h5>
@@ -172,7 +172,7 @@
                 <h3 class="block-title">Multiple Columns</h3>
             </div>-->
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal push-10-t push-10" action="base_forms_premade.php" method="post" onsubmit="return false;">
+                <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="row">
                         <input type="hidden" id="sub_project_id" name="sub_project_id" value="<?php echo $_GET['zoneid']?>">
                         <h5 class="push"><span class="label label-info">Nom</span></h5>

@@ -120,13 +120,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="orig_site_provision_date">Date Mise à disposition site Origine <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="js-datepicker form-control" type="text" id="orig_site_provision_date" name="orig_site_provision_date" data-date-format="yyyy-mm-dd">
+                            <input class="js-datepicker form-control" type="text" id="orig_site_provision_date" name="orig_site_provision_date">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="myfile">SD ou Contour de plaque relatif au projet <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input type="file" id="myfile" name="myfile" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
+                            <input type="file" id="myfile" name="myfile" multiple="multiple"><!--accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"-->
                         </div>
                     </div>
                     <div class="form-group">
@@ -208,13 +208,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="orig_site_provision_date">Date Mise à disposition site Origine <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input class="js-datepicker form-control" type="text" id="orig_site_provision_date" name="orig_site_provision_date" data-date-format="yyyy-mm-dd" value="<?php echo $project['orig_site_provision_date']?>">
+                                    <input class="js-datepicker form-control" type="text" id="orig_site_provision_date" name="orig_site_provision_date" value="<?php echo ($project['orig_site_provision_date']!=""?DateTime::createFromFormat('Y-m-d', $project['orig_site_provision_date'])->format('d/m/Y'):"")?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="myfile">SD ou Contour de plaque relatif au projet <span class="text-info">(ajout)</span></label>
                                 <div class="col-md-7">
-                                    <input type="file" id="myfile" name="myfile" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
+                                    <input type="file" id="myfile" name="myfile" multiple="multiple"><!--accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"-->
                                 </div>
                             </div>
                             <div class="form-group">
