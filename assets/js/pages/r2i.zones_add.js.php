@@ -107,7 +107,6 @@ var SubProjectFormValidation = function() {
         init: function () {
             // Add Events functionality
             addSubProject();
-            backToProjectsList();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation

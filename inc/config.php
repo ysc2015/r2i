@@ -26,7 +26,7 @@ $r2i->inc_sidebar                  = 'base_sidebar.php';
 $r2i->inc_header                   = 'base_header.php';
 
 // Global Color Theme
-$r2i->theme                        = 'flat';       // '' for default theme or 'amethyst', 'city', 'flat', 'modern', 'smooth'
+$r2i->theme                        = '';       // '' for default theme or 'amethyst', 'city', 'flat', 'modern', 'smooth'
 
 // Global Body Background Image
 $r2i->body_bg                      = '';       // eg 'assets/img/photos/photo10@2x.jpg' Useful for login/lockscreen pages

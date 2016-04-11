@@ -96,9 +96,9 @@ class SubProjectPDO extends Model{
         $toinsert = $insert;
         $toinsert['createdAt'] = $date->format('Y-m-d H:i:s');
 
-        $toinsert['auto_adduction_date'] = DateTime::createFromFormat('d/m/Y', $insert['auto_adduction_date'])->format('Y-m-d');
-        $toinsert['works_adduction_date'] = DateTime::createFromFormat('d/m/Y', $insert['works_adduction_date'])->format('Y-m-d');
-        $toinsert['adduction_recipe_date'] = DateTime::createFromFormat('d/m/Y', $insert['adduction_recipe_date'])->format('Y-m-d');
+        $toinsert['auto_adduction_date'] = ($insert['auto_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['auto_adduction_date'])->format('Y-m-d'):null);
+        $toinsert['works_adduction_date'] = ($insert['works_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['works_adduction_date'])->format('Y-m-d'):null);
+        $toinsert['adduction_recipe_date'] = ($insert['adduction_recipe_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['adduction_recipe_date'])->format('Y-m-d'):null);
 
         $result = self::$db->insert(self::$table,$toinsert);
         if($result) return array("done" =>true,"msg" =>"sous projet enregistré");
