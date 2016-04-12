@@ -43,8 +43,8 @@
                         <div class="col-md-7">
                             <select class="form-control" id="Intervenant" name="Intervenant">
                                 <option value="">Séléctionnez un type</option>
-                                <option value="UtilisateurPCI"">Utilisateur PCI </option>
-                                <option value="UtilisateurSTT">Utilisateur STT</option>
+                                <option value="UtilisateurPCI""> PCI </option>
+                                <option value="UtilisateurSTT"> STT</option>
                             </select>
                         </div>
                     </div>
