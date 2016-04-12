@@ -1,7 +1,7 @@
 <?php if($action == "add"): ?>
     <div class="content">
         <!-- Mega Form -->
-        <h2 class="content-heading">Réseau de Diistribution (Design CDI/CAD)</h2>
+        <h2 class="content-heading">Réseau de Distribution (Design CDI/CAD)</h2>
         <div class="block block-bordered">
             <!--<div class="block-header bg-gray-lighter">
                 <ul class="block-options">
