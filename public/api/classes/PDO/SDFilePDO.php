@@ -47,7 +47,7 @@ class SDFilePDO {
         //set table name
         self::$table = "project_sd_files";
         //set upload directory
-        self::$upload_dir = "../uploads/fichiersprojets/";
+        self::$upload_dir = "../../uploads/fichiersprojets/";
     }
 
     /**
