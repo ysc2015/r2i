@@ -112,8 +112,6 @@ class ProjectPDO extends Model {
     public static function insertProject($insert) {
         self::initialize();
 
-        self::rrmdir(self::$upload_dir);
-
         $uploadedFiles = array();
         $errorFiles = array();
 
@@ -275,21 +273,6 @@ class ProjectPDO extends Model {
             return array("done" =>false,"msg" =>"Erreur interne !");
         }
 
-    }
-
-    public static function rrmdir($dir) {
-        if (is_dir($dir)) {
-            $objects = scandir($dir);
-            foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (is_dir($dir."/".$object))
-                        rrmdir($dir."/".$object);
-                    else
-                        unlink($dir."/".$object);
-                }
-            }
-            rmdir($dir);
-        }
     }
 
 }// END class
