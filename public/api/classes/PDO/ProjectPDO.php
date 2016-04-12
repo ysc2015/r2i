@@ -54,7 +54,7 @@ class ProjectPDO extends Model {
         //set table name
         self::$table = "projects";
         //set upload directory
-        self::$upload_dir = "../uploads/fichiersprojets/";
+        self::$upload_dir = "../../uploads/fichiersprojets/";
 
         //set allowed mimes types for download
         self::$mimes = array("application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
