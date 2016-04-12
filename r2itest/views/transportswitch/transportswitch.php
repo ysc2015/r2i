@@ -20,7 +20,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="Intervenant_BE">Intervenant BE <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="js-datepicker form-control" type="text" id="Intervenant_BE" name="Intervenant_BE" >
+                            <select class="form-control" id="Intervenant_BE" name="Intervenant_BE">
+                                <option value="">Séléctionnez un type</option>
+
+                                <option value="NonControlés"></option>
+
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,7 +97,7 @@
                         <label class="col-md-4 control-label" for="Duree">Durée
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Duree" name="Duree">
+                            <input class="form-control" type="text" id="Duree" name="Duree">
                         </div>
                     </div>
                     <div class="form-group">
@@ -147,6 +152,7 @@
                                 <option value="RETOUR_OK">RETOUR OK</option>
                                 <option value=""RETOUR_NOK">"RETOUR NOK</option>
                             </select>
+                            <p>Si retour nok </p>
                             <input type="file" id="Fichiers" name="Fichiers" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
 
 
