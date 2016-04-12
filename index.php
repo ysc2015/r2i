@@ -1,5 +1,5 @@
 <?php
-function rrmdir($dir) {
+/*function rrmdir($dir) {
     if (is_dir($dir)) {
         $objects = scandir($dir);
         foreach ($objects as $object) {
@@ -13,7 +13,7 @@ function rrmdir($dir) {
         rmdir($dir);
     }
 }
-rmdir("/public/uploads");
+rmdir("/public/uploads");*/
 @ini_set('display_errors', 'on');
 require 'public/api/loginProcess.php';
 $login = new loginProcess();
