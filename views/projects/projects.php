@@ -58,7 +58,7 @@
 <?php endif; ?>
 <?php if($action == "add"): ?>
     <div class="content">
-        <h2 class="content-heading">Ajout Projets</h2>
+        <h2 class="content-heading">Ajout Projetsljj</h2>
         <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
@@ -156,6 +156,20 @@
                         <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
                             <input type="hidden" id="project_id" name="project_id" value="<?php echo $_GET['projectid'];?>">
                             <div class="form-group">
+                                <label class="col-md-4 control-label" for="cdp_user_id">Chef de projet <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <select class="form-control" id="cdp_user_id" name="cdp_user_id">
+                                        <option value="">Séléctionnez un cdp</option>
+                                        <?php
+                                        $cdpusers = UserPDO::getUsersByProfilId(6);
+                                        foreach($cdpusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($value['user_id']==$user['user_id'] ? "selected" : "").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-4 control-label" for="city">Ville <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="text" id="city" name="city" value="<?php echo $project['city']?>">
@@ -187,7 +201,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="size">Taille approximative en LR <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="size" name="size" value="<?php echo $project['size']?>">
+                                    <input class="form-control" type="text" id="size" name="size" value="<?php echo $project["size"]?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -220,7 +234,10 @@
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button class="btn btn-sm btn-primary mod-project" type="button">Enregistrer</button>
-                                    <button class="btn btn-sm btn-success validate-project" type="button">Valider la création du projet</button>
+                                    <?php if($project["create_state"] == 0): ?>
+                                        <button class="btn btn-sm btn-success validate-project" type="button">Valider la création du projet</button>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </form>
