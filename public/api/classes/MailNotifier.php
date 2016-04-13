@@ -111,7 +111,7 @@ class MailNotifier extends Model {
                                     $html .='<h5>Type de Site d’origine : '.$project["type_site_id"].'</h5>';
                                     $html .='<h5>Taille approximative en LR : '.$project["size"].'</h5>';
                                     $html .='<h5>Etat Site Origine : '.$project["orig_site_state_id"].'</h5>';
-                                    $html .='<h5>Date Mise à disposition site Origine : '.$project["orig_site_provision_date"].'</h5>';
+                                    $html .='<h5>Date Mise à disposition site Origine : '.($project['orig_site_provision_date']!=""?DateTime::createFromFormat('Y-m-d', $project['orig_site_provision_date'])->format('d/m/Y'):"").'</h5>';
                                     $html .='</div>';
                                     $html .='</body>';
                                     $html .='</html>';
