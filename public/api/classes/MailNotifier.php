@@ -89,7 +89,7 @@ class MailNotifier extends Model {
         $html = "";
         $to = array();
         switch($messagetype) {
-            case "project_create" : self::$upload_dir = "../uploads/fichiersprojets/";
+            case "project_create" : self::$upload_dir = "../../uploads/fichiersprojets/";
                                     $project = ProjectPDO::getProjectById($ressourceid);
                                     $subject = "Lancement Projet d’étude Plaque PON FTTH [".$project["site_code"]."] [".$project["city"]."]";
                                     $to []= array("bitlord1980@gmail.com");
@@ -127,7 +127,8 @@ class MailNotifier extends Model {
         $files = SDFilePDO::getProjectFilesByProjectId($ressourceid);
         if($files["done"]) {
             foreach($files["data"] as $key => $value) {
-                self::$mail->addAttachment(self::$upload_dir.$value["uploaded_filename"]."dd");
+                if(file_exists(self::$upload_dir.$value["uploaded_filename"]))
+                    self::$mail->addAttachment(self::$upload_dir.$value["uploaded_filename"]);
             }
         }
         //Set the subject line
@@ -139,7 +140,7 @@ class MailNotifier extends Model {
         if (!self::$mail->send()) {
             return array("done" =>false,"msg" => self::$mail->ErrorInfo);
         } else {
-            return array("done" =>true,"msg" => "message envoyé");
+            return array("done" =>true,"msg" => "création de projet validé, un message a été envoyé aux destinataires.");
         }
     }
 
