@@ -4,6 +4,9 @@
  * @author RR
  */
 
+require_once 'lib/PHPMailer/PHPMailerAutoload.php';
+
+
 class MailNotifier extends Model {
 
     /**
@@ -12,6 +15,13 @@ class MailNotifier extends Model {
      * @access private
      */
     private static $mail;
+
+    /**
+     * Upload directory
+     * @var String
+     * @access private
+     */
+    private static $upload_dir;
 
     /**
      * Initialize indicator
@@ -34,27 +44,42 @@ class MailNotifier extends Model {
 
         //Create a new PHPMailer instance
         self::$mail = new PHPMailer;
+
         //Tell PHPMailer to use SMTP
         self::$mail->isSMTP();
+
+        //Set charset
+        self::$mail->CharSet = 'UTF-8';
+
         //Enable SMTP debugging
         // 0 = off (for production use)
         // 1 = client messages
         // 2 = client and server messages
         self::$mail->SMTPDebug = 0;
+
         //Ask for HTML-friendly debug output
         self::$mail->Debugoutput = 'html';
+
         //Set the hostname of the mail server
-        self::$mail->Host = "callnart.com";
-        //Set the SMTP port number - likely to be 25, 465 or 587
-        self::$mail->Port = 25;
+        self::$mail->Host = 'smtp.gmail.com';
+        // use
+        // $mail->Host = gethostbyname('smtp.gmail.com');
+        // if your network does not support SMTP over IPv6
+
+        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+        self::$mail->Port = 587;
+
+        //Set the encryption system to use - ssl (deprecated) or tls
+        self::$mail->SMTPSecure = 'tls';
+
         //Whether to use SMTP authentication
         self::$mail->SMTPAuth = true;
-        //Username to use for SMTP authentication
-        self::$mail->Username = "contact-site@callnart.com";
+
+        //Username to use for SMTP authentication - use full email address for gmail
+        self::$mail->Username = "r2ibackoffice@gmail.com";
+
         //Password to use for SMTP authentication
-        self::$mail->Password = "Hyjs5@72";
-        //Set who the message is to be sent from
-        self::$mail->setFrom('contact-site@callnart.com', 'callnart.com');
+        self::$mail->Password = "r2ib@ck0ffice";
     }
 
     public static function sendMailNotification($messagetype,$ressourceid) {
@@ -64,7 +89,8 @@ class MailNotifier extends Model {
         $html = "";
         $to = array();
         switch($messagetype) {
-            case "project_create" : $project = ProjectPDO::getProjectById($ressourceid);
+            case "project_create" : self::$upload_dir = "../uploads/fichiersprojets/";
+                                    $project = ProjectPDO::getProjectById($ressourceid);
                                     $subject = "Lancement Projet d’étude Plaque PON FTTH [".$project["site_code"]."] [".$project["city"]."]";
                                     $to []= array("bitlord1980@gmail.com");
                                     $html .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
@@ -76,20 +102,13 @@ class MailNotifier extends Model {
                                     $html .='<body>';
                                     $html .='<div style="width: 640px;float: left;text-align: left">';
                                     $html .='<h1>Infos création projet :</h1>';
-                                    $html .='<h5>Ville :</h5>';
-                                    $html .='<p>'.$project["city"].'</p>';
-                                    $html .='<h5>Trigramme de la plaque + Dept :</h5>';
-                                    $html .='<p>'.$project["plate_dept_code"].'</p>';
-                                    $html .='<h5>Code site d’origine :</h5>';
-                                    $html .='<p>'.$project["site_code"].'</p>';
-                                    $html .='<h5>Type de Site d’origine :</h5>';
-                                    $html .='<p>'.$project["type_site_id"].'</p>';
-                                    $html .='<h5>Taille approximative en LR :</h5>';
-                                    $html .='<p>'.$project["size"].'</p>';
-                                    $html .='<h5>Etat Site Origine :</h5>';
-                                    $html .='<p>'.$project["orig_site_state_id"].'</p>';
-                                    $html .='<h5>Date Mise à disposition site Origine :</h5>';
-                                    $html .='<p>'.$project["orig_site_provision_date"].'</p>';
+                                    $html .='<h5>Ville : '.$project["city"].'</h5>';
+                                    $html .='<h5>Trigramme de la plaque + Dept : '.$project["plate_dept_code"].'</h5>';
+                                    $html .='<h5>Code site d’origine : '.$project["site_code"].'</h5>';
+                                    $html .='<h5>Type de Site d’origine : '.$project["type_site_id"].'</h5>';
+                                    $html .='<h5>Taille approximative en LR : '.$project["size"].'</h5>';
+                                    $html .='<h5>Etat Site Origine : '.$project["orig_site_state_id"].'</h5>';
+                                    $html .='<h5>Date Mise à disposition site Origine : '.$project["orig_site_provision_date"].'</h5>';
                                     $html .='</div>';
                                     $html .='</body>';
                                     $html .='</html>';
@@ -97,14 +116,31 @@ class MailNotifier extends Model {
             default :break;
         }
         //send mail
-        foreach($to as $key => $value) {
+        /*foreach($to as $key => $value) {
             //Set who the message is to be sent to
             self::$mail->addAddress($value);
+        }*/
+
+        self::$mail->addAddress("bitlord1980@gmail.com");
+
+        //Set attachement
+        $files = SDFilePDO::getProjectFilesByProjectId($ressourceid);
+        if($files["done"]) {
+            foreach($files["data"] as $key => $value) {
+                self::$mail->addAttachment(self::$upload_dir.$value["uploaded_filename"]."dd");
+            }
         }
         //Set the subject line
         self::$mail->Subject = $subject;
 
         self::$mail->msgHTML($html, dirname(__FILE__));
+
+        //send the message, check for errors
+        if (!self::$mail->send()) {
+            return array("done" =>false,"msg" => self::$mail->ErrorInfo);
+        } else {
+            return array("done" =>true,"msg" => "message envoyé");
+        }
     }
 
 }// END class

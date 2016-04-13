@@ -120,6 +120,21 @@ class UserPDO {
     }
 
     /**
+     * get users by profil id
+     * @param int $profil_id
+     * @return array
+     */
+    public static function getUsersByProfilId($profil_id) {
+        self::initialize();
+
+        $bind = array(
+            ":profil_id" => $profil_id
+        );
+        return self::$db->select(self::$table, "profil_id = :profil_id", $bind);
+
+    }
+
+    /**
      * delete user by id
      * @param array $delete
      * @return array

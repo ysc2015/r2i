@@ -3,9 +3,7 @@
  * r2i api class
  **/
 
-require_once('lib/PHPExcel/PHPExcel/IOFactory.php');
 require_once 'autoLoader.php';
-
 require 'api.php';
 
 //Turning errors into exceptions (disable warning in browsers console to allow loggin errors into db)
@@ -236,6 +234,16 @@ class r2iApi extends api {
     private function delete_sd_file($delete) {
         $this->sendResponse(200,json_encode(SDFilePDO::deleteProjectSDFile($delete)));
     }
+
+    /**
+     * validate project creation
+     * @return JSON
+     */
+    private function validate_project_creation($param) {
+        $this->sendResponse(200,json_encode(ProjectPDO::validateProjectCreation($param['project_id'])));
+    }
+
+
 
 }// END class
 

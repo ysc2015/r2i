@@ -58,7 +58,7 @@
 <?php endif; ?>
 <?php if($action == "add"): ?>
     <div class="content">
-        <h2 class="content-heading">Ajout Projetsljj</h2>
+        <h2 class="content-heading">Ajout Projets</h2>
         <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
@@ -235,7 +235,7 @@
                                 <div class="col-md-8 col-md-offset-4">
                                     <button class="btn btn-sm btn-primary mod-project" type="button">Enregistrer</button>
                                     <?php if($project["create_state"] == 0): ?>
-                                        <button class="btn btn-sm btn-success validate-project" type="button">Valider la création du projet</button>
+                                        <button class="btn btn-sm btn-success validate-project" type="button">Valider la création du projet [envoi de mail]</button>
                                     <?php endif; ?>
 
                                 </div>

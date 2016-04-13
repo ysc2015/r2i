@@ -275,4 +275,19 @@ class ProjectPDO extends Model {
 
     }
 
+    /**
+     * validate project creation (mail)
+     * @param
+     * @return array
+     */
+    public static function validateProjectCreation($projectid) {
+        self::initialize();
+        $result = MailNotifier::sendMailNotification("project_create",$projectid);
+        if($result["done"]) {
+            return array("done" =>true,"msg" => "mail envoyé");
+        } else {
+            return array("done" =>false,"msg" => $result["msg"]);
+        }
+    }
+
 }// END class
