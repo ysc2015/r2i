@@ -18,20 +18,19 @@
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Intervenant_BE">Intervenant BE <span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="user_be">Intervenant BE <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Intervenant_BE" name="Intervenant_BE">
-                                <option value="">Séléctionnez un type</option>
+                            <select class="form-control" id="user_be" name="user_be">
 
-                                <option value="NonControlés"></option>
+                                <option value="<?php echo $zone['plate']?>"></option>
 
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Plans">Plans<span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="plans">Plans<span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Plans" name="Plans">
+                            <select class="form-control" id="plans" name="plans">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="NON_REALISES">NON REALISES</option>
                                 <option value="EN_COURS">EN COURS</option>
@@ -40,15 +39,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Linéaire_de_réseau">Linéaire de réseau<span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="linear_net">Linéaire de réseau<span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input type="text" id="Linéaire_de_réseau" name="Linéaire_de_réseau" >
+                            <input class="form-control input-lg" type="number" id="linear_net" name="linear_net" placeholder="en ML chiffre">
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Contrôle_des_plans">Contrôle des plans<span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="plans_control">Contrôle des plans<span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Contrôle_des_plans" name="Contrôle_des_plans">
+                            <select class="form-control" id="plans_control" name="plans_control">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="NonControlés">Non Contrôlés</option>
                                 <option value="Contole_ok">Contrôlés OK</option>
@@ -57,17 +57,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Transmission_Plans">Date Transmission Plans
+                        <label class="col-md-4 control-label" for="plans_transmission_date">Date Transmission Plans
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Transmission_Plans" name="Date_Transmission_Plans">
+                            <input class="form-control" type="date" id="plans_transmission_date" name="Date_Transmission_Plans">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Entreprise">Entreprise
+                        <label class="col-md-4 control-label" for="company">Entreprise
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Entreprise" name="Entreprise">
+                            <input class="form-control" type="text" id="company" name="company">
                         </div>
                     </div>
 
@@ -80,31 +80,32 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Aiguillage">Date Aiguillage
+                        <label class="col-md-4 control-label" for="switch_date">Date Aiguillage
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Aiguillage" name="Date_Aiguillage">
+                            <input class="form-control" type="date" id="switch_date" name="switch_date">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_ret_Prev">Date ret Prev
+                        <label class="col-md-4 control-label" for="ret_date_prev">Date ret Prev
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_ret_Prev" name="Date_ret_Prev">
+                            <input class="form-control" type="date" id="ret_date_prev" name="ret_date_prev">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Duree">Durée
+                        <label class="col-md-4 control-label" for="duration">Durée
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Duree" name="Duree">
+                            <input class="form-control input-lg" type="number" id="duration" name="duration" placeholder="nombre de jour">
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Contrôle_démarrage_effectif">Contrôle démarrage effectif
+                        <label class="col-md-4 control-label" for="start_control">Contrôle démarrage effectif
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Contrôle_démarrage_effectif" name="Contrôle_démarrage_effectif">
+                            <select class="form-control" id="start_control" name="start_control">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="OK">OK</option>
                                 <option value="NOK">NOK</option>
@@ -115,38 +116,38 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Avancement">Avancement
+                        <label class="col-md-4 control-label" for="done">Avancement
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Avancement" name="Avancement">
+                            <input class="form-control" type="text" id="done" name="done" >
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Controle_parallele">Contrôle parallèle
+                        <label class="col-md-4 control-label" for="parralel_control">Contrôle parallèle
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Controle_parallele" name="Controle_parallele">
+                            <input class="form-control" type="text" id="parralel_control" name="parralel_control">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Retour">Date Retour
+                        <label class="col-md-4 control-label" for="ret_date">Date Retour
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Retour" name="Date_Retour">
+                            <input class="form-control" type="date" id="ret_date" name="ret_date">
 
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Etat_Retour">Etat Retour
+                        <label class="col-md-4 control-label" for="ret_state">Etat Retour
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Etat_Retour" name="Etat_Retour">
+                            <select class="form-control" id="ret_state" name="ret_state">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="PAS_DE_RETOUR">PAS DE RETOUR</option>
                                 <option value="RETOUR_OK">RETOUR OK</option>
@@ -160,14 +161,29 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Contrôle_après_travaux">Contrôle après travaux
+                        <label class="col-md-4 control-label" for="after_work_control">Contrôle après travaux
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Contrôle_après_travaux" name="Contrôle_après_travaux">
+                            <input class="form-control" type="text" id="after_work_control" name="after_work_control">
 
                         </div>
                     </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-success submit-transportswitch" type="submit"> Enregistrer</button>
                 </form>
+
+
             </div>
         </div>
         <!-- END Mega Form -->
