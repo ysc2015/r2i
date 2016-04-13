@@ -58,7 +58,7 @@
 <?php endif; ?>
 <?php if($action == "add"): ?>
     <div class="content">
-        <h2 class="content-heading">Ajout Projets</h2>
+        <h2 class="content-heading">Ajout Projet</h2>
         <!-- Bootstrap Forms Validation -->
         <div class="block">
             <div class="block-header">
