@@ -52,7 +52,7 @@
                             <i class="fa fa-fw fa-eye push-5-r"></i> Design
                             <span class="label label-primary pull-right">créer</span>
                         </a>
-                        <a class="list-group-item" href="javascript:void(0)">
+                        <a class="list-group-item" href="?page=transportswitch&zoneid=<?php echo $_GET['zoneid']?>&action=add">
                             <i class="fa fa-fw fa-cogs push-5-r"></i> Aiguillage
                             <span class="label label-primary pull-right">créer</span>
                         </a>

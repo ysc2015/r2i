@@ -158,7 +158,7 @@ var ProjectFormValidation = function() {
             }
         });
     };
-    // update a project
+    //events
     var updateProject = function() {
         jQuery('.mod-project').on('click', function(){
 
@@ -222,6 +222,45 @@ var ProjectFormValidation = function() {
             return false;
         });
     };
+    var validateProject = function() {
+        jQuery('.validate-project').on('click', function(){
+
+            console.log('form submited');
+
+            showLoader('Validation de projet en cours ...');
+
+            var formData = new FormData();
+            var Params = {};
+
+            Params['project_id'] = $("#project_id").val();
+
+            formData.append('parameters', JSON.stringify(Params));
+            formData.append('method', 'validate_project_creation');
+
+            $.ajax({
+                url: API_URL,
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    console.log('validate_project_creation:success');
+                    console.log(response);
+                    hideLoader();
+                    openDialog(response.msg);
+
+                },
+                error: function (e) {
+                    console.log('validate_project_creation:error');
+                    console.log(e);
+                    hideLoader();
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            return false;
+        });
+    };
     // Init page helpers
     var initPlugins = function() {
         App.initHelpers(['datepicker']);
@@ -264,6 +303,7 @@ var ProjectFormValidation = function() {
         init: function () {
             //events
             updateProject();
+            validateProject();
             //init sd files list
             buildFilesList();
             //init page helpers
