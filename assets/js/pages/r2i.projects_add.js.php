@@ -92,6 +92,8 @@ var ProjectFormValidation = function() {
                         console.log('insert_project:error');
                         console.log(e.responseText);
                         hideLoader();
+                        openDialog(0, 'erreur', false);
+
                     },
                     cache: false,
                     contentType: false,
@@ -126,11 +128,53 @@ var ProjectFormValidation = function() {
             rules: {
                 'city': {
                     required: true
+                },
+                'plate_dept_code': {
+                    required: true
+                },
+                'site_code': {
+                    required: true
+                },
+                'type_site_id': {
+                    required: true
+                },
+                'size': {
+                    required: true
+                },
+                'orig_site_state_id': {
+                    required: true
+                },
+                'orig_site_provision_date': {
+                    required: true
+                },
+                'myfile': {
+                    required: true
                 }
             },
             messages: {
                 'city': {
-                    required: 'Veuillez saisir une ville !'
+                    required: 'Ce champs est obligatoire'
+                },
+                'plate_dept_code': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'site_code': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'type_site_id': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'size': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'orig_site_state_id': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'orig_site_provision_date': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'myfile': {
+                    required: 'Ce champs est obligatoire'
                 }
             }
         });

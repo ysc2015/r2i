@@ -55,6 +55,7 @@ var UsersListDatatables = function() {
                             },
                             error: function (e) {
                                 console.log(e.responseText);
+                                openDialog('erreur suppression utilisateur');
                             }
                         });
                     },

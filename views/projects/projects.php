@@ -163,7 +163,7 @@
                                         <?php
                                         $cdpusers = UserPDO::getUsersByProfilId(6);
                                         foreach($cdpusers as $key => $value) {
-                                            echo '<option value="'.$value['user_id'].'" '.($value['user_id']==$user['user_id'] ? "selected" : "").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                            echo '<option value="'.$value['user_id'].'" '.($value['user_id']==$project['cdp_user_id'] ? "selected" : "").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
                                         }
                                         ?>
                                     </select>

@@ -176,7 +176,7 @@ class ProjectPDO extends Model {
                     $msg .= (empty($errorFiles) ? "<p>Tous les fichiers SD ont été enregistrés.</p>" : "<p>Un ou plusieurs fichiers SD n'ont pas été enregistrés.</p>");
                     return array("done" => true, "msg" => $msg, "id" => $lastInsertId);
                 } else {
-                    return array("done" => true,"msg" => "<p>projet crée !</p><p>les fichiers contour n'ont pas été sauvegardés.</p>","id" => $lastInsertId);
+                    return array("done" => true,"msg" => "<p>projet crée !</p><p>les fichiers contour n'ont pas été ajoutés.</p>","id" => $lastInsertId);
                 }
             } else {
                 return array("done" =>false,"msg" =>"Erreur enregistrement projet !");
@@ -263,7 +263,7 @@ class ProjectPDO extends Model {
                     $msg .= (empty($errorFiles) ? "<p>Tous les fichiers SD ont été enregistrés.</p>" : "<p>Un ou plusieurs fichiers SD n'ont pas été enregistrés.</p>");
                     return array("done" => true, "msg" => $msg, "id" => $update['project_id']);
                 } else {
-                    return array("done" => true,"msg" => "<p>projet mis à jour !</p><p>aucun fichier contour n'a été sauvegardé.</p>","id" => $update['project_id']);
+                    return array("done" => true,"msg" => "<p>projet mis à jour !</p><p>aucun fichier contour n'a été ajouté.</p>","id" => $update['project_id']);
                 }
             } else {
                 return array("done" =>false,"msg" =>"Erreur enregistrement projet !");
@@ -284,6 +284,16 @@ class ProjectPDO extends Model {
         self::initialize();
         $result = MailNotifier::sendMailNotification("project_create",$projectid);
         if($result["done"]) {
+            //set validated flag (project)
+            //build sql query
+            $sql ="UPDATE ".self::$table." ";
+            $sql .="SET create_state = 1 ";
+            $sql .="WHERE project_id=".$projectid;
+
+            //echo $sql;
+
+            self::$db->run($sql);
+
             return array("done" =>true,"msg" => $result["msg"]);
         } else {
             return array("done" =>false,"msg" => $result["msg"]);

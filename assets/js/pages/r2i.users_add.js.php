@@ -65,6 +65,7 @@ var ProjectFormValidation = function() {
                     error: function (response) {
                         console.log('insert_user error');
                         console.log(response);
+                        openDialog('erreur ajout utilisateur');
                     }
                 });
             }

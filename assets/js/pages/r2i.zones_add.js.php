@@ -18,7 +18,7 @@ var SubProjectFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(cl,txt) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -60,13 +60,14 @@ var SubProjectFormValidation = function() {
                         console.log('insert_sub_project:success');
                         console.log(response);
                         hideLoader();
-                        openDialog('dd', response.msg);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
                         console.log('insert_sub_project:error');
                         console.log(e.responseText);
                         hideLoader();
+                        openDialog('erreur ajout sous projet');
                     },
                     cache: false,
                     contentType: false,
