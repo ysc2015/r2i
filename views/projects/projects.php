@@ -235,7 +235,7 @@
                                 <div class="col-md-8 col-md-offset-4">
                                     <button class="btn btn-sm btn-primary mod-project" type="button">Enregistrer</button>
                                     <?php if($project["create_state"] == 0): ?>
-                                        <button class="btn btn-sm btn-success validate-project" type="button">Valider la création du projet [envoi de mail]</button>
+                                        <button class="btn btn-sm btn-success validate-project" type="button">Valider la création du projet</button>
                                     <?php endif; ?>
 
                                 </div>
