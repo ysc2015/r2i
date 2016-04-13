@@ -66,6 +66,7 @@ var SubProjectFormValidation = function() {
                         console.log('update_sub_project:error');
                         console.log(e.responseText);
                         hideLoader();
+                        openDialog('erreur maj sous projet');
                     },
                     cache: false,
                     contentType: false,

@@ -49,6 +49,7 @@ var UserUpdateFormValidation = function() {
                     error: function (response) {
                         console.log('update_user error');
                         console.log(response);
+                        openDialog('erreur maj utilisateur');
                     }
                 });
             }

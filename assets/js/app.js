@@ -876,8 +876,8 @@ var App = function() {
             weekStart: 1,
             autoclose: true,
             todayHighlight: true,
-            language: 'fr',
-            startDate: new Date()
+            language: 'fr'/*,
+            startDate: new Date()*/
         });
     };
 

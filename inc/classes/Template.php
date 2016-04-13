@@ -257,15 +257,11 @@ class Template {
     }
 
     /**
-     * Prints a random user name
-     *
-     * @param string    $gender 'male' or 'female' for a specific name
+     * Prints connected user name
      */
-    public function get_name($gender = '') {
-        $available  = array('male', 'female');
-        $gender_f   = ($gender ? $gender : $available[rand(0, 1)]);
+    public function get_name() {
 
-        echo $this->placeholder_names[$gender_f][rand(0, 19)];
+        echo $_SESSION['username'];
     }
 
     /**

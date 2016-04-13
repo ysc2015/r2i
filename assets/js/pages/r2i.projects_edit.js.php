@@ -47,7 +47,7 @@ function deleteFileDialog (id,name) {
                         console.log(e);
                         ProjectFormValidation.hideLoader();
                         ProjectFormValidation.buildFilesList();
-                        ProjectFormValidation.openDialog(response.msg);
+                        ProjectFormValidation.openDialog('erreur suppression fichier');
                     },
                     cache: false,
                     contentType: false,
@@ -154,6 +154,7 @@ var ProjectFormValidation = function() {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
                     //$form[0].reset();
+                    document.location.reload();
                 }
             }
         });
@@ -212,6 +213,7 @@ var ProjectFormValidation = function() {
                         console.log('update_project:error');
                         console.log(e);
                         hideLoader();
+                        openDialog('erreur maj projet');
                     },
                     cache: false,
                     contentType: false,
@@ -252,6 +254,7 @@ var ProjectFormValidation = function() {
                     console.log('validate_project_creation:error');
                     console.log(e);
                     hideLoader();
+                    openDialog('erreur validation projet');
                 },
                 cache: false,
                 contentType: false,
@@ -283,13 +286,55 @@ var ProjectFormValidation = function() {
             },
             //TODO add rules later
             rules: {
+                'cdp_user_id': {
+                    required: true
+                },
                 'city': {
+                    required: true
+                },
+                'plate_dept_code': {
+                    required: true
+                },
+                'site_code': {
+                    required: true
+                },
+                'type_site_id': {
+                    required: true
+                },
+                'size': {
+                    required: true
+                },
+                'orig_site_state_id': {
+                    required: true
+                },
+                'orig_site_provision_date': {
                     required: true
                 }
             },
             messages: {
+                'cdp_user_id': {
+                    required: 'Ce champs est obligatoire'
+                },
                 'city': {
-                    required: 'Veuillez saisir une ville !'
+                    required: 'Ce champs est obligatoire'
+                },
+                'plate_dept_code': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'site_code': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'type_site_id': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'size': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'orig_site_state_id': {
+                    required: 'Ce champs est obligatoire'
+                },
+                'orig_site_provision_date': {
+                    required: 'Ce champs est obligatoire'
                 }
             }
         });
