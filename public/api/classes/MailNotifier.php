@@ -62,6 +62,9 @@ class MailNotifier extends Model {
 
         //Set the hostname of the mail server
         self::$mail->Host = 'smtp.gmail.com';
+
+        //Set who the message is to be sent from
+        self::$mail->setFrom('r2ibackoffice@gmail.com', 'Contact R2I');
         // use
         // $mail->Host = gethostbyname('smtp.gmail.com');
         // if your network does not support SMTP over IPv6
