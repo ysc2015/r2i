@@ -284,7 +284,7 @@ class ProjectPDO extends Model {
         self::initialize();
         $result = MailNotifier::sendMailNotification("project_create",$projectid);
         if($result["done"]) {
-            return array("done" =>true,"msg" => "mail envoyé");
+            return array("done" =>true,"msg" => $result["msg"]);
         } else {
             return array("done" =>false,"msg" => $result["msg"]);
         }
