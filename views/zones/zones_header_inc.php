@@ -4,6 +4,7 @@ $action = (isset($_GET['action']) && in_array($_GET['action'],$actions) ? $_GET[
 switch($action) {
     case "add" : if(isset($_GET['projectid'])) {
                     ;//TODO check ressource access here
+                    $project = ProjectPDO::getProjectbyid($_GET['projectid']);
                 } else {
                     $action = "nothing";
                 }

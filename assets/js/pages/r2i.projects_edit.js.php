@@ -302,7 +302,8 @@ var ProjectFormValidation = function() {
                     required: true
                 },
                 'size': {
-                    required: true
+                    required: true,
+                    number : true
                 },
                 'orig_site_state_id': {
                     required: true
@@ -328,7 +329,8 @@ var ProjectFormValidation = function() {
                     required: 'Ce champs est obligatoire'
                 },
                 'size': {
-                    required: 'Ce champs est obligatoire'
+                    required: 'Ce champs est obligatoire',
+                    number : 'Tapez un nombre valide'
                 },
                 'orig_site_state_id': {
                     required: 'Ce champs est obligatoire'

@@ -2,15 +2,14 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.projects_add.js.php
+ *  Document   : r2i.transportswitch_add.js.php
  *  Author     : RR
- *  Description: Custom JS code used in Admin Page Projects ADD
+ *  Description: Custom JS code : Add transport switch informations
  */
 
-var ProjectFormValidation = function() {
+var TransportSwitchFormValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
-    var $fileselect = $('#myfile');
     //loader
     var showLoader = function(txt) {
         jQuery('#progressbar').html(txt);
@@ -29,24 +28,22 @@ var ProjectFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
+                    /*if(done) {
                         window.location.href = '?page=projects&action=edit&projectid='+id;
-                    }
+                    }*/
                 }
             }
         });
     };
-    // Add a project
-    var addProject = function() {
-        // When the add project form is submitted
-        jQuery('.add-project').on('click', function(){
 
-            //$('#loader').modal({backdrop: 'static', keyboard: false});
+    var addTransportSwitchEntry = function() {
+        jQuery('.add-transport-switch').on('click', function() {
+            console.log('addTransportSwitchEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Enregistrement de projet ...');
+                showLoader('Ajout entrée trsnsport / aiguillage ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -56,40 +53,21 @@ var ProjectFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_project');
-
-                // Get the selected files from the input.
-                var files = $fileselect[0].files;
-
-                console.log(files);
-
-                console.log(JSON.stringify(Params));
-
-                // Loop through each of the selected files.
-                for (var i = 0; i < files.length; i++) {
-
-                    /*// Check the file type.
-                    if (!file.type.match('image.*')) {
-                        continue;
-                    }*/
-
-                    // Add the file to the request.
-                    formData.append('myfile'+i, files[i]);
-                }
+                formData.append('method', 'insert_transport_switch_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_project:success');
+                        console.log('insert_transport_switch_entry:success');
                         console.log(response);
                         hideLoader();
                         openDialog(response.id, response.msg, response.done);
 
                     },
                     error: function (e) {
-                        console.log('insert_project:error');
+                        console.log('insert_transport_switch_entry:error');
                         console.log(e.responseText);
                         hideLoader();
                         openDialog(0, 'erreur', false);
@@ -104,6 +82,7 @@ var ProjectFormValidation = function() {
             return false;
         });
     };
+
     // Init page helpers
     var initPlugins = function() {
         App.initHelpers(['datepicker']);
@@ -126,67 +105,16 @@ var ProjectFormValidation = function() {
             },
             //TODO add rules later
             rules: {
-
-                'city': {
-                    required: true
-                },
-                'plate_dept_code': {
-                    required: true
-                },
-                'site_code': {
-                    required: true
-                },
-                'type_site_id': {
-                    required: true
-                },
-                'size': {
-                    required: true,
-                    number : true
-                },
-                'orig_site_state_id': {
-                    required: true
-                },
-                'orig_site_provision_date': {
-                    required: true
-                },
-                'myfile': {
-                    required: true
-                }
             },
             messages: {
-                'city': {
-                    required: 'Ce champs est obligatoire'
-                },
-                'plate_dept_code': {
-                    required: 'Ce champs est obligatoire'
-                },
-                'site_code': {
-                    required: 'Ce champs est obligatoire'
-                },
-                'type_site_id': {
-                    required: 'Ce champs est obligatoire'
-                },
-                'size': {
-                    required: 'Ce champs est obligatoire',
-                    number : 'Tapez un nombre valide'
-                },
-                'orig_site_state_id': {
-                    required: 'Ce champs est obligatoire'
-                },
-                'orig_site_provision_date': {
-                    required: 'Ce champs est obligatoire'
-                },
-                'myfile': {
-                    required: 'Ce champs est obligatoire'
-                }
             }
         });
     };
 
     return {
         init: function () {
-            // add events
-            addProject();
+            //events
+            addTransportSwitchEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
@@ -196,4 +124,4 @@ var ProjectFormValidation = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ ProjectFormValidation.init(); });
+jQuery(function(){ TransportSwitchFormValidation.init(); });

@@ -243,6 +243,14 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(ProjectPDO::validateProjectCreation($param['project_id'])));
     }
 
+    /**
+     * Insert transport/switch entry
+     * @return JSON
+     */
+    private function insert_transport_switch_entry($insert) {
+        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::insertTrnsportSwitchEntry($insert)));
+    }
+
 
 
 }// END class

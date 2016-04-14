@@ -72,13 +72,13 @@ messages: {
 };
 
 return {
-init: function () {
-// Add Event functionality
-addSubProject();
-//init page helpers
-initPlugins();
-// Init Bootstrap Forms Validation
-initValidationBootstrap();
+    init: function () {
+    // Add Event functionality
+    addSubProject();
+    //init page helpers
+    initPlugins();
+    // Init Bootstrap Forms Validation
+    initValidationBootstrap();
 }
 };
 }();

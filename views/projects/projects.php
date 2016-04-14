@@ -68,6 +68,20 @@
                 <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
                 <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
                     <div class="form-group">
+                        <label class="col-md-4 control-label" for="cdp_user_id">Chef de projet <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="cdp_user_id" name="cdp_user_id">
+                                <option value="">Séléctionnez un cdp</option>
+                                <?php
+                                $cdpusers = UserPDO::getUsersByProfilId(6);
+                                foreach($cdpusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($value['user_id']==$project['cdp_user_id'] ? "selected" : "").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="city">Ville <span class="text-danger">*</span></label>
                         <div class="col-md-7">
                             <input class="form-control" type="text" id="city" name="city">
@@ -78,6 +92,7 @@
                         <div class="col-md-7">
                             <input class="form-control" type="text" id="plate_dept_code" name="plate_dept_code">
                         </div>
+                        <div class="help-block text-right">(ex : XXX99)</div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="site_code">Code site d’origine <span class="text-danger">*</span></label>
@@ -99,7 +114,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="size">Taille approximative en LR <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="size" name="size">
+                            <input class="form-control" type="number" id="size" name="size">
                         </div>
                     </div>
                     <div class="form-group">
@@ -180,6 +195,7 @@
                                 <div class="col-md-7">
                                     <input class="form-control" type="text" id="plate_dept_code" name="plate_dept_code" value="<?php echo $project['plate_dept_code']?>">
                                 </div>
+                                <div class="help-block text-right">(ex : XXX99)</div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="site_code">Code site d’origine <span class="text-danger">*</span></label>
@@ -201,7 +217,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="size">Taille approximative en LR <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="size" name="size" value="<?php echo $project["size"]?>">
+                                    <input class="form-control" type="number" id="size" name="size" value="<?php echo $project["size"]?>">
                                 </div>
                             </div>
                             <div class="form-group">
