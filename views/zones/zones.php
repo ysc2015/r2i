@@ -22,20 +22,21 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <label for="dep">DEP</label>
-                                <input class="form-control input-lg" type="number" id="dep" name="dep" placeholder="département..">
+                                <input class="form-control input-lg" type="number" id="dep" name="dep" placeholder="département.." value="<?php echo substr($project['plate_dept_code'],-2)?>" readonly>
                             </div>
                             <div class="col-xs-3">
                                 <label for="city">Ville</label>
-                                <input class="form-control input-lg" type="text" id="city" name="city" placeholder="Ville..">
+                                <input class="form-control input-lg" type="text" id="city" name="city" placeholder="Ville.." value="<?php echo $project['city']?>" readonly>
                             </div>
                             <div class="col-xs-3">
                                 <label for="plate">Plaque</label>
-                                <input class="form-control input-lg" type="text" id="plate" name="plate" placeholder="Plaque..">
+                                <input class="form-control input-lg" type="text" id="plate" name="plate" placeholder="Plaque.." value="<?php echo $project['plate_dept_code']?>" readonly>
                             </div>
                             <div class="col-xs-3">
                                 <label for="zone">Zone</label>
-                                <input class="form-control input-lg" type="text" id="zone" name="zone" placeholder="Zone..">
+                                <input class="form-control input-lg" type="text" id="zone" name="zone" placeholder="Zone.." value="<?php echo $project['plate_dept_code']."-"?>">
                             </div>
+                            <div class="help-block text-right">(ex : XXX99-99)</div>
                         </div>
                     </div>
                     <div class="row">
@@ -95,7 +96,7 @@
                         <div class="form-group">
                             <div class="col-xs-2">
                                 <label for="site_code">Code Site</label>
-                                <input class="form-control input-lg" type="number" id="site_code" name="site_code" placeholder="Nbe de Zones..">
+                                <input class="form-control input-lg" type="text" id="site_code" name="site_code" value="<?php echo $project['site_code']?>" readonly>
                             </div>
                             <div class="col-xs-2">
                                 <label for="site_type">Type</label>
@@ -179,15 +180,15 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <label for="dep">DEP</label>
-                                <input class="form-control input-lg" type="number" id="dep" name="dep" placeholder="département.." value="<?php echo $zone['dep']?>">
+                                <input class="form-control input-lg" type="number" id="dep" name="dep" placeholder="département.." value="<?php echo $zone['dep']?>" readonly>
                             </div>
                             <div class="col-xs-3">
                                 <label for="city">Ville</label>
-                                <input class="form-control input-lg" type="text" id="city" name="city" placeholder="Ville.." value="<?php echo $zone['city']?>">
+                                <input class="form-control input-lg" type="text" id="city" name="city" placeholder="Ville.." value="<?php echo $zone['city']?>" readonly>
                             </div>
                             <div class="col-xs-3">
                                 <label for="plate">Plaque</label>
-                                <input class="form-control input-lg" type="text" id="plate" name="plate" placeholder="Plaque.." value="<?php echo $zone['plate']?>">
+                                <input class="form-control input-lg" type="text" id="plate" name="plate" placeholder="Plaque.." value="<?php echo $zone['plate']?>" readonly>
                             </div>
                             <div class="col-xs-3">
                                 <label for="zone">Zone</label>
@@ -202,18 +203,18 @@
                                 <label for="phase">Phase</label>
                                 <select class="form-control input-lg" id="phase" name="phase" size="1">
                                     <option value="">choisissez une valeur</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
+                                    <option value="1" <?php echo ($zone['phase'] == "1" ? "selected":"")?>>1</option>
+                                    <option value="2" <?php echo ($zone['phase'] == "2" ? "selected":"")?>>2</option>
+                                    <option value="3" <?php echo ($zone['phase'] == "3" ? "selected":"")?>>3</option>
+                                    <option value="4" <?php echo ($zone['phase'] == "4" ? "selected":"")?>>4</option>
                                 </select>
                             </div>
                             <div class="col-xs-3">
                                 <label for="type">Type</label>
                                 <select class="form-control input-lg" id="type" name="type" size="1">
                                     <option value="">choisissez une valeur</option>
-                                    <option value="1">ZTD</option>
-                                    <option value="2">ZSP</option>
+                                    <option value="1" <?php echo ($zone['type'] == "1" ? "selected":"")?>>ZTD</option>
+                                    <option value="2" <?php echo ($zone['type'] == "2" ? "selected":"")?>>ZSP</option>
                                 </select>
                             </div>
                         </div>
@@ -252,25 +253,25 @@
                         <div class="form-group">
                             <div class="col-xs-2">
                                 <label for="site_code">Code Site</label>
-                                <input class="form-control input-lg" type="number" id="site_code" name="site_code" placeholder="Nbe de Zones.." value="<?php echo $zone['site_code']?>">
+                                <input class="form-control input-lg" type="text" id="site_code" name="site_code" placeholder="Nbe de Zones.." value="<?php echo $zone['site_code']?>" readonly>
                             </div>
                             <div class="col-xs-2">
                                 <label for="site_type">Type</label>
                                 <select class="form-control input-lg" id="site_type" name="site_type" size="1">
                                     <option value="">choisissez une valeur</option>
-                                    <option value="1">NRA</option>
-                                    <option value="2">NRO</option>
-                                    <option value="3">POP</option>
+                                    <option value="1" <?php echo ($zone['site_type'] == "1" ? "selected":"")?>>NRA</option>
+                                    <option value="2" <?php echo ($zone['site_type'] == "2" ? "selected":"")?>>NRO</option>
+                                    <option value="3" <?php echo ($zone['site_type'] == "3" ? "selected":"")?>>POP</option>
                                 </select>
                             </div>
                             <div class="col-xs-2">
                                 <label for="auto_adduction">Auto Adduction</label>
                                 <select class="form-control input-lg" id="auto_adduction" name="auto_adduction" size="1">
                                     <option value="">choisissez une valeur</option>
-                                    <option value="1">Existante</option>
-                                    <option value="2">Projet</option>
-                                    <option value="3">En cours</option>
-                                    <option value="3">Ok</option>
+                                    <option value="1" <?php echo ($zone['auto_adduction'] == "1" ? "selected":"")?>>Existante</option>
+                                    <option value="2" <?php echo ($zone['auto_adduction'] == "2" ? "selected":"")?>>Projet</option>
+                                    <option value="3" <?php echo ($zone['auto_adduction'] == "3" ? "selected":"")?>>En cours</option>
+                                    <option value="3" <?php echo ($zone['auto_adduction'] == "4" ? "selected":"")?>>Ok</option>
                                 </select>
                                 <label for="auto_adduction_date">Date</label>
                                 <input class="js-datepicker form-control input-lg" type="text" id="auto_adduction_date" name="auto_adduction_date" placeholder="date.." value="<?php echo ($zone['auto_adduction_date']!=""?DateTime::createFromFormat('Y-m-d', $zone['auto_adduction_date'])->format('d/m/Y'):"")?>">
@@ -279,10 +280,10 @@
                                 <label for="works_adduction">Travaux adduction</label>
                                 <select class="form-control input-lg" id="works_adduction" name="works_adduction" size="1">
                                     <option value="">choisissez une valeur</option>
-                                    <option value="1">Existant</option>
-                                    <option value="2">Prévus</option>
-                                    <option value="3">En cours</option>
-                                    <option value="3">Terminés</option>
+                                    <option value="1" <?php echo ($zone['works_adduction'] == "1" ? "selected":"")?>>Existant</option>
+                                    <option value="2" <?php echo ($zone['works_adduction'] == "2" ? "selected":"")?>>Prévus</option>
+                                    <option value="3" <?php echo ($zone['works_adduction'] == "3" ? "selected":"")?>>En cours</option>
+                                    <option value="3" <?php echo ($zone['works_adduction'] == "4" ? "selected":"")?>>Terminés</option>
                                 </select>
                                 <label for="works_adduction_date">Date Début</label>
                                 <input class="js-datepicker form-control input-lg" type="text" id="works_adduction_date" name="works_adduction_date" placeholder="Date Début.." value="<?php echo ($zone['works_adduction_date']!=""?DateTime::createFromFormat('Y-m-d', $zone['works_adduction_date'])->format('d/m/Y'):"")?>">
@@ -291,8 +292,8 @@
                                 <label for="adduction_recipe">Recette Adduction</label>
                                 <select class="form-control input-lg" id="adduction_recipe" name="adduction_recipe" size="1">
                                     <option value="">choisissez une valeur</option>
-                                    <option value="1">Prévue</option>
-                                    <option value="2">Plannifié</option>
+                                    <option value="1" <?php echo ($zone['adduction_recipe'] == "1" ? "selected":"")?>>Prévue</option>
+                                    <option value="2" <?php echo ($zone['adduction_recipe'] == "2" ? "selected":"")?>>Plannifié</option>
                                 </select>
                                 <label for="adduction_recipe_date">Date</label>
                                 <input class="js-datepicker form-control input-lg" type="text" id="adduction_recipe_date" name="adduction_recipe_date" placeholder="date.." value="<?php echo ($zone['adduction_recipe_date']!=""?DateTime::createFromFormat('Y-m-d', $zone['adduction_recipe_date'])->format('d/m/Y'):"")?>">
