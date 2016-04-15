@@ -146,11 +146,13 @@ class ProjectPDO extends Model {
                                         if(move_uploaded_file($fileTempName, self::$upload_dir . $fileName)) {
 
                                             $insert = array(
-                                                "project_id" => $lastInsertId,
+                                                "object_id" => $lastInsertId,
+                                                "resource_type" => "project_sd_file",
                                                 "uploaded_filename" => $fileName,
-                                                "stored_filename" => $fileName
+                                                "stored_filename" => $fileName,
+                                                "filepath" => self::$upload_dir . $fileName
                                             );
-                                            if(SDFilePDO::insertSDFile($insert)) {
+                                            if(ResourcePDO::insertResource($insert)) {
                                                 $uploadedFiles[]= $fileName;
                                             } else {
                                                 //sleep(2);//for test purpose
@@ -233,11 +235,13 @@ class ProjectPDO extends Model {
                                         if(move_uploaded_file($fileTempName, self::$upload_dir . $fileName)) {
 
                                             $insert = array(
-                                                "project_id" => $update['project_id'],
+                                                "object_id" => $update['project_id'],
+                                                "resource_type" => "project_sd_file",
                                                 "uploaded_filename" => $fileName,
-                                                "stored_filename" => $fileName
+                                                "stored_filename" => $fileName,
+                                                "filepath" => self::$upload_dir . $fileName
                                             );
-                                            if(SDFilePDO::insertSDFile($insert)) {
+                                            if(ResourcePDO::insertResource($insert)) {
                                                 $uploadedFiles[]= $fileName;
                                             } else {
                                                 //sleep(2);//for test purpose

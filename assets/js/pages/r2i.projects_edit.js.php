@@ -111,7 +111,7 @@ var ProjectFormValidation = function() {
                     $.each(response.data, function(index, item) {
                         console.log(item.uploaded_filename);
                         html +='<div class="alert alert-info">';
-                        html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFileDialog(\''+item.project_sd_file_id+'\',\''+item.uploaded_filename+'\')">&times;</button>';
+                        html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFileDialog(\''+item.resource_id+'\',\''+item.uploaded_filename+'\')">&times;</button>';
                         html +='<i class="fa fa-check"></i><a class="alert-link" href="javascript:void(0)"> '+item.uploaded_filename+'</a>';
                         html +='</div>';
                     });
@@ -293,7 +293,8 @@ var ProjectFormValidation = function() {
                     required: true
                 },
                 'plate_dept_code': {
-                    required: true
+                    required: true,
+                    rangelength : [5,5]
                 },
                 'site_code': {
                     required: true
@@ -320,7 +321,8 @@ var ProjectFormValidation = function() {
                     required: 'Ce champs est obligatoire'
                 },
                 'plate_dept_code': {
-                    required: 'Ce champs est obligatoire'
+                    required: 'Ce champs est obligatoire',
+                    rangelength : 'valeur invalide'
                 },
                 'site_code': {
                     required: 'Ce champs est obligatoire'

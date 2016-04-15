@@ -131,7 +131,8 @@ var ProjectFormValidation = function() {
                     required: true
                 },
                 'plate_dept_code': {
-                    required: true
+                    required: true,
+                    rangelength : [5,5]
                 },
                 'site_code': {
                     required: true
@@ -158,7 +159,8 @@ var ProjectFormValidation = function() {
                     required: 'Ce champs est obligatoire'
                 },
                 'plate_dept_code': {
-                    required: 'Ce champs est obligatoire'
+                    required: 'Ce champs est obligatoire',
+                    rangelength : 'valeur invalide'
                 },
                 'site_code': {
                     required: 'Ce champs est obligatoire'
