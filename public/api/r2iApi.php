@@ -224,7 +224,7 @@ class r2iApi extends api {
      * @return JSON
      */
     private function get_project_files($param) {
-        $this->sendResponse(200,json_encode(SDFilePDO::getProjectFilesByProjectId($param['project_id'])));
+        $this->sendResponse(200,json_encode(ResourcePDO::getResourcesByObjectIdAndResourceType($param['project_id'],"project_sd_file")));
     }
 
     /**
@@ -249,6 +249,14 @@ class r2iApi extends api {
      */
     private function insert_transport_switch_entry($insert) {
         $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::insertTrnsportSwitchEntry($insert)));
+    }
+
+    /**
+     * Update transport/switch entry
+     * @return JSON
+     */
+    private function update_transport_switch_entry($update) {
+        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::updateTrnsportSwitchEntry($update)));
     }
 
 

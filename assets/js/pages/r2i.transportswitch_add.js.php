@@ -28,9 +28,9 @@ var TransportSwitchFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    /*if(done) {
-                        window.location.href = '?page=projects&action=edit&projectid='+id;
-                    }*/
+                    if(done) {
+                        window.location.href = '?page=transportswitch&action=edit&tswitch='+id;
+                    }
                 }
             }
         });

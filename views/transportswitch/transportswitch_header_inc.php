@@ -8,9 +8,9 @@ switch($action) {
                     $action = "nothing";
                 }
                 break;
-    case "edit" : if(isset($_GET['zoneid'])) {
+    case "edit" : if(isset($_GET['tswitch'])) {
                     ;//TODO check ressource access here
-                    //$zone = SubProjectPDO::getSubProjectById($_GET['zoneid']);
+                    $tswitch = TransportSwitchEntryPDO::getTransportSwitchById($_GET['tswitch']);
                 } else {
                     $action = "nothing";
                 }

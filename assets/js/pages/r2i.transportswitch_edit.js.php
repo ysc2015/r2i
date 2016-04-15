@@ -26,13 +26,57 @@ var TransportSwitchFormValidation = function() {
             /*height:140,*/
             modal: true,
             buttons: {
-                "Ouvrir": function() {
-                    $( this ).dialog( "close" );
-                },
-                Annuler: function() {
+                "Fermer": function() {
                     $( this ).dialog( "close" );
                 }
             }
+        });
+    };
+
+    var updateTransportSwitchEntry = function() {
+        jQuery('.update-transport-switch').on('click', function() {
+            console.log('updateTransportSwitchEntry');
+
+            if($form.valid()) {
+                console.log('form submited');
+
+                showLoader('MAJ entrée trsnsport / aiguillage ...');
+
+                var formData = new FormData();
+                var Params = {};
+
+                $form.find("input,textarea,select").each(function (index, node) {
+                    Params[node.name] = node.value;
+                });
+
+                formData.append('parameters', JSON.stringify(Params));
+                formData.append('method', 'update_transport_switch_entry');
+
+                $.ajax({
+                    url: API_URL,
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        console.log('update_transport_switch_entry:success');
+                        console.log(response);
+                        hideLoader();
+                        openDialog(response.msg);
+
+                    },
+                    error: function (e) {
+                        console.log('update_transport_switch_entry:error');
+                        console.log(e.responseText);
+                        hideLoader();
+                        openDialog('erreur');
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+
+            return false;
         });
     };
 
@@ -56,7 +100,7 @@ var TransportSwitchFormValidation = function() {
                 jQuery(e).closest('.form-group').removeClass('has-error');
                 jQuery(e).closest('.help-block').remove();
             },
-//TODO add rules later
+            //TODO add rules later
             rules: {
             },
             messages: {
@@ -67,6 +111,7 @@ var TransportSwitchFormValidation = function() {
     return {
         init: function () {
             //events
+            updateTransportSwitchEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
