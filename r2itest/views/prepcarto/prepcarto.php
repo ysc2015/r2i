@@ -17,37 +17,66 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Intervenant_BE">Intervenant BE
+                        <label class="col-md-4 control-label" for="IntervenantBE">Intervenant BE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Intervenant_BE" name="Intervenant_BE">
+                            <select class="form-control" id="IntervenantBE" name="IntervenantBE">
+                                <option value="">Séléctionnez un Intevenant</option>
+                                <?php
+                                $profils = UserPDO::getAllUsers()["data"];
+                                foreach($profils as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                }
+                                ?>
+                            </select>
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_de_Début">Date de Début
+                        <label class="col-md-4 control-label" for="date_de_Deb">Date de Début
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Date_de_Début" name="Date_de_Début" data-date-format="yyyy-mm-dd">
+                            <input class="form-control" type="date" id="date_de_Deb" name="date_de_Deb" >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_ret_Prev">Date ret Prev
+                        <label class="col-md-4 control-label" for="ret_date_prev">Date ret Prev
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Date_ret_Prev" name="Date_ret_Prev" data-date-format="yyyy-mm-dd">
+                            <input class="form-control" type="date" id="ret_date_prev" name="ret_date_prev" >
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Duree">Durée
+                        <label class="col-md-4 control-label" for="duree">Durée
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Duree" name="Duree" >
+                            <input class="form-control" type="number" id="duree" name="duree"  placeholder="Chiffre en jours">
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-prep-carto" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->
