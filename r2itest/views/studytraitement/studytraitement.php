@@ -17,22 +17,28 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Site">Site
+                        <label class="col-md-4 control-label" for="site">Site
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Site" name="Site">
+                            <select class="form-control" id="site" name="site">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="MPL">MPL</option>
                                 <option value="BZN">BZN</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Charge-etude">Chargé d'étude
+                        <label class="col-md-4 control-label" for="user_be">Chargé d'étude
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Charge-etude" name="Charge-etude">
-                                <option value=""></option>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <?php
+                                $profils = UserPDO::getAllUsers()["data"];
+                                foreach($profils as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                }
+                                ?>
 
                             </select>
                         </div>
@@ -53,7 +59,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-success add-transportswitch" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                                <button class="btn btn-success add-study-traitement" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                             </div>
                         </div>
                     </div>
