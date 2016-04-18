@@ -18,57 +18,99 @@
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Intervant_BE">Intervant BE
+                        <label class="col-md-4 control-label" for="user_be">Intervant BE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Intervant_BE" name="Intervant_BE" >
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_de_Début">Date de Début
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <input class="form-control" type="text" id="Date_de_Début" name="Date_de_Début" data-date-format="yyyy-mm-dd">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_ret_Prev">Date ret Prev
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <input class="form-control" type="text" id="Date_ret_Prev" name="Date_ret_Prev" data-date-format="yyyy-mm-dd">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="Duree">Durée
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <input class="form-control" type="text" id="Duree" name="Duree">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="Intervenant">Intervenant
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <select class="form-control" id="Intervenant" name="Intervenant">
-                                <option value="">Séléctionnez un type</option>
-                                <option value="UtilisateurBEI">Utilisateur BEI </option>
-                                <option value="EntrepriseBEX">Entreprise BEX</option>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
+
+                                </optgroup>
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="date_deb">Date de Début
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="date" id="date_deb" name="date_deb" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="ret_date_prev">Date ret Prev
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="date" id="ret_date_prev" name="ret_date_prev" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="duration">Durée
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="number" id="duration" name="duration" placeholder="Chiffre en jours">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="user">Intervenant
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="user" name="user">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
 
+                                </optgroup>
+                            </select>
+                        </div>
+                       </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="BPE_sur_SITE">BPE sur SITE
+                            <label class="col-md-4 control-label" for="bpe_site">BPE sur SITE
                                 <span class="text-danger">*</span></label>
                             <div class="col-md-7">
-                                <select class="form-control" id="BPE_sur_SITE" name="BPE_sur_SITE">
+                                <select class="form-control" id="bpe_site" name="bpe_site">
                                     <option value="">Séléctionnez un type</option>
                                     <option value="A_PLACER"">A PLACER </option>
                                     <option value="PLACES">PLACES</option>
                                 </select>
                             </div>
                         </div>
-
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-pos-adr" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->
