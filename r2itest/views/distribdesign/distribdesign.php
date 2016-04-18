@@ -17,10 +17,20 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervantBE">Intervenant BE
+                        <label class="col-md-4 control-label" for="user_be">Intervenant BE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervantBE" name="IntervantBE">
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez un Intevenant</option>
+
+                                <?php
+                                $profils = UserPDO::getAllUsers()["data"];
+                                foreach($profils as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                }
+                                ?>
+                            </select>
+
 
                             </select>
                         </div>
@@ -28,67 +38,89 @@
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervantBEX">Intervenant BEX<span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="user_bex">Intervenant BEX<span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervantBEX" name="IntervantBEX">
+                            <select class="form-control" id="user_bex" name="user_bex">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
 
+                                </optgroup>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Début">Date Début
+                        <label class="col-md-4 control-label" for="date_deb">Date Début
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Début" name="Date_Début">
+                            <input class="form-control" type="date" id="date_deb" name="date_deb">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_de_Fin">Date de Fin
+                        <label class="col-md-4 control-label" for="finish_date">Date de Fin
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_de_Fin" name="Date_de_Fin">
+                            <input class="form-control" type="date" id="finish_date" name="finish_date">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="duree">Durée
+                        <label class="col-md-4 control-label" for="duration">Durée
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="duree" name="duree">
+                            <input class="form-control" type="number" id="duration" name="duration" placeholder="Chiffre en jours">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Lineaire_Distribution">Linéaire Distribution
+                        <label class="col-md-4 control-label" for="linear_dist">Linéaire Distribution
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Lineaire_Distribution" name="Lineaire_Distribution">
+                            <input class="form-control" type="number" id="linear_dist" name="linear_dist" placeholder="en ML chiffre">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="etat">Etat <span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="state">Etat <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="etat" name="etat">
+                            <select class="form-control" id="state" name="state">
+                                <option value="Prevu">Prévu</option>
+                                <option value="EnCours">En Cours</option>
+                                <option value="realise">Réalisé</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_envoi">Date envoi<span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="send_date">Date envoi<span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_envoi" name="Date_envoi">
+                            <input class="form-control" type="date" id="send_date" name="send_date">
 
                         </div>
                     </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-success submit-transportswitch" type="submit"> Enregistrer</button>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-distrib-design" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
             </div>
