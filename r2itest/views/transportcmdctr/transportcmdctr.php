@@ -17,38 +17,51 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervantBE_Comnde">Intervenant BE
+                        <label class="col-md-4 control-label" for="user_be">Intervenant BE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervantBE_Comnde" name="IntervantBE_Comnde">
+                            <select class="form-control" id="user_be" name="user_be">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
+
+                                </optgroup>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_butoire_traitement_retour">Date butoire traitement retour Aig j+3
+                        <label class="col-md-4 control-label" for="Date_but_trait_ret">Date butoire traitement retour Aig j+3
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_butoire_traitement_retour" name="Date_butoire_traitement_retour">
+                            <input class="form-control" type="date" id="Date_but_trait_ret" name="Date_but_trait_ret">
 
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Traitement_Retours_terrain">Traitement Retours terrain
+                        <label class="col-md-4 control-label" for="trait_ret_terr">Traitement Retours terrain
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Traitement_Retours_terrain" name="Traitement_Retours_terrain">
+                            <input class="form-control" type="date" id="trait_ret_terr" name="trait_ret_terr">
 
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Modification_Carto">Modification Carto
+                        <label class="col-md-4 control-label" for="carto_modif">Modification Carto
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Modification_Carto" name="Modification_Carto">
+                            <select class="form-control" id="carto_modif" name="carto_modif">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="oui">Oui</option>
                                 <option value="non">Non</option>
@@ -60,10 +73,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Commande_Acces">Commande Accès
+                        <label class="col-md-4 control-label" for="cmnd_acces">Commande Accès
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Commande_Acces" name="Commande_Acces">
+                            <select class="form-control" id="cmnd_acce" name="cmnd_acces">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="EnCours">En Cours</option>
                                 <option value="Realisee">Réalisée</option>
@@ -72,27 +85,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Transmission_CA">Date Transmission CA
+                        <label class="col-md-4 control-label" for="date_trans_ca">Date Transmission CA
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Transmission_CA" name="Date_Transmission_CA">
+                            <input class="form-control" type="date" id="date_trans_ca" name="date_trans_ca">
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Reference_Commande_Acces">Référence Commande Accès
+                        <label class="col-md-4 control-label" for="ref_cmnd_acce">Référence Commande Accès
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Reference_Commande_Acces" name="Reference_Commande_Acces">
+                            <input class="form-control" type="text" id="ref_cmnd_acce" name="ref_cmnd_acce">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="GO_FT">GO FT
+                        <label class="col-md-4 control-label" for="go_ft">GO FT
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="GO_FT" name="GO_FT">
+                            <select class="form-control" id="go_ft" name="go_ft">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="ComndeEnCours">Commande En cours</option>
                                 <option value="CommndeValide">Commande validée</option>
@@ -100,7 +113,28 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-transport-cmdctr" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->
