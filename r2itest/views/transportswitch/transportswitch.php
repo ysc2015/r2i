@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="user_be">Intervenant BE <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Intervant_BE" name="Intervant_BE">
+                            <select class="form-control" id="user_be" name="user_be">
 
                                 <?php
                                 $profils = UserPDO::getAllUsers()["data"];

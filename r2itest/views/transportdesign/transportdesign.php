@@ -17,18 +17,29 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervantBE">Intervant BE <span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="user_be">Intervant BE <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervantBE" name="IntervantBE">
+                            <select class="form-control" id="user_be" name="user_be">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
 
+                                </optgroup>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Début">Date Début
+                        <label class="col-md-4 control-label" for="Date_Deb">Date Début
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Début" name="Date_Début">
+                            <input class="form-control" type="date" id="Date_Deb" name="Date_Deb">
                         </div>
                     </div>
                     <div class="form-group">
@@ -42,23 +53,44 @@
                         <label class="col-md-4 control-label" for="duree">Durée
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="duree" name="duree">
+                            <input class="form-control" type="number" id="duree" name="duree" placeholder="Chiffre en jours">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Lineaire_Transport">Linéaire Transport
+                        <label class="col-md-4 control-label" for="Linea_Transp">Linéaire Transport
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Lineaire_Transport" name="Lineaire_Transport">
+                            <input class="form-control" type="number" id="Linea_Transp" name="Linea_Transp" placeholder="Chiffre en ML">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="Nbe_Zones">Nbe Zones <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Nbe_Zones" name="Nbe_Zones">
+                            <input class="form-control" type="number" id="Nbe_Zones" name="Nbe_Zones">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-transportdsign" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->

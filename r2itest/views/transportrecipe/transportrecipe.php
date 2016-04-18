@@ -17,36 +17,74 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervenantBE">Intervenant BE
+                        <label class="col-md-4 control-label" for="user_be">Intervenant BE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervenantBE" name="IntervenantBE">
+                            <select class="form-control" id="user_be" name="user_be">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
+
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="doe">DOE
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="doe" name="doe">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
+
+                                </optgroup>
+                            </select>
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="DOE">DOE
+                        <label class="col-md-4 control-label" for="net_geo">Netgeo
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="DOE" name="DOE">
+                            <select class="form-control" id="net_geo" name="net_geo">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
+
+                                </optgroup>
+                            </select>
 
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Netgeo">Netgeo
+                        <label class="col-md-4 control-label" for="free_user">Intervenant FREE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Netgeo" name="Netgeo">
-
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervenantFREE">Intervenant FREE
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <select class="form-control" id="IntervenantFREE" name="IntervenantFREE">
+                            <select class="form-control" id="free_user" name="free_user">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="PCI">PCI</option>
                                 <option value="CDT"> CDT</option>
@@ -55,40 +93,64 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervenantEntreprise">Intervenant Entreprise
+                        <label class="col-md-4 control-label" for="company_user">Intervenant Entreprise
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervenantEntreprise" name="IntervenantEntreprise">
+                            <input class="form-control" type="text" id="company_user" name="company_user">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="DatedeRecette">Date de Recette
+                        <label class="col-md-4 control-label" for="recipe_date">Date de Recette
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="DatedeRecette" name="DatedeRecette">
+                            <input class="form-control" type="date" id="recipe_date" name="recipe_date">
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="EtatRecette">Etat Recette
+                        <label class="col-md-4 control-label" for="recipe_state">Etat Recette
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control"  id="EtatRecette" name="EtatRecette">
+                            <select class="form-control"  id="recipe_state" name="recipe_state">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="NonPrevue">Recette Non Prévue</option>
                                 <option value="Prevue"> Recette Prévue</option>
                                 <option value="ok">Recette OK</option>
                                 <option value="ajournee"> Recette Ajournée</option>
                             </select>
-                            <p> Si recette ajournée uploadez le fichier de recette </p>
+
                             <div class="col-md-7">
+                                  <p></p>
                                 <input type="file" id="FichierRecette" name="FichierRecette" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-transport-recipe" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->
@@ -113,6 +175,7 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->
