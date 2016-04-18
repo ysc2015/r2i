@@ -221,6 +221,65 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(SubProjectPDO::insertSubProject($insert)));
     }
 
+    private function insert_transportswitch($insert) {
+        $this->sendResponse(200,json_encode(TransportSwitchPDO::insertTransportSwith($insert)));
+    }
+
+    private function insert_transportdesign($insert) {
+
+        $this->sendResponse(200,json_encode(TransportDesignPDO::insertTransportDesign($insert)));
+    }
+    private function insert_studytraitement($insert) {
+
+        $this->sendResponse(200,json_encode(StudyTraitementPDO::insertTransportDesign($insert)));
+    }
+    private function insert_phase($insert) {
+
+        $this->sendResponse(200,json_encode(PhasePDO::insertphase($insert)));
+    }
+
+    private function insert_prep_carto($insert) {
+  $this->sendResponse(200,json_encode(PrepCartoPDO::insertprepCarto($insert)));
+
+    }
+    private function insert_pos_adr($insert) {
+        $this->sendResponse(200,json_encode(PosAdrPDO::insertPosAdr($insert)));
+
+    }
+    private function insert_surv_adr($insert) {
+        $this->sendResponse(200,json_encode(SurvAdrPDO::insertSurvAdr($insert)));
+    }
+
+    private function insert_transport_Cmdctr($insert) {
+        $this->sendResponse(200,json_encode(TransportCmdctrPDO::insertTransportCmdctr($insert)));
+    }
+    private function insert_transport_tirage($insert) {
+        $this->sendResponse(200,json_encode(TransportTiragePDO::insertTransportTirage($insert)));
+    }
+    private function insert_transport_racco($insert) {
+        $this->sendResponse(200,json_encode(TransportRaccoPDO::insertTransportRacco($insert)));
+    }
+    private function insert_transport_recipe($insert) {
+        $this->sendResponse(200,json_encode(TransportRecipePDO::insertTransportRecipe($insert)));
+    }
+    private function insert_distrib_design($insert) {
+        $this->sendResponse(200,json_encode(DistribDesignPDO::insertDistribDesign($insert)));
+    }
+    private function insert_distrib_switch($insert) {
+        $this->sendResponse(200,json_encode(DistribSwitchPDO::insertDistribSwitch($insert)));
+    }
+    private function insert_distrib_cmdtctr($insert) {
+        $this->sendResponse(200,json_encode(DistribCmdctrPDO::insertDistribCmdctr($insert)));
+    }
+    private function insert_distrib_tirage($insert) {
+        $this->sendResponse(200,json_encode(DistribTiragePDO::insertDistribTirage($insert)));
+    }
+    private function insert_distrib_racco($insert) {
+        $this->sendResponse(200,json_encode(DistribRaccoPDO::insertDistribRacco($insert)));
+    }
+    private function insert_distrib_recipe($insert) {
+        $this->sendResponse(200,json_encode(DistribRecipePDO::insertDistribRecipe($insert)));
+    }
     /**
      * get project sd files
      * @return JSON
@@ -228,6 +287,7 @@ class r2iApi extends api {
     private function get_project_files($param) {
         $this->sendResponse(200,json_encode(SDFilePDO::getProjectFilesByProjectId($param['project_id'])));
     }
+
 
     /**
      * delete sd file
