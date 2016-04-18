@@ -17,32 +17,56 @@
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="IntervantBE_tirage">Intervenant BE
+                        <label class="col-md-4 control-label" for="user_be">Intervenant BE
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="IntervantBE_tirage" name="IntervantBE_tirage">
+                            <select class="form-control" id="user_be" name="user_be">
+                                <optgroup label="BEI">
+                                    <?php
+                                    $profils = UserPDO::getAllUsers()["data"];
+                                    foreach($profils as $key => $value) {
+                                        echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                    }
+                                    ?>
+                                </optgroup>
+                                <optgroup label="BEX" >
+                                    <option>BEX</option>
+
+                                </optgroup>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date_Previsionnelle">Date Previsionnelle
+                        <label class="col-md-4 control-label" for="prev_date">Date Previsionnelle
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date_Previsionnelle" name="Date_Previsionnelle">
+                            <input class="form-control" type="date" id="prev_date" name="prev_date">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Preparation_des_plans">Préparation des plans
+                        <label class="col-md-4 control-label" for="plan_prep">Préparation des plans
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Preparation_des_plans" name="Preparation_des_plans">
+
+                            <select class="form-control" id="plan_prep" name="plan_prep">
+                                <option value="">Séléctionnez un type</option>
+
+                                <?php
+                                $profils = UserPDO::getAllUsers()["data"];
+                                foreach($profils as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_lastname'].' '.$value['user_firstname'].'</option>';
+                                }
+                                ?>
+                            </select>
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Controle_des_plans">Contrôle des plans
+                        <label class="col-md-4 control-label" for="plan_cont">Contrôle des plans
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Controle_des_plans" name="Controle_des_plans">
+                            <select class="form-control" id="plan_cont" name="plan_cont">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="NonControles">Non Contrôlés</option>
                                 <option value="ControlesOk">Contrôlés OK</option>
@@ -51,47 +75,47 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="DateTransmissionPlans">Date Transmission Plans
+                        <label class="col-md-4 control-label" for="plan_trans_date">Date Transmission Plans
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="DateTransmissionPlans" name="DateTransmissionPlans">
+                            <input class="form-control" type="date" id="plan_trans_date" name="plan_trans_date">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Entreprise">Entreprise
+                        <label class="col-md-4 control-label" for="comp">Entreprise
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="Entreprise" name="Entreprise">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="Fichiers_tirage">Fichiers
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <input type="file" id="Fichiers_tirage" name="Fichiers_tirage" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="DateTirage">Date Tirage
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <input class="form-control" type="date" id="DateTirage" name="DateTirage">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="DureeTirage">Durée
-                            <span class="text-danger">*</span></label>
-                        <div class="col-md-7">
-                            <input class="form-control" type="text" id="DureeTirage" name="DureeTirage">
+                            <input class="form-control" type="text" id="comp" name="comp">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="ControleDemarrageEffectif">Contrôle démarrage effectif
+                        <label class="col-md-4 control-label" for="file">Fichiers
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="ControleDemarrageEffectif" name="ControleDemarrageEffectif">
+                            <input type="file" id="file" name="file" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="print_date">Date Tirage
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="date" id="print_date" name="print_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="duration">Durée
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="number" id="duration" name="duration" placeholder="Chiffre en jours">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="cont_dem_effec">Contrôle démarrage effectif
+                            <span class="text-danger">*</span></label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="cont_dem_effec" name="cont_dem_effec">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="OK">OK</option>
                                 <option value="NOK">NOK</option>
@@ -100,53 +124,74 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="avancement">Avancement
+                        <label class="col-md-4 control-label" for="advance">Avancement
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="avancement" name="avancement">
+                            <input class="form-control" type="text" id="advance" name="advance">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="ControleParallele">Contrôle parallèle
+                        <label class="col-md-4 control-label" for="cont_paral">Contrôle parallèle
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="ControleParallele" name="ControleParallele">
+                            <input class="form-control" type="text" id="cont_paral" name="cont_paral">
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="DateRetour">Date Retour
+                        <label class="col-md-4 control-label" for="ret_date">Date Retour
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="DateRetour" name="DateRetour">
+                            <input class="form-control" type="date" id="ret_date" name="ret_date">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="EtatRetour">Etat Retour
+                        <label class="col-md-4 control-label" for="ret_state">Etat Retour
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="EtatRetour" name="EtatRetour">
+                            <select class="form-control" id="ret_state" name="ret_state">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="nonRETOUR">PAS DE RETOUR</option>
                                 <option value="OK">RETOUR OK</option>
                                 <option value="NOK">RETOUR NOK</option>
                             </select>
                             <div class="col-md-7">
-                                <p>Si retour nok </p>
+                                <p></p>
                                 <input type="file" id="Fichiers" name="Fichiers" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple="multiple">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="ControleApresTravaux">Contrôle après travaux
+                        <label class="col-md-4 control-label" for="cont_after_job">Contrôle après travaux
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" id="ControleApresTravaux" name="ControleApresTravaux">
+                            <input class="form-control" type="text" id="cont_after_job" name="cont_after_job">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success add-distrib-tirage" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                            </div>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
         <!-- END Mega Form -->
