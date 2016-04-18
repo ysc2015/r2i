@@ -1,7 +1,7 @@
 <?php if($action == "add"): ?>
     <div class="content">
         <!-- Mega Form -->
-        <h2 class="content-heading">Gestion Plaque (Traitement Etude)</h2>
+        <h2 class="content-heading">Gestion Plaque (Phase)</h2>
         <div class="block block-bordered">
             <!--<div class="block-header bg-gray-lighter">
                 <ul class="block-options">
@@ -18,9 +18,9 @@
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Instigateur">Instigateur <span class="text-danger">*</span></label>
+                        <label class="col-md-4 control-label" for="instigat">Instigateur <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Instigateur" name="Instigateur">
+                            <select class="form-control" id="instigat" name="instigat">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="BMB">BMB</option>
                                 <option value="RME">RME</option>
@@ -28,10 +28,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Vague">Vague
+                        <label class="col-md-4 control-label" for="vag">Vague
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <select class="form-control" id="Vague" name="Vague">
+                            <select class="form-control" id="vag" name="vag">
                                 <option value="">Séléctionnez un type</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -41,10 +41,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="Date-Lancement">Date Lancement
+                        <label class="col-md-4 control-label" for="date_lance">Date Lancement
                             <span class="text-danger">*</span></label>
                         <div class="col-md-7">
-                            <input class="form-control" type="date" id="Date-Lancement" name="Date-Lancement" data-date-format="yyyy-mm-dd">
+                            <input class="form-control" type="date" id="date_lance" name="date_lance" data-date-format="yyyy-mm-dd">
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,7 +63,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-success add-transportswitch" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                                <button class="btn btn-success add-phase" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                             </div>
                         </div>
                     </div>
