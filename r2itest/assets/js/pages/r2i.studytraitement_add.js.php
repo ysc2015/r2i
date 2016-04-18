@@ -1,13 +1,15 @@
 <?php
-header("Content-type: application/javascript");
-?>
-/*
- *  Document   : r2i.zones_add.js.php
- *  Author     : RR
- *  Description: Custom JS code : Add new sub project (zone)
+/**
+ * Created by PhpStorm.
+ * User: ilham
+ * Date: 17/04/16
+ * Time: 08:14 م
  */
 
-var SubProjectFormValidation = function() {
+
+header("Content-type: application/javascript");
+?>
+var StudyTraitementValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
     //loader
@@ -34,13 +36,12 @@ var SubProjectFormValidation = function() {
         });
     };
     // Add sub project
-    var addSubProject = function() {
+    var addStudyTraitement= function() {
         // When the add project form is submitted
-        jQuery('.add-sub-project').on('click', function(){
-            console.log('add sub project');
+        jQuery('.add-study-traitement').on('click', function(){
             if($form.valid()) {
                 console.log('form submited');
-                showLoader('Enregistrement de sous projet en cours ...');
+                showLoader('Enregistrement en cours ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -50,21 +51,21 @@ var SubProjectFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_sub_project');
+                formData.append('method', 'insert_studytraitement');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_sub_project:success');
+                        console.log('insert_transportswitch:success');
                         console.log(response);
                         hideLoader();
                         openDialog('dd', response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_sub_project:error');
+                        console.log('insert_transportswitch:error');
                         console.log(e.responseText);
                         hideLoader();
                     },
@@ -106,7 +107,7 @@ var SubProjectFormValidation = function() {
     return {
         init: function () {
             // Add Events functionality
-            addSubProject();
+            addStudyTraitement();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
@@ -116,4 +117,4 @@ var SubProjectFormValidation = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ SubProjectFormValidation.init(); });
+jQuery(function(){ StudyTraitementValidation.init(); });
