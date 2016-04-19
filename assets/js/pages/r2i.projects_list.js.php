@@ -57,16 +57,13 @@ var openDetails = function (elem,projectid) {
                     "bFilter": false,
                     "bSort" : false, // disables sorting
                     "columns": [
-                        { "data": "dep" },
+                        /*{ "data": "dep" },
                         { "data": "city"},
                         { "data": "plate" },
-                        { "data": "zone"},{
+                        { "data": "zone"},*/{
                             "sClass": 'text-center',
                             mRender: function (data, type, row) {
-                                html = '<div class="btn-group">';
-                                html += '<button class="btn btn-xs btn-default" type="button" onclick="showSubProjectEditForm('+row.sub_project_id+')" data-toggle="tooltip" title="ouvrir"><i class="fa fa-pencil"></i></button>';
-                                html += '<button class="btn btn-xs btn-default" type="button" onclick="deleteSubProject('+row.sub_project_id+')" data-toggle="tooltip" title="supprimer"><i class="fa fa-times"></i></button>';
-                                html += '</div>';
+                                html = '<h3 class="h5 font-w600 push-10" align="left"><a class="link-effect" href="?page=zones&action=edit&zoneid='+row.sub_project_id+'">'+row.zone+'</a></h3>';
                                 return html
                             }
                         }

@@ -31,14 +31,14 @@
         <!-- END Projects Table -->
         <!-- Sub Projects Table (Details)-->
         <div style="display:none">
-            <table id="detailsTable" class="table table-bordered table-striped js-dataTable-full">
-                <thead>
+            <table id="detailsTable" class="table table-striped dt-head-left">
+                <thead style="display: none;">
                 <tr>
-                    <th>DEP</th>
+                    <!--<th>DEP</th>
                     <th>Ville</th>
                     <th>Plaque</th>
-                    <th>Zone</th>
-                    <th></th>
+                    <th>Zone</th>-->
+                    <th>réf sous projet</th>
                 </tr>
                 </thead>
                 <tbody></tbody>
