@@ -94,7 +94,7 @@ class MailNotifier extends Model {
         switch($messagetype) {
             case "project_create" : self::$upload_dir = "../../uploads/fichiersprojets/";
                                     $project = ProjectPDO::getProjectById($ressourceid);
-                                    $subject = "Lancement Projet d’étude Plaque PON FTTH [".$project["site_code"]."] [".$project["city"]."]";
+                                    $subject = "Lancement Projet d’étude Plaque PON FTTH ".$project["site_code"]." ".$project["city"];
                                     $to []= array("bitlord1980@gmail.com");
                                     $html .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
                                     $html .='<html>';
