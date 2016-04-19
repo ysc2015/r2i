@@ -242,11 +242,6 @@
                         <!-- Notifications Widget -->
                         <div class="block block-themed">
                             <div class="block-header bg-modern">
-                                <ul class="block-options">
-                                    <li>
-                                        <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-                                    </li>
-                                </ul>
                                 <h3 class="block-title">Avancement</h3>
                             </div>
                             <div class="block-content block-content-full text-center">
