@@ -11,7 +11,6 @@
                     <thead>
                     <tr>
                         <th class="text-center">Id</th>
-                        <th>Projet</th>
                         <th class="hidden-xs">Date de création</th>
                         <th class="hidden-xs">Date d'attribution</th>
                         <th class="hidden-xs">Ville</th>

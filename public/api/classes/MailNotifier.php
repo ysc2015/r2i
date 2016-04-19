@@ -104,7 +104,7 @@ class MailNotifier extends Model {
                                     $html .='</head>';
                                     $html .='<body>';
                                     $html .='<div style="width: 640px;float: left;text-align: left">';
-                                    $html .='<h1>Infos création projet :</h1>';
+                                    $html .='<h3>Infos création projet :</h3>';
                                     $html .='<h5>Ville : '.$project["city"].'</h5>';
                                     $html .='<h5>Trigramme de la plaque + Dept : '.$project["plate_dept_code"].'</h5>';
                                     $html .='<h5>Code site d’origine : '.$project["site_code"].'</h5>';
