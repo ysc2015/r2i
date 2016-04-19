@@ -288,10 +288,13 @@ class ProjectPDO extends Model {
         self::initialize();
         $result = MailNotifier::sendMailNotification("project_create",$projectid);
         if($result["done"]) {
+            $date = new DateTime('now');
             //set validated flag (project)
             //build sql query
             $sql ="UPDATE ".self::$table." ";
-            $sql .="SET create_state = 1 ";
+            $sql .="SET create_state = 1, ";
+            $sql .="ceation_date = CURDATE(), ";
+            $sql .="attribution_date = CURDATE() ";
             $sql .="WHERE project_id=".$projectid;
 
             //echo $sql;

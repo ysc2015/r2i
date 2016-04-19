@@ -126,7 +126,9 @@ var ProjectFormValidation = function() {
             },
             //TODO add rules later
             rules: {
-
+                'cdp_user_id': {
+                    required: true
+                },
                 'city': {
                     required: true
                 },
@@ -155,6 +157,9 @@ var ProjectFormValidation = function() {
                 }
             },
             messages: {
+                'cdp_user_id': {
+                    required: 'Ce champs est obligatoire'
+                },
                 'city': {
                     required: 'Ce champs est obligatoire'
                 },

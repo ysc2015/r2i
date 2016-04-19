@@ -224,7 +224,7 @@ var ProjectsListDatatables = function() {
                     }
                 },
                 { "data": "project_id" },
-                { "data": "project_name"},
+                /*{ "data": "project_name"},*/
                 { "data": "ceation_date" },
                 { "data": "attribution_date"},
                 { "data": "city"},
