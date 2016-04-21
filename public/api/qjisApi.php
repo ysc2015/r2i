@@ -38,7 +38,8 @@ class qjisApi extends api {
     //requested methods here
 
     private function get_login($login,$mdp) {
-        return ($login=="ayoub"?true:false);
+        $r = ($login=="ayoub"?true:false);
+        json_encode(array("test"=>"ok", "res" => $r));
     }
 
 
