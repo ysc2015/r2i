@@ -51,18 +51,18 @@ class ResourcePDO {
     }
 
     /**
-     * get resources files by object id and resource type
+     * get resources files by object id and object type
      * @param int $object_id
-     * @param string $resource_type
+     * @param string $object_type
      * @return array
      */
-    public static function getResourcesByObjectIdAndResourceType($object_id,$resource_type) {
+    public static function getResourcesByObjectIdAndObjectType($object_id,$object_type) {
         self::initialize();
         $bind = array(
             ":object_id" => $object_id,
-            ":resource_type" => $resource_type
+            ":object_type" => $object_type
         );
-        $result = self::$db->select(self::$table, "object_id = :object_id AND resource_type = :resource_type", $bind);
+        $result = self::$db->select(self::$table, "object_id = :object_id AND object_type = :object_type", $bind);
         if($result) return array("done" => true,"msg" => "fichiers récupérés", "data" => $result);
         else return array("done" =>false,"msg" =>"probléme récupération fichiers", "data" => []);
     }
@@ -72,12 +72,12 @@ class ResourcePDO {
      * @param array $delete
      * @return array
      */
-    public static function deleteProjectSDFile($delete) {
+    public static function deleteResourceFile($delete) {
         self::initialize();
         $bind = array(
-            ":project_sd_file_id" => $delete['project_sd_file_id']
+            ":resource_id" => $delete['resid']
         );
-        $result = self::$db->delete(self::$table,"project_sd_file_id = :project_sd_file_id", $bind);
+        $result = self::$db->delete(self::$table,"resource_id = :resource_id", $bind);
         if($result) {
             unlink($delete['filepath']);
             return array("done" => true,"msg" => "fichier supprimé");
