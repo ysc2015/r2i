@@ -1,10 +1,24 @@
 <?php if($action == "list"): ?>
+    <!-- Page Header -->
+    <div class="content bg-gray-lighter">
+        <div class="row items-push">
+            <div class="col-sm-8">
+                <h1 class="page-heading">
+                    ButtonsZ <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                </h1>
+            </div>
+            <div class="col-sm-4 text-right hidden-xs">
+                <ol class="breadcrumb push-10-t">
+                    <li>UI Elements</li>
+                    <li><a class="link-effect" href="">Buttons</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- END Page Header -->
     <div class="content">
         <!-- Projects Table -->
         <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Liste des projets</h3>
-            </div>
             <div class="block-content">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
                 <table id="masterTable" class="table table-bordered table-striped js-dataTable-full">
