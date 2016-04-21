@@ -259,8 +259,8 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::updateTrnsportSwitchEntry($update)));
     }
 
-    private function test($post) {
-        echo "ok";
+    private function test() {
+        $this->sendResponse(200,json_encode(ProjectPDO::getAllProjects()));
     }
 
 
