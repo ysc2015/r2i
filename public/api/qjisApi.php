@@ -37,7 +37,7 @@ class qjisApi extends api {
 
     //requested methods here
 
-    private function isQgisUser($login,$mdp) {
+    private function get_login($login,$mdp) {
         return ($login=="ayoub"?true:false);
     }
 
