@@ -39,7 +39,7 @@ class qjisApi extends api {
 
     private function get_login($login,$mdp) {
         $r = ($login=="ayoub"?true:false);
-        json_encode(array("test"=>"ok", "res" => $r));
+        $this->sendResponse(200,json_encode(array("test"=>"ok", "res" => $r)));
     }
 
 
