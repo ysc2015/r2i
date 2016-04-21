@@ -260,7 +260,7 @@ class r2iApi extends api {
     }
 
     private function test($post) {
-        $this->sendResponse(200,json_encode(array("msg" => "ok","data"=>$post)));
+        echo "ok";
     }
 
 
