@@ -1,7 +1,23 @@
 <?php if($action == "add"): ?>
+    <!-- Page Header -->
+    <div class="content bg-gray-lighter">
+        <div class="row items-push">
+            <div class="col-sm-8">
+                <h1 class="page-heading">
+                    Buttons <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                </h1>
+            </div>
+            <div class="col-sm-4 text-right hidden-xs">
+                <ol class="breadcrumb push-10-t">
+                    <li><a class="link-effect" href="">Buttons</a></li>
+                    <li>UI Elements</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- END Page Header -->
     <div class="content">
         <!-- Form -->
-        <h2 class="content-heading">Ajout Entrée : Réseau de transport (Aguillage)</h2>
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
@@ -120,9 +136,25 @@
     </div>
 <?php endif; ?>
 <?php if($action == "edit"): ?>
+    <!-- Page Header -->
+    <div class="content bg-gray-lighter">
+        <div class="row items-push">
+            <div class="col-sm-8">
+                <h1 class="page-heading">
+                    Buttons <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                </h1>
+            </div>
+            <div class="col-sm-4 text-right hidden-xs">
+                <ol class="breadcrumb push-10-t">
+                    <li><a class="link-effect" href="">Buttons</a></li>
+                    <li>UI Elements</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- END Page Header -->
     <div class="content">
         <!-- Mega Form -->
-        <h2 class="content-heading">Edition Entrée : Réseau de transport (Aguillage)</h2>
         <div class="block block-bordered">
             <div class="block-content">
                 <div class="row">
@@ -239,6 +271,22 @@
                         </form>
                     </div>
                     <div class="col-md-5">
+                        <!-- Notifications Widget -->
+                        <div class="list-group">
+                            <a class="list-group-item active" href="javascript:void(0)">
+                                <i class="fa fa-fw fa-upload push-5-r"></i> Fichiers
+                            </a>
+                            <a class="list-group-item" href="javascript:void(0)">
+                                <i class="fa fa-file-text-o push-5-r"></i> Chambres
+                            </a>
+                            <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=edit">
+                                <i class="si si-graph push-5-r"></i> Synoptique
+                            </a>
+                            <a class="list-group-item" href="?page=resources&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=list">
+                                <i class="si si-folder push-5-r"></i> Autres
+                            </a>
+                        </div>
+                        <!-- END Notifications Widget -->
                         <!-- Notifications Widget -->
                         <div class="block block-themed">
                             <div class="block-header bg-modern">

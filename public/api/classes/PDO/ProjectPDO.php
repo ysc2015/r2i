@@ -147,7 +147,8 @@ class ProjectPDO extends Model {
 
                                             $insert = array(
                                                 "object_id" => $lastInsertId,
-                                                "resource_type" => "project_sd_file",
+                                                "object_type" => "project",
+                                                "resource_type" => "sd_file",
                                                 "uploaded_filename" => $fileName,
                                                 "stored_filename" => $fileName,
                                                 "filepath" => self::$upload_dir . $fileName
@@ -236,7 +237,8 @@ class ProjectPDO extends Model {
 
                                             $insert = array(
                                                 "object_id" => $update['project_id'],
-                                                "resource_type" => "project_sd_file",
+                                                "object_type" => "project",
+                                                "resource_type" => "sd_file",
                                                 "uploaded_filename" => $fileName,
                                                 "stored_filename" => $fileName,
                                                 "filepath" => self::$upload_dir . $fileName

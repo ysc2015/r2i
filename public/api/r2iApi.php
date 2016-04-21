@@ -231,8 +231,8 @@ class r2iApi extends api {
      * delete sd file
      * @return JSON
      */
-    private function delete_sd_file($delete) {
-        $this->sendResponse(200,json_encode(SDFilePDO::deleteProjectSDFile($delete)));
+    private function delete_resource_file($delete) {
+        $this->sendResponse(200,json_encode(ResourcePDO::deleteResourceFile($delete)));
     }
 
     /**
@@ -261,6 +261,10 @@ class r2iApi extends api {
 
     private function test() {
         $this->sendResponse(200,json_encode(ProjectPDO::getAllProjects()));
+    }
+
+    private function isQgisUser() {
+
     }
 
 

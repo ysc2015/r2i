@@ -85,7 +85,7 @@ class MailNotifier extends Model {
         self::$mail->Password = "r2ib@ck0ffice";
     }
 
-    public static function sendMailNotification($messagetype,$ressourceid) {
+    public static function sendMailNotification($messagetype,$objid) {
         self::initialize();
 
         $subject = "";
@@ -93,7 +93,7 @@ class MailNotifier extends Model {
         $to = array();
         switch($messagetype) {
             case "project_create" : self::$upload_dir = "../../uploads/fichiersprojets/";
-                                    $project = ProjectPDO::getProjectById($ressourceid);
+                                    $project = ProjectPDO::getProjectById($objid);
                                     $subject = "Lancement Projet d’étude Plaque PON FTTH ".$project["site_code"]." ".$project["city"];
                                     $to []= array("bitlord1980@gmail.com");
                                     $html .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
@@ -127,7 +127,7 @@ class MailNotifier extends Model {
         self::$mail->addAddress("bitlord1980@gmail.com");
 
         //Set attachement
-        $files = SDFilePDO::getProjectFilesByProjectId($ressourceid);
+        $files = ResourcePDO::getResourcesByObjectIdAndObjectType($objid,"project");
         if($files["done"]) {
             foreach($files["data"] as $key => $value) {
                 if(file_exists(self::$upload_dir.$value["uploaded_filename"]))

@@ -98,6 +98,7 @@ var openDetails = function (elem,projectid) {
                         }
                     }
                 });
+                $( "#exampleTable_" + iTableCounter+" tr:odd" ).css( "background-color", "#F7F792" );
                 iTableCounter = iTableCounter + 1;
             },
             error: function (response) {

@@ -1,10 +1,10 @@
-<?php if($action == "edit"): ?>
+<?php if($action == "list"): ?>
     <!-- Page Header -->
     <div class="content bg-gray-lighter">
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Synoptiques <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                    Fichiers <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -17,13 +17,26 @@
     </div>
     <!-- END Page Header -->
     <div class="content">
-        <div class="row" style="margin-bottom: 20px;margin-left: 0px;">
-            <button class="btn btn-minw btn-square btn-primary linked open-upload-syn" type="button">modifier synoptique</button>
-            <button class="btn btn-minw btn-square btn-danger open-delete-dialog linked" type="button">supprimer synoptique</button>
+        <!-- Projects Table -->
+        <div class="block">
+            <div class="block-content">
+                <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+                <table class="table table-bordered table-striped js-dataTable-full">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="hidden-xs">Date de création</th>
+                        <th class="hidden-xs">Date d'attribution</th>
+                        <th class="hidden-xs">Ville</th>
+                        <th class="hidden-xs">Trigramme de la plaque</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <iframe src="<?php echo $r2i->synops_folder."PDB_NULL_02001-BPI_NULL_02022.html"?>"
-                style="height:100%;width:100%;border:2px dashed #000">
-        </iframe>
+        <!-- END Projects Table -->
     </div>
 <?php endif; ?>
 

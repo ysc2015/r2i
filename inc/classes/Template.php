@@ -16,6 +16,7 @@ class Template {
             $title              = '',
             $description        = '',
             $assets_folder      = '',
+            $synops_folder      = '',
             $body_bg            = '',
             $main_nav           = array(),
             $main_nav_active    = '',
@@ -95,6 +96,7 @@ class Template {
         $this->name                 = $name;
         $this->version              = $version;
         $this->assets_folder        = $assets_folder;
+        $this->synops_folder        = 'uploads/synOT/';
     }
 
     /**

@@ -9,7 +9,7 @@ header("Content-type: application/javascript");
 
 var API_URL = 'public/api/r2iApi.php';
 
-function deleteFileDialog (id,name) {
+function deleteFileDialog (id,filepath,name) {
     $( "#alertbox p").html('Suppprimer le fichier ' +name+ '?');
     $( "#alertbox" ).dialog({
         dialogClass: "alert-box",
@@ -25,25 +25,25 @@ function deleteFileDialog (id,name) {
 
                 ProjectFormValidation.showLoader('suppression fichier contour');
 
-                Params['project_sd_file_id'] = id;
-                Params['filename'] = name;
+                Params['resid'] = id;
+                Params['filepath'] = filepath;
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'delete_sd_file');
+                formData.append('method', 'delete_resource_file');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('delete_sd_file:success');
+                        console.log('delete_resource_file:success');
                         console.log(response);
                         ProjectFormValidation.hideLoader();
                         ProjectFormValidation.buildFilesList();
                         ProjectFormValidation.openDialog(response.msg);
                     },
                     error: function (e) {
-                        console.log('delete_sd_file:error');
+                        console.log('delete_resource_file:error');
                         console.log(e);
                         ProjectFormValidation.hideLoader();
                         ProjectFormValidation.buildFilesList();
@@ -111,7 +111,7 @@ var ProjectFormValidation = function() {
                     $.each(response.data, function(index, item) {
                         console.log(item.uploaded_filename);
                         html +='<div class="alert alert-info">';
-                        html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFileDialog(\''+item.resource_id+'\',\''+item.uploaded_filename+'\')">&times;</button>';
+                        html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFileDialog(\''+item.resource_id+'\',\''+item.filepath+'\',\''+item.uploaded_filename+'\')">&times;</button>';
                         html +='<i class="fa fa-check"></i><a class="alert-link" href="javascript:void(0)"> '+item.uploaded_filename+'</a>';
                         html +='</div>';
                     });
