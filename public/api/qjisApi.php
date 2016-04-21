@@ -30,7 +30,7 @@ class qjisApi extends api {
     // process api method
     function processApi($method="") {
         switch($_POST['action']) {
-            case "login" : return $this->isQgisUser($_POST['login'],$_POST['mdp']);break;
+            case "login" : return $this->get_login($_POST['login'],$_POST['mdp']);break;
             default: break;
         }
     }
