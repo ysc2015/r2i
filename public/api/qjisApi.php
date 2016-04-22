@@ -38,11 +38,10 @@ class qjisApi extends api {
     //requested methods here
 
     private function get_login($login,$mdp) {
-        $r = ($login=="ayoub"?true:false);
-        $this->sendResponse(200,$r);
+        if($login=="ayoub")
+            $this->sendResponse(200,true);
+        else $this->sendResponse(200,false);
     }
-
-
 
 }// END class
 
