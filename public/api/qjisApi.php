@@ -28,10 +28,10 @@ class qjisApi extends api {
     }
 
     // process api method
-    function processApi($method="") {
-        switch($_POST['action']) {
-            case "login" : return $this->get_login($_POST['login'],$_POST['mdp']);break;
-            default: break;
+    function processApi($action="") {
+        switch($action) {
+            case "login" : $this->get_login($_POST['user'],$_POST['mdp']);break;
+            default : break;
         }
     }
 
@@ -39,15 +39,15 @@ class qjisApi extends api {
 
     private function get_login($login,$mdp) {
         if($login=="ayoub")
-            $this->sendResponse(200,true);
-        else $this->sendResponse(200,false);
+            echo "1";
+        else echo "0";
     }
 
 }// END class
 
 $api = new qjisApi();
-if(isset($_POST['method']) && $_POST['method']!="") {
-    $api->processApi($_POST['method']);
+if(isset($_POST['action']) && $_POST['action']!="") {
+    $api->processApi($_POST['action']);
 }
 
 else echo json_encode(array('status'=>'error','msg'=>'erreur traitement serveur !'));
