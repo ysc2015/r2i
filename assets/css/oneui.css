@@ -17038,3 +17038,12 @@ table.dataTable tbody tr.selected {
   background-image: -o-linear-gradient(top, #5e9ace, #416cb8);
   background-image: linear-gradient(to bottom, #5e9ace, #416cb8);
 }
+
+#my-block {
+  position: fixed;
+  top: 170px;
+  right: 30px;
+  width: 300px;
+
+  opacity: 0.8;
+}

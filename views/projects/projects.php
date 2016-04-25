@@ -4,13 +4,12 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    ButtonsZ <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                    Projets
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
                 <ol class="breadcrumb push-10-t">
-                    <li>UI Elements</li>
-                    <li><a class="link-effect" href="">Buttons</a></li>
+                    <li>Liste des projets</li>
                 </ol>
             </div>
         </div>
