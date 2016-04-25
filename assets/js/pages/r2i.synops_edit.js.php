@@ -8,7 +8,7 @@ header("Content-type: application/javascript");
  */
 
 var SynopsFormValidation = function() {
-    var API_URL = 'public/api/r2iApi.php';
+    var API_URL = 'public/api/qjisApi.php';
     var $form = jQuery('.js-validation-bootstrap');
     //loader
     var showLoader = function(txt) {
@@ -33,6 +33,40 @@ var SynopsFormValidation = function() {
                     $( this ).dialog( "close" );
                 }
             }
+        });
+    };
+
+    //events
+    var addSynoptic = function() {
+        // When the add project form is submitted
+        jQuery('.open-upload-syn').on('click', function(){
+
+            //$('#loader').modal({backdrop: 'static', keyboard: false});
+
+            var formData = new FormData();
+
+            formData.append('action', 'login');
+            formData.append('user', 'ayoub');
+            formData.append('mdp', 'dsdsq');
+
+            $.ajax({
+                url: API_URL,
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    console.log('get_login:success');
+                    console.log(response);
+                },
+                error: function (e) {
+                    console.log('get_login:error');
+                    console.log(e.responseText);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            return false;
         });
     };
 
@@ -67,6 +101,7 @@ var SynopsFormValidation = function() {
     return {
         init: function () {
             //events
+            addSynoptic();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation

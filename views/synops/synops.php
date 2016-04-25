@@ -17,12 +17,27 @@
     </div>
     <!-- END Page Header -->
     <div class="content">
-        <div class="row" style="margin-bottom: 20px;margin-left: 0px;">
-            <button class="btn btn-minw btn-square btn-primary linked open-upload-syn" type="button">modifier synoptique</button>
-            <button class="btn btn-minw btn-square btn-danger open-delete-dialog linked" type="button">supprimer synoptique</button>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="block block-opt-hidden block-themed block-rounded" id="my-block">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">Edition</h3>
+                    </div>
+                    <div class="block-content">
+                        <button class="btn btn-block btn-success push-10" type="button"><i class="fa fa-plus pull-left"></i> ajouter synoptique</button>
+                        <button class="btn btn-block btn-default push-10" type="button"><i class="fa fa-pencil pull-left"></i> modifier synoptique</button>
+                        <button class="btn btn-block btn-danger push-10" type="button"><i class="fa fa-times pull-left"></i> supprimer synoptique</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <iframe src="<?php echo $r2i->synops_folder."PDB_NULL_02001-BPI_NULL_02022.html"?>"
-                style="height:100%;width:100%;border:2px dashed #000">
+                style="height:100%;width:100%;border:2px dashed #000;margin-top: 50px;">
         </iframe>
     </div>
 <?php endif; ?>

@@ -1,13 +1,23 @@
 <?php if ($action == "list"): ?>
+    <!-- Page Header -->
+    <div class="content bg-gray-lighter">
+        <div class="row items-push">
+            <div class="col-sm-8">
+                <h1 class="page-heading">
+                    Utilisateurs
+                </h1>
+            </div>
+            <div class="col-sm-4 text-right hidden-xs">
+                <ol class="breadcrumb push-10-t">
+                    <li>UI Elements</li>
+                    <li><a class="link-effect" href="">Buttons</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- END Page Header -->
     <div class="content">
         <div class="block">
-            <div class="block-header">
-                <button type="button" class="btn btn-minw btn-default push-5-r push-10 open-add-form">
-                    <i class="fa fa-plus">
-                    </i> Ajouter Utilisateur
-                </button>
-                <h3 class="block-title">Liste des Utilisateurs</h3>
-            </div>
             <div class="block-content">
                 <table id="masterTable" class="table table-bordered table-striped js-dataTable-full">
                     <thead>
