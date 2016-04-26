@@ -29,7 +29,7 @@ var TransportSwitchFormValidation = function() {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
                     if(done) {
-                        window.location.href = '?page=transportswitch&action=edit&tswitch='+id;
+                        window.location.href = '?page=transportswitch&action=edit&transportswitchid='+id;
                     }
                 }
             }
