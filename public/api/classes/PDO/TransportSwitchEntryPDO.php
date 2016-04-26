@@ -45,7 +45,7 @@ class TransportSwitchEntryPDO {
         //load database instance
         self::$db = DB::getInstance();
         //set table name
-        self::$table = "transport_switch";
+        self::$table = "transportswitch";
         //set upload directory
         self::$upload_dir = "../../uploads/fichiersprojets/";
     }
@@ -83,13 +83,12 @@ class TransportSwitchEntryPDO {
     public static function updateTrnsportSwitchEntry($update) {
         self::initialize();
         $bind = array(
-            ":transport_switch_id" => $update['transport_switch_id']
+            ":transportswitch_id" => $update['transportswitch_id']
         );
 
         $date = new DateTime('now');
         $toupdate = $update;
         $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
-
         $toupdate['plans_transmission_date'] = ($update['plans_transmission_date']!=""?DateTime::createFromFormat('d/m/Y', $update['plans_transmission_date'])->format('Y-m-d'):null);
         $toupdate['switch_date'] = ($update['switch_date']!=""?DateTime::createFromFormat('d/m/Y', $update['switch_date'])->format('Y-m-d'):null);
         $toupdate['ret_date_prev'] = ($update['ret_date_prev']!=""?DateTime::createFromFormat('d/m/Y', $update['ret_date_prev'])->format('Y-m-d'):null);
@@ -97,7 +96,7 @@ class TransportSwitchEntryPDO {
         $toupdate['ret_date'] = ($update['ret_date']!=""?DateTime::createFromFormat('d/m/Y', $update['ret_date'])->format('Y-m-d'):null);
 
         try {
-            $result = self::$db->update(self::$table, $toupdate, "transport_switch_id = :transport_switch_id", $bind);
+            $result = self::$db->update(self::$table, $toupdate, "transportswitch_id = :transportswitch_id", $bind);
             if($result) return array("done" =>true,"msg" =>"entréé transport/aiguillage mis à jour");
             else return array("done" =>false,"msg" =>"probléme mise à jour entréé transport/aiguillage");
         } catch(Exception $e) {
@@ -113,11 +112,11 @@ class TransportSwitchEntryPDO {
      * @param int $sub_project_id
      * @return array
      */
-    public static function getTransportSwitchById($transport_switch_id) {
+    public static function getTransportSwitchById($transportswitch_id) {
         self::initialize();
         $bind = array(
-            ":transport_switch_id" => $transport_switch_id
+            ":transportswitch_id" => $transportswitch_id
         );
-        return self::$db->select(self::$table, "transport_switch_id = :transport_switch_id", $bind)[0];
+        return self::$db->select(self::$table, "transportswitch_id = :transportswitch_id", $bind)[0];
     }
 }// END class

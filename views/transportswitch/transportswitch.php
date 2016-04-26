@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                    Réseau de Transport <small>Aiguillage</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -141,7 +141,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                    Réseau de Transport <small>Aiguillage</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -160,7 +160,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
-                            <input type="hidden" id="transport_switch_id" name="transport_switch_id" value="<?php echo $_GET['tswitch']?>">
+                            <input type="hidden" id="transport_switch_id" name="transport_switch_id" value="<?php echo $_GET[$activePage]?>">
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="phase">Intervenant BE <span class="text-danger">*</span></label>
@@ -169,7 +169,7 @@
                                         <?php
                                         $beiusers = UserPDO::getUsersByProfilId(4);
                                         foreach($beiusers as $key => $value) {
-                                            echo '<option value="'.$value['user_id'].'" '.($tswitch['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                            echo '<option value="'.$value['user_id'].'" '.($transportswitch['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
                                         }
                                         ?>
                                     </select>
@@ -180,16 +180,16 @@
                                     <label for="plans">Plans <span class="text-danger">*</span></label>
                                     <select class="form-control" id="plans" name="plans">
                                         <option value="">Séléctionnez un plan</option>
-                                        <option value="1" <?php echo ($tswitch['plans'] == "1" ? "selected":"")?>>NON REALISES</option>
-                                        <option value="2" <?php echo ($tswitch['plans'] == "2" ? "selected":"")?>>EN COURS</option>
-                                        <option value="3" <?php echo ($tswitch['plans'] == "3" ? "selected":"")?>>OK</option>
+                                        <option value="1" <?php echo ($transportswitch['plans'] == "1" ? "selected":"")?>>NON REALISES</option>
+                                        <option value="2" <?php echo ($transportswitch['plans'] == "2" ? "selected":"")?>>EN COURS</option>
+                                        <option value="3" <?php echo ($transportswitch['plans'] == "3" ? "selected":"")?>>OK</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="linear_net">Linéaire de réseau <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="number" id="linear_net" name="linear_net" value="<?php echo $tswitch['linear_net']?>">
+                                    <input class="form-control" type="number" id="linear_net" name="linear_net" value="<?php echo $transportswitch['linear_net']?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -197,40 +197,40 @@
                                     <label for="plans_control">Contrôle des plans <span class="text-danger">*</span></label>
                                     <select class="form-control" id="plans_control" name="plans_control">
                                         <option value="">Séléctionnez un plan</option>
-                                        <option value="1" <?php echo ($tswitch['plans_control'] == "1" ? "selected":"")?>>Non Contrôlés</option>
-                                        <option value="2" <?php echo ($tswitch['plans_control'] == "2" ? "selected":"")?>>Contrôlés OK</option>
-                                        <option value="3" <?php echo ($tswitch['plans_control'] == "3" ? "selected":"")?>>Contrôlés NOK</option>
+                                        <option value="1" <?php echo ($transportswitch['plans_control'] == "1" ? "selected":"")?>>Non Contrôlés</option>
+                                        <option value="2" <?php echo ($transportswitch['plans_control'] == "2" ? "selected":"")?>>Contrôlés OK</option>
+                                        <option value="3" <?php echo ($transportswitch['plans_control'] == "3" ? "selected":"")?>>Contrôlés NOK</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="plans_transmission_date">Date Transmission Plans <span class="text-danger">*</span></label>
-                                    <input class="js-datepicker form-control" type="text" id="plans_transmission_date" name="plans_transmission_date" value="<?php echo ($tswitch['plans_transmission_date']!=""?DateTime::createFromFormat('Y-m-d', $tswitch['plans_transmission_date'])->format('d/m/Y'):"")?>">
+                                    <input class="js-datepicker form-control" type="text" id="plans_transmission_date" name="plans_transmission_date" value="<?php echo ($transportswitch['plans_transmission_date']!=""?DateTime::createFromFormat('Y-m-d', $transportswitch['plans_transmission_date'])->format('d/m/Y'):"")?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="company">Entreprise <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" id="company" name="company" value="<?php echo $tswitch['company']?>">
+                                    <input class="form-control" type="text" id="company" name="company" value="<?php echo $transportswitch['company']?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="switch_date">Date Aiguillage <span class="text-danger">*</span></label>
-                                    <input class="js-datepicker form-control" type="text" id="switch_date" name="switch_date" value="<?php echo ($tswitch['switch_date']!=""?DateTime::createFromFormat('Y-m-d', $tswitch['switch_date'])->format('d/m/Y'):"")?>">
+                                    <input class="js-datepicker form-control" type="text" id="switch_date" name="switch_date" value="<?php echo ($transportswitch['switch_date']!=""?DateTime::createFromFormat('Y-m-d', $transportswitch['switch_date'])->format('d/m/Y'):"")?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="ret_date_prev">Date ret Prev <span class="text-danger">*</span></label>
-                                    <input class="js-datepicker form-control" type="text" id="ret_date_prev" name="ret_date_prev" value="<?php echo ($tswitch['ret_date_prev']!=""?DateTime::createFromFormat('Y-m-d', $tswitch['ret_date_prev'])->format('d/m/Y'):"")?>">
+                                    <input class="js-datepicker form-control" type="text" id="ret_date_prev" name="ret_date_prev" value="<?php echo ($transportswitch['ret_date_prev']!=""?DateTime::createFromFormat('Y-m-d', $transportswitch['ret_date_prev'])->format('d/m/Y'):"")?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="duration">Durée <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $tswitch['duration']?>">
+                                    <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $transportswitch['duration']?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -238,9 +238,9 @@
                                     <label for="start_control">Contrôle démarrage effectif <span class="text-danger">*</span></label>
                                     <select class="form-control" id="start_control" name="start_control">
                                         <option value="">Séléctionnez un plan</option>
-                                        <option value="1" <?php echo ($tswitch['start_control'] == "1" ? "selected":"")?>>OK</option>
-                                        <option value="2" <?php echo ($tswitch['start_control'] == "2" ? "selected":"")?>>NOK</option>
-                                        <option value="3" <?php echo ($tswitch['start_control'] == "3" ? "selected":"")?>>Reporté</option>
+                                        <option value="1" <?php echo ($transportswitch['start_control'] == "1" ? "selected":"")?>>OK</option>
+                                        <option value="2" <?php echo ($transportswitch['start_control'] == "2" ? "selected":"")?>>NOK</option>
+                                        <option value="3" <?php echo ($transportswitch['start_control'] == "3" ? "selected":"")?>>Reporté</option>
                                     </select>
                                     <label for="start_control_report_date">Reporté à <span class="text-danger">*</span></label>
                                     <input class="js-datepicker form-control" type="text" id="start_control_report_date" name="start_control_report_date">
@@ -249,7 +249,7 @@
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
-                                    <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date" value="<?php echo ($tswitch['ret_date']!=""?DateTime::createFromFormat('Y-m-d', $tswitch['ret_date'])->format('d/m/Y'):"")?>">
+                                    <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date" value="<?php echo ($transportswitch['ret_date']!=""?DateTime::createFromFormat('Y-m-d', $transportswitch['ret_date'])->format('d/m/Y'):"")?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -257,9 +257,9 @@
                                     <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
                                     <select class="form-control" id="ret_state" name="ret_state">
                                         <option value="">Séléctionnez un plan</option>
-                                        <option value="1" <?php echo ($tswitch['ret_state'] == "1" ? "selected":"")?>>PAS DE RETOUR</option>
-                                        <option value="2" <?php echo ($tswitch['ret_state'] == "2" ? "selected":"")?>>RETOUR OK</option>
-                                        <option value="3" <?php echo ($tswitch['ret_state'] == "3" ? "selected":"")?>>RETOUR NOK</option>
+                                        <option value="1" <?php echo ($transportswitch['ret_state'] == "1" ? "selected":"")?>>PAS DE RETOUR</option>
+                                        <option value="2" <?php echo ($transportswitch['ret_state'] == "2" ? "selected":"")?>>RETOUR OK</option>
+                                        <option value="3" <?php echo ($transportswitch['ret_state'] == "3" ? "selected":"")?>>RETOUR NOK</option>
                                     </select>
                                 </div>
                             </div>
@@ -279,10 +279,10 @@
                             <a class="list-group-item" href="javascript:void(0)">
                                 <i class="fa fa-file-text-o push-5-r"></i> Chambres
                             </a>
-                            <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=edit">
+                            <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET[$activePage]."&objtype=$activePage"?>&action=edit">
                                 <i class="si si-graph push-5-r"></i> Synoptique
                             </a>
-                            <a class="list-group-item" href="?page=resources&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=list">
+                            <a class="list-group-item" href="#">
                                 <i class="si si-folder push-5-r"></i> Autres
                             </a>
                         </div>

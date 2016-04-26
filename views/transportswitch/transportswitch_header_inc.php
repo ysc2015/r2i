@@ -9,9 +9,9 @@ switch($action) {
                     $action = "nothing";
                 }
                 break;
-    case "edit" : if(isset($_GET['tswitch'])) {
+    case "edit" : if(isset($_GET[$activePage."id"])) {
                     ;//TODO check ressource access here
-                    $tswitch = TransportSwitchEntryPDO::getTransportSwitchById($_GET['tswitch']);
+                    $transportswitch = TransportSwitchEntryPDO::getTransportSwitchById($_GET[$activePage."id"]);
                 } else {
                     $action = "nothing";
                 }
