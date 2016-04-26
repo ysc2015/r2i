@@ -24,7 +24,7 @@
                     <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
                     <div class="form-group">
                         <div class="col-md-3">
-                            <label for="phase">Intervenant BE <span class="text-danger">*</span></label>
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
                             <select class="form-control" id="user_be" name="user_be">
                                 <option value="">Séléctionnez un BEI</option>
                                 <?php

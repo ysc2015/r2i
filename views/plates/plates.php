@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Gestion Plaque <small>desc here</small>
+                    Gestion Plaque <small>[Phase-Traitement Etude]<small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -21,6 +21,64 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="instig">Instigateur <span class="text-danger">*</span></label>
+                            <select class="form-control" id="instig" name="instig">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">BMB</option>
+                                <option value="2">RME</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="vague">Vague <span class="text-danger">*</span></label>
+                            <select class="form-control" id="vague" name="vague">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="1">3</option>
+                                <option value="2">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="launch_date">Date Lancement <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="launch_date" name="launch_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="site">Site <span class="text-danger">*</span></label>
+                            <select class="form-control" id="site" name="site">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">MPL</option>
+                                <option value="2">BZN</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="stud_user">Chargé d'étude <span class="text-danger">*</span></label>
+                            <select class="form-control" id="stud_user" name="stud_user">
+                                <option value="">Séléctionnez un BEI</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-plates" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +91,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>here desc</small>
+                    Gestion Plaque <small>[Phase-Traitement Etude]<small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -49,7 +107,18 @@
         <!-- Mega Form -->
         <div class="block block-bordered">
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                <form class="js-validation-bootstrap form-horizontal">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="instig">Instigateur <span class="text-danger">*</span></label>
+                            <select class="form-control" id="instig" name="instig">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">BMB</option>
+                                <option value="2">RME</option>
+                            </select>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
