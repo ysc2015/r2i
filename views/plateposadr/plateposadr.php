@@ -21,6 +21,68 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be_bex" name="user_be_bex">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_date">Date de Début <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_date" name="start_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="prev_ret_date">Date ret Prev <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="prev_ret_date" name="prev_ret_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex2">Intervenant <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be_bex2" name="user_be_bex2">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="site_bpe">BPE sur SITE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="site_bpe" name="site_bpe">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">A PLACER</option>
+                                <option value="2">PLACES</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-plateposadr" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
