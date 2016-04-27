@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Distribution <small>Aiguillage</small>
+                    Réseau de Distribution <small>[Aiguillage]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -21,6 +21,110 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez un BEI</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="plans">Plans <span class="text-danger">*</span></label>
+                            <select class="form-control" id="plans" name="plans">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">NON REALISES</option>
+                                <option value="2">EN COURS</option>
+                                <option value="3">OK</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="net_linear">Linéaire de réseau <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="net_linear" name="net_linear">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="plan_control">Contrôle des plans <span class="text-danger">*</span></label>
+                            <select class="form-control" id="plan_control" name="plan_control">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">Non Contrôlés</option>
+                                <option value="2">Contrôlés OK</option>
+                                <option value="3">Contrôlés NOK</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="plan_trans_date">Date Transmission Plans <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="plan_trans_date" name="plan_trans_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="company">Entreprise <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="company" name="company">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="switch_date">Date Aiguillage <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="switch_date" name="switch_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_control">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                            <select class="form-control" id="start_control" name="start_control">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">OK</option>
+                                <option value="2">NOK</option>
+                                <option value="3">Reporté</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="start_control_date">Reporté à <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_control_date" name="start_control_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
+                            <select class="form-control" id="ret_state" name="ret_state">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">PAS DE RETOUR</option>
+                                <option value="2">RETOUR OK</option>
+                                <option value="3">RETOUR NOK</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-distswitch" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +137,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Distribution <small>Aiguillage</small>
+                    Réseau de Distribution <small>[Aiguillage]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">

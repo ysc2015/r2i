@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Transport <small>Tirage</small>
+                    Réseau de Transport <small>[Tirage]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -21,6 +21,123 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="previs_date">Date Previsionnelle <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="previs_date" name="previs_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="plan_prep">Préparation des plans <span class="text-danger">*</span></label>
+                            <select class="form-control" id="plan_prep" name="plan_prep">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="plan_control">Contrôle des plans <span class="text-danger">*</span></label>
+                            <select class="form-control" id="plan_control" name="plan_control">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">Non Contrôlés</option>
+                                <option value="2">Contrôlés OK</option>
+                                <option value="3">Contrôlés NOK</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="plan_control_motif">Motif <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="plan_control_motif" name="plan_control_motif" rows="3" placeholder="motif ..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="plan_trans_date">Date Transmission Plans <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="plan_trans_date" name="plan_trans_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="company">Entreprise <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="company" name="company">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="print_date">Date Tirage <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="print_date" name="print_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="prev_ret_date">Date Retour Prev <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="prev_ret_date" name="prev_ret_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_control">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                            <select class="form-control" id="start_control" name="start_control">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">OK</option>
+                                <option value="2">NOK</option>
+                                <option value="3">Reporté</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="start_control_date">Date <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_control_date" name="start_control_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
+                            <select class="form-control" id="ret_state" name="ret_state">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">PAS DE RETOUR</option>
+                                <option value="2">RETOUR OK</option>
+                                <option value="3">RETOUR NOK</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-transportprint" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +150,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Transport <small>Tirage</small>
+                    Réseau de Transport <small>[Tirage]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">

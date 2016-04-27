@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Transport <small>Aiguillage</small>
+                    Réseau de Transport <small>[Aiguillage]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -141,7 +141,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Transport <small>Aiguillage</small>
+                    Réseau de Transport <small>[Aiguillage]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">

@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Distribution <small>Design CDI/CAD</small>
+                    Réseau de Distribution <small>[Design CDI/CAD]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -21,6 +21,81 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_bex">Intervenant BEX <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_bex" name="user_bex">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_date">Date Début <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_date" name="start_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="end_date">Date de Fin <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="end_date" name="end_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="linear_dist">Linéaire Distribution <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="linear_dist" name="linear_dist">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="state">Etat <span class="text-danger">*</span></label>
+                            <select class="form-control" id="state" name="state">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">Prévu</option>
+                                <option value="2">En Cours</option>
+                                <option value="3">Réalisé</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="send_date">Date envoi <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="send_date" name="send_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-distdesign" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +108,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>here desc</small>
+                    Buttons <small>[here desc]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
