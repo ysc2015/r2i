@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Réseau de Transport <small>Commande Structurante CTR</small>
+                    Réseau de Transport <small>[Commande Structurante CTR]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -21,6 +21,81 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal push-10-t push-10">
+                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be_bex" name="user_be_bex">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="but_ret_date">Date butoire traitement retour Aig j+3 <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="but_ret_date" name="but_ret_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="ret_ter_date">Traitement Retours terrain <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="ret_ter_date" name="ret_ter_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="mod_carto">Modification Carto <span class="text-danger">*</span></label>
+                            <select class="form-control" id="mod_carto" name="mod_carto">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">Oui</option>
+                                <option value="2">Non</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="access_cmd">Commande Accès <span class="text-danger">*</span></label>
+                            <select class="form-control" id="access_cmd" name="access_cmd">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1">En Cours</option>
+                                <option value="2">Réalisée</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="trans_date">Date Transmission CA <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="trans_date" name="trans_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="cmd_access_cmd">Référence Commande Accès <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="cmd_access_cmd" name="cmd_access_cmd">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="go_ft">GO FT <span class="text-danger">*</span></label>
+                            <select class="form-control" id="go_ft" name="go_ft">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">Commande En cours</option>
+                                <option value="2">Commande validée</option>
+                                <option value="3">Commande Refusée</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-transportctr" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +108,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>here desc</small>
+                    Buttons <small>[here desc]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
