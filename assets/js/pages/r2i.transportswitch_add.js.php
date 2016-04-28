@@ -37,13 +37,13 @@ var TransportSwitchFormValidation = function() {
     };
 
     var addTransportSwitchEntry = function() {
-        jQuery('.add-transport-switch').on('click', function() {
+        jQuery('.add-transportswitch').on('click', function() {
             console.log('addTransportSwitchEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée trsnsport / aiguillage ...');
+                showLoader('Ajout entrée transport/aiguillage ...');
 
                 var formData = new FormData();
                 var Params = {};

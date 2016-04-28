@@ -157,6 +157,111 @@
                 <div class="row">
                     <div class="col-md-7">
                         <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                            <input type="hidden" id="distconnect_id" name="distconnect_id" value="<?php echo $_GET[$activePage."id"]?>">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="user_be" name="user_be">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($distconnect['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="pds_user_be">Préparation PDS <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="pds_user_be" name="pds_user_be">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($distconnect['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="pln_ctrl">Contrôle des plans <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="pln_ctrl" name="pln_ctrl">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($distconnect['pln_ctrl'] == "1" ? "selected":"")?>>Non Contrôlés</option>
+                                        <option value="2" <?php echo ($distconnect['pln_ctrl'] == "2" ? "selected":"")?>>Contrôlés OK</option>
+                                        <option value="3" <?php echo ($distconnect['pln_ctrl'] == "3" ? "selected":"")?>>Contrôlés NOK</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="pln_ctrl_motif">Motif <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="pln_ctrl_motif" name="pln_ctrl_motif" rows="3" placeholder="motif ..."><?php echo $distconnect['pln_ctrl_motif']?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="pds_trans_date">Date Transmission PDS <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="pds_trans_date" name="pds_trans_date" value="<?php echo ($distconnect['pds_trans_date']!=""?DateTime::createFromFormat('Y-m-d', $distconnect['pds_trans_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="company">Entreprise <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="company" name="company" value="<?php echo $distconnect['company']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="connect_date">Date Racco <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="connect_date" name="connect_date" value="<?php echo ($distconnect['connect_date']!=""?DateTime::createFromFormat('Y-m-d', $distconnect['connect_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="duration">Durée <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $distconnect['duration']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="start_control_eff">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="start_control_eff" name="start_control_eff">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($distconnect['start_control_eff'] == "1" ? "selected":"")?>>OK</option>
+                                        <option value="2" <?php echo ($distconnect['start_control_eff'] == "2" ? "selected":"")?>>NOK</option>
+                                        <option value="3" <?php echo ($distconnect['start_control_eff'] == "3" ? "selected":"")?>>Reporté</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="start_control_eff_date">Date <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="start_control_eff_date" name="start_control_eff_date" value="<?php echo ($distconnect['start_control_eff_date']!=""?DateTime::createFromFormat('Y-m-d', $distconnect['start_control_eff_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date" value="<?php echo ($distconnect['ret_date']!=""?DateTime::createFromFormat('Y-m-d', $distconnect['ret_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="ret_state" name="ret_state">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($distconnect['ret_state'] == "1" ? "selected":"")?>>PAS DE RETOUR</option>
+                                        <option value="2" <?php echo ($distconnect['ret_state'] == "2" ? "selected":"")?>>RETOUR OK</option>
+                                        <option value="3" <?php echo ($distconnect['ret_state'] == "3" ? "selected":"")?>>RETOUR NOK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <button class="btn btn-primary update-distconnect" type="button">Enregistrer</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-5">

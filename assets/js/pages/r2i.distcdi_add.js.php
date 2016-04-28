@@ -18,7 +18,7 @@ var DistCDIFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(txt) {
+    var openDialog = function(id,txt,done) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -26,13 +26,60 @@ var DistCDIFormValidation = function() {
             /*height:140,*/
             modal: true,
             buttons: {
-                "Ouvrir": function() {
+                "Fermer": function() {
                     $( this ).dialog( "close" );
-                },
-                Annuler: function() {
-                    $( this ).dialog( "close" );
+                    if(done) {
+                        window.location.href = '?page=distcdi&action=edit&distcdiid='+id;
+                    }
                 }
             }
+        });
+    };
+
+    var addDistCDIEntry = function() {
+        jQuery('.add-distcdi').on('click', function() {
+            console.log('addDistCDIEntry');
+
+            if($form.valid()) {
+                console.log('form submited');
+
+                showLoader('Ajout entrée distribution/commande cdi ...');
+
+                var formData = new FormData();
+                var Params = {};
+
+                $form.find("input,textarea,select").each(function (index, node) {
+                    Params[node.name] = node.value;
+                });
+
+                formData.append('parameters', JSON.stringify(Params));
+                formData.append('method', 'insert_distcdi_entry');
+
+                $.ajax({
+                    url: API_URL,
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        console.log('insert_distcdi_entry:success');
+                        console.log(response);
+                        hideLoader();
+                        openDialog(response.id, response.msg, response.done);
+
+                    },
+                    error: function (e) {
+                        console.log('insert_distcdi_entry:error');
+                        console.log(e.responseText);
+                        hideLoader();
+                        openDialog(0, 'erreur', false);
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+
+            return false;
         });
     };
 
@@ -67,6 +114,7 @@ var DistCDIFormValidation = function() {
     return {
         init: function () {
             //events
+            addDistCDIEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
