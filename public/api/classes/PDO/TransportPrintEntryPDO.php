@@ -1,10 +1,10 @@
 <?php
 /**
- * Transport Switch entry PDO class.
+ * Transport Print entry PDO class.
  * @author RR
  */
 
-class TransportSwitchEntryPDO {
+class TransportPrintEntryPDO {
 
     /**
      * Database Instance
@@ -52,29 +52,30 @@ class TransportSwitchEntryPDO {
         //load database instance
         self::$db = DB::getInstance();
         //set table name
-        self::$table = "transportswitch";
-        self::$entry_name = "transport/aiguillage";
+        self::$table = "transportprint";
+        self::$entry_name = "transport/tirage";
         //set upload directory
         self::$upload_dir = "../../uploads/fichiersprojets/";
     }
 
     /**
-     * add transport switch entry
+     * add transport print entry
      * @return bool
      */
-    public static function insertTransportSwitchEntry($insert) {
+    public static function insertTransportPrintEntry($insert) {
         self::initialize();
 
         $date = new DateTime('now');
         $toinsert = $insert;
         $toinsert['createdAt'] = $date->format('Y-m-d H:i:s');
 
-        $toinsert['plans_transmission_date'] = ($insert['plans_transmission_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['plans_transmission_date'])->format('Y-m-d'):null);
-        $toinsert['switch_date'] = ($insert['switch_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['switch_date'])->format('Y-m-d'):null);
-        $toinsert['ret_date_prev'] = ($insert['ret_date_prev']!=""?DateTime::createFromFormat('d/m/Y', $insert['ret_date_prev'])->format('Y-m-d'):null);
-        $toinsert['start_control_report_date'] = ($insert['start_control_report_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['start_control_report_date'])->format('Y-m-d'):null);
+        $toinsert['previs_date'] = ($insert['previs_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['previs_date'])->format('Y-m-d'):null);
+        $toinsert['plan_trans_date'] = ($insert['plan_trans_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['plan_trans_date'])->format('Y-m-d'):null);
+        $toinsert['print_date'] = ($insert['print_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['print_date'])->format('Y-m-d'):null);
+        $toinsert['prev_ret_date'] = ($insert['prev_ret_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['prev_ret_date'])->format('Y-m-d'):null);
+        $toinsert['start_control_date'] = ($insert['start_control_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['start_control_date'])->format('Y-m-d'):null);
         $toinsert['ret_date'] = ($insert['ret_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['ret_date'])->format('Y-m-d'):null);
-        
+
         $result = self::$db->insert(self::$table,$toinsert);
         if($result) {
             $lastInsertId = self::$db->lastInsertId();
@@ -84,27 +85,29 @@ class TransportSwitchEntryPDO {
     }
 
     /**
-     * update transport switch entry
+     * update transport print entry
      * @param array $update
      * @return array
      */
-    public static function updateTransportSwitchEntry($update) {
+    public static function updateTransportPrintEntry($update) {
         self::initialize();
         $bind = array(
-            ":transportswitch_id" => $update['transportswitch_id']
+            ":transportprint_id" => $update['transportprint_id']
         );
 
         $date = new DateTime('now');
         $toupdate = $update;
         $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
-        $toupdate['plans_transmission_date'] = ($update['plans_transmission_date']!=""?DateTime::createFromFormat('d/m/Y', $update['plans_transmission_date'])->format('Y-m-d'):null);
-        $toupdate['switch_date'] = ($update['switch_date']!=""?DateTime::createFromFormat('d/m/Y', $update['switch_date'])->format('Y-m-d'):null);
-        $toupdate['ret_date_prev'] = ($update['ret_date_prev']!=""?DateTime::createFromFormat('d/m/Y', $update['ret_date_prev'])->format('Y-m-d'):null);
-        $toupdate['start_control_report_date'] = ($update['start_control_report_date']!=""?DateTime::createFromFormat('d/m/Y', $update['start_control_report_date'])->format('Y-m-d'):null);
+
+        $toupdate['previs_date'] = ($update['previs_date']!=""?DateTime::createFromFormat('d/m/Y', $update['previs_date'])->format('Y-m-d'):null);
+        $toupdate['plan_trans_date'] = ($update['plan_trans_date']!=""?DateTime::createFromFormat('d/m/Y', $update['plan_trans_date'])->format('Y-m-d'):null);
+        $toupdate['print_date'] = ($update['print_date']!=""?DateTime::createFromFormat('d/m/Y', $update['print_date'])->format('Y-m-d'):null);
+        $toupdate['prev_ret_date'] = ($update['prev_ret_date']!=""?DateTime::createFromFormat('d/m/Y', $update['prev_ret_date'])->format('Y-m-d'):null);
+        $toupdate['start_control_date'] = ($update['start_control_date']!=""?DateTime::createFromFormat('d/m/Y', $update['start_control_date'])->format('Y-m-d'):null);
         $toupdate['ret_date'] = ($update['ret_date']!=""?DateTime::createFromFormat('d/m/Y', $update['ret_date'])->format('Y-m-d'):null);
 
         try {
-            $result = self::$db->update(self::$table, $toupdate, "transportswitch_id = :transportswitch_id", $bind);
+            $result = self::$db->update(self::$table, $toupdate, "transportprint_id = :transportprint_id", $bind);
             if($result) return array("done" =>true,"msg" =>"entréé ".self::$entry_name." mis à jour");
             else return array("done" =>false,"msg" =>"probléme mise à jour entréé ".self::$entry_name);
         } catch(Exception $e) {
@@ -116,15 +119,15 @@ class TransportSwitchEntryPDO {
     }
 
     /**
-     * get transport switch entry by id
-     * @param int $transportswitch_id
+     * get transport print entry by id
+     * @param int $transportprint_id
      * @return array
      */
-    public static function getTransportSwitchById($transportswitch_id) {
+    public static function getTransportPrintById($transportprint_id) {
         self::initialize();
         $bind = array(
-            ":transportswitch_id" => $transportswitch_id
+            ":transportprint_id" => $transportprint_id
         );
-        return self::$db->select(self::$table, "transportswitch_id = :transportswitch_id", $bind)[0];
+        return self::$db->select(self::$table, "transportprint_id = :transportprint_id", $bind)[0];
     }
 }// END class

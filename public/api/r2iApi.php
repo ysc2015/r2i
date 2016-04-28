@@ -248,7 +248,7 @@ class r2iApi extends api {
      * @return JSON
      */
     private function insert_transport_switch_entry($insert) {
-        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::insertTrnsportSwitchEntry($insert)));
+        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::insertTransportSwitchEntry($insert)));
     }
 
     /**
@@ -256,16 +256,25 @@ class r2iApi extends api {
      * @return JSON
      */
     private function update_transport_switch_entry($update) {
-        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::updateTrnsportSwitchEntry($update)));
+        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::updateTransportSwitchEntry($update)));
     }
 
-    private function test() {
-        $this->sendResponse(200,json_encode(ProjectPDO::getAllProjects()));
+    /**
+     * Insert plates entry
+     * @return JSON
+     */
+    private function insert_plates_entry($insert) {
+        $this->sendResponse(200,json_encode(PlatesEntryPDO::insertPlatesEntry($insert)));
     }
 
-    private function isQgisUser() {
-
+    /**
+     * Update plates entry
+     * @return JSON
+     */
+    private function update_plates_entry($update) {
+        $this->sendResponse(200,json_encode(PlatesEntryPDO::updatePlatesEntry($update)));
     }
+
 
 
 
