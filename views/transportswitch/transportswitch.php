@@ -126,7 +126,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-3">
-                            <button class="btn btn-primary add-transport-switch" type="button">Enregistrer</button>
+                            <button class="btn btn-primary add-transportswitch" type="button">Enregistrer</button>
                         </div>
                     </div>
                 </form>
@@ -160,7 +160,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
-                            <input type="hidden" id="transport_switch_id" name="transport_switch_id" value="<?php echo $_GET[$activePage]?>">
+                            <input type="hidden" id="transport_switch_id" name="transport_switch_id" value="<?php echo $_GET[$activePage."id"]?>">
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="phase">Intervenant BE <span class="text-danger">*</span></label>

@@ -260,6 +260,38 @@ class r2iApi extends api {
     }
 
     /**
+     * Insert dist cdi entry
+     * @return JSON
+     */
+    private function insert_distcdi_entry($insert) {
+        $this->sendResponse(200,json_encode(DistCDIEntryPDO::insertDistCDIEntry($insert)));
+    }
+
+    /**
+     * Update dist cdi entry
+     * @return JSON
+     */
+    private function update_distcdi_entry($update) {
+        $this->sendResponse(200,json_encode(DistCDIEntryPDO::updateDistCDIEntry($update)));
+    }
+
+    /**
+     * Insert dist connect entry
+     * @return JSON
+     */
+    private function insert_distconnect_entry($insert) {
+        $this->sendResponse(200,json_encode(DistConnectEntryPDO::insertDistConnectEntry($insert)));
+    }
+
+    /**
+     * Update dist connect entry
+     * @return JSON
+     */
+    private function update_distconnect_entry($update) {
+        $this->sendResponse(200,json_encode(DistConnectEntryPDO::updateDistConnectEntry($update)));
+    }
+
+    /**
      * Insert plates entry
      * @return JSON
      */

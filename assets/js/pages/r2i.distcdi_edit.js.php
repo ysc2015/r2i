@@ -2,12 +2,12 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.distconnect_add.js.php
+ *  Document   : r2i.distcdi_edit.js.php
  *  Author     : RR
- *  Description: Custom JS code : add dist connect entry
+ *  Description: Custom JS code : edit dist cdi informations
  */
 
-var DistConnectFormValidation = function() {
+var DistCDIFormValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
     //loader
@@ -18,7 +18,7 @@ var DistConnectFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(id,txt,done) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,22 +28,19 @@ var DistConnectFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
-                        window.location.href = '?page=distconnect&action=edit&distconnectid='+id;
-                    }
                 }
             }
         });
     };
 
-    var addDistConnectEntry = function() {
-        jQuery('.add-distconnect').on('click', function() {
-            console.log('addDistConnectEntry');
+    var updateDistCDIEntry = function() {
+        jQuery('.update-distcdi').on('click', function() {
+            console.log('updateDistCDIEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée distribution/raccordements ...');
+                showLoader('MAJ entrée distribution/commande cdi ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -53,24 +50,24 @@ var DistConnectFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_distconnect_entry');
+                formData.append('method', 'update_distcdi_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_distconnect_entry:success');
+                        console.log('update_distcdi_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.id, response.msg, response.done);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_distconnect_entry:error');
+                        console.log('update_distcdi_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog(0, 'erreur', false);
+                        openDialog('erreur');
 
                     },
                     cache: false,
@@ -114,7 +111,7 @@ var DistConnectFormValidation = function() {
     return {
         init: function () {
             //events
-            addDistConnectEntry();
+            updateDistCDIEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
@@ -124,4 +121,4 @@ var DistConnectFormValidation = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ DistConnectFormValidation.init(); });
+jQuery(function(){ DistCDIFormValidation.init(); });
