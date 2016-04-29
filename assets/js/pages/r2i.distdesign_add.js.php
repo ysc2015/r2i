@@ -18,7 +18,7 @@ var DistDesignFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(txt) {
+    var openDialog = function(id,txt,done) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -26,13 +26,60 @@ var DistDesignFormValidation = function() {
             /*height:140,*/
             modal: true,
             buttons: {
-                "Ouvrir": function() {
+                "Fermer": function() {
                     $( this ).dialog( "close" );
-                },
-                Annuler: function() {
-                    $( this ).dialog( "close" );
+                    if(done) {
+                        window.location.href = '?page=distdesign&action=edit&distdesignid='+id;
+                    }
                 }
             }
+        });
+    };
+
+    var addDistDesignEntry = function() {
+        jQuery('.add-distdesign').on('click', function() {
+            console.log('addDistDesignEntry');
+
+            if($form.valid()) {
+                console.log('form submited');
+
+                showLoader('Ajout entrée distribution/design cdi/cad ...');
+
+                var formData = new FormData();
+                var Params = {};
+
+                $form.find("input,textarea,select").each(function (index, node) {
+                    Params[node.name] = node.value;
+                });
+
+                formData.append('parameters', JSON.stringify(Params));
+                formData.append('method', 'insert_distdesign_entry');
+
+                $.ajax({
+                    url: API_URL,
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        console.log('insert_distdesign_entry:success');
+                        console.log(response);
+                        hideLoader();
+                        openDialog(response.id, response.msg, response.done);
+
+                    },
+                    error: function (e) {
+                        console.log('insert_distdesign_entry:error');
+                        console.log(e.responseText);
+                        hideLoader();
+                        openDialog(0, 'erreur', false);
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+
+            return false;
         });
     };
 
@@ -67,6 +114,7 @@ var DistDesignFormValidation = function() {
     return {
         init: function () {
             //events
+            addDistDesignEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation

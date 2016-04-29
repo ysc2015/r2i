@@ -292,6 +292,54 @@ class r2iApi extends api {
     }
 
     /**
+     * Insert dist design entry
+     * @return JSON
+     */
+    private function insert_distdesign_entry($insert) {
+        $this->sendResponse(200,json_encode(DistDesignEntryPDO::insertDistDesignEntry($insert)));
+    }
+
+    /**
+     * Update dist design entry
+     * @return JSON
+     */
+    private function update_distdesign_entry($update) {
+        $this->sendResponse(200,json_encode(DistDesignEntryPDO::updateDistDesignEntry($update)));
+    }
+
+    /**
+     * Insert dist print entry
+     * @return JSON
+     */
+    private function insert_distprint_entry($insert) {
+        $this->sendResponse(200,json_encode(DistPrintEntryPDO::insertDistPrintEntry($insert)));
+    }
+
+    /**
+     * Update dist print entry
+     * @return JSON
+     */
+    private function update_distprint_entry($update) {
+        $this->sendResponse(200,json_encode(DistPrintEntryPDO::updateDistPrintEntry($update)));
+    }
+
+    /**
+     * Insert dist recipe entry
+     * @return JSON
+     */
+    private function insert_distrecipe_entry($insert) {
+        $this->sendResponse(200,json_encode(DistRecipeEntryPDO::insertDistRecipeEntry($insert)));
+    }
+
+    /**
+     * Update dist recipe entry
+     * @return JSON
+     */
+    private function update_distrecipe_entry($update) {
+        $this->sendResponse(200,json_encode(DistRecipeEntryPDO::updateDistRecipeEntry($update)));
+    }
+
+    /**
      * Insert plates entry
      * @return JSON
      */

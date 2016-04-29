@@ -119,7 +119,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>[here desc]</small>
+                    Réseau de Distribution <small>[Recette]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -136,6 +136,92 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                    <input type="hidden" id="distrecipe_id" name="distrecipe_id" value="<?php echo $_GET[$activePage."id"]?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="doe">DOE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="doe" name="doe">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="netgeo">Netgeo <span class="text-danger">*</span></label>
+                            <select class="form-control" id="netgeo" name="netgeo">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_free">Intervenant FREE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_free" name="user_free">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'">'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="company">Intervenant Entreprise <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="company" name="company">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="recipe_date">Date de Recette <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="recipe_date" name="recipe_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="recipe_state">Etat Recette <span class="text-danger">*</span></label>
+                            <select class="form-control" id="recipe_state" name="recipe_state">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1">Recette Non Prévue</option>
+                                <option value="2">Recette Prévue</option>
+                                <option value="3">Recette OK</option>
+                                <option value="4">Recette Ajournée</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary add-distrecipe" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
