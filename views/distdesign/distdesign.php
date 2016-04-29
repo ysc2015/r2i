@@ -124,7 +124,82 @@
         <!-- Mega Form -->
         <div class="block block-bordered">
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                <form class="js-validation-bootstrap form-horizontal">
+                    <input type="hidden" id="distdesign_id" name="distdesign_id" value="<?php echo $_GET[$activePage."id"]?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($distdesign['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_bex">Intervenant BEX <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($distdesign['user_bex']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_date">Date Début <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_date" name="start_date" value="<?php echo ($distdesign['start_date']!=""?DateTime::createFromFormat('Y-m-d', $distdesign['start_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="end_date">Date de Fin <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="end_date" name="end_date" value="<?php echo ($distdesign['end_date']!=""?DateTime::createFromFormat('Y-m-d', $distdesign['end_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $distdesign['duration']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="linear_dist">Linéaire Distribution <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="linear_dist" name="linear_dist" value="<?php echo $distdesign['linear_dist']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="state">Etat <span class="text-danger">*</span></label>
+                            <select class="form-control" id="state" name="state">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1" <?php echo ($distdesign['state'] == "1" ? "selected":"")?>>Prévu</option>
+                                <option value="2" <?php echo ($distdesign['state'] == "2" ? "selected":"")?>>En Cours</option>
+                                <option value="3" <?php echo ($distdesign['state'] == "3" ? "selected":"")?>>Réalisé</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="send_date">Date envoi <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="send_date" name="send_date" value="<?php echo ($distdesign['send_date']!=""?DateTime::createFromFormat('Y-m-d', $distdesign['send_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary update-distdesign" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

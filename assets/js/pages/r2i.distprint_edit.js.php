@@ -2,12 +2,12 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.distrecipe_add.js.php
+ *  Document   : r2i.distprint_edit.js.php
  *  Author     : RR
- *  Description: Custom JS code : add dist recipe entry
+ *  Description: Custom JS code : edit dist print informations
  */
 
-var DistRecipeFormValidation = function() {
+var DistPrintFormValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
     //loader
@@ -18,7 +18,7 @@ var DistRecipeFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(id,txt,done) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,22 +28,19 @@ var DistRecipeFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
-                        window.location.href = '?page=distrecipe&action=edit&distrecipeid='+id;
-                    }
                 }
             }
         });
     };
 
-    var addDistRecipeEntry = function() {
-        jQuery('.add-distrecipe').on('click', function() {
-            console.log('addDistRecipeEntry');
+    var updateDistPrintEntry = function() {
+        jQuery('.update-distprint').on('click', function() {
+            console.log('updateDistPrintEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée distribution/recette ...');
+                showLoader('MAJ entrée distribution/tirage ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -53,24 +50,24 @@ var DistRecipeFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_distrecipe_entry');
+                formData.append('method', 'update_distprint_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_distrecipe_entry:success');
+                        console.log('update_distprint_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.id, response.msg, response.done);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_distrecipe_entry:error');
+                        console.log('update_distprint_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog(0, 'erreur', false);
+                        openDialog('erreur');
 
                     },
                     cache: false,
@@ -85,7 +82,7 @@ var DistRecipeFormValidation = function() {
 
     // Init page helpers
     var initPlugins = function() {
-        App.initHelpers(['datepicker']);
+        App.initHelpers(['easy-pie-chart','datepicker']);
     };
     // Init Bootstrap Forms Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
     var initValidationBootstrap = function(){
@@ -114,7 +111,7 @@ var DistRecipeFormValidation = function() {
     return {
         init: function () {
             //events
-            addDistRecipeEntry();
+            updateDistPrintEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
@@ -124,4 +121,4 @@ var DistRecipeFormValidation = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ DistRecipeFormValidation.init(); });
+jQuery(function(){ DistPrintFormValidation.init(); });

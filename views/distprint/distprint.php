@@ -162,8 +162,118 @@
             <div class="block-content">
                 <div class="row">
                     <div class="col-md-7">
-                        <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
-
+                        <form class="js-validation-bootstrap form-horizontal">
+                            <input type="hidden" id="distprint_id" name="distprint_id" value="<?php echo $_GET[$activePage."id"]?>">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="user_be" name="user_be">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($distprint['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="previs_date">Date Previsionnelle <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="previs_date" name="previs_date" value="<?php echo ($distprint['previs_date']!=""?DateTime::createFromFormat('Y-m-d', $distprint['previs_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plan_prep">Préparation des plans <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="user_be" name="user_be">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($distprint['plan_prep']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plan_control">Contrôle des plans <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="plan_control" name="plan_control">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($distprint['plan_control'] == "1" ? "selected":"")?>>Non Contrôlés</option>
+                                        <option value="2" <?php echo ($distprint['plan_control'] == "2" ? "selected":"")?>>Contrôlés OK</option>
+                                        <option value="3" <?php echo ($distprint['plan_control'] == "3" ? "selected":"")?>>Contrôlés NOK</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="plan_control_motif">Motif <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="plan_control_motif" name="plan_control_motif" rows="3" placeholder="motif ..."><?php echo $distprint['plan_control_motif']?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plan_trans_date">Date Transmission Plans <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="plan_trans_date" name="plan_trans_date" value="<?php echo ($distprint['plan_trans_date']!=""?DateTime::createFromFormat('Y-m-d', $distprint['plan_trans_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="company">Entreprise <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="company" name="company" value="<?php echo $distprint['company']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="print_date">Date Tirage <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="print_date" name="print_date" value="<?php echo ($distprint['print_date']!=""?DateTime::createFromFormat('Y-m-d', $distprint['print_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="duration">Durée <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $distprint['duration']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="start_control">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="start_control" name="start_control">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($distprint['start_control'] == "1" ? "selected":"")?>>OK</option>
+                                        <option value="2" <?php echo ($distprint['start_control'] == "2" ? "selected":"")?>>NOK</option>
+                                        <option value="3" <?php echo ($distprint['start_control'] == "3" ? "selected":"")?>>Reporté</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="start_control_date">Date <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="start_control_date" name="start_control_date" value="<?php echo ($distprint['start_control_date']!=""?DateTime::createFromFormat('Y-m-d', $distprint['start_control_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date" value="<?php echo ($distprint['ret_date']!=""?DateTime::createFromFormat('Y-m-d', $distprint['ret_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="ret_state" name="ret_state">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($distprint['ret_state'] == "1" ? "selected":"")?>>PAS DE RETOUR</option>
+                                        <option value="2" <?php echo ($distprint['ret_state'] == "2" ? "selected":"")?>>RETOUR OK</option>
+                                        <option value="3" <?php echo ($distprint['ret_state'] == "3" ? "selected":"")?>>RETOUR NOK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary update-distprint" type="button">Enregistrer</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-5">
