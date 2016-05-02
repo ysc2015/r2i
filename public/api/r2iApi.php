@@ -403,7 +403,69 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(PlatePosAdrEntryPDO::updatePlatePosAdrEntry($update)));
     }
 
+    /**
+     * Insert plate surv adr entry
+     * @return JSON
+     */
+    private function insert_platesurvadr_entry($insert) {
+        $this->sendResponse(200,json_encode(PlateSurvAdrEntryPDO::insertPlateSurvAdrEntry($insert)));
+    }
 
+    /**
+     * Update plate surv adr entry
+     * @return JSON
+     */
+    private function update_platesurvadr_entry($update) {
+        $this->sendResponse(200,json_encode(PlateSurvAdrEntryPDO::updatePlateSurvAdrEntry($update)));
+    }
+
+    /**
+     * Insert transport connect adr entry
+     * @return JSON
+     */
+    private function insert_transportconnect_entry($insert) {
+        $this->sendResponse(200,json_encode(TransportConnectEntryPDO::insertTransportConnectEntry($insert)));
+    }
+
+    /**
+     * Update transport ctr entry
+     * @return JSON
+     */
+    private function update_transportconnect_entry($update) {
+        $this->sendResponse(200,json_encode(TransportConnectEntryPDO::updateTransportConnectEntry($update)));
+    }
+
+    /**
+     * Insert transport ctr adr entry
+     * @return JSON
+     */
+    private function insert_transportctr_entry($insert) {
+        $this->sendResponse(200,json_encode(TransportCTREntryPDO::insertTransportCTREntry($insert)));
+    }
+
+    /**
+     * Update transport ctr entry
+     * @return JSON
+     */
+    private function update_transportctr_entry($update) {
+        $this->sendResponse(200,json_encode(TransportCTREntryPDO::updateTransportCTREntry($update)));
+    }
+
+    /**
+     * Insert transport design adr entry
+     * @return JSON
+     */
+    private function insert_transportdesign_entry($insert) {
+        $this->sendResponse(200,json_encode(TransportDesignEntryPDO::insertTransportDesignEntry($insert)));
+    }
+
+    /**
+     * Update transport design entry
+     * @return JSON
+     */
+    private function update_transportdesign_entry($update) {
+        $this->sendResponse(200,json_encode(TransportDesignEntryPDO::updateTransportDesignEntry($update)));
+    }
 
 
 }// END class

@@ -108,7 +108,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>[here desc]</small>
+                    Réseau de Transport <small>[Commande Structurante CTR]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -124,7 +124,82 @@
         <!-- Mega Form -->
         <div class="block block-bordered">
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                <form class="js-validation-bootstrap form-horizontal">
+                    <input type="hidden" id="transportctr_id" name="transportctr_id" value="<?php echo $_GET[$activePage."id"]?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be_bex" name="user_be_bex">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($transportctr['user_be_bex']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="but_ret_date">Date butoire traitement retour Aig j+3 <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="but_ret_date" name="but_ret_date" value="<?php echo ($transportctr['but_ret_date']!=""?DateTime::createFromFormat('Y-m-d', $transportctr['but_ret_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="ret_ter_date">Traitement Retours terrain <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="ret_ter_date" name="ret_ter_date" value="<?php echo ($transportctr['ret_ter_date']!=""?DateTime::createFromFormat('Y-m-d', $transportctr['ret_ter_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="mod_carto">Modification Carto <span class="text-danger">*</span></label>
+                            <select class="form-control" id="mod_carto" name="mod_carto">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1" <?php echo ($transportctr['mod_carto'] == "1" ? "selected":"")?>>Oui</option>
+                                <option value="2" <?php echo ($transportctr['mod_carto'] == "2" ? "selected":"")?>>Non</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="access_cmd">Commande Accès <span class="text-danger">*</span></label>
+                            <select class="form-control" id="access_cmd" name="access_cmd">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1" <?php echo ($transportctr['access_cmd'] == "1" ? "selected":"")?>>En Cours</option>
+                                <option value="2" <?php echo ($transportctr['access_cmd'] == "2" ? "selected":"")?>>Réalisée</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="trans_date">Date Transmission CA <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="trans_date" name="trans_date" value="<?php echo ($transportctr['trans_date']!=""?DateTime::createFromFormat('Y-m-d', $transportctr['trans_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="cmd_access_cmd">Référence Commande Accès <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="cmd_access_cmd" name="cmd_access_cmd" value="<?php echo $transportctr['cmd_access_cmd']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="go_ft">GO FT <span class="text-danger">*</span></label>
+                            <select class="form-control" id="go_ft" name="go_ft">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1" <?php echo ($transportctr['go_ft'] == "1" ? "selected":"")?>>Commande En cours</option>
+                                <option value="2" <?php echo ($transportctr['go_ft'] == "2" ? "selected":"")?>>Commande validée</option>
+                                <option value="3" <?php echo ($transportctr['go_ft'] == "3" ? "selected":"")?>>Commande Refusée</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary update-transportctr" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

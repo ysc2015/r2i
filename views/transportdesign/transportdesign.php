@@ -83,7 +83,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>[here desc]</small>
+                    Réseau de Transport <small>[Design]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -99,7 +99,57 @@
         <!-- Mega Form -->
         <div class="block block-bordered">
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                <form class="js-validation-bootstrap form-horizontal">
+                    <input type="hidden" id="transportdesign_id" name="transportdesign_id" value="<?php echo $_GET[$activePage."id"]?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be_bex" name="user_be_bex">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($transportdesign['user_be_bex']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_date">Date de Début <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_date" name="start_date" value="<?php echo ($transportdesign['start_date']!=""?DateTime::createFromFormat('Y-m-d', $transportdesign['start_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="prev_ret_date">Date ret Prev <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="prev_ret_date" name="prev_ret_date" value="<?php echo ($transportdesign['prev_ret_date']!=""?DateTime::createFromFormat('Y-m-d', $transportdesign['prev_ret_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $transportdesign['duration']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="linear_transport">Linéaire Transport <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="linear_transport" name="linear_transport" value="<?php echo $transportdesign['linear_transport']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="zones_count">Nbe Zones <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="zones_count" name="zones_count" value="<?php echo $transportdesign['zones_count']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary update-transportdesign" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

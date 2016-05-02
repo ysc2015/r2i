@@ -156,8 +156,112 @@
             <div class="block-content">
                 <div class="row">
                     <div class="col-md-7">
-                        <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
-                            <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                        <form class="js-validation-bootstrap form-horizontal">
+                            <input type="hidden" id="transportconnect_id" name="transportconnect_id" value="<?php echo $_GET[$activePage."id"]?>">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="user_be" name="user_be">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($transportconnect['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="prep_pds">Préparation PDS <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="prep_pds" name="prep_pds">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($transportconnect['prep_pds']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plans_control">Contrôle des plans <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="plans_control" name="plans_control">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($transportconnect['plans_control'] == "1" ? "selected":"")?>>Non Contrôlés</option>
+                                        <option value="2" <?php echo ($transportconnect['plans_control'] == "2" ? "selected":"")?>>Contrôlés OK</option>
+                                        <option value="3" <?php echo ($transportconnect['plans_control'] == "3" ? "selected":"")?>>Contrôlés NOK</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="plans_control_motif">Motif <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="plans_control_motif" name="plans_control_motif" rows="3" placeholder="motif ..."><?php echo $transportconnect['plans_control_motif']?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="pds_trans_date">Date Transmission PDS <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="pds_trans_date" name="pds_trans_date" value="<?php echo ($transportconnect['pds_trans_date']!=""?DateTime::createFromFormat('Y-m-d', $transportconnect['pds_trans_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="company">Entreprise <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="company" name="company" value="<?php echo $transportconnect['company']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="connect_date">Date Racco <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="connect_date" name="connect_date" value="<?php echo ($transportconnect['connect_date']!=""?DateTime::createFromFormat('Y-m-d', $transportconnect['connect_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="duration">Durée <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $transportconnect['duration']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="start_control_eff">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="start_control_eff" name="start_control_eff">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($transportconnect['start_control_eff'] == "1" ? "selected":"")?>>OK</option>
+                                        <option value="2" <?php echo ($transportconnect['start_control_eff'] == "2" ? "selected":"")?>>NOK</option>
+                                        <option value="3" <?php echo ($transportconnect['start_control_eff'] == "3" ? "selected":"")?>>Reporté</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="start_control_eff_date">Date <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="start_control_eff_date" name="start_control_eff_date" value="<?php echo ($transportconnect['start_control_eff_date']!=""?DateTime::createFromFormat('Y-m-d', $transportconnect['start_control_eff_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date" value="<?php echo ($transportconnect['ret_date']!=""?DateTime::createFromFormat('Y-m-d', $transportconnect['ret_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="ret_state" name="ret_state">
+                                        <option value="">Séléctionnez un plan</option>
+                                        <option value="1" <?php echo ($transportconnect['ret_state'] == "1" ? "selected":"")?>>PAS DE RETOUR</option>
+                                        <option value="2" <?php echo ($transportconnect['ret_state'] == "2" ? "selected":"")?>>RETOUR OK</option>
+                                        <option value="3" <?php echo ($transportconnect['ret_state'] == "3" ? "selected":"")?>>RETOUR NOK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <button class="btn btn-primary update-transportconnect" type="button">Enregistrer</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-5">
@@ -169,10 +273,10 @@
                             <a class="list-group-item" href="javascript:void(0)">
                                 <i class="fa fa-file-text-o push-5-r"></i> Chambres
                             </a>
-                            <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=edit">
+                            <a class="list-group-item" href="javascript:void(0)">
                                 <i class="si si-graph push-5-r"></i> Synoptique
                             </a>
-                            <a class="list-group-item" href="?page=resources&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=list">
+                            <a class="list-group-item" href="javascript:void(0)">
                                 <i class="si si-folder push-5-r"></i> Autres
                             </a>
                         </div>

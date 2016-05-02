@@ -40,7 +40,7 @@ var PlatesFormValidation = function() {
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('MAJ entrée préparation gestion Plaques ...');
+                showLoader('MAJ entrée gestion Plaques ...');
 
                 var formData = new FormData();
                 var Params = {};
