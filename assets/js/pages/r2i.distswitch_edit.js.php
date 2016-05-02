@@ -2,9 +2,9 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.distswitch_add.js.php
+ *  Document   : r2i.distswitch_edit.js.php
  *  Author     : RR
- *  Description: Custom JS code : add dist switch entry
+ *  Description: Custom JS code : edit dist switch informations
  */
 
 var DistSwitchFormValidation = function() {
@@ -18,7 +18,7 @@ var DistSwitchFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(id,txt,done) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,22 +28,19 @@ var DistSwitchFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
-                        window.location.href = '?page=distswitch&action=edit&distswitchid='+id;
-                    }
                 }
             }
         });
     };
 
-    var addDistSwitchEntry = function() {
-        jQuery('.add-distswitch').on('click', function() {
-            console.log('addDistSwitchEntry');
+    var updateDistSwitchEntry = function() {
+        jQuery('.update-distswitch').on('click', function() {
+            console.log('updateDistSwitchEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée distribution/Aiguillage ...');
+                showLoader('MAJ entrée distribution/aiguillage ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -53,24 +50,24 @@ var DistSwitchFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_distswitch_entry');
+                formData.append('method', 'update_distswitch_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_distswitch_entry:success');
+                        console.log('update_distswitch_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.id, response.msg, response.done);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_distswitch_entry:error');
+                        console.log('update_distswitch_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog(0, 'erreur', false);
+                        openDialog('erreur');
 
                     },
                     cache: false,
@@ -114,7 +111,7 @@ var DistSwitchFormValidation = function() {
     return {
         init: function () {
             //events
-            addDistSwitchEntry();
+            updateDistSwitchEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
