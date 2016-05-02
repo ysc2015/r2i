@@ -2,12 +2,12 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.platecarto_add.js.php
+ *  Document   : r2i.plates_edit.js.php
  *  Author     : RR
- *  Description: Custom JS code : add plate carto entry
+ *  Description: Custom JS code : edit plates informations
  */
 
-var PlateCartoFormValidation = function() {
+var PlatesFormValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
     //loader
@@ -18,7 +18,7 @@ var PlateCartoFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(id,txt,done) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,22 +28,19 @@ var PlateCartoFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
-                        window.location.href = '?page=platecarto&action=edit&platecartoid='+id;
-                    }
                 }
             }
         });
     };
 
-    var addPlateCartoEntry = function() {
-        jQuery('.add-platecarto').on('click', function() {
-            console.log('addPlateCartoEntry');
+    var updatePlatesEntry = function() {
+        jQuery('.update-plates').on('click', function() {
+            console.log('updatePlatesEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée préparation plaque/carto ...');
+                showLoader('MAJ entrée préparation gestion Plaques ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -53,24 +50,24 @@ var PlateCartoFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_platecarto_entry');
+                formData.append('method', 'update_plates_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_platecarto_entry:success');
+                        console.log('update_plates_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.id, response.msg, response.done);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_platecarto_entry:error');
+                        console.log('update_plates_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog(0, 'erreur', false);
+                        openDialog('erreur');
 
                     },
                     cache: false,
@@ -114,7 +111,7 @@ var PlateCartoFormValidation = function() {
     return {
         init: function () {
             //events
-            addPlateCartoEntry();
+            updatePlatesEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
@@ -124,4 +121,4 @@ var PlateCartoFormValidation = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ PlateCartoFormValidation.init(); });
+jQuery(function(){ PlatesFormValidation.init(); });
