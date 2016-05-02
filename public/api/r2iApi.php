@@ -340,6 +340,22 @@ class r2iApi extends api {
     }
 
     /**
+     * Insert dist switch entry
+     * @return JSON
+     */
+    private function insert_distswitch_entry($insert) {
+        $this->sendResponse(200,json_encode(DistSwitchEntryPDO::insertDistSwitchEntry($insert)));
+    }
+
+    /**
+     * Update dist switch entry
+     * @return JSON
+     */
+    private function update_distswitch_entry($update) {
+        $this->sendResponse(200,json_encode(DistSwitchEntryPDO::updateDistSwitchEntry($update)));
+    }
+
+    /**
      * Insert plates entry
      * @return JSON
      */

@@ -26,7 +26,7 @@
                         <div class="col-md-3">
                             <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
                             <select class="form-control" id="user_be" name="user_be">
-                                <option value="">Séléctionnez un BEI</option>
+                                <option value="">Séléctionnez une valeur</option>
                                 <?php
                                 $beiusers = UserPDO::getUsersByProfilId(4);
                                 foreach($beiusers as $key => $value) {
@@ -40,7 +40,7 @@
                         <div class="col-md-3">
                             <label for="plans">Plans <span class="text-danger">*</span></label>
                             <select class="form-control" id="plans" name="plans">
-                                <option value="">Séléctionnez un plan</option>
+                                <option value="">Séléctionnez une valeur</option>
                                 <option value="1">NON REALISES</option>
                                 <option value="2">EN COURS</option>
                                 <option value="3">OK</option>
@@ -57,7 +57,7 @@
                         <div class="col-md-3">
                             <label for="plan_control">Contrôle des plans <span class="text-danger">*</span></label>
                             <select class="form-control" id="plan_control" name="plan_control">
-                                <option value="">Séléctionnez un plan</option>
+                                <option value="">Séléctionnez une valeur</option>
                                 <option value="1">Non Contrôlés</option>
                                 <option value="2">Contrôlés OK</option>
                                 <option value="3">Contrôlés NOK</option>
@@ -92,7 +92,7 @@
                         <div class="col-md-3">
                             <label for="start_control">Contrôle démarrage effectif <span class="text-danger">*</span></label>
                             <select class="form-control" id="start_control" name="start_control">
-                                <option value="">Séléctionnez un plan</option>
+                                <option value="">Séléctionnez une valeur</option>
                                 <option value="1">OK</option>
                                 <option value="2">NOK</option>
                                 <option value="3">Reporté</option>
@@ -113,7 +113,7 @@
                         <div class="col-md-3">
                             <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
                             <select class="form-control" id="ret_state" name="ret_state">
-                                <option value="">Séléctionnez un plan</option>
+                                <option value="">Séléctionnez une valeur</option>
                                 <option value="1">PAS DE RETOUR</option>
                                 <option value="2">RETOUR OK</option>
                                 <option value="3">RETOUR NOK</option>
@@ -155,7 +155,111 @@
             <div class="block-content">
                 <div class="row">
                     <div class="col-md-7">
-                        <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                        <form class="js-validation-bootstrap form-horizontal">
+                            <input type="hidden" id="distswitch_id" name="distswitch_id" value="<?php echo $_GET[$activePage."id"]?>">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="user_be" name="user_be">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <?php
+                                        $beiusers = UserPDO::getUsersByProfilId(4);
+                                        foreach($beiusers as $key => $value) {
+                                            echo '<option value="'.$value['user_id'].'" '.($distswitch['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plans">Plans <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="plans" name="plans">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <option value="1" <?php echo ($distswitch['plans'] == "1" ? "selected":"")?>>NON REALISES</option>
+                                        <option value="2" <?php echo ($distswitch['plans'] == "2" ? "selected":"")?>>EN COURS</option>
+                                        <option value="3" <?php echo ($distswitch['plans'] == "3" ? "selected":"")?>>OK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="net_linear">Linéaire de réseau <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" id="net_linear" name="net_linear" value="<?php echo $distswitch['net_linear']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plan_control">Contrôle des plans <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="plan_control" name="plan_control">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <option value="1" <?php echo ($distswitch['plan_control'] == "1" ? "selected":"")?>>Non Contrôlés</option>
+                                        <option value="2" <?php echo ($distswitch['plan_control'] == "2" ? "selected":"")?>>Contrôlés OK</option>
+                                        <option value="3" <?php echo ($distswitch['plan_control'] == "3" ? "selected":"")?>>Contrôlés NOK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="plan_trans_date">Date Transmission Plans <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="plan_trans_date" name="plan_trans_date" value="<?php echo ($distswitch['plan_trans_date']!=""?DateTime::createFromFormat('Y-m-d', $distswitch['plan_trans_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="company">Entreprise <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="company" name="company" value="<?php echo $distswitch['company']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="switch_date">Date Aiguillage <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="switch_date" name="switch_date" value="<?php echo ($distswitch['switch_date']!=""?DateTime::createFromFormat('Y-m-d', $distswitch['switch_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="duration">Durée <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $distswitch['duration']?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="start_control">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="start_control" name="start_control">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <option value="1" <?php echo ($distswitch['start_control'] == "1" ? "selected":"")?>>OK</option>
+                                        <option value="2" <?php echo ($distswitch['start_control'] == "2" ? "selected":"")?>>NOK</option>
+                                        <option value="3" <?php echo ($distswitch['start_control'] == "3" ? "selected":"")?>>Reporté</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="start_control_date">Reporté à <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="start_control_date" name="start_control_date" value="<?php echo ($distswitch['start_control_date']!=""?DateTime::createFromFormat('Y-m-d', $distswitch['start_control_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_date">Date Retour <span class="text-danger">*</span></label>
+                                    <input class="js-datepicker form-control" type="text" id="ret_date" name="ret_date" value="<?php echo ($distswitch['ret_date']!=""?DateTime::createFromFormat('Y-m-d', $distswitch['ret_date'])->format('d/m/Y'):"")?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label for="ret_state">Etat Retour <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="ret_state" name="ret_state">
+                                        <option value="">Séléctionnez une valeur</option>
+                                        <option value="1" <?php echo ($distswitch['ret_state'] == "1" ? "selected":"")?>>PAS DE RETOUR</option>
+                                        <option value="2" <?php echo ($distswitch['ret_state'] == "2" ? "selected":"")?>>RETOUR OK</option>
+                                        <option value="3" <?php echo ($distswitch['ret_state'] == "3" ? "selected":"")?>>RETOUR NOK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <button class="btn btn-primary update-distswitch" type="button">Enregistrer</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-5">

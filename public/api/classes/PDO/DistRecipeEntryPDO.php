@@ -92,7 +92,7 @@ class DistRecipeEntryPDO {
 
         $date = new DateTime('now');
         $toupdate = $update;
-        $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
+        $toupdate['updatedat'] = $date->format('Y-m-d H:i:s');
 
         $toupdate['recipe_date'] = ($update['recipe_date']!=""?DateTime::createFromFormat('d/m/Y', $update['recipe_date'])->format('Y-m-d'):null);
 
