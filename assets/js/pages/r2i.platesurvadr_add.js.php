@@ -18,7 +18,7 @@ var PlateSurvAdrFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(txt) {
+    var openDialog = function(id,txt,done) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -26,13 +26,60 @@ var PlateSurvAdrFormValidation = function() {
             /*height:140,*/
             modal: true,
             buttons: {
-                "Ouvrir": function() {
+                "Fermer": function() {
                     $( this ).dialog( "close" );
-                },
-                Annuler: function() {
-                    $( this ).dialog( "close" );
+                    if(done) {
+                        window.location.href = '?page=platesurvadr&action=edit&platesurvadrid='+id;
+                    }
                 }
             }
+        });
+    };
+
+    var addPlateSurvAdrEntry = function() {
+        jQuery('.add-platesurvadr').on('click', function() {
+            console.log('addPlateSurvAdrEntry');
+
+            if($form.valid()) {
+                console.log('form submited');
+
+                showLoader('Ajout entrée préparation plaque/survey adresses terrain ...');
+
+                var formData = new FormData();
+                var Params = {};
+
+                $form.find("input,textarea,select").each(function (index, node) {
+                    Params[node.name] = node.value;
+                });
+
+                formData.append('parameters', JSON.stringify(Params));
+                formData.append('method', 'insert_platesurvadr_entry');
+
+                $.ajax({
+                    url: API_URL,
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        console.log('insert_platesurvadr_entry:success');
+                        console.log(response);
+                        hideLoader();
+                        openDialog(response.id, response.msg, response.done);
+
+                    },
+                    error: function (e) {
+                        console.log('insert_platesurvadr_entry:error');
+                        console.log(e.responseText);
+                        hideLoader();
+                        openDialog(0, 'erreur', false);
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+
+            return false;
         });
     };
 
@@ -67,6 +114,7 @@ var PlateSurvAdrFormValidation = function() {
     return {
         init: function () {
             //events
+            addPlateSurvAdrEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation

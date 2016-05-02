@@ -94,8 +94,9 @@ class TransportConnectEntryPDO {
 
         $date = new DateTime('now');
         $toupdate = $update;
-        $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
+        $toupdate['updatedat'] = $date->format('Y-m-d H:i:s');
 
+        $toupdate['connect_date'] = ($update['connect_date']!=""?DateTime::createFromFormat('d/m/Y', $update['connect_date'])->format('Y-m-d'):null);
         $toupdate['pds_trans_date'] = ($update['pds_trans_date']!=""?DateTime::createFromFormat('d/m/Y', $update['pds_trans_date'])->format('Y-m-d'):null);
         $toupdate['start_control_eff_date'] = ($update['start_control_eff_date']!=""?DateTime::createFromFormat('d/m/Y', $update['start_control_eff_date'])->format('Y-m-d'):null);
         $toupdate['ret_date'] = ($update['ret_date']!=""?DateTime::createFromFormat('d/m/Y', $update['ret_date'])->format('Y-m-d'):null);

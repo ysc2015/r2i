@@ -2,12 +2,12 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.transportctr_add.js.php
+ *  Document   : r2i.transportdesign_edit.js.php
  *  Author     : RR
- *  Description: Custom JS code : add transport ctr entry
+ *  Description: Custom JS code : edit transport design informations
  */
 
-var TransportCTRFormValidation = function() {
+var TransportDesignFormValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
     //loader
@@ -18,7 +18,7 @@ var TransportCTRFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(id,txt,done) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,22 +28,19 @@ var TransportCTRFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
-                        window.location.href = '?page=transportctr&action=edit&transportctrid='+id;
-                    }
                 }
             }
         });
     };
 
-    var addTransportCTREntry = function() {
-        jQuery('.add-transportctr').on('click', function() {
-            console.log('addTransportCTREntry');
+    var updateTransportDesignEntry = function() {
+        jQuery('.update-transportdesign').on('click', function() {
+            console.log('updateTransportDesignEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée réseau de transport/commande structurante CTR ...');
+                showLoader('MAJ entrée réseau de transport/design ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -53,24 +50,24 @@ var TransportCTRFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_transportctr_entry');
+                formData.append('method', 'update_transportdesign_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_transportctr_entry:success');
+                        console.log('update_transportdesign_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.id, response.msg, response.done);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_transportctr_entry:error');
+                        console.log('update_transportdesign_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog(0, 'erreur', false);
+                        openDialog('erreur');
 
                     },
                     cache: false,
@@ -114,7 +111,7 @@ var TransportCTRFormValidation = function() {
     return {
         init: function () {
             //events
-            addTransportCTREntry();
+            updateTransportDesignEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation
@@ -124,4 +121,4 @@ var TransportCTRFormValidation = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ TransportCTRFormValidation.init(); });
+jQuery(function(){ TransportDesignFormValidation.init(); });
