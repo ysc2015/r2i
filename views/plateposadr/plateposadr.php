@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Préparation plaque <small>Positionnement des Adresses</small>
+                    Préparation plaque <small>[Positionnement des Adresses]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -95,7 +95,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>here desc</small>
+                    Préparation plaque <small>[Positionnement des Adresses]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -111,7 +111,69 @@
         <!-- Mega Form -->
         <div class="block block-bordered">
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                <form class="js-validation-bootstrap form-horizontal">
+                    <input type="hidden" id="plateposadr_id" name="plateposadr_id" value="<?php echo $_GET[$activePage."id"]?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($plateposadr['user_be_bex']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="start_date">Date de Début <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="start_date" name="start_date" value="<?php echo ($plateposadr['start_date']!=""?DateTime::createFromFormat('Y-m-d', $plateposadr['start_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="prev_ret_date">Date ret Prev <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="prev_ret_date" name="prev_ret_date" value="<?php echo ($plateposadr['prev_ret_date']!=""?DateTime::createFromFormat('Y-m-d', $plateposadr['prev_ret_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="duration">Durée <span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="duration" name="duration" value="<?php echo $plateposadr['duration']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be_bex2">Intervenant <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($plateposadr['user_be_bex2']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="site_bpe">BPE sur SITE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="site_bpe" name="site_bpe">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1" <?php echo ($plateposadr['site_bpe'] == "1" ? "selected":"")?>>A PLACER</option>
+                                <option value="2" <?php echo ($plateposadr['site_bpe'] == "2" ? "selected":"")?>>PLACES</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary update-plateposadr" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

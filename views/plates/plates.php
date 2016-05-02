@@ -39,8 +39,8 @@
                                 <option value="">Séléctionnez une valeur</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
-                                <option value="1">3</option>
-                                <option value="2">4</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
                             </select>
                         </div>
                     </div>
@@ -108,15 +108,62 @@
         <div class="block block-bordered">
             <div class="block-content">
                 <form class="js-validation-bootstrap form-horizontal">
-                    <input type="hidden" id="zone_id" name="zone_id" value="<?php echo $_GET['zoneid']?>">
+                    <input type="hidden" id="plate_id" name="plate_id" value="<?php echo $_GET[$activePage."id"]?>">
                     <div class="form-group">
                         <div class="col-md-3">
                             <label for="instig">Instigateur <span class="text-danger">*</span></label>
                             <select class="form-control" id="instig" name="instig">
                                 <option value="">Séléctionnez une valeur</option>
-                                <option value="1">BMB</option>
-                                <option value="2">RME</option>
+                                <option value="1" <?php echo ($plates['instig'] == "1" ? "selected":"")?>>BMB</option>
+                                <option value="2" <?php echo ($plates['instig'] == "2" ? "selected":"")?>>RME</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="vague">Vague <span class="text-danger">*</span></label>
+                            <select class="form-control" id="vague" name="vague">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1" <?php echo ($plates['vague'] == "1" ? "selected":"")?>>1</option>
+                                <option value="2" <?php echo ($plates['vague'] == "2" ? "selected":"")?>>2</option>
+                                <option value="3" <?php echo ($plates['vague'] == "3" ? "selected":"")?>>3</option>
+                                <option value="4" <?php echo ($plates['vague'] == "4" ? "selected":"")?>>4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="launch_date">Date Lancement <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="launch_date" name="launch_date" value="<?php echo ($plates['launch_date']!=""?DateTime::createFromFormat('Y-m-d', $plates['launch_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="site">Site <span class="text-danger">*</span></label>
+                            <select class="form-control" id="site" name="site">
+                                <option value="">Séléctionnez une valeur</option>
+                                <option value="1" <?php echo ($plates['site'] == "1" ? "selected":"")?>>MPL</option>
+                                <option value="2" <?php echo ($plates['site'] == "2" ? "selected":"")?>>BZN</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="stud_user">Chargé d'étude <span class="text-danger">*</span></label>
+                            <select class="form-control" id="stud_user" name="stud_user">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($plates['stud_user']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary update-plates" type="button">Enregistrer</button>
                         </div>
                     </div>
                 </form>

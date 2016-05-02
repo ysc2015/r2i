@@ -93,7 +93,7 @@ class PlateCartoEntryPDO {
 
         $date = new DateTime('now');
         $toupdate = $update;
-        $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
+        $toupdate['updatedat'] = $date->format('Y-m-d H:i:s');
 
         $toupdate['start_date'] = ($update['start_date']!=""?DateTime::createFromFormat('d/m/Y', $update['start_date'])->format('Y-m-d'):null);
         $toupdate['prev_ret_date'] = ($update['prev_ret_date']!=""?DateTime::createFromFormat('d/m/Y', $update['prev_ret_date'])->format('Y-m-d'):null);

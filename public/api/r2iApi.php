@@ -371,6 +371,38 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(PlatesEntryPDO::updatePlatesEntry($update)));
     }
 
+    /**
+     * Insert plate carto entry
+     * @return JSON
+     */
+    private function insert_platecarto_entry($insert) {
+        $this->sendResponse(200,json_encode(PlateCartoEntryPDO::insertPlateCartoEntry($insert)));
+    }
+
+    /**
+     * Update plate carto entry
+     * @return JSON
+     */
+    private function update_platecarto_entry($update) {
+        $this->sendResponse(200,json_encode(PlateCartoEntryPDO::updatePlateCartoEntry($update)));
+    }
+
+    /**
+     * Insert plate pos adr entry
+     * @return JSON
+     */
+    private function insert_plateposadr_entry($insert) {
+        $this->sendResponse(200,json_encode(PlatePosAdrEntryPDO::insertPlatePosAdrEntry($insert)));
+    }
+
+    /**
+     * Update plate pos adr entry
+     * @return JSON
+     */
+    private function update_plateposadr_entry($update) {
+        $this->sendResponse(200,json_encode(PlatePosAdrEntryPDO::updatePlatePosAdrEntry($update)));
+    }
+
 
 
 
