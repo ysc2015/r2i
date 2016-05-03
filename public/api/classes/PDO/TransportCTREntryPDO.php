@@ -124,4 +124,20 @@ class TransportCTREntryPDO {
         );
         return self::$db->select(self::$table, "transportctr_id = :transportctr_id", $bind)[0];
     }
+
+    /**
+     * get transport ctr entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getTransportCTRLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=transportctr&action=edit&transportctrid=".$result[0]["transportctr_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=transportctr&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

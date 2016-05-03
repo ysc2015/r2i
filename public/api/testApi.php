@@ -15,7 +15,11 @@ class testApi extends api {
 
     // process api method
     function processApi($method="") {
-        print_r(UserPDO::getAllUsers());
+        //print_r(UserPDO::getAllUsers());
+        echo DistCDIEntryPDO::getDistCDILinkByZoneId(2);
+
+
+
     }
 }// END class
 

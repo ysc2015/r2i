@@ -40,7 +40,7 @@ var TransportSwitchFormValidation = function() {
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('MAJ entrée trsnsport / aiguillage ...');
+                showLoader('MAJ entrée transport/aiguillage ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -50,21 +50,21 @@ var TransportSwitchFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'update_transport_switch_entry');
+                formData.append('method', 'update_transportswitch_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('update_transport_switch_entry:success');
+                        console.log('update_transportswitch_entry:success');
                         console.log(response);
                         hideLoader();
                         openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('update_transport_switch_entry:error');
+                        console.log('update_transportswitch_entry:error');
                         console.log(e.responseText);
                         hideLoader();
                         openDialog('erreur');

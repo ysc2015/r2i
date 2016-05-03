@@ -119,7 +119,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Buttons <small>[here desc]</small>
+                    Réseau de Transport <small>[Recette]</small>
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
@@ -135,7 +135,93 @@
         <!-- Mega Form -->
         <div class="block block-bordered">
             <div class="block-content">
-                <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
+                <form class="js-validation-bootstrap form-horizontal">
+                    <input type="hidden" id="transportrecipe_id" name="transportrecipe_id" value="<?php echo $_GET[$activePage."id"]?>">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_be">Intervenant BE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_be" name="user_be">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($transportrecipe['user_be']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="doe">DOE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="doe" name="doe">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($transportrecipe['doe']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="netgeo">Netgeo <span class="text-danger">*</span></label>
+                            <select class="form-control" id="netgeo" name="netgeo">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($transportrecipe['netgeo']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="user_free">Intervenant FREE <span class="text-danger">*</span></label>
+                            <select class="form-control" id="user_free" name="user_free">
+                                <option value="">Séléctionnez une valeur</option>
+                                <?php
+                                $beiusers = UserPDO::getUsersByProfilId(4);
+                                foreach($beiusers as $key => $value) {
+                                    echo '<option value="'.$value['user_id'].'" '.($transportrecipe['user_free']==$value['user_id']?"selected":"").'>'.$value['user_firstname'].' '.$value['user_lastname'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="company">Intervenant Entreprise <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="company" name="company" value="<?php echo $transportrecipe['company']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="recipe_date">Date de Recette <span class="text-danger">*</span></label>
+                            <input class="js-datepicker form-control" type="text" id="recipe_date" name="recipe_date" value="<?php echo ($transportrecipe['recipe_date']!=""?DateTime::createFromFormat('Y-m-d', $transportrecipe['recipe_date'])->format('d/m/Y'):"")?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="recipe_state">Etat Recette <span class="text-danger">*</span></label>
+                            <select class="form-control" id="recipe_state" name="recipe_state">
+                                <option value="">Séléctionnez un plan</option>
+                                <option value="1" <?php echo ($transportrecipe['recipe_state'] == "1" ? "selected":"")?>>Recette Non Prévue</option>
+                                <option value="2" <?php echo ($transportrecipe['recipe_state'] == "2" ? "selected":"")?>>Recette Prévue</option>
+                                <option value="3" <?php echo ($transportrecipe['recipe_state'] == "3" ? "selected":"")?>>Recette OK</option>
+                                <option value="4" <?php echo ($transportrecipe['recipe_state'] == "4" ? "selected":"")?>>Recette Ajournée</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button class="btn btn-primary update-transportrecipe" type="button">Enregistrer</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

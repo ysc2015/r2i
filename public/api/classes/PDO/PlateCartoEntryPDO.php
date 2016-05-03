@@ -122,4 +122,20 @@ class PlateCartoEntryPDO {
         );
         return self::$db->select(self::$table, "platecarto_id = :platecarto_id", $bind)[0];
     }
+
+    /**
+     * get plate carto entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getPlateCartoLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=platecarto&action=edit&platecartoid=".$result[0]["platecarto_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=platecarto&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

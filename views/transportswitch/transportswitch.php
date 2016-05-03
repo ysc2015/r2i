@@ -159,8 +159,8 @@
             <div class="block-content">
                 <div class="row">
                     <div class="col-md-7">
-                        <form class="js-validation-bootstrap form-horizontal" enctype="multipart/form-data">
-                            <input type="hidden" id="transport_switch_id" name="transport_switch_id" value="<?php echo $_GET[$activePage."id"]?>">
+                        <form class="js-validation-bootstrap form-horizontal">
+                            <input type="hidden" id="transportswitch_id" name="transportswitch_id" value="<?php echo $_GET[$activePage."id"]?>">
                             <div class="form-group">
                                 <div class="col-md-7">
                                     <label for="phase">Intervenant BE <span class="text-danger">*</span></label>
@@ -243,7 +243,7 @@
                                         <option value="3" <?php echo ($transportswitch['start_control'] == "3" ? "selected":"")?>>Reporté</option>
                                     </select>
                                     <label for="start_control_report_date">Reporté à <span class="text-danger">*</span></label>
-                                    <input class="js-datepicker form-control" type="text" id="start_control_report_date" name="start_control_report_date">
+                                    <input class="js-datepicker form-control" type="text" id="start_control_report_date" name="start_control_report_date" value="<?php echo ($transportswitch['start_control_report_date']!=""?DateTime::createFromFormat('Y-m-d', $transportswitch['start_control_report_date'])->format('d/m/Y'):"")?>">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -126,4 +126,20 @@ class DistSwitchEntryPDO {
         );
         return self::$db->select(self::$table, "distswitch_id = :distswitch_id", $bind)[0];
     }
+
+    /**
+     * get dist switch entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getDistSwitchLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=distswitch&action=edit&distswitchid=".$result[0]["distswitch_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=distswitch&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

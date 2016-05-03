@@ -128,4 +128,20 @@ class DistPrintEntryPDO {
         );
         return self::$db->select(self::$table, "distprint_id = :distprint_id", $bind)[0];
     }
+
+    /**
+     * get dist print entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getDistPrintLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=distprint&action=edit&distprintid=".$result[0]["distprint_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=distprint&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

@@ -247,7 +247,7 @@ class r2iApi extends api {
      * Insert transport/switch entry
      * @return JSON
      */
-    private function insert_transport_switch_entry($insert) {
+    private function insert_transportswitch_entry($insert) {
         $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::insertTransportSwitchEntry($insert)));
     }
 
@@ -255,7 +255,7 @@ class r2iApi extends api {
      * Update transport/switch entry
      * @return JSON
      */
-    private function update_transport_switch_entry($update) {
+    private function update_transportswitch_entry($update) {
         $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::updateTransportSwitchEntry($update)));
     }
 
@@ -465,6 +465,38 @@ class r2iApi extends api {
      */
     private function update_transportdesign_entry($update) {
         $this->sendResponse(200,json_encode(TransportDesignEntryPDO::updateTransportDesignEntry($update)));
+    }
+
+    /**
+     * Insert transport print entry
+     * @return JSON
+     */
+    private function insert_transportprint_entry($insert) {
+        $this->sendResponse(200,json_encode(TransportPrintEntryPDO::insertTransportPrintEntry($insert)));
+    }
+
+    /**
+     * Update transport print entry
+     * @return JSON
+     */
+    private function update_transportprint_entry($update) {
+        $this->sendResponse(200,json_encode(TransportPrintEntryPDO::updateTransportPrintEntry($update)));
+    }
+
+    /**
+     * Insert transport recipe entry
+     * @return JSON
+     */
+    private function insert_transportrecipe_entry($insert) {
+        $this->sendResponse(200,json_encode(TransportRecipeEntryPDO::insertTransportRecipeEntry($insert)));
+    }
+
+    /**
+     * Update transport recipe entry
+     * @return JSON
+     */
+    private function update_transportrecipe_entry($update) {
+        $this->sendResponse(200,json_encode(TransportRecipeEntryPDO::updateTransportRecipeEntry($update)));
     }
 
 

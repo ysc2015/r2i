@@ -11,7 +11,7 @@ switch($action) {
                 break;
     case "edit" : if(isset($_GET[$activePage."id"])) {
                     ;//TODO check ressource access here
-                    $transportrecipe = TransportSwitchEntryPDO::getTransportSwitchById($_GET[$activePage."id"]);
+                    $transportrecipe = TransportRecipeEntryPDO::getTransportRecipeById($_GET[$activePage."id"]);
                 } else {
                     $action = "nothing";
                 }
