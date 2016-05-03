@@ -127,10 +127,10 @@ class UserPDO {
     public static function getUsersByProfilId($profil_id) {
         self::initialize();
 
-        $bind = array(
+        /*$bind = array(
             ":profil_id" => $profil_id
-        );
-        return self::$db->select(self::$table, "profil_id = :profil_id", $bind);
+        );*/
+        return self::$db->select(self::$table);
 
     }
 
