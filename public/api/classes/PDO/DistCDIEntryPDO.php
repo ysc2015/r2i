@@ -124,4 +124,20 @@ class DistCDIEntryPDO {
         );
         return self::$db->select(self::$table, "distcdi_id = :distcdi_id", $bind)[0];
     }
+
+    /**
+     * get dist cdi entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getDistCDILinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=distcdi&action=edit&distcdiid=".$result[0]["distcdi_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=distcdi&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

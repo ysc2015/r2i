@@ -120,4 +120,20 @@ class PlatesEntryPDO {
         );
         return self::$db->select(self::$table, "plate_id = :plate_id", $bind)[0];
     }
+
+    /**
+     * get plates entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getPlatesLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=plates&action=edit&platesid=".$result[0]["plate_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=plates&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

@@ -53,21 +53,21 @@ var TransportSwitchFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_transport_switch_entry');
+                formData.append('method', 'insert_transportswitch_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_transport_switch_entry:success');
+                        console.log('insert_transportswitch_entry:success');
                         console.log(response);
                         hideLoader();
                         openDialog(response.id, response.msg, response.done);
 
                     },
                     error: function (e) {
-                        console.log('insert_transport_switch_entry:error');
+                        console.log('insert_transportswitch_entry:error');
                         console.log(e.responseText);
                         hideLoader();
                         openDialog(0, 'erreur', false);

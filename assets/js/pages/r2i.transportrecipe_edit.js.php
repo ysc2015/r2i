@@ -2,9 +2,9 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : r2i.transportrecipe_add.js.php
+ *  Document   : r2i.transportrecipe_edit.js.php
  *  Author     : RR
- *  Description: Custom JS code : add transport recipe entry
+ *  Description: Custom JS code : edit transport print informations
  */
 
 var TransportRecipeFormValidation = function() {
@@ -18,7 +18,7 @@ var TransportRecipeFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(id,txt,done) {
+    var openDialog = function(txt) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,22 +28,19 @@ var TransportRecipeFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
-                    if(done) {
-                        window.location.href = '?page=transportrecipe&action=edit&transportrecipeid='+id;
-                    }
                 }
             }
         });
     };
 
-    var addTransportRecipeEntry = function() {
-        jQuery('.add-transportrecipe').on('click', function() {
-            console.log('addTransportRecipeEntry');
+    var updateTransportRecipeEntry = function() {
+        jQuery('.update-transportrecipe').on('click', function() {
+            console.log('updateTransportRecipeEntry');
 
             if($form.valid()) {
                 console.log('form submited');
 
-                showLoader('Ajout entrée réseau de transport/recette ...');
+                showLoader('MAJ entrée réseau de transport/recette ...');
 
                 var formData = new FormData();
                 var Params = {};
@@ -53,24 +50,24 @@ var TransportRecipeFormValidation = function() {
                 });
 
                 formData.append('parameters', JSON.stringify(Params));
-                formData.append('method', 'insert_transportrecipe_entry');
+                formData.append('method', 'update_transportrecipe_entry');
 
                 $.ajax({
                     url: API_URL,
                     type: 'POST',
                     data: formData,
                     success: function (response) {
-                        console.log('insert_transportrecipe_entry:success');
+                        console.log('update_transportrecipe_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.id, response.msg, response.done);
+                        openDialog(response.msg);
 
                     },
                     error: function (e) {
-                        console.log('insert_transportrecipe_entry:error');
+                        console.log('update_transportrecipe_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog(0, 'erreur', false);
+                        openDialog('erreur');
 
                     },
                     cache: false,
@@ -114,7 +111,7 @@ var TransportRecipeFormValidation = function() {
     return {
         init: function () {
             //events
-            addTransportRecipeEntry();
+            updateTransportRecipeEntry();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation

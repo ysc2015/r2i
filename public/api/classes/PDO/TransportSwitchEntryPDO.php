@@ -127,4 +127,20 @@ class TransportSwitchEntryPDO {
         );
         return self::$db->select(self::$table, "transportswitch_id = :transportswitch_id", $bind)[0];
     }
+
+    /**
+     * get transport switch entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getTransportSwitchLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=transportswitch&action=edit&transportswitchid=".$result[0]["transportswitch_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=transportswitch&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class

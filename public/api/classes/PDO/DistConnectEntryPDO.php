@@ -126,4 +126,20 @@ class DistConnectEntryPDO {
         );
         return self::$db->select(self::$table, "distconnect_id = :distconnect_id", $bind)[0];
     }
+
+    /**
+     * get dist connect entry link by zone id
+     * @param int $zone_id
+     * @return array
+     */
+    public static function getDistConnectLinkByZoneId($zone_id) {
+        self::initialize();
+        $bind = array(
+            ":zone_id" => $zone_id
+        );
+        $result = self::$db->select(self::$table, "zone_id = :zone_id", $bind);
+
+        if($result) return array("link" => "?page=distconnect&action=edit&distconnectid=".$result[0]["distconnect_id"], "class" => "label-primary", "title" => "ouvrir");
+        else return array("link" => "?page=distconnect&action=add&zoneid=".$zone_id, "class" => "label-success", "title" => "créer");
+    }
 }// END class
