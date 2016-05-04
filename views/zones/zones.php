@@ -271,7 +271,7 @@
                                     <option value="1" <?php echo ($zone['auto_adduction'] == "1" ? "selected":"")?>>Existante</option>
                                     <option value="2" <?php echo ($zone['auto_adduction'] == "2" ? "selected":"")?>>Projet</option>
                                     <option value="3" <?php echo ($zone['auto_adduction'] == "3" ? "selected":"")?>>En cours</option>
-                                    <option value="3" <?php echo ($zone['auto_adduction'] == "4" ? "selected":"")?>>Ok</option>
+                                    <option value="4" <?php echo ($zone['auto_adduction'] == "4" ? "selected":"")?>>Ok</option>
                                 </select>
                                 <label for="auto_adduction_date">Date</label>
                                 <input class="js-datepicker form-control input-lg" type="text" id="auto_adduction_date" name="auto_adduction_date" placeholder="date.." value="<?php echo ($zone['auto_adduction_date']!=""?DateTime::createFromFormat('Y-m-d', $zone['auto_adduction_date'])->format('d/m/Y'):"")?>">
@@ -283,7 +283,7 @@
                                     <option value="1" <?php echo ($zone['works_adduction'] == "1" ? "selected":"")?>>Existant</option>
                                     <option value="2" <?php echo ($zone['works_adduction'] == "2" ? "selected":"")?>>Prévus</option>
                                     <option value="3" <?php echo ($zone['works_adduction'] == "3" ? "selected":"")?>>En cours</option>
-                                    <option value="3" <?php echo ($zone['works_adduction'] == "4" ? "selected":"")?>>Terminés</option>
+                                    <option value="4" <?php echo ($zone['works_adduction'] == "4" ? "selected":"")?>>Terminés</option>
                                 </select>
                                 <label for="works_adduction_date">Date Début</label>
                                 <input class="js-datepicker form-control input-lg" type="text" id="works_adduction_date" name="works_adduction_date" placeholder="Date Début.." value="<?php echo ($zone['works_adduction_date']!=""?DateTime::createFromFormat('Y-m-d', $zone['works_adduction_date'])->format('d/m/Y'):"")?>">
