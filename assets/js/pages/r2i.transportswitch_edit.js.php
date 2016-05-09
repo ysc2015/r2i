@@ -10,6 +10,7 @@ header("Content-type: application/javascript");
 var TransportSwitchFormValidation = function() {
     var API_URL = 'public/api/r2iApi.php';
     var $form = jQuery('.js-validation-bootstrap');
+    var $form_ot = jQuery('.form-ot');
     //loader
     var showLoader = function(txt) {
         jQuery('#progressbar').html(txt);
@@ -18,7 +19,7 @@ var TransportSwitchFormValidation = function() {
     var hideLoader = function() {
         $('#loader').modal('hide');
     };
-    var openDialog = function(txt) {
+    var openDialog = function(txt,reloadwindow) {
         $( "#alertbox p").html(txt);
         $( "#alertbox" ).dialog({
             dialogClass: "alert-box",
@@ -28,6 +29,9 @@ var TransportSwitchFormValidation = function() {
             buttons: {
                 "Fermer": function() {
                     $( this ).dialog( "close" );
+                    if(reloadwindow) {
+                        window.location.reload();
+                    }
                 }
             }
         });
@@ -60,14 +64,14 @@ var TransportSwitchFormValidation = function() {
                         console.log('update_transportswitch_entry:success');
                         console.log(response);
                         hideLoader();
-                        openDialog(response.msg);
+                        openDialog(response.msg,false);
 
                     },
                     error: function (e) {
                         console.log('update_transportswitch_entry:error');
                         console.log(e.responseText);
                         hideLoader();
-                        openDialog('erreur');
+                        openDialog('erreur',false);
 
                     },
                     cache: false,
@@ -78,6 +82,98 @@ var TransportSwitchFormValidation = function() {
 
             return false;
         });
+    };
+
+    var addJobOrder = function() {
+        jQuery('.add-ot').on('click', function() {
+            console.log('add OT');
+            $('#modal-normal').modal('hide');
+            if($form_ot.valid()) {
+                console.log('form submited');
+
+                showLoader('Ajout ordre de travail ...');
+
+                var formData = new FormData();
+                var Params = {};
+
+                $form_ot.find("input,textarea,select").each(function (index, node) {
+                    Params[node.name] = node.value;
+                });
+
+                console.log(JSON.stringify(Params));
+
+                formData.append('parameters', JSON.stringify(Params));
+                formData.append('method', 'insert_job_order');
+
+                $.ajax({
+                    url: API_URL,
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        console.log('insert_job_order:success');
+                        console.log(response);
+                        hideLoader();
+                        if(response.done) {
+                            setOT(response.id);
+                        } else {
+                            openDialog(response.msg,false);
+                        }
+
+                    },
+                    error: function (e) {
+                        console.log('insert_job_order:error');
+                        console.log(e.responseText);
+                        hideLoader();
+                        openDialog('erreur',false);
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+
+            return false;
+        });
+    };
+
+    var setOT = function(jobid) {
+        console.log('setOT');
+
+        var formData = new FormData();
+        var Params = {};
+
+        Params['jobid'] = jobid;
+        Params['objid'] = $('#transportswitch_id').val();
+
+        console.log(JSON.stringify(Params));
+
+        formData.append('parameters', JSON.stringify(Params));
+        formData.append('method', 'set_transportswitch_job_order');
+
+        $.ajax({
+            url: API_URL,
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                console.log('set_transportswitch_job_order:success');
+                console.log(response);
+                hideLoader();
+                openDialog(response.msg,true);
+
+            },
+            error: function (e) {
+                console.log('set_transportswitch_job_order:error');
+                console.log(e.responseText);
+                hideLoader();
+                openDialog('erreur',false);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        return false;
     };
 
     // Init page helpers
@@ -106,12 +202,34 @@ var TransportSwitchFormValidation = function() {
             messages: {
             }
         });
+
+        jQuery('.form-ot').validate({
+            errorClass: 'help-block animated fadeInDown',
+            errorElement: 'div',
+            errorPlacement: function(error, e) {
+                jQuery(e).parents('.form-group > div').append(error);
+            },
+            highlight: function(e) {
+                jQuery(e).closest('.form-group').removeClass('has-error').addClass('has-error');
+                jQuery(e).closest('.help-block').remove();
+            },
+            success: function(e) {
+                jQuery(e).closest('.form-group').removeClass('has-error');
+                jQuery(e).closest('.help-block').remove();
+            },
+            //TODO add rules later
+            rules: {
+            },
+            messages: {
+            }
+        });
     };
 
     return {
         init: function () {
             //events
             updateTransportSwitchEntry();
+            addJobOrder();
             //init page helpers
             initPlugins();
             // Init Bootstrap Forms Validation

@@ -16,9 +16,12 @@ class testApi extends api {
     // process api method
     function processApi($method="") {
         //print_r(UserPDO::getAllUsers());
-        echo DistCDIEntryPDO::getDistCDILinkByZoneId(2);
+        //echo DistCDIEntryPDO::getDistCDILinkByZoneId(2);
+
+        var_dump(JobOrderPDO::JobExists(1,"transportswitch"));
 
 
+        //echo JobOrderPDO::JobExists(1,"transportswitch");
 
     }
 }// END class

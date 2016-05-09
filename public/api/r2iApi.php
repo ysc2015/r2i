@@ -499,6 +499,22 @@ class r2iApi extends api {
         $this->sendResponse(200,json_encode(TransportRecipeEntryPDO::updateTransportRecipeEntry($update)));
     }
 
+    /**
+     * Insert job order
+     * @return JSON
+     */
+    private function insert_job_order($insert) {
+        $this->sendResponse(200,json_encode(JobOrderPDO::insertJobOrder($insert)));
+    }
+
+    /**
+     * set transport switch job order
+     * @return JSON
+     */
+    private function set_transportswitch_job_order($update) {
+        $this->sendResponse(200,json_encode(TransportSwitchEntryPDO::setTransportSwitchOT($update)));
+    }
+
 
 }// END class
 

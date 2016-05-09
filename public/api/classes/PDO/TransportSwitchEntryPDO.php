@@ -116,6 +116,28 @@ class TransportSwitchEntryPDO {
     }
 
     /**
+     * set job order id
+     * @param array $update
+     * @return bool
+     */
+    public static function setTransportSwitchOT($update) {
+        self::initialize();
+        //build sql
+        $sql ="update ".self::$table." set job_order_id=".$update['jobid']." where transportswitch_id=".$update['objid'];
+
+        try {
+            $result = self::$db->run($sql);
+            if($result) return array("done" =>false,"msg" =>"ordre de travail crée");
+            else return array("done" =>false,"msg" =>"probléme création ordre de travail");
+        } catch(Exception $e) {
+            self::logIt($e->getMessage());
+            return array("done" =>false,"msg" =>"erreur création ordre de travail");
+        }
+
+        //return array("done" =>false,"msg" =>$toupdate['auto_adduction_date']);
+    }
+
+    /**
      * get transport switch entry by id
      * @param int $transportswitch_id
      * @return array

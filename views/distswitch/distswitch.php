@@ -271,10 +271,10 @@
                             <a class="list-group-item" href="javascript:void(0)">
                                 <i class="fa fa-file-text-o push-5-r"></i> Chambres
                             </a>
-                            <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=edit">
+                            <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET[$activePage."id"]."&objtype=$activePage"?>&action=edit">
                                 <i class="si si-graph push-5-r"></i> Synoptique
                             </a>
-                            <a class="list-group-item" href="?page=resources&objid=<?php echo $_GET['tswitch']?>&objtype=tswitch&action=list">
+                            <a class="list-group-item" href="javascript:void(0)">
                                 <i class="si si-folder push-5-r"></i> Autres
                             </a>
                         </div>
