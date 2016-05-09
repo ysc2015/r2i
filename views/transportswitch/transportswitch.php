@@ -272,47 +272,46 @@
                     </div>
                     <div class="col-md-5">
                         <?php if($transportswitch['job_order_id'] !== null): ?>
-                            <!-- Notifications Widget -->
-                            <div class="list-group">
-                                <a class="list-group-item active" href="javascript:void(0)">
-                                    <i class="fa fa-fw fa-upload push-5-r"></i> Fichiers
-                                </a>
-                                <a class="list-group-item" href="?page=rooms&objid=<?php echo $_GET[$activePage."id"]."&objtype=$activePage"?>&action=list">
-                                    <i class="fa fa-file-text-o push-5-r"></i> Chambres
-                                </a>
-                                <a class="list-group-item" href="?page=synops&objid=<?php echo $_GET[$activePage."id"]."&objtype=$activePage"?>&action=edit">
-                                    <i class="si si-graph push-5-r"></i> Synoptique
-                                </a>
-                                <a class="list-group-item" href="javascript:void(0)">
-                                    <i class="si si-folder push-5-r"></i> Autres
-                                </a>
+                            <div class="alert alert-info">
+                                <p>L'ordre de travail n'est pas encore crée !</p>
+                                <button class="btn btn-block btn-success push-10" data-toggle="modal" data-target="#modal-normal" type="button"><i class="fa fa-plus pull-left"></i> Créer OT</button>
                             </div>
-                            <!-- END Notifications Widget -->
-                            <!-- Notifications Widget -->
-                            <div class="block block-themed">
-                                <div class="block-header bg-modern">
-                                    <h3 class="block-title">Avancement</h3>
-                                </div>
-                                <div class="block-content block-content-full text-center">
-                                    <!-- Pie Chart Container -->
-                                    <div class="js-pie-chart pie-chart" data-percent="75" data-line-width="2" data-size="150" data-bar-color="#14adc4" data-track-color="#eeeeee">
-                                        <span class="h4"><i class="si si-check fa-3x text-modern"></i></span>
+                            <!-- Normal Modal -->
+                            <div class="modal" id="modal-normal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="block block-themed block-transparent remove-margin-b">
+                                            <div class="block-header bg-primary-light">
+                                                <ul class="block-options">
+                                                    <li>
+                                                        <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="block-title">Ajouter Ordre de travail</h3>
+                                            </div>
+                                            <div class="block-content">
+                                                <form class="js-validation-bootstrap form-ot form-horizontal push-10-t push-10">
+                                                    <input type="hidden" id="object_id" name="object_id" value="<?php echo $_GET[$activePage."id"]?>">
+                                                    <input type="hidden" id="object_type" name="object_type" value="<?php echo $activePage?>">
+                                                    <div class="form-group">
+                                                        <label for="titre">Titre <span class="text-danger">*</span></label>
+                                                        <input class="form-control" type="text" id="titre" name="titre">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="description">Motif <span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="description ..."></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                                            <button class="btn btn-sm btn-primary add-ot" type="button" data-dismiss="modal"><i class="fa fa-check"></i> Enregistrer</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="block-content bg-gray-lighter">
-                                    <div class="row items-push text-center">
-                                        <div class="col-xs-6">
-                                            <div class="push-5"><i class="si si-list fa-2x"></i></div>
-                                            <div class="h5 font-w300 text-muted">100 Chambres</div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="push-5"><i class="si si-like fa-2x"></i></div>
-                                            <div class="h5 font-w300 text-muted">75 Traitées</div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <!-- END Notifications Widget -->
+                            <!-- END Normal Modal -->
                         <?php endif; ?>
                         <?php if($transportswitch['job_order_id'] === null):?>
                             <div class="alert alert-info">
