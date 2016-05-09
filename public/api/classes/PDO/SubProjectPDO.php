@@ -94,7 +94,7 @@ class SubProjectPDO extends Model{
 
         $date = new DateTime('now');
         $toinsert = $insert;
-        $toinsert['createdAt'] = $date->format('Y-m-d H:i:s');
+        $toinsert['createdat'] = $date->format('Y-m-d H:i:s');
 
         $toinsert['auto_adduction_date'] = ($insert['auto_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['auto_adduction_date'])->format('Y-m-d'):null);
         $toinsert['works_adduction_date'] = ($insert['works_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $insert['works_adduction_date'])->format('Y-m-d'):null);
@@ -118,7 +118,7 @@ class SubProjectPDO extends Model{
 
         $date = new DateTime('now');
         $toupdate = $update;
-        $toupdate['updatedAt'] = $date->format('Y-m-d H:i:s');
+        $toupdate['updatedat'] = $date->format('Y-m-d H:i:s');
 
         $toupdate['auto_adduction_date'] = ($update['auto_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $update['auto_adduction_date'])->format('Y-m-d'):null);
         $toupdate['works_adduction_date'] = ($update['works_adduction_date']!=""?DateTime::createFromFormat('d/m/Y', $update['works_adduction_date'])->format('Y-m-d'):null);

@@ -76,12 +76,12 @@ $r2i->main_nav                     = array(
         'url'   => '?page=users&action=list'
     ),
     array(
-        'name'  => '<span class="sidebar-mini-hide">Application mobile</span>',
+        'name'  => '<span class="sidebar-mini-hide">Tiers</span>',
         'type'  => 'heading'
     ),
     array(
-        'name'  => '<span class="sidebar-mini-hide">fichiers chambres</span>',
+        'name'  => '<span class="sidebar-mini-hide">Liste tiers (STT)</span>',
         'icon'  => 'si si-file',
-        'url'   => '?page=rooms'
+        'url'   => '#'
     ),
 );

@@ -4,7 +4,7 @@
         <div class="row items-push">
             <div class="col-sm-8">
                 <h1 class="page-heading">
-                    Synoptiques <small>Clickable areas that are easy to recognize but perfectly match the overall design.</small>
+                    Synoptique
                 </h1>
             </div>
             <div class="col-sm-4 text-right hidden-xs">
