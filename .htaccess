@@ -1,0 +1,7 @@
+
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule  "api/(.*)"                "app/sys/api/$1"  [L]
+RewriteRule  login.php                 app/sys/views/document/login.php  [L]
+RewriteRule  logout.php                 app/sys/views/document/logout.php  [L]
