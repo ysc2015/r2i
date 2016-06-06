@@ -1,0 +1,83 @@
+<script>
+    $(document).ready(function() {
+        $("#message_add").hide();
+        $("#save_sub_project").click(function () {
+            $("#message_add").fadeOut();
+            //console.log('clicked');
+            //console.log(dt.row('.selected').data().id_projet);
+            $.ajax({
+                method: "POST",
+                url: "api/sous_projet_add.php",
+                data: {
+                    idp: dt.row('.selected').data().id_projet,
+                    dep: $('#dep').val(),
+                    ville: $('#ville').val(),
+                    plaque: $('#plaque').val(),
+                    zone: $('#zone').val()
+
+                }
+            }).done(function (msg) {
+                App.showMessage(msg, '#message_add');
+                format ( {id_projet : dt.row('.selected').data().id_projet} ) ;
+                //dataTable.draw(false);
+            });
+        });
+    } );
+</script>
+<!-- ajouter projet Modal -->
+<div class="modal fade" id="add-subproject" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent remove-margin-b">
+                <div class="block-header bg-primary">
+                    <ul class="block-options">
+                        <li>
+                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                        </li>
+                    </ul>
+                    <h3 class="block-title">Ajouter sous projet</h3>
+                </div>
+                <div class="block-content">
+                    <div class='alert alert-success' id='message_add' role='alert'>
+                    </div>
+                    <form class="js-validation-bootstrap form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="dep">Département <span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" id="dep" name="dep">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="ville">Ville <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" id="ville" name="ville">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="plaque">Plaque <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" id="plaque" name="plaque">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="zone">Zone <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" id="zone" name="zone">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" type="button">Enregistrer</button>
+                            </div>
+                        </div>-->
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                <button class="btn btn-sm btn-primary" id="save_sub_project" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END ajouter projet Modal -->

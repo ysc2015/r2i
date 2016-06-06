@@ -1,0 +1,22 @@
+<?php
+extract($_GET);
+$sous_projet = SousProjet::find($idsousprojet);
+build_user_form("infozone_nom",$sous_projet);
+?>
+
+
+<!--
+<form class="js-validation-bootstrap form-horizontal">
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="company">Entreprise <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" id="company" name="company" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="company">Entreprise <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" id="company" name="company" value="">
+        </div>
+    </div>
+</form>-->

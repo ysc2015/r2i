@@ -1,0 +1,14 @@
+<?php
+extract($_GET);
+$recette = SousProjetDistributionRecette::first(
+                array('conditions' =>
+array("id_sous_projet = ?", $idsousprojet)
+)
+);
+build_user_form("distribution_recette",$recette);
+?>
+
+<script>
+    $(document).ready(function() {
+    } );
+</script>

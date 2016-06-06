@@ -1,0 +1,25 @@
+<!--<div id="preparation_plaque_carto_alert" class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="alert alert-warning">
+            <h3 class="font-w300 push-15">Information</h3>
+            <p>Aucune entrée préparation plaque (carto) crée!</p>
+        </div>
+        <button id="preparation_plaque_carto_create_show" class="btn btn-minw btn-primary" type="button">Créer</button>
+    </div>
+    <div class="col-md-4"></div>
+</div>-->
+<?php
+extract($_GET);
+$carto = SousProjetPlaqueCarto::first(
+                array('conditions' =>
+array("id_sous_projet = ?", $idsousprojet)
+)
+);
+build_user_form("gestion_plaque_carto",$carto);
+?>
+
+<script>
+    $(document).ready(function() {
+    } );
+</script>
