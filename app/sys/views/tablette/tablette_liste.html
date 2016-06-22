@@ -1,0 +1,71 @@
+<script>
+    var dt;
+    var btns = ["#update_tablette_show",
+        "#delete_tablette_show"];
+    $(document).ready(function() {
+        dt = $('#tablette_table').DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": "api/tablette/tablette_liste.php",
+            "columns": [
+                { "data": "id_tablette" },
+                { "data": "imei" },
+                { "data": "lib_entreprise" }
+            ],
+            "order": [[0, 'desc']],
+            "columnDefs": [
+                { "targets": [ 0 ], "visible": false, "searchable": false } ]
+        } );
+
+        $(btns.join(',')).addClass("disabled");
+
+        $('#tablette_table tbody').on( 'click', 'tr', function (evt) {
+            var $table=$(evt.target).closest('table');
+            if($table.attr('id').indexOf('tablette_table') > -1) {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    $('.linked').prop('disabled', true);
+                    $(btns.join(',')).addClass("disabled");
+                }
+                else {
+                    dt.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $(btns.join(',')).removeClass("disabled");
+                    if(dt.row('.selected').data() != undefined)
+                    {
+                        $('.linked').prop('disabled', false);
+                    }
+                }
+            }
+        } );
+    } );
+</script>
+<!-- Table tablettes -->
+<div class="block">
+    <div class="block-content">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+        <table id="tablette_table" class="table table-bordered table-striped js-dataTable-full">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>code imei</th>
+                <th>entreprise</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>id</th>
+                <th>code imei</th>
+                <th>entreprise</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- END Table tablettes -->
