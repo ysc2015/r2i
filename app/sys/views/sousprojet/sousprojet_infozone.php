@@ -8,7 +8,7 @@
                 <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
-        <h3 class="block-title">infozone</h3>
+        <h3 class="block-title"><?= $lang["INFOZONE"]?></h3>
     </div>
     <div class="block-content">
         <div class="block">
@@ -16,7 +16,7 @@
             <?php
                 foreach($connectedProfil->infozone() as $tab) {?>
                 <li class="<?=($connectedProfil->infozone()[0]==$tab?"active":"")?>">
-                    <a href="#<?=$tab."_content"?>" data-toggle="tab"><?= $tab?></a>
+                    <a href="#<?=$tab."_content"?>" data-toggle="tab"><?= $lang["$tab"]?></a>
                 </li>
                 <?php }?>
 

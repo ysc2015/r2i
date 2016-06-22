@@ -30,9 +30,15 @@ ADM;
             return $this->profil->$name;
         }
 
+        function dashboard() { echo $this->access_denied_message; }
+
         function projet() { echo $this->access_denied_message; }
         function sousprojet() { echo $this->access_denied_message; }
         function utilisateur() { echo $this->access_denied_message; }
+        function stt() { echo $this->access_denied_message; }
+        function tablette() { echo $this->access_denied_message; }
+        function ot() { echo $this->access_denied_message; }
+        function chambre() { echo $this->access_denied_message; }
         //function modal(){ echo $this->access_denied_message; }
 
         function infozone() {return array();}
@@ -41,6 +47,12 @@ ADM;
         function reseautransport() {return array();}
         function reseaudistribution() {return array();}
 
+        function defaultpage() {return "dashboard";}
+        function sidebar() { echo "<p>accés intérdit</p>" ;}
+        function sidebar_test() { Action::sidebar_test("test");}
+
+
+
         function __call($a, $b){
             echo $this->access_denied_message;
         }
@@ -48,6 +60,11 @@ ADM;
         public function __toString() {
             return $this->id_utilisateur;
         }
+
+
+        //test purposes
+
+        function mailcreation() { Action::mailcreation("liste","add","update"); }
     }
 
 	class Action
@@ -59,11 +76,13 @@ ADM;
             $views_folder = __DIR__."/../views/";
 
             global $connectedProfil;
+            global $db;
+            global $lang;
 
             foreach ($args as $key => $value) {
-                if(file_exists($file = $views_folder."{$name}/{$name}_{$value}.html")) {
+                if(file_exists($file = $views_folder."{$name}/{$name}_{$value}.php")) {
                     include $file;
-                } elseif(file_exists($file = $views_folder."{$name}/{$name}_{$value}.php")) {
+                } elseif(file_exists($file = $views_folder."{$name}/{$name}_{$value}.html")) {
                     include $file;
                 }
             }
@@ -72,6 +91,14 @@ ADM;
 
 	class Administrateur extends baseUser
     {
+        function dashboard() {
+            Action::dashboard("index");
+        }
+
+        function sidebar() {
+            Action::sidebar("dashboard","projet_titre","projet_liste","user_titre","user_liste","menu_stt_titre","menu_stt_inc");
+        }
+
         function projet() {
             Action::projet("liste","add","sousprojet_add","update","delete");
         }
@@ -80,8 +107,24 @@ ADM;
             Action::sousprojet("infozone","gestionplaque","preparationplaque","reseautransport","reseaudistribution");
         }
 
-        function utilisateur() {
-            Action::utilisateur("liste");
+        function utilisateur()
+        {
+            Action::utilisateur("liste","add","update");
+        }
+
+        function tablette() {
+            Action::tablette("liste","add","update","delete");
+        }
+
+        function stt() {
+            Action::stt("liste","add","update");
+        }
+
+        function ot() {
+            Action::ot("infos","chambres","controle");
+        }
+        function chambre() {
+            Action::chambre("images","infos_terrain","masque");
         }
 
         //tab contents
@@ -94,7 +137,39 @@ ADM;
 
     class CDPUser extends baseUser
     {
+        function dashboard() {
+            Action::dashboard("index");
+        }
+
+        function sidebar() {
+            Action::sidebar("dashboard","projet_titre","projet_liste");
+        }
+
+        function projet() {
+            Action::projet("liste","add","sousprojet_add","update","delete");
+        }
+
+        function sousprojet() {
+            Action::sousprojet("infozone","gestionplaque","preparationplaque","reseautransport","reseaudistribution");
+        }
+
+        /*function utilisateur() {
+            Action::utilisateur("liste");
+        }*/
+
+        //tab contents
+        function infozone() {return array("nom","infoplaque","zone","siteorigine");}
+        function gestionplaque() {return array("phase","traitementetude");}
+        function preparationplaque() {return array("preparationcarto","positionnementadresses","surveyadressesterrain");}
+        function reseautransport() {return array("design","aiguillage","commandectr","tirage","raccordements","recette");}
+        function reseaudistribution() {return array("designcdi","aiguillage","commandecdi","tirage","raccordements","recette");}
     }
     class STTUser extends baseUser
     {
+        function sidebar() {
+            Action::sidebar("menu_stt_titre","menu_stt_inc");
+        }
+        function tablette() {
+            Action::tablette("liste","add","update","delete");
+        }
     }

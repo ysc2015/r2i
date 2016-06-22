@@ -1,7 +1,16 @@
-<button id="add_project_show" class='btn btn-default btn-sm' data-toggle="modal" data-target='#add-project'><span class='glyphicon glyphicon-edit'>&nbsp;</span> Ajouter projet</button>
-
+<button id="add_project_show" class='btn btn-default btn-sm' data-toggle="modal" data-target='#add-project' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter projet</button>
+<script>
+    $(document).ready(function() {
+        $("#add_project_show").click(function() {
+            $("#ville").select2('val','');
+            $("#info_project_form")[0].reset();
+            App.activaTab('validation-step1');
+            if(uploader != null) uploader.reset();
+        });
+    } );
+</script>
 <?php
 
-include_once __DIR__."/modals/add.html";
+include_once __DIR__."/modals/add.php";
 
 ?>

@@ -1,4 +1,4 @@
-<div class="block block-themed">
+<div class="block block-themed" id="rdistribution_block">
     <div class="block-header bg-info">
         <ul class="block-options">
             <li>
@@ -8,7 +8,7 @@
                 <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
-        <h3 class="block-title">reseaudistribution</h3>
+        <h3 class="block-title"><?=$lang["RESEAUDISTRIBUTION"]?></h3>
     </div>
     <div class="block-content">
         <div class="block">
@@ -16,7 +16,7 @@
                 <?php
                 foreach($connectedProfil->reseaudistribution() as $tab) {?>
                     <li class="<?=($connectedProfil->reseaudistribution()[0]==$tab?"active":"")?>">
-                        <a href="#<?=$tab."_dcontent"?>"><?= $tab?></a>
+                        <a href="#<?=$tab."_dcontent"?>"><?= $lang["$tab"]?></a>
                     </li>
                 <?php }?>
 
