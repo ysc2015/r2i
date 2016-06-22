@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors',1);
-echo shell_exec("chmod -R 777 ./");
+chmod("/var/www/r2i/app/sys/views/document/init.php", 777);
 /**
  * file: index.php
  * User: rabii
