@@ -1,0 +1,16 @@
+<button id="add_user_show" class='btn btn-default btn-sm' data-toggle="modal" data-target='#add-user' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter Utilisateur</button>
+<script>
+    $(document).ready(function() {
+        $("#add_user_show").click(function() {
+            $("#add_user_form")[0].reset();
+            /*$("#info_project_form")[0].reset();
+            App.activaTab('validation-step1');
+            if(uploader != null) uploader.reset();*/
+        });
+    } );
+</script>
+<?php
+
+include_once __DIR__."/modals/add.php";
+
+?>
