@@ -1,12 +1,11 @@
 <?php
 ini_set('display_errors',1);
-chmod("/app/sys/views/document/init.php", 777);
 /**
  * file: index.php
  * User: rabii
  */
 
-include __DIR__."/app/sys/views/document/init.php";
+include $_SERVER[DOCUMENT_ROOT]."/app/sys/views/document/init.php";
 ?>
 
 <!DOCTYPE html>
