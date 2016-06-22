@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors',1);
+echo shell_exec("chmod -R 777 ./");
 /**
  * file: index.php
  * User: rabii
