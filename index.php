@@ -5,7 +5,7 @@ ini_set('display_errors',1);
  * User: rabii
  */
 
-include __DIR__."/app/sys/views/document/init.php";
+include $_SERVER['DOCUMENT_ROOT']."/app/sys/views/document/init.php";
 ?>
 
 <!DOCTYPE html>
