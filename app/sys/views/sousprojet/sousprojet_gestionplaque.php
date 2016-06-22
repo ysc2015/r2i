@@ -1,4 +1,4 @@
-<div class="block block-themed">
+<div class="block block-themed" id="gestionplaque_block">
     <div class="block-header bg-info">
         <ul class="block-options">
             <li>
@@ -8,7 +8,7 @@
                 <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
-        <h3 class="block-title">gestionplaque</h3>
+        <h3 class="block-title"><?=$lang["GESTIONPLAQUE"]?></h3>
     </div>
     <div class="block-content">
         <div class="block">
@@ -16,7 +16,7 @@
                 <?php
                 foreach($connectedProfil->gestionplaque() as $tab) {?>
                     <li class="<?=($connectedProfil->gestionplaque()[0]==$tab?"active":"")?>">
-                        <a href="#<?=$tab."_content"?>"><?= $tab?></a>
+                        <a href="#<?=$tab."_content"?>"><?= $lang["$tab"]?></a>
                     </li>
                 <?php }?>
 

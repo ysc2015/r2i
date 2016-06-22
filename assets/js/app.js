@@ -5,6 +5,45 @@
  *
  */
 
+var deleteFile = function (id,callback) {
+    $.ajax({
+        method: "POST",
+        url: "api/file/delete.php",
+        data: {
+            id: id
+        }
+    }).done(function (message) {
+        console.log(message);
+        callback();
+    });
+};
+
+var getProjectFiles = function() {
+    $.ajax({
+        method: "POST",
+        url: "api/projet/get_project_files.php",
+        data: {
+            idp: idp
+        }
+    }).done(function (message) {
+        var obj = $.parseJSON(message);
+        var html = '<div class="alert alert-info alert-dismissable">';
+        if(obj.files.length > 0) {
+            $.each(obj.files,function(key,val) {
+                html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getProjectFiles)">×</button>';
+                html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
+            });
+        } else {
+            html += '<p>aucun fichier contour trouvé !</p>';
+        }
+
+        html +='</div>';
+        html +='</div>';
+
+        $("#project_file_list").html(html);
+    });
+};
+
 var App = function() {
     // Helper variables - set in uiInit()
     var $lHtml, $lBody, $lPage, $lSidebar, $lSidebarScroll, $lSideOverlay, $lSideOverlayScroll, $lHeader, $lMain, $lFooter;
@@ -70,24 +109,15 @@ var App = function() {
         jQuery('.form-control').placeholder();
 
         //Sous projet tab contents custom code
-        /*$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            console.log('shown.bs.tab fired');
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var target = $(e.target).attr("href"); // activated tab
-            /!*alert(target);*!/
             switch (target) {
-                case "#infoplaque_content" : {
-                    if(!$('#id_sous_projet_plaque').val()) {
-
-                        $('#info_plaque_alert').show();
-                        $('#infoplaque_content').find('form').hide();
-                    } else {
-                        $('#info_plaque_alert').hide();
-                        $('#infoplaque_content').find('form').show();
-                    }
+                case "#files_update_tab" : {
+                    getProjectFiles();
                     break;
                 }
             }
-        });*/
+        });
     };
 
     // Layout functionality
@@ -965,8 +995,12 @@ var App = function() {
      *
      */
     var uiHelperSelect2 = function(){
+        var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
         // Init Select2 (with .js-select2 class)
-        jQuery('.js-select2').select2();
+        jQuery('.js-select2').select2({
+            data: data,
+            autocomplete: true
+        });
     };
 
     /*
@@ -1067,6 +1101,10 @@ var App = function() {
         });
     };
 
+    //
+    var activaTab = function (tab){
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+    };
     //show message function
     var showMessage = function(message,selector) {
         var obj;
@@ -1079,16 +1117,13 @@ var App = function() {
         $(selector).fadeIn(500);
 
         var msg;
-        console.log('001');
         if($.isArray(obj.message)) {
-            console.log('002');
             //msg = obj.message.forEach(function(a){ return "<li>"+a+"</li>";}).join()
             msg = obj.message.join('</li><li>');
             msg = '<li>' + msg + '</li>';
             //msg = msg.substr(0,-4);
             msg = '<ul>' + msg + '</ul>';
         } else {
-            console.log('003');
             msg = obj.message;
         }
 
@@ -1102,10 +1137,15 @@ var App = function() {
             $(selector).addClass("alert-success");
         }
         $(selector).fadeOut(5000);
+
+        return (obj.error > 0 ? false : true);
     }
 
     return {
+        activaTab:activaTab,
         showMessage:showMessage,
+        getJsonObject:getJsonObject,
+        getProjectFiles:getProjectFiles,
         init: function() {
             // Init all vital functions
             uiInit();

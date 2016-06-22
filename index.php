@@ -28,6 +28,7 @@ if (!isset($page) || empty($page)) {
     $page = "dashboard";
 
 }
+$pageInfos = include("app/sys/pageinfos.php");
 if($page == "dashboard") $section_header = "";
 else {
     $section_header = <<<TOP
@@ -36,13 +37,12 @@ else {
                     <div class="row items-push">
                         <div class="col-sm-7">
                             <h1 class="page-heading">
-                                R2I <small>[test]</small>
+                                {$pageInfos->header} <small>{$pageInfos->subheader}</small>
                             </h1>
                         </div>
                         <div class="col-sm-5 text-right hidden-xs">
                             <ol class="breadcrumb push-10-t">
-                                <li>R2I</li>
-                                <li><a class="link-effect" href="">Test</a></li>
+                                {$pageInfos->navigator}
                             </ol>
                         </div>
                     </div>
@@ -50,7 +50,6 @@ else {
                 <!-- END Page Header -->
 TOP;
 }
-
 
 //$pageInfo = include("app/sys/tab.php");
 ?>

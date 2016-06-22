@@ -31,6 +31,7 @@ $form = array();
 
 //Nom(sousprojet)
 $form["infozone_nom"]["table_key"] = "id_sous_projet";
+$form["infozone_nom"]["has_ot"] = false;
 $form["infozone_nom"]["fields"] = array(
     array(
         "id" => "dep",
@@ -39,7 +40,7 @@ $form["infozone_nom"]["fields"] = array(
         "place_holder" => "",
         "label_for" => "Département",
         "css_class" => "col-md-3",
-        "readonly" => "",
+        "readonly" => "readonly",
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
@@ -51,7 +52,7 @@ $form["infozone_nom"]["fields"] = array(
         "place_holder" => "",
         "label_for" => "Ville",
         "css_class" => "col-md-3",
-        "readonly" => "",
+        "readonly" => "readonly",
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
@@ -63,7 +64,7 @@ $form["infozone_nom"]["fields"] = array(
         "place_holder" => "",
         "label_for" => "Plaque",
         "css_class" => "col-md-3",
-        "readonly" => "",
+        "readonly" => "readonly",
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
@@ -84,6 +85,7 @@ $form["infozone_nom"]["fields"] = array(
 
 //Info Plaque
 $form["infozone_plaque"]["table_key"] = "id_sous_projet_plaque";
+$form["infozone_plaque"]["has_ot"] = false;
 $form["infozone_plaque"]["fields"] = array(
     array(
         "id" => "phase",
@@ -113,6 +115,7 @@ $form["infozone_plaque"]["fields"] = array(
 
 //Info Zone
 $form["infozone_zone"]["table_key"] = "id_sous_projet_zone";
+$form["infozone_zone"]["has_ot"] = false;
 $form["infozone_zone"]["fields"] = array(
     array(
         "id" => "nbr_zone",
@@ -190,6 +193,7 @@ $form["infozone_zone"]["fields"] = array(
 
 //Site Origine
 $form["infozone_site_origine"]["table_key"] = "id_sous_projet_site_origine";
+$form["infozone_site_origine"]["has_ot"] = false;
 $form["infozone_site_origine"]["fields"] = array(
     array(
         "id" => "code_site",
@@ -204,7 +208,7 @@ $form["infozone_site_origine"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "type",
+        "id" => "type_so",
         "field_name" => "type",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un type",
@@ -257,6 +261,7 @@ $form["infozone_site_origine"]["fields"] = array(
 
 //Phase
 $form["gestion_plaque_phase"]["table_key"] = "id_sous_projet_plaque_phase";
+$form["gestion_plaque_phase"]["has_ot"] = false;
 $form["gestion_plaque_phase"]["fields"] = array(
     array(
         "id" => "instigateur",
@@ -270,16 +275,28 @@ $form["gestion_plaque_phase"]["fields"] = array(
         "ref_select" => "phase_instigateur",
         "select_func" => ""
     ),
-    array(
+    /*array(
         "id" => "vague",
         "field_name" => "vague",
         "input_type" => "number",
         "place_holder" => "",
         "label_for" => "Vague",
         "css_class" => "col-md-3",
-        "readonly" => "readonly",
+        "readonly" => "",//was readonly
         "db_class_for_select" => "",
         "ref_select" => "",
+        "select_func" => ""
+    ),*/
+    array(
+        "id" => "vague",
+        "field_name" => "vague",
+        "input_type" => "select",
+        "place_holder" => "Sélectionnez une phase",
+        "label_for" => "Vague",
+        "css_class" => "col-md-3",
+        "readonly" => "",
+        "db_class_for_select" => "SelectPlaquePhase",
+        "ref_select" => "plaque_phase",
         "select_func" => ""
     ),
     array(
@@ -298,9 +315,10 @@ $form["gestion_plaque_phase"]["fields"] = array(
 
 //Traitement etude
 $form["gestion_plaque_traitement_etude"]["table_key"] = "id_sous_projet_plaque_traitement_etude";
+$form["gestion_plaque_traitement_etude"]["has_ot"] = false;
 $form["gestion_plaque_traitement_etude"]["fields"] = array(
     array(
-        "id" => "site",
+        "id" => "tsite",
         "field_name" => "site",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -316,7 +334,7 @@ $form["gestion_plaque_traitement_etude"]["fields"] = array(
         "field_name" => "charge_etude",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
-        "label_for" => "Type",
+        "label_for" => "Chargé d'étude",
         "css_class" => "col-md-3",
         "readonly" => "",
         "db_class_for_select" => "",
@@ -329,9 +347,10 @@ $form["gestion_plaque_traitement_etude"]["fields"] = array(
 
 //Préparation carto
 $form["gestion_plaque_carto"]["table_key"] = "id_sous_projet_plaque_carto";
+$form["gestion_plaque_carto"]["has_ot"] = false;
 $form["gestion_plaque_carto"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "pc_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -343,7 +362,7 @@ $form["gestion_plaque_carto"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_debut",
+        "id" => "pc_date_debut",
         "field_name" => "date_debut",
         "input_type" => "date",
         "place_holder" => "",
@@ -355,7 +374,7 @@ $form["gestion_plaque_carto"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_ret_prevue",
+        "id" => "pc_date_ret_prevue",
         "field_name" => "date_ret_prevue",
         "input_type" => "date",
         "place_holder" => "",
@@ -367,7 +386,7 @@ $form["gestion_plaque_carto"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "pc_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -382,9 +401,10 @@ $form["gestion_plaque_carto"]["fields"] = array(
 
 //Positionnement des Adresses
 $form["gestion_plaque_pos_adresse"]["table_key"] = "id_sous_projet_plaque_pos_adresse";
+$form["gestion_plaque_pos_adresse"]["has_ot"] = false;
 $form["gestion_plaque_pos_adresse"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "pa_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -396,7 +416,7 @@ $form["gestion_plaque_pos_adresse"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_debut",
+        "id" => "pa_date_debut",
         "field_name" => "date_debut",
         "input_type" => "date",
         "place_holder" => "",
@@ -408,7 +428,7 @@ $form["gestion_plaque_pos_adresse"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_ret_prevue",
+        "id" => "pa_date_ret_prevue",
         "field_name" => "date_ret_prevue",
         "input_type" => "date",
         "place_holder" => "",
@@ -420,7 +440,7 @@ $form["gestion_plaque_pos_adresse"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "pa_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -432,7 +452,7 @@ $form["gestion_plaque_pos_adresse"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "intervenant",
+        "id" => "pa_intervenant",
         "field_name" => "intervenant",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -444,7 +464,7 @@ $form["gestion_plaque_pos_adresse"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "bpe_sur_site",
+        "id" => "pa_bpe_sur_site",
         "field_name" => "bpe_sur_site",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -459,9 +479,10 @@ $form["gestion_plaque_pos_adresse"]["fields"] = array(
 
 //Survey Adresses Terrain
 $form["gestion_plaque_survey_adresse"]["table_key"] = "id_sous_projet_plaque_survey_adresse";
+$form["gestion_plaque_survey_adresse"]["has_ot"] = false;
 $form["gestion_plaque_survey_adresse"]["fields"] = array(
     array(
-        "id" => "volume_adresse",
+        "id" => "sa_volume_adresse",
         "field_name" => "volume_adresse",
         "input_type" => "number",
         "place_holder" => "",
@@ -472,7 +493,7 @@ $form["gestion_plaque_survey_adresse"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "date_debut",
+        "id" => "sa_date_debut",
         "field_name" => "date_debut",
         "input_type" => "date",
         "place_holder" => "",
@@ -484,7 +505,7 @@ $form["gestion_plaque_survey_adresse"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_ret_prevue",
+        "id" => "sa_date_ret_prevue",
         "field_name" => "date_ret_prevue",
         "input_type" => "date",
         "place_holder" => "",
@@ -495,7 +516,7 @@ $form["gestion_plaque_survey_adresse"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "intervenant",
+        "id" => "sa_intervenant",
         "field_name" => "intervenant",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -506,7 +527,7 @@ $form["gestion_plaque_survey_adresse"]["fields"] = array(
         "ref_select" => "",
         "select_func" => "get_bei_users"
     ),array(
-        "id" => "duree",
+        "id" => "sa_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -523,9 +544,10 @@ $form["gestion_plaque_survey_adresse"]["fields"] = array(
 
 //Design
 $form["transport_design"]["table_key"] = "id_sous_projet_transport_design";
+$form["transport_design"]["has_ot"] = false;
 $form["transport_design"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "td_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -536,7 +558,7 @@ $form["transport_design"]["fields"] = array(
         "ref_select" => "",
         "select_func" => "get_bei_users"
     ),array(
-        "id" => "date_debut",
+        "id" => "td_date_debut",
         "field_name" => "date_debut",
         "input_type" => "date",
         "place_holder" => "",
@@ -548,7 +570,7 @@ $form["transport_design"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_ret_prevue",
+        "id" => "td_date_ret_prevue",
         "field_name" => "date_ret_prevue",
         "input_type" => "date",
         "place_holder" => "",
@@ -559,7 +581,7 @@ $form["transport_design"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "duree",
+        "id" => "td_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -570,7 +592,7 @@ $form["transport_design"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "lineaire_transport",
+        "id" => "td_lineaire_transport",
         "field_name" => "lineaire_transport",
         "input_type" => "number",
         "place_holder" => "",
@@ -581,7 +603,7 @@ $form["transport_design"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "nb_zones",
+        "id" => "td_nb_zones",
         "field_name" => "nb_zones",
         "input_type" => "number",
         "place_holder" => "",
@@ -596,9 +618,10 @@ $form["transport_design"]["fields"] = array(
 
 //Aiguillage
 $form["transport_aiguillage"]["table_key"] = "id_sous_projet_transport_aiguillage";
+$form["transport_aiguillage"]["has_ot"] = true;
 $form["transport_aiguillage"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "ta_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -610,7 +633,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "plans",
+        "id" => "ta_plans",
         "field_name" => "plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez état plans",
@@ -622,7 +645,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "lineaire_reseau",
+        "id" => "ta_lineaire_reseau",
         "field_name" => "lineaire_reseau",
         "input_type" => "number",
         "place_holder" => "",
@@ -634,7 +657,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "controle_plans",
+        "id" => "ta_controle_plans",
         "field_name" => "controle_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez type controle",
@@ -646,7 +669,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_plans",
+        "id" => "ta_date_transmission_plans",
         "field_name" => "date_transmission_plans",
         "input_type" => "date",
         "place_holder" => "",
@@ -658,8 +681,8 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "ta_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -670,7 +693,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_aiguillage",
+        "id" => "ta_date_aiguillage",
         "field_name" => "date_aiguillage",
         "input_type" => "date",
         "place_holder" => "",
@@ -682,7 +705,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_ret_prevue",
+        "id" => "ta_date_ret_prevue",
         "field_name" => "date_ret_prevue",
         "input_type" => "date",
         "place_holder" => "",
@@ -694,7 +717,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "ta_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -706,7 +729,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "controle_demarrage_effectif",
+        "id" => "ta_controle_demarrage_effectif",
         "field_name" => "controle_demarrage_effectif",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -718,7 +741,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_retour",
+        "id" => "ta_date_retour",
         "field_name" => "date_retour",
         "input_type" => "date",
         "place_holder" => "",
@@ -730,7 +753,7 @@ $form["transport_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_retour",
+        "id" => "ta_etat_retour",
         "field_name" => "etat_retour",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -745,9 +768,10 @@ $form["transport_aiguillage"]["fields"] = array(
 
 //Commande Structurante CTR
 $form["transport_commande_ctr"]["table_key"] = "id_sous_projet_transport_commande_ctr";
+$form["transport_commande_ctr"]["has_ot"] = false;
 $form["transport_commande_ctr"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "cctr_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -759,19 +783,19 @@ $form["transport_commande_ctr"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_butoir",
+        "id" => "cctr_date_butoir",
         "field_name" => "date_butoir",
         "input_type" => "date",
         "place_holder" => "",
         "label_for" => "Date butoire traitement retour Aig",
         "css_class" => "col-md-3",
-        "readonly" => "readonly",
+        "readonly" => "",//was readonly
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
     ),
     array(
-        "id" => "traitement_retour_terrain",
+        "id" => "cctr_traitement_retour_terrain",
         "field_name" => "traitement_retour_terrain",
         "input_type" => "date",
         "place_holder" => "",
@@ -783,7 +807,7 @@ $form["transport_commande_ctr"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "modification_carto",
+        "id" => "cctr_modification_carto",
         "field_name" => "modification_carto",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -795,7 +819,7 @@ $form["transport_commande_ctr"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "commandes_acces",
+        "id" => "cctr_commandes_acces",
         "field_name" => "commandes_acces",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -807,7 +831,7 @@ $form["transport_commande_ctr"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_ca",
+        "id" => "cctr_date_transmission_ca",
         "field_name" => "date_transmission_ca",
         "input_type" => "date",
         "place_holder" => "",
@@ -819,7 +843,7 @@ $form["transport_commande_ctr"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "ref_commande_acces",
+        "id" => "cctr_ref_commande_acces",
         "field_name" => "ref_commande_acces",
         "input_type" => "text",
         "place_holder" => "",
@@ -831,7 +855,7 @@ $form["transport_commande_ctr"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "go_ft",
+        "id" => "cctr_go_ft",
         "field_name" => "go_ft",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -846,9 +870,10 @@ $form["transport_commande_ctr"]["fields"] = array(
 
 //Tirage
 $form["transport_tirage"]["table_key"] = "id_sous_projet_transport_tirage";
+$form["transport_tirage"]["has_ot"] = true;
 $form["transport_tirage"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "tt_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -860,7 +885,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_previsionnelle",
+        "id" => "tt_date_previsionnelle",
         "field_name" => "date_previsionnelle",
         "input_type" => "date",
         "place_holder" => "",
@@ -872,7 +897,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "prep_plans",
+        "id" => "tt_prep_plans",
         "field_name" => "prep_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -884,7 +909,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "controle_plans",
+        "id" => "tt_controle_plans",
         "field_name" => "controle_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -896,7 +921,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_plans",
+        "id" => "tt_date_transmission_plans",
         "field_name" => "date_transmission_plans",
         "input_type" => "date",
         "place_holder" => "",
@@ -908,8 +933,8 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "tt_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -920,7 +945,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_tirage",
+        "id" => "tt_date_tirage",
         "field_name" => "date_tirage",
         "input_type" => "date",
         "place_holder" => "",
@@ -932,7 +957,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_ret_prevue",
+        "id" => "tt_date_ret_prevue",
         "field_name" => "date_ret_prevue",
         "input_type" => "date",
         "place_holder" => "",
@@ -944,7 +969,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-    "id" => "duree",
+    "id" => "tt_duree",
     "field_name" => "duree",
     "input_type" => "number",
     "place_holder" => "",
@@ -956,7 +981,7 @@ $form["transport_tirage"]["fields"] = array(
     "select_func" => ""
     ),
     array(
-        "id" => "controle_demarrage_effectif",
+        "id" => "tt_controle_demarrage_effectif",
         "field_name" => "controle_demarrage_effectif",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -968,7 +993,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_retour",
+        "id" => "tt_date_retour",
         "field_name" => "date_retour",
         "input_type" => "date",
         "place_holder" => "",
@@ -980,7 +1005,7 @@ $form["transport_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_retour",
+        "id" => "tt_etat_retour",
         "field_name" => "etat_retour",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -995,9 +1020,10 @@ $form["transport_tirage"]["fields"] = array(
 
 //Raccordements
 $form["transport_raccordements"]["table_key"] = "id_sous_projet_transport_raccordements";
+$form["transport_raccordements"]["has_ot"] = false;
 $form["transport_raccordements"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "tr_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1009,7 +1035,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "preparation_pds",
+        "id" => "tr_preparation_pds",
         "field_name" => "preparation_pds",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1021,7 +1047,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "controle_plans",
+        "id" => "tr_controle_plans",
         "field_name" => "controle_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1033,7 +1059,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_pds",
+        "id" => "tr_date_transmission_pds",
         "field_name" => "date_transmission_pds",
         "input_type" => "date",
         "place_holder" => "",
@@ -1045,8 +1071,8 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "tr_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -1057,7 +1083,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_racco",
+        "id" => "tr_date_racco",
         "field_name" => "date_racco",
         "input_type" => "date",
         "place_holder" => "",
@@ -1069,7 +1095,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "tr_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -1081,7 +1107,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "controle_demarrage_effectif",
+        "id" => "tr_controle_demarrage_effectif",
         "field_name" => "controle_demarrage_effectif",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1093,7 +1119,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_retour",
+        "id" => "tr_date_retour",
         "field_name" => "date_retour",
         "input_type" => "date",
         "place_holder" => "",
@@ -1105,7 +1131,7 @@ $form["transport_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_retour",
+        "id" => "tr_etat_retour",
         "field_name" => "etat_retour",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1120,9 +1146,10 @@ $form["transport_raccordements"]["fields"] = array(
 
 //Recette
 $form["transport_recette"]["table_key"] = "id_sous_projet_transport_recette";
+$form["transport_recette"]["has_ot"] = false;
 $form["transport_recette"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "trec_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1134,7 +1161,7 @@ $form["transport_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "doe",
+        "id" => "trec_doe",
         "field_name" => "doe",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1146,7 +1173,7 @@ $form["transport_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "netgeo",
+        "id" => "trec_netgeo",
         "field_name" => "netgeo",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1158,7 +1185,7 @@ $form["transport_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "intervenant_free",
+        "id" => "trec_intervenant_free",
         "field_name" => "intervenant_free",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1170,8 +1197,8 @@ $form["transport_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "trec_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -1182,7 +1209,7 @@ $form["transport_recette"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_recette",
+        "id" => "trec_date_recette",
         "field_name" => "date_recette",
         "input_type" => "date",
         "place_holder" => "",
@@ -1194,7 +1221,7 @@ $form["transport_recette"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_recette",
+        "id" => "trec_etat_recette",
         "field_name" => "etat_recette",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1211,9 +1238,10 @@ $form["transport_recette"]["fields"] = array(
 
 //Design
 $form["distribution_design"]["table_key"] = "id_sous_projet_distribution_design";
+$form["distribution_design"]["has_ot"] = false;
 $form["distribution_design"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "dd_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1225,7 +1253,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "intervenant_bex",
+        "id" => "dd_intervenant_bex",
         "field_name" => "intervenant_bex",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1237,7 +1265,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_debut",
+        "id" => "dd_date_debut",
         "field_name" => "date_debut",
         "input_type" => "date",
         "place_holder" => "",
@@ -1249,7 +1277,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_fin",
+        "id" => "dd_date_fin",
         "field_name" => "date_fin",
         "input_type" => "date",
         "place_holder" => "",
@@ -1261,7 +1289,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "dd_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -1273,7 +1301,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "lineaire_distribution",
+        "id" => "dd_lineaire_distribution",
         "field_name" => "lineaire_distribution",
         "input_type" => "number",
         "place_holder" => "",
@@ -1285,7 +1313,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat",
+        "id" => "dd_etat",
         "field_name" => "etat",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1297,7 +1325,7 @@ $form["distribution_design"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_envoi",
+        "id" => "dd_date_envoi",
         "field_name" => "date_envoi",
         "input_type" => "date",
         "place_holder" => "",
@@ -1312,9 +1340,10 @@ $form["distribution_design"]["fields"] = array(
 
 //Aiguillage
 $form["distribution_aiguillage"]["table_key"] = "id_sous_projet_distribution_aiguillage";
+$form["distribution_aiguillage"]["has_ot"] = true;
 $form["distribution_aiguillage"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "da_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1325,7 +1354,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "ref_select" => "",
         "select_func" => "get_bei_users"
     ),array(
-        "id" => "plans",
+        "id" => "da_plans",
         "field_name" => "plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez état plans",
@@ -1336,7 +1365,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "ref_select" => "etat_plan",
         "select_func" => ""
     ),array(
-        "id" => "lineaire_reseau",
+        "id" => "da_lineaire_reseau",
         "field_name" => "lineaire_reseau",
         "input_type" => "number",
         "place_holder" => "",
@@ -1347,7 +1376,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "controle_plans",
+        "id" => "da_controle_plans",
         "field_name" => "controle_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez type controle",
@@ -1359,7 +1388,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_plans",
+        "id" => "da_date_transmission_plans",
         "field_name" => "date_transmission_plans",
         "input_type" => "date",
         "place_holder" => "",
@@ -1370,8 +1399,8 @@ $form["distribution_aiguillage"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "da_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -1382,7 +1411,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_aiguillage",
+        "id" => "da_date_aiguillage",
         "field_name" => "date_aiguillage",
         "input_type" => "date",
         "place_holder" => "",
@@ -1394,7 +1423,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "da_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -1405,7 +1434,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "controle_demarrage_effectif",
+        "id" => "da_controle_demarrage_effectif",
         "field_name" => "controle_demarrage_effectif",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1417,7 +1446,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_retour",
+        "id" => "da_date_retour",
         "field_name" => "date_retour",
         "input_type" => "date",
         "place_holder" => "",
@@ -1428,7 +1457,7 @@ $form["distribution_aiguillage"]["fields"] = array(
         "ref_select" => "",
         "select_func" => ""
     ),array(
-        "id" => "etat_retour",
+        "id" => "da_etat_retour",
         "field_name" => "etat_retour",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1443,9 +1472,10 @@ $form["distribution_aiguillage"]["fields"] = array(
 
 //Commande Structurante CDI
 $form["distribution_commande_cdi"]["table_key"] = "id_sous_projet_distribution_commande_cdi";
+$form["distribution_commande_cdi"]["has_ot"] = false;
 $form["distribution_commande_cdi"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "dcc_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1457,19 +1487,19 @@ $form["distribution_commande_cdi"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_butoir",
+        "id" => "dcc_date_butoir",
         "field_name" => "date_butoir",
         "input_type" => "date",
         "place_holder" => "",
         "label_for" => "Date butoire traitement retour Aig",
         "css_class" => "col-md-3",
-        "readonly" => "readonly",
+        "readonly" => "",//was readonly
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
     ),
     array(
-        "id" => "traitement_retour_terrain",
+        "id" => "dcc_traitement_retour_terrain",
         "field_name" => "traitement_retour_terrain",
         "input_type" => "date",
         "place_holder" => "",
@@ -1481,7 +1511,7 @@ $form["distribution_commande_cdi"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "modification_carto",
+        "id" => "dcc_modification_carto",
         "field_name" => "modification_carto",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1493,7 +1523,7 @@ $form["distribution_commande_cdi"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "commandes_acces",
+        "id" => "dcc_commandes_acces",
         "field_name" => "commandes_acces",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1505,7 +1535,7 @@ $form["distribution_commande_cdi"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_ca",
+        "id" => "dcc_date_transmission_ca",
         "field_name" => "date_transmission_ca",
         "input_type" => "date",
         "place_holder" => "",
@@ -1517,7 +1547,7 @@ $form["distribution_commande_cdi"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "ref_commande_acces",
+        "id" => "dcc_ref_commande_acces",
         "field_name" => "ref_commande_acces",
         "input_type" => "text",
         "place_holder" => "",
@@ -1529,7 +1559,7 @@ $form["distribution_commande_cdi"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "go_ft",
+        "id" => "dcc_go_ft",
         "field_name" => "go_ft",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1544,9 +1574,10 @@ $form["distribution_commande_cdi"]["fields"] = array(
 
 //Tirage
 $form["distribution_tirage"]["table_key"] = "id_sous_projet_distribution_tirage";
+$form["distribution_tirage"]["has_ot"] = true;
 $form["distribution_tirage"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "dt_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1558,7 +1589,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "date_previsionnelle",
+        "id" => "dt_date_previsionnelle",
         "field_name" => "date_previsionnelle",
         "input_type" => "date",
         "place_holder" => "",
@@ -1570,7 +1601,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "prep_plans",
+        "id" => "dt_prep_plans",
         "field_name" => "prep_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1582,7 +1613,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "controle_plans",
+        "id" => "dt_controle_plans",
         "field_name" => "controle_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1594,7 +1625,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_plans",
+        "id" => "dt_date_transmission_plans",
         "field_name" => "date_transmission_plans",
         "input_type" => "date",
         "place_holder" => "",
@@ -1606,8 +1637,8 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "dt_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -1618,7 +1649,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_tirage",
+        "id" => "dt_date_tirage",
         "field_name" => "date_tirage",
         "input_type" => "date",
         "place_holder" => "",
@@ -1630,7 +1661,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "dt_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -1642,7 +1673,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "controle_demarrage_effectif",
+        "id" => "dt_controle_demarrage_effectif",
         "field_name" => "controle_demarrage_effectif",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1654,7 +1685,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_retour",
+        "id" => "dt_date_retour",
         "field_name" => "date_retour",
         "input_type" => "date",
         "place_holder" => "",
@@ -1666,7 +1697,7 @@ $form["distribution_tirage"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_retour",
+        "id" => "dt_etat_retour",
         "field_name" => "etat_retour",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1681,9 +1712,10 @@ $form["distribution_tirage"]["fields"] = array(
 
 //Raccordements
 $form["distribution_raccordements"]["table_key"] = "id_sous_projet_distribution_raccordements";
+$form["distribution_raccordements"]["has_ot"] = false;
 $form["distribution_raccordements"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "dr_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1695,7 +1727,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "preparation_pds",
+        "id" => "dr_preparation_pds",
         "field_name" => "preparation_pds",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1707,7 +1739,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "controle_plans",
+        "id" => "dr_controle_plans",
         "field_name" => "controle_plans",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1719,7 +1751,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_transmission_pds",
+        "id" => "dr_date_transmission_pds",
         "field_name" => "date_transmission_pds",
         "input_type" => "date",
         "place_holder" => "",
@@ -1731,8 +1763,8 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "dr_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -1743,7 +1775,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_racco",
+        "id" => "dr_date_racco",
         "field_name" => "date_racco",
         "input_type" => "date",
         "place_holder" => "",
@@ -1755,7 +1787,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "duree",
+        "id" => "dr_duree",
         "field_name" => "duree",
         "input_type" => "number",
         "place_holder" => "",
@@ -1767,7 +1799,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "controle_demarrage_effectif",
+        "id" => "dr_controle_demarrage_effectif",
         "field_name" => "controle_demarrage_effectif",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1779,7 +1811,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_retour",
+        "id" => "dr_date_retour",
         "field_name" => "date_retour",
         "input_type" => "date",
         "place_holder" => "",
@@ -1791,7 +1823,7 @@ $form["distribution_raccordements"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_retour",
+        "id" => "dr_etat_retour",
         "field_name" => "etat_retour",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1806,9 +1838,10 @@ $form["distribution_raccordements"]["fields"] = array(
 
 //Recette
 $form["distribution_recette"]["table_key"] = "id_sous_projet_distribution_recette";
+$form["distribution_recette"]["has_ot"] = false;
 $form["distribution_recette"]["fields"] = array(
     array(
-        "id" => "intervenant_be",
+        "id" => "drec_intervenant_be",
         "field_name" => "intervenant_be",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1820,7 +1853,7 @@ $form["distribution_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "doe",
+        "id" => "drec_doe",
         "field_name" => "doe",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1832,7 +1865,7 @@ $form["distribution_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "netgeo",
+        "id" => "drec_netgeo",
         "field_name" => "netgeo",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1844,7 +1877,7 @@ $form["distribution_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "intervenant_free",
+        "id" => "drec_intervenant_free",
         "field_name" => "intervenant_free",
         "input_type" => "select",
         "place_holder" => "Sélectionnez un utilisateur",
@@ -1856,8 +1889,8 @@ $form["distribution_recette"]["fields"] = array(
         "select_func" => "get_bei_users"
     ),
     array(
-        "id" => "entreprise",
-        "field_name" => "entreprise",
+        "id" => "drec_entreprise",
+        "field_name" => "id_entreprise",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une entreprise",
         "label_for" => "Entreprise",
@@ -1868,7 +1901,7 @@ $form["distribution_recette"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "date_recette",
+        "id" => "drec_date_recette",
         "field_name" => "date_recette",
         "input_type" => "date",
         "place_holder" => "",
@@ -1880,7 +1913,7 @@ $form["distribution_recette"]["fields"] = array(
         "select_func" => ""
     ),
     array(
-        "id" => "etat_recette",
+        "id" => "drec_etat_recette",
         "field_name" => "etat_recette",
         "input_type" => "select",
         "place_holder" => "Sélectionnez une valeur",
@@ -1904,7 +1937,7 @@ function build_user_form($form_name,$object=NULL) {
     $html .= "<form class=\"js-validation-bootstrap form-horizontal\">";
 
     if($object === NULL) {
-        $html .="<div class=\"row\"><div class=\"col-md-3\"><span class=\"label label-warning\">Aucune entrée crée !</span></div></div>";
+        $html .="<div class=\"row\"><div id=\"{$form[$form_name]["table_key"]}_alert\" class=\"col-md-3\"><span class=\"label label-warning\">Aucune entrée crée !</span></div></div>";
         /*$html .="<h3 class=\"font-w300 push-15\">Information</h3>";
         $html .="<p>Aucune entrée crée!</p>";
         $html .="</div>";*/
@@ -1959,9 +1992,25 @@ function build_user_form($form_name,$object=NULL) {
         $html .= "</div>";
     }
 
+    $html .="<div class='alert alert-success' id='message_$form_name' role='alert'></div>";
+
     $html .= "<div class=\"form-group\">";
-    $html .= "<div class=\"col-md-3\">";
+    $html .= "<div class=\"col-md-8\">";
     $html .= "<button id=\"{$form[$form_name]["table_key"]}_btn\" class=\"btn btn-primary\" type=\"button\">Enregistrer</button>";
+    if($form[$form_name]["has_ot"] && $object !== NULL) {
+        $ot = OrdreDeTravail::first(
+            array('conditions' =>
+                array("id_entree = ? AND type_entree = ?", $object->$form[$form_name]["table_key"],$form_name)
+            )
+        );
+        if($ot !== NULL) {
+            $idsp = $_GET['idsousprojet'];
+            $html .= "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsp\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
+        } else {
+            $html .= "  <button id=\"{$form[$form_name]["table_key"]}_create_ot_show\" class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">créer ordre de travail</button>";
+        }
+
+    }
     $html .= "</div>";
     $html .= "</div>";
 

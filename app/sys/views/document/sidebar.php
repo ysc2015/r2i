@@ -19,9 +19,9 @@
                 </button>
                 <!-- Themes functionality initialized in App() -> uiHandleTheme() -->
                 <div class="btn-group pull-right">
-                    <button class="btn btn-link text-gray dropdown-toggle" data-toggle="dropdown" type="button">
+                    <!--<button class="btn btn-link text-gray dropdown-toggle" data-toggle="dropdown" type="button">
                         <i class="si si-drop"></i>
-                    </button>
+                    </button>-->
                     <ul class="dropdown-menu dropdown-menu-right font-s13 sidebar-mini-hide">
                         <li>
                             <a data-toggle="theme" data-theme="default" tabindex="-1" href="javascript:void(0)">
@@ -64,26 +64,10 @@
             <!-- Side Content -->
             <div class="side-content">
                 <ul class="nav-main">
-                    <li>
-                        <a href="?page=dashboard"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
-                    </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Projets</span></li>
-                    <li>
-                        <a href="?page=projet"><i class="si si-list"></i><span class="sidebar-mini-hide">liste</span></a>
-                    </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Utilisateurs</span></li>
-                    <li>
-                        <a href="?page=user"><i class="si si-list"></i><span class="sidebar-mini-hide">liste</span></a>
-                    </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Menu STT</span></li>
-                    <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-screen-tablet"></i><span class="sidebar-mini-hide">Tablettes</span></a>
-                        <ul>
-                            <li>
-                                <a href="#">Liste</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php
+                        $connectedProfil->sidebar();
+                        if($connectedProfil->id_utilisateur == 1 or $connectedProfil->id_utilisateur == 2)  $connectedProfil->sidebar_test();
+                    ?>
                 </ul>
             </div>
             <!-- END Side Content -->
