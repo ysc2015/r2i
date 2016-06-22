@@ -8,6 +8,7 @@ include_once __DIR__."/../../inc/config.php";
 
 extract($_POST);
 
+$insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
@@ -111,10 +112,11 @@ if(isset($dt_etat_retour) && !empty($dt_etat_retour)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+        $insertedId = $db->lastInsertId();
         $message [] = "Enregistrement ajouté avec succès";
     } else {
         $message [] = $stm->errorInfo();
     }
 }
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message , "id" => $insertedId));
 ?>
