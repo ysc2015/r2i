@@ -2,6 +2,7 @@
 /**
  * file: init.php
  * User: rabii
+ *
  */
 
 ini_set("display_errors","1");
