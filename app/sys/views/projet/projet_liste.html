@@ -1,0 +1,189 @@
+<script>
+    function format ( d ) {console.log('called');
+
+        var result;
+        var html;
+        var innerHtml='';
+        html = '<div class="list-group" id="list-group-'+d.id_projet+'" style="width:260px;">';
+        html += '<div class="row items-push-3x text-center">';
+        html += '<i class="fa fa-3x fa-cog fa-spin"></i>';
+        html += '</div>';
+        html += '</div>';
+        $.ajax({
+            method: 'POST',
+            url: 'api/sousprojet/sous_projet_liste.php',
+            data:{
+                id: d.id_projet
+            }
+        }).done(function( r ) {
+            result = JSON.parse(r);
+
+            if(result.data.length) {
+                innerHtml += '<a class="list-group-item active" href="javascript:void(0)" style="cursor: default">';
+                innerHtml += '<span class="badge">'+ result.count+'</span>';
+                innerHtml += '<i class="fa fa-fw fa-list push-5-r"></i> Sous projets';
+                innerHtml += '</a>';
+            } else {
+                innerHtml += '<a class="list-group-item" href="javascript:void(0)" style="cursor: default">';
+                innerHtml += '<i class="fa fa-fw fa-list push-5-r"></i> Aucun sous projet !';
+                innerHtml += '</a>';
+            }
+            jQuery.each(result.data, function(i, val) {
+                innerHtml += '<a class="list-group-item" href="?page=sousprojet&idsousprojet='+ val.id_sous_projet+'">';
+                innerHtml += '<i class="fa fa-folder-open-o push-5-r"></i> '+val.zone;
+                innerHtml += '</a>';
+            });
+
+            $('#list-group-'+d.id_projet).html(innerHtml);
+        });
+
+        return html;
+    }
+
+    var dt;
+    var idp;
+    var btns = ["#add_sub_project_show",
+        "#update_project_show",
+        "#delete_project"];
+
+    $(document).ready(function() {
+        $(function () {
+            // Init page helpers
+            App.initHelpers(['select2']);
+        });
+        dt = $('#projet_table').DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            /*"scrollX": true,*/
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": "api/projet/projet_liste.php",
+            "columns": [
+                {
+                    "class":          "details-control",
+                    "orderable":      false,
+                    "data":           null,
+                    "defaultContent": ""
+                },
+                { "data": "id_projet" },
+                { "data": "id_chef_projet" },
+                { "data": "nom_ville" },
+                { "data": "trigramme_dept" },
+                { "data": "code_site_origine" },
+                /*{ "data": "lib_site_origine_type" },
+                { "data": "taille" },
+                { "data": "lib_site_origine_etat" },
+                { "data": "date_mad_site_origine" },*/
+                { "data": "date_creation" },
+                { "data": "date_attribution" }
+            ],
+            "columnDefs": [
+                { "targets": [ 1,2 ], "visible": false, "searchable": false } ],
+            "order": [[1, 'desc']]
+        } );
+
+        // Array to track the ids of the details displayed rows
+        var detailRows = [];
+
+        $('#projet_table tbody').on( 'click', 'tr td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = dt.row( tr );
+            var idx = $.inArray( tr.attr('id'), detailRows );
+
+            if ( row.child.isShown() ) {
+                tr.removeClass( 'details' );
+                row.child.hide();
+
+                // Remove from the 'open' array
+                detailRows.splice( idx, 1 );
+            }
+            else {
+                tr.addClass( 'details' );
+                row.child( format( row.data() ) ).show();
+
+                // Add to the 'open' array
+                if ( idx === -1 ) {
+                    detailRows.push( tr.attr('id') );
+                }
+            }
+        } );
+
+        // On each draw, loop over the `detailRows` array and show any child rows
+        dt.on( 'draw', function () {
+            $.each( detailRows, function ( i, id ) {
+                $('#'+id+' td.details-control').trigger( 'click' );
+            } );
+        } );
+
+        $(btns.join(',')).addClass("disabled");
+
+        $('#projet_table tbody').on( 'click', 'tr', function (evt) {
+            var $table=$(evt.target).closest('table');
+            if($table.attr('id').indexOf('projet_table') > -1) {
+                var $cell=$(evt.target).closest('td');
+                if( $cell.index()>0){
+                    if ( $(this).hasClass('selected') ) {
+                        $(this).removeClass('selected');
+                        $('.linked').prop('disabled', true);
+                        $(btns.join(',')).addClass("disabled");
+                    }
+                    else {
+                        dt.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                        $(btns.join(',')).removeClass("disabled");
+                        if(dt.row('.selected').data() != undefined)
+                        {
+                            $('.linked').prop('disabled', false);
+                            idp = dt.row('.selected').data().id_projet;
+                        }
+                    }
+                }
+            }
+        } );
+    } );
+</script>
+<!-- Table projets -->
+<div class="block">
+    <div class="block-content">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+        <table id="projet_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+            <thead>
+            <tr>
+                <th class="no-sort"></th>
+                <th>id</th>
+                <th>id chefs de projet</th>
+                <th><?=$lang["VILLE"]?></th>
+                <th><?=$lang["trigramme_dept"]?></th>
+                <th><?=$lang["code_site_origine"]?></th>
+                <!--<th>type_site_origine</th>
+                <th>taille</th>
+                <th>etat_site_origine</th>
+                <th>date_mad_site_origine</th>-->
+                <th><?=$lang["date_creation"]?></th>
+                <th><?=$lang["date_attribution"]?></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th class="no-sort"></th>
+                <th>id</th>
+                <th>id chefs de projet</th>
+                <th><?=$lang["VILLE"]?></th>
+                <th><?=$lang["trigramme_dept"]?></th>
+                <th><?=$lang["code_site_origine"]?></th>
+                <!--<th>type_site_origine</th>
+                <th>taille</th>
+                <th>etat_site_origine</th>
+                <th>date_mad_site_origine</th>-->
+                <th><?=$lang["date_creation"]?></th>
+                <th><?=$lang["date_attribution"]?></th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- END Table projets -->
