@@ -14,7 +14,7 @@ include __DIR__."/app/sys/views/document/init.php";
 <head>
     <meta charset="utf-8">
 
-    <title>R2I - Outils de gestion déploiements</title>
+    <title>R2I - Outils de gestion déploiement</title>
 
     <meta name="description" content="R2I - Outils de gestion déploiement">
     <meta name="robots" content="noindex, nofollow">
