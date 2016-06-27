@@ -1,18 +1,17 @@
 <script>
     $(document).ready(function() {
-        $("#message_tablette_update").hide();
-        $("#update_tablette").click(function () {
-            $("#message_tablette_update").fadeOut();
+        $("#message_mail_update").hide();
+        $("#update_mail").click(function () {
+            $("#message_mail_update").fadeOut();
             $.ajax({
                 method: "POST",
-                url: "api/tablette/tablette_update.php",
+                url: "api/test/mailcreation_update.php",
                 data: {
-                    idt : dt.row('.selected').data().id_tablette,
-                    imei : $("#tablette_update_imei").val(),
-                    company : $("#tablette_update_company").val()
+                    idm : dt.row('.selected').data().id_projet_mail_creation,
+                    mail : $("#update_mail_value").val()
                 }
             }).done(function (msg) {
-                if(App.showMessage(msg, '#message_tablette_update')) {
+                if(App.showMessage(msg, '#message_mail_update')) {
                     dt.draw(false);
                     $(btns.join(',')).addClass("disabled");
                 }
@@ -31,38 +30,24 @@
                             <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Modifier Tablette</h3>
+                    <h3 class="block-title">Modifier Email</h3>
                 </div>
                 <div class="block-content">
-                    <form class="js-validation-bootstrap form-horizontal" id="update_tablette_form">
+                    <form class="js-validation-bootstrap form-horizontal" id="update_mail_form">
                         <div class="form-group">
                             <div class="col-md-6">
-                                <label for="tablette_update_imei">Imei <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" id="tablette_update_imei" name="tablette_update_imei">
+                                <label for="update_mail_value">Email <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" id="update_mail_value" name="update_mail_value">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="tablette_update_company">Entreprise STT <span class="text-danger">*</span></label>
-                                <select class="form-control" id="tablette_update_company" name="tablette_update_company" size="1">
-                                    <option value="" selected disabled>Séléctionnez Entreprise STT</option>
-                                    <?php
-                                    $companies = SelectEntreprise::all();
-                                    foreach($companies as $company) {
-                                        echo "<option value=\"$company->id_entreprise\">$company->lib_entreprise</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class='alert alert-success' id='message_tablette_update' role='alert'>
+                        <div class='alert alert-success' id='message_mail_update' role='alert'>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
-                <button class="btn btn-sm btn-primary" id="update_tablette" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                <button class="btn btn-sm btn-primary" id="update_mail" type="button"><i class="fa fa-check"></i> Enregistrer</button>
             </div>
         </div>
     </div>
