@@ -283,6 +283,7 @@
                                 idp: id
                             }
                         }).done(function (message) {
+                            console.log(message);
                             $("#progress_loader_message").hide();
                             App.showMessage(message,'#message_send_mail');
                         });
