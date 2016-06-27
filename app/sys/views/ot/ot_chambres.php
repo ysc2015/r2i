@@ -138,7 +138,7 @@
         jQuery("#chambre_table").jqGrid('navGrid',"#myid",{edit:false,add:false,del:false});
 
         $("#infos_terrain_show").click(function() {
-            window.location.href = '?page=chambre&idchambre=' + id_chambre;
+            window.location.href = '?page=chambre&idchambre=' + id_chambre + '&idot=<?= $_GET['idot']?>' + '&idsousprojet=<?= $_GET['idsousprojet']?>';
         });
     } );
 </script>
