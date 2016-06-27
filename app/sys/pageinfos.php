@@ -27,6 +27,12 @@ switch($page)
             "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">Sous-projet</a></li><li>OT</li>")));
         break;
 
+    case "chambre":
+        return json_decode(json_encode(array("header"=>"Chambre",
+            "subheader"=>"infos/images/masque",
+            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">Sous-projet</a></li><li><a class=\"link-effect\" href=\"?page=ot&idot=$idot&idsousprojet=$idsousprojet\">ordre de travail</a></li><li>chambre</li>")));
+        break;
+
     case "user":
         return json_decode(json_encode(array("header"=>"Utilisateurs",
             "subheader"=>"Liste des utilisateurs r2i",

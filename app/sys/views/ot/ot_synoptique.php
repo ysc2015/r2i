@@ -12,7 +12,9 @@
             <h3 class="block-title">Synoptique</h3>
         </div>
         <div class="block-content">
-            <p>Synoptique</p>
+            <iframe src="<?=$_SERVER['root']."/../../api/uploads/synoptiques/PDB_NULL_02001-BPI_NULL_02025.html"?>" width="100%" height="auto" style="border: 1px dashed">
+                <p>Your browser does not support iframes.</p>
+            </iframe>
         </div>
     </div>
 </div>
