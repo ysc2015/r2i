@@ -11,30 +11,27 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update tablette set imei=:imei,id_entreprise=:id_entreprise where id_tablette=:idt");
+$stm = $db->prepare("update projet_mail_creation set mail=:mail where id_projet_mail_creation=:idm");
 
-if(isset($idt) && !empty($idt)){
-    $stm->bindParam(':idt',$idt);
+if(isset($idm) && !empty($idm)){
+    $stm->bindParam(':idm',$idm);
     $insert = true;
 } else {
     $err++;
-    $message[] = "Référence tablette invalide !";
+    $message[] = "Référence mail invalide !";
 }
 
-if(isset($imei) && !empty($imei)){
-    $stm->bindParam(':imei',$imei);
-    $insert = true;
+if(isset($mail) && !empty($mail)){
+    if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {//is valid
+        $stm->bindParam(':mail',$mail);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs email n'est pas valid !";
+    }
 } else {
     $err++;
-    $message[] = "Le champs code imei est obligatoire !";
-}
-
-if(isset($company) && !empty($company)){
-    $stm->bindParam(':id_entreprise',$company);
-    $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs Entreprise est obligatoire !";
+    $message[] = "Le champs email est obligatoire !";
 }
 
 if($insert == true && $err == 0){

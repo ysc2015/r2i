@@ -57,8 +57,21 @@ if(isset($idp) && !empty($idp)){
         $message[] = "file => ".$file['id_ressource'];
     }*/
 
+    $stm->closeCursor();
+
+    $stm = $db->prepare("SELECT * from projet_mail_creation");
+    $stm->execute();
+
+    $receipients = $stm->fetchAll();
+
+    $to = array();
     $to[] = "bitlord1980@gmail.com";
-    $to[] = "rrahmouni@rc2k.fr";
+
+    foreach($receipients as $receipient) {
+        $to[] = $receipient ["mail"];
+    }
+
+
 
     if(MailNotifier::sendMail($subject,$html,$to,$files)) {
         $message[] = "Mail envoyé !";
