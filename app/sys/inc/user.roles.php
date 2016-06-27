@@ -121,7 +121,7 @@ ADM;
         }
 
         function ot() {
-            Action::ot("infos","chambres","controle");
+            Action::ot("infos","chambres","synoptique","controle");
         }
         function chambre() {
             Action::chambre("images","infos_terrain","masque");
