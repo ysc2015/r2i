@@ -55,20 +55,20 @@ if(isset($idp) && !empty($idp)){
 
     /*foreach($files as $file) {
         $message[] = "file => ".$file['id_ressource'];
-    }*/
+    }
 
-    $stm->closeCursor();
+    $stm->closeCursor();*/
 
-    $stm = $db->prepare("SELECT * from projet_mail_creation");
-    $stm->execute();
+    $stm2 = $db->prepare("SELECT * from projet_mail_creation");
+    $stm2->execute();
 
-    $receipients = $stm->fetchAll();
+    $receipients = $stm2->fetchAll();
 
     $to = array();
     $to[] = "bitlord1980@gmail.com";
 
     foreach($receipients as $receipient) {
-        $to[] = $receipient ["mail"];
+        $to[] = $receipient["mail"];
     }
 
 
