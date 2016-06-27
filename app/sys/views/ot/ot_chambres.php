@@ -12,16 +12,10 @@
             <h3 class="block-title">Chambres de l'OT</h3>
         </div>
         <div class="block-content">
-            <!-- Table projets -->
-            <div class="block">
-                <div class="block-content">
-                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                    <table id="chambre_table">
-                    </table>
-                    <div id="myid"></div>
-                    <div id="pager"></div>
-                </div>
-            </div>
+            <table id="chambre_table">
+            </table>
+            <div id="myid"></div>
+            <div id="pager"></div>
             <!-- END Table projets -->
             <button style="margin: 10px 0px 10px 0px;" id="update_chambre_show" class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-circle-arrow-right'>&nbsp;</span> modifier chambre</button>
             <button style="margin: 10px 0px 10px 0px;" id="delete_chambre_show" class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-circle-arrow-right'>&nbsp;</span> supprimer chambre</button>
