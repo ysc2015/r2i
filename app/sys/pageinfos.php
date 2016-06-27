@@ -4,6 +4,8 @@
  * User: rabii
  */
 
+extract($_GET);
+
 switch($page)
 {
 
@@ -17,6 +19,12 @@ switch($page)
         return json_decode(json_encode(array("header"=>"Sous projet",
             "subheader"=>"Avancements",
             "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>Avancements</li>")));
+        break;
+
+    case "ot":
+        return json_decode(json_encode(array("header"=>"Ordre de travail",
+            "subheader"=>"infos/chambres/synoptique/cp",
+            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">Sous-projet</a></li><li>OT</li>")));
         break;
 
     case "user":
