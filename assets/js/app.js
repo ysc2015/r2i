@@ -995,10 +995,10 @@ var App = function() {
      *
      */
     var uiHelperSelect2 = function(){
-        var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+        //var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
         // Init Select2 (with .js-select2 class)
         jQuery('.js-select2').select2({
-            data: data,
+            //data: data,
             autocomplete: true
         });
     };
