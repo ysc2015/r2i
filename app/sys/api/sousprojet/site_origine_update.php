@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_site_origine set code_site=:code_site,type=:type,auto_adduction=:auto_adduction,travaux_adduction=:travaux_adduction,recette_adduction=:recette_adduction where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_site_origine set auto_adduction=:auto_adduction,travaux_adduction=:travaux_adduction,recette_adduction=:recette_adduction where id_sous_projet=:id_sous_projet");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -21,7 +21,7 @@ if(isset($ids) && !empty($ids)){
     $message[] = "Référence sous projet invalide !";
 }
 
-if(isset($code_site) && !empty($code_site)){
+/*if(isset($code_site) && !empty($code_site)){
     $stm->bindParam(':code_site',$code_site);
     $insert = true;
 } else {
@@ -35,7 +35,7 @@ if(isset($type_so) && !empty($type_so)){
 } else {
     $err++;
     $message[] = "Le champs Type est obligatoire !";
-}
+}*/
 
 if(isset($auto_adduction) && !empty($auto_adduction)){
     $stm->bindParam(':auto_adduction',$auto_adduction);
