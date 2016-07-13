@@ -3,7 +3,7 @@ extract($_GET);
 $zone = SousProjetZone::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("infozone_zone",$zone);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var zone_isnew = ($("#id_sous_projet_zone").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("infozone_zone",$zone);
                 method: "POST",
                 url: (zone_isnew?"api/sousprojet/zone_add.php":"api/sousprojet/zone_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     nbr_zone: $('#nbr_zone').val(),
                     lr_sur_pm: $('#lr_sur_pm').val(),
                     lr: $('#lr').val(),
@@ -34,4 +34,4 @@ build_user_form("infozone_zone",$zone);
             });
         });
     } );
-</script>
+</script>-->

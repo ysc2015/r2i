@@ -4,7 +4,7 @@ $plaque = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_proje
 build_user_form("infozone_plaque",$plaque);
 ?>
 
-<script>
+<!--<script>
     $(document).ready(function() {
             var infoplaque_isnew = ($("#id_sous_projet_plaque").val()?false:true);
 
@@ -17,7 +17,7 @@ build_user_form("infozone_plaque",$plaque);
                 method: "POST",
                 url: (infoplaque_isnew?"api/sousprojet/infoplaque_add.php":"api/sousprojet/infoplaque_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     phase: $('#phase').val(),
                     type: $('#type').val()
 
@@ -31,4 +31,4 @@ build_user_form("infozone_plaque",$plaque);
             });
         });
     } );
-</script>
+</script>-->

@@ -3,7 +3,7 @@ extract($_GET);
 $design = SousProjetDistributionDesign::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("distribution_design",$design);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var ddesign_isnew = ($("#id_sous_projet_distribution_design").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("distribution_design",$design);
                 method: "POST",
                 url: (ddesign_isnew?"api/sousprojet/ddesign_add.php":"api/sousprojet/ddesign_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     dd_intervenant_be: $('#dd_intervenant_be').val(),
                     dd_intervenant_bex: $('#dd_intervenant_bex').val(),
                     dd_date_debut: $('#dd_date_debut').val(),
@@ -36,4 +36,4 @@ build_user_form("distribution_design",$design);
             });
         });
     } );
-</script>
+</script>-->

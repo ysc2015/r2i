@@ -3,7 +3,7 @@ extract($_GET);
 $rac = SousProjetDistributionRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("distribution_raccordements",$rac);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var draccord_isnew = ($("#id_sous_projet_distribution_raccordements").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("distribution_raccordements",$rac);
                 method: "POST",
                 url: (draccord_isnew?"api/sousprojet/draccord_add.php":"api/sousprojet/draccord_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     dr_intervenant_be: $('#dr_intervenant_be').val(),
                     dr_preparation_pds: $('#dr_preparation_pds').val(),
                     dr_controle_plans: $('#dr_controle_plans').val(),
@@ -38,4 +38,4 @@ build_user_form("distribution_raccordements",$rac);
             });
         });
     } );
-</script>
+</script>-->

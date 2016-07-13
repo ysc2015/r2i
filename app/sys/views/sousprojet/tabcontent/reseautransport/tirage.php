@@ -3,11 +3,11 @@ extract($_GET);
 $ttirage = SousProjetTransportTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("transport_tirage",$ttirage);
 ?>
-<script>
+<!--<script>
     var tt_ot_id_entree = undefined;
     var tt_ot_type_entree = 'transport_tirage';
     $(document).ready(function() {
-        tt_ot_id_entree = <?= ($ttirage!==NULL ? $ttirage->id_sous_projet_transport_tirage : 0) ?> ;
+        tt_ot_id_entree = <?/*= ($ttirage!==NULL ? $ttirage->id_sous_projet_transport_tirage : 0) */?> ;
         var ttirage_isnew = ($("#id_sous_projet_transport_tirage").val()?false:true);
 
         $("#message_transport_tirage").hide();
@@ -19,7 +19,7 @@ build_user_form("transport_tirage",$ttirage);
                 method: "POST",
                 url: (ttirage_isnew?"api/sousprojet/ttirage_add.php":"api/sousprojet/ttirage_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     tt_intervenant_be: $('#tt_intervenant_be').val(),
                     tt_date_previsionnelle: $('#tt_date_previsionnelle').val(),
                     tt_prep_plans: $('#tt_prep_plans').val(),
@@ -64,4 +64,4 @@ build_user_form("transport_tirage",$ttirage);
             create_btn = $("#id_sous_projet_transport_tirage_btn");
         });
     } );
-</script>
+</script>-->

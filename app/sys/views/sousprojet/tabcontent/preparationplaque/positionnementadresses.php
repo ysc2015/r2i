@@ -3,7 +3,7 @@ extract($_GET);
 $posadresse = SousProjetPlaquePosAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("gestion_plaque_pos_adresse",$posadresse);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var posadr_isnew = ($("#id_sous_projet_plaque_pos_adresse").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("gestion_plaque_pos_adresse",$posadresse);
                 method: "POST",
                 url: (posadr_isnew?"api/sousprojet/posadr_add.php":"api/sousprojet/posadr_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     pa_intervenant_be: $('#pa_intervenant_be').val(),
                     pa_date_debut: $('#pa_date_debut').val(),
                     pa_date_ret_prevue: $('#pa_date_ret_prevue').val(),
@@ -34,4 +34,4 @@ build_user_form("gestion_plaque_pos_adresse",$posadresse);
             });
         });
     } );
-</script>
+</script>-->

@@ -3,7 +3,7 @@ extract($_GET);
 $ctr = SousProjetDistributionCommandeCDI::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("distribution_commande_cdi",$ctr);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var dcmdcdi_isnew = ($("#id_sous_projet_distribution_commande_cdi").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("distribution_commande_cdi",$ctr);
                 method: "POST",
                 url: (dcmdcdi_isnew?"api/sousprojet/dcmdcdi_add.php":"api/sousprojet/dcmdcdi_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     dcc_intervenant_be: $('#dcc_intervenant_be').val(),
                     dcc_date_butoir: $('#dcc_date_butoir').val(),
                     dcc_traitement_retour_terrain: $('#dcc_traitement_retour_terrain').val(),
@@ -36,4 +36,4 @@ build_user_form("distribution_commande_cdi",$ctr);
             });
         });
     } );
-</script>
+</script>-->

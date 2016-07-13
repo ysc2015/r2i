@@ -3,7 +3,7 @@ extract($_GET);
 $recette = SousProjetDistributionRecette::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("distribution_recette",$recette);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var drecette_isnew = ($("#id_sous_projet_distribution_recette").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("distribution_recette",$recette);
                 method: "POST",
                 url: (drecette_isnew?"api/sousprojet/drecette_add.php":"api/sousprojet/drecette_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     drec_intervenant_be: $('#drec_intervenant_be').val(),
                     drec_doe: $('#drec_doe').val(),
                     drec_netgeo: $('#drec_netgeo').val(),
@@ -35,4 +35,4 @@ build_user_form("distribution_recette",$recette);
             });
         });
     } );
-</script>
+</script>-->

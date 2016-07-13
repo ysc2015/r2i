@@ -3,7 +3,7 @@ extract($_GET);
 $carto = SousProjetPlaqueCarto::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("gestion_plaque_carto",$carto);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var pcarto_isnew = ($("#id_sous_projet_plaque_carto").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("gestion_plaque_carto",$carto);
                 method: "POST",
                 url: (pcarto_isnew?"api/sousprojet/pcarto_add.php":"api/sousprojet/pcarto_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     pc_intervenant_be: $('#pc_intervenant_be').val(),
                     pc_date_debut: $('#pc_date_debut').val(),
                     pc_date_ret_prevue: $('#pc_date_ret_prevue').val(),
@@ -32,4 +32,4 @@ build_user_form("gestion_plaque_carto",$carto);
             });
         });
     } );
-</script>
+</script>-->

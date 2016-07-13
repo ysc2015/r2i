@@ -3,7 +3,7 @@ extract($_GET);
 $site_origine = SousProjetSiteOrigine::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("infozone_site_origine",$site_origine);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var siteorigine_isnew = ($("#id_sous_projet_site_origine").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("infozone_site_origine",$site_origine);
                 method: "POST",
                 url: (siteorigine_isnew?"api/sousprojet/site_origine_add.php":"api/sousprojet/site_origine_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     code_site: $('#code_site').val(),
                     type_so: $('#type_so').val(),
                     auto_adduction: $('#auto_adduction').val(),
@@ -33,4 +33,4 @@ build_user_form("infozone_site_origine",$site_origine);
             });
         });
     } );
-</script>
+</script>-->
