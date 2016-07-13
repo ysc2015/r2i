@@ -3,7 +3,7 @@ extract($_GET);
 $tdesign = SousProjetTransportDesign::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("transport_design",$tdesign);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var tdesign_isnew = ($("#id_sous_projet_transport_design").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("transport_design",$tdesign);
                 method: "POST",
                 url: (tdesign_isnew?"api/sousprojet/tdesign_add.php":"api/sousprojet/tdesign_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     td_intervenant_be: $('#td_intervenant_be').val(),
                     td_date_debut: $('#td_date_debut').val(),
                     td_date_ret_prevue: $('#td_date_ret_prevue').val(),
@@ -34,4 +34,4 @@ build_user_form("transport_design",$tdesign);
             });
         });
     } );
-</script>
+</script>-->

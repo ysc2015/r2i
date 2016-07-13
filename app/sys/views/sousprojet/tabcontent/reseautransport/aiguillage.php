@@ -3,11 +3,11 @@ extract($_GET);
 $taiguillage = SousProjetTransportAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("transport_aiguillage",$taiguillage);
 ?>
-<script>
+<!--<script>
     var ta_ot_id_entree = undefined;
     var ta_ot_type_entree = 'transport_aiguillage';
     $(document).ready(function() {
-        ta_ot_id_entree = <?= ($taiguillage!==NULL ? $taiguillage->id_sous_projet_transport_aiguillage : 0) ?> ;
+        ta_ot_id_entree = <?/*= ($taiguillage!==NULL ? $taiguillage->id_sous_projet_transport_aiguillage : 0) */?> ;
         var taiguillage_isnew = ($("#id_sous_projet_transport_aiguillage").val()?false:true);
 
         $("#message_transport_aiguillage").hide();
@@ -19,7 +19,7 @@ build_user_form("transport_aiguillage",$taiguillage);
                 method: "POST",
                 url: (taiguillage_isnew?"api/sousprojet/taguillage_add.php":"api/sousprojet/taguillage_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     ta_intervenant_be: $('#ta_intervenant_be').val(),
                     ta_plans: $('#ta_plans').val(),
                     ta_lineaire_reseau: $('#ta_lineaire_reseau').val(),
@@ -65,4 +65,4 @@ build_user_form("transport_aiguillage",$taiguillage);
             create_btn = $("#id_sous_projet_transport_aiguillage_btn");
         });
     } );
-</script>
+</script>-->

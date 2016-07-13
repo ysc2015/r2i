@@ -5,14 +5,17 @@
  */
 
 extract($_GET);
+extract($_POST);
 global $sousprojet;
 global $projet;
+global $sousprojet_infoplaque;
 
 //get projet & sous projet infos
 $sousprojet = SousProjet::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 
 if($sousprojet !== NULL) {
     $projet = Projet::first(array('conditions' => array("id_projet = ?", $sousprojet->id_projet)));
+    $sousprojet_infoplaque = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 }
 //functions
 
@@ -324,10 +327,11 @@ $form["gestion_plaque_phase"]["fields"] = array(
         "label_for" => "Vague",
         "css_class" => "col-md-3",
         "readonly" => "",
-        "disabled" => "",
+        "disabled" => "disabled",
         "db_class_for_select" => "SelectPlaquePhase",
         "ref_select" => "plaque_phase",
-        "select_func" => ""
+        "select_func" => "",
+        "value" => ($sousprojet_infoplaque !== NULL?$sousprojet_infoplaque->phase:"")
     ),
     array(
         "id" => "date_lancement",
@@ -606,7 +610,8 @@ $form["transport_design"]["fields"] = array(
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => "get_bei_users"
-    ),array(
+    ),
+    array(
         "id" => "td_date_debut",
         "field_name" => "date_debut",
         "input_type" => "date",
@@ -631,7 +636,8 @@ $form["transport_design"]["fields"] = array(
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
-    ),array(
+    ),
+    array(
         "id" => "td_duree",
         "field_name" => "duree",
         "input_type" => "number",
@@ -643,7 +649,8 @@ $form["transport_design"]["fields"] = array(
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
-    ),array(
+    ),
+    array(
         "id" => "td_lineaire_transport",
         "field_name" => "lineaire_transport",
         "input_type" => "number",
@@ -655,7 +662,8 @@ $form["transport_design"]["fields"] = array(
         "db_class_for_select" => "",
         "ref_select" => "",
         "select_func" => ""
-    ),array(
+    ),
+    array(
         "id" => "td_nb_zones",
         "field_name" => "nb_zones",
         "input_type" => "number",
@@ -2161,7 +2169,7 @@ function build_user_form($form_name,$object=NULL) {
             )
         );
         if($ot !== NULL) {
-            $idsp = $_GET['idsousprojet'];
+            $idsp = $_POST['idsousprojet'];
             $html .= "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsp\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
         } else {
             $html .= "  <button id=\"{$form[$form_name]["table_key"]}_create_ot_show\" class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">créer ordre de travail</button>";
@@ -2173,5 +2181,5 @@ function build_user_form($form_name,$object=NULL) {
 
     $html .= "</form>";
 
-    echo $html;
+    return $html;
 }

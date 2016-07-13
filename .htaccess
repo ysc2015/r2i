@@ -2,7 +2,19 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteRule  "api/(.*)"                "app/sys/api/$1"  [L]
+#RewriteRule  "api/(.*)"                "app/sys/api/$1"  [L]
 RewriteRule  "uploads/images/(.*)"                "app/sys/api/uploads/images/$1"  [L]
 RewriteRule  login.php                 app/sys/views/document/login.php  [L]
 RewriteRule  logout.php                 app/sys/views/document/logout.php  [L]
+
+RewriteRule  "api/sousprojet/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/$1"  [QSA,L]
+RewriteRule  "api/sousprojet/blocks/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/blocks/$1"  [QSA,L]
+
+RewriteRule  "api/projet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/$1"  [QSA,L]
+RewriteRule  "api/file/(\w*\.php)"          "app/MY_ROUTER.php?script=file/$1"  [QSA,L]
+RewriteRule  "api/stt/(\w*\.php)"          "app/MY_ROUTER.php?script=stt/$1"  [QSA,L]
+RewriteRule  "api/tablette/(\w*\.php)"          "app/MY_ROUTER.php?script=tablette/$1"  [QSA,L]
+RewriteRule  "api/utilisateur/(\w*\.php)"          "app/MY_ROUTER.php?script=utilisateur/$1"  [QSA,L]
+RewriteRule  "api/ot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/$1"  [QSA,L]
+
+RewriteRule  "api/test/(\w*\.php)"          "app/MY_ROUTER.php?script=test/$1"  [QSA,L]

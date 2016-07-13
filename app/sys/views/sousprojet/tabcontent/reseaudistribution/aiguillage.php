@@ -3,11 +3,11 @@ extract($_GET);
 $aiguillage = SousProjetDistributionAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("distribution_aiguillage",$aiguillage);
 ?>
-<script>
+<!--<script>
     var da_ot_id_entree = undefined;
     var da_ot_type_entree = 'distribution_aiguillage';
     $(document).ready(function() {
-        da_ot_id_entree = <?= ($aiguillage!==NULL ? $aiguillage->id_sous_projet_distribution_aiguillage : 0) ?> ;
+        da_ot_id_entree = <?/*= ($aiguillage!==NULL ? $aiguillage->id_sous_projet_distribution_aiguillage : 0) */?> ;
         var daiguillage_isnew = ($("#id_sous_projet_distribution_aiguillage").val()?false:true);
 
         $("#message_distribution_aiguillage").hide();
@@ -19,7 +19,7 @@ build_user_form("distribution_aiguillage",$aiguillage);
                 method: "POST",
                 url: (daiguillage_isnew?"api/sousprojet/daiguillage_add.php":"api/sousprojet/daiguillage_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     da_intervenant_be: $('#da_intervenant_be').val(),
                     da_plans: $('#da_plans').val(),
                     da_lineaire_reseau: $('#da_lineaire_reseau').val(),
@@ -63,4 +63,4 @@ build_user_form("distribution_aiguillage",$aiguillage);
             create_btn = $("#id_sous_projet_distribution_aiguillage_btn");
         });
     } );
-</script>
+</script>-->

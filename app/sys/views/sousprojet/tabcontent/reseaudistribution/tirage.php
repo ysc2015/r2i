@@ -3,11 +3,11 @@ extract($_GET);
 $tirage = SousProjetDistributionTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("distribution_tirage",$tirage);
 ?>
-<script>
+<!--<script>
     var dt_ot_id_entree = undefined;
     var dt_ot_type_entree = 'distribution_tirage';
     $(document).ready(function() {
-        dt_ot_id_entree = <?= ($tirage!==NULL ? $tirage->id_sous_projet_distribution_tirage : 0) ?> ;
+        dt_ot_id_entree = <?/*= ($tirage!==NULL ? $tirage->id_sous_projet_distribution_tirage : 0) */?> ;
         var dtirage_isnew = ($("#id_sous_projet_distribution_tirage").val()?false:true);
 
         $("#message_distribution_tirage").hide();
@@ -19,7 +19,7 @@ build_user_form("distribution_tirage",$tirage);
                 method: "POST",
                 url: (dtirage_isnew?"api/sousprojet/dtirage_add.php":"api/sousprojet/dtirage_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     dt_intervenant_be: $('#dt_intervenant_be').val(),
                     dt_date_previsionnelle: $('#dt_date_previsionnelle').val(),
                     dt_prep_plans: $('#dt_prep_plans').val(),
@@ -59,4 +59,4 @@ build_user_form("distribution_tirage",$tirage);
             create_btn = $("#id_sous_projet_distribution_tirage_btn");
         });
     } );
-</script>
+</script>-->

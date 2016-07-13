@@ -3,7 +3,7 @@ extract($_GET);
 $trac = SousProjetTransportRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("transport_raccordements",$trac);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var traccord_isnew = ($("#id_sous_projet_transport_raccordements").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("transport_raccordements",$trac);
                 method: "POST",
                 url: (traccord_isnew?"api/sousprojet/traccord_add.php":"api/sousprojet/traccord_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     tr_intervenant_be: $('#tr_intervenant_be').val(),
                     tr_preparation_pds: $('#tr_preparation_pds').val(),
                     tr_controle_plans: $('#tr_controle_plans').val(),
@@ -38,4 +38,4 @@ build_user_form("transport_raccordements",$trac);
             });
         });
     } );
-</script>
+</script>-->

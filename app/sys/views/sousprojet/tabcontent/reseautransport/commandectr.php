@@ -3,7 +3,7 @@ extract($_GET);
 $tctr = SousProjetTransportCommandeCTR::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
 build_user_form("transport_commande_ctr",$tctr);
 ?>
-<script>
+<!--<script>
     $(document).ready(function() {
         var tcmdctr_isnew = ($("#id_sous_projet_transport_commande_ctr").val()?false:true);
 
@@ -16,7 +16,7 @@ build_user_form("transport_commande_ctr",$tctr);
                 method: "POST",
                 url: (tcmdctr_isnew?"api/sousprojet/tcmdctr_add.php":"api/sousprojet/tcmdctr_update.php"),
                 data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
+                    ids: <?/*= $_GET['idsousprojet'] */?>,
                     cctr_intervenant_be: $('#cctr_intervenant_be').val(),
                     cctr_date_butoir: $('#cctr_date_butoir').val(),
                     cctr_traitement_retour_terrain: $('#cctr_traitement_retour_terrain').val(),
@@ -36,4 +36,4 @@ build_user_form("transport_commande_ctr",$tctr);
             });
         });
     } );
-</script>
+</script>-->

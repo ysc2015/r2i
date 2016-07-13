@@ -109,8 +109,7 @@
 
 <?php } ?>
 
-<?php if(isset($_GET['page']) && $_GET['page'] == "ot") {?>
-
-
+<?php if(isset($_GET['page']) && $_GET['page'] == "sousprojet") {?>
+    <!--<script src="assets/js/pages/nom.js"></script>-->
 <?php } ?>
 

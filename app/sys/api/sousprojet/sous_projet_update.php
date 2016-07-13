@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/config.php";
+global $connectedProfil;
 
 extract($_POST);
 
@@ -37,5 +37,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message, "pss" => $connectedProfil->nom_utilisateur));
 ?>
