@@ -519,14 +519,20 @@ var App = function() {
                                 .addClass($iconContent);
                         }
                         break;
-                    case 'refresh_toggle':console.log($elBlock);
-                        $elBlock.toggleClass('block-opt-refresh');
-
-                        // Return block to normal state if the demostration mode is on in the refresh option button - data-action-mode="demo"
-                        if (jQuery('[data-toggle="block-option"][data-action="refresh_toggle"][data-action-mode="demo"]', $elBlock).length) {
-                            setTimeout(function(){
-                                $elBlock.removeClass('block-opt-refresh');
-                            }, 2000);
+                    case 'refresh_toggle':
+                        console.log($elBlock.attr('id'));
+                        switch ($elBlock.attr('id')) {
+                            case 'infozone_block' :
+                                SProjet.infozone.refreshTabs();
+                                break;
+                            default :
+                                $elBlock.toggleClass('block-opt-refresh');
+                                // Return block to normal state if the demostration mode is on in the refresh option button - data-action-mode="demo"
+                                if (jQuery('[data-toggle="block-option"][data-action="refresh_toggle"][data-action-mode="demo"]', $elBlock).length) {
+                                 setTimeout(function(){
+                                    $elBlock.removeClass('block-opt-refresh');
+                                 }, 2000);
+                                 }
                         }
                         break;
                     case 'state_loading':

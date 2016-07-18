@@ -110,6 +110,6 @@
 <?php } ?>
 
 <?php if(isset($_GET['page']) && $_GET['page'] == "sousprojet") {?>
-    <!--<script src="assets/js/pages/nom.js"></script>-->
+    <script src="assets/js/sousprojet.js.php"></script>
 <?php } ?>
 

@@ -11,7 +11,7 @@ include_once __DIR__."/../../../language/fr/default.php";
 extract($_POST);
 
 
-$views_folder = __DIR__."/../../../views/";
+$views_folder = __DIR__."/../../../views/sousprojet/tabcontent/infozone/";
 
 global $connectedProfil;
 $objet = NULL;
@@ -39,7 +39,7 @@ $html='<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">';
 
 foreach($connectedProfil->infozone() as $tab) {
     $html .='<li class="'.($connectedProfil->infozone()[0]==$tab?"active":"").'">';
-    $html .='<a href="#'.$tab.'_content'.'" data-toggle="tab">'.$tab.'</a>';//$lang["$tab"]
+    $html .='<a href="#'.$tab.'_content'.'" data-toggle="tab">'.$lang["$tab"].'</a>';//$lang["$tab"]
     $html .='</li>';
 }
 
@@ -51,8 +51,12 @@ foreach($connectedProfil->infozone() as $tab) {
 
     switch($tab) {
         case "nom" :
-            $objet = SousProjet::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-            $html .= build_user_form("infozone_nom",$objet);
+            ob_start();
+            $sousprojet = SousProjet::find($idsousprojet);
+            include $views_folder.'/nom.php';
+            $content = ob_get_contents();
+            ob_end_clean();
+            $html .= $content;
             break;
         case "infoplaque" :
             $objet = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
