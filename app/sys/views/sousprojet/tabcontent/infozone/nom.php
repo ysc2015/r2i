@@ -1,8 +1,5 @@
-<?php
-extract($_POST);
-?>
 <form class="js-validation-bootstrap form-horizontal">
-    <input type="hidden" id="id_sous_projet" name="id_sous_projet" value="6">
+    <input type="hidden" id="id_sous_projet" name="id_sous_projet" value="<?=$sousprojet->id_sous_projet?>">
     <div class="form-group">
         <div class="col-md-3">
             <label for="dep">Département <span class="text-danger">*</span></label>

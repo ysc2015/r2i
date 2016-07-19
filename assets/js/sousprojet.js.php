@@ -25,13 +25,10 @@ var template = function() {
     }
     var initTabs = function() {
     }
-    var refreshTabs = function() {
-    }
     return {
         init : init,
         initEvents : initEvents,
-        initTabs : initTabs,
-        refreshTabs : refreshTabs
+        initTabs : initTabs
     };
 }();
 
@@ -54,21 +51,6 @@ var SProjet = function() {
 
                 init();
                 initEvents();
-            });
-        }
-        var refreshTabs = function() {
-            $("#infozone_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                data: {
-                    idsousprojet : get('idsousprojet')
-                },
-                url: "api/sousprojet/blocks/infozone_block.php"
-            }).done(function (msg) {
-                $("#infozone_block_content").html(msg);
-                $("#infozone_block").removeClass('block-opt-refresh');
-
-                init();
             });
         }
         var init = function() {
@@ -167,8 +149,7 @@ var SProjet = function() {
         return {
             init : init,
             initEvents : initEvents,
-            initTabs : initTabs,
-            refreshTabs : refreshTabs
+            initTabs : initTabs
         };
     }();
     return {

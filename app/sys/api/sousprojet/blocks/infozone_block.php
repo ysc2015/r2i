@@ -14,8 +14,17 @@ extract($_POST);
 $views_folder = __DIR__."/../../../views/sousprojet/tabcontent/infozone/";
 
 global $connectedProfil;
-$objet = NULL;
-//global $lang;
+
+$sousprojet;
+$projet;
+
+//get projet & sous projet infos
+$sousprojet = SousProjet::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
+
+if($sousprojet !== NULL) {
+    $projet = Projet::first(array('conditions' => array("id_projet = ?", $sousprojet->id_projet)));
+    $sousprojet_infoplaque = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
+}
 
 switch ($connectedProfil->profil->lib_profil_utilisateur) {
     case 'Administrateur':
@@ -49,28 +58,28 @@ $html .='<div class="block-content tab-content">';
 foreach($connectedProfil->infozone() as $tab) {
     $html .='<div class="tab-pane '.($connectedProfil->infozone()[0]==$tab?"active":"").'" id="'.$tab.'_content">';
 
+    ob_start();
     switch($tab) {
         case "nom" :
-            ob_start();
             $sousprojet = SousProjet::find($idsousprojet);
             include $views_folder.'/nom.php';
-            $content = ob_get_contents();
-            ob_end_clean();
-            $html .= $content;
             break;
         case "infoplaque" :
-            $objet = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-            $html .= build_user_form("infozone_plaque",$objet);
+            $sousprojet_infoplaque = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
+            include $views_folder.'/infoplaque.php';
             break;
         case "zone" :
-            $objet = SousProjetZone::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-            $html .= build_user_form("infozone_zone",$objet);
+            $sousprojet_zone = SousProjetZone::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
+            include $views_folder.'/zone.php';
             break;
         case "siteorigine" :
-            $objet = SousProjetSiteOrigine::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-            $html .= build_user_form("infozone_site_origine",$objet);
+            $sousprojet_siteorigine = SousProjetSiteOrigine::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
+            include $views_folder.'/siteorigine.php';
             break;
     }
+    $content = ob_get_contents();
+    ob_end_clean();
+    $html .= $content;
     $html .='</div>';
 }
 

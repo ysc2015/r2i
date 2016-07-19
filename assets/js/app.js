@@ -523,7 +523,7 @@ var App = function() {
                         console.log($elBlock.attr('id'));
                         switch ($elBlock.attr('id')) {
                             case 'infozone_block' :
-                                SProjet.infozone.refreshTabs();
+                                SProjet.infozone.initTabs();
                                 break;
                             default :
                                 $elBlock.toggleClass('block-opt-refresh');
