@@ -5,7 +5,6 @@
  */
 ini_set('display_errors',1);
 include_once __DIR__."/../../../inc/user.roles.php";
-include_once __DIR__."/../../../inc/forms.functions.inc.php";
 include_once __DIR__."/../../../language/fr/default.php";
 
 extract($_POST);
