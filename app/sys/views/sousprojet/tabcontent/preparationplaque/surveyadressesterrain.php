@@ -1,36 +1,53 @@
-<?php
-extract($_GET);
-$surveyadresse = SousProjetPlaqueSurveyAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("gestion_plaque_survey_adresse",$surveyadresse);
-?>
-<!--<script>
-    $(document).ready(function() {
-        var surveyadr_isnew = ($("#id_sous_projet_plaque_survey_adresse").val()?false:true);
-
-        $("#message_gestion_plaque_survey_adresse").hide();
-        $("#id_sous_projet_plaque_survey_adresse_btn").click(function () {
-
-            $("#message_gestion_plaque_survey_adresse").fadeOut();
-            $("#preparationplaque_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (surveyadr_isnew?"api/sousprojet/surveyadr_add.php":"api/sousprojet/surveyadr_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    sa_volume_adresse: $('#sa_volume_adresse').val(),
-                    sa_date_debut: $('#sa_date_debut').val(),
-                    sa_date_ret_prevue: $('#sa_date_ret_prevue').val(),
-                    sa_intervenant: $('#sa_intervenant').val(),
-                    sa_duree: $('#sa_duree').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_suradresse !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_plaque_survey_adresse" name="id_sous_projet_plaque_survey_adresse" value="<?=$sousprojet_suradresse->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_plaque_survey_adresse_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée survey adresses terrain crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="sa_volume_adresse">Volumes Adresses <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="sa_volume_adresse" name="sa_volume_adresse" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->volume_adresse:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="sa_date_debut">Date de Début <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="sa_date_debut" name="sa_date_debut" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->date_debut:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="sa_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="sa_date_ret_prevue" name="sa_date_ret_prevue" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->date_ret_prevue:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="sa_intervenant">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="sa_intervenant" name="sa_intervenant">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_suradresse!==NULL && $sousprojet_suradresse->intervenant==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {
-                $("#preparationplaque_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_gestion_plaque_survey_adresse')) {
-                    $("#id_sous_projet_plaque_survey_adresse_alert").hide();
-                    surveyadr_isnew = false;
-                }
-            });
-        });
-    } );
-</script>-->
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="sa_duree">Durée <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="sa_duree" name="sa_duree" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->duree:"")?>">
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_gestion_plaque_survey_adresse" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_plaque_survey_adresse_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>

@@ -523,7 +523,19 @@ var App = function() {
                         console.log($elBlock.attr('id'));
                         switch ($elBlock.attr('id')) {
                             case 'infozone_block' :
-                                SProjet.infozone.initTabs();
+                                SProjet.infozone.refresh();
+                                break;
+                            case 'gestionplaque_block' :
+                                SProjet.gestionplaque.refresh();
+                                break
+                            case 'preparationplaque_block' :
+                                SProjet.preparationplaque.refresh();
+                                break;
+                            case 'rtransport_block' :
+                                SProjet.reseautransport.refresh();
+                                break;
+                            case 'rdistribution_block' :
+                                SProjet.reseaudistribution.refresh();
                                 break;
                             default :
                                 $elBlock.toggleClass('block-opt-refresh');
@@ -1163,6 +1175,13 @@ var App = function() {
             uiToggleClass();
             uiScrollTo();
             uiYearCopy();
+
+            /*RR*/
+            jQuery('[data-toggle="block-option"]').each(function(){
+                uiBlocksApi(jQuery(this).parents('.block'), jQuery(this).data('action'));
+            });
+
+            console.log('new modifications');
         },
         layout: function($mode) {
             uiLayoutApi($mode);

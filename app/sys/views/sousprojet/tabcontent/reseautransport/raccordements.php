@@ -1,41 +1,123 @@
-<?php
-extract($_GET);
-$trac = SousProjetTransportRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("transport_raccordements",$trac);
-?>
-<!--<script>
-    $(document).ready(function() {
-        var traccord_isnew = ($("#id_sous_projet_transport_raccordements").val()?false:true);
-
-        $("#message_transport_raccordements").hide();
-        $("#id_sous_projet_transport_raccordements_btn").click(function () {
-
-            $("#message_transport_raccordements").fadeOut();
-            $("#rtransport_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (traccord_isnew?"api/sousprojet/traccord_add.php":"api/sousprojet/traccord_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    tr_intervenant_be: $('#tr_intervenant_be').val(),
-                    tr_preparation_pds: $('#tr_preparation_pds').val(),
-                    tr_controle_plans: $('#tr_controle_plans').val(),
-                    tr_date_transmission_pds: $('#tr_date_transmission_pds').val(),
-                    tr_entreprise: $('#tr_entreprise').val(),
-                    tr_date_racco: $('#tr_date_racco').val(),
-                    tr_duree: $('#tr_duree').val(),
-                    tr_controle_demarrage_effectif: $('#tr_controle_demarrage_effectif').val(),
-                    tr_date_retour: $('#tr_date_retour').val(),
-                    tr_etat_retour: $('#tr_etat_retour').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_trac !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_transport_raccordements" name="id_sous_projet_transport_raccordements" value="<?=$sousprojet_trac->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_transport_raccordements_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée transport raccordement crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="tr_intervenant_be" name="tr_intervenant_be">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_trac!==NULL && $sousprojet_trac->intervenant_be==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {console.log(msg);
-                $("#rtransport_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_transport_raccordements')) {
-                    $("#id_sous_projet_transport_raccordements_alert").hide();
-                    traccord_isnew = false;
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_preparation_pds">Préparation PDS <span class="text-danger">*</span></label>
+            <select class="form-control" id="tr_preparation_pds" name="tr_preparation_pds">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_trac!==NULL && $sousprojet_trac->preparation_pds==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            });
-        });
-    } );
-</script>-->
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
+            <select class="form-control" id="tr_controle_plans" name="tr_controle_plans">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectControlePlan::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_controle_plan\" ". ($sousprojet_trac!==NULL && $sousprojet_trac->controle_plans==$result->id_controle_plan ?"selected": "")." >$result->lib_controle_plan</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_date_transmission_pds">Date Transmission PDS <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="tr_date_transmission_pds" name="tr_date_transmission_pds" value="<?=$sousprojet_trac->date_transmission_pds?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_entreprise">Entreprise <span class="text-danger">*</span></label>
+            <select class="form-control" id="tr_entreprise" name="tr_entreprise">
+                <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
+                <?php
+                $results = SelectEntreprise::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_entreprise\" ". ($sousprojet_trac!==NULL && $sousprojet_trac->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->lib_entreprise</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_date_racco">Date Racco <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="tr_date_racco" name="tr_date_racco" value="<?=$sousprojet_trac->date_racco?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_duree">Durée <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="tr_duree" name="tr_duree" value="<?=$sousprojet_trac->duree?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+            <select class="form-control" id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectControleDemarrageEffectif::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousprojet_trac!==NULL && $sousprojet_trac->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_date_retour">Date Retour <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="tr_date_retour" name="tr_date_retour" value="<?=$sousprojet_trac->date_retour?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="tr_etat_retour">Etat Retour <span class="text-danger">*</span></label>
+            <select class="form-control" id="tr_etat_retour" name="tr_etat_retour">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectEtatRetour::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_etat_retour\" ". ($sousprojet_trac!==NULL && $sousprojet_trac->etat_retour==$result->id_etat_retour ?"selected": "")." >$result->lib_etat_retour</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_transport_raccordements" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_transport_raccordements_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>

@@ -13,6 +13,8 @@ SessionManager::check(function ($logged, $data) {
     global $connectedProfil;
     require_once __DIR__ . '/sys/php-activerecord/ActiveRecord.php';
     require_once __DIR__ . "/sys/inc/config.php";
+    require_once __DIR__."/sys/inc/user.roles.php";
+    require_once __DIR__."/sys/language/fr/default.php";
     if ($logged) {
 
         $connectedProfil = Utilisateur::first(

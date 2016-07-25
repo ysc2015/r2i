@@ -9,7 +9,7 @@
     {
         public 	$profil = NULL;
 
-        public $access_denied_message =
+        private $access_denied_message =
 <<<ADM
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -20,7 +20,6 @@
                 </div>
             </div>
 ADM;
-
 
         function __construct($p) {
             $this->profil = $p;
