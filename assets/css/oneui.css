@@ -12235,6 +12235,7 @@ a.block.block-link-hover3:active {
   padding-bottom: 12px;
   color: #646464;
   font-weight: 600;
+  font-size: 12px;/*RR*/
   border: 1px solid transparent;
   border-radius: 0;
 }

@@ -16,9 +16,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        SProjet.infozone.initTabs();
-    } );
-</script>

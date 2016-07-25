@@ -1,38 +1,105 @@
-<?php
-extract($_GET);
-$recette = SousProjetDistributionRecette::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("distribution_recette",$recette);
-?>
-<!--<script>
-    $(document).ready(function() {
-        var drecette_isnew = ($("#id_sous_projet_distribution_recette").val()?false:true);
-
-        $("#message_distribution_recette").hide();
-        $("#id_sous_projet_distribution_recette_btn").click(function () {
-
-            $("#message_distribution_recette").fadeOut();
-            $("#rdistribution_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (drecette_isnew?"api/sousprojet/drecette_add.php":"api/sousprojet/drecette_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    drec_intervenant_be: $('#drec_intervenant_be').val(),
-                    drec_doe: $('#drec_doe').val(),
-                    drec_netgeo: $('#drec_netgeo').val(),
-                    drec_intervenant_free: $('#drec_intervenant_free').val(),
-                    drec_entreprise: $('#drec_entreprise').val(),
-                    drec_date_recette: $('#drec_date_recette').val(),
-                    drec_etat_recette: $('#drec_etat_recette').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_drecette !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_distribution_recette" name="id_sous_projet_distribution_recette" value="<?=$sousprojet_drecette->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_distribution_recette_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée distribution recette crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="drec_intervenant_be" name="drec_intervenant_be">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_drecette!==NULL && $sousprojet_drecette->intervenant_be==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {
-                $("#rdistribution_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_distribution_recette')) {
-                    $("#id_sous_projet_distribution_recette_alert").hide();
-                    drecette_isnew = false;
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_doe">DOE <span class="text-danger">*</span></label>
+            <select class="form-control" id="drec_doe" name="drec_doe">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_drecette!==NULL && $sousprojet_drecette->doe==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            });
-        });
-    } );
-</script>-->
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_netgeo">Netgeo <span class="text-danger">*</span></label>
+            <select class="form-control" id="drec_netgeo" name="drec_netgeo">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_drecette!==NULL && $sousprojet_drecette->netgeo==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_intervenant_free">Intervenant FREE <span class="text-danger">*</span></label>
+            <select class="form-control" id="drec_intervenant_free" name="drec_intervenant_free">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_drecette!==NULL && $sousprojet_drecette->intervenant_free==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_entreprise">Entreprise <span class="text-danger">*</span></label>
+            <select class="form-control" id="drec_entreprise" name="drec_entreprise">
+                <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
+                <?php
+                $results = SelectEntreprise::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_entreprise\" ". ($sousprojet_drecette!==NULL && $sousprojet_drecette->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->lib_entreprise</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_date_recette">Date de Recette <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="drec_date_recette" name="drec_date_recette" value="<?=$sousprojet_drecette->date_recette?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="drec_etat_recette">Etat Recette <span class="text-danger">*</span></label>
+            <select class="form-control" id="drec_etat_recette" name="drec_etat_recette">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectEtatRecette::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_etat_recette\" ". ($sousprojet_drecette!==NULL && $sousprojet_drecette->etat_recette==$result->id_etat_recette ?"selected": "")." >$result->lib_etat_recette</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_distribution_recette" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_distribution_recette_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>

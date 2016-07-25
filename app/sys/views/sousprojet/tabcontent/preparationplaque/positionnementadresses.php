@@ -1,37 +1,75 @@
-<?php
-extract($_GET);
-$posadresse = SousProjetPlaquePosAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("gestion_plaque_pos_adresse",$posadresse);
-?>
-<!--<script>
-    $(document).ready(function() {
-        var posadr_isnew = ($("#id_sous_projet_plaque_pos_adresse").val()?false:true);
-
-        $("#message_gestion_plaque_pos_adresse").hide();
-        $("#id_sous_projet_plaque_pos_adresse_btn").click(function () {
-
-            $("#message_gestion_plaque_pos_adresse").fadeOut();
-            $("#preparationplaque_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (posadr_isnew?"api/sousprojet/posadr_add.php":"api/sousprojet/posadr_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    pa_intervenant_be: $('#pa_intervenant_be').val(),
-                    pa_date_debut: $('#pa_date_debut').val(),
-                    pa_date_ret_prevue: $('#pa_date_ret_prevue').val(),
-                    pa_duree: $('#pa_duree').val(),
-                    pa_intervenant: $('#pa_intervenant').val(),
-                    pa_bpe_sur_site: $('#pa_bpe_sur_site').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_padresse !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_plaque_pos_adresse" name="id_sous_projet_plaque_pos_adresse" value="<?=$sousprojet_padresse->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_plaque_pos_adresse_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée positionemment adresses crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pa_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="pa_intervenant_be" name="pa_intervenant_be">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_padresse!==NULL && $sousprojet_padresse->intervenant_be==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {
-                $("#preparationplaque_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_gestion_plaque_pos_adresse')) {
-                    $("#id_sous_projet_plaque_pos_adresse_alert").hide();
-                    posadr_isnew = false;
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pa_date_debut">Date de Début <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="pa_date_debut" name="pa_date_debut" value="<?=($sousprojet_padresse !== NULL?$sousprojet_padresse->date_debut:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pa_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="pa_date_ret_prevue" name="pa_date_ret_prevue" value="<?=($sousprojet_padresse !== NULL?$sousprojet_padresse->date_ret_prevue:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pa_duree">Durée <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="pa_duree" name="pa_duree" value="<?=($sousprojet_padresse !== NULL?$sousprojet_padresse->duree:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pa_intervenant">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="pa_intervenant" name="pa_intervenant">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_padresse!==NULL && $sousprojet_padresse->intervenant==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            });
-        });
-    } );
-</script>-->
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pa_bpe_sur_site">BPE sur SITE <span class="text-danger">*</span></label>
+            <select class="form-control" id="pa_bpe_sur_site" name="pa_bpe_sur_site">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectBpeSurSite::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_bpe_sur_site\" ". ($sousprojet_padresse!==NULL && $sousprojet_padresse->bpe_sur_site==$result->id_bpe_sur_site ?"selected": "")." >$result->lib_bpe_sur_site</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_gestion_plaque_pos_adresse" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_plaque_pos_adresse_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>

@@ -1,34 +1,46 @@
-<?php
-extract($_GET);
-$phase = SousProjetPlaquePhase::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("gestion_plaque_phase",$phase);
-?>
-
-<script>
-    $(document).ready(function() {
-
-        var phase_isnew = ($("#id_sous_projet_plaque_phase").val()?false:true);
-        $("#message_gestion_plaque_phase").hide();
-        $("#id_sous_projet_plaque_phase_btn").click(function () {
-            $("#message_gestion_plaque_phase").fadeOut();
-            $("#gestionplaque_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (phase_isnew?"api/sousprojet/phase_add.php":"api/sousprojet/phase_update.php"),
-                data: {
-                    ids: <?= $_GET['idsousprojet'] ?>,
-                    instigateur: $('#instigateur').val(),
-                    vague: $('#vague').val(),
-                    date_lancement: $('#date_lancement').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_phase !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_plaque_phase" name="id_sous_projet_plaque_phase" value="<?=$sousprojet_phase->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_plaque_phase_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée phase crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="instigateur">Instigateur <span class="text-danger">*</span></label>
+            <select class="form-control" id="instigateur" name="instigateur">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectPhaseInstigateur::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_phase_instigateur\" ". ($sousprojet_phase!==NULL && $sousprojet_phase->instigateur==$result->id_phase_instigateur ?"selected": "")." >$result->lib_phase_instigateur</option>";
                 }
-            }).done(function (msg) {
-                $("#gestionplaque_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_gestion_plaque_phase')) {
-                    $("#id_sous_projet_plaque_phase_alert").hide();
-                    phase_isnew = false;
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="vague">Vague <span class="text-danger">*</span></label>
+            <select class="form-control" id="vague" name="vague" disabled="">
+                <option value="" selected="" disabled="">Sélectionnez une phase</option>
+                <?php
+                $results = SelectPlaquePhase::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_plaque_phase\" ". ($sousprojet_infoplaque!==NULL && $sousprojet_infoplaque->phase==$result->id_plaque_phase ?"selected": "")." >$result->lib_plaque_phase</option>";
                 }
-            });
-        });
-    } );
-</script>
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3"><label for="date_lancement">Date Lancement <span class="text-danger">*</span></label><input class="form-control" type="date" id="date_lancement" name="date_lancement" value="<?=($sousprojet_phase !== NULL?$sousprojet_phase->date_lancement:"")?>"></div>
+    </div>
+    <div class="alert alert-success" id="message_gestion_plaque_phase" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_plaque_phase_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>

@@ -1,66 +1,143 @@
-<?php
-extract($_GET);
-$aiguillage = SousProjetDistributionAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("distribution_aiguillage",$aiguillage);
-?>
-<!--<script>
-    var da_ot_id_entree = undefined;
-    var da_ot_type_entree = 'distribution_aiguillage';
-    $(document).ready(function() {
-        da_ot_id_entree = <?/*= ($aiguillage!==NULL ? $aiguillage->id_sous_projet_distribution_aiguillage : 0) */?> ;
-        var daiguillage_isnew = ($("#id_sous_projet_distribution_aiguillage").val()?false:true);
-
-        $("#message_distribution_aiguillage").hide();
-        $("#id_sous_projet_distribution_aiguillage_btn").click(function () {
-
-            $("#message_distribution_aiguillage").fadeOut();
-            $("#rdistribution_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (daiguillage_isnew?"api/sousprojet/daiguillage_add.php":"api/sousprojet/daiguillage_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    da_intervenant_be: $('#da_intervenant_be').val(),
-                    da_plans: $('#da_plans').val(),
-                    da_lineaire_reseau: $('#da_lineaire_reseau').val(),
-                    da_controle_plans: $('#da_controle_plans').val(),
-                    da_date_transmission_plans: $('#da_date_transmission_plans').val(),
-                    da_entreprise: $('#da_entreprise').val(),
-                    da_date_aiguillage: $('#da_date_aiguillage').val(),
-                    da_duree: $('#da_duree').val(),
-                    da_controle_demarrage_effectif: $('#da_controle_demarrage_effectif').val(),
-                    da_date_retour: $('#da_date_retour').val(),
-                    da_etat_retour: $('#da_etat_retour').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_daiguillage !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_distribution_aiguillage" name="id_sous_projet_distribution_aiguillage" value="<?=$sousprojet_daiguillage->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_distribution_aiguillage_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée distribution aiguillage crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="da_intervenant_be" name="da_intervenant_be">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->intervenant_be==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {
-                var obj = $.parseJSON(msg);
-                console.log(obj);
-                $("#rdistribution_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_distribution_aiguillage')) {
-                    $("#id_sous_projet_distribution_aiguillage_alert").hide();
-                    if(daiguillage_isnew) {
-                        da_ot_id_entree = obj.id;
-                        daiguillage_isnew = false;
-                        $("#id_sous_projet_distribution_aiguillage_btn").after('  <button id="id_sous_projet_distribution_aiguillage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                        console.log(data_ot);
-                    }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_plans">Plans <span class="text-danger">*</span></label>
+            <select class="form-control" id="da_plans" name="da_plans">
+                <option value="" selected="" disabled="">Sélectionnez état plans</option>
+                <?php
+                $results = SelectEtatPlan::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_etat_plan\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->plans==$result->id_etat_plan ?"selected": "")." >$result->lib_etat_plan</option>";
                 }
-            });
-        });
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_lineaire_reseau">Linéaire de réseau <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="da_lineaire_reseau" name="da_lineaire_reseau" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire_reseau:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
+            <select class="form-control" id="da_controle_plans" name="da_controle_plans">
+                <option value="" selected="" disabled="">Sélectionnez type controle</option>
+                <?php
+                $results = SelectControlePlan::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_controle_plan\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->controle_plans==$result->id_controle_plan ?"selected": "")." >$result->lib_controle_plan</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span>
+            </label><input class="form-control" type="date" id="da_date_transmission_plans" name="da_date_transmission_plans" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->date_transmission_plans:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_entreprise">Entreprise <span class="text-danger">*</span></label>
+            <select class="form-control" id="da_entreprise" name="da_entreprise">
+                <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
+                <?php
+                $results = SelectEntreprise::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_entreprise\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->lib_entreprise</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_date_aiguillage">Date Aiguillage <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->date_aiguillage:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_duree">Durée <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="da_duree" name="da_duree" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->duree:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+            <select class="form-control" id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectControleDemarrageEffectif::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_date_retour">Date Retour <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="da_date_retour" name="da_date_retour" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->date_retour:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="da_etat_retour">Etat Retour <span class="text-danger">*</span></label>
+            <select class="form-control" id="da_etat_retour" name="da_etat_retour">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectEtatRetour::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_etat_retour\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->etat_retour==$result->id_etat_retour ?"selected": "")." >$result->lib_etat_retour</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_distribution_aiguillage" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_distribution_aiguillage_btn" class="btn btn-primary" type="button">Enregistrer</button>
+            <?php
+            $ot = OrdreDeTravail::first(
+                array('conditions' =>
+                    array("id_entree = ? AND type_entree = ?", $sousprojet_daiguillage->id_sous_projet_distribution_aiguillage,"distribution_aiguillage")
+                )
+            );
+            if($ot !== NULL) {
 
-        /*$("#id_sous_projet_distribution_aiguillage_create_ot_show").click(function() {
-            console.log('showcreate ot');
-        });*/
-
-        $('body').on('click', '#id_sous_projet_distribution_aiguillage_create_ot_show', function() {
-            // do something
-            console.log('show ot body source tag');
-            $("#add_ot_form")[0].reset();
-            data_ot.id_entree = da_ot_id_entree;
-            data_ot.type_entree = da_ot_type_entree;
-            show_btn = $("#id_sous_projet_distribution_aiguillage_create_ot_show");
-            create_btn = $("#id_sous_projet_distribution_aiguillage_btn");
-        });
-    } );
-</script>-->
+                echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
+            } else {
+                echo "  <button id=\"id_sous_projet_distribution_aiguillage_create_ot_show\" class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">créer ordre de travail</button>";
+            }
+            ?>
+        </div>
+    </div>
+</form>

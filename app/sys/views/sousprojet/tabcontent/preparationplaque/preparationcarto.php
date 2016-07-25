@@ -1,35 +1,47 @@
-<?php
-extract($_GET);
-$carto = SousProjetPlaqueCarto::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("gestion_plaque_carto",$carto);
-?>
-<!--<script>
-    $(document).ready(function() {
-        var pcarto_isnew = ($("#id_sous_projet_plaque_carto").val()?false:true);
-
-        $("#message_gestion_plaque_carto").hide();
-        $("#id_sous_projet_plaque_carto_btn").click(function () {
-
-            $("#message_gestion_plaque_carto").fadeOut();
-            $("#preparationplaque_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (pcarto_isnew?"api/sousprojet/pcarto_add.php":"api/sousprojet/pcarto_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    pc_intervenant_be: $('#pc_intervenant_be').val(),
-                    pc_date_debut: $('#pc_date_debut').val(),
-                    pc_date_ret_prevue: $('#pc_date_ret_prevue').val(),
-                    pc_duree: $('#pc_duree').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_pcarto !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_plaque_carto" name="id_sous_projet_plaque_carto" value="<?=$sousprojet_pcarto->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_plaque_carto_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée préparation carto crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pc_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="pc_intervenant_be" name="pc_intervenant_be">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_pcarto!==NULL && $sousprojet_pcarto->intervenant_be==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {
-                $("#preparationplaque_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_gestion_plaque_carto')) {
-                    $("#id_sous_projet_plaque_carto_alert").hide();
-                    pcarto_isnew = false;
-                }
-            });
-        });
-    } );
-</script>-->
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pc_date_debut">Date de Début <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="pc_date_debut" name="pc_date_debut" value="<?=($sousprojet_pcarto !== NULL?$sousprojet_pcarto->date_debut:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pc_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="pc_date_ret_prevue" name="pc_date_ret_prevue" value="<?=($sousprojet_pcarto !== NULL?$sousprojet_pcarto->date_ret_prevue:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pc_duree">Durée <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="pc_duree" name="pc_duree" value="<?=($sousprojet_pcarto !== NULL?$sousprojet_pcarto->duree:"")?>">
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_gestion_plaque_carto" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_plaque_carto_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>

@@ -1,37 +1,59 @@
-<?php
-extract($_GET);
-$tdesign = SousProjetTransportDesign::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
-build_user_form("transport_design",$tdesign);
-?>
-<!--<script>
-    $(document).ready(function() {
-        var tdesign_isnew = ($("#id_sous_projet_transport_design").val()?false:true);
-
-        $("#message_transport_design").hide();
-        $("#id_sous_projet_transport_design_btn").click(function () {
-
-            $("#message_transport_design").fadeOut();
-            $("#rtransport_block").toggleClass('block-opt-refresh');
-            $.ajax({
-                method: "POST",
-                url: (tdesign_isnew?"api/sousprojet/tdesign_add.php":"api/sousprojet/tdesign_update.php"),
-                data: {
-                    ids: <?/*= $_GET['idsousprojet'] */?>,
-                    td_intervenant_be: $('#td_intervenant_be').val(),
-                    td_date_debut: $('#td_date_debut').val(),
-                    td_date_ret_prevue: $('#td_date_ret_prevue').val(),
-                    td_duree: $('#td_duree').val(),
-                    td_lineaire_transport: $('#td_lineaire_transport').val(),
-                    td_nb_zones: $('#td_nb_zones').val()
-
+<form class="js-validation-bootstrap form-horizontal">
+    <?php if($sousprojet_tdesign !== NULL) {?>
+        <input type="hidden" id="id_sous_projet_transport_design" name="id_sous_projet_transport_design" value="<?=$sousprojet_tdesign->id_sous_projet?>">
+    <?php } else {?>
+        <div class="row">
+            <div id="id_sous_projet_plaque_pos_adresse_alert" class="col-md-3">
+                <span class="label label-warning">Aucune entrée transport design crée !</span>
+            </div>
+        </div>
+    <?php }?>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+            <select class="form-control" id="td_intervenant_be" name="td_intervenant_be">
+                <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_tdesign!==NULL && $sousprojet_tdesign->intervenant_be==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
                 }
-            }).done(function (msg) {
-                $("#rtransport_block").removeClass('block-opt-refresh');
-                if(App.showMessage(msg, '#message_transport_design')) {
-                    $("#id_sous_projet_transport_design_alert").hide();
-                    tdesign_isnew = false;
-                }
-            });
-        });
-    } );
-</script>-->
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_date_debut">Date de Début <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="td_date_debut" name="td_date_debut" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_debut:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="td_date_ret_prevue" name="td_date_ret_prevue" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_ret_prevue:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_duree">Durée <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="td_duree" name="td_duree" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->duree:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_lineaire_transport">Linéaire Transport <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="td_lineaire_transport" name="td_lineaire_transport" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->lineaire_transport:"")?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_nb_zones">Nbe Zones <span class="text-danger">*</span></label>
+            <input class="form-control" type="number" id="td_nb_zones" name="td_nb_zones" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->nb_zones:"")?>">
+        </div>
+    </div>
+    <div class="alert alert-success" id="message_transport_design" role="alert" style="display: none;"></div>
+    <div class="form-group">
+        <div class="col-md-8"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+    </div>
+</form>
