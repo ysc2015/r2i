@@ -20,6 +20,72 @@ function get(name){
     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
         return decodeURIComponent(name[1]);
 }
+var deleteFile = function (id,callback) {
+    $.ajax({
+        method: "POST",
+        url: "api/file/delete.php",
+        data: {
+            id: id
+        }
+    }).done(function (message) {
+        console.log(message);
+        callback();
+    });
+};
+
+
+var getSurveyFilesTo = function() {
+    $.ajax({
+        method: "POST",
+        url: "api/sousprojet/get_survey_files.php",
+        data: {
+            idsp: get('idsousprojet'),
+            type_objet: 'liste_adr_survey_to'
+        }
+    }).done(function (message) {
+        var obj = $.parseJSON(message);
+        var html = '<div class="alert alert-info alert-dismissable">';
+        if(obj.files.length > 0) {
+            $.each(obj.files,function(key,val) {
+                html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesTo)">×</button>';
+                html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
+            });
+        } else {
+            html += '<p>aucun fichier liste des adresses trouvé !</p>';
+        }
+
+        html +='</div>';
+        html +='</div>';
+
+        $("#survey_bei_files").html(html);
+    });
+};
+var getSurveyFilesBack = function() {
+    $.ajax({
+        method: "POST",
+        url: "api/sousprojet/get_survey_files.php",
+        data: {
+            idsp: get('idsousprojet'),
+            type_objet: 'liste_adr_survey_back'
+        }
+    }).done(function (message) {
+        var obj = $.parseJSON(message);
+        var html = '<div class="alert alert-info alert-dismissable">';
+        if(obj.files.length > 0) {
+            $.each(obj.files,function(key,val) {
+                html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesTo)">×</button>';
+                html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
+            });
+        } else {
+            html += '<p>aucun fichier liste des adresses trouvé !</p>';
+        }
+
+        html +='</div>';
+        html +='</div>';
+
+        $("#survey_vip_files").html(html);
+    });
+};
 
 var template = function() {
     var initTabs = function() {
@@ -283,6 +349,8 @@ var SProjet = function() {
         };
     }();
     var preparationplaque = function() {
+        var fileuploader_survey_bei = null;
+        var fileuploader_survey_vip = null;
         var pcarto_isnew = undefined;
         var posadr_isnew = undefined;
         var surveyadr_isnew = undefined;
@@ -322,6 +390,10 @@ var SProjet = function() {
 
                 init();
                 initEvents();
+
+                //init surve adresses files
+                getSurveyFilesTo();
+                getSurveyFilesBack();
             });
         }
         var init = function() {
@@ -332,6 +404,55 @@ var SProjet = function() {
             pcarto_isnew = ($("#id_sous_projet_plaque_carto").val()?false:true);
             posadr_isnew = ($("#id_sous_projet_plaque_pos_adresse").val()?false:true);
             surveyadr_isnew = ($("#id_sous_projet_plaque_survey_adresse").val()?false:true);
+
+            fileuploader_survey_bei = $("#fileuploader_survey_bei").uploadFile({
+                url: "api/sousprojet/upload_survey_file.php",
+                multiple:true,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'liste_adr_survey_to'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getSurveyFilesTo();
+                }
+            });
+            fileuploader_survey_vip = $("#fileuploader_survey_vip").uploadFile({
+                url: "api/sousprojet/upload_survey_file.php",
+                multiple:true,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'liste_adr_survey_back'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getSurveyFilesBack();
+                }
+            });
         }
         var initEvents = function() {
             $("#id_sous_projet_plaque_carto_btn").click(function () {
