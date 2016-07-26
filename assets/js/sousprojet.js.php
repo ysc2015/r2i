@@ -73,7 +73,7 @@ var getSurveyFilesBack = function() {
         var html = '<div class="alert alert-info alert-dismissable">';
         if(obj.files.length > 0) {
             $.each(obj.files,function(key,val) {
-                html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesTo)">×</button>';
+                html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesBack)">×</button>';
                 html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
             });
         } else {
