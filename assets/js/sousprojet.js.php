@@ -44,13 +44,15 @@ var getSurveyFilesTo = function() {
         }
     }).done(function (message) {
         var obj = $.parseJSON(message);
-        var html = '<div class="alert alert-info alert-dismissable">';
+        var html;
         if(obj.files.length > 0) {
+            html = '<div class="alert alert-info alert-dismissable">';
             $.each(obj.files,function(key,val) {
                 html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesTo)">×</button>';
                 html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
             });
         } else {
+            html = '<div class="alert alert-warning alert-dismissable">';
             html += '<p>aucun fichier survey adresses trouvé !</p>';
         }
 
@@ -70,13 +72,15 @@ var getSurveyFilesBack = function() {
         }
     }).done(function (message) {
         var obj = $.parseJSON(message);
-        var html = '<div class="alert alert-success alert-dismissable">';
+        var html;
         if(obj.files.length > 0) {
+            html = '<div class="alert alert-success alert-dismissable">';
             $.each(obj.files,function(key,val) {
                 html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesBack)">×</button>';
                 html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
             });
         } else {
+            html = '<div class="alert alert-warning alert-dismissable">';
             html += '<p>aucun fichier survey adresses retour trouvé !</p>';
         }
 
