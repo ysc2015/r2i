@@ -70,7 +70,7 @@ var getSurveyFilesBack = function() {
         }
     }).done(function (message) {
         var obj = $.parseJSON(message);
-        var html = '<div class="alert alert-info alert-dismissable">';
+        var html = '<div class="alert alert-success alert-dismissable">';
         if(obj.files.length > 0) {
             $.each(obj.files,function(key,val) {
                 html +='<button type="button" class="close" aria-hidden="true" onclick="deleteFile('+val.id_ressource+',getSurveyFilesBack)">×</button>';
