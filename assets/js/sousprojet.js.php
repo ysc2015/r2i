@@ -51,7 +51,7 @@ var getSurveyFilesTo = function() {
                 html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
             });
         } else {
-            html += '<p>aucun fichier liste des adresses trouvé !</p>';
+            html += '<p>aucun fichier survey adresses trouvé !</p>';
         }
 
         html +='</div>';
@@ -77,7 +77,7 @@ var getSurveyFilesBack = function() {
                 html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
             });
         } else {
-            html += '<p>aucun fichier liste des adresses trouvé !</p>';
+            html += '<p>aucun fichier survey adresses retour trouvé !</p>';
         }
 
         html +='</div>';
