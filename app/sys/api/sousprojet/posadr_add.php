@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_plaque_pos_adresse (id_sous_projet,intervenant_be,date_debut,date_ret_prevue,duree,intervenant,bpe_sur_site) values (:id_sous_projet,:intervenant_be,:date_debut,:date_ret_prevue,:duree,:intervenant,:bpe_sur_site)");
+$stm = $db->prepare("insert into sous_projet_plaque_pos_adresse (id_sous_projet,intervenant_be,date_debut,date_ret_prevue,duree,intervenant,ok) values (:id_sous_projet,:intervenant_be,:date_debut,:date_ret_prevue,:duree,:intervenant,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -61,12 +61,12 @@ if(isset($pa_intervenant) && !empty($pa_intervenant)){
     $message[] = "Le champs Intervenant est obligatoire !";
 }
 
-if(isset($pa_bpe_sur_site) && !empty($pa_bpe_sur_site)){
-    $stm->bindParam(':bpe_sur_site',$pa_bpe_sur_site);
+if(isset($pa_ok) && !empty($pa_ok)){
+    $stm->bindParam(':ok',$pa_ok);
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs Bpe sur site est obligatoire !";
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_plaque_pos_adresse set intervenant_be=:intervenant_be,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,duree=:duree,intervenant=:intervenant,bpe_sur_site=:bpe_sur_site where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_plaque_pos_adresse set intervenant_be=:intervenant_be,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,duree=:duree,intervenant=:intervenant,ok=:ok where id_sous_projet=:id_sous_projet");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -61,12 +61,12 @@ if(isset($pa_intervenant) && !empty($pa_intervenant)){
     $message[] = "Le champs Intervenant est obligatoire !";
 }
 
-if(isset($pa_bpe_sur_site) && !empty($pa_bpe_sur_site)){
-    $stm->bindParam(':bpe_sur_site',$pa_bpe_sur_site);
+if(isset($pa_ok) && !empty($pa_ok)){
+    $stm->bindParam(':ok',$pa_ok);
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs Bpe sur site est obligatoire !";
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){
