@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/config.php";
+include_once __DIR__."/../../inc/mail.notifier.class.php";
 
 ini_set("display_errors",'1');
 
@@ -56,6 +56,44 @@ if(isset($idsp) && !empty($idsp)) {
 } else {
     $err++;
     $message[] = "Référence sous projet introuvable !";
+}
+
+if($err == 0) {
+    $link = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";
+    //send mail to vpi
+    $subject = "Nouveau fichier survey adresses";
+
+    $html  = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
+    $html .='<html>';
+    $html .='<head>';
+    $html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
+    $html .='<title>Nouveau fichier survey adresses dispo en base</title>';
+    $html .='</head>';
+    $html .='<body>';
+    $html .='<div style="width: 640px;float: left;text-align: left">';
+    $html .='<h3>Nouveau '.'<a href="'.$_SERVER['SERVER_NAME'].'">fichier(s)</a>'.' survey adresses dispo en base ! </h3>';
+    $html .='</div>';
+    $html .='</body>';
+    $html .='</html>';
+
+    //vpi receipients
+
+    $receipients = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 5)));
+
+    $to = array();
+    $to[] = "bitlord1980@gmail.com";
+
+    foreach($receipients as $receipient) {
+        $to[] = $receipient->email_utilisateur;
+    }
+
+
+    if(MailNotifier::sendMail($subject,$html,$to,array())) {
+        $message[] = "Mail envoyé !";
+    } else {
+        $message[] = "Mail vpi non envoyé !";
+        $err++;
+    }
 }
 
 echo json_encode(array("error" => $err , "message" => $message));
