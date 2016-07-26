@@ -56,13 +56,13 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="pa_bpe_sur_site">BPE sur SITE <span class="text-danger">*</span></label>
-            <select class="form-control" id="pa_bpe_sur_site" name="pa_bpe_sur_site">
+            <label for="pa_bpe_sur_site">OK <span class="text-danger">*</span></label>
+            <select class="form-control" id="pa_ok" name="pa_ok">
                 <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                 <?php
-                $results = SelectBpeSurSite::all();
+                $results = SelectOk::all();
                 foreach($results as $result) {
-                    echo "<option value=\"$result->id_bpe_sur_site\" ". ($sousprojet_padresse!==NULL && $sousprojet_padresse->bpe_sur_site==$result->id_bpe_sur_site ?"selected": "")." >$result->lib_bpe_sur_site</option>";
+                    echo "<option value=\"$result->id_ok\" ". ($sousprojet_padresse!==NULL && $sousprojet_padresse->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
                 }
                 ?>
             </select>

@@ -3,7 +3,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dep">Département <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="dep" name="dep" readonly="" value="<?=$sousprojet->dep?>">
+            <input class="form-control" type="text" id="dep" name="dep" readonly="" value="<?=$sousprojet->dep?>">
         </div>
     </div>
     <div class="form-group">

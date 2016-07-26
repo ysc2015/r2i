@@ -371,7 +371,7 @@ var SProjet = function() {
                         pa_date_ret_prevue: $('#pa_date_ret_prevue').val(),
                         pa_duree: $('#pa_duree').val(),
                         pa_intervenant: $('#pa_intervenant').val(),
-                        pa_bpe_sur_site: $('#pa_bpe_sur_site').val()
+                        pa_ok: $('#pa_ok').val()
 
                     }
                 }).done(function (msg) {
