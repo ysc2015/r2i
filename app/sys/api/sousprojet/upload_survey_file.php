@@ -59,7 +59,7 @@ if(isset($idsp) && !empty($idsp)) {
 }
 
 if($err == 0) {
-    $link = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";
+    $app_folder = ($_SERVER['SERVER_NAME'] == "localhost") ? "r2i-gestion" : "r2i";
     //send mail to vpi
     $subject = "Nouveau fichier survey adresses";
 
@@ -71,7 +71,7 @@ if($err == 0) {
     $html .='</head>';
     $html .='<body>';
     $html .='<div style="width: 640px;float: left;text-align: left">';
-    $html .='<h3>Nouveau '.'<a href="'.$_SERVER['SERVER_NAME'].'">fichier(s)</a>'.' survey adresses dispo en base ! </h3>';
+    $html .='<h3>Nouveau '.'<a href="http://'.$_SERVER['SERVER_NAME'].'/'.$app_folder.'/index.php?page=sousprojet&idsousprojet='.$idsp.'">fichier(s)</a>'.' survey adresses dispo en base ! </h3>';
     $html .='</div>';
     $html .='</body>';
     $html .='</html>';
