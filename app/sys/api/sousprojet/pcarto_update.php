@@ -29,7 +29,41 @@ if(isset($pc_intervenant_be) && !empty($pc_intervenant_be)){
     $message[] = "Le champs Intervenant BE est obligatoire !";
 }
 
-if(isset($pc_date_debut) && !empty($pc_date_debut)){
+/*
+ * dates debut
+ */
+
+$dd = DateTime::createFromFormat('Y-m-d', $pc_date_debut);
+$df = DateTime::createFromFormat('Y-m-d', $pc_date_ret_prevue);
+
+
+if($dd && $df && $df < $dd) {
+    $err++;
+    $message[] = "la date de retour prévue doit étre superieure à la date de début !";
+} else  {
+
+    if(isset($pc_date_debut)){
+        $stm->bindParam(':date_debut',$pc_date_debut);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date de début est obligatoire !";
+    }
+
+    if(isset($pc_date_ret_prevue)){
+        $stm->bindParam(':date_ret_prevue',$pc_date_ret_prevue);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date retour prévue est obligatoire !";
+    }
+}
+
+/*
+ * dates fin
+ */
+
+/*if(isset($pc_date_debut) && !empty($pc_date_debut)){
     $stm->bindParam(':date_debut',$pc_date_debut);
     $insert = true;
 } else {
@@ -43,7 +77,7 @@ if(isset($pc_date_ret_prevue) && !empty($pc_date_ret_prevue)){
 } else {
     $err++;
     $message[] = "Le champs Date retour prévue est obligatoire !";
-}
+}*/
 
 if(isset($pc_duree) && !empty($pc_duree)){
     $stm->bindParam(':duree',$pc_duree);
