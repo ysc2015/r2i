@@ -531,6 +531,14 @@ var SProjet = function() {
                     }
                 });
             });
+
+
+            $("#pc_date_debut").change(function() {
+                setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$( this ).val(),$("#pc_date_ret_prevue").val());
+            });
+            $("#pc_date_ret_prevue").change(function() {
+                setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pc_date_debut").val(),$( this ).val());
+            });
         }
         return {
             init : init,

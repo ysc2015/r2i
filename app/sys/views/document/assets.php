@@ -58,6 +58,7 @@
 <script src="assets/js/plugins/jqGrid/js/i18n/grid.locale-fr.js"></script>
 <script src="assets/js/plugins/select2-4.0.3/dist/js/select2.full.min.js"></script>
 <!--<script src="assets/js/plugins/select2/select2.full.min.js"></script>-->
+<script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>
 
 <link rel="stylesheet" href="assets/js/plugins/jquery-upload-file/css/uploadfile.css">
