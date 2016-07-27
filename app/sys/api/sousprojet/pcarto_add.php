@@ -42,7 +42,7 @@ if($dd && $df && $df < $dd) {
     $message[] = "la date de retour prévue doit étre superieure à la date de début !";
 } else  {
 
-    if(isset($pc_date_debut) && !empty($pc_date_debut)){
+    if(isset($pc_date_debut)){
         $stm->bindParam(':date_debut',$pc_date_debut);
         $insert = true;
     } else {
@@ -50,7 +50,7 @@ if($dd && $df && $df < $dd) {
         $message[] = "Le champs Date de début est obligatoire !";
     }
 
-    if(isset($pc_date_ret_prevue) && !empty($pc_date_ret_prevue)){
+    if(isset($pc_date_ret_prevue)){
         $stm->bindParam(':date_ret_prevue',$pc_date_ret_prevue);
         $insert = true;
     } else {
