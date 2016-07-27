@@ -36,8 +36,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="pc_duree">Durée <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="pc_duree" name="pc_duree" value="<?=($sousprojet_pcarto !== NULL?$sousprojet_pcarto->duree:"")?>">
+            <label for="pc_duree">Durée(jours) <span class="text-danger">*</span></label>
+            <input readonly class="form-control" type="text" id="pc_duree" name="pc_duree" value="<?=($sousprojet_pcarto !== NULL?$sousprojet_pcarto->duree:"")?>">
         </div>
     </div>
     <div class="alert alert-success" id="message_gestion_plaque_carto" role="alert" style="display: none;"></div>
