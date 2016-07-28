@@ -26,7 +26,7 @@ function setDuree(selector1,selector2,d1,d2) {
         console.log(obj);
         if(obj.duree == "erreur") {
             var msg = {error : 1, message : 'la date de retour prévue doit étre superieure à la date de début !'};
-            App.showMessage(msg,'#message_gestion_plaque_carto');
+            App.showMessage(msg,selector2);
             selector1.val('');
 
         } else {

@@ -458,7 +458,8 @@ var SProjet = function() {
                 }
             });
 
-            setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pc_date_debut").val(),$("#pc_date_ret_prevue").val());
+            setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pa_date_debut").val(),$("#pa_date_ret_prevue").val());
+            setDuree($("#pa_duree"),'#message_gestion_plaque_pos_adresse',$("#pa_date_debut").val(),$("#pa_date_ret_prevue").val());
         }
         var initEvents = function() {
             $("#id_sous_projet_plaque_carto_btn").click(function () {
@@ -542,11 +543,11 @@ var SProjet = function() {
                 setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pc_date_debut").val(),$( this ).val());
             });
 
-            $("#pc_date_debut").change(function() {
-                setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$( this ).val(),$("#pc_date_ret_prevue").val());
+            $("#pa_date_debut").change(function() {
+                setDuree($("#pa_duree"),'#message_gestion_plaque_pos_adresse',$( this ).val(),$("#pa_date_ret_prevue").val());
             });
-            $("#pc_date_ret_prevue").change(function() {
-                setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pc_date_debut").val(),$( this ).val());
+            $("#pa_date_ret_prevue").change(function() {
+                setDuree($("#pa_duree"),'#message_gestion_plaque_pos_adresse',$("#pa_date_debut").val(),$( this ).val());
             });
         }
         return {

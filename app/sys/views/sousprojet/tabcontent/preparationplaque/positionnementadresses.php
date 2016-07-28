@@ -37,7 +37,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="pa_duree">Durée(jours) <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="pa_duree" name="pa_duree" value="<?=($sousprojet_padresse !== NULL?$sousprojet_padresse->duree:"")?>">
+            <input readonly class="form-control" type="text" id="pa_duree" name="pa_duree" value="<?=($sousprojet_padresse !== NULL?$sousprojet_padresse->duree:"")?>">
         </div>
     </div>
     <div class="form-group">
