@@ -39,7 +39,26 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="ta_lineaire_reseau">Linéaire de réseau <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="ta_lineaire_reseau" name="ta_lineaire_reseau" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire_reseau:"")?>">
+
+            <label class="col-xs-12" for="lineaire1" style="font-size: medium"><span class="label label-success">720FO </span><span class="text-danger">*</span></label>
+            <div class="col-sm-12">
+                <input class="form-control" type="number" id="lineaire1" name="lineaire1" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire1:"")?>">
+            </div>
+
+            <label class="col-xs-12" for="lineaire2" style="font-size: medium"><span class="label label-success">432FO </span><span class="text-danger">*</span></label>
+            <div class="col-sm-12">
+                <input class="form-control" type="number" id="lineaire2" name="lineaire2" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire2:"")?>">
+            </div>
+
+            <label class="col-xs-12" for="lineaire3" style="font-size: medium"><span class="label label-success">288FO </span><span class="text-danger">*</span></label>
+            <div class="col-sm-12">
+                <input class="form-control" type="number" id="lineaire3" name="lineaire3" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire3:"")?>">
+            </div>
+
+            <label class="col-xs-12" for="lineaire4" style="font-size: medium"><span class="label label-success">144FO </span><span class="text-danger">*</span></label>
+            <div class="col-sm-12">
+                <input class="form-control" type="number" id="lineaire4" name="lineaire4" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire4:"")?>">
+            </div>
         </div>
     </div>
     <div class="form-group">

@@ -684,7 +684,11 @@ var SProjet = function() {
                         ta_duree: $('#ta_duree').val(),
                         ta_controle_demarrage_effectif: $('#ta_controle_demarrage_effectif').val(),
                         ta_date_retour: $('#ta_date_retour').val(),
-                        ta_etat_retour: $('#ta_etat_retour').val()
+                        ta_etat_retour: $('#ta_etat_retour').val(),
+                        lineaire1: $('#lineaire1').val(),
+                        lineaire2: $('#lineaire2').val(),
+                        lineaire3: $('#lineaire3').val(),
+                        lineaire4: $('#lineaire4').val()
 
                     }
                 }).done(function (msg) {
