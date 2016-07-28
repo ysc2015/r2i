@@ -40,6 +40,20 @@
             <input readonly class="form-control" type="text" id="pc_duree" name="pc_duree" value="<?=($sousprojet_pcarto !== NULL?$sousprojet_pcarto->duree:"")?>">
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="pc_ok">OK <span class="text-danger">*</span></label>
+            <select class="form-control" id="pc_ok" name="pc_ok">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectOk::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_ok\" ". ($sousprojet_pcarto!==NULL && $sousprojet_pcarto->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_gestion_plaque_carto" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-md-8"><button id="id_sous_projet_plaque_carto_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
