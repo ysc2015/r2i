@@ -78,7 +78,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="da_date_aiguillage">Date Aiguillage <span class="text-danger">*</span></label>
+            <label for="da_date_aiguillage">Date de début d’aiguillage <span class="text-danger">*</span></label>
             <input class="form-control" type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->date_aiguillage:"")?>">
         </div>
     </div>
