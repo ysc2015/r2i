@@ -460,6 +460,7 @@ var SProjet = function() {
 
             setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pa_date_debut").val(),$("#pa_date_ret_prevue").val());
             setDuree($("#pa_duree"),'#message_gestion_plaque_pos_adresse',$("#pa_date_debut").val(),$("#pa_date_ret_prevue").val());
+            setDuree($("#sa_duree"),'#message_gestion_plaque_survey_adresse',$("#sa_date_debut").val(),$("#sa_date_ret_prevue").val());
         }
         var initEvents = function() {
             $("#id_sous_projet_plaque_carto_btn").click(function () {
@@ -524,7 +525,8 @@ var SProjet = function() {
                         sa_date_debut: $('#sa_date_debut').val(),
                         sa_date_ret_prevue: $('#sa_date_ret_prevue').val(),
                         sa_intervenant: $('#sa_intervenant').val(),
-                        sa_duree: $('#sa_duree').val()
+                        sa_duree: $('#sa_duree').val(),
+                        sa_ok: $('#sa_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -548,6 +550,13 @@ var SProjet = function() {
             });
             $("#pa_date_ret_prevue").change(function() {
                 setDuree($("#pa_duree"),'#message_gestion_plaque_pos_adresse',$("#pa_date_debut").val(),$( this ).val());
+            });
+
+            $("#sa_date_debut").change(function() {
+                setDuree($("#sa_duree"),'#message_gestion_plaque_survey_adresse',$( this ).val(),$("#sa_date_ret_prevue").val());
+            });
+            $("#sa_date_ret_prevue").change(function() {
+                setDuree($("#sa_duree"),'#message_gestion_plaque_survey_adresse',$("#sa_date_debut").val(),$( this ).val());
             });
         }
         return {

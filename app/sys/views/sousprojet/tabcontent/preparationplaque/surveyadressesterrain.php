@@ -44,8 +44,22 @@
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <label for="sa_duree">Durée <span class="text-danger">*</span></label>
-                    <input class="form-control" type="number" id="sa_duree" name="sa_duree" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->duree:"")?>">
+                    <label for="sa_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <input readonly class="form-control" type="text" id="sa_duree" name="sa_duree" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->duree:"")?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label for="sa_ok">OK <span class="text-danger">*</span></label>
+                    <select class="form-control" id="sa_ok" name="sa_ok">
+                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectOk::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_ok\" ". ($sousprojet_suradresse!==NULL && $sousprojet_suradresse->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
             <div class="alert alert-success" id="message_gestion_plaque_survey_adresse" role="alert" style="display: none;"></div>

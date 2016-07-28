@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_plaque_survey_adresse set  volume_adresse=:volume_adresse,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,intervenant=:intervenant,duree=:duree where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_plaque_survey_adresse set  volume_adresse=:volume_adresse,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,intervenant=:intervenant,duree=:duree,ok=:ok where id_sous_projet=:id_sous_projet");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -29,7 +29,7 @@ if(isset($sa_volume_adresse) && !empty($sa_volume_adresse)){
     $message[] = "Le champs Volume adresses est obligatoire !";
 }
 
-if(isset($sa_date_debut) && !empty($sa_date_debut)){
+/*if(isset($sa_date_debut) && !empty($sa_date_debut)){
     $stm->bindParam(':date_debut',$sa_date_debut);
     $insert = true;
 } else {
@@ -43,7 +43,41 @@ if(isset($sa_date_ret_prevue) && !empty($sa_date_ret_prevue)){
 } else {
     $err++;
     $message[] = "Le champs Date retour prévue est obligatoire !";
+}*/
+
+/*
+ * dates debut
+ */
+
+$dd = DateTime::createFromFormat('Y-m-d', $sa_date_debut);
+$df = DateTime::createFromFormat('Y-m-d', $sa_date_ret_prevue);
+
+
+if($dd && $df && $df < $dd) {
+    $err++;
+    $message[] = "la date de retour prévue doit étre superieure à la date de début !";
+} else  {
+
+    if(isset($sa_date_debut)){
+        $stm->bindParam(':date_debut',$sa_date_debut);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date de début est obligatoire !";
+    }
+
+    if(isset($sa_date_ret_prevue)){
+        $stm->bindParam(':date_ret_prevue',$sa_date_ret_prevue);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date retour prévue est obligatoire !";
+    }
 }
+
+/*
+ * dates fin
+ */
 
 if(isset($sa_intervenant) && !empty($sa_intervenant)){
     $stm->bindParam(':intervenant',$sa_intervenant);
@@ -59,6 +93,14 @@ if(isset($sa_duree) && !empty($sa_duree)){
 } else {
     $err++;
     $message[] = "Le champs Durée est obligatoire !";
+}
+
+if(isset($sa_ok) && !empty($sa_ok)){
+    $stm->bindParam(':ok',$sa_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){
