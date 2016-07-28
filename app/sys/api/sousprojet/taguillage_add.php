@@ -12,7 +12,7 @@ $insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet,intervenant_be,plans,lineaire_reseau,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour) values (:id_sous_projet,:intervenant_be,:plans,:lineaire_reseau,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour)");
+$stm = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -38,13 +38,45 @@ if(isset($ta_plans) && !empty($ta_plans)){
     $message[] = "Le champs Plans est obligatoire !";
 }
 
-if(isset($ta_lineaire_reseau) && !empty($ta_lineaire_reseau)){
-    $stm->bindParam(':lineaire_reseau',$ta_lineaire_reseau);
+/*
+ * lineaire debut
+ */
+
+if(isset($lineaire1) && !empty($lineaire1)){
+    $stm->bindParam(':lineaire1',$lineaire1);
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs Linéaire réseau est obligatoire !";
+    $message[] = "Le champs 720FO est obligatoire !";
 }
+
+if(isset($lineaire2) && !empty($lineaire2)){
+    $stm->bindParam(':lineaire2',$lineaire2);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs 432FO est obligatoire !";
+}
+
+if(isset($lineaire3) && !empty($lineaire3)){
+    $stm->bindParam(':lineaire3',$lineaire3);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs 288FO est obligatoire !";
+}
+
+if(isset($lineaire4) && !empty($lineaire4)){
+    $stm->bindParam(':lineaire4',$lineaire4);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs 144FO est obligatoire !";
+}
+
+/*
+ * lineaire fin
+ */
 
 if(isset($ta_controle_plans) && !empty($ta_controle_plans)){
     $stm->bindParam(':controle_plans',$ta_controle_plans);
