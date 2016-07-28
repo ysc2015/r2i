@@ -147,6 +147,12 @@
             </select>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="ta_lien_plans">Lien vers les plans <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="ta_lien_plans" name="ta_lien_plans" rows="6" placeholder="Collez lien ici.."></textarea>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_transport_aiguillage" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-md-8">
