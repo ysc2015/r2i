@@ -56,7 +56,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="pa_bpe_sur_site">OK <span class="text-danger">*</span></label>
+            <label for="pa_ok">OK <span class="text-danger">*</span></label>
             <select class="form-control" id="pa_ok" name="pa_ok">
                 <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                 <?php

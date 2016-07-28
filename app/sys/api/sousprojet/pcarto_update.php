@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_plaque_carto set intervenant_be=:intervenant_be,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,duree=:duree where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_plaque_carto set intervenant_be=:intervenant_be,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,duree=:duree,ok=:ok where id_sous_projet=:id_sous_projet");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -85,6 +85,14 @@ if(isset($pc_duree) && !empty($pc_duree)){
 } else {
     $err++;
     $message[] = "Le champs Durée est obligatoire !";
+}
+
+if(isset($pc_ok) && !empty($pc_ok)){
+    $stm->bindParam(':ok',$pc_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

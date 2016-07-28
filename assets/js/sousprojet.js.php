@@ -457,6 +457,8 @@ var SProjet = function() {
                     getSurveyFilesBack();
                 }
             });
+
+            setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pc_date_debut").val(),$("#pc_date_ret_prevue").val());
         }
         var initEvents = function() {
             $("#id_sous_projet_plaque_carto_btn").click(function () {
@@ -471,7 +473,8 @@ var SProjet = function() {
                         pc_intervenant_be: $('#pc_intervenant_be').val(),
                         pc_date_debut: $('#pc_date_debut').val(),
                         pc_date_ret_prevue: $('#pc_date_ret_prevue').val(),
-                        pc_duree: $('#pc_duree').val()
+                        pc_duree: $('#pc_duree').val(),
+                        pc_ok: $('#pc_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -531,7 +534,6 @@ var SProjet = function() {
                     }
                 });
             });
-
 
             $("#pc_date_debut").change(function() {
                 setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$( this ).val(),$("#pc_date_ret_prevue").val());
