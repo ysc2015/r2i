@@ -132,16 +132,18 @@
     <div class="form-group">
         <div class="col-md-8"><button id="id_sous_projet_transport_tirage_btn" class="btn btn-primary" type="button">Enregistrer</button>
             <?php
-            $ot = OrdreDeTravail::first(
-                array('conditions' =>
-                    array("id_entree = ? AND type_entree = ?", $sousprojet_ttirage->id_sous_projet_transport_tirage,"transport_tirage")
-                )
-            );
-            if($ot !== NULL) {
+            if($sousprojet_ttirage !== NULL) {
+                $ot = OrdreDeTravail::first(
+                    array('conditions' =>
+                        array("id_entree = ? AND type_entree = ?", $sousprojet_ttirage->id_sous_projet_transport_tirage,"transport_tirage")
+                    )
+                );
+                if($ot !== NULL) {
 
-                echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
-            } else {
-                echo "  <button id=\"id_sous_projet_transport_tirage_create_ot_show\" class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">créer ordre de travail</button>";
+                    echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
+                } else {
+                    echo "  <button id=\"id_sous_projet_transport_tirage_create_ot_show\" class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">créer ordre de travail</button>";
+                }
             }
             ?>
         </div>
