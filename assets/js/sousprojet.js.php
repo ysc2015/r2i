@@ -689,7 +689,8 @@ var SProjet = function() {
                         lineaire2: $('#lineaire2').val(),
                         lineaire3: $('#lineaire3').val(),
                         lineaire4: $('#lineaire4').val(),
-                        ta_lien_plans: $('#ta_lien_plans').val()
+                        ta_lien_plans: $('#ta_lien_plans').val(),
+                        ta_retour_presta: $('#ta_retour_presta').val()
 
                     }
                 }).done(function (msg) {

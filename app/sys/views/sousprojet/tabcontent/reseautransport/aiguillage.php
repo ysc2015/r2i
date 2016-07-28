@@ -97,13 +97,13 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="ta_date_aiguillage">Date Aiguillage <span class="text-danger">*</span></label>
+            <label for="ta_date_aiguillage">Date de début d’aiguillage <span class="text-danger">*</span></label>
             <input class="form-control" type="date" id="ta_date_aiguillage" name="ta_date_aiguillage" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->date_aiguillage:"")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="ta_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+            <label for="ta_date_ret_prevue">Date prévisionnelle de fin d’aiguillage <span class="text-danger">*</span></label>
             <input class="form-control" type="date" id="ta_date_ret_prevue" name="ta_date_ret_prevue" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->date_ret_prevue:"")?>">
         </div>
     </div>
@@ -151,6 +151,12 @@
         <div class="col-md-3">
             <label for="ta_lien_plans">Lien vers les plans <span class="text-danger">*</span></label>
             <textarea class="form-control" id="ta_lien_plans" name="ta_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lien_plans:"")?></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="ta_retour_presta">Retour presta <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="ta_retour_presta" name="ta_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->retour_presta:"")?></textarea>
         </div>
     </div>
     <div class="alert alert-success" id="message_transport_aiguillage" role="alert" style="display: none;"></div>
