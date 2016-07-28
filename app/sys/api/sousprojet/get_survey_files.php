@@ -20,7 +20,7 @@ $stm = $db->prepare("select * from ressource where type_objet=:type_objet and id
 
 if(isset($idsp) && !empty($idsp)){
     $sousprojet_suradresse = SousProjetPlaqueSurveyAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsp)));
-    if(true) {
+    if($sousprojet_suradresse !== NULL) {
         $stm->execute(array(':id_objet' => $sousprojet_suradresse->id_sous_projet_plaque_survey_adresse,':type_objet' => $type_objet));
         $files = $stm->fetchAll();
     } else {
