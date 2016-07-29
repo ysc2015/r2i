@@ -458,7 +458,7 @@ var SProjet = function() {
                 }
             });
 
-            setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pa_date_debut").val(),$("#pa_date_ret_prevue").val());
+            setDuree($("#pc_duree"),'#message_gestion_plaque_carto',$("#pc_date_debut").val(),$("#pc_date_ret_prevue").val());
             setDuree($("#pa_duree"),'#message_gestion_plaque_pos_adresse',$("#pa_date_debut").val(),$("#pa_date_ret_prevue").val());
             setDuree($("#sa_duree"),'#message_gestion_plaque_survey_adresse',$("#sa_date_debut").val(),$("#sa_date_ret_prevue").val());
         }
