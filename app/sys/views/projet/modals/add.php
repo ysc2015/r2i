@@ -47,7 +47,7 @@
                                                 <input class="form-control" type="text" id="ville" name="ville">-->
                                                 <label for="ville">Ville <span class="text-danger">*</span></label>
                                                 <select class="js-select2 form-control" id="ville" name="ville" size="1" style="width: 100%;" data-placeholder="Séléctionner départ/ville..">
-                                                    <option value="">&nbsp;</option>
+                                                    <option value="00">&nbsp;</option>
                                                     <?php
                                                     $villes = Ville::all();
                                                     foreach($villes as $ville) {
@@ -61,8 +61,12 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                                <label for="trigramme_dept">Trigramme de la plaque + Dept sur deux chiffres <span class="text-danger">*</span></label>
-                                                <input class="form-control" type="text" id="trigramme_dept" name="trigramme_dept">
+                                                <label for="dept">Trigramme de la plaque + Dept sur deux chiffres <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <!--<input class="form-control" type="hidden" id="trigramme_dept" name="trigramme_dept">-->
+                                                    <span class="input-group-addon" id="trigramme"></span>
+                                                    <input class="form-control" type="text" id="dept" name="dept">
+                                                </div>
                                             <!--</div>-->
                                         </div>
                                     </div>
@@ -295,13 +299,14 @@
                 var ret = false;
                 switch ($index) {
                     case 1 : {
+                        //alert(($("#dept").val()=="" ? "":('PLA' + $("#ville").val() + '_' + $("#dept").val())));
                         $.ajax({
                             method: "POST",
                             url: "api/projet/projet_add.php",
                             async: false,
                             data: {
                                 ville: $("#ville").val(),
-                                trigramme_dept: $("#trigramme_dept").val(),
+                                trigramme_dept: ($("#dept").val()=="" ? "":('PLA' + $("#ville").val() + '_' + $("#dept").val())),
                                 code_site_origine: $("#code_site_origine").val(),
                                 type_site_origine: $("#type_site_origine").val(),
                                 taille: $("#taille").val(),
@@ -387,6 +392,13 @@
 
                 //console.log(obj.getResponses());
             }
+        });
+
+        $("#trigramme").html('PLA' + $("#ville").val() + '_');
+
+        //events
+        $("#ville").change(function() {
+            $("#trigramme").html('PLA' + $( this ).val() + '_');
         });
     } );
 </script>

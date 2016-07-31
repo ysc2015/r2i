@@ -11,7 +11,7 @@
 
             $("#projet_update_id_chef_projet").val(dt.row('.selected').data().id_chef_projet);
             $("#projet_update_ville").val(dt.row('.selected').data().ville).trigger("change");
-            $("#projet_update_trigramme_dept").val(dt.row('.selected').data().trigramme_dept);
+            $("#projet_update_dept").val(dt.row('.selected').data().trigramme_dept.split('_')[1]);
             $("#projet_update_code_site_origine").val(dt.row('.selected').data().code_site_origine);
             $("#projet_update_type_site_origine").val(dt.row('.selected').data().type_site_origine);
             $("#projet_update_taille").val(dt.row('.selected').data().taille);

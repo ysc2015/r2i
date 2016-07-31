@@ -38,12 +38,12 @@ if(isset($ville) && !empty($ville)){
 }
 
 if(isset($trigramme_dept) && !empty($trigramme_dept)){
-    if(strlen($trigramme_dept) == 5) {
+    if(strlen($trigramme_dept) == 9) {
         $stm->bindParam(':trigramme_dept',$trigramme_dept);
         $insert = true;
     } else {
         $err++;
-        $message[] = "Le champs Trigramme de la plaque doit comporter 5 caractéres Ex:XXX99";
+        $message[] = "Le champs Trigramme de la plaque doit comporter 9 caractéres Ex:PLAXX_XXX";
     }
 } else {
     $err++;
