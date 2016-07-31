@@ -29,7 +29,7 @@ if(isset($td_intervenant_be) && !empty($td_intervenant_be)){
     $message[] = "Le champs Intervenant BE est obligatoire !";
 }
 
-if(isset($td_date_debut) && !empty($td_date_debut)){
+/*if(isset($td_date_debut) && !empty($td_date_debut)){
     $stm->bindParam(':date_debut',$td_date_debut);
     $insert = true;
 } else {
@@ -43,7 +43,41 @@ if(isset($td_date_ret_prevue) && !empty($td_date_ret_prevue)){
 } else {
     $err++;
     $message[] = "Le champs Date retour prévue est obligatoire !";
+}*/
+
+/*
+ * dates debut
+ */
+
+$dd = DateTime::createFromFormat('Y-m-d', $td_date_debut);
+$df = DateTime::createFromFormat('Y-m-d', $td_date_ret_prevue);
+
+
+if($dd && $df && $df < $dd) {
+    $err++;
+    $message[] = "la date de retour prévue doit étre superieure à la date de début !";
+} else  {
+
+    if(isset($td_date_debut)){
+        $stm->bindParam(':date_debut',$td_date_debut);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date de début est obligatoire !";
+    }
+
+    if(isset($td_date_ret_prevue)){
+        $stm->bindParam(':date_ret_prevue',$td_date_ret_prevue);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date retour prévue est obligatoire !";
+    }
 }
+
+/*
+ * dates fin
+ */
 
 if(isset($td_duree) && !empty($td_duree)){
     $stm->bindParam(':duree',$td_duree);

@@ -97,8 +97,8 @@
                     <input class="form-control input-lg" type="date" id="ta_date_ret_prevue" name="ta_date_ret_prevue" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-xs-4">
-                    <label for="ta_duree">Durée <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg" type="number" id="ta_duree" name="ta_duree" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->duree:"")?>">
+                    <label for="ta_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <input readonly class="form-control input-lg" type="text" id="ta_duree" name="ta_duree" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->duree:"")?>">
                 </div>
             </div>
         </div>

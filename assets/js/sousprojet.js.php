@@ -358,7 +358,8 @@ var SProjet = function() {
         var pcarto_isnew = undefined;
         var posadr_isnew = undefined;
         var surveyadr_isnew = undefined;
-        var refresh = function() {
+        var refresh = function(atab = '') {
+            console.log('refresh');
             $.ajax({
                 method: "POST",
                 data: {
@@ -376,10 +377,10 @@ var SProjet = function() {
                 id_ta = obj.id_ta;
                 id_tt = obj.id_tt;
 
-                initTabs();
+                initTabs(atab);
             });
         }
-        var initTabs = function() {
+        var initTabs = function(atab = '') {
 
             $("#preparationplaque_block").toggleClass('block-opt-refresh');
             $.ajax({
@@ -391,6 +392,14 @@ var SProjet = function() {
             }).done(function (msg) {
                 $("#preparationplaque_block_content").html(msg);
                 $("#preparationplaque_block").removeClass('block-opt-refresh');
+
+                if(atab != "") {
+                    $(atab).trigger('click');
+                }
+
+                /*if(atab != null) {
+                    atab();
+                }*/
 
                 init();
                 initEvents();
@@ -530,8 +539,9 @@ var SProjet = function() {
 
                     }
                 }).done(function (msg) {
+
                     $("#preparationplaque_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_gestion_plaque_survey_adresse')) {
+                    if(App.showMessage(msg, '#message_gestion_plaque_survey_adresse', refresh, '#surveyadressesterrain_href')) {
                         $("#id_sous_projet_plaque_survey_adresse_alert").hide();
                         surveyadr_isnew = false;
                     }
@@ -636,6 +646,9 @@ var SProjet = function() {
 
             traccord_isnew = ($("#id_sous_projet_transport_raccordements").val()?false:true);
             trecette_isnew = ($("#id_sous_projet_transport_recette").val()?false:true);
+
+            setDuree($("#td_duree"),'#message_transport_design',$("#td_date_debut").val(),$("#td_date_ret_prevue").val());
+            setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$("#ta_date_ret_prevue").val());
         }
         var initEvents = function() {
             $("#id_sous_projet_transport_design_btn").click(function () {
@@ -845,6 +858,20 @@ var SProjet = function() {
                         trecette_isnew = false;
                     }
                 });
+            });
+
+            $("#td_date_debut").change(function() {
+                setDuree($("#td_duree"),'#message_transport_design',$( this ).val(),$("#td_date_ret_prevue").val());
+            });
+            $("#td_date_ret_prevue").change(function() {
+                setDuree($("#td_duree"),'#message_transport_design',$("#td_date_debut").val(),$( this ).val());
+            });
+
+            $("#ta_date_aiguillage").change(function() {
+                setDuree($("#ta_duree"),'#message_transport_aiguillage',$( this ).val(),$("#ta_date_ret_prevue").val());
+            });
+            $("#ta_date_ret_prevue").change(function() {
+                setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$( this ).val());
             });
         }
         return {
