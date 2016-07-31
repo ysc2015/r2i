@@ -46,8 +46,12 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                                <label for="projet_update_trigramme_dept">Trigramme de la plaque + Dept sur deux chiffres <span class="text-danger">*</span></label>
-                                                <input class="form-control" type="text" id="projet_update_trigramme_dept" name="projet_update_trigramme_dept">
+                                                <label for="projet_update_dept">Trigramme de la plaque + Dept sur deux chiffres <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <!--<input class="form-control" type="text" id="projet_update_trigramme_dept" name="projet_update_trigramme_dept">-->
+                                                    <span class="input-group-addon" id="projet_update_trigramme"></span>
+                                                    <input class="form-control" type="text" id="projet_update_dept" name="projet_update_dept">
+                                                </div>
                                             <!--</div>-->
                                         </div>
                                     </div>
@@ -222,7 +226,7 @@
                 data: {
                     idp: idp,
                     ville: $("#projet_update_ville").val(),
-                    trigramme_dept: $("#projet_update_trigramme_dept").val(),
+                    trigramme_dept: ($("#projet_update_dept").val()=="" ? "":('PLA' + $("#projet_update_ville").val() + '_' + $("#projet_update_dept").val())),
                     code_site_origine: $("#projet_update_code_site_origine").val(),
                     type_site_origine: $("#projet_update_type_site_origine").val(),
                     taille: $("#projet_update_taille").val(),
@@ -249,6 +253,13 @@
                 dt.draw(false);
                 $(btns.join(',')).addClass("disabled");
             });
+        });
+
+        $("#projet_update_trigramme").html('PLA' + $("#projet_update_ville").val() + '_');
+
+        //events
+        $("#projet_update_ville").change(function() {
+            $("#projet_update_trigramme").html('PLA' + $( this ).val() + '_');
         });
     } );
 </script>
