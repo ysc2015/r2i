@@ -110,7 +110,7 @@ if(isset($ta_entreprise) && !empty($ta_entreprise)){
     $message[] = "Le champs Entreprise est obligatoire !";
 }
 
-if(isset($ta_date_aiguillage) && !empty($ta_date_aiguillage)){
+/*if(isset($ta_date_aiguillage) && !empty($ta_date_aiguillage)){
     $stm->bindParam(':date_aiguillage',$ta_date_aiguillage);
     $insert = true;
 } else {
@@ -124,7 +124,41 @@ if(isset($ta_date_ret_prevue) && !empty($ta_date_ret_prevue)){
 } else {
     $err++;
     $message[] = "Le champs Date retour prévue est obligatoire !";
+}*/
+
+/*
+ * dates debut
+ */
+
+$dd = DateTime::createFromFormat('Y-m-d', $ta_date_aiguillage);
+$df = DateTime::createFromFormat('Y-m-d', $ta_date_ret_prevue);
+
+
+if($dd && $df && $df < $dd) {
+    $err++;
+    $message[] = "la date de retour prévue doit étre superieure à la date de début !";
+} else  {
+
+    if(isset($ta_date_aiguillage)){
+        $stm->bindParam(':date_aiguillage',$ta_date_aiguillage);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date de début aiguillage est obligatoire !";
+    }
+
+    if(isset($ta_date_ret_prevue)){
+        $stm->bindParam(':date_ret_prevue',$ta_date_ret_prevue);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date retour prévue est obligatoire !";
+    }
 }
+
+/*
+ * dates fin
+ */
 
 if(isset($ta_duree) && !empty($ta_duree)){
     $stm->bindParam(':duree',$ta_duree);

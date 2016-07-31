@@ -36,8 +36,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="td_duree">Durée <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="td_duree" name="td_duree" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->duree:"")?>">
+            <label for="td_duree">Durée(jours) <span class="text-danger">*</span></label>
+            <input readonly class="form-control" type="text" id="td_duree" name="td_duree" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->duree:"")?>">
         </div>
     </div>
     <div class="form-group">

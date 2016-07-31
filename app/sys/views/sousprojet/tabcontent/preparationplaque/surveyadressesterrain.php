@@ -30,6 +30,12 @@
             </div>
             <div class="form-group">
                 <div class="col-md-6">
+                    <label for="sa_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <input readonly class="form-control" type="text" id="sa_duree" name="sa_duree" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->duree:"")?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
                     <label for="sa_intervenant">Intervenant BE <span class="text-danger">*</span></label>
                     <select class="form-control" id="sa_intervenant" name="sa_intervenant">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
@@ -40,12 +46,6 @@
                         }
                         ?>
                     </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6">
-                    <label for="sa_duree">Durée(jours) <span class="text-danger">*</span></label>
-                    <input readonly class="form-control" type="text" id="sa_duree" name="sa_duree" value="<?=($sousprojet_suradresse !== NULL?$sousprojet_suradresse->duree:"")?>">
                 </div>
             </div>
             <div class="form-group">
@@ -67,19 +67,21 @@
                 <div class="col-md-8"><button id="id_sous_projet_plaque_survey_adresse_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
             </div>
         </div>
-        <div class="col-md-6" style="border-left: dashed 1px #000;">
-            <div class="row" style="padding-left: 10px;">
-                <label for="fileuploader_survey_bei">Fichier(s) adresses terrain (bei)</label>
-                <div id="fileuploader_survey_bei"></div>
+        <?php if($sousprojet_suradresse!==NULL) {?>
+            <div class="col-md-6" style="border-left: dashed 1px #000;">
+                <div class="row" style="padding-left: 10px;">
+                    <label for="fileuploader_survey_bei">Fichier(s) adresses terrain (bei)</label>
+                    <div id="fileuploader_survey_bei"></div>
+                </div>
+                <div class="row" id="survey_bei_files" style="padding-left: 10px;">
+                </div>
+                <div class="row" style="padding-left: 10px;">
+                    <label for="fileuploader_survey_bei">Fichier(s) adresses terrain traité (retour vip)</label>
+                    <div id="fileuploader_survey_vip"></div>
+                </div>
+                <div class="row" id="survey_vip_files" style="padding-left: 10px;">
+                </div>
             </div>
-            <div class="row" id="survey_bei_files" style="padding-left: 10px;">
-            </div>
-            <div class="row" style="padding-left: 10px;">
-                <label for="fileuploader_survey_bei">Fichier(s) adresses terrain traité (retour vip)</label>
-                <div id="fileuploader_survey_vip"></div>
-            </div>
-            <div class="row" id="survey_vip_files" style="padding-left: 10px;">
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </form>

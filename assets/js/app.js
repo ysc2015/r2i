@@ -1124,7 +1124,7 @@ var App = function() {
         $('.nav-tabs a[href="#' + tab + '"]').tab('show');
     };
     //show message function
-    var showMessage = function(message,selector) {
+    var showMessage = function(message,selector,caller,atab) {
         var obj;
         try {
             obj = $.parseJSON(message);
@@ -1155,6 +1155,17 @@ var App = function() {
             $(selector).addClass("alert-success");
         }
         $(selector).fadeOut(5000);
+
+
+        $(selector).fadeOut(5000, function () {
+            if(caller && obj.error == 0) {
+                console.log('execute callback');
+                //console.log(caller);
+                caller(atab);
+            } else {
+                console.log('no callback');
+            }
+        });
 
         return (obj.error > 0 ? false : true);
     }

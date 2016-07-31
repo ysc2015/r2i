@@ -90,8 +90,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="tt_duree">Durée <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="tt_duree" name="tt_duree" value="<?=$sousprojet_ttirage->duree?>">
+            <label for="tt_duree">Durée(jours) <span class="text-danger">*</span></label>
+            <input readonly class="form-control" type="text" id="tt_duree" name="tt_duree" value="<?=$sousprojet_ttirage->duree?>">
         </div>
     </div>
     <div class="form-group">
