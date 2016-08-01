@@ -81,7 +81,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="trec_date_recette">Date de Recette <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=$sousprojet_trecette->date_recette?>">
+            <input class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousprojet_trecette !== NULL ? $sousprojet_trecette->date_recette : "")?>">
         </div>
     </div>
     <div class="form-group">

@@ -25,13 +25,13 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dcc_date_butoir">Date butoire traitement retour Aig <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dcc_date_butoir" name="dcc_date_butoir" value="<?=$sousprojet_dcmdcdi->date_butoir?>">
+            <input class="form-control" type="date" id="dcc_date_butoir" name="dcc_date_butoir" value="<?=($sousprojet_dcmdcdi !==NULL ? $sousprojet_dcmdcdi->date_butoir : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="dcc_traitement_retour_terrain">Traitement Retours terrain <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dcc_traitement_retour_terrain" name="dcc_traitement_retour_terrain" value="<?=$sousprojet_dcmdcdi->traitement_retour_terrain?>">
+            <input class="form-control" type="date" id="dcc_traitement_retour_terrain" name="dcc_traitement_retour_terrain" value="<?=($sousprojet_dcmdcdi !== NULL ? $sousprojet_dcmdcdi->traitement_retour_terrain : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -65,13 +65,12 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dcc_date_transmission_ca">Date Transmission CA <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dcc_date_transmission_ca" name="dcc_date_transmission_ca" value="<?=$sousprojet_dcmdcdi->date_transmission_ca?>">
-        </div>
+            <input class="form-control" type="date" id="dcc_date_transmission_ca" name="dcc_date_transmission_ca" value="<?=($sousprojet_dcmdcdi !== NULL ? $sousprojet_dcmdcdi->date_transmission_ca : "")?>">
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="dcc_ref_commande_acces">Référence Commande Accès <span class="text-danger">*</span></label>
-            <input class="form-control" type="text" id="dcc_ref_commande_acces" name="dcc_ref_commande_acces" value="<?=$sousprojet_dcmdcdi->ref_commande_acces?>">
+            <input class="form-control" type="text" id="dcc_ref_commande_acces" name="dcc_ref_commande_acces" value="<?=($sousprojet_dcmdcdi !== NULL ? $sousprojet_dcmdcdi->ref_commande_acces : "")?>">
         </div>
     </div>
     <div class="form-group">

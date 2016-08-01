@@ -25,7 +25,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="tt_date_previsionnelle">Date Previsionnelle <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="tt_date_previsionnelle" name="tt_date_previsionnelle"  value="<?=$sousprojet_ttirage->date_previsionnelle?>">
+            <input class="form-control" type="date" id="tt_date_previsionnelle" name="tt_date_previsionnelle"  value="<?=($sousprojet_ttirage !== NULL ? $sousprojet_ttirage->date_previsionnelle : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -59,7 +59,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="tt_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="tt_date_transmission_plans" name="tt_date_transmission_plans" value="<?=$sousprojet_ttirage->date_transmission_plans?>">
+            <input class="form-control" type="date" id="tt_date_transmission_plans" name="tt_date_transmission_plans" value="<?=($sousprojet_ttirage !== NULL ? $sousprojet_ttirage->date_transmission_plans : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -79,19 +79,19 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="tt_date_tirage">Date Tirage <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=$sousprojet_ttirage->date_tirage?>">
+            <input class="form-control" type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousprojet_ttirage !== NULL ? $sousprojet_ttirage->date_tirage : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="tt_date_ret_prevue">Date Retour Prev <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=$sousprojet_ttirage->date_ret_prevue?>">
+            <input class="form-control" type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousprojet_ttirage !== NULL ? $sousprojet_ttirage->date_ret_prevue : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="tt_duree">Durée(jours) <span class="text-danger">*</span></label>
-            <input readonly class="form-control" type="text" id="tt_duree" name="tt_duree" value="<?=$sousprojet_ttirage->duree?>">
+            <input readonly class="form-control" type="text" id="tt_duree" name="tt_duree" value="<?=($sousprojet_ttirage !== NULL ? $sousprojet_ttirage->duree : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -111,7 +111,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="tt_date_retour">Date Retour <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="tt_date_retour" name="tt_date_retour" value="<?=$sousprojet_ttirage->date_retour?>">
+            <input class="form-control" type="date" id="tt_date_retour" name="tt_date_retour" value="<?=($sousprojet_ttirage !== NULL ? $sousprojet_ttirage->date_retour : "")?>">
         </div>
     </div>
     <div class="form-group">
