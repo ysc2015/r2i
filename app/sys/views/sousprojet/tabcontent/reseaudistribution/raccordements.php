@@ -53,7 +53,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dr_date_transmission_pds">Date Transmission PDS <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=$sousprojet_drac->date_transmission_pds?>">
+            <input class="form-control" type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_transmission_pds : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -73,13 +73,13 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dr_date_racco">Date Racco <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=$sousprojet_drac->date_racco?>">
+            <input class="form-control" type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_racco : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="dr_duree">Durée <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="dr_duree" name="dr_duree" value="<?=$sousprojet_drac->duree?>">
+            <input class="form-control" type="number" id="dr_duree" name="dr_duree" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->duree : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -99,7 +99,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dr_date_retour">Date Retour <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dr_date_retour" name="dr_date_retour" value="<?=$sousprojet_drac->date_retour?>">
+            <input class="form-control" type="date" id="dr_date_retour" name="dr_date_retour" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_retour : "")?>">
         </div>
     </div>
     <div class="form-group">

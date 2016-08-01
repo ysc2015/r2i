@@ -39,13 +39,13 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dd_date_debut">Date de Début <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dd_date_debut" name="dd_date_debut" value="<?=$sousprojet_ddesign->date_debut?>">
+            <input class="form-control" type="date" id="dd_date_debut" name="dd_date_debut" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_debut : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="dd_date_fin">Date de Fin <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dd_date_fin" name="dd_date_fin" value="<?=$sousprojet_ddesign->date_fin?>">
+            <input class="form-control" type="date" id="dd_date_fin" name="dd_date_fin" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_fin : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -57,7 +57,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dd_lineaire_distribution">Linéaire Distribution <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="dd_lineaire_distribution" name="dd_lineaire_distribution" value="<?=$sousprojet_ddesign->lineaire_distribution?>">
+            <input class="form-control" type="number" id="dd_lineaire_distribution" name="dd_lineaire_distribution" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->lineaire_distribution : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -77,7 +77,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dd_date_envoi">Date envoi <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="dd_date_envoi" name="dd_date_envoi" value="<?=$sousprojet_ddesign->date_envoi?>">
+            <input class="form-control" type="date" id="dd_date_envoi" name="dd_date_envoi" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_envoi : "")?>">
         </div>
     </div>
     <div class="alert alert-success" id="message_distribution_design" role="alert" style="display: none;"></div>

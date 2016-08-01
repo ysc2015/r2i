@@ -13,7 +13,7 @@ var deleteFile = function (id,callback) {
             id: id
         }
     }).done(function (message) {
-        console.log(message);
+        //console.log(message);
         callback();
     });
 };
@@ -66,7 +66,7 @@ var App = function() {
         try {
             obj = $.parseJSON(data);
         } catch (e) {
-            console.log('Exception getJsonObject : ',e);
+            //console.log('Exception getJsonObject : ',e);
             obj = data;
         }
         return obj;
@@ -520,7 +520,7 @@ var App = function() {
                         }
                         break;
                     case 'refresh_toggle':
-                        console.log($elBlock.attr('id'));
+                        //console.log($elBlock.attr('id'));
                         switch ($elBlock.attr('id')) {
                             case 'infozone_block' :
                                 SProjet.infozone.refresh();
@@ -1159,11 +1159,11 @@ var App = function() {
 
         $(selector).fadeOut(5000, function () {
             if(caller && obj.error == 0) {
-                console.log('execute callback');
-                //console.log(caller);
+                //console.log('execute callback');
+                ////console.log(caller);
                 caller(atab);
             } else {
-                console.log('no callback');
+                //console.log('no callback');
             }
         });
 
@@ -1192,7 +1192,7 @@ var App = function() {
                 uiBlocksApi(jQuery(this).parents('.block'), jQuery(this).data('action'));
             });
 
-            console.log('new modifications');
+            //console.log('new modifications');
         },
         layout: function($mode) {
             uiLayoutApi($mode);

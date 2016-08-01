@@ -25,13 +25,13 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="cctr_date_butoir">Date butoire traitement retour Aig <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="cctr_date_butoir" name="cctr_date_butoir" value="<?=$sousprojet_tcommandectr->date_butoir?>">
+            <input class="form-control" type="date" id="cctr_date_butoir" name="cctr_date_butoir" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->date_butoir : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="cctr_traitement_retour_terrain">Traitement Retours terrain <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="cctr_traitement_retour_terrain" name="cctr_traitement_retour_terrain" value="<?=$sousprojet_tcommandectr->traitement_retour_terrain?>">
+            <input class="form-control" type="date" id="cctr_traitement_retour_terrain" name="cctr_traitement_retour_terrain" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->traitement_retour_terrain : "")?>">
         </div>
     </div>
     <div class="form-group">
@@ -65,13 +65,13 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="cctr_date_transmission_ca">Date Transmission CA <span class="text-danger">*</span></label>
-            <input class="form-control" type="date" id="cctr_date_transmission_ca" name="cctr_date_transmission_ca" value="<?=$sousprojet_tcommandectr->date_transmission_ca?>">
+            <input class="form-control" type="date" id="cctr_date_transmission_ca" name="cctr_date_transmission_ca" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->date_transmission_ca : "")?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="cctr_ref_commande_acces">Référence Commande Accès <span class="text-danger">*</span></label>
-            <input class="form-control" type="text" id="cctr_ref_commande_acces" name="cctr_ref_commande_acces" value="<?=$sousprojet_tcommandectr->ref_commande_acces?>">
+            <input class="form-control" type="text" id="cctr_ref_commande_acces" name="cctr_ref_commande_acces" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->ref_commande_acces : "")?>">
         </div>
     </div>
     <div class="form-group">

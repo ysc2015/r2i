@@ -28,7 +28,7 @@ var deleteFile = function (id,callback) {
             id: id
         }
     }).done(function (message) {
-        console.log(message);
+        //console.log(message);
         callback();
     });
 };
@@ -123,7 +123,7 @@ var SProjet = function() {
             }).done(function (msg) {
 
                 var obj = JSON.parse(msg);
-                console.log(obj);
+                //console.log(obj);
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
@@ -171,7 +171,7 @@ var SProjet = function() {
                         zone : $("#zone").val()
                     }
                 }).done(function (msg) {
-                    console.log(msg);
+                    //console.log(msg);
                     App.showMessage(msg, '#message_infozone_nom');
                 });
             });
@@ -266,7 +266,7 @@ var SProjet = function() {
             }).done(function (msg) {
 
                 var obj = JSON.parse(msg);
-                console.log(obj);
+                //console.log(obj);
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
@@ -359,7 +359,7 @@ var SProjet = function() {
         var posadr_isnew = undefined;
         var surveyadr_isnew = undefined;
         var refresh = function(atab = '') {
-            console.log('refresh');
+            //console.log('refresh');
             $.ajax({
                 method: "POST",
                 data: {
@@ -369,7 +369,7 @@ var SProjet = function() {
             }).done(function (msg) {
 
                 var obj = JSON.parse(msg);
-                console.log(obj);
+                //console.log(obj);
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
@@ -598,7 +598,7 @@ var SProjet = function() {
             }).done(function (msg) {
 
                 var obj = JSON.parse(msg);
-                console.log(obj);
+                //console.log(obj);
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
@@ -635,13 +635,13 @@ var SProjet = function() {
 
             tdesign_isnew = ($("#id_sous_projet_transport_design").val()?false:true);
 
-            ta_ot_id_entree = id_ta;console.log('ta_ot_id_entree -> ' + ta_ot_id_entree);
+            ta_ot_id_entree = id_ta;//console.log('ta_ot_id_entree -> ' + ta_ot_id_entree);
             taiguillage_isnew = ($("#id_sous_projet_transport_aiguillage").val()?false:true);
 
             tcmdctr_isnew = ($("#id_sous_projet_transport_commande_ctr").val()?false:true);
 
 
-            tt_ot_id_entree = id_tt;console.log('tt_ot_id_entree -> ' + tt_ot_id_entree);
+            tt_ot_id_entree = id_tt;//console.log('tt_ot_id_entree -> ' + tt_ot_id_entree);
             ttirage_isnew = ($("#id_sous_projet_transport_tirage").val()?false:true);
 
             traccord_isnew = ($("#id_sous_projet_transport_raccordements").val()?false:true);
@@ -709,7 +709,7 @@ var SProjet = function() {
                     }
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
-                    console.log(obj);
+                    //console.log(obj);
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_aiguillage')) {
                         $("#id_sous_projet_transport_aiguillage_alert").hide();
@@ -717,14 +717,14 @@ var SProjet = function() {
                             ta_ot_id_entree = obj.id;
                             taiguillage_isnew = false;
                             $("#id_sous_projet_transport_aiguillage_btn").after('  <button id="id_sous_projet_transport_aiguillage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                            console.log(data_ot);
+                            //console.log(data_ot);
                         }
                     }
                 });
             });
             $('body').on('click', '#id_sous_projet_transport_aiguillage_create_ot_show', function() {
                 // do something
-                console.log('show ot body source tag');
+                //console.log('show ot body source tag');
                 $("#add_ot_form")[0].reset();
                 data_ot.id_entree = ta_ot_id_entree;
                 data_ot.type_entree = ta_ot_type_entree;
@@ -783,7 +783,7 @@ var SProjet = function() {
                     }
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
-                    console.log(obj);
+                    //console.log(obj);
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_tirage')) {
                         $("#id_sous_projet_transport_tirage_alert").hide();
@@ -791,14 +791,14 @@ var SProjet = function() {
                             tt_ot_id_entree = obj.id;
                             ttirage_isnew = false;
                             $("#id_sous_projet_transport_tirage_btn").after('  <button id="id_sous_projet_transport_tirage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                            console.log(data_ot);
+                            //console.log(data_ot);
                         }
                     }
                 });
             });
             $('body').on('click', '#id_sous_projet_transport_tirage_create_ot_show', function() {
                 // do something
-                console.log('show ot body source tag');
+                //console.log('show ot body source tag');
                 $("#add_ot_form")[0].reset();
                 data_ot.id_entree = tt_ot_id_entree;
                 data_ot.type_entree = tt_ot_type_entree;
@@ -826,7 +826,7 @@ var SProjet = function() {
                         tr_etat_retour: $('#tr_etat_retour').val()
 
                     }
-                }).done(function (msg) {console.log(msg);
+                }).done(function (msg) {//console.log(msg);
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_raccordements')) {
                         $("#id_sous_projet_transport_raccordements_alert").hide();
@@ -911,7 +911,7 @@ var SProjet = function() {
             }).done(function (msg) {
 
                 var obj = JSON.parse(msg);
-                console.log(obj);
+                //console.log(obj);
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
@@ -953,7 +953,7 @@ var SProjet = function() {
 
             dcmdcdi_isnew = ($("#id_sous_projet_distribution_commande_cdi").val()?false:true);
 
-            dt_ot_id_entree = id_dt;console.log('dt_ot_id_entree -> ' + dt_ot_id_entree);
+            dt_ot_id_entree = id_dt;//console.log('dt_ot_id_entree -> ' + dt_ot_id_entree);
             dtirage_isnew = ($("#id_sous_projet_distribution_tirage").val()?false:true);
 
             draccord_isnew = ($("#id_sous_projet_distribution_raccordements").val()?false:true);
@@ -1020,7 +1020,7 @@ var SProjet = function() {
                     }
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
-                    console.log(obj);
+                    //console.log(obj);
                     $("#rdistribution_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_distribution_aiguillage')) {
                         $("#id_sous_projet_distribution_aiguillage_alert").hide();
@@ -1028,14 +1028,14 @@ var SProjet = function() {
                             da_ot_id_entree = obj.id;
                             daiguillage_isnew = false;
                             $("#id_sous_projet_distribution_aiguillage_btn").after('  <button id="id_sous_projet_distribution_aiguillage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                            console.log(data_ot);
+                            //console.log(data_ot);
                         }
                     }
                 });
             });
             $('body').on('click', '#id_sous_projet_distribution_aiguillage_create_ot_show', function() {
                 // do something
-                console.log('show ot body source tag');
+                //console.log('show ot body source tag');
                 $("#add_ot_form")[0].reset();
                 data_ot.id_entree = da_ot_id_entree;
                 data_ot.type_entree = da_ot_type_entree;
@@ -1093,7 +1093,7 @@ var SProjet = function() {
                     }
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
-                    console.log(obj);
+                    //console.log(obj);
                     $("#rdistribution_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_distribution_tirage')) {
                         $("#id_sous_projet_distribution_tirage_alert").hide();
@@ -1101,14 +1101,14 @@ var SProjet = function() {
                             dt_ot_id_entree = obj.id;
                             dtirage_isnew = false;
                             $("#id_sous_projet_distribution_tirage_btn").after('  <button id="id_sous_projet_distribution_tirage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                            console.log(data_ot);
+                            //console.log(data_ot);
                         }
                     }
                 });
             });
             $('body').on('click', '#id_sous_projet_distribution_tirage_create_ot_show', function() {
                 // do something
-                console.log('show ot body source tag');
+                //console.log('show ot body source tag');
                 $("#add_ot_form")[0].reset();
                 data_ot.id_entree = dt_ot_id_entree;
                 data_ot.type_entree = dt_ot_type_entree;
@@ -1212,7 +1212,7 @@ var SProjet = function() {
         }).done(function (msg) {
 
             var obj = JSON.parse(msg);
-            console.log(obj);
+            //console.log(obj);
 
             id_da = obj.id_da;
             id_dt = obj.id_dt;
