@@ -50,8 +50,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="dd_duree">Durée <span class="text-danger">*</span></label>
-            <input class="form-control" type="number" id="dd_duree" name="dd_duree" value="<?=$sousprojet_ddesign->duree?>">
+            <label for="dd_duree">Durée(jours) <span class="text-danger">*</span></label>
+            <input readonly class="form-control" type="text" id="dd_duree" name="dd_duree" value="<?=($sousprojet_ddesign !== NULL?$sousprojet_ddesign->duree:"")?>">
         </div>
     </div>
     <div class="form-group">

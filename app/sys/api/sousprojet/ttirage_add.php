@@ -70,7 +70,7 @@ if(isset($tt_entreprise) && !empty($tt_entreprise)){
     $message[] = "Le champs Entreprise est obligatoire !";
 }
 
-if(isset($tt_date_tirage) && !empty($tt_date_tirage)){
+/*if(isset($tt_date_tirage) && !empty($tt_date_tirage)){
     $stm->bindParam(':date_tirage',$tt_date_tirage);
     $insert = true;
 } else {
@@ -84,7 +84,41 @@ if(isset($tt_date_ret_prevue) && !empty($tt_date_ret_prevue)){
 } else {
     $err++;
     $message[] = "Le champs Date retour prévue est obligatoire !";
+}*/
+
+/*
+ * dates debut
+ */
+
+$dd = DateTime::createFromFormat('Y-m-d', $tt_date_tirage);
+$df = DateTime::createFromFormat('Y-m-d', $tt_date_ret_prevue);
+
+
+if($dd && $df && $df < $dd) {
+    $err++;
+    $message[] = "la date de retour prévue doit étre superieure à la date de tirage !";
+} else  {
+
+    if(isset($tt_date_tirage)){
+        $stm->bindParam(':date_tirage',$tt_date_tirage);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date tirage est obligatoire !";
+    }
+
+    if(isset($tt_date_ret_prevue)){
+        $stm->bindParam(':date_ret_prevue',$tt_date_ret_prevue);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date retour prévue est obligatoire !";
+    }
 }
+
+/*
+ * dates fin
+ */
 
 if(isset($tt_duree) && !empty($tt_duree)){
     $stm->bindParam(':duree',$tt_duree);

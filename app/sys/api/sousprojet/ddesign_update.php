@@ -37,7 +37,7 @@ if(isset($dd_intervenant_bex) && !empty($dd_intervenant_bex)){
     $message[] = "Le champs Intervenant BEX est obligatoire !";
 }
 
-if(isset($dd_date_debut) && !empty($dd_date_debut)){
+/*if(isset($dd_date_debut) && !empty($dd_date_debut)){
     $stm->bindParam(':date_debut',$dd_date_debut);
     $insert = true;
 } else {
@@ -51,7 +51,41 @@ if(isset($dd_date_fin) && !empty($dd_date_fin)){
 } else {
     $err++;
     $message[] = "Le champs Date fin est obligatoire !";
+}*/
+
+/*
+ * dates debut
+ */
+
+$dd = DateTime::createFromFormat('Y-m-d', $dd_date_debut);
+$df = DateTime::createFromFormat('Y-m-d', $dd_date_fin);
+
+
+if($dd && $df && $df < $dd) {
+    $err++;
+    $message[] = "la date de fin doit étre superieure à la date de début !";
+} else  {
+
+    if(isset($dd_date_debut)){
+        $stm->bindParam(':date_debut',$dd_date_debut);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date début est obligatoire !";
+    }
+
+    if(isset($dd_date_fin)){
+        $stm->bindParam(':date_fin',$dd_date_fin);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Date fin est obligatoire !";
+    }
 }
+
+/*
+ * dates fin
+ */
 
 if(isset($dd_duree) && !empty($dd_duree)){
     $stm->bindParam(':duree',$dd_duree);

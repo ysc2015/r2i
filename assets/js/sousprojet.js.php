@@ -649,6 +649,7 @@ var SProjet = function() {
 
             setDuree($("#td_duree"),'#message_transport_design',$("#td_date_debut").val(),$("#td_date_ret_prevue").val());
             setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$("#ta_date_ret_prevue").val());
+            setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
             $("#id_sous_projet_transport_design_btn").click(function () {
@@ -873,6 +874,13 @@ var SProjet = function() {
             $("#ta_date_ret_prevue").change(function() {
                 setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$( this ).val());
             });
+
+            $("#tt_date_tirage").change(function() {
+                setDuree($("#tt_duree"),'#message_transport_tirage',$( this ).val(),$("#tt_date_ret_prevue").val());
+            });
+            $("#tt_date_ret_prevue").change(function() {
+                setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$( this ).val());
+            });
         }
         return {
             init : init,
@@ -950,6 +958,12 @@ var SProjet = function() {
 
             draccord_isnew = ($("#id_sous_projet_distribution_raccordements").val()?false:true);
             drecette_isnew = ($("#id_sous_projet_distribution_recette").val()?false:true);
+
+            //TODO change ids bellow
+
+            setDuree($("#dd_duree"),'#message_distribution_design',$("#dd_date_debut").val(),$("#dd_date_fin").val());
+            //setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$("#ta_date_ret_prevue").val());
+            //setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
             $("#id_sous_projet_distribution_design_btn").click(function () {
@@ -1153,6 +1167,29 @@ var SProjet = function() {
                     }
                 });
             });
+
+            //TODO change ids bellow
+
+            $("#dd_date_debut").change(function() {
+                setDuree($("#dd_duree"),'#message_distribution_design',$( this ).val(),$("#dd_date_fin").val());
+            });
+            $("#dd_date_fin").change(function() {
+                setDuree($("#dd_duree"),'#message_distribution_design',$("#dd_date_debut").val(),$( this ).val());
+            });
+
+            /*$("#ta_date_aiguillage").change(function() {
+                setDuree($("#ta_duree"),'#message_transport_aiguillage',$( this ).val(),$("#ta_date_ret_prevue").val());
+            });
+            $("#ta_date_ret_prevue").change(function() {
+                setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$( this ).val());
+            });
+
+            $("#tt_date_tirage").change(function() {
+                setDuree($("#tt_duree"),'#message_transport_tirage',$( this ).val(),$("#tt_date_ret_prevue").val());
+            });
+            $("#tt_date_ret_prevue").change(function() {
+                setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$( this ).val());
+            });*/
         }
         return {
             init : init,
