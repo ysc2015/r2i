@@ -166,7 +166,7 @@
     <div class="alert alert-success" id="message_transport_aiguillage" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-xs-12">
-            <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-success" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+            <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-primary" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
             <?php
             if($sousprojet_taiguillage!==NULL) {
                 $ot = OrdreDeTravail::first(
