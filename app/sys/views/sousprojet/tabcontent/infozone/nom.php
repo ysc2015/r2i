@@ -1,3 +1,4 @@
+<?php $sousprojet = SousProjet::find($idsousprojet);?>
 <form class="js-validation-bootstrap form-horizontal">
     <input type="hidden" id="id_sous_projet" name="id_sous_projet" value="<?=$sousprojet->id_sous_projet?>">
     <div class="form-group">

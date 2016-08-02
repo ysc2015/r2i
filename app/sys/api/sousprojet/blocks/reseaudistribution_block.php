@@ -60,27 +60,21 @@ foreach($connectedProfil->reseaudistribution() as $tab) {
     ob_start();
     switch($tab) {
         case "designcdi" :
-            $sousprojet_ddesign = SousProjetDistributionDesign::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/designcdi.php';
             break;
         case "aiguillage" :
-            $sousprojet_daiguillage = SousProjetDistributionAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/aiguillage.php';
             break;
         case "commandecdi" :
-            $sousprojet_dcmdcdi = SousProjetDistributionCommandeCDI::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/commandecdi.php';
             break;
         case "tirage" :
-            $sousprojet_dtirage = SousProjetDistributionTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/tirage.php';
             break;
         case "raccordements" :
-            $sousprojet_drac = SousProjetDistributionRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/raccordements.php';
             break;
         case "recette" :
-            $sousprojet_drecette = SousProjetDistributionRecette::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/recette.php';
             break;
     }

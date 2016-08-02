@@ -62,15 +62,12 @@ foreach($connectedProfil->preparationplaque() as $tab) {
     ob_start();
     switch($tab) {
         case "preparationcarto" :
-            $sousprojet_pcarto = SousProjetPlaqueCarto::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/preparationcarto.php';
             break;
         case "positionnementadresses" :
-            $sousprojet_padresse = SousProjetPlaquePosAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/positionnementadresses.php';
             break;
         case "surveyadressesterrain" :
-            $sousprojet_suradresse = SousProjetPlaqueSurveyAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/surveyadressesterrain.php';
             break;
     }

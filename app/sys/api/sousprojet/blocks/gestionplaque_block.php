@@ -62,11 +62,9 @@ foreach($connectedProfil->gestionplaque() as $tab) {
     ob_start();
     switch($tab) {
         case "phase" :
-            $sousprojet_phase = SousProjetPlaquePhase::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/phase.php';
             break;
         case "traitementetude" :
-            $sousprojet_tetude = SousProjetPlaqueTraitementEtude::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/traitementetude.php';
             break;
     }

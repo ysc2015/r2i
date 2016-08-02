@@ -1,3 +1,4 @@
+<?php $sousprojet_zone = SousProjetZone::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="js-validation-bootstrap form-horizontal">
     <?php if($sousprojet_zone !== NULL) {?>
         <input type="hidden" id="id_sous_projet_zone" name="id_sous_projet_zone" value="<?=$sousprojet_zone->id_sous_projet?>">
