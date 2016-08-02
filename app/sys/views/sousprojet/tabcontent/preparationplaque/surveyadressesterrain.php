@@ -76,7 +76,7 @@
                 <div class="row" id="survey_bei_files" style="padding-left: 10px;">
                 </div>
                 <div class="row" style="padding-left: 10px;">
-                    <label for="fileuploader_survey_bei">Fichier(s) adresses terrain traité (retour vip)</label>
+                    <label for="fileuploader_survey_bei">Fichier(s) adresses terrain traité (retour vpi)</label>
                     <div id="fileuploader_survey_vip"></div>
                 </div>
                 <div class="row" id="survey_vip_files" style="padding-left: 10px;">
