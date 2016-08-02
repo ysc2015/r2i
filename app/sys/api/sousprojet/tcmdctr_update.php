@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_transport_commande_ctr set intervenant_be=:intervenant_be,date_butoir=:date_butoir,traitement_retour_terrain=:traitement_retour_terrain,modification_carto=:modification_carto,commandes_acces=:commandes_acces,date_transmission_ca=:date_transmission_ca,ref_commande_acces=:ref_commande_acces,go_ft=:go_ft where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_transport_commande_ctr set intervenant_be=:intervenant_be,date_butoir=:date_butoir,traitement_retour_terrain=:traitement_retour_terrain,modification_carto=:modification_carto,commandes_acces=:commandes_acces,date_transmission_ca=:date_transmission_ca,ref_commande_acces=:ref_commande_acces,go_ft=:go_ft,ok=:ok where id_sous_projet=:id_sous_projet");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -83,6 +83,14 @@ if(isset($cctr_go_ft) && !empty($cctr_go_ft)){
 } else {
     $err++;
     $message[] = "Le champs Go FT est obligatoire !";
+}
+
+if(isset($cctr_ok)){
+    $stm->bindParam(':ok',$cctr_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

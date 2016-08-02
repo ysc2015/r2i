@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_transport_raccordements set intervenant_be=:intervenant_be,preparation_pds=:preparation_pds,controle_plans=:controle_plans,date_transmission_pds=:date_transmission_pds,id_entreprise=:id_entreprise,date_racco=:date_racco,duree=:duree,controle_demarrage_effectif=:controle_demarrage_effectif,date_retour=:date_retour,etat_retour=:etat_retour where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_transport_raccordements set intervenant_be=:intervenant_be,preparation_pds=:preparation_pds,controle_plans=:controle_plans,date_transmission_pds=:date_transmission_pds,id_entreprise=:id_entreprise,date_racco=:date_racco,duree=:duree,controle_demarrage_effectif=:controle_demarrage_effectif,date_retour=:date_retour,etat_retour=:etat_retour,ok=:ok where id_sous_projet=:id_sous_projet");
 
 
 if(isset($ids) && !empty($ids)){
@@ -100,6 +100,14 @@ if(isset($tr_etat_retour) && !empty($tr_etat_retour)){
 } else {
     $err++;
     $message[] = "Le champs Etat retour est obligatoire !";
+}
+
+if(isset($tr_ok)){
+    $stm->bindParam(':ok',$tr_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

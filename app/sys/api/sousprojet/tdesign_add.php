@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_transport_design (id_sous_projet,intervenant_be,date_debut,date_ret_prevue,duree,lineaire_transport,nb_zones) values (:id_sous_projet,:intervenant_be,:date_debut,:date_ret_prevue,:duree,:lineaire_transport,:nb_zones)");
+$stm = $db->prepare("insert into sous_projet_transport_design (id_sous_projet,intervenant_be,date_debut,date_ret_prevue,duree,lineaire_transport,nb_zones,ok) values (:id_sous_projet,:intervenant_be,:date_debut,:date_ret_prevue,:duree,:lineaire_transport,:nb_zones,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -101,6 +101,14 @@ if(isset($td_nb_zones) && !empty($td_nb_zones)){
 } else {
     $err++;
     $message[] = "Le champs Nombre de zones est obligatoire !";
+}
+
+if(isset($td_ok)){
+    $stm->bindParam(':ok',$td_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

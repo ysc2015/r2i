@@ -157,13 +157,25 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <div class="col-xs-6">
+                <div class="col-xs-4">
                     <label for="ta_lien_plans">Lien vers les plans <span class="text-danger">*</span></label>
                     <textarea class="form-control" id="ta_lien_plans" name="ta_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lien_plans:"")?></textarea>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-4">
                     <label for="ta_retour_presta">Retour presta <span class="text-danger">*</span></label>
                     <textarea class="form-control" id="ta_retour_presta" name="ta_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->retour_presta:"")?></textarea>
+                </div>
+                <div class="col-xs-4">
+                    <label for="ta_ok">OK <span class="text-danger">*</span></label>
+                    <select class="form-control" id="ta_ok" name="ta_ok">
+                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectOk::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_ok\" ". ($sousprojet_taiguillage!==NULL && $sousprojet_taiguillage->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
         </div>

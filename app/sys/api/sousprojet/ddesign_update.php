@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_distribution_design set intervenant_be=:intervenant_be,intervenant_bex=:intervenant_bex,date_debut=:date_debut,date_fin=:date_fin,duree=:duree,lineaire_distribution=:lineaire_distribution,etat=:etat,date_envoi=:date_envoi where id_sous_projet=:id_sous_projet");
+$stm = $db->prepare("update sous_projet_distribution_design set intervenant_be=:intervenant_be,intervenant_bex=:intervenant_bex,date_debut=:date_debut,date_fin=:date_fin,duree=:duree,lineaire_distribution=:lineaire_distribution,etat=:etat,date_envoi=:date_envoi,ok=:ok where id_sous_projet=:id_sous_projet");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -117,6 +117,14 @@ if(isset($dd_date_envoi) && !empty($dd_date_envoi)){
 } else {
     $err++;
     $message[] = "Le champs Date envoi est obligatoire !";
+}
+
+if(isset($dd_ok)){
+    $stm->bindParam(':ok',$dd_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

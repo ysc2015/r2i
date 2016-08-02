@@ -12,7 +12,7 @@ $insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour,lien_plans,retour_presta) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:lien_plans,:retour_presta)");
+$stm = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour,lien_plans,retour_presta,ok) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:lien_plans,:retour_presta,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -206,6 +206,14 @@ if(isset($ta_retour_presta) && !empty($ta_retour_presta)){
 } else {
     $err++;
     $message[] = "Le champs Retour presta est obligatoire !";
+}
+
+if(isset($ta_ok)){
+    $stm->bindParam(':ok',$ta_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){
