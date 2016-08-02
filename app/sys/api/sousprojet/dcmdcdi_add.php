@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_distribution_commande_cdi (id_sous_projet,intervenant_be,date_butoir,traitement_retour_terrain,modification_carto,commandes_acces,date_transmission_ca,ref_commande_acces,go_ft) values (:id_sous_projet,:intervenant_be,:date_butoir,:traitement_retour_terrain,:modification_carto,:commandes_acces,:date_transmission_ca,:ref_commande_acces,:go_ft)");
+$stm = $db->prepare("insert into sous_projet_distribution_commande_cdi (id_sous_projet,intervenant_be,date_butoir,traitement_retour_terrain,modification_carto,commandes_acces,date_transmission_ca,ref_commande_acces,go_ft,ok) values (:id_sous_projet,:intervenant_be,:date_butoir,:traitement_retour_terrain,:modification_carto,:commandes_acces,:date_transmission_ca,:ref_commande_acces,:go_ft,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -83,6 +83,14 @@ if(isset($dcc_go_ft) && !empty($dcc_go_ft)){
 } else {
     $err++;
     $message[] = "Le champs GO FT est obligatoire !";
+}
+
+if(isset($dcc_ok)){
+    $stm->bindParam(':ok',$dcc_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

@@ -122,6 +122,20 @@
             </select>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="dt_ok">OK <span class="text-danger">*</span></label>
+            <select class="form-control" id="dt_ok" name="dt_ok">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectOk::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_ok\" ". ($sousprojet_dtirage!==NULL && $sousprojet_dtirage->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_distribution_tirage" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-md-8"><button id="id_sous_projet_distribution_tirage_btn" class="btn btn-primary" type="button">Enregistrer</button>

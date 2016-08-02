@@ -1050,7 +1050,8 @@ var SProjet = function() {
                         da_duree: $('#da_duree').val(),
                         da_controle_demarrage_effectif: $('#da_controle_demarrage_effectif').val(),
                         da_date_retour: $('#da_date_retour').val(),
-                        da_etat_retour: $('#da_etat_retour').val()
+                        da_etat_retour: $('#da_etat_retour').val(),
+                        da_ok: $('#da_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -1093,7 +1094,8 @@ var SProjet = function() {
                         dcc_commandes_acces: $('#dcc_commandes_acces').val(),
                         dcc_date_transmission_ca: $('#dcc_date_transmission_ca').val(),
                         dcc_ref_commande_acces: $('#dcc_ref_commande_acces').val(),
-                        dcc_go_ft: $('#dcc_go_ft').val()
+                        dcc_go_ft: $('#dcc_go_ft').val(),
+                        dcc_ok: $('#dcc_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -1123,7 +1125,8 @@ var SProjet = function() {
                         dt_duree: $('#dt_duree').val(),
                         dt_controle_demarrage_effectif: $('#dt_controle_demarrage_effectif').val(),
                         dt_date_retour: $('#dt_date_retour').val(),
-                        dt_etat_retour: $('#dt_etat_retour').val()
+                        dt_etat_retour: $('#dt_etat_retour').val(),
+                        dt_ok: $('#dt_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -1168,7 +1171,8 @@ var SProjet = function() {
                         dr_duree: $('#dr_duree').val(),
                         dr_controle_demarrage_effectif: $('#dr_controle_demarrage_effectif').val(),
                         dr_date_retour: $('#dr_date_retour').val(),
-                        dr_etat_retour: $('#dr_etat_retour').val()
+                        dr_etat_retour: $('#dr_etat_retour').val(),
+                        dr_ok: $('#dr_ok').val()
 
                     }
                 }).done(function (msg) {

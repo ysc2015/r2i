@@ -147,6 +147,18 @@
                         ?>
                     </select>
                 </div>
+                <div class="col-xs-3">
+                    <label for="da_ok">OK <span class="text-danger">*</span></label>
+                    <select class="form-control input-lg" id="da_ok" name="da_ok">
+                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectOk::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_ok\" ". ($sousprojet_daiguillage!==NULL && $sousprojet_daiguillage->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
