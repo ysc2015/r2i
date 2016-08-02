@@ -191,7 +191,7 @@ if(isset($ta_etat_retour) && !empty($ta_etat_retour)){
     $message[] = "Le champs Etat retour est obligatoire !";
 }
 
-if(isset($ta_lien_plans) && !empty($ta_lien_plans)){
+if(isset($ta_lien_plans)){
     $stm->bindParam(':lien_plans',$ta_lien_plans);
     $insert = true;
 } else {
@@ -199,7 +199,7 @@ if(isset($ta_lien_plans) && !empty($ta_lien_plans)){
     $message[] = "Le champs Lien vers les plans est obligatoire !";
 }
 
-if(isset($ta_retour_presta) && !empty($ta_retour_presta)){
+if(isset($ta_retour_presta)){
     $stm->bindParam(':retour_presta',$ta_retour_presta);
     $insert = true;
 } else {
