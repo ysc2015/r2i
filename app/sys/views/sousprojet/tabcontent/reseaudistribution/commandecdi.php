@@ -66,6 +66,7 @@
         <div class="col-md-3">
             <label for="dcc_date_transmission_ca">Date Transmission CA <span class="text-danger">*</span></label>
             <input class="form-control" type="date" id="dcc_date_transmission_ca" name="dcc_date_transmission_ca" value="<?=($sousprojet_dcmdcdi !== NULL ? $sousprojet_dcmdcdi->date_transmission_ca : "")?>">
+        </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">

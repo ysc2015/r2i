@@ -118,6 +118,22 @@
     </div>
     <div class="alert alert-success" id="message_distribution_raccordements" role="alert" style="display: none;"></div>
     <div class="form-group">
-        <div class="col-md-8"><button id="id_sous_projet_distribution_raccordements_btn" class="btn btn-primary" type="button">Enregistrer</button></div>
+        <div class="col-md-8"><button id="id_sous_projet_distribution_raccordements_btn" class="btn btn-primary" type="button">Enregistrer</button>
+            <?php
+            if($sousprojet_drac!==NULL) {
+                $ot = OrdreDeTravail::first(
+                    array('conditions' =>
+                        array("id_entree = ? AND type_entree = ?", $sousprojet_drac->id_sous_projet_distribution_raccordements,"distribution_raccordements")
+                    )
+                );
+                if($ot !== NULL) {
+
+                    echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
+                } else {
+                    echo "  <button id=\"id_sous_projet_distribution_raccordements_create_ot_show\" class=\"btn btn-warning\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
+                }
+            }
+            ?>
+        </div>
     </div>
 </form>
