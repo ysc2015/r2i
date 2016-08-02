@@ -66,19 +66,19 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-md-3 col-lg-3">
                     <label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>
                     <input class="form-control input-lg" type="number" id="lineaire1" name="lineaire1" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire1:"")?>">
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-md-3 col-lg-3">
                     <label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>
                     <input class="form-control input-lg" type="number" id="lineaire2" name="lineaire2" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire2:"")?>">
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-md-3 col-lg-3">
                     <label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>
                     <input class="form-control input-lg" type="number" id="lineaire3" name="lineaire3" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire3:"")?>">
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-md-3 col-lg-3">
                     <label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>
                     <input class="form-control input-lg" type="number" id="lineaire4" name="lineaire4" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire4:"")?>">
                 </div>

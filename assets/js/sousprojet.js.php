@@ -12,9 +12,11 @@ header("Content-type: application/javascript");
 
 var id_ta = undefined;
 var id_tt = undefined;
+var id_tr = undefined;
 
 var id_da = undefined;
 var id_dt = undefined;
+var id_dr = undefined;
 
 function get(name){
     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
@@ -581,6 +583,8 @@ var SProjet = function() {
         var ta_ot_type_entree = 'transport_aiguillage';
         var tt_ot_id_entree = undefined;
         var tt_ot_type_entree = 'transport_tirage';
+        var tr_ot_id_entree = undefined;
+        var tr_ot_type_entree = 'transport_raccordements';
 
         var tdesign_isnew = undefined;
         var taiguillage_isnew = undefined;
@@ -602,9 +606,11 @@ var SProjet = function() {
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
+                id_dr = obj.id_dr;
 
                 id_ta = obj.id_ta;
                 id_tt = obj.id_tt;
+                id_tr = obj.id_tr;
 
                 initTabs();
             });
@@ -644,7 +650,9 @@ var SProjet = function() {
             tt_ot_id_entree = id_tt;//console.log('tt_ot_id_entree -> ' + tt_ot_id_entree);
             ttirage_isnew = ($("#id_sous_projet_transport_tirage").val()?false:true);
 
+            tr_ot_id_entree = id_tr;
             traccord_isnew = ($("#id_sous_projet_transport_raccordements").val()?false:true);
+
             trecette_isnew = ($("#id_sous_projet_transport_recette").val()?false:true);
 
             setDuree($("#td_duree"),'#message_transport_design',$("#td_date_debut").val(),$("#td_date_ret_prevue").val());
@@ -827,12 +835,27 @@ var SProjet = function() {
 
                     }
                 }).done(function (msg) {//console.log(msg);
+                    var obj = $.parseJSON(msg);
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_raccordements')) {
                         $("#id_sous_projet_transport_raccordements_alert").hide();
-                        traccord_isnew = false;
+                        if(traccord_isnew) {
+                            tr_ot_id_entree = obj.id;
+                            traccord_isnew = false;
+                            $("#id_sous_projet_transport_raccordements_btn").after('  <button id="id_sous_projet_transport_raccordements_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
+                            //console.log(data_ot);
+                        }
                     }
                 });
+            });
+            $('body').on('click', '#id_sous_projet_transport_raccordements_create_ot_show', function() {
+                // do something
+                //console.log('show ot body source tag');
+                $("#add_ot_form")[0].reset();
+                data_ot.id_entree = tr_ot_id_entree;
+                data_ot.type_entree = tr_ot_type_entree;
+                show_btn = $("#id_sous_projet_transport_raccordements_create_ot_show");
+                create_btn = $("#id_sous_projet_transport_raccordements_btn");
             });
             $("#id_sous_projet_transport_recette_btn").click(function () {
 
@@ -894,6 +917,8 @@ var SProjet = function() {
         var da_ot_type_entree = 'distribution_aiguillage';
         var dt_ot_id_entree = undefined;
         var dt_ot_type_entree = 'distribution_tirage';
+        var dr_ot_id_entree = undefined;
+        var dr_ot_type_entree = 'distribution_raccordements';
 
         var ddesign_isnew = undefined;
         var daiguillage_isnew = undefined;
@@ -915,9 +940,11 @@ var SProjet = function() {
 
                 id_da = obj.id_da;
                 id_dt = obj.id_dt;
+                id_dr = obj.id_dr;
 
                 id_ta = obj.id_ta;
                 id_tt = obj.id_tt;
+                id_tr = obj.id_tr;
 
                 initTabs();
             });
@@ -956,7 +983,9 @@ var SProjet = function() {
             dt_ot_id_entree = id_dt;//console.log('dt_ot_id_entree -> ' + dt_ot_id_entree);
             dtirage_isnew = ($("#id_sous_projet_distribution_tirage").val()?false:true);
 
+            dr_ot_id_entree = id_dr;
             draccord_isnew = ($("#id_sous_projet_distribution_raccordements").val()?false:true);
+
             drecette_isnew = ($("#id_sous_projet_distribution_recette").val()?false:true);
 
             //TODO change ids bellow
@@ -1137,12 +1166,26 @@ var SProjet = function() {
 
                     }
                 }).done(function (msg) {
+                    var obj = $.parseJSON(msg);
                     $("#rdistribution_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_distribution_raccordements')) {
                         $("#id_sous_projet_distribution_raccordements_alert").hide();
-                        draccord_isnew = false;
+                        if(draccord_isnew) {
+                            dr_ot_id_entree = obj.id;
+                            draccord_isnew = false;
+                            $("#id_sous_projet_distribution_raccordements_btn").after('  <button id="id_sous_projet_distribution_raccordements_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
+                        }
                     }
                 });
+            });
+            $('body').on('click', '#id_sous_projet_distribution_raccordements_create_ot_show', function() {
+                // do something
+                //console.log('show ot body source tag');
+                $("#add_ot_form")[0].reset();
+                data_ot.id_entree = dr_ot_id_entree;
+                data_ot.type_entree = dr_ot_type_entree;
+                show_btn = $("#id_sous_projet_distribution_raccordements_create_ot_show");
+                create_btn = $("#id_sous_projet_distribution_raccordements_btn");
             });
             $("#id_sous_projet_distribution_recette_btn").click(function () {
 
