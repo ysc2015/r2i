@@ -95,7 +95,7 @@ if(isset($pa_intervenant) && !empty($pa_intervenant)){
     $message[] = "Le champs Intervenant est obligatoire !";
 }
 
-if(isset($pa_ok) && !empty($pa_ok)){
+if(isset($pa_ok)){
     $stm->bindParam(':ok',$pa_ok);
     $insert = true;
 } else {

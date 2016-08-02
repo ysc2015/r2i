@@ -29,7 +29,7 @@ if(isset($pa_intervenant_be) && !empty($pa_intervenant_be)){
     $message[] = "Le champs Intervenant BE est obligatoire !";
 }
 
-if(isset($pa_date_debut) && !empty($pa_date_debut)){
+/*if(isset($pa_date_debut) && !empty($pa_date_debut)){
     $stm->bindParam(':date_debut',$pa_date_debut);
     $insert = true;
 } else {
@@ -43,7 +43,7 @@ if(isset($pa_date_ret_prevue) && !empty($pa_date_ret_prevue)){
 } else {
     $err++;
     $message[] = "Le champs Date retour prévue est obligatoire !";
-}
+}*/
 
 /*
  * dates debut
@@ -67,7 +67,7 @@ if($dd && $df && $df < $dd) {
     }
 
     if(isset($pa_date_ret_prevue)){
-        $stm->bindParam(':date_ret_prevue',$pc_date_ret_prevue);
+        $stm->bindParam(':date_ret_prevue',$pa_date_ret_prevue);
         $insert = true;
     } else {
         $err++;
@@ -95,7 +95,7 @@ if(isset($pa_intervenant) && !empty($pa_intervenant)){
     $message[] = "Le champs Intervenant est obligatoire !";
 }
 
-if(isset($pa_ok) && !empty($pa_ok)){
+if(isset($pa_ok)){
     $stm->bindParam(':ok',$pa_ok);
     $insert = true;
 } else {
