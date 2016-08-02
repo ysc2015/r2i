@@ -1,3 +1,4 @@
+<?php $sousprojet_daiguillage = SousProjetDistributionAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="form-horizontal push-10-t push-10">
     <?php if($sousprojet_daiguillage !== NULL) {?>
         <input type="hidden" id="id_sous_projet_distribution_aiguillage" name="id_sous_projet_distribution_aiguillage" value="<?=$sousprojet_daiguillage->id_sous_projet?>">

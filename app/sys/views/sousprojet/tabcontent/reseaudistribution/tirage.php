@@ -1,3 +1,4 @@
+<?php $sousprojet_dtirage = SousProjetDistributionTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="js-validation-bootstrap form-horizontal">
     <?php if($sousprojet_dtirage !== NULL) {?>
         <input type="hidden" id="id_sous_projet_distribution_tirage" name="id_sous_projet_distribution_tirage" value="<?=$sousprojet_dtirage->id_sous_projet?>">

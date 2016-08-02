@@ -62,27 +62,21 @@ foreach($connectedProfil->reseautransport() as $tab) {
     ob_start();
     switch($tab) {
         case "design" :
-            $sousprojet_tdesign = SousProjetTransportDesign::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/design.php';
             break;
         case "aiguillage" :
-            $sousprojet_taiguillage = SousProjetTransportAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/aiguillage.php';
             break;
         case "commandectr" :
-            $sousprojet_tcommandectr = SousProjetTransportCommandeCTR::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/commandectr.php';
             break;
         case "tirage" :
-            $sousprojet_ttirage = SousProjetTransportTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/tirage.php';
             break;
         case "raccordements" :
-            $sousprojet_trac = SousProjetTransportRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/raccordements.php';
             break;
         case "recette" :
-            $sousprojet_trecette = SousProjetTransportRecette::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/recette.php';
             break;
     }

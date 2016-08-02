@@ -1,3 +1,4 @@
+<?php $sousprojet_drecette = SousProjetDistributionRecette::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="js-validation-bootstrap form-horizontal">
     <?php if($sousprojet_drecette !== NULL) {?>
         <input type="hidden" id="id_sous_projet_distribution_recette" name="id_sous_projet_distribution_recette" value="<?=$sousprojet_drecette->id_sous_projet?>">

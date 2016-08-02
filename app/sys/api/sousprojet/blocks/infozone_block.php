@@ -60,19 +60,15 @@ foreach($connectedProfil->infozone() as $tab) {
     ob_start();
     switch($tab) {
         case "nom" :
-            $sousprojet = SousProjet::find($idsousprojet);
             include $views_folder.'/nom.php';
             break;
         case "infoplaque" :
-            $sousprojet_infoplaque = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/infoplaque.php';
             break;
         case "zone" :
-            $sousprojet_zone = SousProjetZone::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/zone.php';
             break;
         case "siteorigine" :
-            $sousprojet_siteorigine = SousProjetSiteOrigine::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
             include $views_folder.'/siteorigine.php';
             break;
     }
