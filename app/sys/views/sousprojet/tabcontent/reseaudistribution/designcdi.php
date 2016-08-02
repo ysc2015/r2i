@@ -80,6 +80,20 @@
             <input class="form-control" type="date" id="dd_date_envoi" name="dd_date_envoi" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_envoi : "")?>">
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="dd_ok">OK <span class="text-danger">*</span></label>
+            <select class="form-control" id="dd_ok" name="dd_ok">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectOk::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_ok\" ". ($sousprojet_ddesign!==NULL && $sousprojet_ddesign->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_distribution_design" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-md-8"><button id="id_sous_projet_distribution_design_btn" class="btn btn-primary" type="button">Enregistrer</button></div>

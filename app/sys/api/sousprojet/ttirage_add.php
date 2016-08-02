@@ -12,7 +12,7 @@ $insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_transport_tirage (id_sous_projet,intervenant_be,date_previsionnelle,prep_plans,controle_plans,date_transmission_plans,id_entreprise,date_tirage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour) values (:id_sous_projet,:intervenant_be,:date_previsionnelle,:prep_plans,:controle_plans,:date_transmission_plans,:id_entreprise,:date_tirage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour)");
+$stm = $db->prepare("insert into sous_projet_transport_tirage (id_sous_projet,intervenant_be,date_previsionnelle,prep_plans,controle_plans,date_transmission_plans,id_entreprise,date_tirage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour,ok) values (:id_sous_projet,:intervenant_be,:date_previsionnelle,:prep_plans,:controle_plans,:date_transmission_plans,:id_entreprise,:date_tirage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -150,6 +150,14 @@ if(isset($tt_etat_retour) && !empty($tt_etat_retour)){
 } else {
     $err++;
     $message[] = "Le champs Etat retour est obligatoire !";
+}
+
+if(isset($tt_ok)){
+    $stm->bindParam(':ok',$tt_ok);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

@@ -52,6 +52,20 @@
             <input class="form-control" type="number" id="td_nb_zones" name="td_nb_zones" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->nb_zones:"")?>">
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="td_ok">OK <span class="text-danger">*</span></label>
+            <select class="form-control" id="td_ok" name="td_ok">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectOk::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_ok\" ". ($sousprojet_tdesign!==NULL && $sousprojet_tdesign->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_transport_design" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-md-8"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary" type="button">Enregistrer</button></div>

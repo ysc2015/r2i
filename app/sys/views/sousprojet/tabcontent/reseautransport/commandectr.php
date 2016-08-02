@@ -88,6 +88,20 @@
             </select>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <label for="cctr_ok">OK <span class="text-danger">*</span></label>
+            <select class="form-control" id="cctr_ok" name="cctr_ok">
+                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <?php
+                $results = SelectOk::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_ok\" ". ($sousprojet_tcommandectr!==NULL && $sousprojet_tcommandectr->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_transport_commande_ctr" role="alert" style="display: none;"></div>
     <div class="form-group">
         <div class="col-md-8"><button id="id_sous_projet_transport_commande_ctr_btn" class="btn btn-primary" type="button">Enregistrer</button></div>

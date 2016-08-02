@@ -674,7 +674,8 @@ var SProjet = function() {
                         td_date_ret_prevue: $('#td_date_ret_prevue').val(),
                         td_duree: $('#td_duree').val(),
                         td_lineaire_transport: $('#td_lineaire_transport').val(),
-                        td_nb_zones: $('#td_nb_zones').val()
+                        td_nb_zones: $('#td_nb_zones').val(),
+                        td_ok: $('#td_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -712,7 +713,8 @@ var SProjet = function() {
                         lineaire3: $('#lineaire3').val(),
                         lineaire4: $('#lineaire4').val(),
                         ta_lien_plans: $('#ta_lien_plans').val(),
-                        ta_retour_presta: $('#ta_retour_presta').val()
+                        ta_retour_presta: $('#ta_retour_presta').val(),
+                        ta_ok: $('#ta_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -755,7 +757,8 @@ var SProjet = function() {
                         cctr_commandes_acces: $('#cctr_commandes_acces').val(),
                         cctr_date_transmission_ca: $('#cctr_date_transmission_ca').val(),
                         cctr_ref_commande_acces: $('#cctr_ref_commande_acces').val(),
-                        cctr_go_ft: $('#cctr_go_ft').val()
+                        cctr_go_ft: $('#cctr_go_ft').val(),
+                        cctr_ok: $('#cctr_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -786,7 +789,8 @@ var SProjet = function() {
                         tt_duree: $('#tt_duree').val(),
                         tt_controle_demarrage_effectif: $('#tt_controle_demarrage_effectif').val(),
                         tt_date_retour: $('#tt_date_retour').val(),
-                        tt_etat_retour: $('#tt_etat_retour').val()
+                        tt_etat_retour: $('#tt_etat_retour').val(),
+                        tt_ok: $('#tt_ok').val()
 
                     }
                 }).done(function (msg) {
@@ -831,7 +835,8 @@ var SProjet = function() {
                         tr_duree: $('#tr_duree').val(),
                         tr_controle_demarrage_effectif: $('#tr_controle_demarrage_effectif').val(),
                         tr_date_retour: $('#tr_date_retour').val(),
-                        tr_etat_retour: $('#tr_etat_retour').val()
+                        tr_etat_retour: $('#tr_etat_retour').val(),
+                        tr_ok: $('#tr_ok').val()
 
                     }
                 }).done(function (msg) {//console.log(msg);
@@ -1011,7 +1016,8 @@ var SProjet = function() {
                         dd_duree: $('#dd_duree').val(),
                         dd_lineaire_distribution: $('#dd_lineaire_distribution').val(),
                         dd_etat: $('#dd_etat').val(),
-                        dd_date_envoi: $('#dd_date_envoi').val()
+                        dd_date_envoi: $('#dd_date_envoi').val(),
+                        dd_ok: $('#dd_ok').val()
 
                     }
                 }).done(function (msg) {
