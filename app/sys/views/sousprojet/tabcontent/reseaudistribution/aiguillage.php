@@ -151,7 +151,7 @@
                 <div class="col-xs-3">
                     <label for="da_ok">OK <span class="text-danger">*</span></label>
                     <select class="form-control input-lg" id="da_ok" name="da_ok">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectOk::all();
                         foreach($results as $result) {

@@ -133,7 +133,7 @@
         <div class="col-md-3">
             <label for="tt_ok">OK <span class="text-danger">*</span></label>
             <select class="form-control" id="tt_ok" name="tt_ok">
-                <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                <option value="" selected="">Sélectionnez une valeur</option>
                 <?php
                 $results = SelectOk::all();
                 foreach($results as $result) {
