@@ -25,6 +25,20 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
+            <label for="td_valideur_bei">Valideur BEI <span class="text-danger">*</span></label>
+            <select class="form-control" id="td_valideur_bei" name="td_valideur_bei">
+                <option value="0" selected="">Sélectionnez un utilisateur</option>
+                <?php
+                $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_utilisateur\" ". ($sousprojet_tdesign!==NULL && $sousprojet_tdesign->valideur_bei==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
             <label for="td_date_debut">Date de Début <span class="text-danger">*</span></label>
             <input class="form-control" type="date" id="td_date_debut" name="td_date_debut" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_debut:"")?>">
         </div>
@@ -53,10 +67,11 @@
             <input class="form-control" type="number" id="td_nb_zones" name="td_nb_zones" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->nb_zones:"")?>">
         </div>
     </div>
+    <h6><span class="label label-info">Réservé au valideur BEI </span></h6>
     <div class="form-group">
         <div class="col-md-3">
             <label for="td_ok">OK <span class="text-danger">*</span></label>
-            <select class="form-control" id="td_ok" name="td_ok">
+            <select <?= (($sousprojet_tdesign==NULL || ($sousprojet_tdesign!==NULL && $connectedProfil->id_utilisateur !== $sousprojet_tdesign->valideur_bei)) ? "disabled ":" ") ?>class="form-control" id="td_ok" name="td_ok">
                 <option value="" selected="">Sélectionnez une valeur</option>
                 <?php
                 $results = SelectOk::all();

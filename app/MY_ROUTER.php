@@ -16,6 +16,7 @@ SessionManager::check(function ($logged, $data) {
     require_once __DIR__."/sys/inc/user.roles.php";
     require_once __DIR__."/sys/language/fr/default.php";
     require_once __DIR__ . "/sys/inc/utils.functions.php";
+    require_once __DIR__."/sys/inc/mail.notifier.class.php";
     if ($logged) {
 
         $connectedProfil = Utilisateur::first(

@@ -65,7 +65,7 @@ if(isset($idp) && !empty($idp)){
     $receipients = $stm2->fetchAll();
 
     $to = array();
-    $to[] = "bitlord1980@gmail.com";
+    //$to[] = "bitlord1980@gmail.com";
 
     foreach($receipients as $receipient) {
         $to[] = $receipient["mail"];

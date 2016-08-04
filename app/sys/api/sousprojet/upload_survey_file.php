@@ -4,8 +4,6 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/mail.notifier.class.php";
-
 ini_set("display_errors",'1');
 
 $output_dir = __DIR__."/../uploads/sousprojets/";
@@ -81,7 +79,7 @@ if($err == 0) {
     $receipients = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 5)));
 
     $to = array();
-    $to[] = "bitlord1980@gmail.com";
+    //$to[] = "bitlord1980@gmail.com";
 
     foreach($receipients as $receipient) {
         $to[] = $receipient->email_utilisateur;

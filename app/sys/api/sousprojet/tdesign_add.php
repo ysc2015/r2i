@@ -8,10 +8,12 @@ include_once __DIR__."/../../inc/config.php";
 
 extract($_POST);
 
+$mailtemplatesfolder = __DIR__."/../templates/mails/";
+
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_transport_design (id_sous_projet,intervenant_be,date_debut,date_ret_prevue,duree,lineaire_transport,nb_zones,ok) values (:id_sous_projet,:intervenant_be,:date_debut,:date_ret_prevue,:duree,:lineaire_transport,:nb_zones,:ok)");
+$stm = $db->prepare("insert into sous_projet_transport_design (id_sous_projet,intervenant_be,valideur_bei,date_debut,date_ret_prevue,duree,lineaire_transport,nb_zones,ok) values (:id_sous_projet,:intervenant_be,:valideur_bei,:date_debut,:date_ret_prevue,:duree,:lineaire_transport,:nb_zones,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -22,11 +24,24 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($td_intervenant_be) && !empty($td_intervenant_be)){
-    $stm->bindParam(':intervenant_be',$td_intervenant_be);
-    $insert = true;
+    if($td_intervenant_be !== $td_valideur_bei) {
+        $stm->bindParam(':intervenant_be',$td_intervenant_be);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le valideur BEI doit étre différent de li'intervenant BE !";
+    }
 } else {
     $err++;
     $message[] = "Le champs Intervenant BE est obligatoire !";
+}
+
+if(isset($td_valideur_bei)){
+    $stm->bindParam(':valideur_bei',$td_valideur_bei);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs Valideur BEI est obligatoire !";
 }
 
 /*if(isset($td_date_debut) && !empty($td_date_debut)){
@@ -114,6 +129,53 @@ if(isset($td_ok)){
 if($insert == true && $err == 0){
     if($stm->execute()){
         $message [] = "Enregistrement ajouté avec succès";
+
+        if($td_ok == 1) {//ok validated design
+            //subject
+            $subject = "validation transport design";
+
+            //mail content
+            ob_start();
+            include $mailtemplatesfolder."design_validation.php";
+            $content = ob_get_contents();
+            ob_end_clean();
+
+            //users to
+            $receipients = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 5)));
+
+            $to = array();
+            //$to[] = "bitlord1980@gmail.com";
+
+            foreach($receipients as $receipient) {
+                $to[] = $receipient->email_utilisateur;
+            }
+
+            MailNotifier::sendMail($subject,$content,$to,array());
+
+
+        } else {//creation design ok but not validated
+            //subject
+            $subject = "transport design en cours";
+
+            //mail content
+            ob_start();
+            include $mailtemplatesfolder."design_creation.php";
+            $content = ob_get_contents();
+            ob_end_clean();
+
+            //users to
+            $receipients = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 5)));//5 = vpi
+
+            $to = array();
+            //$to[] = "bitlord1980@gmail.com";
+
+            foreach($receipients as $receipient) {
+                $to[] = $receipient->email_utilisateur;
+            }
+
+            MailNotifier::sendMail($subject,$content,$to,array());
+        }
+
     } else {
         $message [] = $stm->errorInfo();
     }

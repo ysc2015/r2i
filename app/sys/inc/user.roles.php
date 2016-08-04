@@ -133,6 +133,51 @@ ADM;
         function reseautransport() {return array("design","aiguillage","commandectr","tirage","raccordements","recette");}
         function reseaudistribution() {return array("designcdi","aiguillage","commandecdi","tirage","raccordements","recette");}
     }
+    class VPIUser extends baseUser
+{
+    function dashboard() {
+        Action::dashboard("index");
+    }
+
+    function sidebar() {
+        Action::sidebar("dashboard","projet_titre","projet_liste","user_titre","user_liste","menu_stt_titre","menu_stt_inc");
+    }
+
+    function projet() {
+        Action::projet("liste","add","sousprojet_add","update","delete");
+    }
+
+    function sousprojet() {
+        Action::sousprojet("infozone","gestionplaque","preparationplaque","reseautransport","reseaudistribution");
+    }
+
+    function utilisateur()
+    {
+        Action::utilisateur("liste","add","update");
+    }
+
+    function tablette() {
+        Action::tablette("liste","add","update","delete");
+    }
+
+    function stt() {
+        Action::stt("liste","add","update");
+    }
+
+    function ot() {
+        Action::ot("infos","chambres","synoptique","controle");
+    }
+    function chambre() {
+        Action::chambre("images","infos_terrain","masque");
+    }
+
+    //tab contents
+    function infozone() {return array("nom","infoplaque","zone","siteorigine");}
+    function gestionplaque() {return array("phase","traitementetude");}
+    function preparationplaque() {return array("preparationcarto","positionnementadresses","surveyadressesterrain");}
+    function reseautransport() {return array("design","aiguillage","commandectr","tirage","raccordements","recette");}
+    function reseaudistribution() {return array("designcdi","aiguillage","commandecdi","tirage","raccordements","recette");}
+}
 
     class CDPUser extends baseUser
     {
@@ -155,6 +200,31 @@ ADM;
         /*function utilisateur() {
             Action::utilisateur("liste");
         }*/
+
+        //tab contents
+        function infozone() {return array("nom","infoplaque","zone","siteorigine");}
+        function gestionplaque() {return array("phase","traitementetude");}
+        function preparationplaque() {return array("preparationcarto","positionnementadresses","surveyadressesterrain");}
+        function reseautransport() {return array("design","aiguillage","commandectr","tirage","raccordements","recette");}
+        function reseaudistribution() {return array("designcdi","aiguillage","commandecdi","tirage","raccordements","recette");}
+    }
+    class BEIUser extends baseUser
+    {
+        function dashboard() {
+            Action::dashboard("index");
+        }
+
+        function sidebar() {
+            Action::sidebar("dashboard","projet_titre","projet_liste");
+        }
+
+        function projet() {
+            Action::projet("liste");
+        }
+
+        function sousprojet() {
+            Action::sousprojet("infozone","gestionplaque","preparationplaque","reseautransport","reseaudistribution");
+        }
 
         //tab contents
         function infozone() {return array("nom","infoplaque","zone","siteorigine");}

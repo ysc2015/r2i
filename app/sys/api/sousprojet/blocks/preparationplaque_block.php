@@ -32,12 +32,20 @@ switch ($connectedProfil->profil->lib_profil_utilisateur) {
         $connectedProfil = new Administrateur($connectedProfil);
         break;
 
+    case 'Validation et Production Infrastructure':
+        $connectedProfil = new VPIUser($connectedProfil);
+        break;
+
     case 'Agent STT':
         $connectedProfil = new STTUser($connectedProfil);
         break;
 
     case 'Chef de projet':
         $connectedProfil = new CDPUser($connectedProfil);
+        break;
+
+    case 'Bureau Etude Interne':
+        $connectedProfil = new BEIUser($connectedProfil);
         break;
 
     default:
