@@ -1,5 +1,5 @@
 <?php $sousprojet_phase = SousProjetPlaquePhase::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet))); ?>
-<form class="js-validation-bootstrap form-horizontal">
+<form class="js-validation-bootstrap form-horizontal" id="gestionplaque_phase_form" name="gestionplaque_phase_form">
     <?php if($sousprojet_phase !== NULL) {?>
         <input type="hidden" id="id_sous_projet_plaque_phase" name="id_sous_projet_plaque_phase" value="<?=$sousprojet_phase->id_sous_projet?>">
     <?php } else {?>

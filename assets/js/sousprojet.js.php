@@ -256,6 +256,7 @@ var SProjet = function() {
         };
     }();
     var gestionplaque = function() {
+        var $form = $('form[name="gestionplaque_phase_form"]');
         var phase_isnew = undefined;
         var tetude_isnew = undefined;
         var refresh = function() {
@@ -277,6 +278,7 @@ var SProjet = function() {
                 id_tt = obj.id_tt;
 
                 initTabs();
+
             });
         }
         var initTabs = function() {
@@ -293,6 +295,13 @@ var SProjet = function() {
 
                 init();
                 initEvents();
+
+                //TODO delete
+                //test code
+                $('#gestionplaque_phase_form *').filter(':input').each(function(){
+                    //
+                    console.log($( this ));
+                });
 
             });
         }
@@ -670,6 +679,7 @@ var SProjet = function() {
                     data: {
                         ids: get('idsousprojet'),
                         td_intervenant_be: $('#td_intervenant_be').val(),
+                        td_valideur_bei: $('#td_valideur_bei').val(),
                         td_date_debut: $('#td_date_debut').val(),
                         td_date_ret_prevue: $('#td_date_ret_prevue').val(),
                         td_duree: $('#td_duree').val(),
