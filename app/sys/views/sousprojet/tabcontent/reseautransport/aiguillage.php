@@ -65,45 +65,49 @@
     <div class="row items-push">
         <button id="id_lineaire_transport_aiguillage_btn" class="btn btn-danger" type="button"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Linéaire de réseau</button>
         <div id="lineare_groupe" style="border-left: dashed 1px #000;border-right: dashed 1px #000;border-bottom: dashed 1px #000;margin-top: 5px;padding: 5px;display: none">
+            <label><span class="label label-info">Câbles </span></label>
             <div class="form-group">
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                    <label for="ta_lineaire_reseau">720FO <span class="text-danger">*</span></label>
+                    <label for="lineaire1">câble 720FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire1" name="lineaire1" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire1:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                    <label for="ta_lineaire_reseau">432FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">câble 432FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire2" name="lineaire2" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire2:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                    <label for="ta_lineaire_reseau">288FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">câble 288FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire3" name="lineaire3" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire3:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                    <label for="ta_lineaire_reseau">144FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire4" name="lineaire4" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire4:"")?>">
                 </div>
+            </div>
+            <label><span class="label label-warning">Boites </span></label>
+            <div class="form-group">
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                    <label for="ta_lineaire_reseau">720FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire5" name="lineaire1" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire1:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                    <label for="ta_lineaire_reseau">432FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire6" name="lineaire2" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire2:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                    <label for="ta_lineaire_reseau">288FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire7" name="lineaire3" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire3:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                    <label for="ta_lineaire_reseau">144FO <span class="text-danger">*</span></label>
+                    <label for="ta_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
                     <input class="form-control input-lg lineareInput" type="number" id="lineaire8" name="lineaire4" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire4:"")?>">
                 </div>
             </div>
@@ -212,6 +216,7 @@
                 }
             }
             ?>
+            <button id="transport_aiguillage_osa_btn" class="btn btn-warning" type="button"><i class="fa fa-tasks push-5-r"></i> Taches OSA</button>
         </div>
     </div>
 </form>
