@@ -733,7 +733,7 @@ var SProjet = function() {
                         xhr.setRequestHeader('Authorization', 'Basic ' + btoa('rrahmouni:Keeshie7'));
                     },*/
                     data: {
-                        r2i : 'rrahmouni@rc2k.fr:rrahmouni'
+                        r2i : 'rrahmouni@rc2k.fr::rrahmouni'
                     }
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
