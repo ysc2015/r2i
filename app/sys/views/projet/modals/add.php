@@ -270,6 +270,9 @@
                         $("#message_cdp_update").fadeIn(500);
                         $("#message_cdp_update").html('<p>Le projet est créé !</p><p>il est accessible dana la liste des projet</p>');
                         $("#message_cdp_update").fadeOut(5000);
+
+                        //TODO créer projet sous osa ici
+
                         break;
                     }
                     case 2 : {

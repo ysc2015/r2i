@@ -1,5 +1,5 @@
 <?php $sousprojet_tetude = SousProjetPlaqueTraitementEtude::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="js-validation-bootstrap form-horizontal">
+<form class="js-validation-bootstrap form-horizontal" id="gestionplaque_tetude_form" name="gestionplaque_tetude_form">
     <?php if($sousprojet_tetude !== NULL) {?>
         <input type="hidden" id="id_sous_projet_plaque_traitement_etude" name="id_sous_projet_plaque_traitement_etude" value="<?=$sousprojet_tetude->id_sous_projet?>">
     <?php } else {?>
@@ -11,8 +11,8 @@
     <?php }?>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="tsite">Site <span class="text-danger">*</span></label>
-            <select class="form-control" id="tsite" name="tsite">
+            <label for="te_site">Site <span class="text-danger">*</span></label>
+            <select class="form-control" id="te_site" name="te_site">
                 <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                 <?php
                 $results = SelectTraitementEtudeSite::all();
@@ -25,8 +25,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="charge_etude">Chargé d'étude <span class="text-danger">*</span></label>
-            <select class="form-control" id="charge_etude" name="charge_etude">
+            <label for="te_charge_etude">Chargé d'étude <span class="text-danger">*</span></label>
+            <select class="form-control" id="te_charge_etude" name="te_charge_etude">
                 <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                 <?php
                 $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));

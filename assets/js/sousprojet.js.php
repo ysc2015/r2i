@@ -111,6 +111,7 @@ var template = function() {
 }();
 
 var SProjet = function() {
+    var ids = get('idsousprojet');
     var infozone = function() {
         var infoplaque_isnew = undefined;
         var zone_isnew = undefined;
@@ -256,9 +257,11 @@ var SProjet = function() {
         };
     }();
     var gestionplaque = function() {
-        var $form = $('form[name="gestionplaque_phase_form"]');
+        var phase_formdata = {};
+        var tetude_formdata = {};
         var phase_isnew = undefined;
         var tetude_isnew = undefined;
+
         var refresh = function() {
             $.ajax({
                 method: "POST",
@@ -296,16 +299,18 @@ var SProjet = function() {
                 init();
                 initEvents();
 
-                //TODO delete
-                //test code
-                $('#gestionplaque_phase_form *').filter(':input').each(function(){
-                    //
-                    console.log($( this ));
-                });
-
             });
         }
         var init = function() {
+
+            $('#gestionplaque_phase_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                phase_formdata[$( this ).attr('name')] = $( this).val();
+            });
+
+            $('#gestionplaque_tetude_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                tetude_formdata[$( this ).attr('name')] = $( this).val();
+            });
+
             $("#message_gestion_plaque_phase").hide();
             $("#message_gestion_plaque_traitement_etude").hide();
 
@@ -316,17 +321,25 @@ var SProjet = function() {
             $("#id_sous_projet_plaque_phase_btn").click(function () {
                 $("#message_gestion_plaque_phase").fadeOut();
                 $("#gestionplaque_block").toggleClass('block-opt-refresh');
+
+                for (var key in phase_formdata) {
+                    console.log('#'+key);
+                    phase_formdata[key] = $('#'+key).val();
+                }
+                phase_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: (phase_isnew?"api/sousprojet/phase_add.php":"api/sousprojet/phase_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
-                        instigateur: $('#instigateur').val(),
-                        vague: $('#vague').val(),
-                        date_lancement: $('#date_lancement').val()
+                        gp_instigateur: $('#gp_instigateur').val(),
+                        gp_vague: $('#gp_vague').val(),
+                        gp_date_lancement: $('#gp_date_lancement').val()
 
-                    }
+                    }*/phase_formdata
                 }).done(function (msg) {
+                    console.log(msg);
                     $("#gestionplaque_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_gestion_plaque_phase')) {
                         $("#id_sous_projet_plaque_phase_alert").hide();
@@ -338,15 +351,23 @@ var SProjet = function() {
 
                 $("#message_gestion_plaque_traitement_etude").fadeOut();
                 $("#gestionplaque_block").toggleClass('block-opt-refresh');
+
+                for (var key in tetude_formdata) {
+                    console.log('#'+key);
+                    tetude_formdata[key] = $('#'+key).val();
+                }
+                tetude_formdata['ids'] = ids;
+
+                console.log(tetude_formdata);
+
                 $.ajax({
                     method: "POST",
                     url: (tetude_isnew?"api/sousprojet/traitementetude_add.php":"api/sousprojet/traitementetude_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         tsite: $('#tsite').val(),
                         charge_etude: $('#charge_etude').val()
-
-                    }
+                    }*/tetude_formdata
                 }).done(function (msg) {
                     $("#gestionplaque_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_gestion_plaque_traitement_etude')) {
@@ -364,6 +385,7 @@ var SProjet = function() {
         };
     }();
     var preparationplaque = function() {
+        var formdata = {};
         var fileuploader_survey_bei = null;
         var fileuploader_survey_vip = null;
         var pcarto_isnew = undefined;
@@ -588,6 +610,7 @@ var SProjet = function() {
         };
     }();
     var reseautransport = function() {
+        var formdata = {};
         var ta_ot_id_entree = undefined;
         var ta_ot_type_entree = 'transport_aiguillage';
         var tt_ot_id_entree = undefined;
@@ -601,6 +624,16 @@ var SProjet = function() {
         var ttirage_isnew = undefined;
         var traccord_isnew = undefined;
         var trecette_isnew = undefined;
+        var checkLinears = function() {
+            var flag = true;
+            $('.lineareInput').filter(function() {
+                if (this.value == '') {
+                    flag = false;
+                    return false;
+                }
+            });
+            return flag;
+        }
         var refresh = function() {
             $.ajax({
                 method: "POST",
@@ -641,6 +674,13 @@ var SProjet = function() {
             });
         }
         var init = function() {
+            if(checkLinears()) {
+                $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+            } else {
+                $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+            }
             $("#message_transport_design").hide();
             $("#message_transport_aiguillage").hide();
             $("#message_transport_commande_ctr").hide();
@@ -669,6 +709,19 @@ var SProjet = function() {
             setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
+            $("#id_lineaire_transport_aiguillage_btn").click(function () {
+
+                console.log('clicked');
+                if ( $( "#lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdf0454ff").removeClass("fa-plus");
+                    $("#hdf0454ff").addClass("fa-minus");
+                    $( "#lineare_groupe" ).show( "fast" );
+                } else {
+                    $( "#lineare_groupe" ).slideUp();
+                    $("#hdf0454ff").removeClass("fa-minus");
+                    $("#hdf0454ff").addClass("fa-plus");
+                }
+            });
             $("#id_sous_projet_transport_design_btn").click(function () {
 
                 $("#message_transport_design").fadeOut();
@@ -919,6 +972,80 @@ var SProjet = function() {
             $("#tt_date_ret_prevue").change(function() {
                 setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$( this ).val());
             });
+
+
+            $('#lineaire1').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire2').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire3').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire4').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire5').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire6').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire7').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#lineaire8').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
         }
         return {
             init : init,
@@ -928,6 +1055,7 @@ var SProjet = function() {
         };
     }();
     var reseaudistribution = function() {
+        var formdata = {};
         var da_ot_id_entree = undefined;
         var da_ot_type_entree = 'distribution_aiguillage';
         var dt_ot_id_entree = undefined;
@@ -1002,8 +1130,6 @@ var SProjet = function() {
             draccord_isnew = ($("#id_sous_projet_distribution_raccordements").val()?false:true);
 
             drecette_isnew = ($("#id_sous_projet_distribution_recette").val()?false:true);
-
-            //TODO change ids bellow
 
             setDuree($("#dd_duree"),'#message_distribution_design',$("#dd_date_debut").val(),$("#dd_date_fin").val());
             //setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$("#ta_date_ret_prevue").val());
@@ -1233,8 +1359,6 @@ var SProjet = function() {
                     }
                 });
             });
-
-            //TODO change ids bellow
 
             $("#dd_date_debut").change(function() {
                 setDuree($("#dd_duree"),'#message_distribution_design',$( this ).val(),$("#dd_date_fin").val());

@@ -11,8 +11,8 @@
     <?php }?>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="instigateur">Instigateur <span class="text-danger">*</span></label>
-            <select class="form-control" id="instigateur" name="instigateur">
+            <label for="gp_instigateur">Instigateur <span class="text-danger">*</span></label>
+            <select class="form-control" id="gp_instigateur" name="gp_instigateur">
                 <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                 <?php
                 $results = SelectPhaseInstigateur::all();
@@ -25,8 +25,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="vague">Vague <span class="text-danger">*</span></label>
-            <select class="form-control" id="vague" name="vague" disabled="">
+            <label for="gp_vague">Vague <span class="text-danger">*</span></label>
+            <select class="form-control" id="gp_vague" name="gp_vague" disabled="">
                 <option value="" selected="" disabled="">Sélectionnez une phase</option>
                 <?php
                 $results = SelectPlaquePhase::all();
@@ -38,7 +38,9 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-3"><label for="date_lancement">Date Lancement <span class="text-danger">*</span></label><input class="form-control" type="date" id="date_lancement" name="date_lancement" value="<?=($sousprojet_phase !== NULL?$sousprojet_phase->date_lancement:"")?>"></div>
+        <div class="col-md-3"><label for="gp_date_lancement">Date Lancement <span class="text-danger">*</span></label>
+            <input class="form-control" type="date" id="gp_date_lancement" name="gp_date_lancement" value="<?=($sousprojet_phase !== NULL?$sousprojet_phase->date_lancement:"")?>">
+        </div>
     </div>
     <div class="alert alert-success" id="message_gestion_plaque_phase" role="alert" style="display: none;"></div>
     <div class="form-group">
