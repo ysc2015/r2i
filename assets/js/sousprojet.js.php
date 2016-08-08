@@ -709,6 +709,7 @@ var SProjet = function() {
             setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
+            //App.initHelpers('tags-inputs');
             $("#id_lineaire_transport_aiguillage_btn").click(function () {
 
                 console.log('clicked');
@@ -721,6 +722,23 @@ var SProjet = function() {
                     $("#hdf0454ff").removeClass("fa-minus");
                     $("#hdf0454ff").addClass("fa-plus");
                 }
+            });
+            $("#transport_aiguillage_osa_btn").click(function () {
+
+                console.log('transport_aiguillage_osa_btn');
+                $.ajax({
+                    method: "POST",
+                    url: 'http://sd-83414.dedibox.fr/osa/api/utilisateur_show.php',
+                    /*beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Basic ' + btoa('rrahmouni:Keeshie7'));
+                    },*/
+                    data: {
+                        r2i : 'rrahmouni@rc2k.fr:rrahmouni'
+                    }
+                }).done(function (msg) {
+                    var obj = $.parseJSON(msg);
+                    console.log(obj);
+                });
             });
             $("#id_sous_projet_transport_design_btn").click(function () {
 
@@ -805,6 +823,10 @@ var SProjet = function() {
                 create_btn = $("#id_sous_projet_transport_aiguillage_btn");
             });
             $("#id_sous_projet_transport_commande_ctr_btn").click(function () {
+
+                //console.log($('#cctr_ref_commande_acces').val());
+
+                //console.log(jQuery( '.tags' ).tagsInput()[0]);
 
                 $("#message_transport_commande_ctr").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');

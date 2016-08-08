@@ -36,6 +36,19 @@
 <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
 <!-- END Stylesheets -->
 
+<link rel="stylesheet" href="assets/js/plugins/jquery-upload-file/css/uploadfile.css">
+<!--<link rel="stylesheet" href="assets/js/plugins/select2/select2.min.css">
+<link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">-->
+<link rel="stylesheet" href="assets/js/plugins/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="assets/js/plugins/datatables/jquery.dataTables.min.css">
+<link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid.css">
+<link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap.css">
+<link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap-ui.css">
+<link rel="stylesheet" href="assets/js/plugins/select2-4.0.3/dist/css/select2.min.css">
+<!--<link rel="stylesheet" href="assets/js/plugins/select2/select2.min.css">-->
+<link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">
+<link rel="stylesheet" href="assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.css">
+
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 <script src="assets/js/core/jquery.min.js"></script>
 <script src="assets/js/core/bootstrap.min.js"></script>
@@ -50,29 +63,16 @@
 <!--<script src="assets/js/plugins/select2/select2.full.min.js"></script>-->
 <script src="assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.js"></script>
 <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/js/plugins/datatables/dataTables-bootstrap.js"></script>
 <script src="assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="assets/js/plugins/jqGrid/js/jquery.jqGrid.min.js"></script>
 <script src="assets/js/plugins/jqGrid/js/i18n/grid.locale-fr.js"></script>
 <script src="assets/js/plugins/select2-4.0.3/dist/js/select2.full.min.js"></script>
+<script src="assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.js"></script>
 <!--<script src="assets/js/plugins/select2/select2.full.min.js"></script>-->
 <script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>
-
-<link rel="stylesheet" href="assets/js/plugins/jquery-upload-file/css/uploadfile.css">
-<!--<link rel="stylesheet" href="assets/js/plugins/select2/select2.min.css">
-<link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">-->
-<link rel="stylesheet" href="assets/js/plugins/jquery-ui/jquery-ui.min.css">
-<link rel="stylesheet" href="assets/js/plugins/jquery-tags-input/jquery.tagsinput.min.css">
-<link rel="stylesheet" href="assets/js/plugins/datatables/jquery.dataTables.min.css">
-<link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid.css">
-<link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap.css">
-<link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap-ui.css">
-<link rel="stylesheet" href="assets/js/plugins/select2-4.0.3/dist/css/select2.min.css">
-<!--<link rel="stylesheet" href="assets/js/plugins/select2/select2.min.css">-->
-<link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">
 
 <?php if(isset($_GET['page']) && $_GET['page'] == "dashboard") {?>
 
@@ -111,6 +111,7 @@
 <?php } ?>
 
 <?php if(isset($_GET['page']) && $_GET['page'] == "sousprojet") {?>
+    <!-- Page JS Code -->
     <script src="assets/js/sousprojet.js.php"></script>
 <?php } ?>
 
