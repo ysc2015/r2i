@@ -728,7 +728,7 @@ var SProjet = function() {
                 console.log('transport_aiguillage_osa_btn');
                 $.ajax({
                     method: "POST",
-                    url: 'http://192.168.1.7/osa/api/utilisateur_show.php',
+                    url: 'http://sd-83414.dedibox.fr/osa/api/utilisateur_show.php',
                     /*beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', 'Basic ' + btoa('rrahmouni:Keeshie7'));
                     },*/
