@@ -11,6 +11,7 @@ RewriteRule  "api/sousprojet/(\w*\.php)"          "app/MY_ROUTER.php?script=sous
 RewriteRule  "api/sousprojet/blocks/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/blocks/$1"  [QSA,L]
 
 RewriteRule  "api/projet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/$1"  [QSA,L]
+RewriteRule  "api/entreprise/(\w*\.php)"          "app/MY_ROUTER.php?script=entreprise/$1"  [QSA,L]
 RewriteRule  "api/file/(\w*\.php)"          "app/MY_ROUTER.php?script=file/$1"  [QSA,L]
 RewriteRule  "api/stt/(\w*\.php)"          "app/MY_ROUTER.php?script=stt/$1"  [QSA,L]
 RewriteRule  "api/tablette/(\w*\.php)"          "app/MY_ROUTER.php?script=tablette/$1"  [QSA,L]

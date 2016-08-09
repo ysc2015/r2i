@@ -15,6 +15,12 @@ switch($page)
             "navigator"=>"<li>projets</li>")));
         break;
 
+    case "entreprise":
+        return json_decode(json_encode(array("header"=>"Entreprises STT",
+            "subheader"=>"Liste des entrprises STT",
+            "navigator"=>"<li>entreprises STT</li>")));
+        break;
+
     case "sousprojet":
         return json_decode(json_encode(array("header"=>"Sous projet",
             "subheader"=>"Avancements",

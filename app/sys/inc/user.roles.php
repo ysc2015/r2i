@@ -102,6 +102,10 @@ ADM;
             Action::projet("liste","add","sousprojet_add","update","delete");
         }
 
+        function entreprise() {
+            Action::entreprise("liste","add","equipe_add","update","delete");
+        }
+
         function sousprojet() {
             Action::sousprojet("infozone","gestionplaque","preparationplaque","reseautransport","reseaudistribution");
         }
