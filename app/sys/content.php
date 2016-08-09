@@ -46,6 +46,10 @@ switch ($page) {
         $connectedProfil->chambre();
         echo "<br><br>";//TODO style row with bottom border color -> footer
         break;
+    case "entreprise":
+        $connectedProfil->entreprise();
+        echo "<br><br>";//TODO style row with bottom border color -> footer
+        break;
     //test purposes
     case "mailcreation":
         $connectedProfil->mailcreation();
