@@ -12,7 +12,7 @@ $insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour,lien_plans,retour_presta,ok) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:lien_plans,:retour_presta,:ok)");
+$stm = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,lineaire5,lineaire6,lineaire7,lineaire8,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,date_ret_prevue,duree,controle_demarrage_effectif,date_retour,etat_retour,lien_plans,retour_presta,ok) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:lineaire5,:lineaire6,:lineaire7,:lineaire8,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:date_ret_prevue,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:lien_plans,:retour_presta,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -72,6 +72,38 @@ if(isset($lineaire4) && !empty($lineaire4)){
 } else {
     $err++;
     $message[] = "Le champs 144FO est obligatoire !";
+}
+
+if(isset($lineaire5) && !empty($lineaire5)){
+    $stm->bindParam(':lineaire5',$lineaire5);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 720FO est obligatoire !";
+}
+
+if(isset($lineaire6) && !empty($lineaire6)){
+    $stm->bindParam(':lineaire6',$lineaire6);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 432FO est obligatoire !";
+}
+
+if(isset($lineaire7) && !empty($lineaire7)){
+    $stm->bindParam(':lineaire7',$lineaire7);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 288FO est obligatoire !";
+}
+
+if(isset($lineaire8) && !empty($lineaire8)){
+    $stm->bindParam(':lineaire8',$lineaire8);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 144FO est obligatoire !";
 }
 
 /*
@@ -136,7 +168,7 @@ $df = DateTime::createFromFormat('Y-m-d', $ta_date_ret_prevue);
 
 if($dd && $df && $df < $dd) {
     $err++;
-    $message[] = "la date de retour prévue doit étre superieure à la date de début !";
+    $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début !";
 } else  {
 
     if(isset($ta_date_aiguillage)){

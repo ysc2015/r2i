@@ -634,6 +634,16 @@ var SProjet = function() {
             });
             return flag;
         }
+        var checkLinears2 = function() {
+            var flag = true;
+            $('.lineareInput2').filter(function() {
+                if (this.value == '') {
+                    flag = false;
+                    return false;
+                }
+            });
+            return flag;
+        }
         var refresh = function() {
             $.ajax({
                 method: "POST",
@@ -681,6 +691,14 @@ var SProjet = function() {
                 $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
                 $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
             }
+            if(checkLinears2()) {
+                $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+            } else {
+                $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+            }
+
             $("#message_transport_design").hide();
             $("#message_transport_aiguillage").hide();
             $("#message_transport_commande_ctr").hide();
@@ -721,6 +739,19 @@ var SProjet = function() {
                     $( "#lineare_groupe" ).slideUp();
                     $("#hdf0454ff").removeClass("fa-minus");
                     $("#hdf0454ff").addClass("fa-plus");
+                }
+            });
+            $("#id_lineaire_transport_tirage_btn").click(function () {
+
+                console.log('clicked');
+                if ( $( "#tt_lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdf04l54ff").removeClass("fa-plus");
+                    $("#hdf04l54ff").addClass("fa-minus");
+                    $( "#tt_lineare_groupe" ).show( "fast" );
+                } else {
+                    $( "#tt_lineare_groupe" ).slideUp();
+                    $("#hdf04l54ff").removeClass("fa-minus");
+                    $("#hdf04l54ff").addClass("fa-plus");
                 }
             });
             $("#transport_aiguillage_osa_btn").click(function () {
@@ -790,6 +821,10 @@ var SProjet = function() {
                         lineaire2: $('#lineaire2').val(),
                         lineaire3: $('#lineaire3').val(),
                         lineaire4: $('#lineaire4').val(),
+                        lineaire5: $('#lineaire5').val(),
+                        lineaire6: $('#lineaire6').val(),
+                        lineaire7: $('#lineaire7').val(),
+                        lineaire8: $('#lineaire8').val(),
                         ta_lien_plans: $('#ta_lien_plans').val(),
                         ta_retour_presta: $('#ta_retour_presta').val(),
                         ta_ok: $('#ta_ok').val()
@@ -1063,6 +1098,79 @@ var SProjet = function() {
                 } else {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-success");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+
+            $('#tt_lineaire1').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire2').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire3').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire4').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire5').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire6').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire7').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#tt_lineaire8').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_transport_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_transport_tirage_btn").addClass("btn-danger");
                 }
             });
         }
