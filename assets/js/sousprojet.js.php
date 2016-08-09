@@ -1207,6 +1207,26 @@ var SProjet = function() {
         var dtirage_isnew = undefined;
         var draccord_isnew = undefined;
         var drecette_isnew = undefined;
+        var checkLinears = function() {
+            var flag = true;
+            $('.lineareInput3').filter(function() {
+                if (this.value == '') {
+                    flag = false;
+                    return false;
+                }
+            });
+            return flag;
+        }
+        var checkLinears2 = function() {
+            var flag = true;
+            $('.lineareInput4').filter(function() {
+                if (this.value == '') {
+                    flag = false;
+                    return false;
+                }
+            });
+            return flag;
+        }
         var refresh = function() {
             $.ajax({
                 method: "POST",
@@ -1247,6 +1267,21 @@ var SProjet = function() {
             } );
         }
         var init = function() {
+            if(checkLinears()) {
+                $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+            } else {
+                $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+            }
+            if(checkLinears2()) {
+                $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+            } else {
+                $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+            }
+
             $("#message_distribution_design").hide();
             $("#message_distribution_aiguillage").hide();
             $("#message_distribution_commande_cdi").hide();
@@ -1274,6 +1309,32 @@ var SProjet = function() {
             //setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
+            $("#id_lineaire_distribution_aiguillage_btn").click(function () {
+
+                console.log('clicked');
+                if ( $( "#da_lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdfd0454ff").removeClass("fa-plus");
+                    $("#hdfd0454ff").addClass("fa-minus");
+                    $( "#da_lineare_groupe" ).show( "fast" );
+                } else {
+                    $( "#da_lineare_groupe" ).slideUp();
+                    $("#hdfd0454ff").removeClass("fa-minus");
+                    $("#hdfd0454ff").addClass("fa-plus");
+                }
+            });
+            $("#id_lineaire_distribution_tirage_btn").click(function () {
+
+                console.log('clicked');
+                if ( $( "#tt_lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdf04l54ff").removeClass("fa-plus");
+                    $("#hdf04l54ff").addClass("fa-minus");
+                    $( "#tt_lineare_groupe" ).show( "fast" );
+                } else {
+                    $( "#tt_lineare_groupe" ).slideUp();
+                    $("#hdf04l54ff").removeClass("fa-minus");
+                    $("#hdf04l54ff").addClass("fa-plus");
+                }
+            });
             $("#id_sous_projet_distribution_design_btn").click(function () {
 
                 $("#message_distribution_design").fadeOut();
@@ -1313,10 +1374,14 @@ var SProjet = function() {
                         ids: get('idsousprojet'),
                         da_intervenant_be: $('#da_intervenant_be').val(),
                         da_plans: $('#da_plans').val(),
-                        lineaire1: $('#dlineaire1').val(),
-                        lineaire2: $('#dlineaire2').val(),
-                        lineaire3: $('#dlineaire3').val(),
-                        lineaire4: $('#dlineaire4').val(),
+                        lineaire1: $('#da_lineaire1').val(),
+                        lineaire2: $('#da_lineaire2').val(),
+                        lineaire3: $('#da_lineaire3').val(),
+                        lineaire4: $('#da_lineaire4').val(),
+                        lineaire5: $('#da_lineaire5').val(),
+                        lineaire6: $('#da_lineaire6').val(),
+                        lineaire7: $('#da_lineaire7').val(),
+                        lineaire8: $('#da_lineaire8').val(),
                         da_controle_plans: $('#da_controle_plans').val(),
                         da_date_transmission_plans: $('#da_date_transmission_plans').val(),
                         da_entreprise: $('#da_entreprise').val(),
@@ -1518,6 +1583,79 @@ var SProjet = function() {
             $("#tt_date_ret_prevue").change(function() {
                 setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$( this ).val());
             });*/
+
+            $('#da_lineaire1').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire2').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire3').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire4').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire5').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire6').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire7').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+            $('#da_lineaire8').on('input', function() {
+                if(checkLinears()) {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
         }
         return {
             init : init,

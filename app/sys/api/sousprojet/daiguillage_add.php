@@ -12,7 +12,7 @@ $insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_distribution_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,duree,controle_demarrage_effectif,date_retour,etat_retour,ok) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:ok)");
+$stm = $db->prepare("insert into sous_projet_distribution_aiguillage (id_sous_projet,intervenant_be,plans,lineaire1,lineaire2,lineaire3,lineaire4,lineaire5,lineaire6,lineaire7,lineaire8,controle_plans,date_transmission_plans,id_entreprise,date_aiguillage,duree,controle_demarrage_effectif,date_retour,etat_retour,ok) values (:id_sous_projet,:intervenant_be,:plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:lineaire5,:lineaire6,:lineaire7,:lineaire8,:controle_plans,:date_transmission_plans,:id_entreprise,:date_aiguillage,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -80,6 +80,38 @@ if(isset($lineaire4) && !empty($lineaire4)){
 } else {
     $err++;
     $message[] = "Le champs 144FO est obligatoire !";
+}
+
+if(isset($lineaire5) && !empty($lineaire5)){
+    $stm->bindParam(':lineaire5',$lineaire5);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 720FO est obligatoire !";
+}
+
+if(isset($lineaire6) && !empty($lineaire6)){
+    $stm->bindParam(':lineaire6',$lineaire6);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 432FO est obligatoire !";
+}
+
+if(isset($lineaire7) && !empty($lineaire7)){
+    $stm->bindParam(':lineaire7',$lineaire7);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 288FO est obligatoire !";
+}
+
+if(isset($lineaire8) && !empty($lineaire8)){
+    $stm->bindParam(':lineaire8',$lineaire8);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs BPE 144FO est obligatoire !";
 }
 
 /*
