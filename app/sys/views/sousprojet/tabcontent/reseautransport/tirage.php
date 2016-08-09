@@ -116,11 +116,11 @@
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-4">
-                <label for="tt_date_tirage">Date de début d’tirage <span class="text-danger">*</span></label>
+                <label for="tt_date_tirage">Date de début tirage <span class="text-danger">*</span></label>
                 <input class="form-control input-lg" type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_tirage:"")?>">
             </div>
             <div class="col-md-4">
-                <label for="tt_date_ret_prevue">Date prévisionnelle de fin d’tirage <span class="text-danger">*</span></label>
+                <label for="tt_date_ret_prevue">Date prévisionnelle de fin tirage <span class="text-danger">*</span></label>
                 <input class="form-control input-lg" type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_ret_prevue:"")?>">
             </div>
             <div class="col-md-4">
