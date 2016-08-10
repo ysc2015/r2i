@@ -65,6 +65,7 @@
             </div>
             <div class="col-md-6">
                 <label for="cctr_ref_commande_acces">Référence Commande Accès <span class="text-danger">*</span></label>
+                <br>
                 <input class="js-tags-input form-control input-lg" type="text" id="cctr_ref_commande_acces" name="cctr_ref_commande_acces" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->ref_commande_acces : "")?>">
             </div>
         </div>

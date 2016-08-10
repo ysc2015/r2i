@@ -684,6 +684,14 @@ var SProjet = function() {
             });
         }
         var init = function() {
+            /*jQuery('.js-tags-input').tagsInput({
+                height: '45px',
+                width: '100%',
+                defaultText: '+',
+                removeWithBackspace: true,
+                delimiter: [',']
+            });*/
+            jQuery('.js-tags-input').tagsinput({});
             if(checkLinears()) {
                 $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                 $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1267,6 +1275,7 @@ var SProjet = function() {
             } );
         }
         var init = function() {
+            jQuery('.js-tags-input').tagsinput({});
             if(checkLinears()) {
                 $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
                 $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-success");

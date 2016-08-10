@@ -65,7 +65,8 @@
             </div>
             <div class="col-md-6">
                 <label for="dcc_ref_commande_acces">Référence Commande Accès <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="dcc_ref_commande_acces" name="dcc_ref_commande_acces" value="<?=($sousprojet_dcmdcdi !== NULL ? $sousprojet_dcmdcdi->ref_commande_acces : "")?>">
+                <br>
+                <input class="js-tags-input form-control" type="text" id="dcc_ref_commande_acces" name="dcc_ref_commande_acces" value="<?=($sousprojet_dcmdcdi !== NULL ? $sousprojet_dcmdcdi->ref_commande_acces : "")?>">
             </div>
         </div>
     </div>
