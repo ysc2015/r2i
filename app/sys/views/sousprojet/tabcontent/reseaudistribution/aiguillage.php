@@ -72,22 +72,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="da_lineaire1">câble 720FO <span class="text-danger">*</span></label>
+                        <label for="da_lineaire1">câble 288FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire1" name="da_lineaire1" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire1:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="ta_lineaire_reseau">câble 432FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire2" name="da_lineaire2" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire2:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="ta_lineaire_reseau">câble 288FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">câble 72FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire3" name="da_lineaire3" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire3:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="ta_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">câble 48FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire4" name="da_lineaire4" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire4:"")?>">
                     </div>
                 </div>
@@ -95,22 +95,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire5" name="da_lineaire5" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire5:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire6" name="da_lineaire6" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire6:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 72FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire7" name="da_lineaire7" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire7:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 48FO <span class="text-danger">*</span></label>
                         <input class="form-control input-lg lineareInput3" type="number" id="da_lineaire8" name="da_lineaire8" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->lineaire8:"")?>">
                     </div>
                 </div>
