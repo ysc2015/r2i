@@ -19,7 +19,7 @@ $insert = false;
 $err = 0;
 $insertedId = 0;
 $message = array();
-$stm = $db->prepare("update projet set ville=:ville,trigramme_dept=:trigramme_dept,code_site_origine=:code_site_origine,type_site_origine=:type_site_origine,taille=:taille,etat_site_origine=:etat_site_origine,date_mad_site_origine=:date_mad_site_origine where id_projet=:id_projet");
+$stm = $db->prepare("update projet set ville_nom=:ville_nom,ville=:ville,trigramme_dept=:trigramme_dept,code_site_origine=:code_site_origine,type_site_origine=:type_site_origine,taille=:taille,etat_site_origine=:etat_site_origine,date_mad_site_origine=:date_mad_site_origine where id_projet=:id_projet");
 
 if(isset($idp) && !empty($idp)){
     $stm->bindParam(':id_projet',$idp);
@@ -29,12 +29,20 @@ if(isset($idp) && !empty($idp)){
     $message[] = "Identifiant projet invalid !";
 }
 
+if(isset($ville_nom) && !empty($ville_nom)){
+    $stm->bindParam(':ville_nom',$ville_nom);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs ville est obligatoire !";
+}
+
 if(isset($ville) && !empty($ville)){
     $stm->bindParam(':ville',$ville);
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs ville est obligatoire !";
+    $message[] = "Le champs département est obligatoire !";
 }
 
 if(isset($trigramme_dept) && !empty($trigramme_dept)){

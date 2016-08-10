@@ -43,9 +43,17 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
+                                            <label for="ville_nom">Ville <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text" id="ville_nom" name="ville_nom">
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <!--<div class="form-material">-->
                                                 <!--<label for="ville">Ville <span class="text-danger">*</span></label>
                                                 <input class="form-control" type="text" id="ville" name="ville">-->
-                                                <label for="ville">Ville <span class="text-danger">*</span></label>
+                                                <label for="ville">Département <span class="text-danger">*</span></label>
                                                 <select class="js-select2 form-control" id="ville" name="ville" size="1" style="width: 100%;" data-placeholder="Séléctionner départ/ville..">
                                                     <option value="00">&nbsp;</option>
                                                     <?php
@@ -308,6 +316,7 @@
                             url: "api/projet/projet_add.php",
                             async: false,
                             data: {
+                                ville_nom: $("#ville_nom").val(),
                                 ville: $("#ville").val(),
                                 trigramme_dept: ($("#dept").val()=="" ? "":('PLA' + $("#ville").val() + '_' + $("#dept").val())),
                                 code_site_origine: $("#code_site_origine").val(),

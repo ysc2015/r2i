@@ -13,6 +13,7 @@ $table = array("projet as t1","select_site_origine_type as t2","select_site_orig
 $columns = array(
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
     array( "db" => "t1.id_chef_projet", "dt" => 'id_chef_projet' ),
+    array( "db" => "t1.ville_nom", "dt" => 'ville_nom' ),
     array( "db" => "t1.ville", "dt" => 'ville' ),
     array( "db" => "t4.nom_ville", "dt" => 'nom_ville' ),
     array( "db" => "t1.trigramme_dept", "dt" => 'trigramme_dept' ),
