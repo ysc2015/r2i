@@ -55,15 +55,6 @@
             </div>
         </div>
     </div>
-    <!--<div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-                <div class="col-xs-3">
-                    <label for="ta_lineaire_reseau">Linéaire de réseau <span class="text-danger">*</span></label>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div class="row">
         <div class="col-sm-12">
             <button id="id_lineaire_distribution_aiguillage_btn" class="btn btn-danger" type="button"><i id="hdfd0454ff" class="fa fa-plus push-5-r"></i> Linéaire de réseau</button>
@@ -117,6 +108,7 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
