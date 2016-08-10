@@ -4,25 +4,25 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="dep">Département <span class="text-danger">*</span></label>
-            <input class="form-control input-lg" type="text" id="dep" name="dep" readonly="" value="<?=$sousprojet->dep?>">
+            <input class="form-control " type="text" id="dep" name="dep" readonly="" value="<?=$sousprojet->dep?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="ville">Ville <span class="text-danger">*</span></label>
-            <input class="form-control input-lg" type="text" id="ville" name="ville" readonly="" value="<?=$sousprojet->ville?>">
+            <input class="form-control " type="text" id="ville" name="ville" readonly="" value="<?=$sousprojet->ville?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="plaque">Plaque <span class="text-danger">*</span></label>
-            <input class="form-control input-lg" type="text" id="plaque" name="plaque" readonly="" value="<?=$sousprojet->plaque?>">
+            <input class="form-control " type="text" id="plaque" name="plaque" readonly="" value="<?=$sousprojet->plaque?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
             <label for="zone">Zone <span class="text-danger">*</span></label>
-            <input class="form-control input-lg" type="text" id="zone" name="zone" value="<?=$sousprojet->zone?>">
+            <input class="form-control " type="text" id="zone" name="zone" value="<?=$sousprojet->zone?>">
         </div>
     </div>
     <div class="alert alert-success" id="message_infozone_nom" role="alert" style="display: none;">

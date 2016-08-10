@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dd_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dd_intervenant_be" name="dd_intervenant_be">
+                <select class="form-control " id="dd_intervenant_be" name="dd_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dd_intervenant_bex">Intervenant BEX <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dd_intervenant_bex" name="dd_intervenant_bex">
+                <select class="form-control " id="dd_intervenant_bex" name="dd_intervenant_bex">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -37,11 +37,11 @@
             </div>
             <div class="col-md-3">
                 <label for="dd_date_debut">Date de Début <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dd_date_debut" name="dd_date_debut" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_debut : "")?>">
+                <input class="form-control " type="date" id="dd_date_debut" name="dd_date_debut" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_debut : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dd_date_fin">Date de Fin <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dd_date_fin" name="dd_date_fin" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_fin : "")?>">
+                <input class="form-control " type="date" id="dd_date_fin" name="dd_date_fin" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_fin : "")?>">
             </div>
         </div>
     </div>
@@ -49,15 +49,15 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dd_duree">Durée(jours) <span class="text-danger">*</span></label>
-                <input readonly class="form-control input-lg" type="text" id="dd_duree" name="dd_duree" value="<?=($sousprojet_ddesign !== NULL?$sousprojet_ddesign->duree:"")?>">
+                <input readonly class="form-control " type="text" id="dd_duree" name="dd_duree" value="<?=($sousprojet_ddesign !== NULL?$sousprojet_ddesign->duree:"")?>">
             </div>
             <div class="col-md-3">
                 <label for="dd_lineaire_distribution">Linéaire Distribution <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="number" id="dd_lineaire_distribution" name="dd_lineaire_distribution" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->lineaire_distribution : "")?>">
+                <input class="form-control " type="number" id="dd_lineaire_distribution" name="dd_lineaire_distribution" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->lineaire_distribution : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dd_etat">Etat <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dd_etat" name="dd_etat">
+                <select class="form-control " id="dd_etat" name="dd_etat">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectEtatDesign::all();
@@ -69,7 +69,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dd_date_envoi">Date envoi <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dd_date_envoi" name="dd_date_envoi" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_envoi : "")?>">
+                <input class="form-control " type="date" id="dd_date_envoi" name="dd_date_envoi" value="<?=($sousprojet_ddesign !== NULL ? $sousprojet_ddesign->date_envoi : "")?>">
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dd_ok">OK <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dd_ok" name="dd_ok">
+                <select class="form-control " id="dd_ok" name="dd_ok">
                     <option value="" selected="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectOk::all();

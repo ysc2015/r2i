@@ -1192,7 +1192,9 @@ var App = function() {
                 uiBlocksApi(jQuery(this).parents('.block'), jQuery(this).data('action'));
             });
 
-            //console.log('new modifications');
+            console.log('new modifications');
+            //$("#rdistribution_block_btn").trigger('click');
+            //$("#draccordements_href").trigger('click');
         },
         layout: function($mode) {
             uiLayoutApi($mode);

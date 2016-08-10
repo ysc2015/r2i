@@ -1789,6 +1789,7 @@ var SProjet = function() {
             $.when(infozone.done,gestionplaque.done,preparationplaque.done,reseautransport.done,reseaudistribution.done).then(function () {
                 console.log('all forms loaded successfully');
                 //code here
+                //$("#draccordements_href").trigger('click');
                 /*$("#rdistribution_block_btn").trigger('click');
                 $("#draccordements_href").trigger('click');*/
 
@@ -1798,6 +1799,8 @@ var SProjet = function() {
                     console.log(hash);
                     App.activaTab('draccordements_href');
                 }*/
+
+                //$("#draccordements_href").trigger('click');
             });
 
             var obj = JSON.parse(msg);

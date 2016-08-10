@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="drec_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="drec_intervenant_be" name="drec_intervenant_be">
+                <select class="form-control " id="drec_intervenant_be" name="drec_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-3">
                 <label for="drec_doe">DOE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="drec_doe" name="drec_doe">
+                <select class="form-control " id="drec_doe" name="drec_doe">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-3">
                 <label for="drec_netgeo">Netgeo <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="drec_netgeo" name="drec_netgeo">
+                <select class="form-control " id="drec_netgeo" name="drec_netgeo">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-3">
                 <label for="drec_intervenant_free">Intervenant FREE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="drec_intervenant_free" name="drec_intervenant_free">
+                <select class="form-control " id="drec_intervenant_free" name="drec_intervenant_free">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -65,7 +65,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="drec_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="drec_entreprise" name="drec_entreprise">
+                <select class="form-control " id="drec_entreprise" name="drec_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
@@ -77,11 +77,11 @@
             </div>
             <div class="col-md-3">
                 <label for="drec_date_recette">Date de Recette <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="drec_date_recette" name="drec_date_recette" value="<?=($sousprojet_drecette !== NULL ? $sousprojet_drecette->date_recette : "")?>">
+                <input class="form-control " type="date" id="drec_date_recette" name="drec_date_recette" value="<?=($sousprojet_drecette !== NULL ? $sousprojet_drecette->date_recette : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="drec_etat_recette">Etat Recette <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="drec_etat_recette" name="drec_etat_recette">
+                <select class="form-control " id="drec_etat_recette" name="drec_etat_recette">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectEtatRecette::all();

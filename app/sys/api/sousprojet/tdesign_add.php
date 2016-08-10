@@ -132,7 +132,7 @@ if($insert == true && $err == 0){
 
         if($td_ok == 1) {//ok validated design
             //subject
-            $subject = "validation transport design";
+            $subject = "[DESIGN CTR] CODE_SITE _ORIGINE – NUMSOUSPROJET";
 
             //mail content
             ob_start();
@@ -141,7 +141,7 @@ if($insert == true && $err == 0){
             ob_end_clean();
 
             //users to
-            $receipients = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 5)));
+            $receipients = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 5)));//vpi
 
             $to = array();
             //$to[] = "bitlord1980@gmail.com";

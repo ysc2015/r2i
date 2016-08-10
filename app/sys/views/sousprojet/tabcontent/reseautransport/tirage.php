@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="tt_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="tt_intervenant_be" name="tt_intervenant_be">
+                <select class="form-control " id="tt_intervenant_be" name="tt_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-3">
                 <label for="tt_plans">Plans <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="tt_plans" name="tt_plans">
+                <select class="form-control " id="tt_plans" name="tt_plans">
                     <option value="" selected="" disabled="">Sélectionnez état plans</option>
                     <?php
                     $results = SelectEtatPlan::all();
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-3">
                 <label for="tt_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="tt_controle_plans" name="tt_controle_plans">
+                <select class="form-control " id="tt_controle_plans" name="tt_controle_plans">
                     <option value="" selected="" disabled="">Sélectionnez type controle</option>
                     <?php
                     $results = SelectControlePlan::all();
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-3">
                 <label for="tt_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="tt_date_transmission_plans" name="tt_date_transmission_plans" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_transmission_plans:"")?>">
+                <input class="form-control " type="date" id="tt_date_transmission_plans" name="tt_date_transmission_plans" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_transmission_plans:"")?>">
             </div>
         </div>
     </div>
@@ -61,22 +61,22 @@
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="tt_lineaire1">câble 720FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire1" name="tt_lineaire1" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire1:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire1" name="tt_lineaire1" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire1:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="tt_lineaire_reseau">câble 432FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire2" name="tt_lineaire2" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire2:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire2" name="tt_lineaire2" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire2:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="tt_lineaire_reseau">câble 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire3" name="tt_lineaire3" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire3:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire3" name="tt_lineaire3" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire3:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="tt_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire4" name="tt_lineaire4" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire4:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire4" name="tt_lineaire4" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire4:"")?>">
                 </div>
             </div>
             <label><span class="label label-warning">Boites </span></label>
@@ -84,22 +84,22 @@
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire5" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire5:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire5" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire5:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire6" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire6:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire6" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire6:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire7" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire7:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire7" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire7:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire8:"")?>">
+                    <input class="form-control  lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire8:"")?>">
                 </div>
             </div>
         </div>
@@ -109,15 +109,15 @@
         <div class="form-group">
             <div class="col-md-4">
                 <label for="tt_date_tirage">Date de début tirage <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_tirage:"")?>">
+                <input class="form-control " type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_tirage:"")?>">
             </div>
             <div class="col-md-4">
                 <label for="tt_date_ret_prevue">Date prévisionnelle de fin tirage <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_ret_prevue:"")?>">
+                <input class="form-control " type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_ret_prevue:"")?>">
             </div>
             <div class="col-md-4">
                 <label for="tt_duree">Durée(jours) <span class="text-danger">*</span></label>
-                <input readonly class="form-control input-lg" type="text" id="tt_duree" name="tt_duree" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->duree:"")?>">
+                <input readonly class="form-control " type="text" id="tt_duree" name="tt_duree" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->duree:"")?>">
             </div>
         </div>
     </div>
@@ -125,7 +125,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="tt_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="tt_entreprise" name="tt_entreprise">
+                <select class="form-control " id="tt_entreprise" name="tt_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
@@ -137,7 +137,7 @@
             </div>
             <div class="col-md-3">
                 <label for="tt_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="tt_controle_demarrage_effectif" name="tt_controle_demarrage_effectif">
+                <select class="form-control " id="tt_controle_demarrage_effectif" name="tt_controle_demarrage_effectif">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectControleDemarrageEffectif::all();
@@ -149,11 +149,11 @@
             </div>
             <div class="col-md-3">
                 <label for="tt_date_retour">Date Retour <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="tt_date_retour" name="tt_date_retour" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_retour:"")?>">
+                <input class="form-control " type="date" id="tt_date_retour" name="tt_date_retour" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->date_retour:"")?>">
             </div>
             <div class="col-md-3">
                 <label for="tt_etat_retour">Etat Retour <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="tt_etat_retour" name="tt_etat_retour">
+                <select class="form-control " id="tt_etat_retour" name="tt_etat_retour">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectEtatRetour::all();

@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dr_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_intervenant_be" name="dr_intervenant_be">
+                <select class="form-control " id="dr_intervenant_be" name="dr_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dr_preparation_pds">Préparation PDS <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_preparation_pds" name="dr_preparation_pds">
+                <select class="form-control " id="dr_preparation_pds" name="dr_preparation_pds">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dr_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_controle_plans" name="dr_controle_plans">
+                <select class="form-control " id="dr_controle_plans" name="dr_controle_plans">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectControlePlan::all();
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dr_date_transmission_pds">Date Transmission PDS <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_transmission_pds : "")?>">
+                <input class="form-control " type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_transmission_pds : "")?>">
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dr_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_entreprise" name="dr_entreprise">
+                <select class="form-control " id="dr_entreprise" name="dr_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
@@ -69,15 +69,15 @@
             </div>
             <div class="col-md-3">
                 <label for="dr_date_racco">Date Racco <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_racco : "")?>">
+                <input class="form-control " type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_racco : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dr_duree">Durée <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="number" id="dr_duree" name="dr_duree" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->duree : "")?>">
+                <input class="form-control " type="number" id="dr_duree" name="dr_duree" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->duree : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dr_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_controle_demarrage_effectif" name="dr_controle_demarrage_effectif">
+                <select class="form-control " id="dr_controle_demarrage_effectif" name="dr_controle_demarrage_effectif">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectControleDemarrageEffectif::all();
@@ -93,11 +93,11 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dr_date_retour">Date Retour <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dr_date_retour" name="dr_date_retour" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_retour : "")?>">
+                <input class="form-control " type="date" id="dr_date_retour" name="dr_date_retour" value="<?=($sousprojet_drac !== NULL ? $sousprojet_drac->date_retour : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dr_etat_retour">Etat Retour <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_etat_retour" name="dr_etat_retour">
+                <select class="form-control " id="dr_etat_retour" name="dr_etat_retour">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectEtatRetour::all();
@@ -109,7 +109,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dr_ok">OK <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dr_ok" name="dr_ok">
+                <select class="form-control " id="dr_ok" name="dr_ok">
                     <option value="" selected="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectOk::all();
