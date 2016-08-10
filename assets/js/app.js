@@ -117,9 +117,6 @@ var App = function() {
                     break;
                 }
             }
-
-            // Change hash for page-reload
-            window.location.hash = e.target.hash;
         });
     };
 
