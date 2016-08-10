@@ -46,6 +46,7 @@
     var dt;
     var idp;
     var ide;
+    var equipe;
     var btns = ["#add_equipe_show",
         "#update_project_show",
         "#delete_project"];
@@ -56,7 +57,7 @@
             console.log($(this).attr('id'));
             ide = $(this).attr('id');
 
-            /*$.ajax({
+            $.ajax({
                 method: "POST",
                 url: "api/entreprise/get_equipe_by_id.php",
                 data: {
@@ -64,8 +65,16 @@
                 }
             }).done(function (msg) {
                 var obj = JSON.parse(msg);
-                console.log(obj);
-            });*/
+                equipe = obj.equipe;
+                console.log(equipe);
+
+                //
+                $("#equipe_update_imei").val(equipe.imei);
+                $("#equipe_update_nom").val(equipe.nom);
+                $("#equipe_update_prenom").val(equipe.prenom);
+                $("#equipe_update_tel").val(equipe.tel);
+                $("#equipe_update_mail").val(equipe.mail);
+            });
         });
 
 

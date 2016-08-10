@@ -6,8 +6,6 @@
 
 extract($_POST);
 
-$stmt = $db->query("SELECT * FROM equipe_stt WHERE id_equipe_stt=:id_equipe_stt");
-$stmt->bindParam(':id_equipe_stt',$idp);
-$rows =$stmt->fetchAll();
+$equipe = EquipeSTT::first(array('conditions' => array("id_equipe_stt = ?", $idp)));
 
-echo json_encode(array("equipe" => $rows));
+echo json_encode(array("equipe" => $equipe->to_array()));

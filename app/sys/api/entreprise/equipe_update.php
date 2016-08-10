@@ -56,20 +56,21 @@ if(isset($tel) && !empty($tel)){
 }
 
 if(isset($mail) && !empty($mail)){
-    $stm->bindParam(':mail',$mail);
-    $insert = true;
+    if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {//is valid
+        $stm->bindParam(':mail',$mail);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs email n'est pas valid !";
+    }
 } else {
     $err++;
-    $message[] = "Le champs mail est obligatoire !";
+    $message[] = "Le champs email est obligatoire !";
 }
 
 
 if($insert == true && $err == 0){
     if($stm->execute()){
-        /*$stmt = $db->query("SELECT * FROM equipe_stt WHERE id_equipe_stt=:id_equipe_stt");
-        $stmt->bindParam(':id_equipe_stt',$idp);
-        $row =$stmt->fetchObject();
-        $id = $row->id_entreprise_stt;*/
         $message [] = "Modification faite avec succès";
     } else {
         $message [] = $stm->errorInfo();
