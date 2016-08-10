@@ -12,7 +12,7 @@ $insertedId = 0;
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet_distribution_tirage (id_sous_projet,intervenant_be,date_previsionnelle,prep_plans,lineaire1,lineaire2,lineaire3,lineaire4,lineaire5,lineaire6,lineaire7,lineaire8,controle_plans,date_transmission_plans,id_entreprise,date_tirage,duree,controle_demarrage_effectif,date_retour,etat_retour,ok) values (:id_sous_projet,:intervenant_be,:date_previsionnelle,:prep_plans,lineaire1,lineaire2,lineaire3,lineaire4,lineaire5,lineaire6,lineaire7,lineaire8,:controle_plans,:date_transmission_plans,:id_entreprise,:date_tirage,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:ok)");
+$stm = $db->prepare("insert into sous_projet_distribution_tirage (id_sous_projet,intervenant_be,date_previsionnelle,prep_plans,lineaire1,lineaire2,lineaire3,lineaire4,lineaire5,lineaire6,lineaire7,lineaire8,controle_plans,date_transmission_plans,id_entreprise,date_tirage,duree,controle_demarrage_effectif,date_retour,etat_retour,ok) values (:id_sous_projet,:intervenant_be,:date_previsionnelle,:prep_plans,:lineaire1,:lineaire2,:lineaire3,:lineaire4,:lineaire5,:lineaire6,:lineaire7,:lineaire8,:controle_plans,:date_transmission_plans,:id_entreprise,:date_tirage,:duree,:controle_demarrage_effectif,:date_retour,:etat_retour,:ok)");
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);

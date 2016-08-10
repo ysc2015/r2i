@@ -53,15 +53,6 @@
             </div>
         </div>
     </div>
-    <!--<div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-                <div class="col-xs-3">
-                    <label for="ta_lineaire_reseau">Linéaire de réseau <span class="text-danger">*</span></label>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div class="row items-push">
         <button id="id_lineaire_transport_aiguillage_btn" class="btn btn-danger" type="button"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Linéaire de réseau</button>
         <div id="lineare_groupe" style="border-left: dashed 1px #000;border-right: dashed 1px #000;border-bottom: dashed 1px #000;margin-top: 5px;padding: 5px;display: none">
@@ -113,6 +104,7 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-4">
@@ -212,7 +204,7 @@
 
                     echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
                 } else {
-                    echo "  <button id=\"id_sous_projet_transport_aiguillage_create_ot_show\" class=\"btn btn-warning\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
+                    echo "  <button id=\"id_sous_projet_transport_aiguillage_create_ot_show\" class=\"btn btn-info\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
                 }
             }
             ?>
