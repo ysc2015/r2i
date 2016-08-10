@@ -1,15 +1,15 @@
 <?php $sousprojet_taiguillage = SousProjetTransportAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="form-horizontal push-10-t push-10">
-    <?php if($sousprojet_taiguillage !== NULL) {?>
-        <input type="hidden" id="id_sous_projet_transport_aiguillage" name="id_sous_projet_transport_aiguillage" value="<?=$sousprojet_taiguillage->id_sous_projet?>">
-    <?php } else {?>
-        <div class="row">
-            <div id="id_sous_projet_transport_aiguillage_alert" class="col-md-3">
-                <span class="label label-warning">Aucune entrée transport aiguillage crée !</span>
-            </div>
-        </div>
-    <?php }?>
     <div class="row items-push">
+        <?php if($sousprojet_taiguillage !== NULL) {?>
+            <input type="hidden" id="id_sous_projet_transport_aiguillage" name="id_sous_projet_transport_aiguillage" value="<?=$sousprojet_taiguillage->id_sous_projet?>">
+        <?php } else {?>
+            <div class="row">
+                <div id="id_sous_projet_transport_aiguillage_alert" class="col-md-3">
+                    <span class="label label-warning">Aucune entrée transport aiguillage crée !</span>
+                </div>
+            </div>
+        <?php }?>
         <div class="form-group">
             <div class="col-md-3">
                 <label for="ta_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
