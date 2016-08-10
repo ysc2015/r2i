@@ -95,7 +95,7 @@ if(isset($sa_duree) && !empty($sa_duree)){
     $message[] = "Le champs Durée est obligatoire !";
 }
 
-if(isset($sa_ok) && !empty($sa_ok)){
+if(isset($sa_ok) /*&& !empty($sa_ok)*/){
     $stm->bindParam(':ok',$sa_ok);
     $insert = true;
 } else {
