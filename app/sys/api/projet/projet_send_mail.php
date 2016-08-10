@@ -24,7 +24,7 @@ if(isset($idp) && !empty($idp)){
     $projet = $stm->fetch(PDO::FETCH_OBJ);
     //$message[] = $projet->ville;
 
-    $subject = "Lancement Projet d’étude Plaque PON FTTH ".$projet->code_site_origine." ".$projet->nom_ville;
+    $subject = "Lancement Projet d’étude Plaque PON FTTH ".$projet->code_site_origine." ".$projet->ville_nom;
 
     $html .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
     $html .='<html>';
