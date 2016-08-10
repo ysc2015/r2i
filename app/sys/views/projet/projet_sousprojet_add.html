@@ -4,7 +4,7 @@
     $(document).ready(function() {
         $("#add_sub_project_show").click(function() {
             $("#sousprojet_dep").val(dt.row('.selected').data().ville);//dt.row('.selected').data().trigramme_dept[3]
-            $("#sousprojet_ville").val(dt.row('.selected').data().nom_ville);
+            $("#sousprojet_ville").val(dt.row('.selected').data().ville_nom);
             $("#sousprojet_plaque").val(dt.row('.selected').data().trigramme_dept);
         });
     } );

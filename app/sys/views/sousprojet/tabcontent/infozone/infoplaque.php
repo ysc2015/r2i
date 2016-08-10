@@ -12,7 +12,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="phase">Phase <span class="text-danger">*</span></label>
-            <select class="form-control" id="phase" name="phase">
+            <select class="form-control input-lg" id="phase" name="phase">
                 <option value="" selected="" disabled="">Sélectionnez une phase</option>
                 <?php
                 $results = SelectPlaquePhase::all();
@@ -26,7 +26,7 @@
     <div class="form-group">
         <div class="col-md-3">
             <label for="type">Type <span class="text-danger">*</span></label>
-            <select class="form-control" id="type" name="type">
+            <select class="form-control input-lg" id="type" name="type">
                 <option value="" selected="" disabled="">Sélectionnez un type</option>
                 <?php
                 $results = SelectPlaqueType::all();
