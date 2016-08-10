@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dt_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_intervenant_be" name="dt_intervenant_be">
+                <select class="form-control " id="dt_intervenant_be" name="dt_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,11 +25,11 @@
             </div>
             <div class="col-md-3">
                 <label for="dt_date_previsionnelle">Date Previsionnelle <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dt_date_previsionnelle" name="dt_date_previsionnelle" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_previsionnelle : "")?>">
+                <input class="form-control " type="date" id="dt_date_previsionnelle" name="dt_date_previsionnelle" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_previsionnelle : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dt_prep_plans">Préparation des plans <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_prep_plans" name="dt_prep_plans">
+                <select class="form-control " id="dt_prep_plans" name="dt_prep_plans">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dt_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_controle_plans" name="dt_controle_plans">
+                <select class="form-control " id="dt_controle_plans" name="dt_controle_plans">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectControlePlan::all();
@@ -61,22 +61,22 @@
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="dt_lineaire1">câble 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire1" name="dt_lineaire1" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire1:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire1" name="dt_lineaire1" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire1:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="dt_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire2" name="dt_lineaire2" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire2:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire2" name="dt_lineaire2" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire2:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="dt_lineaire_reseau">câble 72FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire3" name="dt_lineaire3" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire3:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire3" name="dt_lineaire3" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire3:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="dt_lineaire_reseau">câble 48FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire4" name="dt_lineaire4" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire4:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire4" name="dt_lineaire4" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire4:"")?>">
                 </div>
             </div>
             <label><span class="label label-warning">Boites </span></label>
@@ -84,22 +84,22 @@
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="dt_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire5" name="dt_lineaire5" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire5:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire5" name="dt_lineaire5" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire5:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="dt_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire6" name="dt_lineaire6" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire6:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire6" name="dt_lineaire6" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire6:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="dt_lineaire_reseau">BPE 72FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire7" name="dt_lineaire7" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire7:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire7" name="dt_lineaire7" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire7:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="dt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="dt_lineaire_reseau">BPE 48FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput4" type="number" id="dt_lineaire8" name="dt_lineaire8" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire8:"")?>">
+                    <input class="form-control  lineareInput4" type="number" id="dt_lineaire8" name="dt_lineaire8" value="<?=($sousprojet_dtirage !== NULL?$sousprojet_dtirage->lineaire8:"")?>">
                 </div>
             </div>
         </div>
@@ -109,11 +109,11 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dt_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_transmission_plans : "")?>">
+                <input class="form-control " type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_transmission_plans : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dt_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_entreprise" name="dt_entreprise">
+                <select class="form-control " id="dt_entreprise" name="dt_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
@@ -125,11 +125,11 @@
             </div>
             <div class="col-md-3">
                 <label for="dt_date_tirage">Date Tirage <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_tirage : "")?>">
+                <input class="form-control " type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_tirage : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dt_duree">Durée(jours) <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="number" id="dt_duree" name="dt_duree" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->duree : "")?>">
+                <input class="form-control " type="number" id="dt_duree" name="dt_duree" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->duree : "")?>">
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="dt_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_controle_demarrage_effectif" name="dt_controle_demarrage_effectif">
+                <select class="form-control " id="dt_controle_demarrage_effectif" name="dt_controle_demarrage_effectif">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectControleDemarrageEffectif::all();
@@ -149,11 +149,11 @@
             </div>
             <div class="col-md-3">
                 <label for="dt_date_retour">Date Retour <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="dt_date_retour" name="dt_date_retour" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_retour : "")?>">
+                <input class="form-control " type="date" id="dt_date_retour" name="dt_date_retour" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_retour : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="dt_etat_retour">Etat Retour <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_etat_retour" name="dt_etat_retour">
+                <select class="form-control " id="dt_etat_retour" name="dt_etat_retour">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectEtatRetour::all();
@@ -165,7 +165,7 @@
             </div>
             <div class="col-md-3">
                 <label for="dt_ok">OK <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="dt_ok" name="dt_ok">
+                <select class="form-control " id="dt_ok" name="dt_ok">
                     <option value="" selected="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectOk::all();

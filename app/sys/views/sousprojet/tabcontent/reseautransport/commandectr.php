@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="cctr_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="cctr_intervenant_be" name="cctr_intervenant_be">
+                <select class="form-control " id="cctr_intervenant_be" name="cctr_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,15 +25,15 @@
             </div>
             <div class="col-md-3">
                 <label for="cctr_date_butoir">Date butoire traitement retour Aig <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="cctr_date_butoir" name="cctr_date_butoir" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->date_butoir : "")?>">
+                <input class="form-control " type="date" id="cctr_date_butoir" name="cctr_date_butoir" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->date_butoir : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="cctr_traitement_retour_terrain">Traitement Retours terrain <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="cctr_traitement_retour_terrain" name="cctr_traitement_retour_terrain" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->traitement_retour_terrain : "")?>">
+                <input class="form-control " type="date" id="cctr_traitement_retour_terrain" name="cctr_traitement_retour_terrain" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->traitement_retour_terrain : "")?>">
             </div>
             <div class="col-md-3">
                 <label for="cctr_modification_carto">Modification Carto <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="cctr_modification_carto" name="cctr_modification_carto">
+                <select class="form-control " id="cctr_modification_carto" name="cctr_modification_carto">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectModificationCarto::all();
@@ -49,7 +49,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="cctr_commandes_acces">Commande Accès <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="cctr_commandes_acces" name="cctr_commandes_acces">
+                <select class="form-control " id="cctr_commandes_acces" name="cctr_commandes_acces">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectCommandeAcces::all();
@@ -61,12 +61,12 @@
             </div>
             <div class="col-md-3">
                 <label for="cctr_date_transmission_ca">Date Transmission CA <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="cctr_date_transmission_ca" name="cctr_date_transmission_ca" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->date_transmission_ca : "")?>">
+                <input class="form-control " type="date" id="cctr_date_transmission_ca" name="cctr_date_transmission_ca" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->date_transmission_ca : "")?>">
             </div>
             <div class="col-md-6">
                 <label for="cctr_ref_commande_acces">Référence Commande Accès <span class="text-danger">*</span></label>
                 <br>
-                <input class="js-tags-input form-control input-lg" type="text" id="cctr_ref_commande_acces" name="cctr_ref_commande_acces" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->ref_commande_acces : "")?>">
+                <input class="js-tags-input form-control " type="text" id="cctr_ref_commande_acces" name="cctr_ref_commande_acces" value="<?=($sousprojet_tcommandectr !== NULL ? $sousprojet_tcommandectr->ref_commande_acces : "")?>">
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="cctr_go_ft">GO FT <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="cctr_go_ft" name="cctr_go_ft">
+                <select class="form-control " id="cctr_go_ft" name="cctr_go_ft">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectGoFt::all();
@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-3">
                 <label for="cctr_ok">OK <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="cctr_ok" name="cctr_ok">
+                <select class="form-control " id="cctr_ok" name="cctr_ok">
                     <option value="" selected="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectOk::all();

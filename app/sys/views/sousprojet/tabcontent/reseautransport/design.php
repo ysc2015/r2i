@@ -13,7 +13,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="td_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="td_intervenant_be" name="td_intervenant_be">
+                <select class="form-control " id="td_intervenant_be" name="td_intervenant_be">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-3">
                 <label for="td_valideur_bei">Valideur BEI <span class="text-danger">*</span></label>
-                <select class="form-control input-lg" id="td_valideur_bei" name="td_valideur_bei">
+                <select class="form-control " id="td_valideur_bei" name="td_valideur_bei">
                     <option value="0" selected="">Sélectionnez un utilisateur</option>
                     <?php
                     $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
@@ -37,11 +37,11 @@
             </div>
             <div class="col-md-3">
                 <label for="td_date_debut">Date de Début <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="td_date_debut" name="td_date_debut" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_debut:"")?>">
+                <input class="form-control " type="date" id="td_date_debut" name="td_date_debut" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_debut:"")?>">
             </div>
             <div class="col-md-3">
                 <label for="td_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="date" id="td_date_ret_prevue" name="td_date_ret_prevue" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_ret_prevue:"")?>">
+                <input class="form-control " type="date" id="td_date_ret_prevue" name="td_date_ret_prevue" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->date_ret_prevue:"")?>">
             </div>
         </div>
     </div>
@@ -49,19 +49,19 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label for="td_duree">Durée(jours) <span class="text-danger">*</span></label>
-                <input readonly class="form-control input-lg" type="text" id="td_duree" name="td_duree" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->duree:"")?>">
+                <input readonly class="form-control " type="text" id="td_duree" name="td_duree" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->duree:"")?>">
             </div>
             <div class="col-md-3">
                 <label for="td_lineaire_transport">Linéaire Transport <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="number" id="td_lineaire_transport" name="td_lineaire_transport" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->lineaire_transport:"")?>">
+                <input class="form-control " type="number" id="td_lineaire_transport" name="td_lineaire_transport" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->lineaire_transport:"")?>">
             </div>
             <div class="col-md-3">
                 <label for="td_nb_zones">Nbe Zones <span class="text-danger">*</span></label>
-                <input class="form-control input-lg" type="number" id="td_nb_zones" name="td_nb_zones" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->nb_zones:"")?>">
+                <input class="form-control " type="number" id="td_nb_zones" name="td_nb_zones" value="<?=($sousprojet_tdesign !== NULL?$sousprojet_tdesign->nb_zones:"")?>">
             </div>
             <div class="col-md-3">
                 <label for="td_ok">OK <span class="text-danger">*</span></label>
-                <select <?= (($sousprojet_tdesign==NULL || ($sousprojet_tdesign!==NULL && $connectedProfil->id_utilisateur !== $sousprojet_tdesign->valideur_bei)) ? "disabled ":" ") ?>class="form-control input-lg" id="td_ok" name="td_ok">
+                <select <?= (($sousprojet_tdesign==NULL || ($sousprojet_tdesign!==NULL && $connectedProfil->id_utilisateur !== $sousprojet_tdesign->valideur_bei)) ? "disabled ":" ") ?>class="form-control " id="td_ok" name="td_ok">
                     <option value="" selected="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectOk::all();
