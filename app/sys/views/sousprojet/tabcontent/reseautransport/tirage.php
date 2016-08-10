@@ -1,15 +1,15 @@
 <?php $sousprojet_ttirage = SousProjetTransportTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="form-horizontal push-10-t push-10">
-    <?php if($sousprojet_ttirage !== NULL) {?>
-        <input type="hidden" id="id_sous_projet_transport_tirage" name="id_sous_projet_transport_tirage" value="<?=$sousprojet_ttirage->id_sous_projet?>">
-    <?php } else {?>
-        <div class="row">
-            <div id="id_sous_projet_transport_tirage_alert" class="col-md-3">
-                <span class="label label-warning">Aucune entrée transport tirage crée !</span>
-            </div>
-        </div>
-    <?php }?>
     <div class="row items-push">
+        <?php if($sousprojet_ttirage !== NULL) {?>
+            <input type="hidden" id="id_sous_projet_transport_tirage" name="id_sous_projet_transport_tirage" value="<?=$sousprojet_ttirage->id_sous_projet?>">
+        <?php } else {?>
+            <div class="row items-push">
+                <div id="id_sous_projet_transport_tirage_alert" class="col-md-3">
+                    <span class="label label-warning">Aucune entrée transport tirage crée !</span>
+                </div>
+            </div>
+        <?php }?>
         <div class="form-group">
             <div class="col-md-3">
                 <label for="tt_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
@@ -93,22 +93,22 @@
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire1" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire1:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire1" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire5:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire2" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire2:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire2" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire6:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire3" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire3:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire3" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire7:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire4" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire4:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire4" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire8:"")?>">
                 </div>
             </div>
         </div>

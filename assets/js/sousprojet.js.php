@@ -1324,15 +1324,15 @@ var SProjet = function() {
             });
             $("#id_lineaire_distribution_tirage_btn").click(function () {
 
-                console.log('clicked');
-                if ( $( "#tt_lineare_groupe" ).is( ":hidden" ) ) {
-                    $("#hdf04l54ff").removeClass("fa-plus");
-                    $("#hdf04l54ff").addClass("fa-minus");
-                    $( "#tt_lineare_groupe" ).show( "fast" );
+                console.log('clickedsss');
+                if ( $( "#dt_lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdfh04l54ff").removeClass("fa-plus");
+                    $("#hdfh04l54ff").addClass("fa-minus");
+                    $( "#dt_lineare_groupe" ).show( "fast" );
                 } else {
-                    $( "#tt_lineare_groupe" ).slideUp();
-                    $("#hdf04l54ff").removeClass("fa-minus");
-                    $("#hdf04l54ff").addClass("fa-plus");
+                    $( "#dt_lineare_groupe" ).slideUp();
+                    $("#hdfh04l54ff").removeClass("fa-minus");
+                    $("#hdfh04l54ff").addClass("fa-plus");
                 }
             });
             $("#id_sous_projet_distribution_design_btn").click(function () {
@@ -1457,6 +1457,14 @@ var SProjet = function() {
                         dt_intervenant_be: $('#dt_intervenant_be').val(),
                         dt_date_previsionnelle: $('#dt_date_previsionnelle').val(),
                         dt_prep_plans: $('#dt_prep_plans').val(),
+                        lineaire1: $('#dt_lineaire1').val(),
+                        lineaire2: $('#dt_lineaire2').val(),
+                        lineaire3: $('#dt_lineaire3').val(),
+                        lineaire4: $('#dt_lineaire4').val(),
+                        lineaire5: $('#dt_lineaire5').val(),
+                        lineaire6: $('#dt_lineaire6').val(),
+                        lineaire7: $('#dt_lineaire7').val(),
+                        lineaire8: $('#dt_lineaire8').val(),
                         dt_controle_plans: $('#dt_controle_plans').val(),
                         dt_date_transmission_plans: $('#dt_date_transmission_plans').val(),
                         dt_entreprise: $('#dt_entreprise').val(),
@@ -1654,6 +1662,79 @@ var SProjet = function() {
                 } else {
                     $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-success");
                     $("#id_lineaire_distribution_aiguillage_btn").addClass("btn-danger");
+                }
+            });
+
+            $('#dt_lineaire1').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire2').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire3').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire4').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire5').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire6').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire7').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
+                }
+            });
+            $('#dt_lineaire8').on('input', function() {
+                if(checkLinears2()) {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-danger");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-success");
+                } else {
+                    $("#id_lineaire_distribution_tirage_btn").removeClass("btn-success");
+                    $("#id_lineaire_distribution_tirage_btn").addClass("btn-danger");
                 }
             });
         }
