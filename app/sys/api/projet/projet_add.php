@@ -19,14 +19,22 @@ $insert = false;
 $err = 0;
 $insertedId = 0;
 $message = array();
-$stm = $db->prepare("insert into projet (ville,trigramme_dept,code_site_origine,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:ville,:trigramme_dept,:code_site_origine,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
+$stm = $db->prepare("insert into projet (ville_nom,ville,trigramme_dept,code_site_origine,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:ville_nom,:ville,:trigramme_dept,:code_site_origine,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
+
+if(isset($ville_nom) && !empty($ville_nom)){
+    $stm->bindParam(':ville_nom',$ville_nom);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs ville est obligatoire !";
+}
 
 if(isset($ville) && !empty($ville)){
     $stm->bindParam(':ville',$ville);
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs ville est obligatoire !";
+    $message[] = "Le champs département est obligatoire !";
 }
 
 if(isset($trigramme_dept) && !empty($trigramme_dept)){

@@ -30,6 +30,14 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
+                                            <label for="projet_update_ville_nom">Ville <span class="text-danger">*</span></label>
+                                            <input class="form-control" type="text" id="projet_update_ville_nom" name="projet_update_ville_nom">
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <!--<div class="form-material">-->
                                                 <label for="projet_update_ville">Ville <span class="text-danger">*</span></label>
                                                 <select class="js-select2 form-control" id="projet_update_ville" name="projet_update_ville" size="1" style="width: 100%;" data-placeholder="Séléctionner départ/ville..">
                                                     <option value="">&nbsp;</option>
@@ -225,6 +233,7 @@
                 url: "api/projet/projet_update.php",
                 data: {
                     idp: idp,
+                    ville_nom: $("#projet_update_ville_nom").val(),
                     ville: $("#projet_update_ville").val(),
                     trigramme_dept: ($("#projet_update_dept").val()=="" ? "":('PLA' + $("#projet_update_ville").val() + '_' + $("#projet_update_dept").val())),
                     code_site_origine: $("#projet_update_code_site_origine").val(),
