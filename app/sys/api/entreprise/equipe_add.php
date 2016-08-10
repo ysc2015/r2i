@@ -52,11 +52,16 @@ if(isset($tel) && !empty($tel)){
 }
 
 if(isset($mail) && !empty($mail)){
-    $stm->bindParam(':mail',$mail);
-    $insert = true;
+    if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {//is valid
+        $stm->bindParam(':mail',$mail);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs email n'est pas valid !";
+    }
 } else {
     $err++;
-    $message[] = "Le champs émail est obligatoire !";
+    $message[] = "Le champs email est obligatoire !";
 }
 
 

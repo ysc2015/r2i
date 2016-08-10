@@ -17,10 +17,9 @@
 
                 }
             }).done(function (msg) {
-                var obj = JSON.parse(msg);
                 if(App.showMessage(msg, '#message_equipe_update', null)) {
-                    $("#equipe_update_form")[0].reset();
-                    format ( {id_entreprises_stt : obj.id} ) ;
+                    //$("#equipe_update_form")[0].reset();
+                    format ( {id_entreprises_stt : equipe.id_entreprise_stt} ) ;
                 }
                 //dataTable.draw(false);
             });

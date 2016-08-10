@@ -78,11 +78,16 @@ if(isset($contact_tel_fixe) && !empty($contact_tel_fixe)){
 }
 
 if(isset($contact_email) && !empty($contact_email)){
-    $stm->bindParam(':contact_email',$contact_email);
-    $insert = true;
+    if(filter_var($contact_email, FILTER_VALIDATE_EMAIL)) {//is valid
+        $stm->bindParam(':contact_email',$contact_email);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs contact email n'est pas valid !";
+    }
 } else {
     $err++;
-    $message[] = "Le champs contact émail est obligatoire !";
+    $message[] = "Le champs contact email est obligatoire !";
 }
 
 if($insert == true && $err == 0){
