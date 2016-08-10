@@ -93,22 +93,22 @@
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire1" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire5:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire5" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire5:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire2" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire6:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire6" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire6:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire3" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire7:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire7" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire7:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="tt_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire4" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire8:"")?>">
+                    <input class="form-control input-lg lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousprojet_ttirage !== NULL?$sousprojet_ttirage->lineaire8:"")?>">
                 </div>
             </div>
         </div>
