@@ -113,6 +113,7 @@ var template = function() {
 var SProjet = function() {
     var ids = get('idsousprojet');
     var infozone = function() {
+        var done = $.Deferred();
         var infoplaque_isnew = undefined;
         var zone_isnew = undefined;
         var siteorigine_isnew = undefined;
@@ -148,6 +149,8 @@ var SProjet = function() {
             }).done(function (msg) {
                 $("#infozone_block_content").html(msg);
                 $("#infozone_block").removeClass('block-opt-refresh');
+
+                done.resolve();
 
                 init();
                 initEvents();
@@ -253,10 +256,12 @@ var SProjet = function() {
             init : init,
             initEvents : initEvents,
             initTabs : initTabs,
-            refresh : refresh
+            refresh : refresh,
+            done : done
         };
     }();
     var gestionplaque = function() {
+        var done = $.Deferred();
         var phase_formdata = {};
         var tetude_formdata = {};
         var phase_isnew = undefined;
@@ -295,6 +300,8 @@ var SProjet = function() {
             }).done(function (msg) {
                 $("#gestionplaque_block_content").html(msg);
                 $("#gestionplaque_block").removeClass('block-opt-refresh');
+
+                done.resolve();
 
                 init();
                 initEvents();
@@ -381,10 +388,12 @@ var SProjet = function() {
             init : init,
             initEvents : initEvents,
             initTabs : initTabs,
-            refresh : refresh
+            refresh : refresh,
+            done : done
         };
     }();
     var preparationplaque = function() {
+        var done = $.Deferred();
         var formdata = {};
         var fileuploader_survey_bei = null;
         var fileuploader_survey_vip = null;
@@ -425,6 +434,8 @@ var SProjet = function() {
             }).done(function (msg) {
                 $("#preparationplaque_block_content").html(msg);
                 $("#preparationplaque_block").removeClass('block-opt-refresh');
+
+                done.resolve();
 
                 if(atab != "") {
                     $(atab).trigger('click');
@@ -606,10 +617,12 @@ var SProjet = function() {
             init : init,
             initEvents : initEvents,
             initTabs : initTabs,
-            refresh : refresh
+            refresh : refresh,
+            done : done
         };
     }();
     var reseautransport = function() {
+        var done = $.Deferred();
         var formdata = {};
         var ta_ot_id_entree = undefined;
         var ta_ot_type_entree = 'transport_aiguillage';
@@ -678,6 +691,8 @@ var SProjet = function() {
             }).done(function (msg) {
                 $("#rtransport_block_content").html(msg);
                 $("#rtransport_block").removeClass('block-opt-refresh');
+
+                done.resolve();
 
                 init();
                 initEvents();
@@ -1197,10 +1212,12 @@ var SProjet = function() {
             init : init,
             initEvents : initEvents,
             initTabs : initTabs,
-            refresh : refresh
+            refresh : refresh,
+            done : done
         };
     }();
     var reseaudistribution = function() {
+        var done = $.Deferred();
         var formdata = {};
         var da_ot_id_entree = undefined;
         var da_ot_type_entree = 'distribution_aiguillage';
@@ -1269,6 +1286,8 @@ var SProjet = function() {
             }).done(function (msg) {
                 $("#rdistribution_block_content").html(msg);
                 $("#rdistribution_block").removeClass('block-opt-refresh');
+
+                done.resolve();
 
                 init();
                 initEvents();
@@ -1751,11 +1770,13 @@ var SProjet = function() {
             init : init,
             initEvents : initEvents,
             initTabs : initTabs,
-            refresh : refresh
+            refresh : refresh,
+            done : done
         };
     }();
 
     var init = function() {
+
         $.ajax({
             method: "POST",
             data: {
@@ -1763,6 +1784,11 @@ var SProjet = function() {
             },
             url: "api/sousprojet/get_entries_by_id.php"
         }).done(function (msg) {
+
+            $.when(infozone.done,gestionplaque.done,preparationplaque.done,reseautransport.done,reseaudistribution.done).then(function () {
+                console.log('all forms loaded successfully');
+                //code here
+            });
 
             var obj = JSON.parse(msg);
             //console.log(obj);
