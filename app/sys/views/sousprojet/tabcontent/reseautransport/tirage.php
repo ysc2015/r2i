@@ -4,7 +4,7 @@
         <?php if($sousprojet_ttirage !== NULL) {?>
             <input type="hidden" id="id_sous_projet_transport_tirage" name="id_sous_projet_transport_tirage" value="<?=$sousprojet_ttirage->id_sous_projet?>">
         <?php } else {?>
-            <div class="row items-push">
+            <div class="row">
                 <div id="id_sous_projet_transport_tirage_alert" class="col-md-3">
                     <span class="label label-warning">Aucune entrée transport tirage crée !</span>
                 </div>

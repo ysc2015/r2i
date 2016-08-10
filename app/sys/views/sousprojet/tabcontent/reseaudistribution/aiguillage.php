@@ -1,16 +1,16 @@
 <?php $sousprojet_daiguillage = SousProjetDistributionAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="form-horizontal push-10-t push-10">
-    <?php if($sousprojet_daiguillage !== NULL) {?>
-        <input type="hidden" id="id_sous_projet_distribution_aiguillage" name="id_sous_projet_distribution_aiguillage" value="<?=$sousprojet_daiguillage->id_sous_projet?>">
-    <?php } else {?>
-        <div class="row">
-            <div id="id_sous_projet_distribution_aiguillage_alert" class="col-md-3">
-                <span class="label label-warning">Aucune entrée distribution aiguillage crée !</span>
-            </div>
-        </div>
-    <?php }?>
     <div class="row">
         <div class="col-sm-12">
+            <?php if($sousprojet_daiguillage !== NULL) {?>
+                <input type="hidden" id="id_sous_projet_distribution_aiguillage" name="id_sous_projet_distribution_aiguillage" value="<?=$sousprojet_daiguillage->id_sous_projet?>">
+            <?php } else {?>
+                <div class="row">
+                    <div id="id_sous_projet_distribution_aiguillage_alert" class="col-md-3">
+                        <span class="label label-warning">Aucune entrée distribution aiguillage crée !</span>
+                    </div>
+                </div>
+            <?php }?>
             <div class="form-group">
                 <div class="col-xs-3">
                     <label for="da_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
