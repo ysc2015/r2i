@@ -54,7 +54,7 @@ if(isset($lineaire1) && !empty($lineaire1)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs 720FO est obligatoire !";
+    $message[] = "Le champs 288FO est obligatoire !";
 }
 
 if(isset($lineaire2) && !empty($lineaire2)){
@@ -62,7 +62,7 @@ if(isset($lineaire2) && !empty($lineaire2)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs 432FO est obligatoire !";
+    $message[] = "Le champs 144FO est obligatoire !";
 }
 
 if(isset($lineaire3) && !empty($lineaire3)){
@@ -70,7 +70,7 @@ if(isset($lineaire3) && !empty($lineaire3)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs 288FO est obligatoire !";
+    $message[] = "Le champs 72FO est obligatoire !";
 }
 
 if(isset($lineaire4) && !empty($lineaire4)){
@@ -78,7 +78,7 @@ if(isset($lineaire4) && !empty($lineaire4)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs 144FO est obligatoire !";
+    $message[] = "Le champs 48FO est obligatoire !";
 }
 
 if(isset($lineaire5) && !empty($lineaire5)){
@@ -86,7 +86,7 @@ if(isset($lineaire5) && !empty($lineaire5)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs BPE 720FO est obligatoire !";
+    $message[] = "Le champs BPE 288FO est obligatoire !";
 }
 
 if(isset($lineaire6) && !empty($lineaire6)){
@@ -94,7 +94,7 @@ if(isset($lineaire6) && !empty($lineaire6)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs BPE 432FO est obligatoire !";
+    $message[] = "Le champs BPE 144FO est obligatoire !";
 }
 
 if(isset($lineaire7) && !empty($lineaire7)){
@@ -102,7 +102,7 @@ if(isset($lineaire7) && !empty($lineaire7)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs BPE 288FO est obligatoire !";
+    $message[] = "Le champs BPE 72FO est obligatoire !";
 }
 
 if(isset($lineaire8) && !empty($lineaire8)){
@@ -110,7 +110,7 @@ if(isset($lineaire8) && !empty($lineaire8)){
     $insert = true;
 } else {
     $err++;
-    $message[] = "Le champs BPE 144FO est obligatoire !";
+    $message[] = "Le champs BPE 48FO est obligatoire !";
 }
 
 /*
