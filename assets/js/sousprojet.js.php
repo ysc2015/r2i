@@ -1276,6 +1276,7 @@ var SProjet = function() {
             });
         }
         var initTabs = function() {
+            //console.log('initTabs');
             $("#rdistribution_block").toggleClass('block-opt-refresh');
             $.ajax({
                 method: "POST",
@@ -1792,10 +1793,11 @@ var SProjet = function() {
                 $("#draccordements_href").trigger('click');*/
 
                 // Javascript to enable link to tab
-                var hash = document.location.hash;
+                /*var hash = document.location.hash;
                 if (hash) {
-                    App.activaTab(hash);
-                }
+                    console.log(hash);
+                    App.activaTab('draccordements_href');
+                }*/
             });
 
             var obj = JSON.parse(msg);
