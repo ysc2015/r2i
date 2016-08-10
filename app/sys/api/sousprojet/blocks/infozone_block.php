@@ -55,7 +55,7 @@ $html='<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">';
 
 foreach($connectedProfil->infozone() as $tab) {
     $html .='<li class="'.($connectedProfil->infozone()[0]==$tab?"active":"").'">';
-    $html .='<a href="#'.$tab.'_content'.'" data-toggle="tab">'.$lang["$tab"].'</a>';//$lang["$tab"]
+    $html .='<a href="#'.$tab.'_content'.'" data-toggle="tab" id="'.$tab.'_href'.'">'.$lang["$tab"].'</a>';//$lang["$tab"]
     $html .='</li>';
 }
 

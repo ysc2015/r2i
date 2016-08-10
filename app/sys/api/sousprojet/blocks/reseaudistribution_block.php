@@ -55,7 +55,7 @@ $html='<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">';
 
 foreach($connectedProfil->reseaudistribution() as $tab) {
     $html .='<li class="'.($connectedProfil->reseaudistribution()[0]==$tab?"active":"").'">';
-    $html .='<a href="#'.$tab.'_dcontent'.'" data-toggle="tab">'.$lang["$tab"].'</a>';//$lang["$tab"]
+    $html .='<a href="#'.$tab.'_dcontent'.'" data-toggle="tab" id="d'.$tab.'_href'.'">'.$lang["$tab"].'</a>';//$lang["$tab"]
     $html .='</li>';
 }
 
