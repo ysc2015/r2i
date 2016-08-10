@@ -127,7 +127,7 @@
                 <input class="form-control input-lg" type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_tirage : "")?>">
             </div>
             <div class="col-md-3">
-                <label for="dt_duree">Durée <span class="text-danger">*</span></label>
+                <label for="dt_duree">Durée(jours) <span class="text-danger">*</span></label>
                 <input class="form-control input-lg" type="number" id="dt_duree" name="dt_duree" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->duree : "")?>">
             </div>
         </div>
