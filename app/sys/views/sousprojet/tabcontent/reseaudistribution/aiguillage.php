@@ -137,7 +137,7 @@
                     <input class="form-control input-lg" type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->date_aiguillage:"")?>">
                 </div>
                 <div class="col-xs-3">
-                    <label for="da_duree">Durée <span class="text-danger">*</span></label>
+                    <label for="da_duree">Durée(jours) <span class="text-danger">*</span></label>
                     <input class="form-control input-lg" type="number" id="da_duree" name="da_duree" value="<?=($sousprojet_daiguillage !== NULL?$sousprojet_daiguillage->duree:"")?>">
                 </div>
                 <div class="col-xs-3">
