@@ -11,8 +11,8 @@
     <?php }?>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="phase">Phase <span class="text-danger">*</span></label>
-            <select class="form-control " id="phase" name="phase">
+            <label for="ip_phase">Phase <span class="text-danger">*</span></label>
+            <select class="form-control " id="ip_phase" name="ip_phase">
                 <option value="" selected="" disabled="">Sélectionnez une phase</option>
                 <?php
                 $results = SelectPlaquePhase::all();
@@ -25,8 +25,8 @@
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="type">Type <span class="text-danger">*</span></label>
-            <select class="form-control " id="type" name="type">
+            <label for="ip_type">Type <span class="text-danger">*</span></label>
+            <select class="form-control " id="ip_type" name="ip_type">
                 <option value="" selected="" disabled="">Sélectionnez un type</option>
                 <?php
                 $results = SelectPlaqueType::all();

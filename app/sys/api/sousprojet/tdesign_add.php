@@ -4,7 +4,9 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/config.php";
+global $sousprojet_siteorigine;
+global $inter_be;
+global $val_be;
 
 extract($_POST);
 
@@ -131,11 +133,17 @@ if($insert == true && $err == 0){
         $message [] = "Enregistrement ajouté avec succès";
 
         if($td_ok == 1) {//ok validated design
+            $sousprojet = SousProjet::first(array('conditions' => array("id_sous_projet = ?", $ids)));
+
+            if($sousprojet !== NULL) {
+                $projet = Projet::first(array('conditions' => array("id_projet = ?", $sousprojet->id_projet)));
+            }
             //subject
-            $subject = "[DESIGN CTR] CODE_SITE _ORIGINE – NUMSOUSPROJET";
+            $subject = "[DESIGN CTR] ".($projet !== NULL ? $projet->code_site_origine : "n/a")."–NUMSOUSPROJET";
 
             //mail content
             ob_start();
+
             include $mailtemplatesfolder."design_validation.php";
             $content = ob_get_contents();
             ob_end_clean();
@@ -154,8 +162,13 @@ if($insert == true && $err == 0){
 
 
         } else {//creation design ok but not validated
+            $sousprojet = SousProjet::first(array('conditions' => array("id_sous_projet = ?", $ids)));
+
+            if($sousprojet !== NULL) {
+                $projet = Projet::first(array('conditions' => array("id_projet = ?", $sousprojet->id_projet)));
+            }
             //subject
-            $subject = "transport design en cours";
+            $subject = "[DESIGN CTR] ".($projet !== NULL ? $projet->code_site_origine : "n/a")."–NUMSOUSPROJET";
 
             //mail content
             ob_start();
