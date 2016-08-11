@@ -1,5 +1,5 @@
 <?php $sousprojet_daiguillage = SousProjetDistributionAiguillage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="dist_aiguillage_form" name="dist_aiguillage_form">
     <div class="row">
         <div class="col-sm-12">
             <?php if($sousprojet_daiguillage !== NULL) {?>

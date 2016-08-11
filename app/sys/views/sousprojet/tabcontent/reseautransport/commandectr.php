@@ -1,5 +1,5 @@
 <?php $sousprojet_tcommandectr = SousProjetTransportCommandeCTR::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="transport_cmdctr_form" name="transport_cmdctr_form">
     <div class="row items-push">
         <?php if($sousprojet_tcommandectr !== NULL) {?>
             <input type="hidden" id="id_sous_projet_transport_commande_ctr" name="id_sous_projet_transport_commande_ctr" value="<?=$sousprojet_tcommandectr->id_sous_projet?>">

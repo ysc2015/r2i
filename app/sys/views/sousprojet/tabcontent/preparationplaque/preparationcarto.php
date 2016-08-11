@@ -1,5 +1,5 @@
 <?php $sousprojet_pcarto = SousProjetPlaqueCarto::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="prep_carto_form" name="prep_carto_form">
     <div class="row items-push">
         <?php if($sousprojet_pcarto !== NULL) {?>
             <input type="hidden" id="id_sous_projet_plaque_carto" name="id_sous_projet_plaque_carto" value="<?=$sousprojet_pcarto->id_sous_projet?>">

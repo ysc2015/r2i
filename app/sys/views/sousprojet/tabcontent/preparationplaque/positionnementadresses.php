@@ -1,5 +1,5 @@
 <?php $sousprojet_padresse = SousProjetPlaquePosAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="pos_adresse_form" name="pos_adresse_form">
     <div class="row items-push">
         <?php if($sousprojet_padresse !== NULL) {?>
             <input type="hidden" id="id_sous_projet_plaque_pos_adresse" name="id_sous_projet_plaque_pos_adresse" value="<?=$sousprojet_padresse->id_sous_projet?>">
