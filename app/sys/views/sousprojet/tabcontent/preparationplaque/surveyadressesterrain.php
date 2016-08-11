@@ -1,5 +1,5 @@
 <?php $sousprojet_suradresse = SousProjetPlaqueSurveyAdresse::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="js-validation-bootstrap form-horizontal">
+<form class="js-validation-bootstrap form-horizontal" id="surv_adresse_form" name="surv_adresse_form">
     <div class="row">
         <div class="col-md-6">
             <?php if($sousprojet_suradresse !== NULL) {?>

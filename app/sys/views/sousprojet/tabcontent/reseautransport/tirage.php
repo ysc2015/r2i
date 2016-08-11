@@ -1,5 +1,5 @@
 <?php $sousprojet_ttirage = SousProjetTransportTirage::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="transport_tirage_form" name="transport_tirage_form">
     <div class="row items-push">
         <?php if($sousprojet_ttirage !== NULL) {?>
             <input type="hidden" id="id_sous_projet_transport_tirage" name="id_sous_projet_transport_tirage" value="<?=$sousprojet_ttirage->id_sous_projet?>">

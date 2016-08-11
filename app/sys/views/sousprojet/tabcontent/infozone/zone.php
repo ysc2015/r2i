@@ -1,5 +1,5 @@
 <?php $sousprojet_zone = SousProjetZone::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="sousprojet_zone_form" name="sousprojet_zone_form">
     <div class="row items-push">
         <?php if($sousprojet_zone !== NULL) {?>
             <input type="hidden" id="id_sous_projet_zone" name="id_sous_projet_zone" value="<?=$sousprojet_zone->id_sous_projet?>">

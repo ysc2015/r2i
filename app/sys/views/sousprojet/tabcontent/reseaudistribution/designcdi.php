@@ -1,5 +1,5 @@
 <?php $sousprojet_ddesign = SousProjetDistributionDesign::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="form-horizontal push-10-t push-10">
+<form class="form-horizontal push-10-t push-10" id="dist_designcdi_form" name="dist_designcdi_form">
     <div class="row items-push">
         <?php if($sousprojet_ddesign !== NULL) {?>
             <input type="hidden" id="id_sous_projet_distribution_design" name="id_sous_projet_distribution_design" value="<?=$sousprojet_ddesign->id_sous_projet?>">
