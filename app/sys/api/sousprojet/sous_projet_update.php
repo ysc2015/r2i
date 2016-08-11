@@ -11,7 +11,30 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet set zone=:zone where id_sous_projet=:id_sous_projet");
+
+$suffix = "sp";
+$fieldslist = "";
+
+$paramcount = 0;
+
+foreach( $_POST as $key => $value ) {
+
+    if(strpos($key,$suffix) !== false) {
+        $paramcount++;
+        $arr = explode("_",$key);
+        array_shift($arr);
+        $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
+    }
+}
+
+$fieldslist = rtrim($fieldslist,",");
+
+$stm = $db->prepare("update sous_projet set $fieldslist where id_sous_projet=:id_sous_projet");
+
+if($paramcount < 1) {
+    $err++;
+    $message[] = "Vous n'avez pas le droit d'effectuer cette action !";
+}
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -21,12 +44,14 @@ if(isset($ids) && !empty($ids)){
     $message[] = "Référence sous projet invalide !";
 }
 
-if(isset($zone) && !empty($zone)){
-    $stm->bindParam(':zone',$zone);
-    $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs zone est obligatoire !";
+if(isset($sp_zone)){
+    if(!empty($sp_zone)){
+        $stm->bindParam(':zone',$sp_zone);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs zone est obligatoire !";
+    }
 }
 
 if($insert == true && $err == 0){
@@ -37,5 +62,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message, "pss" => $connectedProfil->nom_utilisateur));
+echo json_encode(array("error" => $err , "message" => $message));
 ?>

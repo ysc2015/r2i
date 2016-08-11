@@ -135,11 +135,18 @@ if($connectedProfil->id_utilisateur == $sousprojet_tdesign->valideur_bei) {
 }
 
 if($insert == true && $err == 0){
+    $sousprojet_tdesign = SousProjetTransportDesign::first(array('conditions' => array("id_sous_projet = ?", $ids)));
     if($stm->execute()){
         $message [] = "Modification faite avec succès";
-        if($connectedProfil->id_utilisateur == $sousprojet_tdesign->valideur_bei && $td_ok == 1) {
+
+        if($connectedProfil->id_utilisateur == $sousprojet_tdesign->valideur_bei && $td_ok == 1 && ($td_ok !== "$sousprojet_tdesign->ok") ) {
+            $sousprojet = SousProjet::first(array('conditions' => array("id_sous_projet = ?", $ids)));
+
+            if($sousprojet !== NULL) {
+                $projet = Projet::first(array('conditions' => array("id_projet = ?", $sousprojet->id_projet)));
+            }
             //subject
-            $subject = "validation transport design";
+            $subject = "[DESIGN CTR] ".($projet !== NULL ? $projet->code_site_origine : "n/a")."–NUMSOUSPROJET";
 
             //mail content
             ob_start();

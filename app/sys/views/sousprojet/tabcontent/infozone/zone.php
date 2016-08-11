@@ -12,32 +12,32 @@
         <?php }?>
         <div class="form-group">
             <div class="col-md-3">
-                <label for="nbr_zone">Nbe de Zones de la Plaque <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="nbr_zone" name="nbr_zone" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nbr_zone:"")?>">
+                <label for="sz_nbr_zone">Nbe de Zones de la Plaque <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" id="sz_nbr_zone" name="sz_nbr_zone" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nbr_zone:"")?>">
             </div>
             <div class="col-md-3">
-                <label for="lr_sur_pm">LR sur PM existant <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="lr_sur_pm" name="lr_sur_pm" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->lr_sur_pm:"")?>">
+                <label for="sz_lr_sur_pm">LR sur PM existant <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" id="sz_lr_sur_pm" name="sz_lr_sur_pm" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->lr_sur_pm:"")?>">
             </div>
             <div class="col-md-3">
-                <label for="lr">LR <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="lr" name="lr" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->lr:"")?>">
+                <label for="sz_lr">LR <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" id="sz_lr" name="sz_lr" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->lr:"")?>">
             </div>
             <div class="col-md-3">
-                <label for="nbr_de_site">NB DE SITE <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="nbr_de_site" name="nbr_de_site" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nbr_de_site:"")?>">
+                <label for="sz_nbr_de_site">NB DE SITE <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" id="sz_nbr_de_site" name="sz_nbr_de_site" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nbr_de_site:"")?>">
             </div>
         </div>
     </div>
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-3">
-                <label for="nb_fo_sur_pm">NB FO SUR PM <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="nb_fo_sur_pm" name="nb_fo_sur_pm" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nb_fo_sur_pm:"")?>">
+                <label for="sz_nb_fo_sur_pm">NB FO SUR PM <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" id="sz_nb_fo_sur_pm" name="sz_nb_fo_sur_pm" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nb_fo_sur_pm:"")?>">
             </div>
             <div class="col-md-3">
-                <label for="nb_fo_sur_pmz">NB FO SUR PMZ <span class="text-danger">*</span></label>
-                <input class="form-control" type="number" id="nb_fo_sur_pmz" name="nb_fo_sur_pmz" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nb_fo_sur_pmz:"")?>">
+                <label for="sz_nb_fo_sur_pmz">NB FO SUR PMZ <span class="text-danger">*</span></label>
+                <input class="form-control" type="number" id="sz_nb_fo_sur_pmz" name="sz_nb_fo_sur_pmz" value="<?=($sousprojet_zone !==NULL?$sousprojet_zone->nb_fo_sur_pmz:"")?>">
             </div>
         </div>
     </div>

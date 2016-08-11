@@ -3,26 +3,26 @@
     <input type="hidden" id="id_sous_projet" name="id_sous_projet" value="<?=$sousprojet->id_sous_projet?>">
     <div class="form-group">
         <div class="col-md-3">
-            <label for="dep">Département <span class="text-danger">*</span></label>
-            <input class="form-control " type="text" id="dep" name="dep" readonly="" value="<?=$sousprojet->dep?>">
+            <label for="sp_dep">Département <span class="text-danger">*</span></label>
+            <input class="form-control " type="text" id="sp_dep" name="sp_dep" readonly value="<?=$sousprojet->dep?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="ville">Ville <span class="text-danger">*</span></label>
-            <input class="form-control " type="text" id="ville" name="ville" readonly="" value="<?=$sousprojet->ville?>">
+            <label for="sp_ville">Ville <span class="text-danger">*</span></label>
+            <input class="form-control " type="text" id="sp_ville" name="sp_ville" readonly value="<?=$sousprojet->ville?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="plaque">Plaque <span class="text-danger">*</span></label>
-            <input class="form-control " type="text" id="plaque" name="plaque" readonly="" value="<?=$sousprojet->plaque?>">
+            <label for="sp_plaque">Plaque <span class="text-danger">*</span></label>
+            <input class="form-control " type="text" id="sp_plaque" name="sp_plaque" readonly value="<?=$sousprojet->plaque?>">
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-3">
-            <label for="zone">Zone <span class="text-danger">*</span></label>
-            <input class="form-control " type="text" id="zone" name="zone" value="<?=$sousprojet->zone?>">
+            <label for="sp_zone">Zone <span class="text-danger">*</span></label>
+            <input class="form-control " type="text" id="sp_zone" name="sp_zone" value="<?=$sousprojet->zone?>">
         </div>
     </div>
     <div class="alert alert-success" id="message_infozone_nom" role="alert" style="display: none;">

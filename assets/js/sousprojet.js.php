@@ -161,6 +161,19 @@ var SProjet = function() {
             });
         }
         var init = function() {
+            $('#sousprojet_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                sousprojet_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#infoplaque_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                infoplaque_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#sousprojet_zone_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                zone_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#siteorigine_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                siteorigine_formdata[$( this ).attr('name')] = $( this).val();
+            });
+
             $("#message_infozone_nom").hide();
             $("#message_infozone_plaque").hide();
             $("#message_infozone_zone").hide();
@@ -173,13 +186,20 @@ var SProjet = function() {
         var initEvents = function() {
             $("#id_sous_projet_btn").click(function() {
                 $("#message_infozone_nom").fadeOut();
+
+                for (var key in sousprojet_formdata) {
+                    console.log('#'+key);
+                    sousprojet_formdata[key] = $('#'+key).val();
+                }
+                sousprojet_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: "api/sousprojet/sous_projet_update.php",
-                    data: {
+                    data: /*{
                         ids : get('idsousprojet'),
                         zone : $("#zone").val()
-                    }
+                    }*/sousprojet_formdata
                 }).done(function (msg) {
                     //console.log(msg);
                     App.showMessage(msg, '#message_infozone_nom');
@@ -188,15 +208,22 @@ var SProjet = function() {
             $("#id_sous_projet_plaque_btn").click(function () {
                 $("#message_infozone_plaque").fadeOut();
                 $("#infozone_block").toggleClass('block-opt-refresh');
+
+                for (var key in infoplaque_formdata) {
+                    console.log('#'+key);
+                    infoplaque_formdata[key] = $('#'+key).val();
+                }
+                infoplaque_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: (infoplaque_isnew?"api/sousprojet/infoplaque_add.php":"api/sousprojet/infoplaque_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         phase: $('#phase').val(),
                         type: $('#type').val()
 
-                    }
+                    }*/infoplaque_formdata
                 }).done(function (msg) {
                     $("#infozone_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_infozone_plaque')) {
@@ -211,10 +238,17 @@ var SProjet = function() {
             $("#id_sous_projet_zone_btn").click(function () {
                 $("#message_infozone_zone").fadeOut();
                 $("#infozone_block").toggleClass('block-opt-refresh');
+
+                for (var key in zone_formdata) {
+                    console.log('#'+key);
+                    zone_formdata[key] = $('#'+key).val();
+                }
+                zone_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: (zone_isnew?"api/sousprojet/zone_add.php":"api/sousprojet/zone_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         nbr_zone: $('#nbr_zone').val(),
                         lr_sur_pm: $('#lr_sur_pm').val(),
@@ -223,7 +257,7 @@ var SProjet = function() {
                         nb_fo_sur_pm: $('#nb_fo_sur_pm').val(),
                         nb_fo_sur_pmz: $('#nb_fo_sur_pmz').val()
 
-                    }
+                    }*/zone_formdata
                 }).done(function (msg) {
                     $("#infozone_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_infozone_zone')) {
@@ -235,10 +269,17 @@ var SProjet = function() {
             $("#id_sous_projet_site_origine_btn").click(function () {
                 $("#message_infozone_site_origine").fadeOut();
                 $("#infozone_block").toggleClass('block-opt-refresh');
+
+                for (var key in siteorigine_formdata) {
+                    console.log('#'+key);
+                    siteorigine_formdata[key] = $('#'+key).val();
+                }
+                siteorigine_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: (siteorigine_isnew?"api/sousprojet/site_origine_add.php":"api/sousprojet/site_origine_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         code_site: $('#code_site').val(),
                         type_so: $('#type_so').val(),
@@ -246,7 +287,7 @@ var SProjet = function() {
                         travaux_adduction: $('#travaux_adduction').val(),
                         recette_adduction: $('#recette_adduction').val()
 
-                    }
+                    }*/siteorigine_formdata
                 }).done(function (msg) {
                     $("#infozone_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_infozone_site_origine')) {
@@ -819,6 +860,9 @@ var SProjet = function() {
                     if(App.showMessage(msg, '#message_transport_design')) {
                         $("#id_sous_projet_transport_design_alert").hide();
                         tdesign_isnew = false;
+                        //TODO
+                        //si valideur choisit lui mm comme valideur
+                        //pour activer l option ok on doit refresh
                     }
                 });
             });
