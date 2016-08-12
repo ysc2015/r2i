@@ -1,15 +1,15 @@
 <?php $sousprojet_siteorigine = SousProjetSiteOrigine::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
 <form class="js-validation-bootstrap form-horizontal" id="siteorigine_form" name="siteorigine_form">
-    <?php if($sousprojet_siteorigine !== NULL) {?>
-        <input type="hidden" id="id_sous_projet_site_origine" name="id_sous_projet_site_origine" value="<?=$sousprojet_siteorigine->id_sous_projet?>">
-    <?php } else {?>
-        <div class="row">
-            <div id="id_sous_projet_site_origine_alert" class="col-md-3">
-                <span class="label label-warning">Aucune entrée site origine crée !</span>
-            </div>
-        </div>
-    <?php }?>
     <div class="row items-push">
+        <?php if($sousprojet_siteorigine !== NULL) {?>
+            <input type="hidden" id="id_sous_projet_site_origine" name="id_sous_projet_site_origine" value="<?=$sousprojet_siteorigine->id_sous_projet?>">
+        <?php } else {?>
+            <div class="row">
+                <div id="id_sous_projet_site_origine_alert" class="col-md-3">
+                    <span class="label label-warning">Aucune entrée site origine crée !</span>
+                </div>
+            </div>
+        <?php }?>
         <div class="form-group">
             <div class="col-md-3">
                 <label for="code_site">Code Site <span class="text-danger">*</span></label>
