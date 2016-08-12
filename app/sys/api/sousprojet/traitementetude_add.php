@@ -4,8 +4,6 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/config.php";
-
 extract($_POST);
 
 $insert = false;
@@ -13,6 +11,7 @@ $err = 0;
 $message = array();
 
 $suffix = "te";
+$paramcount = 0;
 
 $fieldslist = "id_sous_projet,";
 $valueslist = ":id_sous_projet,";
@@ -20,6 +19,7 @@ $valueslist = ":id_sous_projet,";
 foreach( $_POST as $key => $value ) {
 
     if(strpos($key,$suffix) !== false) {
+        $paramcount++;
         $arr = explode("_",$key);
         array_shift($arr);
         $fieldslist .= implode("_",$arr).",";
@@ -31,6 +31,11 @@ $fieldslist = rtrim($fieldslist,",");
 $valueslist = rtrim($valueslist,",");
 
 $stm = $db->prepare("insert into sous_projet_plaque_traitement_etude ($fieldslist) values ($valueslist)");
+
+if($paramcount < 1) {
+    $err++;
+    $message[] = "Vous n'avez pas le droit d'effectuer cette action !";
+}
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);

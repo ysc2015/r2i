@@ -439,7 +439,9 @@ var SProjet = function() {
     }();
     var preparationplaque = function() {
         var done = $.Deferred();
-        var formdata = {};
+        var carto_formdata = {};
+        var posadr_formdata = {};
+        var survadr_formdata = {};
         var fileuploader_survey_bei = null;
         var fileuploader_survey_vip = null;
         var pcarto_isnew = undefined;
@@ -499,6 +501,16 @@ var SProjet = function() {
             });
         }
         var init = function() {
+            $('#prep_carto_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                carto_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#pos_adresse_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                posadr_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#surv_adresse_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                survadr_formdata[$( this ).attr('name')] = $( this).val();
+            });
+
             $("#message_gestion_plaque_carto").hide();
             $("#message_gestion_plaque_pos_adresse").hide();
             $("#message_gestion_plaque_survey_adresse").hide();
@@ -565,10 +577,18 @@ var SProjet = function() {
 
                 $("#message_gestion_plaque_carto").fadeOut();
                 $("#preparationplaque_block").toggleClass('block-opt-refresh');
+
+                for (var key in carto_formdata) {
+                    console.log('#'+key);
+                    carto_formdata[key] = $('#'+key).val();
+                }
+                carto_formdata['ids'] = ids;
+                carto_formdata['pc_duree'] = $("#pc_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (pcarto_isnew?"api/sousprojet/pcarto_add.php":"api/sousprojet/pcarto_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         pc_intervenant_be: $('#pc_intervenant_be').val(),
                         pc_date_debut: $('#pc_date_debut').val(),
@@ -576,7 +596,7 @@ var SProjet = function() {
                         pc_duree: $('#pc_duree').val(),
                         pc_ok: $('#pc_ok').val()
 
-                    }
+                    }*/carto_formdata
                 }).done(function (msg) {
                     $("#preparationplaque_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_gestion_plaque_carto')) {
@@ -589,10 +609,18 @@ var SProjet = function() {
 
                 $("#message_gestion_plaque_pos_adresse").fadeOut();
                 $("#preparationplaque_block").toggleClass('block-opt-refresh');
+
+                for (var key in posadr_formdata) {
+                    console.log('#'+key);
+                    posadr_formdata[key] = $('#'+key).val();
+                }
+                posadr_formdata['ids'] = ids;
+                posadr_formdata['pa_duree'] = $("#pa_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (posadr_isnew?"api/sousprojet/posadr_add.php":"api/sousprojet/posadr_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         pa_intervenant_be: $('#pa_intervenant_be').val(),
                         pa_date_debut: $('#pa_date_debut').val(),
@@ -601,7 +629,7 @@ var SProjet = function() {
                         pa_intervenant: $('#pa_intervenant').val(),
                         pa_ok: $('#pa_ok').val()
 
-                    }
+                    }*/posadr_formdata
                 }).done(function (msg) {
                     $("#preparationplaque_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_gestion_plaque_pos_adresse')) {
@@ -614,10 +642,18 @@ var SProjet = function() {
 
                 $("#message_gestion_plaque_survey_adresse").fadeOut();
                 $("#preparationplaque_block").toggleClass('block-opt-refresh');
+
+                for (var key in survadr_formdata) {
+                    console.log('#'+key);
+                    survadr_formdata[key] = $('#'+key).val();
+                }
+                survadr_formdata['ids'] = ids;
+                survadr_formdata['sa_duree'] = $("#sa_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (surveyadr_isnew?"api/sousprojet/surveyadr_add.php":"api/sousprojet/surveyadr_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         sa_volume_adresse: $('#sa_volume_adresse').val(),
                         sa_date_debut: $('#sa_date_debut').val(),
@@ -626,7 +662,7 @@ var SProjet = function() {
                         sa_duree: $('#sa_duree').val(),
                         sa_ok: $('#sa_ok').val()
 
-                    }
+                    }*/survadr_formdata
                 }).done(function (msg) {
 
                     $("#preparationplaque_block").removeClass('block-opt-refresh');

@@ -40,7 +40,7 @@
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-3">
-                <label for="pa_intervenant">Intervenant BE <span class="text-danger">*</span></label>
+                <label for="pa_intervenant">Intervenant <span class="text-danger">*</span></label>
                 <select class="form-control" id="pa_intervenant" name="pa_intervenant">
                     <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                     <?php
