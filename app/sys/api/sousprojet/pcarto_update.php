@@ -4,14 +4,34 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/config.php";
-
 extract($_POST);
 
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update sous_projet_plaque_carto set intervenant_be=:intervenant_be,date_debut=:date_debut,date_ret_prevue=:date_ret_prevue,duree=:duree,ok=:ok where id_sous_projet=:id_sous_projet");
+
+$suffix = "pc";
+$fieldslist = "";
+$paramcount = 0;
+
+foreach( $_POST as $key => $value ) {
+
+    if(strpos($key,$suffix) !== false) {
+        $paramcount++;
+        $arr = explode("_",$key);
+        array_shift($arr);
+        $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
+    }
+}
+
+$fieldslist = rtrim($fieldslist,",");
+
+$stm = $db->prepare("update sous_projet_plaque_carto set $fieldslist where id_sous_projet=:id_sous_projet");
+
+if($paramcount < 1) {
+    $err++;
+    $message[] = "Vous n'avez pas le droit d'effectuer cette action !";
+}
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
@@ -21,41 +41,46 @@ if(isset($ids) && !empty($ids)){
     $message[] = "Référence sous projet invalide !";
 }
 
-if(isset($pc_intervenant_be) && !empty($pc_intervenant_be)){
-    $stm->bindParam(':intervenant_be',$pc_intervenant_be);
-    $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs Intervenant BE est obligatoire !";
+if(isset($pc_intervenant_be)){
+    if(!empty($pc_intervenant_be)){
+        $stm->bindParam(':intervenant_be',$pc_intervenant_be);
+        $insert = true;
+    } else {
+        $err++;
+        $message[] = "Le champs Intervenant BE est obligatoire !";
+    }
 }
 
 /*
  * dates debut
  */
 
-$dd = DateTime::createFromFormat('Y-m-d', $pc_date_debut);
-$df = DateTime::createFromFormat('Y-m-d', $pc_date_ret_prevue);
+if(isset($pc_date_debut) && isset($pc_date_ret_prevue)) {
+
+    $dd = DateTime::createFromFormat('Y-m-d', $pc_date_debut);
+    $df = DateTime::createFromFormat('Y-m-d', $pc_date_ret_prevue);
 
 
-if($dd && $df && $df < $dd) {
-    $err++;
-    $message[] = "la date de retour prévue doit étre superieure à la date de début !";
-} else  {
-
-    if(isset($pc_date_debut)){
-        $stm->bindParam(':date_debut',$pc_date_debut);
-        $insert = true;
-    } else {
+    if($dd && $df && $df < $dd) {
         $err++;
-        $message[] = "Le champs Date de début est obligatoire !";
-    }
+        $message[] = "la date de retour prévue doit étre superieure à la date de début !";
+    } else  {
 
-    if(isset($pc_date_ret_prevue)){
-        $stm->bindParam(':date_ret_prevue',$pc_date_ret_prevue);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date retour prévue est obligatoire !";
+        if(isset($pc_date_debut)){
+            $stm->bindParam(':date_debut',$pc_date_debut);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date de début est obligatoire !";
+        }
+
+        if(isset($pc_date_ret_prevue)){
+            $stm->bindParam(':date_ret_prevue',$pc_date_ret_prevue);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date retour prévue est obligatoire !";
+        }
     }
 }
 
@@ -63,36 +88,14 @@ if($dd && $df && $df < $dd) {
  * dates fin
  */
 
-/*if(isset($pc_date_debut) && !empty($pc_date_debut)){
-    $stm->bindParam(':date_debut',$pc_date_debut);
-    $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs Date de début est obligatoire !";
-}
-
-if(isset($pc_date_ret_prevue) && !empty($pc_date_ret_prevue)){
-    $stm->bindParam(':date_ret_prevue',$pc_date_ret_prevue);
-    $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs Date retour prévue est obligatoire !";
-}*/
-
-if(isset($pc_duree) && !empty($pc_duree)){
+if(isset($pc_duree)){
     $stm->bindParam(':duree',$pc_duree);
     $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs Durée est obligatoire !";
 }
 
-if(isset($pc_ok) && !empty($pc_ok)){
+if(isset($pc_ok)){
     $stm->bindParam(':ok',$pc_ok);
     $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs OK est obligatoire !";
 }
 
 if($insert == true && $err == 0){

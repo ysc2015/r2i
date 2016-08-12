@@ -12,12 +12,12 @@
         <?php }?>
         <div class="form-group">
             <div class="col-md-3">
-                <label for="code_site">Code Site <span class="text-danger">*</span></label>
+                <label for="so_code_site">Code Site <span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="code_site" name="code_site" readonly="" value="<?=($projet !== NULL?$projet->code_site_origine:"")?>">
             </div>
             <div class="col-md-3">
-                <label for="type_so">Type <span class="text-danger">*</span></label>
-                <select class="form-control" id="type_so" name="type_so" disabled="">
+                <label for="so_type">Type <span class="text-danger">*</span></label>
+                <select class="form-control" id="so_type" name="so_type" disabled="">
                     <option value="" selected="" disabled="">Sélectionnez un type</option>
                     <?php
                     $results = SelectSiteOrigineType::all();
@@ -28,8 +28,8 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="auto_adduction">Auto Adduction <span class="text-danger">*</span></label>
-                <select class="form-control" id="auto_adduction" name="auto_adduction">
+                <label for="so_auto_adduction">Auto Adduction <span class="text-danger">*</span></label>
+                <select class="form-control" id="so_auto_adduction" name="so_auto_adduction">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectSiteOrigineAutoAdduction::all();
@@ -40,8 +40,8 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="travaux_adduction">Travaux adduction <span class="text-danger">*</span></label>
-                <select class="form-control" id="travaux_adduction" name="travaux_adduction">
+                <label for="so_travaux_adduction">Travaux adduction <span class="text-danger">*</span></label>
+                <select class="form-control" id="so_travaux_adduction" name="so_travaux_adduction">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectSiteOrigineTravauxAdduction::all();
@@ -56,8 +56,8 @@
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-3">
-                <label for="recette_adduction">Recette Adduction <span class="text-danger">*</span></label>
-                <select class="form-control" id="recette_adduction" name="recette_adduction">
+                <label for="so_recette_adduction">Recette Adduction <span class="text-danger">*</span></label>
+                <select class="form-control" id="so_recette_adduction" name="so_recette_adduction">
                     <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                     <?php
                     $results = SelectSiteOrigineRecetteAdduction::all();

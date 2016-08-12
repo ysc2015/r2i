@@ -13,6 +13,7 @@ $err = 0;
 $message = array();
 
 $suffix = "gp";
+$paramcount = 0;
 $sousprojet_infoplaque = SousProjetInfoPlaque::first(array('conditions' => array("id_sous_projet = ?", $ids)));
 
 $fieldslist = "";
@@ -24,6 +25,7 @@ if($sousprojet_infoplaque !== NULL) {
 foreach( $_POST as $key => $value ) {
 
     if(strpos($key,$suffix) !== false) {
+        $paramcount++;
         $arr = explode("_",$key);
         array_shift($arr);
         $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
@@ -33,6 +35,11 @@ foreach( $_POST as $key => $value ) {
 $fieldslist = rtrim($fieldslist,",");
 
 $stm = $db->prepare("update sous_projet_plaque_phase set $fieldslist where id_sous_projet=:id_sous_projet");
+
+if($paramcount < 1) {
+    $err++;
+    $message[] = "Vous n'avez pas le droit d'effectuer cette action !";
+}
 
 if(isset($ids) && !empty($ids)){
     $stm->bindParam(':id_sous_projet',$ids);
