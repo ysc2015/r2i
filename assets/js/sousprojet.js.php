@@ -1374,7 +1374,12 @@ var SProjet = function() {
     }();
     var reseaudistribution = function() {
         var done = $.Deferred();
-        var formdata = {};
+        var design_formdata = {};
+        var aiguillage_formdata = {};
+        var cmd_formdata = {};
+        var tirage_formdata = {};
+        var raccord_formdata = {};
+        var recette_formdata = {};
         var da_ot_id_entree = undefined;
         var da_ot_type_entree = 'distribution_aiguillage';
         var dt_ot_id_entree = undefined;
@@ -1451,6 +1456,25 @@ var SProjet = function() {
             } );
         }
         var init = function() {
+            $('#dist_designcdi_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                design_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#dist_aiguillage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                aiguillage_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#dist_cmdcdi_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                cmd_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#dist_tirage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                tirage_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#dist_raccord_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                raccord_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#dist_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                recette_formdata[$( this ).attr('name')] = $( this).val();
+            });
+
             jQuery('.js-tags-input').tagsinput({});
             if(checkLinears()) {
                 $("#id_lineaire_distribution_aiguillage_btn").removeClass("btn-danger");
@@ -1494,6 +1518,261 @@ var SProjet = function() {
             //setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
+            $("#id_sous_projet_distribution_design_btn").click(function () {
+
+                $("#message_distribution_design").fadeOut();
+                $("#rdistribution_block").toggleClass('block-opt-refresh');
+
+                for (var key in design_formdata) {
+                    console.log('#'+key);
+                    design_formdata[key] = $('#'+key).val();
+                }
+                design_formdata['ids'] = ids;
+                design_formdata['dd_duree'] = $("#dd_duree").val();
+
+                $.ajax({
+                    method: "POST",
+                    url: (ddesign_isnew?"api/sousprojet/ddesign_add.php":"api/sousprojet/ddesign_update.php"),
+                    data: /*{
+                        ids: get('idsousprojet'),
+                        dd_intervenant_be: $('#dd_intervenant_be').val(),
+                        dd_intervenant_bex: $('#dd_intervenant_bex').val(),
+                        dd_date_debut: $('#dd_date_debut').val(),
+                        dd_date_fin: $('#dd_date_fin').val(),
+                        dd_duree: $('#dd_duree').val(),
+                        dd_lineaire_distribution: $('#dd_lineaire_distribution').val(),
+                        dd_etat: $('#dd_etat').val(),
+                        dd_date_envoi: $('#dd_date_envoi').val(),
+                        dd_ok: $('#dd_ok').val()
+
+                    }*/design_formdata
+                }).done(function (msg) {
+                    $("#rdistribution_block").removeClass('block-opt-refresh');
+                    if(App.showMessage(msg, '#message_distribution_design')) {
+                        $("#id_sous_projet_distribution_design_alert").hide();
+                        ddesign_isnew = false;
+                    }
+                });
+            });
+            $("#id_sous_projet_distribution_aiguillage_btn").click(function () {
+
+                $("#message_distribution_aiguillage").fadeOut();
+                $("#rdistribution_block").toggleClass('block-opt-refresh');
+
+                for (var key in aiguillage_formdata) {
+                    console.log('#'+key);
+                    aiguillage_formdata[key] = $('#'+key).val();
+                }
+                aiguillage_formdata['ids'] = ids;
+                //aiguillage_formdata['da_duree'] = $("#da_duree").val();
+
+                $.ajax({
+                    method: "POST",
+                    url: (daiguillage_isnew?"api/sousprojet/daiguillage_add.php":"api/sousprojet/daiguillage_update.php"),
+                    data: /*{
+                        ids: get('idsousprojet'),
+                        da_intervenant_be: $('#da_intervenant_be').val(),
+                        da_plans: $('#da_plans').val(),
+                        lineaire1: $('#da_lineaire1').val(),
+                        lineaire2: $('#da_lineaire2').val(),
+                        lineaire3: $('#da_lineaire3').val(),
+                        lineaire4: $('#da_lineaire4').val(),
+                        lineaire5: $('#da_lineaire5').val(),
+                        lineaire6: $('#da_lineaire6').val(),
+                        lineaire7: $('#da_lineaire7').val(),
+                        lineaire8: $('#da_lineaire8').val(),
+                        da_controle_plans: $('#da_controle_plans').val(),
+                        da_date_transmission_plans: $('#da_date_transmission_plans').val(),
+                        da_entreprise: $('#da_entreprise').val(),
+                        da_date_aiguillage: $('#da_date_aiguillage').val(),
+                        da_duree: $('#da_duree').val(),
+                        da_controle_demarrage_effectif: $('#da_controle_demarrage_effectif').val(),
+                        da_date_retour: $('#da_date_retour').val(),
+                        da_etat_retour: $('#da_etat_retour').val(),
+                        da_ok: $('#da_ok').val()
+
+                    }*/aiguillage_formdata
+                }).done(function (msg) {
+                    var obj = $.parseJSON(msg);
+                    //console.log(obj);
+                    $("#rdistribution_block").removeClass('block-opt-refresh');
+                    if(App.showMessage(msg, '#message_distribution_aiguillage')) {
+                        $("#id_sous_projet_distribution_aiguillage_alert").hide();
+                        if(daiguillage_isnew) {
+                            da_ot_id_entree = obj.id;
+                            daiguillage_isnew = false;
+                            $("#id_sous_projet_distribution_aiguillage_btn").after('  <button id="id_sous_projet_distribution_aiguillage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
+                            //console.log(data_ot);
+                        }
+                    }
+                });
+            });
+            $("#id_sous_projet_distribution_commande_cdi_btn").click(function () {
+
+                $("#message_distribution_commande_cdi").fadeOut();
+                $("#rdistribution_block").toggleClass('block-opt-refresh');
+
+                for (var key in cmd_formdata) {
+                    console.log('#'+key);
+                    cmd_formdata[key] = $('#'+key).val();
+                }
+                cmd_formdata['ids'] = ids;
+
+                $.ajax({
+                    method: "POST",
+                    url: (dcmdcdi_isnew?"api/sousprojet/dcmdcdi_add.php":"api/sousprojet/dcmdcdi_update.php"),
+                    data: /*{
+                        ids: get('idsousprojet'),
+                        dcc_intervenant_be: $('#dcc_intervenant_be').val(),
+                        dcc_date_butoir: $('#dcc_date_butoir').val(),
+                        dcc_traitement_retour_terrain: $('#dcc_traitement_retour_terrain').val(),
+                        dcc_modification_carto: $('#dcc_modification_carto').val(),
+                        dcc_commandes_acces: $('#dcc_commandes_acces').val(),
+                        dcc_date_transmission_ca: $('#dcc_date_transmission_ca').val(),
+                        dcc_ref_commande_acces: $('#dcc_ref_commande_acces').val(),
+                        dcc_go_ft: $('#dcc_go_ft').val(),
+                        dcc_ok: $('#dcc_ok').val()
+
+                    }*/cmd_formdata
+                }).done(function (msg) {
+                    $("#rdistribution_block").removeClass('block-opt-refresh');
+                    if(App.showMessage(msg, '#message_distribution_commande_cdi')) {
+                        $("#id_sous_projet_distribution_commande_cdi_alert").hide();
+                        dcmdcdi_isnew = false;
+                    }
+                });
+            });
+            $("#id_sous_projet_distribution_tirage_btn").click(function () {
+
+                $("#message_distribution_tirage").fadeOut();
+                $("#rdistribution_block").toggleClass('block-opt-refresh');
+
+                for (var key in tirage_formdata) {
+                    console.log('#'+key);
+                    tirage_formdata[key] = $('#'+key).val();
+                }
+                tirage_formdata['ids'] = ids;
+                //tirage_formdata['dt_duree'] = $("#dt_duree").val();
+
+                $.ajax({
+                    method: "POST",
+                    url: (dtirage_isnew?"api/sousprojet/dtirage_add.php":"api/sousprojet/dtirage_update.php"),
+                    data: /*{
+                        ids: get('idsousprojet'),
+                        dt_intervenant_be: $('#dt_intervenant_be').val(),
+                        dt_date_previsionnelle: $('#dt_date_previsionnelle').val(),
+                        dt_prep_plans: $('#dt_prep_plans').val(),
+                        lineaire1: $('#dt_lineaire1').val(),
+                        lineaire2: $('#dt_lineaire2').val(),
+                        lineaire3: $('#dt_lineaire3').val(),
+                        lineaire4: $('#dt_lineaire4').val(),
+                        lineaire5: $('#dt_lineaire5').val(),
+                        lineaire6: $('#dt_lineaire6').val(),
+                        lineaire7: $('#dt_lineaire7').val(),
+                        lineaire8: $('#dt_lineaire8').val(),
+                        dt_controle_plans: $('#dt_controle_plans').val(),
+                        dt_date_transmission_plans: $('#dt_date_transmission_plans').val(),
+                        dt_entreprise: $('#dt_entreprise').val(),
+                        dt_date_tirage: $('#dt_date_tirage').val(),
+                        dt_duree: $('#dt_duree').val(),
+                        dt_controle_demarrage_effectif: $('#dt_controle_demarrage_effectif').val(),
+                        dt_date_retour: $('#dt_date_retour').val(),
+                        dt_etat_retour: $('#dt_etat_retour').val(),
+                        dt_ok: $('#dt_ok').val()
+
+                    }*/tirage_formdata
+                }).done(function (msg) {
+                    var obj = $.parseJSON(msg);
+                    //console.log(obj);
+                    $("#rdistribution_block").removeClass('block-opt-refresh');
+                    if(App.showMessage(msg, '#message_distribution_tirage')) {
+                        $("#id_sous_projet_distribution_tirage_alert").hide();
+                        if(dtirage_isnew) {
+                            dt_ot_id_entree = obj.id;
+                            dtirage_isnew = false;
+                            $("#id_sous_projet_distribution_tirage_btn").after('  <button id="id_sous_projet_distribution_tirage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
+                            //console.log(data_ot);
+                        }
+                    }
+                });
+            });
+            $("#id_sous_projet_distribution_raccordements_btn").click(function () {
+
+                $("#message_distribution_raccordements").fadeOut();
+                $("#rdistribution_block").toggleClass('block-opt-refresh');
+
+                for (var key in raccord_formdata) {
+                    console.log('#'+key);
+                    raccord_formdata[key] = $('#'+key).val();
+                }
+                raccord_formdata['ids'] = ids;
+                //raccord_formdata['dr_duree'] = $("#dr_duree").val();
+
+                $.ajax({
+                    method: "POST",
+                    url: (draccord_isnew?"api/sousprojet/draccord_add.php":"api/sousprojet/draccord_update.php"),
+                    data: /*{
+                        ids: get('idsousprojet'),
+                        dr_intervenant_be: $('#dr_intervenant_be').val(),
+                        dr_preparation_pds: $('#dr_preparation_pds').val(),
+                        dr_controle_plans: $('#dr_controle_plans').val(),
+                        dr_date_transmission_pds: $('#dr_date_transmission_pds').val(),
+                        dr_entreprise: $('#dr_entreprise').val(),
+                        dr_date_racco: $('#dr_date_racco').val(),
+                        dr_duree: $('#dr_duree').val(),
+                        dr_controle_demarrage_effectif: $('#dr_controle_demarrage_effectif').val(),
+                        dr_date_retour: $('#dr_date_retour').val(),
+                        dr_etat_retour: $('#dr_etat_retour').val(),
+                        dr_ok: $('#dr_ok').val()
+
+                    }*/raccord_formdata
+                }).done(function (msg) {
+                    var obj = $.parseJSON(msg);
+                    $("#rdistribution_block").removeClass('block-opt-refresh');
+                    if(App.showMessage(msg, '#message_distribution_raccordements')) {
+                        $("#id_sous_projet_distribution_raccordements_alert").hide();
+                        if(draccord_isnew) {
+                            dr_ot_id_entree = obj.id;
+                            draccord_isnew = false;
+                            $("#id_sous_projet_distribution_raccordements_btn").after('  <button id="id_sous_projet_distribution_raccordements_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
+                        }
+                    }
+                });
+            });
+            $("#id_sous_projet_distribution_recette_btn").click(function () {
+
+                $("#message_distribution_recette").fadeOut();
+                $("#rdistribution_block").toggleClass('block-opt-refresh');
+
+                for (var key in recette_formdata) {
+                    console.log('#'+key);
+                    recette_formdata[key] = $('#'+key).val();
+                }
+                recette_formdata['ids'] = ids;
+
+                $.ajax({
+                    method: "POST",
+                    url: (drecette_isnew?"api/sousprojet/drecette_add.php":"api/sousprojet/drecette_update.php"),
+                    data: /*{
+                        ids: get('idsousprojet'),
+                        drec_intervenant_be: $('#drec_intervenant_be').val(),
+                        drec_doe: $('#drec_doe').val(),
+                        drec_netgeo: $('#drec_netgeo').val(),
+                        drec_intervenant_free: $('#drec_intervenant_free').val(),
+                        drec_entreprise: $('#drec_entreprise').val(),
+                        drec_date_recette: $('#drec_date_recette').val(),
+                        drec_etat_recette: $('#drec_etat_recette').val()
+
+                    }*/recette_formdata
+                }).done(function (msg) {
+                    $("#rdistribution_block").removeClass('block-opt-refresh');
+                    if(App.showMessage(msg, '#message_distribution_recette')) {
+                        $("#id_sous_projet_distribution_recette_alert").hide();
+                        drecette_isnew = false;
+                    }
+                });
+            });
+
             $("#id_lineaire_distribution_aiguillage_btn").click(function () {
 
                 console.log('clicked');
@@ -1520,79 +1799,7 @@ var SProjet = function() {
                     $("#hdfh04l54ff").addClass("fa-plus");
                 }
             });
-            $("#id_sous_projet_distribution_design_btn").click(function () {
 
-                $("#message_distribution_design").fadeOut();
-                $("#rdistribution_block").toggleClass('block-opt-refresh');
-                $.ajax({
-                    method: "POST",
-                    url: (ddesign_isnew?"api/sousprojet/ddesign_add.php":"api/sousprojet/ddesign_update.php"),
-                    data: {
-                        ids: get('idsousprojet'),
-                        dd_intervenant_be: $('#dd_intervenant_be').val(),
-                        dd_intervenant_bex: $('#dd_intervenant_bex').val(),
-                        dd_date_debut: $('#dd_date_debut').val(),
-                        dd_date_fin: $('#dd_date_fin').val(),
-                        dd_duree: $('#dd_duree').val(),
-                        dd_lineaire_distribution: $('#dd_lineaire_distribution').val(),
-                        dd_etat: $('#dd_etat').val(),
-                        dd_date_envoi: $('#dd_date_envoi').val(),
-                        dd_ok: $('#dd_ok').val()
-
-                    }
-                }).done(function (msg) {
-                    $("#rdistribution_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_distribution_design')) {
-                        $("#id_sous_projet_distribution_design_alert").hide();
-                        ddesign_isnew = false;
-                    }
-                });
-            });
-            $("#id_sous_projet_distribution_aiguillage_btn").click(function () {
-
-                $("#message_distribution_aiguillage").fadeOut();
-                $("#rdistribution_block").toggleClass('block-opt-refresh');
-                $.ajax({
-                    method: "POST",
-                    url: (daiguillage_isnew?"api/sousprojet/daiguillage_add.php":"api/sousprojet/daiguillage_update.php"),
-                    data: {
-                        ids: get('idsousprojet'),
-                        da_intervenant_be: $('#da_intervenant_be').val(),
-                        da_plans: $('#da_plans').val(),
-                        lineaire1: $('#da_lineaire1').val(),
-                        lineaire2: $('#da_lineaire2').val(),
-                        lineaire3: $('#da_lineaire3').val(),
-                        lineaire4: $('#da_lineaire4').val(),
-                        lineaire5: $('#da_lineaire5').val(),
-                        lineaire6: $('#da_lineaire6').val(),
-                        lineaire7: $('#da_lineaire7').val(),
-                        lineaire8: $('#da_lineaire8').val(),
-                        da_controle_plans: $('#da_controle_plans').val(),
-                        da_date_transmission_plans: $('#da_date_transmission_plans').val(),
-                        da_entreprise: $('#da_entreprise').val(),
-                        da_date_aiguillage: $('#da_date_aiguillage').val(),
-                        da_duree: $('#da_duree').val(),
-                        da_controle_demarrage_effectif: $('#da_controle_demarrage_effectif').val(),
-                        da_date_retour: $('#da_date_retour').val(),
-                        da_etat_retour: $('#da_etat_retour').val(),
-                        da_ok: $('#da_ok').val()
-
-                    }
-                }).done(function (msg) {
-                    var obj = $.parseJSON(msg);
-                    //console.log(obj);
-                    $("#rdistribution_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_distribution_aiguillage')) {
-                        $("#id_sous_projet_distribution_aiguillage_alert").hide();
-                        if(daiguillage_isnew) {
-                            da_ot_id_entree = obj.id;
-                            daiguillage_isnew = false;
-                            $("#id_sous_projet_distribution_aiguillage_btn").after('  <button id="id_sous_projet_distribution_aiguillage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                            //console.log(data_ot);
-                        }
-                    }
-                });
-            });
             $('body').on('click', '#id_sous_projet_distribution_aiguillage_create_ot_show', function() {
                 // do something
                 //console.log('show ot body source tag');
@@ -1601,80 +1808,6 @@ var SProjet = function() {
                 data_ot.type_entree = da_ot_type_entree;
                 show_btn = $("#id_sous_projet_distribution_aiguillage_create_ot_show");
                 create_btn = $("#id_sous_projet_distribution_aiguillage_btn");
-            });
-            $("#id_sous_projet_distribution_commande_cdi_btn").click(function () {
-
-                $("#message_distribution_commande_cdi").fadeOut();
-                $("#rdistribution_block").toggleClass('block-opt-refresh');
-                $.ajax({
-                    method: "POST",
-                    url: (dcmdcdi_isnew?"api/sousprojet/dcmdcdi_add.php":"api/sousprojet/dcmdcdi_update.php"),
-                    data: {
-                        ids: get('idsousprojet'),
-                        dcc_intervenant_be: $('#dcc_intervenant_be').val(),
-                        dcc_date_butoir: $('#dcc_date_butoir').val(),
-                        dcc_traitement_retour_terrain: $('#dcc_traitement_retour_terrain').val(),
-                        dcc_modification_carto: $('#dcc_modification_carto').val(),
-                        dcc_commandes_acces: $('#dcc_commandes_acces').val(),
-                        dcc_date_transmission_ca: $('#dcc_date_transmission_ca').val(),
-                        dcc_ref_commande_acces: $('#dcc_ref_commande_acces').val(),
-                        dcc_go_ft: $('#dcc_go_ft').val(),
-                        dcc_ok: $('#dcc_ok').val()
-
-                    }
-                }).done(function (msg) {
-                    $("#rdistribution_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_distribution_commande_cdi')) {
-                        $("#id_sous_projet_distribution_commande_cdi_alert").hide();
-                        dcmdcdi_isnew = false;
-                    }
-                });
-            });
-            $("#id_sous_projet_distribution_tirage_btn").click(function () {
-
-                $("#message_distribution_tirage").fadeOut();
-                $("#rdistribution_block").toggleClass('block-opt-refresh');
-                $.ajax({
-                    method: "POST",
-                    url: (dtirage_isnew?"api/sousprojet/dtirage_add.php":"api/sousprojet/dtirage_update.php"),
-                    data: {
-                        ids: get('idsousprojet'),
-                        dt_intervenant_be: $('#dt_intervenant_be').val(),
-                        dt_date_previsionnelle: $('#dt_date_previsionnelle').val(),
-                        dt_prep_plans: $('#dt_prep_plans').val(),
-                        lineaire1: $('#dt_lineaire1').val(),
-                        lineaire2: $('#dt_lineaire2').val(),
-                        lineaire3: $('#dt_lineaire3').val(),
-                        lineaire4: $('#dt_lineaire4').val(),
-                        lineaire5: $('#dt_lineaire5').val(),
-                        lineaire6: $('#dt_lineaire6').val(),
-                        lineaire7: $('#dt_lineaire7').val(),
-                        lineaire8: $('#dt_lineaire8').val(),
-                        dt_controle_plans: $('#dt_controle_plans').val(),
-                        dt_date_transmission_plans: $('#dt_date_transmission_plans').val(),
-                        dt_entreprise: $('#dt_entreprise').val(),
-                        dt_date_tirage: $('#dt_date_tirage').val(),
-                        dt_duree: $('#dt_duree').val(),
-                        dt_controle_demarrage_effectif: $('#dt_controle_demarrage_effectif').val(),
-                        dt_date_retour: $('#dt_date_retour').val(),
-                        dt_etat_retour: $('#dt_etat_retour').val(),
-                        dt_ok: $('#dt_ok').val()
-
-                    }
-                }).done(function (msg) {
-                    var obj = $.parseJSON(msg);
-                    //console.log(obj);
-                    $("#rdistribution_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_distribution_tirage')) {
-                        $("#id_sous_projet_distribution_tirage_alert").hide();
-                        if(dtirage_isnew) {
-                            dt_ot_id_entree = obj.id;
-                            dtirage_isnew = false;
-                            $("#id_sous_projet_distribution_tirage_btn").after('  <button id="id_sous_projet_distribution_tirage_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                            //console.log(data_ot);
-                        }
-                    }
-                });
             });
             $('body').on('click', '#id_sous_projet_distribution_tirage_create_ot_show', function() {
                 // do something
@@ -1685,41 +1818,6 @@ var SProjet = function() {
                 show_btn = $("#id_sous_projet_distribution_tirage_create_ot_show");
                 create_btn = $("#id_sous_projet_distribution_tirage_btn");
             });
-            $("#id_sous_projet_distribution_raccordements_btn").click(function () {
-
-                $("#message_distribution_raccordements").fadeOut();
-                $("#rdistribution_block").toggleClass('block-opt-refresh');
-                $.ajax({
-                    method: "POST",
-                    url: (draccord_isnew?"api/sousprojet/draccord_add.php":"api/sousprojet/draccord_update.php"),
-                    data: {
-                        ids: get('idsousprojet'),
-                        dr_intervenant_be: $('#dr_intervenant_be').val(),
-                        dr_preparation_pds: $('#dr_preparation_pds').val(),
-                        dr_controle_plans: $('#dr_controle_plans').val(),
-                        dr_date_transmission_pds: $('#dr_date_transmission_pds').val(),
-                        dr_entreprise: $('#dr_entreprise').val(),
-                        dr_date_racco: $('#dr_date_racco').val(),
-                        dr_duree: $('#dr_duree').val(),
-                        dr_controle_demarrage_effectif: $('#dr_controle_demarrage_effectif').val(),
-                        dr_date_retour: $('#dr_date_retour').val(),
-                        dr_etat_retour: $('#dr_etat_retour').val(),
-                        dr_ok: $('#dr_ok').val()
-
-                    }
-                }).done(function (msg) {
-                    var obj = $.parseJSON(msg);
-                    $("#rdistribution_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_distribution_raccordements')) {
-                        $("#id_sous_projet_distribution_raccordements_alert").hide();
-                        if(draccord_isnew) {
-                            dr_ot_id_entree = obj.id;
-                            draccord_isnew = false;
-                            $("#id_sous_projet_distribution_raccordements_btn").after('  <button id="id_sous_projet_distribution_raccordements_create_ot_show" class="btn btn-success" type="button" data-toggle="modal" data-target="#add-ot" data-backdrop="static" data-keyboard="false">créer ordre de travail</button>');
-                        }
-                    }
-                });
-            });
             $('body').on('click', '#id_sous_projet_distribution_raccordements_create_ot_show', function() {
                 // do something
                 //console.log('show ot body source tag');
@@ -1728,32 +1826,6 @@ var SProjet = function() {
                 data_ot.type_entree = dr_ot_type_entree;
                 show_btn = $("#id_sous_projet_distribution_raccordements_create_ot_show");
                 create_btn = $("#id_sous_projet_distribution_raccordements_btn");
-            });
-            $("#id_sous_projet_distribution_recette_btn").click(function () {
-
-                $("#message_distribution_recette").fadeOut();
-                $("#rdistribution_block").toggleClass('block-opt-refresh');
-                $.ajax({
-                    method: "POST",
-                    url: (drecette_isnew?"api/sousprojet/drecette_add.php":"api/sousprojet/drecette_update.php"),
-                    data: {
-                        ids: get('idsousprojet'),
-                        drec_intervenant_be: $('#drec_intervenant_be').val(),
-                        drec_doe: $('#drec_doe').val(),
-                        drec_netgeo: $('#drec_netgeo').val(),
-                        drec_intervenant_free: $('#drec_intervenant_free').val(),
-                        drec_entreprise: $('#drec_entreprise').val(),
-                        drec_date_recette: $('#drec_date_recette').val(),
-                        drec_etat_recette: $('#drec_etat_recette').val()
-
-                    }
-                }).done(function (msg) {
-                    $("#rdistribution_block").removeClass('block-opt-refresh');
-                    if(App.showMessage(msg, '#message_distribution_recette')) {
-                        $("#id_sous_projet_distribution_recette_alert").hide();
-                        drecette_isnew = false;
-                    }
-                });
             });
 
             $("#dd_date_debut").change(function() {
