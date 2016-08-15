@@ -704,7 +704,12 @@ var SProjet = function() {
     }();
     var reseautransport = function() {
         var done = $.Deferred();
-        var formdata = {};
+        var design_formdata = {};
+        var aiguillage_formdata = {};
+        var cmd_formdata = {};
+        var tirage_formdata = {};
+        var raccord_formdata = {};
+        var recette_formdata = {};
         var ta_ot_id_entree = undefined;
         var ta_ot_type_entree = 'transport_aiguillage';
         var tt_ot_id_entree = undefined;
@@ -780,6 +785,25 @@ var SProjet = function() {
             });
         }
         var init = function() {
+            $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                design_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#transport_aiguillage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                aiguillage_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#transport_cmdctr_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                cmd_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#transport_tirage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                tirage_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#transport_raccord_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                raccord_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $('#transport_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){
+                recette_formdata[$( this ).attr('name')] = $( this).val();
+            });
+
             /*jQuery('.js-tags-input').tagsInput({
                 height: '45px',
                 width: '100%',
@@ -832,54 +856,22 @@ var SProjet = function() {
         }
         var initEvents = function() {
             //App.initHelpers('tags-inputs');
-            $("#id_lineaire_transport_aiguillage_btn").click(function () {
-
-                console.log('clicked');
-                if ( $( "#lineare_groupe" ).is( ":hidden" ) ) {
-                    $("#hdf0454ff").removeClass("fa-plus");
-                    $("#hdf0454ff").addClass("fa-minus");
-                    $( "#lineare_groupe" ).show( "fast" );
-                } else {
-                    $( "#lineare_groupe" ).slideUp();
-                    $("#hdf0454ff").removeClass("fa-minus");
-                    $("#hdf0454ff").addClass("fa-plus");
-                }
-            });
-            $("#id_lineaire_transport_tirage_btn").click(function () {
-
-                console.log('clicked');
-                if ( $( "#tt_lineare_groupe" ).is( ":hidden" ) ) {
-                    $("#hdf04l54ff").removeClass("fa-plus");
-                    $("#hdf04l54ff").addClass("fa-minus");
-                    $( "#tt_lineare_groupe" ).show( "fast" );
-                } else {
-                    $( "#tt_lineare_groupe" ).slideUp();
-                    $("#hdf04l54ff").removeClass("fa-minus");
-                    $("#hdf04l54ff").addClass("fa-plus");
-                }
-            });
-            $("#transport_aiguillage_osa_btn").click(function () {
-
-                console.log('transport_aiguillage_osa_btn');
-                $.ajax({
-                    method: "POST",
-                    url: 'http://192.168.1.41/osa/api/utilisateur_show.php',
-                    data: {
-                        r2i : 'rrahmouni@rc2k.fr::rrahmouni'
-                    }
-                }).done(function (msg) {
-                    var obj = $.parseJSON(msg);
-                    console.log(obj);
-                });
-            });
             $("#id_sous_projet_transport_design_btn").click(function () {
 
                 $("#message_transport_design").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');
+
+                for (var key in design_formdata) {
+                    console.log('#'+key);
+                    design_formdata[key] = $('#'+key).val();
+                }
+                design_formdata['ids'] = ids;
+                design_formdata['td_duree'] = $("#td_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (tdesign_isnew?"api/sousprojet/tdesign_add.php":"api/sousprojet/tdesign_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         td_intervenant_be: $('#td_intervenant_be').val(),
                         td_valideur_bei: $('#td_valideur_bei').val(),
@@ -890,7 +882,7 @@ var SProjet = function() {
                         td_nb_zones: $('#td_nb_zones').val(),
                         td_ok: $('#td_ok').val()
 
-                    }
+                    }*/design_formdata
                 }).done(function (msg) {
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_design')) {
@@ -906,10 +898,18 @@ var SProjet = function() {
 
                 $("#message_transport_aiguillage").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');
+
+                for (var key in aiguillage_formdata) {
+                    console.log('#'+key);
+                    aiguillage_formdata[key] = $('#'+key).val();
+                }
+                aiguillage_formdata['ids'] = ids;
+                aiguillage_formdata['ta_duree'] = $("#ta_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (taiguillage_isnew?"api/sousprojet/taguillage_add.php":"api/sousprojet/taguillage_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         ta_intervenant_be: $('#ta_intervenant_be').val(),
                         ta_plans: $('#ta_plans').val(),
@@ -917,7 +917,7 @@ var SProjet = function() {
                         ta_controle_plans: $('#ta_controle_plans').val(),
                         ta_date_transmission_plans: $('#ta_date_transmission_plans').val(),
                         ta_entreprise: $('#ta_entreprise').val(),
-                        phase: $('#phase').val(),
+
                         ta_date_aiguillage: $('#ta_date_aiguillage').val(),
                         ta_date_ret_prevue: $('#ta_date_ret_prevue').val(),
                         ta_duree: $('#ta_duree').val(),
@@ -936,7 +936,7 @@ var SProjet = function() {
                         ta_retour_presta: $('#ta_retour_presta').val(),
                         ta_ok: $('#ta_ok').val()
 
-                    }
+                    }*/aiguillage_formdata
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
                     //console.log(obj);
@@ -952,15 +952,6 @@ var SProjet = function() {
                     }
                 });
             });
-            $('body').on('click', '#id_sous_projet_transport_aiguillage_create_ot_show', function() {
-                // do something
-                //console.log('show ot body source tag');
-                $("#add_ot_form")[0].reset();
-                data_ot.id_entree = ta_ot_id_entree;
-                data_ot.type_entree = ta_ot_type_entree;
-                show_btn = $("#id_sous_projet_transport_aiguillage_create_ot_show");
-                create_btn = $("#id_sous_projet_transport_aiguillage_btn");
-            });
             $("#id_sous_projet_transport_commande_ctr_btn").click(function () {
 
                 //console.log($('#cctr_ref_commande_acces').val());
@@ -969,10 +960,17 @@ var SProjet = function() {
 
                 $("#message_transport_commande_ctr").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');
+
+                for (var key in cmd_formdata) {
+                    console.log('#'+key);
+                    cmd_formdata[key] = $('#'+key).val();
+                }
+                cmd_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: (tcmdctr_isnew?"api/sousprojet/tcmdctr_add.php":"api/sousprojet/tcmdctr_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         cctr_intervenant_be: $('#cctr_intervenant_be').val(),
                         cctr_date_butoir: $('#cctr_date_butoir').val(),
@@ -984,7 +982,7 @@ var SProjet = function() {
                         cctr_go_ft: $('#cctr_go_ft').val(),
                         cctr_ok: $('#cctr_ok').val()
 
-                    }
+                    }*/cmd_formdata
                 }).done(function (msg) {
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_commande_ctr')) {
@@ -997,10 +995,18 @@ var SProjet = function() {
 
                 $("#message_transport_tirage").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');
+
+                for (var key in tirage_formdata) {
+                    console.log('#'+key);
+                    tirage_formdata[key] = $('#'+key).val();
+                }
+                tirage_formdata['ids'] = ids;
+                tirage_formdata['tt_duree'] = $("#tt_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (ttirage_isnew?"api/sousprojet/ttirage_add.php":"api/sousprojet/ttirage_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         tt_intervenant_be: $('#tt_intervenant_be').val(),
                         tt_plans: $('#tt_plans').val(),
@@ -1027,7 +1033,7 @@ var SProjet = function() {
                         tt_retour_presta: $('#tt_retour_presta').val(),
                         tt_ok: $('#tt_ok').val()
 
-                    }
+                    }*/tirage_formdata
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
                     //console.log(obj);
@@ -1043,23 +1049,22 @@ var SProjet = function() {
                     }
                 });
             });
-            $('body').on('click', '#id_sous_projet_transport_tirage_create_ot_show', function() {
-                // do something
-                //console.log('show ot body source tag');
-                $("#add_ot_form")[0].reset();
-                data_ot.id_entree = tt_ot_id_entree;
-                data_ot.type_entree = tt_ot_type_entree;
-                show_btn = $("#id_sous_projet_transport_tirage_create_ot_show");
-                create_btn = $("#id_sous_projet_transport_tirage_btn");
-            });
             $("#id_sous_projet_transport_raccordements_btn").click(function () {
 
                 $("#message_transport_raccordements").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');
+
+                for (var key in raccord_formdata) {
+                    console.log('#'+key);
+                    raccord_formdata[key] = $('#'+key).val();
+                }
+                raccord_formdata['ids'] = ids;
+                //raccord_formdata['tr_duree'] = $("#tr_duree").val();
+
                 $.ajax({
                     method: "POST",
                     url: (traccord_isnew?"api/sousprojet/traccord_add.php":"api/sousprojet/traccord_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         tr_intervenant_be: $('#tr_intervenant_be').val(),
                         tr_preparation_pds: $('#tr_preparation_pds').val(),
@@ -1073,7 +1078,7 @@ var SProjet = function() {
                         tr_etat_retour: $('#tr_etat_retour').val(),
                         tr_ok: $('#tr_ok').val()
 
-                    }
+                    }*/raccord_formdata
                 }).done(function (msg) {//console.log(msg);
                     var obj = $.parseJSON(msg);
                     $("#rtransport_block").removeClass('block-opt-refresh');
@@ -1088,23 +1093,21 @@ var SProjet = function() {
                     }
                 });
             });
-            $('body').on('click', '#id_sous_projet_transport_raccordements_create_ot_show', function() {
-                // do something
-                //console.log('show ot body source tag');
-                $("#add_ot_form")[0].reset();
-                data_ot.id_entree = tr_ot_id_entree;
-                data_ot.type_entree = tr_ot_type_entree;
-                show_btn = $("#id_sous_projet_transport_raccordements_create_ot_show");
-                create_btn = $("#id_sous_projet_transport_raccordements_btn");
-            });
             $("#id_sous_projet_transport_recette_btn").click(function () {
 
                 $("#message_transport_recette").fadeOut();
                 $("#rtransport_block").toggleClass('block-opt-refresh');
+
+                for (var key in recette_formdata) {
+                    console.log('#'+key);
+                    recette_formdata[key] = $('#'+key).val();
+                }
+                recette_formdata['ids'] = ids;
+
                 $.ajax({
                     method: "POST",
                     url: (trecette_isnew?"api/sousprojet/trecette_add.php":"api/sousprojet/trecette_update.php"),
-                    data: {
+                    data: /*{
                         ids: get('idsousprojet'),
                         trec_intervenant_be: $('#trec_intervenant_be').val(),
                         trec_doe: $('#trec_doe').val(),
@@ -1114,7 +1117,7 @@ var SProjet = function() {
                         trec_date_recette: $('#trec_date_recette').val(),
                         trec_etat_recette: $('#trec_etat_recette').val()
 
-                    }
+                    }*/recette_formdata
                 }).done(function (msg) {
                     $("#rtransport_block").removeClass('block-opt-refresh');
                     if(App.showMessage(msg, '#message_transport_recette')) {
@@ -1122,6 +1125,75 @@ var SProjet = function() {
                         trecette_isnew = false;
                     }
                 });
+            });
+
+            $("#id_lineaire_transport_aiguillage_btn").click(function () {
+
+                console.log('clicked');
+                if ( $( "#lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdf0454ff").removeClass("fa-plus");
+                    $("#hdf0454ff").addClass("fa-minus");
+                    $( "#lineare_groupe" ).show( "fast" );
+                } else {
+                    $( "#lineare_groupe" ).slideUp();
+                    $("#hdf0454ff").removeClass("fa-minus");
+                    $("#hdf0454ff").addClass("fa-plus");
+                }
+            });
+            $("#transport_aiguillage_osa_btn").click(function () {
+
+                console.log('transport_aiguillage_osa_btn');
+                $.ajax({
+                    method: "POST",
+                    url: 'http://192.168.1.41/osa/api/utilisateur_show.php',
+                    data: {
+                        r2i : 'rrahmouni@rc2k.fr::rrahmouni'
+                    }
+                }).done(function (msg) {
+                    var obj = $.parseJSON(msg);
+                    console.log(obj);
+                });
+            });
+            $("#id_lineaire_transport_tirage_btn").click(function () {
+
+                console.log('clicked');
+                if ( $( "#tt_lineare_groupe" ).is( ":hidden" ) ) {
+                    $("#hdf04l54ff").removeClass("fa-plus");
+                    $("#hdf04l54ff").addClass("fa-minus");
+                    $( "#tt_lineare_groupe" ).show( "fast" );
+                } else {
+                    $( "#tt_lineare_groupe" ).slideUp();
+                    $("#hdf04l54ff").removeClass("fa-minus");
+                    $("#hdf04l54ff").addClass("fa-plus");
+                }
+            });
+
+            $('body').on('click', '#id_sous_projet_transport_aiguillage_create_ot_show', function() {
+                // do something
+                //console.log('show ot body source tag');
+                $("#add_ot_form")[0].reset();
+                data_ot.id_entree = ta_ot_id_entree;
+                data_ot.type_entree = ta_ot_type_entree;
+                show_btn = $("#id_sous_projet_transport_aiguillage_create_ot_show");
+                create_btn = $("#id_sous_projet_transport_aiguillage_btn");
+            });
+            $('body').on('click', '#id_sous_projet_transport_tirage_create_ot_show', function() {
+                // do something
+                //console.log('show ot body source tag');
+                $("#add_ot_form")[0].reset();
+                data_ot.id_entree = tt_ot_id_entree;
+                data_ot.type_entree = tt_ot_type_entree;
+                show_btn = $("#id_sous_projet_transport_tirage_create_ot_show");
+                create_btn = $("#id_sous_projet_transport_tirage_btn");
+            });
+            $('body').on('click', '#id_sous_projet_transport_raccordements_create_ot_show', function() {
+                // do something
+                //console.log('show ot body source tag');
+                $("#add_ot_form")[0].reset();
+                data_ot.id_entree = tr_ot_id_entree;
+                data_ot.type_entree = tr_ot_type_entree;
+                show_btn = $("#id_sous_projet_transport_raccordements_create_ot_show");
+                create_btn = $("#id_sous_projet_transport_raccordements_btn");
             });
 
             $("#td_date_debut").change(function() {
