@@ -112,8 +112,8 @@
                 <input class="form-control " type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousprojet_dtirage !== NULL ? $sousprojet_dtirage->date_transmission_plans : "")?>">
             </div>
             <div class="col-md-3">
-                <label for="dt_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control " id="dt_entreprise" name="dt_entreprise">
+                <label for="dt_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                <select class="form-control " id="dt_id_entreprise" name="dt_id_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();

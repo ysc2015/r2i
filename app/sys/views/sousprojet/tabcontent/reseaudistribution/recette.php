@@ -64,8 +64,8 @@
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-3">
-                <label for="drec_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control " id="drec_entreprise" name="drec_entreprise">
+                <label for="drec_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                <select class="form-control " id="drec_id_entreprise" name="drec_id_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
