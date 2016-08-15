@@ -64,8 +64,8 @@
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-3">
-                <label for="trec_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control" id="trec_entreprise" name="trec_entreprise">
+                <label for="trec_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                <select class="form-control" id="trec_id_entreprise" name="trec_id_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
@@ -76,7 +76,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <label for="trec_date_recette">Date de Recette <span class="text-danger">*</span></label>
+                <label for="trec_date_recette">Date Recette <span class="text-danger">*</span></label>
                 <input class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousprojet_trecette !== NULL ? $sousprojet_trecette->date_recette : "")?>">
             </div>
             <div class="col-md-3">

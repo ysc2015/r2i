@@ -60,23 +60,23 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                    <label for="lineaire1">câble 720FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire1" name="lineaire1" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire1:"")?>">
+                    <label for="ta_lineaire1">câble 720FO <span class="text-danger">*</span></label>
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire1" name="ta_lineaire1" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire1:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="ta_lineaire_reseau">câble 432FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire2" name="lineaire2" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire2:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire2" name="ta_lineaire2" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire2:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="ta_lineaire_reseau">câble 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire3" name="lineaire3" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire3:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire3" name="ta_lineaire3" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire3:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="ta_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire4" name="lineaire4" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire4:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire4" name="ta_lineaire4" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire4:"")?>">
                 </div>
             </div>
             <label><span class="label label-warning">Boites </span></label>
@@ -84,22 +84,22 @@
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                     <label for="ta_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire5" name="lineaire5" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire5:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire5" name="ta_lineaire5" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire5:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
                     <label for="ta_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire6" name="lineaire6" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire6:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire6" name="ta_lineaire6" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire6:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
                     <label for="ta_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire7" name="lineaire7" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire7:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire7" name="ta_lineaire7" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire7:"")?>">
                 </div>
                 <div class="col-md-3">
                     <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
                     <label for="ta_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
-                    <input class="form-control  lineareInput" type="number" id="lineaire8" name="lineaire8" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire8:"")?>">
+                    <input class="form-control  lineareInput" type="number" id="ta_lineaire8" name="ta_lineaire8" value="<?=($sousprojet_taiguillage !== NULL?$sousprojet_taiguillage->lineaire8:"")?>">
                 </div>
             </div>
         </div>
@@ -124,8 +124,8 @@
     <div class="row items-push">
         <div class="form-group">
             <div class="col-md-3">
-                <label for="ta_entreprise">Entreprise <span class="text-danger">*</span></label>
-                <select class="form-control " id="ta_entreprise" name="ta_entreprise">
+                <label for="ta_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                <select class="form-control " id="ta_id_entreprise" name="ta_id_entreprise">
                     <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                     <?php
                     $results = SelectEntreprise::all();
