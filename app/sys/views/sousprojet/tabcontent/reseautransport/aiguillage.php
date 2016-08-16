@@ -190,25 +190,27 @@
         </div>
     </div>
     <div class="alert alert-success" id="message_transport_aiguillage" role="alert" style="display: none;"></div>
-    <div class="form-group">
-        <div class="col-xs-12">
-            <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-primary" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
-            <?php
-            if($sousprojet_taiguillage!==NULL) {
-                $ot = OrdreDeTravail::first(
-                    array('conditions' =>
-                        array("id_entree = ? AND type_entree = ?", $sousprojet_taiguillage->id_sous_projet_transport_aiguillage,"transport_aiguillage")
-                    )
-                );
-                if($ot !== NULL) {
+    <div class="row items-push">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-primary" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                <?php
+                if($sousprojet_taiguillage!==NULL) {
+                    $ot = OrdreDeTravail::first(
+                        array('conditions' =>
+                            array("id_entree = ? AND type_entree = ?", $sousprojet_taiguillage->id_sous_projet_transport_aiguillage,"transport_aiguillage")
+                        )
+                    );
+                    if($ot !== NULL) {
 
-                    echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
-                } else {
-                    echo "  <button id=\"id_sous_projet_transport_aiguillage_create_ot_show\" class=\"btn btn-info\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
+                        echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
+                    } else {
+                        echo "  <button id=\"id_sous_projet_transport_aiguillage_create_ot_show\" class=\"btn btn-info\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
+                    }
                 }
-            }
-            ?>
-            <button id="transport_aiguillage_osa_btn" class="btn btn-warning" type="button"><i class="fa fa-tasks push-5-r"></i> Taches OSA</button>
+                ?>
+                <button id="transport_aiguillage_osa_btn" class="btn btn-warning" type="button"><i class="fa fa-tasks push-5-r"></i> Taches OSA</button>
+            </div>
         </div>
     </div>
 </form>
