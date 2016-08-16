@@ -123,6 +123,7 @@ switch ($page) {
             console.log('add ot');
             data_ot.type_ot = $("#type_ot").val();
             data_ot.commentaire = $("#commentaire").val();
+            console.log('data_ot');
             console.log(data_ot);
             $.ajax({
                 method: "POST",

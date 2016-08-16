@@ -1218,7 +1218,7 @@ var SProjet = function() {
             });
 
 
-            $('#lineaire1').on('input', function() {
+            $('#ta_lineaire1').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1227,7 +1227,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire2').on('input', function() {
+            $('#ta_lineaire2').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1236,7 +1236,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire3').on('input', function() {
+            $('#ta_lineaire3').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1245,7 +1245,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire4').on('input', function() {
+            $('#ta_lineaire4').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1254,7 +1254,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire5').on('input', function() {
+            $('#ta_lineaire5').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1263,7 +1263,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire6').on('input', function() {
+            $('#ta_lineaire6').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1272,7 +1272,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire7').on('input', function() {
+            $('#ta_lineaire7').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
@@ -1281,7 +1281,7 @@ var SProjet = function() {
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-danger");
                 }
             });
-            $('#lineaire8').on('input', function() {
+            $('#ta_lineaire8').on('input', function() {
                 if(checkLinears()) {
                     $("#id_lineaire_transport_aiguillage_btn").removeClass("btn-danger");
                     $("#id_lineaire_transport_aiguillage_btn").addClass("btn-success");
