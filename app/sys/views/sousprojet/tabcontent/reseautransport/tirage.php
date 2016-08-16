@@ -190,25 +190,27 @@
         </div>
     </div>
     <div class="alert alert-success" id="message_transport_tirage" role="alert" style="display: none;"></div>
-    <div class="form-group">
-        <div class="col-xs-12">
-            <button id="id_sous_projet_transport_tirage_btn" class="btn btn-primary" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
-            <?php
-            if($sousprojet_ttirage!==NULL) {
-                $ot = OrdreDeTravail::first(
-                    array('conditions' =>
-                        array("id_entree = ? AND type_entree = ?", $sousprojet_ttirage->id_sous_projet_transport_tirage,"transport_tirage")
-                    )
-                );
-                if($ot !== NULL) {
+    <div class="row items-push">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <button id="id_sous_projet_transport_tirage_btn" class="btn btn-primary" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                <?php
+                if($sousprojet_ttirage!==NULL) {
+                    $ot = OrdreDeTravail::first(
+                        array('conditions' =>
+                            array("id_entree = ? AND type_entree = ?", $sousprojet_ttirage->id_sous_projet_transport_tirage,"transport_tirage")
+                        )
+                    );
+                    if($ot !== NULL) {
 
-                    echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
-                } else {
-                    echo "  <button id=\"id_sous_projet_transport_tirage_create_ot_show\" class=\"btn btn-info\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
+                        echo "  <a href=\"?page=ot&idot=$ot->id_ordre_de_travail&idsousprojet=$idsousprojet\" class=\"btn btn-info\">ouvrir ordre de travail</a>";
+                    } else {
+                        echo "  <button id=\"id_sous_projet_transport_tirage_create_ot_show\" class=\"btn btn-info\" type=\"button\" data-toggle=\"modal\" data-target=\"#add-ot\" data-backdrop=\"static\" data-keyboard=\"false\">Créer ordre de travail</button>";
+                    }
                 }
-            }
-            ?>
-            <button id="transport_tirage_osa_btn" class="btn btn-warning" type="button"><i class="fa fa-tasks push-5-r"></i> Taches OSA</button>
+                ?>
+                <button id="transport_tirage_osa_btn" class="btn btn-warning" type="button"><i class="fa fa-tasks push-5-r"></i> Taches OSA</button>
+            </div>
         </div>
     </div>
 </form>
