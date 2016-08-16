@@ -1,5 +1,5 @@
 <?php $sousprojet_siteorigine = SousProjetSiteOrigine::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
-<form class="js-validation-bootstrap form-horizontal" id="siteorigine_form" name="siteorigine_form">
+<form class="form-horizontal push-10-t push-10" id="siteorigine_form" name="siteorigine_form">
     <div class="row items-push">
         <?php if($sousprojet_siteorigine !== NULL) {?>
             <input type="hidden" id="id_sous_projet_site_origine" name="id_sous_projet_site_origine" value="<?=$sousprojet_siteorigine->id_sous_projet?>">

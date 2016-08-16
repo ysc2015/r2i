@@ -42,7 +42,6 @@
         </div>
     </div>
     <div class="alert alert-success" id="message_infozone_zone" role="alert" style="display: none;">
-
     </div>
     <div class="row items-push">
         <div class="form-group">
