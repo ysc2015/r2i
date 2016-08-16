@@ -304,5 +304,5 @@ if($insert == true && $err == 0){
         $message [] = $stm->errorInfo();
     }
 }
-echo json_encode(array("error" => $err , "message" => $message , "id" => "insert into sous_projet_transport_aiguillage ($fieldslist) values ($valueslist)"));
+echo json_encode(array("error" => $err , "message" => $message , "id" => $insertedId));
 ?>
