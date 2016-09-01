@@ -227,7 +227,10 @@
 </div>
 <!-- END ajouter projet Modal -->
 <script>
+    var OSA_SERVER = 'http://192.168.1.9/osa_svn/';//sd-83414.dedibox.fr
+    var OSA_R2I_USER_ID = 11;
     var id = 0;
+    //var idp = undefined;
     var uploader = null;
     var upload_ok = false;
     var cdp_fullname = undefined;
@@ -327,7 +330,36 @@
                             }
                         }).done(function (message) {
                             var obj = $.parseJSON(message);
-                            id = obj.id;
+                            console.log(obj);
+                            if(obj.error == 0) {
+                                id = obj.id;
+                                $.ajax({
+                                    method: "POST",
+                                    url: OSA_SERVER+'api/projet.php',
+                                    data: {
+                                        r2i : 'rrahmouni@rc2k.fr::rrahmouni',
+                                        referant_projet: OSA_R2I_USER_ID,
+                                        nom_projet: obj.pname,
+                                        description_projet: '',
+                                        date_fin_projet: '2016-08-08',
+                                        id_filiale: 2
+                                    }
+                                }).done(function (msg) {
+                                    var obj = $.parseJSON(msg);
+                                    console.log(obj);
+                                    //update projet : id projet osa
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "api/projet/projet_set_osa_id.php",
+                                        data: {
+                                            idp: id,
+                                            idosa: obj.extra
+                                        }
+                                    }).done(function (message) {
+                                        console.log(message);
+                                    });
+                                });
+                            }
                             ret = App.showMessage(message,'#message_project_add');
                             dt.draw(false);
                             $(btns.join(',')).addClass("disabled");

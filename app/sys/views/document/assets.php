@@ -115,3 +115,8 @@
     <script src="assets/js/sousprojet.js.php"></script>
 <?php } ?>
 
+<?php if(isset($_GET['page']) && $_GET['page'] == "ot") {?>
+    <!-- Page JS Code -->
+    <script src="assets/js/ot.js.php"></script>
+<?php } ?>
+

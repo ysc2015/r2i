@@ -1,0 +1,18 @@
+{
+  "name": "lenovo-f/cassette_excel_parser",
+  "authors": [
+    {
+      "name": "Hachimi",
+      "email": "mohamed.rez@gmail.com"
+    }
+  ],
+  "require": {
+    "phpoffice/phpexcel": "^1.8",
+    "phpunit/phpunit": "^5.5"
+  },
+  "autoload": {
+    "psr-4":{
+      "CassetteExcelParser\\": "src/CassetteExcelParser"
+    } 
+  }
+}

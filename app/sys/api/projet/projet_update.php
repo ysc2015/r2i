@@ -4,8 +4,6 @@
  * User: rabii
  */
 
-include_once __DIR__."/../../inc/config.php";
-
 ini_set("display_errors",'1');
 
 //sleep(3);

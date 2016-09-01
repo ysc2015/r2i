@@ -6,14 +6,12 @@
 
 ini_set("display_errors","1");
 
-include_once __DIR__."/../../inc/config.php";
 include_once __DIR__."/../../inc/ssp.class.php";
 
-$table = array("chambre as t1", "ordre_de_travail as t2");
+$table = array("chambre as t1");
 
 $fields = array(
     "t1.id_chambre",
-    "t1.id_ordre_de_travail",
     "t1.ref_chambre",
     "t1.villet",
     "t1.sous_projet",
@@ -27,7 +25,7 @@ if (isset($_GET['_search'])) {
 
     $select = implode(',', $fields);
     $from = implode(',', $table);
-    $where = "t1.id_ordre_de_travail=t2.id_ordre_de_travail AND t1.id_ordre_de_travail =".$idot;
+    $where = "t1.id_sous_projet= $idsp AND t1.type_entree = '$tentree'";
     $limit = " limit " . (($page - 1) * $rows) . "," . $rows;
     $orderby = "";
     if (!empty($sidx)) {

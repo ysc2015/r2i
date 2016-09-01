@@ -537,14 +537,23 @@ var App = function() {
                             case 'rdistribution_block' :
                                 SProjet.reseaudistribution.refresh();
                                 break;
+                            case 'infosot_block' :
+                                OT.infosot.initContent();
+                                break;
+                            case 'chambre_block' :
+                                OT.chambre.initContent();
+                                break;
+                            case 'synop_block' :
+                                OT.synop.initContent();
+                                break;
                             default :
-                                $elBlock.toggleClass('block-opt-refresh');
+                                /*$elBlock.toggleClass('block-opt-refresh');
                                 // Return block to normal state if the demostration mode is on in the refresh option button - data-action-mode="demo"
                                 if (jQuery('[data-toggle="block-option"][data-action="refresh_toggle"][data-action-mode="demo"]', $elBlock).length) {
                                  setTimeout(function(){
                                     $elBlock.removeClass('block-opt-refresh');
                                  }, 2000);
-                                 }
+                                 }*/
                         }
                         break;
                     case 'state_loading':
@@ -1192,7 +1201,7 @@ var App = function() {
                 uiBlocksApi(jQuery(this).parents('.block'), jQuery(this).data('action'));
             });
 
-            console.log('new modifications');
+            //console.log('new modifications');
             //$("#rdistribution_block_btn").trigger('click');
             //$("#draccordements_href").trigger('click');
         },

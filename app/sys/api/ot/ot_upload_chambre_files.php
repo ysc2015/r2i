@@ -4,8 +4,6 @@
  * User: rabii
  */
 
-
-include_once __DIR__."/../../inc/config.php";
 require_once __DIR__."/../../inc/PHPExcel-1.8/Classes/PHPExcel.php";
 require_once __DIR__."/../../inc/PHPExcel-1.8/Classes/PHPExcel/IOFactory.php";
 
@@ -17,15 +15,18 @@ set_time_limit(60);
 extract($_POST);
 
 
+$lastInsertedId = 0;
+
 $excelCfg = array(
     "highestColumn" => 'G'
 );
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into ressource (id_objet,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_objet,'ot_chambre',:nom_fichier,:nom_fichier_disque,'chambres',:date_creation)");
+$stm = $db->prepare("insert into ressource (id_objet,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_objet,:type_objet,:nom_fichier,:nom_fichier_disque,'chambres',:date_creation)");
 
-if(isset($idot) && !empty($idot)) {
-    $stm->bindParam(':id_objet',$idot);
+if(isset($idsp) && !empty($idsp)) {
+    $stm->bindParam(':id_objet',$idsp);
+    $stm->bindParam(':type_objet',$type_objet);
     if (isset($_FILES["myfile"])) {
         $ret = array();
         $error = $_FILES["myfile"]["error"];
@@ -38,7 +39,8 @@ if(isset($idot) && !empty($idot)) {
             $stm->bindParam(':date_creation',date('Y-m-d H:i:s'));
 
             if($stm->execute()) {
-                $stm = $db->prepare("insert into chambre (id_ordre_de_travail,ref_chambre,villet,sous_projet,ref_note,code_ch1,code_ch2,gps) values (:id_ordre_de_travail,:ref_chambre,:villet,:sous_projet,:ref_note,:code_ch1,:code_ch2,:gps)");
+                $lastInsertedId = $db->lastInsertId();
+                $stm = $db->prepare("insert into chambre (id_sous_projet,id_ressource,type_entree,ref_chambre,villet,sous_projet,ref_note,code_ch1,code_ch2,gps) values (:id_sous_projet,:id_ressource,:type_entree,:ref_chambre,:villet,:sous_projet,:ref_note,:code_ch1,:code_ch2,:gps)");
                 //  Read your Excel workbook
                 try {
                     $inputFileType = PHPExcel_IOFactory::identify($output_dir . $fileName);
@@ -68,7 +70,9 @@ if(isset($idot) && !empty($idot)) {
                 }
                 $row = 1;
                 foreach($ret as $key=>$value) {
-                    $stm->bindParam(':id_ordre_de_travail',$idot);
+                    $stm->bindParam(':id_sous_projet',$idsp);
+                    $stm->bindParam(':id_ressource',$lastInsertedId);
+                    $stm->bindParam(':type_entree',$type_objet);
                     $stm->bindParam(':ref_chambre',$value[0]);
                     $stm->bindParam(':villet',$value[1]);
                     $stm->bindParam(':sous_projet',$value[2]);
@@ -104,7 +108,7 @@ if(isset($idot) && !empty($idot)) {
     }
 } else {
     $err++;
-    $message[] = "Référence Ordre de travail introuvable !";
+    $message[] = "Référence sous projet introuvable !";
 }
 
 echo json_encode(array("error" => $err , "message" => $message));

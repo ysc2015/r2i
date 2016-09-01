@@ -39,12 +39,9 @@ if(isset($type_ot) && !empty($type_ot)){
     $message[] = "Le champs type ot est obligatoire !";
 }
 
-if(isset($commentaire) && !empty($commentaire)){
+if(isset($commentaire)){
     $stm->bindParam(':commentaire',$commentaire);
     $insert = true;
-} else {
-    $err++;
-    $message[] = "Le champs commentaire est obligatoire !";
 }
 
 if($insert == true && $err == 0){

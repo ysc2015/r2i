@@ -23,7 +23,13 @@ if(isset($id)) {
 
 		$stm = $db->prepare("DELETE FROM ressource WHERE id_ressource=:id");
 		$stm->bindParam(':id',$id);
-		$stm->execute();
+		if($stm->execute()) {
+			if(isset($delete_ch)) {
+				$stm = $db->prepare("DELETE FROM chambre WHERE id_ressource=:id_ressource");
+				$stm->bindParam(':id_ressource',$id);
+				$stm->execute();
+			}
+		}
 
 		echo "DELETED";
 

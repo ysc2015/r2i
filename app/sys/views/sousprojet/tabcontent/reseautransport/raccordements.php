@@ -1,4 +1,8 @@
-<?php $sousprojet_trac = SousProjetTransportRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));?>
+<?php
+$sousprojet_trac = SousProjetTransportRaccordement::first(array('conditions' => array("id_sous_projet = ?", $idsousprojet)));
+$fichiers_plans_boites = Ressource::all(array('conditions' => array("id_objet = ? and type_objet = 'tr_pboite_files'", $idsousprojet)));
+//var_dump($fichiers_plans_boites);
+?>
 <form class="form-horizontal push-10-t push-10" id="transport_raccord_form" name="transport_raccord_form">
     <div class="row items-push">
         <?php if($sousprojet_trac !== NULL) {?>
@@ -118,6 +122,47 @@
                     }
                     ?>
                 </select>
+            </div>
+        </div>
+    </div>
+    <div class="row items-push">
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="row" style="padding-left: 10px;">
+                    <label for="tr_fileuploader_chambre">Fichier(s) chambres</label>
+                    <div id="tr_fileuploader_chambre"></div>
+                </div>
+                <div class="row" id="tr_chambre_files" style="padding-left: 10px;">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row" style="padding-left: 10px;">
+                    <label for="tr_fileuploader_pboite">Fichier(s) plans de boites</label>
+                    <div id="tr_fileuploader_pboite"></div>
+                </div>
+                <div class="row" id="tr_pboite_files" style="padding-left: 10px;">
+                    <div class="list-group">
+                        <a class="list-group-item active" href="javascript:void(0)">
+                            <!--<span class="badge">0</span>-->
+                            <i class="fa fa-fw fa-folder push-5-r"></i> Fichiers plans boites
+                        </a>
+                        <?php if($fichiers_plans_boites !== NULL) {
+                            foreach($fichiers_plans_boites as $fichier) {
+                                //var_dump($fichier);
+                                echo "<a class=\"list-group-item\" href=\"javascript:void(0)\">";
+                                echo "<i class=\"fa fa-file-excel-o push-5-r\"></i> $fichier->nom_fichier";
+                                echo "</a>";
+                            }
+                        /*<a class="list-group-item" href="javascript:void(0)">
+                            <i class="fa fa-file-excel-o push-5-r"></i> Sent
+                        </a>*/
+                        } else { ?>
+                        <div class="alert alert-warning">
+                            <p><i class="fa fa-warning"></i> Aucun fichier plans boites uploadé !</p>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

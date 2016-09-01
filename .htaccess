@@ -17,6 +17,7 @@ RewriteRule  "api/stt/(\w*\.php)"          "app/MY_ROUTER.php?script=stt/$1"  [Q
 RewriteRule  "api/tablette/(\w*\.php)"          "app/MY_ROUTER.php?script=tablette/$1"  [QSA,L]
 RewriteRule  "api/utilisateur/(\w*\.php)"          "app/MY_ROUTER.php?script=utilisateur/$1"  [QSA,L]
 RewriteRule  "api/ot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/$1"  [QSA,L]
+RewriteRule  "api/ot/blocks/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/blocks/$1"  [QSA,L]
 RewriteRule  "api/utils/(\w*\.php)"          "app/MY_ROUTER.php?script=utils/$1"  [QSA,L]
 
 RewriteRule  "api/test/(\w*\.php)"          "app/MY_ROUTER.php?script=test/$1"  [QSA,L]
