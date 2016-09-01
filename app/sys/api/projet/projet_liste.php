@@ -12,6 +12,7 @@ include_once __DIR__."/../../inc/ssp.class.php";
 $table = array("projet as t1","select_site_origine_type as t2","select_site_origine_etat as t3","select_ville as t4");
 $columns = array(
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
+    array( "db" => "t1.id_projet_osa", "dt" => 'id_projet_osa' ),
     array( "db" => "t1.id_chef_projet", "dt" => 'id_chef_projet' ),
     array( "db" => "t1.ville_nom", "dt" => 'ville_nom' ),
     array( "db" => "t1.ville", "dt" => 'ville' ),

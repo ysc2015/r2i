@@ -2,13 +2,16 @@
 header("Content-type: application/javascript");
 ?>
 /*
- *  Document   : sousprojet.js
+ *  Document   : sousprojet.js.php
  *  Author     : RR
  *  Description: sousprojet forms js code
  *
  */
 
 //global vars
+
+var OSA_SERVER = 'http://192.168.1.9/osa_svn/';//sd-83414.dedibox.fr
+var OSA_R2I_USER_ID = 11;
 
 var id_ta = undefined;
 var id_tt = undefined;
@@ -32,6 +35,22 @@ var deleteFile = function (id,callback) {
     }).done(function (message) {
         //console.log(message);
         callback();
+    });
+};
+
+var deleteChambreFile = function (id,sel) {
+    console.log(id);
+    console.log(sel);
+    $.ajax({
+        method: "POST",
+        url: "api/file/delete.php",
+        data: {
+            id: id,
+            delete_ch: true
+        }
+    }).done(function (message) {
+        //console.log(message);
+        getChambreFilesTo(sel);
     });
 };
 
@@ -90,6 +109,39 @@ var getSurveyFilesBack = function() {
         html +='</div>';
 
         $("#survey_vip_files").html(html);
+    });
+};
+
+var getChambreFilesTo = function(sel) {
+    console.log('getChambreFilesTo');
+    console.log(sel);
+    /*function callback {
+        getChambreFilesTo(selector);
+    }*/
+    $.ajax({
+        method: "POST",
+        url: "api/sousprojet/get_survey_files.php",
+        data: {
+            idsp: get('idsousprojet'),
+            type_objet: sel }
+    }).done(function (message) {
+        var obj = $.parseJSON(message);
+        var html;
+        if(obj.files.length > 0) {
+            html = '<div class="alert alert-info alert-dismissable">';
+            $.each(obj.files,function(key,val) {
+                html +='<button id="'+val.id_ressource+'" type="button" class="close" aria-hidden="true" onclick="deleteChambreFile('+val.id_ressource+',\''+sel+'\')">×</button>';
+                html +='<p><a class="alert-link" href="api/file/download.php?id='+val.id_ressource+'">'+val.nom_fichier+'</a></p>';
+            });
+        } else {
+            html = '<div class="alert alert-warning alert-dismissable">';
+            html += '<p>aucun fichier chambre trouvé !</p>';
+        }
+
+        html +='</div>';
+        html +='</div>';
+
+        $('#'+sel).html(html);
     });
 };
 
@@ -710,6 +762,10 @@ var SProjet = function() {
         var tirage_formdata = {};
         var raccord_formdata = {};
         var recette_formdata = {};
+        var ta_fileuploader_chambre = null;
+        var tt_fileuploader_chambre = null;
+        var tr_fileuploader_chambre = null;
+        var tr_fileuploader_pboite = null;
         var ta_ot_id_entree = undefined;
         var ta_ot_type_entree = 'transport_aiguillage';
         var tt_ot_id_entree = undefined;
@@ -766,7 +822,7 @@ var SProjet = function() {
                 initTabs();
             });
         }
-        var initTabs = function() {
+        var initTabs = function(atab = '') {
             $("#rtransport_block").toggleClass('block-opt-refresh');
             $.ajax({
                 method: "POST",
@@ -780,8 +836,16 @@ var SProjet = function() {
 
                 done.resolve();
 
+                if(atab != '') {
+                    $(atab).trigger('click');
+                }
+
                 init();
                 initEvents();
+
+                getChambreFilesTo('ta_chambre_files');
+                getChambreFilesTo('tt_chambre_files');
+                getChambreFilesTo('tr_chambre_files');
             });
         }
         var init = function() {
@@ -850,12 +914,113 @@ var SProjet = function() {
 
             trecette_isnew = ($("#id_sous_projet_transport_recette").val()?false:true);
 
+            ta_fileuploader_chambre = $("#ta_fileuploader_chambre").uploadFile({
+                url: "api/ot/ot_upload_chambre_files.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'ta_chambre_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getChambreFilesTo("ta_chambre_files");
+                }
+            });
+            tt_fileuploader_chambre = $("#tt_fileuploader_chambre").uploadFile({
+                url: "api/ot/ot_upload_chambre_files.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'tt_chambre_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getChambreFilesTo("tt_chambre_files");
+                }
+            });
+            tr_fileuploader_chambre = $("#tr_fileuploader_chambre").uploadFile({
+                url: "api/ot/ot_upload_chambre_files.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'tr_chambre_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getChambreFilesTo("tr_chambre_files");
+                }
+            });
+            tr_fileuploader_pboite = $("#tr_fileuploader_pboite").uploadFile({
+                url: "api/sousprojet/upload_pboite_file.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'tr_pboite_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    //upload_ok = true;
+                    //getChambreFilesTo("tr_chambre_files");
+                    initTabs('#raccordements_href');
+                }
+            });
+
             setDuree($("#td_duree"),'#message_transport_design',$("#td_date_debut").val(),$("#td_date_ret_prevue").val());
             setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$("#ta_date_ret_prevue").val());
             setDuree($("#tt_duree"),'#message_transport_tirage',$("#tt_date_tirage").val(),$("#tt_date_ret_prevue").val());
         }
         var initEvents = function() {
-            //App.initHelpers('tags-inputs');
             $("#id_sous_projet_transport_design_btn").click(function () {
 
                 $("#message_transport_design").fadeOut();
@@ -1145,9 +1310,16 @@ var SProjet = function() {
                 console.log('transport_aiguillage_osa_btn');
                 $.ajax({
                     method: "POST",
-                    url: 'http://192.168.1.41/osa/api/utilisateur_show.php',
+                    url: OSA_SERVER+'api/tache.php',
                     data: {
-                        r2i : 'rrahmouni@rc2k.fr::rrahmouni'
+                        r2i : 'rrahmouni@rc2k.fr::rrahmouni',
+                        id_projet : 12,
+                        objet_tache : 'Transport Aiguillage',
+                        date_debut_tache : '2016-08-08',
+                        duree_jr : 1,
+                        duree_hr : 0,
+                        besoin_tache : 'Transport Aiguillage',
+                        id_priorite : 2
                     }
                 }).done(function (msg) {
                     var obj = $.parseJSON(msg);
@@ -1380,6 +1552,9 @@ var SProjet = function() {
         var tirage_formdata = {};
         var raccord_formdata = {};
         var recette_formdata = {};
+        var da_fileuploader_chambre = null;
+        var dt_fileuploader_chambre = null;
+        var dr_fileuploader_chambre = null;
         var da_ot_id_entree = undefined;
         var da_ot_type_entree = 'distribution_aiguillage';
         var dt_ot_id_entree = undefined;
@@ -1453,6 +1628,10 @@ var SProjet = function() {
 
                 init();
                 initEvents();
+
+                getChambreFilesTo('da_chambre_files');
+                getChambreFilesTo('dt_chambre_files');
+                getChambreFilesTo('dr_chambre_files');
             } );
         }
         var init = function() {
@@ -1512,6 +1691,82 @@ var SProjet = function() {
             draccord_isnew = ($("#id_sous_projet_distribution_raccordements").val()?false:true);
 
             drecette_isnew = ($("#id_sous_projet_distribution_recette").val()?false:true);
+
+            da_fileuploader_chambre = $("#da_fileuploader_chambre").uploadFile({
+                url: "api/ot/ot_upload_chambre_files.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'da_chambre_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getChambreFilesTo("da_chambre_files");
+                }
+            });
+            dt_fileuploader_chambre = $("#dt_fileuploader_chambre").uploadFile({
+                url: "api/ot/ot_upload_chambre_files.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'dt_chambre_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getChambreFilesTo("dt_chambre_files");
+                }
+            });
+            dr_fileuploader_chambre = $("#dr_fileuploader_chambre").uploadFile({
+                url: "api/ot/ot_upload_chambre_files.php",
+                multiple:false,
+                dragDrop:true,
+                dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                fileName: "myfile",
+                autoSubmit: true,
+                abortStr: "Injection de fichier en cours ...",
+                dynamicFormData: function()
+                {
+                    var data ={
+                        idsp: get('idsousprojet'),
+                        type_objet : 'dr_chambre_files'
+                    };
+                    return data;
+                },
+                multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers sont autorisés.",
+
+                uploadStr:"Téléchargez",
+                allowedTypes: "xlsx",
+                afterUploadAll:function(obj) {
+                    upload_ok = true;
+                    getChambreFilesTo("dr_chambre_files");
+                }
+            });
 
             setDuree($("#dd_duree"),'#message_distribution_design',$("#dd_date_debut").val(),$("#dd_date_fin").val());
             //setDuree($("#ta_duree"),'#message_transport_aiguillage',$("#ta_date_aiguillage").val(),$("#ta_date_ret_prevue").val());
@@ -2059,5 +2314,5 @@ var SProjet = function() {
 }();
 
 $(document).ready(function() {
-    SProjet.init();
+    //SProjet.init();
 } );

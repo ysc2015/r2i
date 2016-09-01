@@ -21,6 +21,8 @@ $insertedId = 0;
 $message = array();
 $stm = $db->prepare("insert into projet (ville_nom,ville,trigramme_dept,code_site_origine,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:ville_nom,:ville,:trigramme_dept,:code_site_origine,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
 
+$project_name = "";
+
 if(isset($ville_nom) && !empty($ville_nom)){
     $stm->bindParam(':ville_nom',$ville_nom);
     $insert = true;
@@ -96,10 +98,11 @@ if($insert == true && $err == 0){
     if($stm->execute()){
         $message [] = "Enregistrement ajouté avec succès";
         $insertedId = $db->lastInsertId();
+        $project_name = "Lancement Projet d’étude Plaque PON FTTH ".$code_site_origine." ".$ville_nom;
     } else {
         $message [] = $stm->errorInfo();
     }
 }
-echo json_encode(array("error" => $err , "message" => $message , "id" => $insertedId));
+echo json_encode(array("error" => $err , "message" => $message , "id" => $insertedId, "pname" => $project_name));
 
 ?>

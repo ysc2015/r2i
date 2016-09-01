@@ -121,6 +121,18 @@
             </div>
         </div>
     </div>
+    <div class="row items-push">
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="row" style="padding-left: 10px;">
+                    <label for="dr_fileuploader_chambre">Fichier(s) chambres</label>
+                    <div id="dr_fileuploader_chambre"></div>
+                </div>
+                <div class="row" id="dr_chambre_files" style="padding-left: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="alert alert-success" id="message_distribution_raccordements" role="alert" style="display: none;"></div>
     <div class="row items-push">
         <div class="form-group">

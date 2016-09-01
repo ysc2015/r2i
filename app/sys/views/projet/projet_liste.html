@@ -68,6 +68,7 @@
                     "defaultContent": ""
                 },
                 { "data": "id_projet" },
+                { "data": "id_projet_osa" },
                 { "data": "id_chef_projet" },
                 { "data": "ville_nom" },
                 { "data": "trigramme_dept" },
@@ -80,7 +81,7 @@
                 { "data": "date_attribution" }
             ],
             "columnDefs": [
-                { "targets": [ 1,2 ], "visible": false, "searchable": false } ],
+                { "targets": [ 1,2,3 ], "visible": false, "searchable": false } ],
             "order": [[1, 'desc']]
         } );
 
@@ -153,6 +154,7 @@
             <tr>
                 <th class="no-sort"></th>
                 <th>id</th>
+                <th>id</th>
                 <th>id chefs de projet</th>
                 <th><?=$lang["VILLE"]?></th>
                 <th><?=$lang["trigramme_dept"]?></th>
@@ -170,6 +172,7 @@
             <tfoot>
             <tr>
                 <th class="no-sort"></th>
+                <th>id</th>
                 <th>id</th>
                 <th>id chefs de projet</th>
                 <th><?=$lang["VILLE"]?></th>

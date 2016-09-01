@@ -11,7 +11,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into sous_projet (id_projet,dep,ville,plaque,zone) values (:id_projet,:dep,:ville,:plaque,:zone)");
+$stm = $db->prepare("insert into sous_projet (id_projet,id_projet_osa,dep,ville,plaque,zone) values (:id_projet,:id_projet_osa,:dep,:ville,:plaque,:zone)");
 
 if(isset($idp) && !empty($idp)){
     $stm->bindParam(':id_projet',$idp);
@@ -19,6 +19,14 @@ if(isset($idp) && !empty($idp)){
 } else {
     $err++;
     $message[] = "Identifiant projet invalid !";
+}
+
+if(isset($idsp) && !empty($idsp)){
+    $stm->bindParam(':id_projet_osa',$idsp);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "réf projet osa invalid !";
 }
 
 if(isset($dep) && !empty($dep)){

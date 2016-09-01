@@ -4,14 +4,15 @@
         $("#save_sub_project").click(function () {
             $("#message_sub_project_add").fadeOut();
             //console.log('clicked');
-            //console.log(dt.row('.selected').data().id_projet);
+            console.log(dt.row('.selected').data());
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/sous_projet_add.php",
                 data: {
                     idp: dt.row('.selected').data().id_projet,
+                    idsp: dt.row('.selected').data().id_projet_osa,
                     dep: dt.row('.selected').data().ville,//ville
-                    ville: dt.row('.selected').data().nom_ville,
+                    ville: dt.row('.selected').data().ville_nom,
                     plaque: dt.row('.selected').data().trigramme_dept,
                     zone: $('#sousprojet_zone').val()
 
