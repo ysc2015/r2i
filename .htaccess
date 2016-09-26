@@ -1,0 +1,21 @@
+
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule  "uploads/images/(.*)"                "app/sys/api/uploads/images/$1"  [L]
+RewriteRule  login.php                 app/sys/views/document/login.php  [L]
+RewriteRule  logout.php                 app/sys/views/document/logout.php  [L]
+
+#file api
+RewriteRule  "api/file/(\w*\.php)"          "app/MY_ROUTER.php?script=file/$1"  [QSA,L]
+
+#projet api
+RewriteRule  "api/projet/projet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/projet/$1"  [QSA,L]
+RewriteRule  "api/projet/sousprojet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/sousprojet/$1"  [QSA,L]
+
+#sousprojet api
+RewriteRule  "api/sousprojet/infoszone/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/infoszone/$1"  [QSA,L]
+RewriteRule  "api/sousprojet/gestionplaque/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/gestionplaque/$1"  [QSA,L]
+RewriteRule  "api/sousprojet/preparationplaque/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/preparationplaque/$1"  [QSA,L]
+RewriteRule  "api/sousprojet/reseautransport/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/reseautransport/$1"  [QSA,L]
+RewriteRule  "api/sousprojet/reseaudistribution/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/reseaudistribution/$1"  [QSA,L]

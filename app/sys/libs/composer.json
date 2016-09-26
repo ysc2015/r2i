@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpoffice/phpexcel": "^1.8",
+        "phpmailer/phpmailer": "^5.2",
+        "php-activerecord/php-activerecord": "^1.1"
+    }
+}
