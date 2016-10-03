@@ -120,7 +120,7 @@ ADM;
             );
         }
 
-        /*function sousprojet() {
+        function sousprojet() {
             Page::sousprojet(
                 array(
                     "infoszone" => array("nom","infoplaque","zone","siteorigine"),
@@ -130,19 +130,18 @@ ADM;
                     "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
                 )
             );
-        }*/
+        }
 
-        /*function ot() {
+        function ot() {
             Page::ot(
                 array(
-                    "ot" => array(),
-                    "chambreot" => array(),
-                    "pointbloquant" => array(),
+                    "ot" => array("liste","add","update","link","delete"),
+                    "chambreot" => array("liste","open"),
                     "planningot" => array(),
-                    "synoptique" => array(),
+                    "synoptique" => array()
                 )
             );
-        }*/
+        }
 
         function sidebar() {
             Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);

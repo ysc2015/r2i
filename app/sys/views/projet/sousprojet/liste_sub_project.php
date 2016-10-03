@@ -69,29 +69,33 @@
                 { "targets": [ 0,1 ], "visible": false, "searchable": false }
             ],
             "order": [[1, 'desc']]
-        } );
-
-        $('#sous_projet_table tbody').on( 'click', 'tr', function (evt) {
-            var $table=$(evt.target).closest('table');
-            if($table.attr('id').indexOf('sous_projet_table') > -1) {
-
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                    $('.linked').prop('disabled', true);
-                    $('#sub_project_show').addClass("disabled");
-                    $(sousprojet_dt_btns.join(',')).addClass("disabled");
-                }
-                else {
-                    $('#sous_projet_table').DataTable().$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    $(sousprojet_dt_btns.join(',')).removeClass("disabled");
-                    $('#sub_project_show').removeClass("disabled");
-                    if($('#sous_projet_table').DataTable().row('.selected').data() != undefined)
-                    {
-                        $('.linked').prop('disabled', false);
+            ,
+            "drawCallback": function( settings ) {
+                if(typeof projet_dt !== 'undefined') {
+                    if(projet_dt.row('.selected').data()!=undefined) {
+                        $("#listesousprojet_block_title").html('sous projets ('+projet_dt.row('.selected').data().projet_nom+')');
+                    } else {
+                        $("#listesousprojet_block_title").html('sous projets (tous)');
                     }
+                } else {
+                    $("#listesousprojet_block_title").html('sous projets (tous)');
                 }
             }
+        } );
+
+        $('#sous_projet_table tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+
+                $(sousprojet_dt_btns.join(',')).addClass("disabled");
+            }
+            else {
+                sousprojet_dt.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+
+                $(sousprojet_dt_btns.join(',')).removeClass("disabled");
+            }
+
         } );
     } );
 </script>

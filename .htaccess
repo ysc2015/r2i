@@ -8,6 +8,7 @@ RewriteRule  logout.php                 app/sys/views/document/logout.php  [L]
 
 #file api
 RewriteRule  "api/file/(\w*\.php)"          "app/MY_ROUTER.php?script=file/$1"  [QSA,L]
+RewriteRule  "api/fileboiteparser/(\w*\.php)"          "app/MY_ROUTER.php?script=file/cassette_excel_parser/$1"  [QSA,L]
 
 #projet api
 RewriteRule  "api/projet/projet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/projet/$1"  [QSA,L]
@@ -19,3 +20,8 @@ RewriteRule  "api/sousprojet/gestionplaque/(\w*\.php)"          "app/MY_ROUTER.p
 RewriteRule  "api/sousprojet/preparationplaque/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/preparationplaque/$1"  [QSA,L]
 RewriteRule  "api/sousprojet/reseautransport/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/reseautransport/$1"  [QSA,L]
 RewriteRule  "api/sousprojet/reseaudistribution/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/reseaudistribution/$1"  [QSA,L]
+
+#ot api
+RewriteRule  "api/ot/ot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/ot/$1"  [QSA,L]
+RewriteRule  "api/ot/chambreot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/chambreot/$1"  [QSA,L]
+RewriteRule  "api/ot/planningot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/planningot/$1"  [QSA,L]

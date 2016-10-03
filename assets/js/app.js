@@ -1182,9 +1182,9 @@ var App = function() {
             uiYearCopy();
 
             /*RR*/
-            jQuery('[data-toggle="block-option"]').each(function(){
+            /*jQuery('[data-toggle="block-option"]').each(function(){
                 uiBlocksApi(jQuery(this).parents('.block'), jQuery(this).data('action'));
-            });
+            });*/
 
             //console.log('new modifications');
             //$("#rdistribution_block_btn").trigger('click');
