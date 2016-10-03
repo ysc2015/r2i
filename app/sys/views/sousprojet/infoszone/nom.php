@@ -26,7 +26,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-8">
-                    <button id="id_sous_projet_btn" class="btn btn-primary" type="button">Enregistrer</button>
+                    <button id="id_sous_projet_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="ip_phase">Phase <span class="text-danger">*</span></label>
+                    <label for="ip_phase">Phase <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ip_phase" name="ip_phase">
                         <option value="" selected="" disabled="">Sélectionnez une phase</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="ip_type">Type <span class="text-danger">*</span></label>
+                    <label for="ip_type">Type <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ip_type" name="ip_type">
                         <option value="" selected="" disabled="">Sélectionnez un type</option>
                         <?php
@@ -32,7 +32,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-8">
-                    <button id="id_sous_projet_plaque_btn" class="btn btn-primary" type="button">Enregistrer</button>
+                    <button id="id_sous_projet_plaque_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -49,7 +49,6 @@
             $("#infozone_block").toggleClass('block-opt-refresh');
 
             for (var key in infoplaque_formdata) {
-                console.log('#'+key);
                 infoplaque_formdata[key] = $('#'+key).val();
             }
             infoplaque_formdata['ids'] = get('idsousprojet');

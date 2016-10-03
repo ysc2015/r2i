@@ -66,43 +66,33 @@
             ],
             "order": [[0, 'desc']]
             ,
-            "drawCallback": function( settings ) {
-                console.log('drawCallback');
+            "drawCallback": function( /*settings*/ ) {
+                $(btns.join(',')).addClass("disabled");
                 if(typeof sousprojet_dt !== 'undefined') {
                     sousprojet_dt.draw(false);
-                    $("#listesousprojet_block_title").html('sous projets (tous)');
                 }
             }
         } );
 
         $(btns.join(',')).addClass("disabled");
 
-        $('#projet_table tbody').on( 'click', 'tr', function (evt) {
-            var $table=$(evt.target).closest('table');
-            if($table.attr('id').indexOf('projet_table') > -1) {
-                if ( $(this).hasClass('selected') ) {
-                    $("#listesousprojet_block_title").html('sous projets (tous)');
-                    $(this).removeClass('selected');
-                    $('.linked').prop('disabled', true);
-                    $(btns.join(',')).addClass("disabled");
+        $('#projet_table tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
 
-                }
-                else {
-                    projet_dt.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    $(btns.join(',')).removeClass("disabled");
-                    if(projet_dt.row('.selected').data() != undefined) {
-                        $('.linked').prop('disabled', false);
-                    }
-
-                    $("#listesousprojet_block_title").html('sous projets ('+projet_dt.row('.selected').data().projet_nom+')');
-                }
+                $(btns.join(',')).addClass("disabled");
             }
+            else {
+                projet_dt.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+
+                $(btns.join(',')).removeClass("disabled");
+            }
+
             if(typeof sousprojet_dt !== 'undefined') {
                 sousprojet_dt.draw(false);
             }
-        } );
 
-        $("#listesousprojet_block_title").html('sous projets (tous)');
+        } );
     } );
 </script>

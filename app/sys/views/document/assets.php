@@ -75,6 +75,7 @@
 <script src="assets/js/plugins/fullcalendar/fullcalendar.min.js"></script>
 <script src="assets/js/plugins/fullcalendar/gcal.min.js"></script>
 <script src="assets/js/plugins/fullcalendar/locale/fr.js"></script>
+<script src="assets/js/plugins/jquery-smooth-scroll/jquery.smooth-scroll.min.js"></script>
 <!--<script src="assets/js/plugins/select2/select2.full.min.js"></script>-->
 <script src="assets/js/sharedPreferences.js"></script>
 <script src="assets/js/common.functions.js.php"></script>

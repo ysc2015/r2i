@@ -13,9 +13,10 @@ if((isset($id_objet) && !empty($id_objet) && (isset($type_objet) && !empty($type
 	{
 		$filePath=__DIR__."/../uploads/". $file['dossier'] . "/" .$file['nom_fichier_disque'];
 		$details = array();
-		$details['name']=$file['nom_fichier']."_".$file['id_ressource'];
+		$details['name']=$file['id_ressource']."_".$file['nom_fichier'];
 		$details['path']=$filePath;
 		$details['size']=filesize($filePath);
+		$details['id']=$file['id_ressource'];
 		$ret[] = $details;
 
 	}

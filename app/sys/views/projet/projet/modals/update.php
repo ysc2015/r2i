@@ -249,14 +249,8 @@
         });
 
         $('#update-project').on('hidden.bs.modal', function () {
-            console.log('update-project hide');
             if(update) {
                 projet_dt.draw(false);
-                $(btns.join(',')).addClass("disabled");
-                /*if(typeof sousprojet_dt !== 'undefined') {
-                    $("#listesousprojet_block_title").html('sous projets (tous)');
-                    sousprojet_dt.draw(false);
-                }*/
             }
         })
     } );

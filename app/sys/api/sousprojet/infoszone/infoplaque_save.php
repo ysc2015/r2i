@@ -73,23 +73,13 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($ip_phase)){
-    if(!empty($ip_phase)){
-        $stm->bindParam(':phase',$ip_phase);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs phase est obligatoire !";
-    }
+    $stm->bindParam(':phase',$ip_phase);
+    $insert = true;
 }
 
 if(isset($ip_type)){
-    if(!empty($ip_type)){
-        $stm->bindParam(':type',$ip_type);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs type est obligatoire !";
-    }
+    $stm->bindParam(':type',$ip_type);
+    $insert = true;
 }
 
 if($insert == true && $err == 0){
