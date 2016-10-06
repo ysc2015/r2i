@@ -213,7 +213,7 @@
         showDownload:true,
         showAbort:true,
         allowedTypes: "xlsx",
-        maxFileCount: 1,
+        /*maxFileCount: 1,*/
         onLoad:function(obj)
         {
             $.ajax({
@@ -350,11 +350,11 @@
                     tentree : 'transportaiguillage'
                 }
             }).done(function (msg) {
-                App.showMessage(msg, '#message_transport_aiguillage');
                 var obj = JSON.parse(msg);
-                console.log(msg);
                 if(obj.error == 0) {
-                    //document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transportaiguillage';
+                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transportaiguillage';
+                } else {
+                    App.showMessage(msg, '#message_transport_aiguillage');
                 }
             });
         });

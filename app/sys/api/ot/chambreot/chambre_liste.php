@@ -6,7 +6,7 @@
 
 ini_set("display_errors","1");
 
-extract($_POST);
+extract($_GET);
 
 $table = array("chambre as t1","ressource as t2");
 $columns = array(
@@ -25,8 +25,8 @@ $columns = array(
 
 $condition = "t1.id_ressource=t2.id_ressource";
 
-if(isset($idres) && !empty($idres)) {
-    $condition .= " AND t1.id_ressource=$idres";
+if(isset($idot) && !empty($idot)) {
+    $condition .= "  AND t2.id_ordre_de_travail=$idot";
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_chambre",$columns,$condition));

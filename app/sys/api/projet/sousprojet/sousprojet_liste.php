@@ -7,6 +7,7 @@
 ini_set("display_errors","1");
 
 extract($_POST);
+extract($_GET);
 
 $table = array("sous_projet as t1","projet as t2");
 $columns = array(

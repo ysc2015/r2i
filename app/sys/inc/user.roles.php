@@ -5,12 +5,12 @@
  */
 
 
-	class baseUser {
-        public 	$profil = NULL;
+class baseUser {
+    public 	$profil = NULL;
 
-        private $access_denied_message =
-<<<ADM
-            <div class="row">
+    private $access_denied_message =
+        <<<ADM
+                    <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <!-- Error Titles -->
                     <h1 class="font-s32 font-w150 text-danger animated bounceInDown">Accés Intérdit</h1>
@@ -20,130 +20,565 @@
             </div>
 ADM;
 
-        function __construct($p) {
-            $this->profil = $p;
-        }
-
-        function __get($name) {
-            return $this->profil->$name;
-        }
-
-        function defaultpage() {return "projet";}
-
-        function projet() { echo $this->access_denied_message; }
-
-        //sidebar
-        function sidebar() { echo "<p>accés intérdit</p>" ;}
-        //function sidebar_test() { Page::sidebar_test("test");}
-
-        function __call($a, $b){
-            echo $this->access_denied_message;
-        }
-
-        public function __toString() {
-            return $this->id_utilisateur;
-        }
+    function __construct($p) {
+        $this->profil = $p;
     }
 
-	class Page {
-        static function __callStatic($name, $args){
+    function __get($name) {
+        return $this->profil->$name;
+    }
 
-            $views_folder = __DIR__."/../views/";
+    function defaultpage() {return "projet";}
 
-            global $connectedProfil;
-            global $db;
-            global $sousProjet;
-            global $lang;
+    function projet() { echo $this->access_denied_message; }
 
-            switch($name) {
-                case "sidebar" :
-                case "sidebar_test" :
-                    foreach ($args as $key => $value) {
-                        if(file_exists($file = $views_folder."{$name}/{$name}_{$value}.php")) {
+    //sidebar
+    function sidebar() { echo "<p>accés intérdit</p>" ;}
+    //function sidebar_test() { Page::sidebar_test("test");}
+
+    function __call($a, $b){
+        echo $this->access_denied_message;
+    }
+
+    public function __toString() {
+        return $this->id_utilisateur;
+    }
+}
+
+class Page {
+    static function __callStatic($name, $args){
+
+        $views_folder = __DIR__."/../views/";
+
+        global $connectedProfil;
+        global $db;
+        global $sousProjet;
+        global $lang;
+
+        switch($name) {
+            case "sidebar" :
+            case "sidebar_test" :
+                foreach ($args as $key => $value) {
+                    if(file_exists($file = $views_folder."{$name}/{$name}_{$value}.php")) {
+                        include $file;
+                    } elseif(file_exists($file = $views_folder."{$name}/{$name}_{$value}.html")) {
+                        include $file;
+                    }
+                }
+                break;
+            default :
+                foreach ($args[0] as $key => $value) {
+                    include $views_folder."{$name}/{$key}/{$key}_block_begin.php";
+                    if($name == "sousprojet") {
+                        $html='<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">';
+
+                        foreach($value as $tab) {
+                            $html .='<li class="'.($value[0]==$tab?"active":"").'">';
+                            $html .='<a href="#'.$tab.'_content'.'" data-toggle="tab" id="'.$tab.'_href'.'">'.$lang["$tab"].'</a>';//$lang["$tab"]
+                            $html .='</li>';
+                        }
+
+                        $html .='</ul>';
+
+                        $html .='<div class="block-content tab-content">';
+                        echo $html;
+                    }
+                    foreach($value as $k => $v) {
+                        if(file_exists($file = $views_folder."{$name}/{$key}/{$v}.php")) {
                             include $file;
-                        } elseif(file_exists($file = $views_folder."{$name}/{$name}_{$value}.html")) {
+                        } elseif(file_exists($file = $views_folder."{$name}/{$key}/{$v}.html")) {
                             include $file;
                         }
                     }
-                    break;
-                default :
-                    foreach ($args[0] as $key => $value) {
-                        include $views_folder."{$name}/{$key}/{$key}_block_begin.php";
-                        if($name == "sousprojet") {
-                            $html='<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">';
-
-                            foreach($value as $tab) {
-                                $html .='<li class="'.($value[0]==$tab?"active":"").'">';
-                                $html .='<a href="#'.$tab.'_content'.'" data-toggle="tab" id="'.$tab.'_href'.'">'.$lang["$tab"].'</a>';//$lang["$tab"]
-                                $html .='</li>';
-                            }
-
-                            $html .='</ul>';
-
-                            $html .='<div class="block-content tab-content">';
-                            echo $html;
-                        }
-                        foreach($value as $k => $v) {
-                            if(file_exists($file = $views_folder."{$name}/{$key}/{$v}.php")) {
-                                include $file;
-                            } elseif(file_exists($file = $views_folder."{$name}/{$key}/{$v}.html")) {
-                                include $file;
-                            }
-                        }
-                        if($name == "sousprojet") {
-                            echo "</div>";
-                        }
-                        include $views_folder."{$name}/{$key}/{$key}_block_end.php";
+                    if($name == "sousprojet") {
+                        echo "</div>";
                     }
-                    break;
-            }
-
-            //switch sur quelques page pour gerer l'accés par res/id ex : 'sousprojet'
+                    include $views_folder."{$name}/{$key}/{$key}_block_end.php";
+                }
+                break;
         }
     }
+}
 
-	class adm extends baseUser {
-        /*function dashboard() {
-            Page::dashboard(
-                array(
-                    "dashboard1" => array("index")
-                )
-            );
-        }*/
+class adm extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
 
-        function projet() {
-            Page::projet(
-              array(
-                  "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
-                  "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
-              )
-            );
-        }
-
-        function sousprojet() {
-            Page::sousprojet(
-                array(
-                    "infoszone" => array("nom","infoplaque","zone","siteorigine"),
-                    "gestionplaque" => array("phase","traitementetude"),
-                    "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
-                    "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
-                    "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
-                )
-            );
-        }
-
-        function ot() {
-            Page::ot(
-                array(
-                    "ot" => array("liste","add","update","link","delete"),
-                    "chambreot" => array("liste","open"),
-                    "planningot" => array(),
-                    "synoptique" => array()
-                )
-            );
-        }
-
-        function sidebar() {
-            Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
-        }
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
     }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+
+    //admin only menu
+
+    function utilisateur() {
+        Page::utilisateur(
+            array(
+                "free" => array("liste","add","update","delete","nro"),
+                "stt" => array("liste","add","update","delete")
+            )
+        );
+    }
+
+    function mail() {
+        Page::mail(
+            array(
+                "projetcreation" => array("liste","add","delete")
+            )
+        );
+    }
+
+    function nro() {
+        Page::nro(
+            array(
+                "nro" => array("liste","add","delete")
+            )
+        );
+    }
+}
+
+class dov extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class pov extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class bei extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class bex extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class cdp extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class vpi extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class pci extends baseUser {
+    /*function dashboard() {
+        Page::dashboard(
+            array(
+                "dashboard1" => array("index")
+            )
+        );
+    }*/
+
+    function projet() {
+        Page::projet(
+            array(
+                "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function sousprojet() {
+        Page::sousprojet(
+            array(
+                "infoszone" => array("nom","infoplaque","zone","siteorigine"),
+                "gestionplaque" => array("phase","traitementetude"),
+                "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+            )
+        );
+    }
+
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","add","update","delete","link"),
+                "chambreot" => array("liste","open"),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function chambre() {
+        Page::chambre(
+            array(
+                /*"chambre" => array(),*/
+                "pointbloquant" => array("liste"),
+                "masque" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}
+class stt extends baseUser {
+
+    function sidebar() {
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+    }
+}

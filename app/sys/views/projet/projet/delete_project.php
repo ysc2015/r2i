@@ -24,10 +24,6 @@
                     }).done(function (message) {
                         projet_dt.draw((false));
                         $(btns.join(',')).addClass("disabled");
-                        /*if(typeof sousprojet_dt !== 'undefined') {
-                            sousprojet_dt.draw(false);
-                            $("#listesousprojet_block_title").html('sous projets (tous)');
-                        }*/
                         $( "#delete-project-dialog-confirm" ).dialog( "close" );
                     });
                 },
