@@ -1,5 +1,4 @@
 
-
 <button id="update_project_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#update-project' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier</button>
 <script>
     var uploader2_options = {

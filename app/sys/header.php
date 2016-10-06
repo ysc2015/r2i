@@ -23,12 +23,14 @@
                 </ul>
             </div>
         </li>
-        <li>
-            <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
-            <button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">
-                <i class="fa fa-tasks"></i>
-            </button>
-        </li>
+        <?php if($connectedProfil->profil->profil->shortlib == "adm") {?>
+            <li>
+                <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                <button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">
+                    <i class="fa fa-tasks"></i>
+                </button>
+            </li>
+        <?php } ?>
     </ul>
     <!-- END Header Navigation Right -->
 

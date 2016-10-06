@@ -46,7 +46,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/projet/sousprojet/sousprojet_liste.php',
+                "url": 'api/projet/sousprojet/sousprojet_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0)/*,
                 "type": 'POST',
                 "data": function ( d ) {
                     if(typeof projet_dt !== 'undefined') {
@@ -54,7 +54,7 @@
                     } else {
                         return {idp : 0}
                     }
-                }
+                }*/
             },
             "columns": [
                 { "data": "id_sous_projet" },

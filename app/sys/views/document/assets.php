@@ -37,15 +37,12 @@
 <!-- END Stylesheets -->
 
 <link rel="stylesheet" href="assets/js/plugins/jquery-upload-file/css/uploadfile.css">
-<!--<link rel="stylesheet" href="assets/js/plugins/select2/select2.min.css">
-<link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">-->
 <link rel="stylesheet" href="assets/js/plugins/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet" href="assets/js/plugins/datatables/jquery.dataTables.min.css">
 <link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid.css">
 <link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap.css">
 <link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap-ui.css">
 <link rel="stylesheet" href="assets/js/plugins/select2-4.0.3/dist/css/select2.min.css">
-<!--<link rel="stylesheet" href="assets/js/plugins/select2/select2.min.css">-->
 <link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">
 <link rel="stylesheet" href="assets/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
 <link rel="stylesheet" href="assets/js/plugins/fullcalendar/fullcalendar.min.css">
@@ -61,7 +58,6 @@
 <script src="assets/js/core/js.cookie.min.js"></script>
 <script src="assets/js/plugins/jquery-upload-file/js/jquery.form.js"></script>
 <script src="assets/js/plugins/jquery-upload-file/js/jquery.uploadfile.min.js"></script>
-<!--<script src="assets/js/plugins/select2/select2.full.min.js"></script>-->
 <script src="assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -70,13 +66,13 @@
 <script src="assets/js/plugins/jqGrid/js/jquery.jqGrid.min.js"></script>
 <script src="assets/js/plugins/jqGrid/js/i18n/grid.locale-fr.js"></script>
 <script src="assets/js/plugins/select2-4.0.3/dist/js/select2.full.min.js"></script>
+<script src="assets/js/plugins/select2-4.0.3/dist/js/i18n/fr.js"></script>
 <script src="assets/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 <script src="assets/js/plugins/fullcalendar/moment.min.js"></script>
 <script src="assets/js/plugins/fullcalendar/fullcalendar.min.js"></script>
 <script src="assets/js/plugins/fullcalendar/gcal.min.js"></script>
 <script src="assets/js/plugins/fullcalendar/locale/fr.js"></script>
 <script src="assets/js/plugins/jquery-smooth-scroll/jquery.smooth-scroll.min.js"></script>
-<!--<script src="assets/js/plugins/select2/select2.full.min.js"></script>-->
 <script src="assets/js/sharedPreferences.js"></script>
 <script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>

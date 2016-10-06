@@ -69,7 +69,7 @@
             "drawCallback": function( /*settings*/ ) {
                 $(btns.join(',')).addClass("disabled");
                 if(typeof sousprojet_dt !== 'undefined') {
-                    sousprojet_dt.draw(false);
+                    sousprojet_dt.ajax.url( 'api/projet/sousprojet/sousprojet_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0) ).load();
                 }
             }
         } );
@@ -90,7 +90,7 @@
             }
 
             if(typeof sousprojet_dt !== 'undefined') {
-                sousprojet_dt.draw(false);
+                sousprojet_dt.ajax.url( 'api/projet/sousprojet/sousprojet_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0) ).load();
             }
 
         } );

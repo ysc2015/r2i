@@ -201,7 +201,7 @@
         showDownload:true,
         showAbort:true,
         allowedTypes: "xlsx",
-        maxFileCount: 1,
+        /*maxFileCount: 1,*/
         onLoad:function(obj)
         {
             $.ajax({

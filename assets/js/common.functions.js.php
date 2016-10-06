@@ -45,6 +45,21 @@ function checkLinears(sel){
     return flag;
 }
 
+function getObjectTypeForEntry(entree) {
+    var str = '';
+    switch (entree) {
+        case 'transportaiguillage' : str='transport_aiguillage_chambre';break;
+        case 'transporttirage' : str='transport_tirage_chambre';break;
+        case 'transportraccordement' : str='transport_raccord_chambre';break;
+        case 'distributionaiguillage' : str='distribution_aiguillage_chambre';break;
+        case 'distributiontirage' : str='distribution_tirage_chambre';break;
+        case 'distributionraccordement' : str='distribution_raccord_chambre';break;
+        default : str='';break;
+    }
+
+    return str;
+}
+
 /**
  * Overwrites obj1's values with obj2's and adds obj2's if non existent in obj1
  * @param obj1

@@ -151,7 +151,7 @@
         showDownload:true,
         showAbort:true,
         allowedTypes: "xlsx",
-        maxFileCount: 1,
+        /*maxFileCount: 1,*/
         onLoad:function(obj)
         {
             $.ajax({
@@ -192,7 +192,7 @@
 
             /*traccord_chambre_idres = id;
             $('#traccord-chambre-modal').modal({backdrop: 'static', keyboard: false});
-            traccord_pboite_table.draw(false);*/
+            traccord_chambre_table.draw(false);*/
 
             location.href="api/file/download.php?id="+id;
         },
@@ -316,8 +316,8 @@
 
         }
     };
-    /*var traccord_chambre_idres = 0;
-    var traccord_pboite_table;*/
+    var traccord_chambre_idres = 0;
+    var traccord_chambre_table;
     $(function () {
         traccord_chambre_uploader_options = merge_options(defaultUploaderStrLocalisation,traccord_chambre_uploader_options);
         traccord_chambre_uploader_options.abortStr = 'Injection en cours ...';
@@ -351,7 +351,7 @@
             });
         });
 
-        /*traccord_pboite_table = $('#traccord_pboite_table').DataTable( {
+        traccord_chambre_table = $('#traccord_chambre_table').DataTable( {
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
             },
@@ -385,10 +385,10 @@
             ],
             "order": [[0, 'desc']]
             ,
-            "drawCallback": function( /!*settings*!/ ) {
+            "drawCallback": function( /*settings*/ ) {
 
             }
-        } );*/
+        } );
         /*$.smoothScroll({
             scrollTarget: '#rtransport_block'
         });
@@ -448,7 +448,7 @@
                     <h3 class="block-title">Chambres injectées</h3>
                 </div>
                 <div class="block-content table-responsive">
-                    <table id="traccord_pboite_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                    <table id="traccord_chambre_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
                         <thead>
                         <tr>
                             <th>id</th>

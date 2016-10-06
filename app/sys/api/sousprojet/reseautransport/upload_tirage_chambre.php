@@ -55,7 +55,7 @@ if(isset($idsp) && !empty($idsp)) {
 
                 $row = 2;
 
-                $ret = array();
+                $ret2 = array();
                 $rowData = array();
                 $rowData[0][0] = "1";
                 //  Loop through each row of the worksheet in turn
@@ -63,13 +63,13 @@ if(isset($idsp) && !empty($idsp)) {
                     $rowData = $sheet->rangeToArray('A' . $row . ':' . $excelCfg['highestColumn'] . $row,"",TRUE,FALSE);
                     if($rowData[0][0] != "") {
                         //used for log & dev  test
-                        array_push($ret,$rowData[0]);
+                        array_push($ret2,$rowData[0]);
                     }
 
                     $row++;
                 }
                 $row = 1;
-                foreach($ret as $key=>$value) {
+                foreach($ret2 as $key=>$value) {
                     $stm->bindParam(':id_sous_projet',$idsp);
                     $stm->bindParam(':id_ressource',$lastInsertedId);
                     $stm->bindParam(':ref_chambre',$value[0]);
