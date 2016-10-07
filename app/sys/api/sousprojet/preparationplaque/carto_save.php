@@ -76,13 +76,8 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($pc_intervenant_be)){
-    if(!empty($pc_intervenant_be)){
-        $stm->bindParam(':intervenant_be',$pc_intervenant_be);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_be',$pc_intervenant_be);
+    $insert = true;
 }
 
 /*

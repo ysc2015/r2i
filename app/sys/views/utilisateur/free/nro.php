@@ -3,7 +3,7 @@
 <div id="link_nro_wrp">
     <br><br>
     <label for="linked-nro">NRO Associés </label>
-    <select multiple class="js-select2" id="linked-nro" name="linked-nro" size="1" style="width: 100%;" data-placeholder="Séléctionner fichiers chambres..">
+    <select multiple class="js-select2" id="linked-nro" name="linked-nro" size="1" style="width: 100%;" data-placeholder="Séléctionner nro..">
         <option value="">&nbsp;</option>
     </select>
     <br>
@@ -21,25 +21,22 @@
     });
     $(document).ready(function() {
         $("#link_nro").click(function() {
-            /*var list = '0';
+            var list = '0';
             if($('#linked-nro').val() != null) {
                 list = $('#linked-nro').val().join(',');
             }
 
             $.ajax({
                 method: "POST",
-                url: "api/ot/ot/update_ch_files_list.php",
+                url: "api/utilisateur/free/update_user_nro_list.php",
                 dataType: "json",
                 data: {
                     list: list,
-                    idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                    idu : users_dt.row('.selected').data().id_utilisateur
                 }
             }).done(function (msg) {
-                if(msg.error == 0) {
-                    chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
-                }
                 App.showMessage(msg,'#message_nro_link');
-            });*/
+            });
         });
     } );
 </script>

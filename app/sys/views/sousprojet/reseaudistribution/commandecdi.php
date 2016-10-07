@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dcc_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="dcc_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_intervenant_be" name="dcc_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,15 +15,15 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dcc_date_butoir">Date butoire traitement retour Aig <span class="text-danger">*</span></label>
+                    <label for="dcc_date_butoir">Date butoire traitement retour Aig <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="dcc_date_butoir" name="dcc_date_butoir" value="<?=($sousProjet->distributioncmdcdi !==NULL ? $sousProjet->distributioncmdcdi->date_butoir : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="dcc_traitement_retour_terrain">Traitement Retours terrain <span class="text-danger">*</span></label>
+                    <label for="dcc_traitement_retour_terrain">Traitement Retours terrain <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="dcc_traitement_retour_terrain" name="dcc_traitement_retour_terrain" value="<?=($sousProjet->distributioncmdcdi !== NULL ? $sousProjet->distributioncmdcdi->traitement_retour_terrain : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="dcc_modification_carto">Modification Carto <span class="text-danger">*</span></label>
+                    <label for="dcc_modification_carto">Modification Carto <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_modification_carto" name="dcc_modification_carto">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -39,7 +39,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dcc_commandes_acces">Commande Accès <span class="text-danger">*</span></label>
+                    <label for="dcc_commandes_acces">Commande Accès <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_commandes_acces" name="dcc_commandes_acces">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -51,11 +51,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dcc_date_transmission_ca">Date Transmission CA <span class="text-danger">*</span></label>
+                    <label for="dcc_date_transmission_ca">Date Transmission CA <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="dcc_date_transmission_ca" name="dcc_date_transmission_ca" value="<?=($sousProjet->distributioncmdcdi !== NULL ? $sousProjet->distributioncmdcdi->date_transmission_ca : "")?>">
                 </div>
                 <div class="col-md-6">
-                    <label for="dcc_ref_commande_acces">Référence Commande Accès <span class="text-danger">*</span></label>
+                    <label for="dcc_ref_commande_acces">Référence Commande Accès <!--<span class="text-danger">*</span>--></label>
                     <br>
                     <input class="js-tags-input form-control" type="text" id="dcc_ref_commande_acces" name="dcc_ref_commande_acces" value="<?=($sousProjet->distributioncmdcdi !== NULL ? $sousProjet->distributioncmdcdi->ref_commande_acces : "")?>">
                 </div>
@@ -64,7 +64,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dcc_go_ft">GO FT <span class="text-danger">*</span></label>
+                    <label for="dcc_go_ft">GO FT <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_go_ft" name="dcc_go_ft">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -76,7 +76,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dcc_ok">OK <span class="text-danger">*</span></label>
+                    <label for="dcc_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_ok" name="dcc_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

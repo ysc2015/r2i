@@ -19,7 +19,7 @@
                 { "data": "email_utilisateur" },
                 { "data": "lib_profil_utilisateur" }
             ],
-            "order": [[0, 'desc']],
+            "order": [[5, 'asc']],
             "columnDefs": [
                 { "targets": [ 0,1 ], "visible": false, "searchable": false } ]
         } );

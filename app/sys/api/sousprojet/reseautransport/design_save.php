@@ -85,8 +85,8 @@ if(isset($td_intervenant_be)){
             $message[] = "Le valideur BEI doit étre différent de li'intervenant BE !";
         }
     } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
+        $stm->bindParam(':intervenant_be',$td_intervenant_be);
+        $insert = true;
     }
 }
 
@@ -132,23 +132,13 @@ if(isset($td_date_debut) && isset($td_date_ret_prevue)) {
  */
 
 if(isset($td_lineaire_transport)){
-    if(!empty($td_lineaire_transport)){
-        $stm->bindParam(':lineaire_transport',$td_lineaire_transport);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Linéaire transport est obligatoire !";
-    }
+    $stm->bindParam(':lineaire_transport',$td_lineaire_transport);
+    $insert = true;
 }
 
 if(isset($td_nb_zones)){
-    if(!empty($td_nb_zones)){
-        $stm->bindParam(':nb_zones',$td_nb_zones);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Nombre de zones est obligatoire !";
-    }
+    $stm->bindParam(':nb_zones',$td_nb_zones);
+    $insert = true;
 }
 
 if(isset($td_ok)){

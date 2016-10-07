@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dt_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="dt_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_intervenant_be" name="dt_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,11 +15,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_date_previsionnelle">Date Previsionnelle <span class="text-danger">*</span></label>
+                    <label for="dt_date_previsionnelle">Date Previsionnelle <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="dt_date_previsionnelle" name="dt_date_previsionnelle" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_previsionnelle : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_prep_plans">Préparation des plans <span class="text-danger">*</span></label>
+                    <label for="dt_prep_plans">Préparation des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_prep_plans" name="dt_prep_plans">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -31,7 +31,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
+                    <label for="dt_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_controle_plans" name="dt_controle_plans">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -51,22 +51,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="dt_lineaire1">câble 288FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire1">câble 288FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire1" name="dt_lineaire1" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire1:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="dt_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">câble 144FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire2" name="dt_lineaire2" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire2:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="dt_lineaire_reseau">câble 72FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">câble 72FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire3" name="dt_lineaire3" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire3:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="dt_lineaire_reseau">câble 48FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">câble 48FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire4" name="dt_lineaire4" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire4:"")?>">
                     </div>
                 </div>
@@ -74,22 +74,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="dt_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">BPE 288FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire5" name="dt_lineaire5" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire5:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="dt_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">BPE 144FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire6" name="dt_lineaire6" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire6:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="dt_lineaire_reseau">BPE 72FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">BPE 72FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire7" name="dt_lineaire7" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire7:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="dt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="dt_lineaire_reseau">BPE 48FO <span class="text-danger">*</span></label>
+                        <label for="dt_lineaire_reseau">BPE 48FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire8" name="dt_lineaire8" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire8:"")?>">
                     </div>
                 </div>
@@ -99,11 +99,11 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dt_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span></label>
+                    <label for="dt_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_transmission_plans : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                    <label for="dt_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_id_entreprise" name="dt_id_entreprise">
                         <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                         <?php
@@ -115,11 +115,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_date_tirage">Date Tirage <span class="text-danger">*</span></label>
+                    <label for="dt_date_tirage">Date Tirage <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_tirage : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="dt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="number" id="dt_duree" name="dt_duree" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->duree : "")?>">
                 </div>
             </div>
@@ -127,7 +127,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dt_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                    <label for="dt_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_controle_demarrage_effectif" name="dt_controle_demarrage_effectif">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -139,11 +139,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_date_retour">Date Retour <span class="text-danger">*</span></label>
+                    <label for="dt_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="dt_date_retour" name="dt_date_retour" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_retour : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_etat_retour">Etat Retour <span class="text-danger">*</span></label>
+                    <label for="dt_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_etat_retour" name="dt_etat_retour">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -155,7 +155,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dt_ok">OK <span class="text-danger">*</span></label>
+                    <label for="dt_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_ok" name="dt_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

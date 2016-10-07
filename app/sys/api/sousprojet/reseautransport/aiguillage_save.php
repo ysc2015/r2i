@@ -76,23 +76,13 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($ta_intervenant_be)){
-    if(!empty($ta_intervenant_be)){
-        $stm->bindParam(':intervenant_be',$ta_intervenant_be);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_be',$ta_intervenant_be);
+    $insert = true;
 }
 
 if(isset($ta_plans)){
-    if(!empty($ta_plans)){
-        $stm->bindParam(':plans',$ta_plans);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Plans est obligatoire !";
-    }
+    $stm->bindParam(':plans',$ta_plans);
+    $insert = true;
 }
 
 /*
@@ -100,83 +90,43 @@ if(isset($ta_plans)){
  */
 
 if(isset($ta_lineaire1)){
-    if(!empty($ta_lineaire1)){
-        $stm->bindParam(':lineaire1',$ta_lineaire1);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs 720FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire1',$ta_lineaire1);
+    $insert = true;
 }
 
 if(isset($ta_lineaire2)){
-    if(!empty($ta_lineaire2)){
-        $stm->bindParam(':lineaire2',$ta_lineaire2);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs 432FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire2',$ta_lineaire2);
+    $insert = true;
 }
 
 if(isset($ta_lineaire3)){
-    if(!empty($ta_lineaire3)){
-        $stm->bindParam(':lineaire3',$ta_lineaire3);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs 288FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire3',$ta_lineaire3);
+    $insert = true;
 }
 
 if(isset($ta_lineaire4)){
-    if(!empty($ta_lineaire4)){
-        $stm->bindParam(':lineaire4',$ta_lineaire4);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs 144FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire4',$ta_lineaire4);
+    $insert = true;
 }
 
 if(isset($ta_lineaire5)){
-    if(!empty($ta_lineaire5)){
-        $stm->bindParam(':lineaire5',$ta_lineaire5);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs BPE 720FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire5',$ta_lineaire5);
+    $insert = true;
 }
 
 if(isset($ta_lineaire6)){
-    if(!empty($ta_lineaire6)){
-        $stm->bindParam(':lineaire6',$ta_lineaire6);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs BPE 432FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire6',$ta_lineaire6);
+    $insert = true;
 }
 
 if(isset($ta_lineaire7)){
-    if(!empty($ta_lineaire7)){
-        $stm->bindParam(':lineaire7',$ta_lineaire7);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs BPE 288FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire7',$ta_lineaire7);
+    $insert = true;
 }
 
 if(isset($ta_lineaire8)){
-    if(!empty($ta_lineaire8)){
-        $stm->bindParam(':lineaire8',$ta_lineaire8);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs BPE 144FO est obligatoire !";
-    }
+    $stm->bindParam(':lineaire8',$ta_lineaire8);
+    $insert = true;
 }
 
 /*
@@ -184,33 +134,18 @@ if(isset($ta_lineaire8)){
  */
 
 if(isset($ta_controle_plans)){
-    if(!empty($ta_controle_plans)){
-        $stm->bindParam(':controle_plans',$ta_controle_plans);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Controle plans est obligatoire !";
-    }
+    $stm->bindParam(':controle_plans',$ta_controle_plans);
+    $insert = true;
 }
 
 if(isset($ta_date_transmission_plans)){
-    if(!empty($ta_date_transmission_plans)){
-        $stm->bindParam(':date_transmission_plans',$ta_date_transmission_plans);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date transmission plans est obligatoire !";
-    }
+    $stm->bindParam(':date_transmission_plans',$ta_date_transmission_plans);
+    $insert = true;
 }
 
 if(isset($ta_id_entreprise)){
-    if(!empty($ta_id_entreprise)){
-        $stm->bindParam(':id_entreprise',$ta_id_entreprise);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Entreprise est obligatoire !";
-    }
+    $stm->bindParam(':id_entreprise',$ta_id_entreprise);
+    $insert = true;
 }
 
 if(isset($ta_date_aiguillage) && isset($ta_date_ret_prevue)) {
@@ -247,33 +182,18 @@ if(isset($ta_date_aiguillage) && isset($ta_date_ret_prevue)) {
  */
 
 if(isset($ta_controle_demarrage_effectif)){
-    if(!empty($ta_controle_demarrage_effectif)){
-        $stm->bindParam(':controle_demarrage_effectif',$ta_controle_demarrage_effectif);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Controle démarrage effectif est obligatoire !";
-    }
+    $stm->bindParam(':controle_demarrage_effectif',$ta_controle_demarrage_effectif);
+    $insert = true;
 }
 
 if(isset($ta_date_retour)){
-    if(!empty($ta_date_retour)){
-        $stm->bindParam(':date_retour',$ta_date_retour);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date retour est obligatoire !";
-    }
+    $stm->bindParam(':date_retour',$ta_date_retour);
+    $insert = true;
 }
 
 if(isset($ta_etat_retour)){
-    if(!empty($ta_etat_retour)){
-        $stm->bindParam(':etat_retour',$ta_etat_retour);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Etat retour est obligatoire !";
-    }
+    $stm->bindParam(':etat_retour',$ta_etat_retour);
+    $insert = true;
 }
 
 if(isset($ta_lien_plans)){

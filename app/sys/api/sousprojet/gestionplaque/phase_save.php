@@ -76,23 +76,13 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($gp_instigateur)){
-    if(!empty($gp_instigateur)) {
-        $stm->bindParam(':instigateur',$gp_instigateur);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Instigateur est obligatoire !";
-    }
+    $stm->bindParam(':instigateur',$gp_instigateur);
+    $insert = true;
 }
 
 if(isset($gp_date_lancement)){
-    if(!empty($gp_date_lancement)) {
-        $stm->bindParam(':date_lancement',$gp_date_lancement);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date lancement est obligatoire !";
-    }
+    $stm->bindParam(':date_lancement',$gp_date_lancement);
+    $insert = true;
 }
 
 if($insert == true && $err == 0){

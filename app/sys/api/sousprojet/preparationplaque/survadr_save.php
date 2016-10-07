@@ -76,13 +76,8 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($sa_volume_adresse)){
-    if(!empty($sa_volume_adresse)){
-        $stm->bindParam(':volume_adresse',$sa_volume_adresse);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Volume adresses est obligatoire !";
-    }
+    $stm->bindParam(':volume_adresse',$sa_volume_adresse);
+    $insert = true;
 }
 
 /*
@@ -122,13 +117,8 @@ if(isset($sa_date_debut) && isset($sa_date_ret_prevue)) {
  */
 
 if(isset($sa_intervenant)){
-    if(!empty($sa_intervenant)){
-        $stm->bindParam(':intervenant',$sa_intervenant);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant est obligatoire !";
-    }
+    $stm->bindParam(':intervenant',$sa_intervenant);
+    $insert = true;
 }
 
 if(isset($sa_ok)){

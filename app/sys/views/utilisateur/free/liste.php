@@ -74,27 +74,26 @@
 
                 if(users_dt.row('.selected').data().id_profil_utilisateur == 7) {
                     $('#link_nro_wrp').show();
-                    /*$.ajax({
+                    $.ajax({
                      method: "POST",
-                     url: "api/ot/ot/get_ch_files_list.php",
+                     url: "api/utilisateur/free/get_user_nro_list.php",
                      dataType: "json",
                      data: {
-                     objtype: getObjectTypeForEntry(get('tentree')),
-                     idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                     idu : users_dt.row('.selected').data().id_utilisateur
                      }
                      })
                      .done(function (data) {
-                     var values = [];
-                     $('#linked-nro').html('<option value="">&nbsp;</option>');
-                     for(var i = 0 ; i < data.length ; i++) {
-                     if(ot_dt.row('.selected').data().id_ordre_de_travail == data[i]['idot']) {
-                     values.push(data[i]['id']);
-                     }
-                     html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
-                     $('#linked-nro').append(html);
-                     }
-                     $('#linked-nro').val(values);
-                     });*/
+                         var values = [];
+                         $('#linked-nro').html('<option value="">&nbsp;</option>');
+                         for(var i = 0 ; i < data.length ; i++) {
+                             if(users_dt.row('.selected').data().id_utilisateur == data[i]['idu']) {
+                                values.push(data[i]['id']);
+                             }
+                             html = '<option value="'+data[i]['id']+'">'+data[i]['nro']+'</option>';
+                             $('#linked-nro').append(html);
+                         }
+                         $('#linked-nro').val(values);
+                     });
                 } else {
                     $('#link_nro_wrp').hide();
                 }

@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="drec_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="drec_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_intervenant_be" name="drec_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="drec_doe">DOE <span class="text-danger">*</span></label>
+                    <label for="drec_doe">DOE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_doe" name="drec_doe">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="drec_netgeo">Netgeo <span class="text-danger">*</span></label>
+                    <label for="drec_netgeo">Netgeo <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_netgeo" name="drec_netgeo">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="drec_intervenant_free">Intervenant FREE <span class="text-danger">*</span></label>
+                    <label for="drec_intervenant_free">Intervenant FREE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_intervenant_free" name="drec_intervenant_free">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -55,7 +55,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="drec_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                    <label for="drec_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_id_entreprise" name="drec_id_entreprise">
                         <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                         <?php
@@ -67,11 +67,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="drec_date_recette">Date de Recette <span class="text-danger">*</span></label>
+                    <label for="drec_date_recette">Date de Recette <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="drec_date_recette" name="drec_date_recette" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->date_recette : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="drec_etat_recette">Etat Recette <span class="text-danger">*</span></label>
+                    <label for="drec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_etat_recette" name="drec_etat_recette">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php

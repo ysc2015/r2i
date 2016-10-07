@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="te_site">Site <span class="text-danger">*</span></label>
+                    <label for="te_site">Site <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="te_site" name="te_site">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="te_charge_etude">Chargé d'étude <span class="text-danger">*</span></label>
+                    <label for="te_charge_etude">Chargé d'étude <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="te_charge_etude" name="te_charge_etude">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php

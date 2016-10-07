@@ -178,7 +178,7 @@ class adm extends baseUser {
     function nro() {
         Page::nro(
             array(
-                "nro" => array("liste","add","delete")
+                "nro" => array("liste","add","update","delete")
             )
         );
     }

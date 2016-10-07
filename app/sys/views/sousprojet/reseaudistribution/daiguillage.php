@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="da_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="da_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_intervenant_be" name="da_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="da_plans">Plans <span class="text-danger">*</span></label>
+                    <label for="da_plans">Plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_plans" name="da_plans">
                         <option value="" selected="" disabled="">Sélectionnez état plans</option>
                         <?php
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="da_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
+                    <label for="da_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_controle_plans" name="da_controle_plans">
                         <option value="" selected="" disabled="">Sélectionnez type controle</option>
                         <?php
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="da_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span></label>
+                    <label for="da_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="da_date_transmission_plans" name="da_date_transmission_plans" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_transmission_plans:"")?>">
                 </div>
             </div>
@@ -51,22 +51,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="da_lineaire1">câble 288FO <span class="text-danger">*</span></label>
+                        <label for="da_lineaire1">câble 288FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire1" name="da_lineaire1" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire1:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="ta_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">câble 144FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire2" name="da_lineaire2" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire2:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="ta_lineaire_reseau">câble 72FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">câble 72FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire3" name="da_lineaire3" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire3:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="ta_lineaire_reseau">câble 48FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">câble 48FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire4" name="da_lineaire4" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire4:"")?>">
                     </div>
                 </div>
@@ -74,22 +74,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 288FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire5" name="da_lineaire5" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire5:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 144FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire6" name="da_lineaire6" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire6:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 72FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 72FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire7" name="da_lineaire7" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire7:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="ta_lineaire_reseau">BPE 48FO <span class="text-danger">*</span></label>
+                        <label for="ta_lineaire_reseau">BPE 48FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput3" type="number" id="da_lineaire8" name="da_lineaire8" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lineaire8:"")?>">
                     </div>
                 </div>
@@ -99,7 +99,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="da_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                    <label for="da_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_id_entreprise" name="da_id_entreprise">
                         <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                         <?php
@@ -111,15 +111,15 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="da_date_aiguillage">Date de début d’aiguillage <span class="text-danger">*</span></label>
+                    <label for="da_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="da_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="da_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="number" id="da_duree" name="da_duree" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->duree:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -135,11 +135,11 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="da_date_retour">Date Retour <span class="text-danger">*</span></label>
+                    <label for="da_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="da_date_retour" name="da_date_retour" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_retour:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="da_etat_retour">Etat Retour <span class="text-danger">*</span></label>
+                    <label for="da_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_etat_retour" name="da_etat_retour">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -151,7 +151,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="da_ok">OK <span class="text-danger">*</span></label>
+                    <label for="da_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_ok" name="da_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

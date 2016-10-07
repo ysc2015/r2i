@@ -67,6 +67,12 @@
         }
     }
     $(function () {
+        jQuery('#projet_update_ville').select2({
+            autocomplete: true
+        });
+        jQuery('#projet_update_code_site_origine').select2({
+            autocomplete: true
+        });
         var update;
         // Init page plugins & helpers
         uploader2_options = merge_options(defaultUploaderStrLocalisation,uploader2_options);
@@ -84,7 +90,7 @@
             $("#projet_update_ville_nom").val(projet_dt.row('.selected').data().ville_nom);
             $("#projet_update_ville").val(projet_dt.row('.selected').data().ville).trigger("change");
             $("#projet_update_dept").val(projet_dt.row('.selected').data().trigramme_dept.split('_')[1]);
-            $("#projet_update_code_site_origine").val(projet_dt.row('.selected').data().code_site_origine);
+            $("#projet_update_code_site_origine").val(projet_dt.row('.selected').data().code_site_origine).trigger("change");
             $("#projet_update_type_site_origine").val(projet_dt.row('.selected').data().type_site_origine);
             $("#projet_update_taille").val(projet_dt.row('.selected').data().taille);
             $("#projet_update_etat_site_origine").val(projet_dt.row('.selected').data().etat_site_origine);

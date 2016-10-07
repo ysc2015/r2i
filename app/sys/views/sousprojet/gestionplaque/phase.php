@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="gp_instigateur">Instigateur <span class="text-danger">*</span></label>
+                    <label for="gp_instigateur">Instigateur <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="gp_instigateur" name="gp_instigateur">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="gp_vague">Vague <span class="text-danger">*</span></label>
+                    <label for="gp_vague">Vague <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="gp_vague" name="gp_vague" disabled="">
                         <option value="" selected="" disabled="">Sélectionnez une phase</option>
                         <?php
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="gp_date_lancement">Date Lancement <span class="text-danger">*</span></label>
+                    <label for="gp_date_lancement">Date Lancement <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="gp_date_lancement" name="gp_date_lancement" value="<?=($sousProjet->plaquephase !== NULL?$sousProjet->plaquephase->date_lancement:"")?>">
                 </div>
             </div>
