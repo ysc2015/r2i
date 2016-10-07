@@ -76,23 +76,13 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($dd_intervenant_be)){
-    if(!empty($dd_intervenant_be)){
-        $stm->bindParam(':intervenant_be',$dd_intervenant_be);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_be',$dd_intervenant_be);
+    $insert = true;
 }
 
 if(isset($dd_intervenant_bex)){
-    if(!empty($dd_intervenant_bex)){
-        $stm->bindParam(':intervenant_bex',$dd_intervenant_bex);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BEX est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_bex',$dd_intervenant_bex);
+    $insert = true;
 }
 
 /*
@@ -132,33 +122,18 @@ if(isset($dd_date_debut) && isset($dd_date_fin)) {
  */
 
 if(isset($dd_lineaire_distribution)){
-    if(!empty($dd_lineaire_distribution)){
-        $stm->bindParam(':lineaire_distribution',$dd_lineaire_distribution);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Linéaire distribution est obligatoire !";
-    }
+    $stm->bindParam(':lineaire_distribution',$dd_lineaire_distribution);
+    $insert = true;
 }
 
 if(isset($dd_etat)){
-    if(!empty($dd_etat)){
-        $stm->bindParam(':etat',$dd_etat);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Nombre Etat est obligatoire !";
-    }
+    $stm->bindParam(':etat',$dd_etat);
+    $insert = true;
 }
 
 if(isset($dd_date_envoi)){
-    if(!empty($dd_date_envoi)){
-        $stm->bindParam(':date_envoi',$dd_date_envoi);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date envoi est obligatoire !";
-    }
+    $stm->bindParam(':date_envoi',$dd_date_envoi);
+    $insert = true;
 }
 
 if(isset($dd_ok)){

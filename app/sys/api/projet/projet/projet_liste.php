@@ -6,7 +6,7 @@
 
 ini_set("display_errors","1");
 
-$table = array("projet as t1","select_site_origine_type as t2","select_site_origine_etat as t3","select_ville as t4");
+$table = array("projet as t1","select_site_origine_type as t2","select_site_origine_etat as t3","select_ville as t4","nro as t5");
 $columns = array(
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
     array( "db" => "t1.id_projet_osa", "dt" => 'id_projet_osa' ),
@@ -17,6 +17,7 @@ $columns = array(
     array( "db" => "t4.nom_ville", "dt" => 'nom_ville' ),
     array( "db" => "t1.trigramme_dept", "dt" => 'trigramme_dept' ),
     array( "db" => "t1.code_site_origine", "dt" => 'code_site_origine' ),
+    array( "db" => "t5.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t1.type_site_origine", "dt" => 'type_site_origine' ),
     array( "db" => "t2.lib_site_origine_type", "dt" => 'lib_site_origine_type' ),
     array( "db" => "t1.taille", "dt" => 'taille' ),
@@ -27,5 +28,5 @@ $columns = array(
     array( "db" => "t1.date_attribution", "dt" => 'date_attribution' )
 );
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_projet",$columns,"t1.type_site_origine=t2.id_site_origine_type AND t1.etat_site_origine=t3.id_site_origine_etat AND t1.ville = t4.code_ville"));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_projet",$columns,"t1.type_site_origine=t2.id_site_origine_type AND t1.etat_site_origine=t3.id_site_origine_etat AND t1.ville = t4.code_ville AND t1.code_site_origine = t5.id_nro"));
 ?>

@@ -74,23 +74,13 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($te_site)){
-    if(!empty($te_site)) {
-        $stm->bindParam(':site',$te_site);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Site est obligatoire !";
-    }
+    $stm->bindParam(':site',$te_site);
+    $insert = true;
 }
 
 if(isset($te_charge_etude)){
-    if(!empty($te_charge_etude)) {
-        $stm->bindParam(':charge_etude',$te_charge_etude);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Chargé d'étude est obligatoire !";
-    }
+    $stm->bindParam(':charge_etude',$te_charge_etude);
+    $insert = true;
 }
 
 if($insert == true && $err == 0){

@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="pa_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="pa_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pa_intervenant_be" name="pa_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,15 +15,15 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="pa_date_debut">Date de Début <span class="text-danger">*</span></label>
+                    <label for="pa_date_debut">Date de Début <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="pa_date_debut" name="pa_date_debut" value="<?=($sousProjet->plaqueposadr !== NULL?$sousProjet->plaqueposadr->date_debut:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="pa_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+                    <label for="pa_date_ret_prevue">Date ret Prev <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="pa_date_ret_prevue" name="pa_date_ret_prevue" value="<?=($sousProjet->plaqueposadr !== NULL?$sousProjet->plaqueposadr->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="pa_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="pa_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input readonly class="form-control" type="text" id="pa_duree" name="pa_duree" value="<?=($sousProjet->plaqueposadr !== NULL?$sousProjet->plaqueposadr->duree:"")?>">
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="pa_intervenant">Intervenant <span class="text-danger">*</span></label>
+                    <label for="pa_intervenant">Intervenant <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pa_intervenant" name="pa_intervenant">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -43,7 +43,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="pa_ok">OK <span class="text-danger">*</span></label>
+                    <label for="pa_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pa_ok" name="pa_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

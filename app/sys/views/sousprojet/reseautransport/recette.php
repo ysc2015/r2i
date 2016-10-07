@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="trec_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="trec_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_intervenant_be" name="trec_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_doe">DOE <span class="text-danger">*</span></label>
+                    <label for="trec_doe">DOE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_doe" name="trec_doe">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_netgeo">Netgeo <span class="text-danger">*</span></label>
+                    <label for="trec_netgeo">Netgeo <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_netgeo" name="trec_netgeo">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_intervenant_free">Intervenant FREE <span class="text-danger">*</span></label>
+                    <label for="trec_intervenant_free">Intervenant FREE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_intervenant_free" name="trec_intervenant_free">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -55,7 +55,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="trec_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                    <label for="trec_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_id_entreprise" name="trec_id_entreprise">
                         <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                         <?php
@@ -67,11 +67,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_date_recette">Date Recette <span class="text-danger">*</span></label>
+                    <label for="trec_date_recette">Date Recette <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_etat_recette">Etat Recette <span class="text-danger">*</span></label>
+                    <label for="trec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_etat_recette" name="trec_etat_recette">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php

@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="pc_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="pc_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pc_intervenant_be" name="pc_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,15 +15,15 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="pc_date_debut">Date de Début <span class="text-danger">*</span></label>
+                    <label for="pc_date_debut">Date de Début <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="pc_date_debut" name="pc_date_debut" value="<?=($sousProjet->plaquecarto !== NULL?$sousProjet->plaquecarto->date_debut:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="pc_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+                    <label for="pc_date_ret_prevue">Date ret Prev <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="pc_date_ret_prevue" name="pc_date_ret_prevue" value="<?=($sousProjet->plaquecarto !== NULL?$sousProjet->plaquecarto->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="pc_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="pc_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input readonly class="form-control" type="text" id="pc_duree" name="pc_duree" value="<?=($sousProjet->plaquecarto !== NULL?$sousProjet->plaquecarto->duree:"")?>">
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="pc_ok">OK <span class="text-danger">*</span></label>
+                    <label for="pc_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pc_ok" name="pc_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

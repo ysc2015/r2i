@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="tr_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="tr_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_intervenant_be" name="tr_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_preparation_pds">Préparation PDS <span class="text-danger">*</span></label>
+                    <label for="tr_preparation_pds">Préparation PDS <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_preparation_pds" name="tr_preparation_pds">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
+                    <label for="tr_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_controle_plans" name="tr_controle_plans">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_date_transmission_pds">Date Transmission PDS <span class="text-danger">*</span></label>
+                    <label for="tr_date_transmission_pds">Date Transmission PDS <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tr_date_transmission_pds" name="tr_date_transmission_pds" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_transmission_pds : "")?>">
                 </div>
             </div>
@@ -47,7 +47,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="tr_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                    <label for="tr_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_id_entreprise" name="tr_id_entreprise">
                         <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                         <?php
@@ -59,15 +59,15 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_date_racco">Date Racco <span class="text-danger">*</span></label>
+                    <label for="tr_date_racco">Date Racco <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tr_date_racco" name="tr_date_racco" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_racco : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_duree">Durée <span class="text-danger">*</span></label>
+                    <label for="tr_duree">Durée <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="number" id="tr_duree" name="tr_duree" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->duree : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -83,11 +83,11 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="tr_date_retour">Date Retour <span class="text-danger">*</span></label>
+                    <label for="tr_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tr_date_retour" name="tr_date_retour" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_retour : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_etat_retour">Etat Retour <span class="text-danger">*</span></label>
+                    <label for="tr_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_etat_retour" name="tr_etat_retour">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -99,7 +99,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_ok">OK <span class="text-danger">*</span></label>
+                    <label for="tr_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_ok" name="tr_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

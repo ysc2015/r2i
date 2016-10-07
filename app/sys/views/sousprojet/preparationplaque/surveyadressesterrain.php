@@ -3,15 +3,15 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-4">
-                    <label for="sa_volume_adresse">Volumes Adresses <span class="text-danger">*</span></label>
+                    <label for="sa_volume_adresse">Volumes Adresses <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="number" id="sa_volume_adresse" name="sa_volume_adresse" value="<?=($sousProjet->plaquesurvadr !== NULL?$sousProjet->plaquesurvadr->volume_adresse:"")?>">
                 </div>
                 <div class="col-md-4">
-                    <label for="sa_date_debut">Date de Début <span class="text-danger">*</span></label>
+                    <label for="sa_date_debut">Date de Début <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="sa_date_debut" name="sa_date_debut" value="<?=($sousProjet->plaquesurvadr !== NULL?$sousProjet->plaquesurvadr->date_debut:"")?>">
                 </div>
                 <div class="col-md-4">
-                    <label for="sa_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+                    <label for="sa_date_ret_prevue">Date ret Prev <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="sa_date_ret_prevue" name="sa_date_ret_prevue" value="<?=($sousProjet->plaquesurvadr !== NULL?$sousProjet->plaquesurvadr->date_ret_prevue:"")?>">
                 </div>
             </div>
@@ -19,11 +19,11 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-4">
-                    <label for="sa_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="sa_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input readonly class="form-control" type="text" id="sa_duree" name="sa_duree" value="<?=($sousProjet->plaquesurvadr !== NULL?$sousProjet->plaquesurvadr->duree:"")?>">
                 </div>
                 <div class="col-md-4">
-                    <label for="sa_intervenant">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="sa_intervenant">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="sa_intervenant" name="sa_intervenant">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -35,7 +35,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="sa_ok">OK <span class="text-danger">*</span></label>
+                    <label for="sa_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="sa_ok" name="sa_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

@@ -1,6 +1,6 @@
 <script>
     var nro_dt;
-    var nro_btns = ["#delete_nro"];
+    var nro_btns = ["#update_nro_show","#delete_nro"];
     $(document).ready(function() {
         nro_dt = $('#nro_table').DataTable( {
             "language": {

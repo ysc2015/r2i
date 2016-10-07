@@ -76,13 +76,8 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($pa_intervenant_be)){
-    if(!empty($pa_intervenant_be)){
-        $stm->bindParam(':intervenant_be',$pa_intervenant_be);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_be',$pa_intervenant_be);
+    $insert = true;
 }
 
 /*
@@ -122,13 +117,8 @@ if(isset($pa_date_debut) && isset($pa_date_ret_prevue)) {
  */
 
 if(isset($pa_intervenant)){
-    if(!empty($pa_intervenant)){
-        $stm->bindParam(':intervenant',$pa_intervenant);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant est obligatoire !";
-    }
+    $stm->bindParam(':intervenant',$pa_intervenant);
+    $insert = true;
 }
 
 if(isset($pa_ok)){

@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="td_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="td_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="td_intervenant_be" name="td_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="td_valideur_bei">Valideur BEI <span class="text-danger">*</span></label>
+                    <label for="td_valideur_bei">Valideur BEI <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="td_valideur_bei" name="td_valideur_bei">
                         <option value="0" selected="">Sélectionnez un utilisateur</option>
                         <?php
@@ -27,11 +27,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="td_date_debut">Date de Début <span class="text-danger">*</span></label>
+                    <label for="td_date_debut">Date de Début <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="td_date_debut" name="td_date_debut" value="<?=($sousProjet->transportdesign !== NULL?$sousProjet->transportdesign->date_debut:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="td_date_ret_prevue">Date ret Prev <span class="text-danger">*</span></label>
+                    <label for="td_date_ret_prevue">Date ret Prev <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="td_date_ret_prevue" name="td_date_ret_prevue" value="<?=($sousProjet->transportdesign !== NULL?$sousProjet->transportdesign->date_ret_prevue:"")?>">
                 </div>
             </div>
@@ -39,19 +39,19 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="td_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="td_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input readonly class="form-control " type="text" id="td_duree" name="td_duree" value="<?=($sousProjet->transportdesign !== NULL?$sousProjet->transportdesign->duree:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="td_lineaire_transport">Linéaire Transport <span class="text-danger">*</span></label>
+                    <label for="td_lineaire_transport">Linéaire Transport <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="number" id="td_lineaire_transport" name="td_lineaire_transport" value="<?=($sousProjet->transportdesign !== NULL?$sousProjet->transportdesign->lineaire_transport:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="td_nb_zones">Nbe Zones <span class="text-danger">*</span></label>
+                    <label for="td_nb_zones">Nbe Zones <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="number" id="td_nb_zones" name="td_nb_zones" value="<?=($sousProjet->transportdesign !== NULL?$sousProjet->transportdesign->nb_zones:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="td_ok">OK <span class="text-danger">*</span></label>
+                    <label for="td_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select <?= (($sousProjet->transportdesign==NULL || ($sousProjet->transportdesign!==NULL && $connectedProfil->id_utilisateur !== $sousProjet->transportdesign->valideur_bei)) ? "disabled ":" ") ?>class="form-control " id="td_ok" name="td_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

@@ -75,7 +75,15 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <label for="code_site_origine">Code site d’origine <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="code_site_origine" name="code_site_origine">
+                                            <select class="js-select2 form-control" id="code_site_origine" name="code_site_origine" size="1" style="width: 100%;" data-placeholder="Séléctionner nro..">
+                                                <option value="">&nbsp;</option>
+                                                <?php
+                                                $nros = Nro::all();
+                                                foreach($nros as $nro) {
+                                                    echo "<option value=\"$nro->id_nro\">$nro->lib_nro</option>";
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">

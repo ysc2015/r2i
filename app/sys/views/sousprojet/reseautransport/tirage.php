@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="tt_intervenant_be">Intervenant BE <span class="text-danger">*</span></label>
+                    <label for="tt_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tt_intervenant_be" name="tt_intervenant_be">
                         <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
                         <?php
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tt_plans">Plans <span class="text-danger">*</span></label>
+                    <label for="tt_plans">Plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tt_plans" name="tt_plans">
                         <option value="" selected="" disabled="">Sélectionnez état plans</option>
                         <?php
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tt_controle_plans">Contrôle des plans <span class="text-danger">*</span></label>
+                    <label for="tt_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tt_controle_plans" name="tt_controle_plans">
                         <option value="" selected="" disabled="">Sélectionnez type controle</option>
                         <?php
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tt_date_transmission_plans">Date Transmission Plans <span class="text-danger">*</span></label>
+                    <label for="tt_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tt_date_transmission_plans" name="tt_date_transmission_plans" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_transmission_plans:"")?>">
                 </div>
             </div>
@@ -51,22 +51,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="tt_lineaire1">câble 720FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire1">câble 720FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire1" name="tt_lineaire1" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire1:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="tt_lineaire_reseau">câble 432FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">câble 432FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire2" name="tt_lineaire2" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire2:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="tt_lineaire_reseau">câble 288FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">câble 288FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire3" name="tt_lineaire3" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire3:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="tt_lineaire_reseau">câble 144FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">câble 144FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire4" name="tt_lineaire4" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire4:"")?>">
                     </div>
                 </div>
@@ -74,22 +74,22 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
-                        <label for="tt_lineaire_reseau">BPE 720FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">BPE 720FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire5" name="tt_lineaire5" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire5:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="tt_lineaire_reseau">BPE 432FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">BPE 432FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire6" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire6:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
-                        <label for="tt_lineaire_reseau">BPE 288FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">BPE 288FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire7" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire7:"")?>">
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="tt_lineaire_reseau">BPE 144FO <span class="text-danger">*</span></label>
+                        <label for="tt_lineaire_reseau">BPE 144FO <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire8:"")?>">
                     </div>
                 </div>
@@ -99,15 +99,15 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-4">
-                    <label for="tt_date_tirage">Date de début tirage <span class="text-danger">*</span></label>
+                    <label for="tt_date_tirage">Date de début tirage <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_tirage:"")?>">
                 </div>
                 <div class="col-md-4">
-                    <label for="tt_date_ret_prevue">Date prévisionnelle de fin tirage <span class="text-danger">*</span></label>
+                    <label for="tt_date_ret_prevue">Date prévisionnelle de fin tirage <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-md-4">
-                    <label for="tt_duree">Durée(jours) <span class="text-danger">*</span></label>
+                    <label for="tt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
                     <input readonly class="form-control " type="text" id="tt_duree" name="tt_duree" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->duree:"")?>">
                 </div>
             </div>
@@ -115,7 +115,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="tt_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                    <label for="tt_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tt_id_entreprise" name="tt_id_entreprise">
                         <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
                         <?php
@@ -127,7 +127,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tt_controle_demarrage_effectif">Contrôle démarrage effectif <span class="text-danger">*</span></label>
+                    <label for="tt_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tt_controle_demarrage_effectif" name="tt_controle_demarrage_effectif">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -139,11 +139,11 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tt_date_retour">Date Retour <span class="text-danger">*</span></label>
+                    <label for="tt_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tt_date_retour" name="tt_date_retour" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_retour:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="tt_etat_retour">Etat Retour <span class="text-danger">*</span></label>
+                    <label for="tt_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tt_etat_retour" name="tt_etat_retour">
                         <option value="" selected="" disabled="">Sélectionnez une valeur</option>
                         <?php
@@ -159,15 +159,15 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-4">
-                    <label for="tt_lien_plans">Lien vers les plans <span class="text-danger">*</span></label>
+                    <label for="tt_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="tt_lien_plans" name="tt_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lien_plans:"")?></textarea>
                 </div>
                 <div class="col-md-4">
-                    <label for="tt_retour_presta">Retour presta <span class="text-danger">*</span></label>
+                    <label for="tt_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="tt_retour_presta" name="tt_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
-                    <label for="tt_ok">OK <span class="text-danger">*</span></label>
+                    <label for="tt_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="tt_ok" name="tt_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

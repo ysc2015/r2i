@@ -74,73 +74,38 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($drec_intervenant_be)){
-    if(!empty($drec_intervenant_be)){
-        $stm->bindParam(':intervenant_be',$drec_intervenant_be);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_be',$drec_intervenant_be);
+    $insert = true;
 }
 
 if(isset($drec_doe)){
-    if(!empty($drec_doe)){
-        $stm->bindParam(':doe',$drec_doe);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs DOE est obligatoire !";
-    }
+    $stm->bindParam(':doe',$drec_doe);
+    $insert = true;
 }
 
 if(isset($drec_netgeo)){
-    if(!empty($drec_netgeo)){
-        $stm->bindParam(':netgeo',$drec_netgeo);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs netgeo est obligatoire !";
-    }
+    $stm->bindParam(':netgeo',$drec_netgeo);
+    $insert = true;
 }
 
 if(isset($drec_intervenant_free)){
-    if(!empty($drec_intervenant_free)){
-        $stm->bindParam(':intervenant_free',$drec_intervenant_free);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant free est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_free',$drec_intervenant_free);
+    $insert = true;
 }
 
 if(isset($drec_id_entreprise)){
-    if(!empty($drec_id_entreprise)){
-        $stm->bindParam(':id_entreprise',$drec_id_entreprise);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Entreprise est obligatoire !";
-    }
+    $stm->bindParam(':id_entreprise',$drec_id_entreprise);
+    $insert = true;
 }
 
 if(isset($drec_date_recette)){
-    if(!empty($drec_date_recette)){
-        $stm->bindParam(':date_recette',$drec_date_recette);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date de recette est obligatoire !";
-    }
+    $stm->bindParam(':date_recette',$drec_date_recette);
+    $insert = true;
 }
 
 if(isset($drec_etat_recette)){
-    if(!empty($drec_etat_recette)){
-        $stm->bindParam(':etat_recette',$drec_etat_recette);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Etat recette est obligatoire !";
-    }
+    $stm->bindParam(':etat_recette',$drec_etat_recette);
+    $insert = true;
 }
 
 if($insert == true && $err == 0){

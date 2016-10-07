@@ -74,83 +74,43 @@ if(isset($ids) && !empty($ids)){
 }
 
 if(isset($dcc_intervenant_be)){
-    if(!empty($dcc_intervenant_be)){
-        $stm->bindParam(':intervenant_be',$dcc_intervenant_be);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Intervenant BE est obligatoire !";
-    }
+    $stm->bindParam(':intervenant_be',$dcc_intervenant_be);
+    $insert = true;
 }
 
 if(isset($dcc_date_butoir)){
-    if(!empty($dcc_date_butoir)){
-        $stm->bindParam(':date_butoir',$dcc_date_butoir);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date butoir est obligatoire !";
-    }
+    $stm->bindParam(':date_butoir',$dcc_date_butoir);
+    $insert = true;
 }
 
 if(isset($dcc_traitement_retour_terrain)){
-    if(!empty($dcc_traitement_retour_terrain)){
-        $stm->bindParam(':traitement_retour_terrain',$dcc_traitement_retour_terrain);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Traitement retour terrain est obligatoire !";
-    }
+    $stm->bindParam(':traitement_retour_terrain',$dcc_traitement_retour_terrain);
+    $insert = true;
 }
 
 if(isset($dcc_modification_carto)){
-    if(!empty($dcc_modification_carto)){
-        $stm->bindParam(':modification_carto',$dcc_modification_carto);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Modification carto est obligatoire !";
-    }
+    $stm->bindParam(':modification_carto',$dcc_modification_carto);
+    $insert = true;
 }
 
 if(isset($dcc_commandes_acces)){
-    if(!empty($dcc_commandes_acces)){
-        $stm->bindParam(':commandes_acces',$dcc_commandes_acces);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Commandes accés est obligatoire !";
-    }
+    $stm->bindParam(':commandes_acces',$dcc_commandes_acces);
+    $insert = true;
 }
 
 if(isset($dcc_date_transmission_ca)){
-    if(!empty($dcc_date_transmission_ca)){
-        $stm->bindParam(':date_transmission_ca',$dcc_date_transmission_ca);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Date transmission CA est obligatoire !";
-    }
+    $stm->bindParam(':date_transmission_ca',$dcc_date_transmission_ca);
+    $insert = true;
 }
 
 if(isset($dcc_ref_commande_acces)){
-    if(!empty($dcc_ref_commande_acces)){
-        $stm->bindParam(':ref_commande_acces',$dcc_ref_commande_acces);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs Ref commande accés est obligatoire !";
-    }
+    $stm->bindParam(':ref_commande_acces',$dcc_ref_commande_acces);
+    $insert = true;
 }
 
 if(isset($dcc_go_ft)){
-    if(!empty($dcc_go_ft)){
-        $stm->bindParam(':go_ft',$dcc_go_ft);
-        $insert = true;
-    } else {
-        $err++;
-        $message[] = "Le champs GO FT est obligatoire !";
-    }
+    $stm->bindParam(':go_ft',$dcc_go_ft);
+    $insert = true;
 }
 
 if(isset($dcc_ok)){
