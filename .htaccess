@@ -26,11 +26,8 @@ RewriteRule  "api/ot/ot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/ot/$1"
 RewriteRule  "api/ot/chambreot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/chambreot/$1"  [QSA,L]
 RewriteRule  "api/ot/planningot/(\w*\.php)"          "app/MY_ROUTER.php?script=ot/planningot/$1"  [QSA,L]
 
-#ch api
-RewriteRule  "api/chambre/chambre/(\w*\.php)"          "app/MY_ROUTER.php?script=chambre/chambre/$1"  [QSA,L]
-RewriteRule  "api/chambre/masque/(\w*\.php)"          "app/MY_ROUTER.php?script=chambre/masque/$1"  [QSA,L]
-RewriteRule  "api/chambre/pointbloquant/(\w*\.php)"          "app/MY_ROUTER.php?script=chambre/pointbloquant/$1"  [QSA,L]
-RewriteRule  "api/chambre/synoptique/(\w*\.php)"          "app/MY_ROUTER.php?script=chambre/synoptique/$1"  [QSA,L]
+#pblq api
+RewriteRule  "api/pointbloquant/pointbloquant/(\w*\.php)"          "app/MY_ROUTER.php?script=pointbloquant/pointbloquant/$1"  [QSA,L]
 
 #users api
 RewriteRule  "api/utilisateur/free/(\w*\.php)"          "app/MY_ROUTER.php?script=utilisateur/free/$1"  [QSA,L]

@@ -34,8 +34,8 @@ switch ($page) {
         $connectedProfil->ot();
         echo "<br><br>";
         break;
-    case "chambre":
-        $connectedProfil->chambre();
+    case "pointbloquant":
+        $connectedProfil->pointbloquant();
         echo "<br><br>";
         break;
     case "entreprise":
