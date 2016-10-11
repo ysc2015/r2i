@@ -7,6 +7,10 @@
 extract($_GET);
 
 $table = array("point_bloquant as t1","point_bloquant_type_de_blocage as t2","point_bloquant_moyens_mis_en_oeuvre as t3","point_bloquant_solutions_preconisees as t4");
+if(isset($idot) && !empty($idot)) {
+    $table[] = "chambre as t5";
+    $table[] = "ressource as t6";
+}
 $columns = array(
     array( "db" => "t1.id_point_bloquant", "dt" => 'id_point_bloquant' ),
     array( "db" => "t1.id_chambre as pblq1_id_chambre", "dt" => 'pblq1_id_chambre' ),
@@ -80,8 +84,12 @@ $columns = array(
 
 $condition = "t1.id_point_bloquant = t2.id_point_bloquant AND t1.id_point_bloquant = t3.id_point_bloquant AND t1.id_point_bloquant = t4.id_point_bloquant";
 
-if(isset($idch) && !empty($idch)) {
-    $condition .=" AND t1.id_chambre=$idch";
+if(isset($idchambre) && !empty($idchambre)) {
+    $condition .=" AND t1.id_chambre=$idchambre";
+} else {
+    if(isset($idot) && !empty($idot)) {
+        $condition .=" AND t1.id_chambre=t5.id_chambre AND t5.id_ressource = t6.id_ressource AND t6.id_ordre_de_travail=$idot";
+    }
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_point_bloquant",$columns,$condition));
