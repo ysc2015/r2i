@@ -134,20 +134,17 @@ class adm extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update","delete","link"),
-                "chambreot" => array("liste","open"),
+                "chambreot" => array("liste","update","add_pblq","open"),
                 "planningot" => array(),
                 "synoptique" => array()
             )
         );
     }
 
-    function chambre() {
-        Page::chambre(
+    function pointbloquant() {
+        Page::pointbloquant(
             array(
-                /*"chambre" => array(),*/
-                "pointbloquant" => array("liste"),
-                "masque" => array(),
-                "synoptique" => array()
+                "pointbloquant" => array("liste","add","update","delete")
             )
         );
     }

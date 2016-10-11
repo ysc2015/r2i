@@ -198,7 +198,7 @@
         </div>
     </div>
 </div>
-<!-- END ajouter projet Modal -->
+<!-- END modifier projet Modal -->
 <script>
     $(document).ready(function() {
         var msg_alerts2 = ["#message_project_update",

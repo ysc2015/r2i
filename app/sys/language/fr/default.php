@@ -46,3 +46,13 @@ $lang["date_creation"] = "Date de création";
 $lang["date_attribution"] = "Date d'attribution";
 $lang[""] = "";
 $lang[""] = "";
+
+//points bloquant
+$lang["utilisateur"] = "Effectué par";
+$lang["entreprise"] = "Entreprise";
+$lang["responsable"] = "Résponsable d'équipe";
+$lang["adresse"] = "Adresse";
+$lang["ref_chantier"] = "Référence";
+$lang["nature_travaux"] = "Nature des travaux";
+$lang["environement"] = "Environement";
+$lang["synthese"] = "Synthèse";
