@@ -1,5 +1,6 @@
 
 
+
 <button id="delete_ot" class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-remove'>&nbsp;</span>Supprimer</button>
 <div id="delete-ot-dialog-confirm" title="Supprimer cet ot?">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>confirmer la suppression?</p>

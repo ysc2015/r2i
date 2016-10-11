@@ -133,7 +133,7 @@ class adm extends baseUser {
     function ot() {
         Page::ot(
             array(
-                "ot" => array("liste","add","update","delete","link"),
+                "ot" => array("liste","add","update","open_pblq","delete","link"),
                 "chambreot" => array("liste","update","add_pblq","open"),
                 "planningot" => array(),
                 "synoptique" => array()

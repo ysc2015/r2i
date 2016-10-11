@@ -31,7 +31,7 @@
     var ot_dt;
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
-        "#delete_ot",
+        "#delete_ot","#open_pblq",
         "#linked-ch",
         "#link_ot"];
     $(document).ready(function() {
