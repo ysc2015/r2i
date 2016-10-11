@@ -101,11 +101,11 @@
                 <div class="col-md-3">
                     <label for="da_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_id_entreprise" name="da_id_entreprise">
-                        <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
-                        $results = SelectEntreprise::all();
+                        $results = EntrepriseSTT::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_entreprise\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->lib_entreprise</option>";
+                            echo "<option value=\"$result->id_entreprise\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->nom</option>";
                         }
                         ?>
                     </select>
