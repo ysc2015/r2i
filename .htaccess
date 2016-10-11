@@ -14,6 +14,10 @@ RewriteRule  "api/fileboiteparser/(\w*\.php)"          "app/MY_ROUTER.php?script
 RewriteRule  "api/projet/projet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/projet/$1"  [QSA,L]
 RewriteRule  "api/projet/sousprojet/(\w*\.php)"          "app/MY_ROUTER.php?script=projet/sousprojet/$1"  [QSA,L]
 
+#entreprise stt api
+RewriteRule  "api/entreprise/entreprise/(\w*\.php)"          "app/MY_ROUTER.php?script=entreprise/entreprise/$1"  [QSA,L]
+RewriteRule  "api/entreprise/equipe/(\w*\.php)"          "app/MY_ROUTER.php?script=entreprise/equipe/$1"  [QSA,L]
+
 #sousprojet api
 RewriteRule  "api/sousprojet/infoszone/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/infoszone/$1"  [QSA,L]
 RewriteRule  "api/sousprojet/gestionplaque/(\w*\.php)"          "app/MY_ROUTER.php?script=sousprojet/gestionplaque/$1"  [QSA,L]

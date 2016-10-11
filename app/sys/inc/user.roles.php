@@ -118,6 +118,15 @@ class adm extends baseUser {
         );
     }
 
+    function entreprise() {
+        Page::entreprise(
+            array(
+                "entreprise" => array("liste","add","add_equipe","update","delete"),
+                "equipe" => array("liste","update","delete")
+            )
+        );
+    }
+
     function sousprojet() {
         Page::sousprojet(
             array(
@@ -150,7 +159,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste","menu_stt_titre","menu_stt_inc"*/);
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste"*/,"menu_stt_titre","menu_stt_inc");
     }
 
     //admin only menu
