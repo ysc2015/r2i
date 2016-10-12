@@ -57,11 +57,11 @@
                 <div class="col-md-3">
                     <label for="trec_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_id_entreprise" name="trec_id_entreprise">
-                        <option value="" selected="" disabled="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
-                        $results = SelectEntreprise::all();
+                        $results = EntrepriseSTT::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_entreprise\" ". ($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->lib_entreprise</option>";
+                            echo "<option value=\"$result->id_entreprise\" ". ($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->nom</option>";
                         }
                         ?>
                     </select>
