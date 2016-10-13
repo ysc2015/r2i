@@ -5,11 +5,11 @@
                 <div class="col-md-3">
                     <label for="ta_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ta_intervenant_be" name="ta_intervenant_be">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_utilisateur\" ". ($sousProjet->transportaiguillage!==NULL && $sousProjet->transportaiguillage->intervenant_be==$result->id_utilisateur ?"selected": "")." >".strtoupper($result->prenom_utilisateur." ".$result->nom_utilisateur)."</option>";
+                            echo "<option value=\"$result->id_utilisateur\" ". ($sousProjet->transportaiguillage!==NULL && $sousProjet->transportaiguillage->intervenant_be==$result->id_utilisateur ?"selected": "")." >".$result->prenom_utilisateur." ".$result->nom_utilisateur."</option>";
                         }
                         ?>
                     </select>
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="ta_plans">Plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ta_plans" name="ta_plans">
-                        <option value="" selected="" disabled="">Sélectionnez état plans</option>
+                        <option value="" selected="">Sélectionnez état plans</option>
                         <?php
                         $results = SelectEtatPlan::all();
                         foreach($results as $result) {
@@ -29,7 +29,7 @@
                 <div class="col-md-3">
                     <label for="ta_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ta_controle_plans" name="ta_controle_plans">
-                        <option value="" selected="" disabled="">Sélectionnez type controle</option>
+                        <option value="" selected="">Sélectionnez type controle</option>
                         <?php
                         $results = SelectControlePlan::all();
                         foreach($results as $result) {
@@ -129,7 +129,7 @@
                 <div class="col-md-3">
                     <label for="ta_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ta_controle_demarrage_effectif" name="ta_controle_demarrage_effectif">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectControleDemarrageEffectif::all();
                         foreach($results as $result) {
@@ -145,7 +145,7 @@
                 <div class="col-md-3">
                     <label for="ta_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ta_etat_retour" name="ta_etat_retour">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRetour::all();
                         foreach($results as $result) {

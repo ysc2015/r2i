@@ -68,7 +68,7 @@
                                     <option value="" selected disabled>Séléctionnez Profil</option>
                                     <?php
                                     $profils = Profil::all(
-                                        array('conditions' => array("id_profil_utilisateur != ?", 2)
+                                        array('conditions' => array("id_profil_utilisateur != ?", 1)
                                         )
                                     );
                                     foreach($profils as $profil) {

@@ -145,6 +145,7 @@ if($insert == true && $err == 0){
     $duree = getDuree($dd_date_debut,$dd_date_fin);
     $stm->bindParam(':duree',$duree);
     if($stm->execute()){
+        setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();

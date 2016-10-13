@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="drec_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_intervenant_be" name="drec_intervenant_be">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="drec_doe">DOE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_doe" name="drec_doe">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -29,7 +29,7 @@
                 <div class="col-md-3">
                     <label for="drec_netgeo">Netgeo <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_netgeo" name="drec_netgeo">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -41,7 +41,7 @@
                 <div class="col-md-3">
                     <label for="drec_intervenant_free">Intervenant FREE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_intervenant_free" name="drec_intervenant_free">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -73,7 +73,7 @@
                 <div class="col-md-3">
                     <label for="drec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="drec_etat_recette" name="drec_etat_recette">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRecette::all();
                         foreach($results as $result) {

@@ -9,7 +9,7 @@
                 <div class="col-md-3">
                     <label for="so_type">Type <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="so_type" name="so_type" disabled="">
-                        <option value="" selected="" disabled="">Sélectionnez un type</option>
+                        <option value="" selected="">Sélectionnez un type</option>
                         <?php
                         $results = SelectSiteOrigineType::all();
                         foreach($results as $result) {
@@ -21,7 +21,7 @@
                 <div class="col-md-3">
                     <label for="so_auto_adduction">Auto Adduction <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="so_auto_adduction" name="so_auto_adduction">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectSiteOrigineAutoAdduction::all();
                         foreach($results as $result) {
@@ -33,7 +33,7 @@
                 <div class="col-md-3">
                     <label for="so_travaux_adduction">Travaux adduction <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="so_travaux_adduction" name="so_travaux_adduction">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectSiteOrigineTravauxAdduction::all();
                         foreach($results as $result) {
@@ -49,7 +49,7 @@
                 <div class="col-md-3">
                     <label for="so_recette_adduction">Recette Adduction <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="so_recette_adduction" name="so_recette_adduction">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectSiteOrigineRecetteAdduction::all();
                         foreach($results as $result) {

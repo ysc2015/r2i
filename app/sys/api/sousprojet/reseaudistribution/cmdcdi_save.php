@@ -120,6 +120,7 @@ if(isset($dcc_ok)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+        setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();

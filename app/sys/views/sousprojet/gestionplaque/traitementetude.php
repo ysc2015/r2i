@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="te_site">Site <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="te_site" name="te_site">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectTraitementEtudeSite::all();
                         foreach($results as $result) {
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="te_charge_etude">Chargé d'étude <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="te_charge_etude" name="te_charge_etude">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
