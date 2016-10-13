@@ -70,6 +70,29 @@
                         <input class="form-control  lineareInput4" type="number" id="dt_lineaire4" name="dt_lineaire4" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire4:"")?>">
                     </div>
                 </div>
+                <label><span class="label label-success">Tubage </span></label>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <!--<label for="dt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
+                        <label for="dt_lineaire_reseau">18/21 <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput4" type="number" id="dt_lineaire9" name="dt_lineaire9" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire9:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="dt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
+                        <label for="dt_lineaire_reseau">15/18 <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput4" type="number" id="dt_lineaire10" name="dt_lineaire10" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire10:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="dt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
+                        <label for="dt_lineaire_reseau">11/14 <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput4" type="number" id="dt_lineaire11" name="dt_lineaire11" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire11:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="dt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
+                        <label for="dt_lineaire_reseau">Kits MCR <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput4" type="number" id="dt_lineaire12" name="dt_lineaire12" value="<?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lineaire12:"")?>">
+                    </div>
+                </div>
                 <label><span class="label label-warning">Boites </span></label>
                 <div class="form-group">
                     <div class="col-md-3">
