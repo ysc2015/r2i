@@ -93,6 +93,29 @@
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire8:"")?>">
                     </div>
                 </div>
+                <label><span class="label label-success">Tubage </span></label>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
+                        <label for="tt_lineaire_reseau">11/14 <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput2" type="number" id="tt_lineaire9" name="tt_lineaire9" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire5:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
+                        <label for="tt_lineaire_reseau">15/18 <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput2" type="number" id="tt_lineaire6" name="tt_lineaire10" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire6:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="tt_lineaire_reseau"><span class="label label-success">288FO </span></label>-->
+                        <label for="tt_lineaire_reseau">21/25 <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput2" type="number" id="tt_lineaire7" name="tt_lineaire11" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire7:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
+                        <label for="tt_lineaire_reseau">Kit mcr <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire12" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire8:"")?>">
+                    </div>
+                </div>
             </div>
         </div>
         <br>
