@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="pa_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pa_intervenant_be" name="pa_intervenant_be">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -33,7 +33,7 @@
                 <div class="col-md-3">
                     <label for="pa_intervenant">Intervenant <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pa_intervenant" name="pa_intervenant">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -45,7 +45,7 @@
                 <div class="col-md-3">
                     <label for="pa_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="pa_ok" name="pa_ok">
-                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <option value="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectOk::all();
                         foreach($results as $result) {

@@ -22,9 +22,41 @@ switch ($page) {
         echo "<br><br>";
         break;
     case "sousprojet":
-        $sousProjet = SousProjet::find($idsousprojet);
-        //TODO here restriction
-        $connectedProfil->sousprojet();
+        $sousProjet = SousProjet::find($idsousprojet);//TODO check if sp available or has been deleted / replace find/first condition to avoid AR Exception
+        switch($connectedProfil->profil->profil->shortlib) {
+            case "bei":
+                if(in_array($connectedProfil->profil->id_utilisateur,explode("|",trim($sousProjet->users_in,"|")))) {
+                    $connectedProfil->sousprojet();
+                } else {
+                    $connectedProfil->ressourceAccessDenied();
+                }
+                break;
+            case "cdp":
+                if($sousProjet->projet->id_chef_projet === $connectedProfil->profil->id_utilisateur ) {
+                    $connectedProfil->sousprojet();
+                } else {
+                    $connectedProfil->ressourceAccessDenied();
+                }
+                break;
+            case "vpi":
+                $arr = array();
+                $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+                $stm->execute();
+                $nros = $stm->fetchAll();
+                foreach($nros as $nro) {
+                    $arr[] = $nro['id_nro'];
+                }
+                if(in_array($sousProjet->projet->code_site_origine,$arr)) {
+                    $connectedProfil->sousprojet();
+                } else {
+                    $connectedProfil->ressourceAccessDenied();
+                }
+                break;
+            default:
+                $connectedProfil->sousprojet();
+                break;
+        }
+        echo "<br><br>";
         break;
     case "utilisateur":
         $connectedProfil->utilisateur();

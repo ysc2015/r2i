@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="gp_instigateur">Instigateur <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="gp_instigateur" name="gp_instigateur">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectPhaseInstigateur::all();
                         foreach($results as $result) {
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="gp_vague">Vague <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="gp_vague" name="gp_vague" disabled="">
-                        <option value="" selected="" disabled="">Sélectionnez une phase</option>
+                        <option value="" selected="">Sélectionnez une phase</option>
                         <?php
                         $results = SelectPlaquePhase::all();
                         foreach($results as $result) {

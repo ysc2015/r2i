@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="ip_phase">Phase <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ip_phase" name="ip_phase">
-                        <option value="" selected="" disabled="">Sélectionnez une phase</option>
+                        <option value="" selected="">Sélectionnez une phase</option>
                         <?php
                         $results = SelectPlaquePhase::all();
                         foreach($results as $result) {
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="ip_type">Type <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ip_type" name="ip_type">
-                        <option value="" selected="" disabled="">Sélectionnez un type</option>
+                        <option value="" selected="">Sélectionnez un type</option>
                         <?php
                         $results = SelectPlaqueType::all();
                         foreach($results as $result) {

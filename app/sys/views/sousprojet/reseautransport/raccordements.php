@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="tr_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_intervenant_be" name="tr_intervenant_be">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="tr_preparation_pds">Préparation PDS <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_preparation_pds" name="tr_preparation_pds">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -29,7 +29,7 @@
                 <div class="col-md-3">
                     <label for="tr_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_controle_plans" name="tr_controle_plans">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectControlePlan::all();
                         foreach($results as $result) {
@@ -69,7 +69,7 @@
                 <div class="col-md-3">
                     <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectControleDemarrageEffectif::all();
                         foreach($results as $result) {
@@ -89,7 +89,7 @@
                 <div class="col-md-3">
                     <label for="tr_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_etat_retour" name="tr_etat_retour">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRetour::all();
                         foreach($results as $result) {

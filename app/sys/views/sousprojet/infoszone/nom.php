@@ -1,4 +1,7 @@
 <div class="tab-pane <?= ($value[0]=="nom"?"active":"")?>" id="nom_content">
+    <?php
+    //print_r(setSousProjetUsers($sousProjet));
+    ?>
     <form class="form-horizontal push-10-t push-10" id="sousprojet_form" name="sousprojet_form">
         <div class="row items-push">
             <input type="hidden" id="id_sous_projet" name="id_sous_projet" value="<?=$sousProjet->id_sous_projet?>">

@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="dcc_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_intervenant_be" name="dcc_intervenant_be">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -25,7 +25,7 @@
                 <div class="col-md-3">
                     <label for="dcc_modification_carto">Modification Carto <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_modification_carto" name="dcc_modification_carto">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectModificationCarto::all();
                         foreach($results as $result) {
@@ -41,7 +41,7 @@
                 <div class="col-md-3">
                     <label for="dcc_commandes_acces">Commande Accès <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_commandes_acces" name="dcc_commandes_acces">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectCommandeAcces::all();
                         foreach($results as $result) {
@@ -66,7 +66,7 @@
                 <div class="col-md-3">
                     <label for="dcc_go_ft">GO FT <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_go_ft" name="dcc_go_ft">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectGoFt::all();
                         foreach($results as $result) {

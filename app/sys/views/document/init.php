@@ -15,6 +15,8 @@ include __DIR__."/../../inc/session.php";
 
 include __DIR__."/../../inc/user.roles.php";
 
+include __DIR__."/../../inc/utils.functions.php";
+
 SessionManager::init();
 
 $connectedProfil = NULL;

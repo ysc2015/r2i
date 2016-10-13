@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <label for="dd_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dd_intervenant_be" name="dd_intervenant_be">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -17,7 +17,7 @@
                 <div class="col-md-3">
                     <label for="dd_intervenant_bex">Intervenant BEX <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dd_intervenant_bex" name="dd_intervenant_bex">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {
@@ -49,7 +49,7 @@
                 <div class="col-md-3">
                     <label for="dd_etat">Etat <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dd_etat" name="dd_etat">
-                        <option value="" selected="" disabled="">Sélectionnez une valeur</option>
+                        <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatDesign::all();
                         foreach($results as $result) {

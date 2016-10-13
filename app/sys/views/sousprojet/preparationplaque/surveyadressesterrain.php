@@ -25,7 +25,7 @@
                 <div class="col-md-4">
                     <label for="sa_intervenant">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="sa_intervenant" name="sa_intervenant">
-                        <option value="" selected="" disabled="">Sélectionnez un utilisateur</option>
+                        <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
                         $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
                         foreach($results as $result) {

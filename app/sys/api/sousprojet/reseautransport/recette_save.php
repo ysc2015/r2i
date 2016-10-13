@@ -110,6 +110,7 @@ if(isset($trec_etat_recette)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+        setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();
