@@ -116,7 +116,7 @@
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire8:"")?>">
                     </div>
                 </div>
-                <label><span class="label label-primary">MRO </span></label>
+                <label><span class="label label-primary">NRO </span></label>
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
