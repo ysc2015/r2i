@@ -149,6 +149,16 @@ if(isset($tt_lineaire12)){
     $insert = true;
 }
 
+if(isset($tt_lineaire13)){
+    $stm->bindParam(':lineaire13',$tt_lineaire13);
+    $insert = true;
+}
+
+if(isset($tt_lineaire14)){
+    $stm->bindParam(':lineaire14',$tt_lineaire14);
+    $insert = true;
+}
+
 /*
  * lineaire fin
  */

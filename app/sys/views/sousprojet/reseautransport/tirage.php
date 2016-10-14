@@ -116,6 +116,19 @@
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire8" name="tt_lineaire8" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire8:"")?>">
                     </div>
                 </div>
+                <label><span class="label label-primary">MRO </span></label>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <!--<label for="tt_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
+                        <label for="tt_lineaire_reseau">CTR <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput2" type="number" id="tt_lineaire13" name="tt_lineaire13" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire13:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
+                        <label for="tt_lineaire_reseau">TOR <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput2" type="number" id="tt_lineaire14" name="tt_lineaire14" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire14:"")?>">
+                    </div>
+                </div>
             </div>
         </div>
         <br>

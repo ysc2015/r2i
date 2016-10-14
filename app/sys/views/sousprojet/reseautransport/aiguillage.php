@@ -93,6 +93,19 @@
                         <input class="form-control  lineareInput" type="number" id="ta_lineaire8" name="ta_lineaire8" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->lineaire8:"")?>">
                     </div>
                 </div>
+                <label><span class="label label-primary">MRO </span></label>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
+                        <label for="ta_lineaire_reseau">CTR <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput" type="number" id="ta_lineaire9" name="ta_lineaire9" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->lineaire9:"")?>">
+                    </div>
+                    <div class="col-md-3">
+                        <!--<label for="ta_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
+                        <label for="ta_lineaire_reseau">TOR <!--<span class="text-danger">*</span>--></label>
+                        <input class="form-control  lineareInput" type="number" id="ta_lineaire10" name="ta_lineaire10" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->lineaire10:"")?>">
+                    </div>
+                </div>
             </div>
         </div>
         <br>
