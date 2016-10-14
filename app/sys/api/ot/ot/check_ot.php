@@ -18,12 +18,7 @@ $message = array();
 if($sousProjet !== NULL) {
     if(isset($tentree) && !empty($tentree)) {
         if($sousProjet->{$tentree} !== NULL) {
-            if($sousProjet->{$tentree}->id_entreprise !== NULL && $sousProjet->{$tentree}->id_entreprise > 0) {
-                $message[] = "ok";
-            } else {
-                $err++;
-                $message[] = "Entreprise STT non définie!";
-            }
+            $message[] = "ok";
         } else {
             $err++;
             $message[] = "Etape non enregistré, enregistrer l'étape en cours!";
