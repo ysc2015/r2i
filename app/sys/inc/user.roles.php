@@ -32,6 +32,18 @@ ADM;
             </div>
 ADM;
 
+    private $ressource_notfound_message =
+        <<<ADM
+                        <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <!-- Error Titles -->
+                    <h1 class="font-s32 font-w150 text-danger animated bounceInDown">Accés Intérdit</h1>
+                    <h2 class="h3 font-w300 push-50 animated fadeInUp">Ressource introuvable..</h2>
+                    <!-- END Error Titles -->
+                </div>
+            </div>
+ADM;
+
     function __construct($p) {
         $this->profil = $p;
     }
@@ -42,6 +54,10 @@ ADM;
 
     function ressourceAccessDenied() {
         echo $this->ressource_access_denied_message;
+    }
+
+    function ressourceNotFound() {
+        echo $this->ressource_notfound_message;
     }
 
     function defaultpage() {return "projet";}

@@ -36,7 +36,7 @@
             <label for="date_fin">Date fin</label>
             <input class="form-control " type="date" id="date_fin" name="date_fin" value="">
         </div>
-        <button id="affecter_ot" class="btn btn-success" type="button">Affecter <i class="fa fa-check"></i></button>
+        <button id="affecter_ot" class='btn btn-success btn-sm' style="width: 100%;"><span class='glyphicon glyphicon-check'>&nbsp;</span> Affecter</button>
     </div>
     <div class="col-md-9">
         <div id="calender"><!--calendar wrapper-->
@@ -49,7 +49,11 @@
     });
     $(document).ready(function() {
         $('#calender').fullCalendar({
-
+            /*header: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'month'
+            }*/
         });
     } );
 </script>

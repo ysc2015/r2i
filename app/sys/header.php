@@ -16,6 +16,11 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
+                        <a tabindex="-1" href="javascript:void()">
+                            (<?= $connectedProfil->profil->prenom_utilisateur." ".$connectedProfil->profil->nom_utilisateur?>)
+                        </a>
+                    </li>
+                    <li>
                         <a tabindex="-1" href="logout.php">
                             <i class="si si-logout pull-right"></i>Se déconnecter
                         </a>
