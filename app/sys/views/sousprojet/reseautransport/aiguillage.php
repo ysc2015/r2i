@@ -93,7 +93,7 @@
                         <input class="form-control  lineareInput" type="number" id="ta_lineaire8" name="ta_lineaire8" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->lineaire8:"")?>">
                     </div>
                 </div>
-                <label><span class="label label-primary">MRO </span></label>
+                <label><span class="label label-primary">NRO </span></label>
                 <div class="form-group">
                     <div class="col-md-3">
                         <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
