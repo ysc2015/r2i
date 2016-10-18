@@ -60,6 +60,21 @@ function getObjectTypeForEntry(entree) {
     return str;
 }
 
+function getObjectNameForEntry(entree) {
+    var str = '';
+    switch (entree) {
+        case 'transportaiguillage' : str='Transport Aiguillage';break;
+        case 'transporttirage' : str='Transport Tirage';break;
+        case 'transportraccordement' : str='Transport Raccordement';break;
+        case 'distributionaiguillage' : str='Distribution Aiguillage';break;
+        case 'distributiontirage' : str='Distribution Tirage';break;
+        case 'distributionraccordement' : str='Distribution Raccordement';break;
+        default : str='';break;
+    }
+
+    return str;
+}
+
 /**
  * Overwrites obj1's values with obj2's and adds obj2's if non existent in obj1
  * @param obj1

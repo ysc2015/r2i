@@ -1,59 +1,144 @@
 <div class="row">
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="equipe">Equipe</label>
-            <select class="form-control" id="equipe" name="equipe" size="1" style="width: 100%;" data-placeholder="Séléctionner équipe..">
-                <option value="">&nbsp;</option>
-                <?php
-                $stm = $db->prepare("select * from equipe_stt");
-
-                $stm->execute();
-                $teams = $stm->fetchAll();
-
-                foreach($teams as $team)
-                {
-                    echo "<option value=\"{$team['id_equipe_stt']}\">{$team['prenom']} {$team['nom']}</option>";
-                }
-                ?>
-            </select>
-            <label for="ordre">Ordre de travail</label>
-            <select class="form-control" id="ordre" name="ordre" size="1" style="width: 100%;" data-placeholder="Séléctionner équipe..">
-                <option value="">&nbsp;</option>
-                <?php
-                $stm = $db->prepare("select ot.*,ott.lib_type_ordre_travail from ordre_de_travail as ot, select_type_ordre_travail as ott where ot.id_type_ordre_travail=ott.id_type_ordre_travail and ot.id_sous_projet=".$_GET['idsousprojet']." and ot.type_entree='".$_GET['tentree']."'");
-
-                $stm->execute();
-                $jobs = $stm->fetchAll();
-
-                foreach($jobs as $job)
-                {
-                    echo "<option value=\"{$job['id_ordre_de_travail']}\">{$job['lib_type_ordre_travail']}</option>";
-                }
-                ?>
-            </select>
-            <label for="date_debut">Date début</label>
-            <input class="form-control " type="date" id="date_debut" name="date_debut" value="">
-            <label for="date_fin">Date fin</label>
-            <input class="form-control " type="date" id="date_fin" name="date_fin" value="">
-        </div>
-        <button id="affecter_ot" class='btn btn-success btn-sm' style="width: 100%;"><span class='glyphicon glyphicon-check'>&nbsp;</span> Affecter</button>
-    </div>
-    <div class="col-md-9">
-        <div id="calender"><!--calendar wrapper-->
-
+    <div class="box-tools pull-right" data-toggle="tooltip" title="" data-original-title="Affichage">
+        <div id="view-mode" class="btn-group" data-toggle="btn-toggle">
+            <a title="Mode DataGrid" data-view="list" class="btn btn-primary btn-sm active changeview"><i class="fa fa-table text-green"></i></a>
+            <a title="Mode Calendrier" data-view="cal" class="btn btn-info btn-sm changeview"><i class="fa fa-calendar text-blue"></i></a>
         </div>
     </div>
 </div>
+<div class="row" id="planning_wrapper" style="padding-top: 10px;">
+    <?php
+    include "views/datagrid.php";
+    ?>
+</div>
 <script>
+    var defaultView = 'list';
+    var calendar = function() {
+        var initCalendar = function() {
+            $('#calender').fullCalendar({
+                header: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: ''
+                }
+            });
+        }
+        return {
+            initCalendar : initCalendar
+        }
+    }();
+    var planning = function() {
+        var ot_affect_dt;
+        var ot_affect_btns = [];
+        var initContent = function(view) {
+
+            $("#planning_block").toggleClass('block-opt-refresh');
+            $.ajax({
+                method: "POST",
+                data: {
+                    view : view
+                },
+                url: "api/ot/planningot/load_content.php"
+            }).done(function (msg) {
+                $("#planning_wrapper").html(msg);
+                $("#planning_block").removeClass('block-opt-refresh');
+
+                init(view);
+                initEvents(view);
+            });
+        }
+        var init = function(view) {
+            switch (view) {
+                case 'cal' :
+                    calendar.initCalendar();
+                    break;
+                case 'list' :
+                    ot_affect_dt = $('#ot_affect_table').DataTable( {
+                        "language": {
+                            "url": "assets/js/plugins/datatables/French.json"
+                        },
+                        "autoWidth": false,
+                        "processing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            "url": 'api/ot/ot/ot_affect_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree')
+                        },
+                        "columns": [
+                            { "data": "id_ordre_de_travail" },
+                            { "data": "id_sous_projet" },
+                            { "data": "type_entree" },
+                            { "data": "lib_type_ordre_travail" },
+                            { "data": "nom" },
+                            { "data": "eqprenom" },
+                            { "data": "eqnom" },
+                            { "data": "date_debut" },
+                            { "data": "date_fin" }
+                        ],
+                        "columnDefs": [
+                            { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
+                        ],
+                        "order": [[0, 'desc']]
+                        ,
+                        "drawCallback": function( /*settings*/ ) {
+                            $(ot_affect_btns.join(',')).addClass("disabled");
+                        },
+                        "createdRow": function( row, data, dataIndex ) {
+                            /*if ( data[4] == "A" ) {
+                                $(row).addClass( 'important' );
+                            }*/
+                            console.log(data.date_debut);
+                        }
+                    } );
+
+                    $(ot_affect_btns.join(',')).addClass("disabled");
+
+                    break;
+                default:
+                    break;
+            }
+        }
+        var initEvents = function(view) {
+            switch (view) {
+                case 'cal' :
+                    break;
+                case 'list' :
+                    $('#ot_affect_table tbody').on( 'click', 'tr', function () {
+                        if ( $(this).hasClass('selected') ) {
+                            $(this).removeClass('selected');
+
+                            $(ot_affect_btns.join(',')).addClass("disabled");
+
+                            $('#linked-ch').html('<option value="">&nbsp;</option>');
+                        }
+                        else {
+                            ot_affect_dt.$('tr.selected').removeClass('selected');
+                            $(this).addClass('selected');
+
+                            $(ot_affect_btns.join(',')).removeClass("disabled");
+                        }
+
+                    } );
+                    break;
+                default:
+                    break;
+            }
+        }
+        return {
+            init : init,
+            initEvents : initEvents,
+            initContent : initContent
+        };
+    }();
     $(function () {
     });
     $(document).ready(function() {
-        $('#calender').fullCalendar({
-            /*header: {
-                left: 'prev,next',
-                center: 'title',
-                right: 'month'
-            }*/
+        $(".changeview").click(function() {
+            if(!$( this).hasClass('active')) {
+                $('.changeview').toggleClass('active');
+                planning.initContent($( this).attr('data-view'));
+            }
         });
+        planning.init(defaultView);
+        planning.initEvents(defaultView);
     } );
 </script>

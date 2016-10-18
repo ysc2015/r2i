@@ -11,4 +11,4 @@
         <h3 class="block-title">Planning</h3>
     </div>
     <div class="block-content">
-        <div class="block" id="planning_block_content">
+        <div class="block" id="planning_block_content" style="padding-top: 5px;">
