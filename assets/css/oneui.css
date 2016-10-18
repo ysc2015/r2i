@@ -16906,6 +16906,14 @@ tr.selected {
   background-color: #8ECBE2 !important;
 }
 
+tr.affected {
+  background-color: #92e2ca !important;
+}
+
+tr.notaffected {
+  background-color: #ffdcdf !important;
+}
+
 .no-sort::after { display: none!important; }
 
 .no-sort { pointer-events: none!important; cursor: default!important;
