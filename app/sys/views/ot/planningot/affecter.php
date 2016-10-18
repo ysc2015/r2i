@@ -1,7 +1,7 @@
 <div class="row">
     <div class="box-tools pull-right" data-toggle="tooltip" title="" data-original-title="Affichage">
         <div id="view-mode" class="btn-group" data-toggle="btn-toggle">
-            <a title="Mode DataGrid" data-view="list" class="btn btn-primary btn-sm active changeview"><i class="fa fa-table text-green"></i></a>
+            <a title="Mode DataGrid" data-view="list" class="btn btn-primary btn-sm active changeview" style="margin-right: 5px;"><i class="fa fa-table text-green"></i></a>
             <a title="Mode Calendrier" data-view="cal" class="btn btn-info btn-sm changeview"><i class="fa fa-calendar text-blue"></i></a>
         </div>
     </div>
@@ -28,8 +28,10 @@
         }
     }();
     var planning = function() {
+        var old_tr = null;
+        var old_tr_class = '';
         var ot_affect_dt;
-        var ot_affect_btns = [];
+        var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter"];
         var initContent = function(view) {
 
             $("#planning_block").toggleClass('block-opt-refresh');
@@ -86,7 +88,11 @@
                             /*if ( data[4] == "A" ) {
                                 $(row).addClass( 'important' );
                             }*/
-                            console.log(data.date_debut);
+                            if(data.date_debut==null || data.date_debut=='') {
+                                $(row).addClass( 'notaffected' );
+                            } else {
+                                $(row).addClass( 'affected' );
+                            }
                         }
                     } );
 
@@ -103,6 +109,11 @@
                     break;
                 case 'list' :
                     $('#ot_affect_table tbody').on( 'click', 'tr', function () {
+
+                        if(old_tr != null) {
+                            old_tr.addClass(old_tr_class);
+                        }
+
                         if ( $(this).hasClass('selected') ) {
                             $(this).removeClass('selected');
 
@@ -111,10 +122,30 @@
                             $('#linked-ch').html('<option value="">&nbsp;</option>');
                         }
                         else {
+
+                            if ( $(this).hasClass('affected') ) {
+                                $(this).removeClass('affected');
+                                old_tr_class = 'affected';
+                            }
+
+                            if ( $(this).hasClass('notaffected') ) {
+                                $(this).removeClass('notaffected');
+                                old_tr_class = 'notaffected';
+                            }
+
+                            old_tr = $(this);
+
                             ot_affect_dt.$('tr.selected').removeClass('selected');
+
                             $(this).addClass('selected');
 
-                            $(ot_affect_btns.join(',')).removeClass("disabled");
+                            $(ot_affect_btns.join(',')).addClass("disabled");
+
+                            if(ot_affect_dt.row('.selected').data().date_debut==null || ot_affect_dt.row('.selected').data().date_debut=='') {
+                                $("#affecter_ot_show").removeClass('disabled');
+                            } else {
+                                $("#annuler_affecter").removeClass('disabled');
+                            }
                         }
 
                     } );
