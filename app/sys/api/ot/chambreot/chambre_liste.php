@@ -20,7 +20,9 @@ $columns = array(
     array( "db" => "t1.ref_note", "dt" => 'ref_note' ),
     array( "db" => "t1.code_ch1", "dt" => 'code_ch1' ),
     array( "db" => "t1.code_ch2", "dt" => 'code_ch2' ),
-    array( "db" => "t1.gps", "dt" => 'gps' )
+    array( "db" => "t1.gps", "dt" => 'gps' ),
+    array( "db" => "t1.type_chambre", "dt" => 'type_chambre' ),
+    array( "db" => "t1.traite", "dt" => 'traite' )
 );
 
 $condition = "t1.id_ressource=t2.id_ressource";

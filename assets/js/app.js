@@ -470,9 +470,9 @@ var App = function() {
                                 jQuery('i', $btnToggle)
                                     .removeClass($iconContentActive)
                                     .addClass($iconContent);
-                                if($elBlock.attr('id') == 'planning_block') {
+                                /*if($elBlock.attr('id') == 'planning_block') {
                                     jQuery('#calendar').fullCalendar('render');
-                                }
+                                }*/
                             }
                         }
                         break;
@@ -498,8 +498,8 @@ var App = function() {
                         break;
                     case 'refresh_toggle':
                         //console.log($elBlock.attr('id'));
-                        /*switch ($elBlock.attr('id')) {
-                            case 'infozone_block' :
+                        switch ($elBlock.attr('id')) {
+                         /*case 'infozone_block' :
                                 SProjet.infozone.refresh();
                                 break;
                             case 'gestionplaque_block' :
@@ -539,8 +539,19 @@ var App = function() {
                                  setTimeout(function(){
                                     $elBlock.removeClass('block-opt-refresh');
                                  }, 2000);
-                                 }*!/
-                        }*/
+                                 }*!/*/
+                            //case 'planning_block' :
+                                //console.log('planning_block');
+                                /*$elBlock.toggleClass('block-opt-refresh');
+                                // Return block to normal state if the demostration mode is on in the refresh option button - data-action-mode="demo"
+                                if (jQuery('[data-toggle="block-option"][data-action="refresh_toggle"][data-action-mode="demo"]', $elBlock).length) {
+                                    setTimeout(function(){
+                                        $elBlock.removeClass('block-opt-refresh');
+                                    }, 2000);
+                                }*/
+                                //planning.initContent();
+                                //break;
+                        }
                         break;
                     case 'state_loading':
                         $elBlock.addClass('block-opt-refresh');
