@@ -19,7 +19,6 @@ try {
     $stm = $db->prepare($sql);
     $stm->execute();
 
-    // Returning array
     $events = array();
 
     // Fetch results
@@ -36,12 +35,10 @@ try {
         $e['team'] = $team_id;
         $e['societe'] = $soc_id;
 
-        // Merge the event array into the return array
         array_push($events, $e);
 
     }
 
-    // Output json for our calendar
     echo json_encode($events);
     exit();
 
