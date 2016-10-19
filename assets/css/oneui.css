@@ -5272,6 +5272,14 @@ a.list-group-item:focus {
   background-color: #337ab7;
   border-color: #337ab7;
 }
+.list-group-item.active2,
+.list-group-item.active2:hover,
+.list-group-item.active2:focus {
+  z-index: 2;
+  color: #fff;
+  background-color: #78b7a0;
+  border-color: #3ab76b;
+}
 .list-group-item.active .list-group-item-heading,
 .list-group-item.active:hover .list-group-item-heading,
 .list-group-item.active:focus .list-group-item-heading,
