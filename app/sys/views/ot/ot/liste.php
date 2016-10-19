@@ -61,6 +61,7 @@
                 $(ot_btns.join(',')).addClass("disabled");
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
+                ot_affect_dt.draw(false);
             }
         } );
 

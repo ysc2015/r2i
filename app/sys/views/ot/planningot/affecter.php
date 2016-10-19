@@ -49,12 +49,12 @@
 
         }
     }();
+    var update = false;
+    var old_tr = null;
+    var old_tr_class = '';
+    var ot_affect_dt;
+    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter"];
     var planning = function() {
-        var update = false;
-        var old_tr = null;
-        var old_tr_class = '';
-        var ot_affect_dt;
-        var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter"];
         var initContent = function(view) {
 
             $("#planning_block").toggleClass('block-opt-refresh');
