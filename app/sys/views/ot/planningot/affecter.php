@@ -27,7 +27,8 @@
                     url: 'api/ot/planningot/calendar_events.php',
                     data: function() { // a function that returns an object
                         return {
-                            dynamic_value: Math.random()
+                            team_id : getTeamId(),
+                            soc_id : getSocId()
                         };
                     }
                 }
@@ -37,15 +38,23 @@
             $('#calender').fullCalendar( 'refetchEvents' );
         }
 
-        var test = function(val) {
-            console.log(val)
+        var setTeamId = function(Id) {
+            team_id = Id;
+        }
+        var setSocId = function(Id) {
+            soc_id = Id;
+        }
+        var getTeamId = function() {
+            return team_id;
+        }
+        var getSocId = function(Id) {
+            return  soc_id;
         }
         return {
             initCalendar : initCalendar,
             refresh : refresh,
-            test : test,
-            team_id : team_id,
-            soc_id : soc_id
+            setTeamId : setTeamId,
+            setSocId : setSocId
 
         }
     }();
@@ -139,6 +148,9 @@
             switch (view) {
                 case 'cal' :
                     $("#ot_entreprise_cal").change(function() {
+                        calendar.setTeamId(0);
+                        calendar.setSocId($( this).val());
+                        calendar.refresh();
                         $('#teams_list_cal').html('');
                         $.ajax({
                             method: "POST",
@@ -167,7 +179,9 @@
                                 link2.onclick = (function() {
                                     var currentId = data[i]['id'];
                                     return function() {
-                                        calendar.test(currentId);
+                                        //calendar.test(currentId);
+                                        calendar.setTeamId(currentId);
+                                        calendar.refresh();
                                     }
                                 })();
                                 //html = '<a class="list-group-item" href="javascript:void(0)" onclick="calendar.test(\'data[i][\'id\']\')">'+data[i]['nom']+'</a>';
@@ -273,7 +287,6 @@
                         });
                     });
                     $("#ot_entreprise").change(function() {
-                        console.log('ot_entreprise change');
                         $.ajax({
                             method: "POST",
                             url: "api/ot/planningot/get_entry_soc_teams.php",

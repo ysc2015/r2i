@@ -2,7 +2,7 @@
     <div class="form-group">
         <label for="ot_entreprise_cal">Entreprise <!--<span class="text-danger">*</span>--></label>
         <select class="form-control " id="ot_entreprise_cal" name="ot_entreprise_cal" style="width: 100%;">
-            <option value="" selected="">Sélectionnez une entreprise</option>
+            <option value="" selected="">Tous</option>
             <?php
             $results = EntrepriseSTT::all();
             foreach($results as $result) {
@@ -23,7 +23,7 @@
     </div>
 </div>
 <div class="col-md-9">
-    <div id="calender"><!--calendar wrapper-->
+    <div id="calender" class="js-calendar"><!--calendar wrapper-->
 
     </div>
 </div>

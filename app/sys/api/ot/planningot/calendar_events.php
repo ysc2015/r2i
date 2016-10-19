@@ -4,33 +4,46 @@
  * User: rabii
  */
 
+extract($_GET);
+extract($_POST);
+
 try {
+    $sql = "select *,DATE_ADD(date_fin, INTERVAL 1 DAY) AS df  from ordre_de_travail where date_debut >='$start' and date_fin<='$end'";
 
-$stm = $db->prepare("select *,DATE_ADD(date_fin, INTERVAL 1 DAY) AS df  from ordre_de_travail");
-$stm->execute();
+    if(isset($team_id) && !empty($team_id)) {
+        $sql .= " and id_equipe_stt=$team_id";
+    } else if(isset($soc_id) && !empty($soc_id)) {
+        $sql .=  " and id_entreprise=$soc_id";
+    }
 
-// Returning array
-$events = array();
+    $stm = $db->prepare($sql);
+    $stm->execute();
 
-// Fetch results
-while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
+    // Returning array
+    $events = array();
 
-    $e = array();
-    $e['id'] = $row['id_ordre_de_travail'];
-    $e['title'] = $row['type_entree'];
-    $e['start'] = $row['date_debut']." 00:00:00";
-    $e['end'] = $row['df']." 00:00:00";
-    $e['allDay'] = true;
-    $e['color'] = '#faeab9';
+    // Fetch results
+    while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 
-    // Merge the event array into the return array
-    array_push($events, $e);
+        $e = array();
+        $e['id'] = $row['id_ordre_de_travail'];
+        $e['title'] = $row['type_entree'];
+        $e['start'] = $row['date_debut']." 00:00:00";
+        $e['end'] = $row['df']." 00:00:00";
+        $e['allDay'] = true;
+        $e['color'] = '#faeab9';
+        $e['textColor'] = '#000';
+        $e['team'] = $team_id;
+        $e['societe'] = $soc_id;
 
-}
+        // Merge the event array into the return array
+        array_push($events, $e);
 
-// Output json for our calendar
-echo json_encode($events);
-exit();
+    }
+
+    // Output json for our calendar
+    echo json_encode($events);
+    exit();
 
 } catch (PDOException $e){
     echo $e->getMessage();
