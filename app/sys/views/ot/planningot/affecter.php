@@ -59,6 +59,9 @@
                         $('#modal-ot-cal').modal('show');
                     });
 
+                },
+                eventRender: function(event, element) {
+                    element.attr('title','clicker ici pour afficher détails');
                 }
             });
         }
