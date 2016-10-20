@@ -53,7 +53,7 @@ switch ($page) {
                     foreach($nros as $nro) {
                         $arr[] = $nro['id_nro'];
                     }
-                    if(in_array($sousProjet->projet->code_site_origine,$arr)) {
+                    if(in_array($sousProjet->projet->id_nro,$arr)) {
                         $connectedProfil->sousprojet();
                     } else {
                         $connectedProfil->ressourceAccessDenied();
@@ -104,7 +104,7 @@ switch ($page) {
                     foreach($nros as $nro) {
                         $arr[] = $nro['id_nro'];
                     }
-                    if(in_array($sousProjet->projet->code_site_origine,$arr)) {
+                    if(in_array($sousProjet->projet->id_nro,$arr)) {
                         $connectedProfil->ot();
                     } else {
                         $connectedProfil->ressourceAccessDenied();
@@ -183,7 +183,7 @@ switch ($page) {
                     foreach($nros as $nro) {
                         $arr[] = $nro['id_nro'];
                     }
-                    if(in_array($sousProjet->projet->code_site_origine,$arr)) {
+                    if(in_array($sousProjet->projet->id_nro,$arr)) {
                         $connectedProfil->pointbloquant();
                     } else {
                         $connectedProfil->ressourceAccessDenied();

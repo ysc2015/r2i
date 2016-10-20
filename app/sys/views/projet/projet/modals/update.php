@@ -215,7 +215,7 @@
                     ville_nom: $("#projet_update_ville_nom").val(),
                     ville: $("#projet_update_ville").val(),
                     trigramme_dept: ($("#projet_update_dept").val()=="" ? "":('PLA' + $("#projet_update_ville").val() + '_' + $("#projet_update_dept").val())),
-                    code_site_origine: $("#projet_update_code_site_origine").val(),
+                    id_nro: $("#projet_update_code_site_origine").val(),
                     type_site_origine: $("#projet_update_type_site_origine").val(),
                     taille: $("#projet_update_taille").val(),
                     etat_site_origine: $("#projet_update_etat_site_origine").val(),

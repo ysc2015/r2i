@@ -18,7 +18,7 @@ $to = array();
 if(isset($idp) && !empty($idp)){
     $stm = $db->prepare("SELECT p.*,sv.nom_ville,n.lib_nro,st.lib_site_origine_type,se.lib_site_origine_etat from projet as p,
                         select_ville as sv, nro as n, select_site_origine_type as st, select_site_origine_etat as se
-                        WHERE id_projet=:id AND p.ville=sv.code_ville AND p.code_site_origine=n.id_nro
+                        WHERE id_projet=:id AND p.ville=sv.code_ville AND p.id_nro=n.id_nro
                         AND p.type_site_origine = st.id_site_origine_type AND p.etat_site_origine = se.id_site_origine_etat");
     $stm->execute(array(':id' => $idp));
     $projet = $stm->fetch(PDO::FETCH_OBJ);

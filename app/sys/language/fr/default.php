@@ -41,7 +41,7 @@ $lang["commandecdi"] = "CMD Structurante CDI";
 //projet
 $lang["VILLE"] = "ville";
 $lang["trigramme_dept"] = "Trigramme de la plaque";
-$lang["code_site_origine"] = "Code site d’origine";
+$lang["id_nro"] = "Code site d’origine";
 $lang["date_creation"] = "Date de création";
 $lang["date_attribution"] = "Date d'attribution";
 $lang[""] = "";

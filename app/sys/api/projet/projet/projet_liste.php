@@ -17,7 +17,7 @@ $columns = array(
     array( "db" => "t1.projet_nom", "dt" => 'projet_nom' ),
     array( "db" => "t4.nom_ville", "dt" => 'nom_ville' ),
     array( "db" => "t1.trigramme_dept", "dt" => 'trigramme_dept' ),
-    array( "db" => "t1.code_site_origine", "dt" => 'code_site_origine' ),
+    array( "db" => "t1.id_nro", "dt" => 'id_nro' ),
     array( "db" => "t5.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t1.type_site_origine", "dt" => 'type_site_origine' ),
     array( "db" => "t2.lib_site_origine_type", "dt" => 'lib_site_origine_type' ),
@@ -29,7 +29,7 @@ $columns = array(
     array( "db" => "t1.date_attribution", "dt" => 'date_attribution' )
 );
 
-$condition = "t1.type_site_origine=t2.id_site_origine_type AND t1.etat_site_origine=t3.id_site_origine_etat AND t1.ville = t4.code_ville AND t1.code_site_origine = t5.id_nro";
+$condition = "t1.type_site_origine=t2.id_site_origine_type AND t1.etat_site_origine=t3.id_site_origine_etat AND t1.ville = t4.code_ville AND t1.id_nro = t5.id_nro";
 
 
 switch($connectedProfil->profil->profil->shortlib) {
@@ -52,7 +52,7 @@ switch($connectedProfil->profil->profil->shortlib) {
             $arr[] = $nro['id_nro'];
         }
 
-        $condition .=" AND t1.code_site_origine IN ( ".implode(",",$arr).")";
+        $condition .=" AND t1.id_nro IN ( ".implode(",",$arr).")";
         break;
 
     default : break;
