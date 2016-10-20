@@ -31,6 +31,34 @@
                             soc_id : getSocId()
                         };
                     }
+                },
+                eventClick: function(calEvent, jsEvent, view) {
+
+                    //console.log(calEvent.socid);
+
+                    $('#modal_cal_ot_title').html('ordre de travail : '+calEvent.etape + '-'+calEvent.typeot);
+
+                    $('#ot_entreprise_cal2').val(calEvent.socid);
+
+                    $.ajax({
+                        method: "POST",
+                        url: "api/ot/planningot/get_entry_soc_teams.php",
+                        dataType: "json",
+                        data: {
+                            ide: calEvent.socid
+                        }
+                    }).done(function (data) {
+                        $('#ot_equipe_cal').html('<option value="" selected="">Sélectionnez une équipe</option>');
+                        for(var i = 0 ; i < data.length ; i++) {
+                            html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
+                            $('#ot_equipe_cal').append(html);
+                        }
+                        $('#ot_equipe_cal').val(calEvent.equipeid);
+                        $('#affecter_date_debut_cal').val(calEvent.dd);
+                        $('#affecter_date_fin_cal').val(calEvent.df);
+                        $('#modal-ot-cal').modal('show');
+                    });
+
                 }
             });
         }

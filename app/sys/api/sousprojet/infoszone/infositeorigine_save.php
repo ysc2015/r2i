@@ -55,7 +55,7 @@ if($sousProjet !== NULL) {
 
         $stm = $db->prepare("insert into sous_projet_site_origine ($fieldslist) values ($valueslist)");
     }
-    $stm->bindParam(':code_site',$sousProjet->projet->code_site_origine);
+    $stm->bindParam(':code_site',$sousProjet->projet->id_nro);
     $stm->bindParam(':type',$sousProjet->projet->type_site_origine);
 } else {
     $err++;

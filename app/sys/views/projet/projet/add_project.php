@@ -44,7 +44,7 @@
         jQuery('#ville').select2({
             autocomplete: true
         });
-        jQuery('#code_site_origine').select2({
+        jQuery('#id_nro').select2({
             autocomplete: true
         });
         uploader_options = merge_options(defaultUploaderStrLocalisation,uploader_options);
@@ -54,7 +54,7 @@
 
         $("#add_project_show").click(function() {
             $("#ville").select2('val', 'All');
-            $("#code_site_origine").select2('val', 'All');
+            $("#id_nro").select2('val', 'All');
             $("#trigramme").html('PLA00_');
             $("#info_project_form")[0].reset();
             App.activaTab('validation-step1');

@@ -44,7 +44,7 @@ switch($connectedProfil->profil->profil->shortlib) {
             $arr[] = $nro['id_nro'];
         }
 
-        $condition .=" AND t2.code_site_origine IN ( ".implode(",",$arr).")";
+        $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
         break;
 
     default : break;

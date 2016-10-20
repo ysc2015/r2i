@@ -27,6 +27,21 @@ function getDuree($date_debut,$date_ret) {
     }
 }
 
+function getObjectNameForEntry($entree) {
+    $str = "";
+    switch ($entree) {
+        case 'transportaiguillage' : $str='Transport Aiguillage';break;
+        case 'transporttirage' : $str='Transport Tirage';break;
+        case 'transportraccordement' : $str='Transport Raccordement';break;
+        case 'distributionaiguillage' : $str='Distribution Aiguillage';break;
+        case 'distributiontirage' : $str='Distribution Tirage';break;
+        case 'distributionraccordement' : $str='Distribution Raccordement';break;
+        default : break;
+    }
+
+    return $str;
+}
+
 function setSousProjetUsers($sousprojet) {
     $users_list = array();
 

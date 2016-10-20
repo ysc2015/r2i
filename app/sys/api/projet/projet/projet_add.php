@@ -15,7 +15,7 @@ $insert = false;
 $err = 0;
 $insertedId = 0;
 $message = array();
-$stm = $db->prepare("insert into projet (projet_nom,ville_nom,ville,trigramme_dept,code_site_origine,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:projet_nom,:ville_nom,:ville,:trigramme_dept,:code_site_origine,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
+$stm = $db->prepare("insert into projet (projet_nom,ville_nom,ville,trigramme_dept,id_nro,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:projet_nom,:ville_nom,:ville,:trigramme_dept,:id_nro,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
 
 $project_name = "";
 
@@ -48,8 +48,8 @@ if(isset($trigramme_dept) && !empty($trigramme_dept)){
     $message[] = "Le champs Trigramme de la plaque est obligatoire !";
 }
 
-if(isset($code_site_origine) && !empty($code_site_origine)){
-    $stm->bindParam(':code_site_origine',$code_site_origine);
+if(isset($id_nro) && !empty($id_nro)){
+    $stm->bindParam(':id_nro',$id_nro);
     $insert = true;
 } else {
     $err++;
@@ -91,7 +91,7 @@ if(isset($date_mad_site_origine) && !empty($date_mad_site_origine)){
 $stm->bindParam(':date_creation',date('Y-m-d'));
 
 if($insert == true && $err == 0){
-    $project_name = "Etude Plaque PON FTTH ".$code_site_origine." ".$ville_nom;
+    $project_name = "Etude Plaque PON FTTH ".$id_nro." ".$ville_nom;
     $stm->bindParam(':projet_nom',$project_name);
     if($stm->execute()){
         $message [] = "Enregistrement ajouté avec succès";

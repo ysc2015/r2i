@@ -74,8 +74,8 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
-                                            <label for="code_site_origine">Code site d’origine <span class="text-danger">*</span></label>
-                                            <select class="js-select2 form-control" id="code_site_origine" name="code_site_origine" size="1" style="width: 100%;" data-placeholder="Séléctionner nro..">
+                                            <label for="id_nro">Code site d’origine <span class="text-danger">*</span></label>
+                                            <select class="js-select2 form-control" id="id_nro" name="id_nro" size="1" style="width: 100%;" data-placeholder="Séléctionner nro..">
                                                 <option value="">&nbsp;</option>
                                                 <?php
                                                 $nros = Nro::all();
@@ -303,7 +303,7 @@
                                 ville_nom: $("#ville_nom").val(),
                                 ville: $("#ville").val(),
                                 trigramme_dept: ($("#dept").val()=="" ? "":('PLA' + $("#ville").val() + '_' + $("#dept").val())),
-                                code_site_origine: $("#code_site_origine").val(),
+                                id_nro: $("#id_nro").val(),
                                 type_site_origine: $("#type_site_origine").val(),
                                 taille: $("#taille").val(),
                                 etat_site_origine: $("#etat_site_origine").val(),
