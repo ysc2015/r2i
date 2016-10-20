@@ -16939,3 +16939,7 @@ tr.details td.details-control {
   cursor: not-allowed;
   pointer-events: all !important;
 }*/
+
+.fc-event{
+  cursor: pointer;
+}
