@@ -10,8 +10,6 @@ error_reporting(E_ALL);*/
 
 set_time_limit(0);
 
-//var_dump(ini_get('upload_max_filesize'));
-
 $output_dir = __DIR__."/../../uploads/plansboites/";
 extract($_POST);
 
@@ -62,5 +60,7 @@ if(isset($idsp) && !empty($idsp)) {
         }
     }
 }
+
+$ret['path'] = php_ini_loaded_file();
 
 echo json_encode($ret);
