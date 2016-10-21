@@ -4,13 +4,13 @@
  * User: rabii
  */
 
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 
 set_time_limit(0);
 
-var_dump(ini_get('upload_max_filesize'));
+//var_dump(ini_get('upload_max_filesize'));
 
 $output_dir = __DIR__."/../../uploads/plansboites/";
 extract($_POST);
