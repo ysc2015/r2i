@@ -222,7 +222,7 @@
         autoSubmit: true,
         showDelete:true,
         showDownload:true,
-        allowedTypes: "xlsx",
+        allowedTypes: "xlsx,xls",
         onLoad:function(obj)
         {
             $.ajax({
@@ -261,9 +261,9 @@
                 id = arr[0];
             }
 
-            location.href="api/file/download.php?id="+id;
+            location.href="api/file/parserfile.php?id="+id;
 
-            $('#draccord_pboite_table tbody').html('');
+            /*$('#draccord_pboite_table tbody').html('');
             $('#draccord-pboite-modal').modal('show');
             $("#draccord-pboite-block").toggleClass('block-opt-refresh');
 
@@ -286,7 +286,7 @@
                 }
             }).done(function (msg) {
                 $("#draccord-pboite-block").removeClass('block-opt-refresh');
-            });
+            });*/
         },
         deleteCallback: function (data, pd) {
             var obj;
@@ -317,7 +317,7 @@
         draccord_chambre_uploader = $("#dr_fileuploader_chambre").uploadFile(draccord_chambre_uploader_options);
 
         draccord_pboite_uploader_options = merge_options(defaultUploaderStrLocalisation,draccord_pboite_uploader_options);
-        draccord_pboite_uploader_options.downloadStr = 'Téléchargez/Voir infos';
+        draccord_pboite_uploader_options.downloadStr = 'Téléchargez devis';
         draccord_pboite_uploader = $("#dr_fileuploader_pboite").uploadFile(draccord_pboite_uploader_options);
     });
     $(document).ready(function() {
