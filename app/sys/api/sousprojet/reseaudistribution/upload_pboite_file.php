@@ -7,6 +7,8 @@
 ini_set("display_errors",'1');
 //sleep(2);
 
+set_time_limit(0);
+
 $output_dir = __DIR__."/../../uploads/plansboites/";
 extract($_POST);
 
