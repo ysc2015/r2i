@@ -61,6 +61,6 @@ if(isset($idsp) && !empty($idsp)) {
     }
 }
 
-$ret['path'] = php_ini_loaded_file();
+$ret['path'] = php_ini_loaded_file();//
 
 echo json_encode($ret);
