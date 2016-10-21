@@ -251,7 +251,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
         $writer = PHPExcel_IOFactory::createWriter($Bordereaux,'Excel2007');
 
         header('Content-type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment; filename="Bordereaux de Prix FTTH_INT_HRZ_INDA.xls"');
+        header('Content-Disposition: attachment; filename="Bordereaux de Prix FTTH_INT_HRZ_INDA.xlsx"');
 
         // download
         $writer->save('php://output');
