@@ -13,10 +13,12 @@ try {
     $sql .= " AND  ot.id_entreprise=es.id_entreprise AND ot.id_equipe_stt=eq.id_equipe_stt AND ot.id_type_ordre_travail=tot.id_type_ordre_travail";
 
     if(isset($team_id) && !empty($team_id)) {
-        $sql .= " and id_equipe_stt=$team_id";
+        $sql .= " and ot.id_equipe_stt=$team_id";
     } else if(isset($soc_id) && !empty($soc_id)) {
-        $sql .=  " and id_entreprise=$soc_id";
+        $sql .=  " and ot.id_entreprise=$soc_id";
     }
+
+    //echo $sql;
 
     $stm = $db->prepare($sql);
     $stm->execute();
@@ -49,6 +51,7 @@ try {
         $e['equipe'] = $row['prenom']." ".$row['nom'];
         $e['etape'] = getObjectNameForEntry($row['type_entree']);
         $e['typeot'] = $row['typeot'];
+        $e['sql'] = $sql;
 
         $sousProjet = SousProjet::first(
             array('conditions' =>
