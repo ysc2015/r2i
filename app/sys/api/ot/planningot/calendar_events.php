@@ -26,9 +26,15 @@ try {
     // Fetch results
     while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 
+        $sousProjet = SousProjet::first(
+            array('conditions' =>
+                array("id_sous_projet = ?", $row['id_sous_projet'])
+            )
+        );
+
         $e = array();
         $e['id'] = $row['id_ordre_de_travail'];
-        $e['title'] = $row['type_entree'];
+        $e['title'] = getObjectNameForEntry($row['type_entree'])." ".$sousProjet->projet->nro->lib_nro." - ".$sousProjet->zone;
         $e['start'] = $row['date_debut']." 00:00:00";
         $e['end'] = $row['df']." 00:00:00";
         $e['allDay'] = true;
