@@ -14,4 +14,12 @@ class Projet extends ActiveRecord\Model {
             'foreign_key' => 'id_projet'
         )
     );
+
+    static $belongs_to = array(
+        array(
+            'nro',
+            'class_name' => 'Nro',
+            'foreign_key' => 'id_nro'
+        )
+    );
 }

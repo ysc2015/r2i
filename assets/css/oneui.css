@@ -16943,3 +16943,8 @@ tr.details td.details-control {
 .fc-event{
   cursor: pointer;
 }
+span.fc-title {
+  padding: 5px !important;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+}
