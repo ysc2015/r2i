@@ -51,7 +51,6 @@ try {
         $e['equipe'] = $row['prenom']." ".$row['nom'];
         $e['etape'] = getObjectNameForEntry($row['type_entree']);
         $e['typeot'] = $row['typeot'];
-        $e['sql'] = $sql;
 
         $sousProjet = SousProjet::first(
             array('conditions' =>

@@ -193,8 +193,15 @@
                         }).done(function (data) {
                             var link = document.createElement('a');
                             link.setAttribute('href', 'javascript:void(0)');
-                            link.setAttribute('class', 'list-group-item active');
+                            link.setAttribute('class', 'list-group-item teamsfrom active');
                             link.innerHTML = '<span class="badge">'+data.length+'</span><i class="fa fa-fw fa-user push-5-r"></i> Equipes';
+                            link.onclick = (function() {
+                                return function() {
+                                    //calendar.test(currentId);
+                                    calendar.setTeamId(0);
+                                    calendar.refresh();
+                                }
+                            })();
                             $('#teams_list_cal').append(link);
                             /*$('#teams_list_cal').html('<a class="list-group-item active" href="javascript:void(0)"><span class="badge">'+data.length+'</span><i class="fa fa-fw fa-user push-5-r"></i> Equipes</a>');
                             for(var i = 0 ; i < data.length ; i++) {
@@ -230,8 +237,8 @@
                         });
                     });
                     $('body').on('click', '.teamsfrom', function() {
-                        $('.teamsfrom').removeClass('active2');
-                        $( this ).addClass('active2');
+                        $('.teamsfrom').removeClass('active');
+                        $( this ).addClass('active');
                     });
                     break;
                 case 'list' :
