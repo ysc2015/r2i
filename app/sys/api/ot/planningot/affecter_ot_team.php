@@ -6,6 +6,8 @@
 
 extract($_POST);
 
+$results = NULL;
+
 $insert = false;
 $err = 0;
 $message = array();
@@ -66,6 +68,17 @@ if($ot->date_debut == NULL || $ot->date_debut=="") {
         if($dd > $df) {
             $err++;
             $message[] = "La date de fin doit étre supérieure ou égale à la date de début !";
+        } else {
+            $stm2 = $db->prepare("select * from ordre_de_travail where (date_debut <= :date_debut and date_fin >= :date_debut) or (date_debut <= :date_fin and date_fin >= :date_fin) or (date_debut >= :date_debut and date_fin <= :date_fin)");
+            $stm2->bindParam(':date_fin',$date2);
+            $stm2->bindParam(':date_debut',$date1);
+            $stm2->execute();
+            $results = $stm2->fetchAll();
+
+            if($stm2->rowCount() > 0) {
+                $err++;
+                $message[] = "Cette équipe a été déjà programée un ou plusieurs jours de la période choisie !";
+            }
         }
     }
 
@@ -85,4 +98,4 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message, "results" => $results));

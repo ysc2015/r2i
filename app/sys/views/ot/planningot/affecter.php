@@ -278,7 +278,9 @@
                     } );
                     $("#affecter_ot_show").click(function() {
                         console.log('affecter_ot_show');
+                        $("#ot_entreprise").select2('val', 'All');
                         update = false;
+                        $("#ot_affecter_form")[0].reset();
                         $("#ot_entreprise").trigger('change');
                     });
                     $("#annuler_affecter").click(function() {
@@ -310,6 +312,7 @@
                                 date2: $("#affecter_date_fin").val()
                             }
                         }).done(function (message) {
+                            console.log(message);
                             if(message.error == 0) {
                                 $("#ot_affecter_form")[0].reset();
                                 update = true;
