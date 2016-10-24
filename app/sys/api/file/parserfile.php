@@ -3,8 +3,12 @@
 extract($_GET);
 
 $templateFile = __DIR__."/../uploads/templates/Bordereaux de Prix FTTH_INT_HRZ_INDA.xlsx";
+global $start;
+$start = microtime(true);
+define('WP_USE_THEMES', true);
 
 if(isset($id)) {
+
     $stm = $db->prepare("SELECT * FROM ressource WHERE id_ressource=:id");
     $stm->bindParam(':id',$id);
     $stm->execute();
@@ -13,6 +17,9 @@ if(isset($id)) {
     $fileName = $row->nom_fichier;
 
     loadExcelDEF_CABLE($db,__DIR__."/../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile);
+    $stop = microtime(true);
+    echo "Contenu généré en ".number_format(($stop-$start), 3)." seconde(s)";
+
 }
 
 function openExcelFile($file) {
@@ -70,14 +77,19 @@ function getLine(PHPExcel_Worksheet $sheet,$line,$max_column) {
 }
 
 function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
-
+    $start = microtime(true);
     set_time_limit(0);
 
      $tabreturn = [];
     try {
         $excel = openExcelFile($inputFileName);
+        $stop = microtime(true);
+        echo "Contenu openExcelFile généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
 
         $arr = $excel->getSheetNames();
+        $stop = microtime(true);
+        echo "Contenu getSheetNames généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
+
         $tab=array();
         $i=0;$j=0;$valtrouve = 0;
         $countcap = [];$cap = 0;
@@ -87,6 +99,8 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
 
             $sheet = $excel->getSheetByName($value);
              $header = getHeader($sheet);
+            $stop = microtime(true);
+            echo "Contenu ".$value." généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
 
             if($value=="DEF_CABLE"){
                 $db->query("TRUNCATE testDEF_CABLE");
