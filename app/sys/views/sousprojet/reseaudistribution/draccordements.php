@@ -155,9 +155,9 @@
         {
             $.ajax({
                 cache: false,
-                url: "api/file/load.php",
+                url: "api/sousprojet/reseaudistribution/load.php",
                 method:"POST",
-                data: {id_objet:get('idsousprojet'),type_objet:'distribution_raccord_chambre'},
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'distribution_raccord_chambre'},
                 dataType: "json",
                 success: function(data)
                 {
@@ -227,9 +227,9 @@
         {
             $.ajax({
                 cache: false,
-                url: "api/file/load.php",
+                url: "api/sousprojet/reseaudistribution/load.php",
                 method:"POST",
-                data: {id_objet:get('idsousprojet'),type_objet:'distribution_racoord_pboite'},
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'distribution_racoord_pboite'},
                 dataType: "json",
                 success: function(data)
                 {

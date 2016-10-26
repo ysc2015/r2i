@@ -14,10 +14,10 @@ $ret = array();
 
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into ressource (id_objet,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_objet,'projet',:nom_fichier,:nom_fichier_disque,'projets',:date_creation)");
+$stm = $db->prepare("insert into ressource (id_projet,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_projet,'fichier_contour',:nom_fichier,:nom_fichier_disque,'projets',:date_creation)");
 
 if(isset($idp) && !empty($idp)) {
-    $stm->bindParam(':id_objet',$idp);
+    $stm->bindParam(':id_projet',$idp);
     if (isset($_FILES["myfile"])) {
         $error = $_FILES["myfile"]["error"];
         if (!is_array($_FILES["myfile"]["name"])) {

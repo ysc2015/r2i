@@ -175,6 +175,7 @@ class adm extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link"),
+                "devis" => array(),
                 "chambreot" => array("liste","update","add_pblq","open"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")

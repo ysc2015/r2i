@@ -15,9 +15,9 @@
             if(projet_dt.row('.selected').data() != undefined) {
                 $.ajax({
                     cache: false,
-                    url: "api/file/load.php",
+                    url: "api/projet/projet/projet_load_sd_files.php",
                     method:"POST",
-                    data: {id_objet:projet_dt.row('.selected').data().id_projet,type_objet:'projet'},
+                    data: {id_projet:projet_dt.row('.selected').data().id_projet,type_objet:'fichier_contour'},
                     dataType: "json",
                     success: function(data)
                     {
