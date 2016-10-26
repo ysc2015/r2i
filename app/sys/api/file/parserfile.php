@@ -18,7 +18,7 @@ if(isset($id)) {
 
     loadExcelDEF_CABLE($db,__DIR__."/../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile);
     $stop = microtime(true);
-    echo "Contenu généré en ".number_format(($stop-$start), 3)." seconde(s)";
+    //echo "Contenu généré en ".number_format(($stop-$start), 3)." seconde(s)";
 
 }
 
@@ -84,11 +84,11 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
     try {
         $excel = openExcelFile($inputFileName);
         $stop = microtime(true);
-        echo "Contenu openExcelFile généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
+       // echo "Contenu openExcelFile généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
 
         $arr = $excel->getSheetNames();
         $stop = microtime(true);
-        echo "Contenu getSheetNames généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
+       // echo "Contenu getSheetNames généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
 
         $tab=array();
         $i=0;$j=0;$valtrouve = 0;
@@ -100,7 +100,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
             $sheet = $excel->getSheetByName($value);
              $header = getHeader($sheet);
             $stop = microtime(true);
-            echo "Contenu ".$value." généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
+          //  echo "Contenu ".$value." généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
 
             if($value=="DEF_CABLE"){
                 $db->query("TRUNCATE testDEF_CABLE");
@@ -206,6 +206,10 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
         }
         $nbtub = $totalnbtub;
 
+        $TABEXT_432 = 0; $TABEXT_288= 0; $TABEXT_144= 0; $TABEXT_72= 0; $TABEXT_48= 0; $TABEXT_24= 0;
+        $TABRAC_720=0; $TABRAC_432 = 0; $TABRAC_288= 0; $TABRAC_144= 0; $TABRAC_72= 0; $TABRAC_48= 0; $TABRAC_24= 0;
+        $TABFEN_432 = 0; $TABFEN_288= 0; $TABFEN_144= 0; $TABFEN_72= 0; $TABFEN_48= 0; $TABFEN_24= 0;
+
         foreach ($tabext as $item){
             $insred = 0;
             foreach ($tabfen as $value){
@@ -240,23 +244,37 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName) {
 
         foreach ($tabrac as $item){
             switch ($item[1]){
-                case 48 : $sheetbordereaux->getCell("D74")->setValue($item[0]);
-                case 48 : $sheetbordereaux->getCell("D74")->setValue($item[0]);
-                case 72 :  $sheetbordereaux->getCell("D72")->setValue($item[0]);;
-                case 144 :  $sheetbordereaux->getCell("D70")->setValue($item[0]);;
+                case 24 : $sheetbordereaux->getCell("D76")->setValue($item[0]);$TABRAC_24 = $item[0];
+                case 48 : $sheetbordereaux->getCell("D74")->setValue($item[0]);$TABRAC_48 = $item[0];
+                case 72 :  $sheetbordereaux->getCell("D72")->setValue($item[0]);$TABRAC_72 = $item[0];
+                case 144 :  $sheetbordereaux->getCell("D70")->setValue($item[0]);$TABRAC_144 = $item[0];
+                case 288 :  $sheetbordereaux->getCell("D68")->setValue($item[0]);$TABRAC_288 = $item[0];
+                case 432 :  $sheetbordereaux->getCell("D66")->setValue($item[0]);$TABRAC_720 = $item[0];
             }
         }
 
         foreach ($tabfen as $item){
             switch ($item[1]){
-                case 48 : $sheetbordereaux->getCell("D82")->setValue($item[0]);
-                case 72 :  $sheetbordereaux->getCell("D81")->setValue($item[0]);
-                case 144 :  $sheetbordereaux->getCell("D80")->setValue($item[0]);
+                case 24 : $sheetbordereaux->getCell("D83")->setValue($item[0]);$TABFEN_24 = $item[0];
+                case 48 : $sheetbordereaux->getCell("D82")->setValue($item[0]);$TABFEN_48 = $item[0];
+                case 72 :  $sheetbordereaux->getCell("D81")->setValue($item[0]);$TABFEN_72 = $item[0];
+                case 144 :  $sheetbordereaux->getCell("D80")->setValue($item[0]);$TABFEN_144 = $item[0];
+                case 288 :  $sheetbordereaux->getCell("D79")->setValue($item[0]);$TABFEN_288 = $item[0];
+                case 432 :  $sheetbordereaux->getCell("D78")->setValue($item[0]);$TABFEN_432 = $item[0];
             }
         }
 
         $sheetbordereaux->getCell("D84")->setValue($nbtub);
         $sheetbordereaux->getCell("D86")->setValue($NBSOUD);
+
+        $db->query("INSERT INTO `detaildevis` (`iddevis`, `TABEXT_432`, `TABEXT_288`, `TABEXT_144`, `TABEXT_72`, `TABEXT_48`, `TABEXT_24`, 
+`TABRAC_720`, `TABRAC_432`, `TABRAC_288`, `TABRAC_144`, `TABRAC_72`, `TABRAC_48`, `TABRAC_24`,
+ `TABFEN_432`, `TABFEN_288`, `TABFEN_144`, `TABFEN_72`,
+  `TABFEN_48`, `TABFEN_24`,
+  `NBTUB`, `NBSOUD`) VALUES (NULL, '".$TABEXT_432."', '".$TABEXT_288."', '".$TABEXT_144."', '".$TABEXT_72."', '".$TABEXT_48."', '".$TABEXT_24."',
+   '".$TABRAC_720."', '".$TABRAC_432."', '".$TABRAC_288."', '".$TABRAC_144."', '".$TABRAC_72."', '".$TABRAC_48."', '".$TABRAC_24."',
+   '".$TABFEN_432."', '".$TABFEN_288."', '".$TABFEN_144."', '".$TABFEN_72."', '".$TABFEN_48."', '".$TABFEN_24."',
+    '".$nbtub."', '".$NBSOUD."');");
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
         $cacheSettings = array( ' memoryCacheSize ' => '16MB');
