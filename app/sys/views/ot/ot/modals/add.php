@@ -64,6 +64,7 @@
                     idsp : get('idsousprojet'),
                     tentree : get('tentree'),
                     type_ot : $('#type_ot').val(),
+                    type_ot_text : $('#type_ot option:selected').text(),
                     commentaire : $('#commentaire').val()
                 }
             }).done(function (message) {

@@ -10,7 +10,7 @@ $insert = false;
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("insert into ordre_de_travail (id_sous_projet,type_entree,id_type_ordre_travail,commentaire) values (:id_sous_projet,:type_entree,:id_type_ordre_travail,:commentaire)");
+$stm = $db->prepare("insert into ordre_de_travail (id_sous_projet,type_entree,id_type_ordre_travail,type_ot,commentaire) values (:id_sous_projet,:type_entree,:id_type_ordre_travail,:type_ot,:commentaire)");
 
 if(isset($idsp) && !empty($idsp)){
     $stm->bindParam(':id_sous_projet',$idsp);
@@ -22,6 +22,14 @@ if(isset($idsp) && !empty($idsp)){
 
 if(isset($tentree) && !empty($tentree)){
     $stm->bindParam(':type_entree',$tentree);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Type entrée invalide  !";
+}
+
+if(isset($type_ot_text) && !empty($type_ot_text)){
+    $stm->bindParam(':type_ot',$type_ot_text);
     $insert = true;
 } else {
     $err++;

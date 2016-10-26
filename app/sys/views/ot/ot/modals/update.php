@@ -63,6 +63,7 @@
                 data: {
                     idot : ot_dt.row('.selected').data().id_ordre_de_travail,
                     type_ot : $('#update_type_ot').val(),
+                    type_ot_text : $('#update_type_ot option:selected').text(),
                     commentaire : $('#update_commentaire').val()
                 }
             }).done(function (message) {
