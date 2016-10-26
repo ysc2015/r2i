@@ -48,7 +48,7 @@ if(isset($idp) && !empty($idp)){
 
     $stm->closeCursor();
 
-    $stm = $db->prepare("SELECT * from ressource WHERE id_objet=:id AND type_objet='projet'");
+    $stm = $db->prepare("SELECT * from ressource WHERE id_projet=:id AND type_objet='fichier_contour'");
     $stm->execute(array(':id' => $idp));
 
     $files = $stm->fetchAll();

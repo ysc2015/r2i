@@ -90,9 +90,9 @@
         {
             $.ajax({
                 cache: false,
-                url: "api/file/load.php",
+                url: "api/sousprojet/preparationplaque/load.php",
                 method:"POST",
-                data: {id_objet:get('idsousprojet'),type_objet:'bei_survey'},
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'bei_survey'},
                 dataType: "json",
                 success: function(data)
                 {
@@ -162,9 +162,9 @@
         {
             $.ajax({
                 cache: false,
-                url: "api/file/load.php",
+                url: "api/sousprojet/preparationplaque/load.php",
                 method:"POST",
-                data: {id_objet:get('idsousprojet'),type_objet:'vpi_survey'},
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'vpi_survey'},
                 dataType: "json",
                 success: function(data)
                 {

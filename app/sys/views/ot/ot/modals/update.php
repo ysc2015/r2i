@@ -19,9 +19,15 @@
                                 <select class="form-control" id="update_type_ot" name="update_type_ot" size="1" style="width: 100%;" data-placeholder="Séléctionner type ot..">
                                     <option value="" selected disabled>Séléctionnez type ot</option>
                                     <?php
-                                    $typesot = SelectOrdreTravailType::all();
+                                    extract($_GET);
+                                    $sousProjet = SousProjet::first(
+                                        array('conditions' =>
+                                            array("id_sous_projet = ?", $idsousprojet)
+                                        )
+                                    );
+                                    $typesot = SelectOrdreTravailType::all(array('conditions' => array('type_entree' => $tentree)));
                                     foreach($typesot as $typeot) {
-                                        echo "<option value=\"$typeot->id_type_ordre_travail\">$typeot->lib_type_ordre_travail</option>";
+                                        echo "<option value=\"$typeot->id_type_ordre_travail\">".($typeot->system==1?$typeot->lib_type_ordre_travail." ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->zone:$typeot->lib_type_ordre_travail)."</option>";
                                     }
                                     ?>
                                 </select>

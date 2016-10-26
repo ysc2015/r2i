@@ -16,6 +16,8 @@
     var calendar = function() {
         var team_id = 0;
         var soc_id = 0;
+        var date1 = null;
+        var date2 = null;
         var initCalendar = function() {
             $('#calender').fullCalendar({
                 header: {
@@ -28,41 +30,75 @@
                     data: function() { // a function that returns an object
                         return {
                             team_id : getTeamId(),
-                            soc_id : getSocId()
+                            soc_id : getSocId(),
+                            date1 : (date1!==null?date1.format('YYYY-MM-DD'):''),
+                            date2 : (date2!==null?date2.format('YYYY-MM-DD'):'')
                         };
                     }
                 },
                 eventClick: function(calEvent, jsEvent, view) {
 
-                    //console.log(calEvent.socid);
+                    if(calEvent.id > 0) {
+                        $('#modal_cal_ot_title').html('ordre de travail : '+calEvent.etape + '-'+calEvent.typeot);
 
-                    $('#modal_cal_ot_title').html('ordre de travail : '+calEvent.etape + '-'+calEvent.typeot);
+                        $('#ot_entreprise_cal2').val(calEvent.socid);
 
-                    $('#ot_entreprise_cal2').val(calEvent.socid);
-
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/planningot/get_entry_soc_teams.php",
-                        dataType: "json",
-                        data: {
-                            ide: calEvent.socid
-                        }
-                    }).done(function (data) {
-                        $('#ot_equipe_cal').html('<option value="" selected="">Sélectionnez une équipe</option>');
-                        for(var i = 0 ; i < data.length ; i++) {
-                            html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
-                            $('#ot_equipe_cal').append(html);
-                        }
-                        $('#ot_equipe_cal').val(calEvent.equipeid);
-                        $('#affecter_date_debut_cal').val(calEvent.dd);
-                        $('#affecter_date_fin_cal').val(calEvent.df);
-                        $('#modal-ot-cal').modal('show');
-                    });
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/planningot/get_entry_soc_teams.php",
+                            dataType: "json",
+                            data: {
+                                ide: calEvent.socid
+                            }
+                        }).done(function (data) {
+                            $('#ot_equipe_cal').html('<option value="" selected="">Sélectionnez une équipe</option>');
+                            for(var i = 0 ; i < data.length ; i++) {
+                                html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
+                                $('#ot_equipe_cal').append(html);
+                            }
+                            $('#ot_equipe_cal').val(calEvent.equipeid);
+                            $('#affecter_date_debut_cal').val(calEvent.dd);
+                            $('#affecter_date_fin_cal').val(calEvent.df);
+                            $('#modal-ot-cal').modal('show');
+                        });
+                    } else {
+                        console.log(calEvent.id);
+                    }
 
                 },
                 eventRender: function(event, element) {
-                    element.attr('title','clicker ici pour afficher détails');
+                    if(event.id > 0) {
+                        element.attr('title','clicker ici pour afficher détails');
+                    } else {
+                        element.attr('title','clicker ici pour basculer vers la liste des ot et conserver la période choisie');
+                    }
+                },
+                dayClick: function(date, jsEvent, view) {
+                    if(date1==null) {
+                        //$(this).css('background-color', 'green');
+                        date1 = date;
+                    } else if(date2==null) {
+                        //$(this).css('background-color', 'green');
+                        date2=date;
+
+                        if(date2.diff(date1) <=0) {
+                            var d = date1;
+                            date1 = date2;
+                            date2 = d;
+                        }
+                        //create event here
+                        $('#calender').fullCalendar( 'refetchEvents' );
+                    } else {
+                        //$(this).css('background-color', 'green');
+                        date1 = date;
+                        date2 = null;
+
+                        //delete event here
+                        $('#calender').fullCalendar( 'refetchEvents' );
+                    }
+
                 }
+
             });
         }
         var refresh = function() {

@@ -62,6 +62,28 @@ try {
 
     }
 
+    if(isset($date1) && !empty($date1) && isset($date2) && !empty($date2)) {
+        $e = array();
+        $e['id'] = '-1';
+        $e['title'] = 'clicker ici pour valider l\'affectation';
+        $e['start'] = $date1." 00:00:00";
+        $e['end'] = date('Y-m-d',strtotime($date2." 00:00:00" . ' +1 day'));
+        $e['allDay'] = true;
+        $e['color'] = '#89D6AE';
+        $e['textColor'] = '#000';
+        $e['dd'] = $date1;
+        $e['df'] = $date2;
+        $e['socid'] = 0;
+        $e['equipeid'] = 0;
+        $e['societe'] = '';
+        $e['imei'] = '';
+        $e['equipe'] = '';
+        $e['etape'] = '';
+        $e['typeot'] = '';
+
+        array_push($events, $e);
+    }
+
     echo json_encode($events);
     exit();
 
