@@ -38,10 +38,19 @@
         },
         afterUploadAll:function(obj) {
         },
-        downloadCallback:function(filename,pd)
+        downloadCallback:function(data,pd)
         {
-            var arr = (filename + '').split("_");
-            location.href="api/file/download.php?id="+arr[0];
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
         },
         deleteCallback: function (data, pd) {
             var obj;
