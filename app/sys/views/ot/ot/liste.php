@@ -49,7 +49,7 @@
                 { "data": "id_ordre_de_travail" },
                 { "data": "id_sous_projet" },
                 { "data": "type_entree" },
-                { "data": "lib_type_ordre_travail" },
+                { "data": "type_ot" },/*lib_type_ordre_travail*/
                 { "data": "commentaire" }
             ],
             "columnDefs": [
