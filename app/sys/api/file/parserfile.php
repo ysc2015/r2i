@@ -82,23 +82,23 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
         print_r($row);
         $sheetbordereaux->getCell("D76")->setValue($row->TABRAC_24);
-        $sheetbordereaux->getCell("D74")->setValue($row['TABRAC_48']);
-        $sheetbordereaux->getCell("D72")->setValue($row['TABRAC_72']);
-        $sheetbordereaux->getCell("D70")->setValue($row['TABRAC_144']);
-        $sheetbordereaux->getCell("D68")->setValue($row['TABRAC_288']);
-        $sheetbordereaux->getCell("D66")->setValue($row['TABRAC_720']);
+        $sheetbordereaux->getCell("D74")->setValue($row->TABRAC_48);
+        $sheetbordereaux->getCell("D72")->setValue($row->TABRAC_72);
+        $sheetbordereaux->getCell("D70")->setValue($row->TABRAC_144);
+        $sheetbordereaux->getCell("D68")->setValue($row->TABRAC_288);
+        $sheetbordereaux->getCell("D66")->setValue($row->TABRAC_720);
 
 
-        $sheetbordereaux->getCell("D83")->setValue($row['TABFEN_24']);
-        $sheetbordereaux->getCell("D82")->setValue($row['TABFEN_48']);
-        $sheetbordereaux->getCell("D81")->setValue($row['TABFEN_72']);
-        $sheetbordereaux->getCell("D80")->setValue($row['TABFEN_144']);
-        $sheetbordereaux->getCell("D79")->setValue($row['TABFEN_288']);
-        $sheetbordereaux->getCell("D78")->setValue($row['TABFEN_432']);
+        $sheetbordereaux->getCell("D83")->setValue($row->TABFEN_24);
+        $sheetbordereaux->getCell("D82")->setValue($row->TABFEN_48);
+        $sheetbordereaux->getCell("D81")->setValue($row->TABFEN_72);
+        $sheetbordereaux->getCell("D80")->setValue($row->TABFEN_144);
+        $sheetbordereaux->getCell("D79")->setValue($row->TABFEN_288);
+        $sheetbordereaux->getCell("D78")->setValue($row->TABFEN_432);
 
 
-        $sheetbordereaux->getCell("D84")->setValue($row['NBTUB']);
-        $sheetbordereaux->getCell("D86")->setValue($row['NBSOUD']);
+        $sheetbordereaux->getCell("D84")->setValue($row->NBTUB);
+        $sheetbordereaux->getCell("D86")->setValue($row->NBSOUD);
 
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
