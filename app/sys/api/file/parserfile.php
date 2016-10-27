@@ -81,7 +81,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux = $Bordereaux->getSheetByName("LOT7_FO");
 
         print_r($row);
-        $sheetbordereaux->getCell("D76")->setValue($row['TABRAC_24']);
+        $sheetbordereaux->getCell("D76")->setValue($row->TABRAC_24);
         $sheetbordereaux->getCell("D74")->setValue($row['TABRAC_48']);
         $sheetbordereaux->getCell("D72")->setValue($row['TABRAC_72']);
         $sheetbordereaux->getCell("D70")->setValue($row['TABRAC_144']);
