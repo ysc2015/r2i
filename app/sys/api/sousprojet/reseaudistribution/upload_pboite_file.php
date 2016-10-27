@@ -277,6 +277,14 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
         $TABFEN_432 = 0; $TABFEN_288= 0; $TABFEN_144= 0; $TABFEN_72= 0; $TABFEN_48= 0; $TABFEN_24= 0;
 
         foreach ($tabext as $item){
+            switch ($item[1]){
+                case 24 : $TABEXT_24 = $item[0];break;
+                case 48 :  $TABEXT_48 = $item[0];break;
+                case 72 :  $TABEXT_72 = $item[0];break;
+                case 144 :  $TABEXT_144 = $item[0];break;
+                case 288 :  $TABEXT_288 = $item[0];break;
+                case 432 :   $TABEXT_432 = $item[0];break;
+            }
             $insred = 0;
             foreach ($tabfen as $value){
 
@@ -309,23 +317,23 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
 
         foreach ($tabrac as $item){
             switch ($item[1]){
-                case 24 : $TABRAC_24 = $item[0];
-                case 48 : $TABRAC_48 = $item[0];
-                case 72 :   $TABRAC_72 = $item[0];
-                case 144 :  $TABRAC_144 = $item[0];
-                case 288 :  $TABRAC_288 = $item[0];
-                case 432 :  $TABRAC_720 = $item[0];
+                case 24 : $TABRAC_24 = $item[0];break;
+                case 48 : $TABRAC_48 = $item[0];break;
+                case 72 :   $TABRAC_72 = $item[0];break;
+                case 144 :  $TABRAC_144 = $item[0];break;
+                case 288 :  $TABRAC_288 = $item[0];break;
+                case 432 :  $TABRAC_720 = $item[0];break;
             }
         }
 
         foreach ($tabfen as $item){
             switch ($item[1]){
-                case 24 :  $TABFEN_24 = $item[0];
-                case 48 :  $TABFEN_48 = $item[0];
-                case 72 :   $TABFEN_72 = $item[0];
-                case 144 :  $TABFEN_144 = $item[0];
-                case 288 :   $TABFEN_288 = $item[0];
-                case 432 :   $TABFEN_432 = $item[0];
+                case 24 :  $TABFEN_24 = $item[0];break;
+                case 48 :  $TABFEN_48 = $item[0];break;
+                case 72 :   $TABFEN_72 = $item[0];break;
+                case 144 :  $TABFEN_144 = $item[0];break;
+                case 288 :   $TABFEN_288 = $item[0];break;
+                case 432 :   $TABFEN_432 = $item[0];break;
             }
         }
 
@@ -334,10 +342,10 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
 `TABRAC_720`, `TABRAC_432`, `TABRAC_288`, `TABRAC_144`, `TABRAC_72`, `TABRAC_48`, `TABRAC_24`,
  `TABFEN_432`, `TABFEN_288`, `TABFEN_144`, `TABFEN_72`,
   `TABFEN_48`, `TABFEN_24`,
-  `NBTUB`, `NBSOUD`) VALUES (NULL,$idressource, '".$TABEXT_432."', '".$TABEXT_288."', '".$TABEXT_144."', '".$TABEXT_72."', '".$TABEXT_48."', '".$TABEXT_24."',
+  `NBTUB`, `NBSOUD`, `dateinsert`) VALUES (NULL,$idressource, '".$TABEXT_432."', '".$TABEXT_288."', '".$TABEXT_144."', '".$TABEXT_72."', '".$TABEXT_48."', '".$TABEXT_24."',
    '".$TABRAC_720."', '".$TABRAC_432."', '".$TABRAC_288."', '".$TABRAC_144."', '".$TABRAC_72."', '".$TABRAC_48."', '".$TABRAC_24."',
    '".$TABFEN_432."', '".$TABFEN_288."', '".$TABFEN_144."', '".$TABFEN_72."', '".$TABFEN_48."', '".$TABFEN_24."',
-    '".$nbtub."', '".$NBSOUD."');");
+    '".$nbtub."', '".$NBSOUD."','".date('Y-m-d G:i:s')."');");
 
 
         return json_encode($tabreturn);
