@@ -60,6 +60,21 @@ function getObjectTypeForEntry(entree) {
     return str;
 }
 
+function getObjectTypeForEntryPB(entree) { /*utilisee pour recuperer plans boites, a creer une entite global c'est temporaire*/
+    var str = '';
+    switch (entree) {
+        case 'transportaiguillage' : str='transport_racoord_pboite';break;
+        case 'transporttirage' : str='transport_racoord_pboite';break;
+        case 'transportraccordement' : str='transport_racoord_pboite';break;
+        case 'distributionaiguillage' : str='distribution_racoord_pboite';break;
+        case 'distributiontirage' : str='distribution_racoord_pboite';break;
+        case 'distributionraccordement' : str='distribution_racoord_pboite';break;
+        default : str='';break;
+    }
+
+    return str;
+}
+
 function getObjectNameForEntry(entree) {
     var str = '';
     switch (entree) {
