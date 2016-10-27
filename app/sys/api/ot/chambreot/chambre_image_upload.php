@@ -1,23 +1,23 @@
 <?php
 /**
- * file: upload_synoptique.php
+ * file: chambre_image_upload.php
  * User: rabii
  */
 
 ini_set("display_errors",'1');
 //sleep(2);
 
-$output_dir = __DIR__."/../../uploads/synoptiques/";
+$output_dir = __DIR__."/../../uploads/chambres/";
 extract($_POST);
 
 $ret = array();
 
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into ressource (id_sous_projet,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_sous_projet,'synoptique',:nom_fichier,:nom_fichier_disque,'synoptiques',:date_creation)");
+$stm = $db->prepare("insert into ressource (id_chambre,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_chambre,'chambre_image',:nom_fichier,:nom_fichier_disque,'chambres',:date_creation)");
 
-if(isset($idsp) && !empty($idsp)) {
-    $stm->bindParam(':id_sous_projet',$idsp);
+if(isset($idch) && !empty($idch)) {
+    $stm->bindParam(':id_chambre',$idch);
     if (isset($_FILES["myfile"])) {
         $error = $_FILES["myfile"]["error"];
         if (!is_array($_FILES["myfile"]["name"])) {
