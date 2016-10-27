@@ -80,12 +80,8 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $Bordereaux = openExcelFile($templateFileName);
         $sheetbordereaux = $Bordereaux->getSheetByName("LOT7_FO");
 
-        print_r($row);
-        echo '<br />';
-        echo '*'.$row->TABRAC_24.'*<br />';
-        echo '*'.$row->NBSOUD.'*<br />';
-        echo '*'.$row->NBTUB.'*<br />';
-        /*$sheetbordereaux->getCell("D76")->setValue($row->TABRAC_24);
+
+        $sheetbordereaux->getCell("D76")->setValue($row->TABRAC_24);
         $sheetbordereaux->getCell("D74")->setValue($row->TABRAC_48);
         $sheetbordereaux->getCell("D72")->setValue($row->TABRAC_72);
         $sheetbordereaux->getCell("D70")->setValue($row->TABRAC_144);
@@ -102,7 +98,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
 
         $sheetbordereaux->getCell("D84")->setValue($row->NBTUB);
-        $sheetbordereaux->getCell("D86")->setValue($row->NBSOUD);*/
+        $sheetbordereaux->getCell("D86")->setValue($row->NBSOUD);
 
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
