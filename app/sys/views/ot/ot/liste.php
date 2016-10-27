@@ -33,7 +33,7 @@
         "#link_ot_show",
         "#delete_ot","#open_pblq",
         "#linked-ch",
-        "#link_ot"];
+        "#link_ot","#linked-pb","#link_pb"];
     $(document).ready(function() {
         ot_dt = $('#ot_table').DataTable( {
             "language": {
@@ -60,6 +60,7 @@
             "drawCallback": function( /*settings*/ ) {
                 $(ot_btns.join(',')).addClass("disabled");
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
+                $('#linked-pb').html('<option value="">&nbsp;</option>');
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
                 ot_affect_dt.draw(false);
             }
@@ -74,6 +75,7 @@
                 $(ot_btns.join(',')).addClass("disabled");
 
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
+                $('#linked-pb').html('<option value="">&nbsp;</option>');
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
@@ -91,8 +93,7 @@
                         objtype: getObjectTypeForEntry(get('tentree')),
                         idot : ot_dt.row('.selected').data().id_ordre_de_travail
                     }
-                })
-                    .done(function (data) {
+                }).done(function (data) {
                     var values = [];
                     $('#linked-ch').html('<option value="">&nbsp;</option>');
                     for(var i = 0 ; i < data.length ; i++) {
@@ -103,6 +104,27 @@
                         $('#linked-ch').append(html);
                     }
                     $('#linked-ch').val(values);
+                });
+
+                $.ajax({
+                    method: "POST",
+                    url: "api/ot/ot/get_pb_files_list.php",
+                    dataType: "json",
+                    data: {
+                        objtype: getObjectTypeForEntryPB(get('tentree')),
+                        idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                    }
+                }).done(function (data) {
+                    var values = [];
+                    $('#linked-pb').html('<option value="">&nbsp;</option>');
+                    for(var i = 0 ; i < data.length ; i++) {
+                        if(ot_dt.row('.selected').data().id_ordre_de_travail == data[i]['idot']) {
+                            values.push(data[i]['id']);
+                        }
+                        html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
+                        $('#linked-pb').append(html);
+                    }
+                    $('#linked-pb').val(values);
                 });
             }
 
