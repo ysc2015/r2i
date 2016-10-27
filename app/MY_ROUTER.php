@@ -10,7 +10,7 @@ include __DIR__ . "/sys/inc/session.php";
 SessionManager::init();
 $connectedProfil = array();
 
-if(isset($_GET['tab_imei'])){
+if(isset($_GET['tab_imei']) || isset($_GET['qgis'])){
     //SessionManager::login(array_map(function($a){ return ($a); }, explode('::',$_POST['r2i'])), false, function(){});
     require_once __DIR__ . '/sys/libs/vendor/autoload.php';
     require_once __DIR__ . "/sys/inc/config.php";

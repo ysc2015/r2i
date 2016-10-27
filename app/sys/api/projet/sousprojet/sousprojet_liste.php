@@ -22,32 +22,37 @@ $columns = array(
 
 $condition = "t1.id_projet=t2.id_projet";
 
-if($idp > 0) {
-    $condition .= " AND t1.id_projet=$idp";
-}
+if(isset($qgis)) {
+    if(isset($id_nro) && !empty($id_nro)) {
+        $condition .= " AND t2.id_nro=$id_nro";
+    }
+} else {
+    if($idp > 0) {
+        $condition .= " AND t1.id_projet=$idp";
+    }
+    switch($connectedProfil->profil->profil->shortlib) {
+        case "bei" :
+            $condition .=" AND t1.users_in  LIKE '%|".$connectedProfil->profil->id_utilisateur."|%'";
+            break;
 
-switch($connectedProfil->profil->profil->shortlib) {
-    case "bei" :
-        $condition .=" AND t1.users_in  LIKE '%|".$connectedProfil->profil->id_utilisateur."|%'";
-        break;
+        case "cdp" :
+            $condition .=" AND t2.id_chef_projet = ".$connectedProfil->profil->id_utilisateur;
+            break;
 
-    case "cdp" :
-        $condition .=" AND t2.id_chef_projet = ".$connectedProfil->profil->id_utilisateur;
-        break;
+        case "vpi" :
+            $arr = array(-1);
+            $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+            $stm->execute();
+            $nros = $stm->fetchAll();
+            foreach($nros as $nro) {
+                $arr[] = $nro['id_nro'];
+            }
 
-    case "vpi" :
-        $arr = array(-1);
-        $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
-        $stm->execute();
-        $nros = $stm->fetchAll();
-        foreach($nros as $nro) {
-            $arr[] = $nro['id_nro'];
-        }
+            $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
+            break;
 
-        $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
-        break;
-
-    default : break;
+        default : break;
+    }
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition));
