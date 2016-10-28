@@ -155,7 +155,8 @@
                     dataType: "json",
                     data: {
                         objtype: getObjectTypeForEntryPB(get('tentree')),
-                        idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                        idot : ot_dt.row('.selected').data().id_ordre_de_travail,
+                        idsp : get('idsousprojet')
                     }
                 }).done(function (data) {
                     var values = [];
