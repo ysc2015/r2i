@@ -3,22 +3,21 @@
         <button id="download_devis" class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-download'>&nbsp;</span> Télécharger devis</button>
     </div>
 </div>
-<div class="row" style="margin-top: 20px;">
-    <div class="col-md-12">
-        <label for="devis_bon_cmd_uploader">Bon(s) de commande(s)</label>
-        <div id="devis_bon_cmd_uploader"></div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <label for="devis_autre_uploader">Autre(s) attachement(s)</label>
-        <div id="devis_autre_uploader"></div>
+<div id="devis_uploads">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6">
+            <label for="devis_bon_cmd_uploader">Bon(s) de commande(s)</label>
+            <div id="devis_bon_cmd_uploader"></div>
+        </div>
+        <div class="col-md-6">
+            <label for="devis_autre_uploader">Autre(s) attachement(s)</label>
+            <div id="devis_autre_uploader"></div>
+        </div>
     </div>
 </div>
 <script>
-    var iddevis = 0;
     var uploader1_options = {
-        url: "api/projet/projet/projet_upload_files.php",
+        url: "api/ot/devis/upload_devis_bon_cmd.php",
         multiple:true,
         dragDrop:true,
         fileName: "myfile",
@@ -28,12 +27,12 @@
         allowedTypes: "pdf",
         onLoad:function(obj)
         {
-            /*if(projet_dt.row('.selected').data() != undefined) {
+            if(id_devis > 0) {
                 $.ajax({
                     cache: false,
-                    url: "api/projet/projet/projet_load_sd_files.php",
+                    url: "api/ot/devis/load_bon_cmd.php",
                     method:"POST",
-                    data: {id_projet:projet_dt.row('.selected').data().id_projet,type_objet:'fichier_contour'},
+                    data: {iddevis:id_devis},
                     dataType: "json",
                     success: function(data)
                     {
@@ -43,12 +42,12 @@
                         }
                     }
                 });
-            }*/
+            }
         },
         dynamicFormData: function()
         {
             var data ={
-                iddevis: iddevis
+                iddevis: id_devis
             };
             return data;
         },
@@ -92,7 +91,7 @@
         }
     }
     var uploader2_options = {
-        url: "api/projet/projet/projet_upload_files.php",
+        url: "api/ot/devis/upload_devis_autre.php",
         multiple:true,
         dragDrop:true,
         fileName: "myfile",
@@ -102,27 +101,27 @@
         allowedTypes: "pdf",
         onLoad:function(obj)
         {
-            /*if(projet_dt.row('.selected').data() != undefined) {
-             $.ajax({
-             cache: false,
-             url: "api/projet/projet/projet_load_sd_files.php",
-             method:"POST",
-             data: {id_projet:projet_dt.row('.selected').data().id_projet,type_objet:'fichier_contour'},
-             dataType: "json",
-             success: function(data)
-             {
-             for(var i=0;i<data.length;i++)
-             {
-             obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
-             }
-             }
-             });
-             }*/
+            if(id_devis > 0) {
+                $.ajax({
+                    cache: false,
+                    url: "api/ot/devis/load_bon_cmd.php",
+                    method:"POST",
+                    data: {iddevis:id_devis},
+                    dataType: "json",
+                    success: function(data)
+                    {
+                        for(var i=0;i<data.length;i++)
+                        {
+                            obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                        }
+                    }
+                });
+            }
         },
         dynamicFormData: function()
         {
             var data ={
-                iddevis: iddevis
+                iddevis: id_devis
             };
             return data;
         },
@@ -176,7 +175,9 @@
     $(document).ready(function() {
 
         $("#download_devis").click(function() {
-            console.log('get devis');
+            if(ot_dt.row('.selected').data()!== undefined) {
+                location.href="api/file/parserfile.php?id="+id_res;
+            }
         });
 
     } );

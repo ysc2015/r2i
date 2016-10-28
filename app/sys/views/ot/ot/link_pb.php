@@ -31,6 +31,7 @@
                 }
             }).done(function (msg) {
                 App.showMessage(msg,'#message_ot_link2');
+                displayDevis();
             });
         });
     } );
