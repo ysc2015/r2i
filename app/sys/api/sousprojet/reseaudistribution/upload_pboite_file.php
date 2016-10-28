@@ -356,7 +356,4 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
     return -1;
 }
 //fin traitement de fichier excel
-
-
-$ret['path'] = php_ini_loaded_file();
 echo json_encode($ret);
