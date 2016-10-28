@@ -29,11 +29,48 @@
 <!-- END Table ot -->
 <script>
     var ot_dt;
+    var id_devis = 0;
+    var id_res = 0;
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
         "#delete_ot","#open_pblq",
         "#linked-ch",
         "#link_ot","#linked-pb","#link_pb"];
+    function displayDevis() {
+        if(ot_dt.row('.selected').data()!== undefined) {
+            $.ajax({
+                method: "POST",
+                url: "api/ot/devis/get_devis_id.php",
+                dataType: "json",
+                data: {
+                    idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                }
+            }).done(function (msg) {
+                console.log(msg);
+                if(msg.iddevis > 0) {
+                    id_devis = msg.iddevis;
+                    id_res = msg.idres;
+                    $('#download_devis').removeClass('disabled');
+                    $("#devis_uploads").show();
+                    uploader1.reset();
+                    uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
+
+                    uploader2.reset();
+                    uploader2 = $("#devis_autre_uploader").uploadFile(uploader2_options);
+                } else {
+                    id_devis = 0;
+                    id_res = 0;
+                    $('#download_devis').addClass('disabled');
+                    $("#devis_uploads").hide();
+                }
+            });
+        } else {
+            id_devis = 0;
+            id_res = 0;
+            $('#download_devis').addClass('disabled');
+            $("#devis_uploads").hide();
+        }
+    }
     $(document).ready(function() {
         ot_dt = $('#ot_table').DataTable( {
             "language": {
@@ -58,6 +95,7 @@
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                displayDevis();
                 $('#devis_block_title').html('Devis');
                 $(ot_btns.join(',')).addClass("disabled");
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
@@ -83,7 +121,7 @@
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
-                console.log(ot_dt.row('.selected').data().iddevis);
+                //console.log('iddevis' + ot_dt.row('.selected').data().iddevis);
 
                 $(ot_btns.join(',')).removeClass("disabled");
                 $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
@@ -133,6 +171,9 @@
                 });
             }
 
+            displayDevis();
+
         } );
+
     } );
 </script>
