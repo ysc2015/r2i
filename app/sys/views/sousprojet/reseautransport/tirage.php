@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">432FO </span></label>-->
-                        <label for="tt_lineaire_reseau">18/21 <!--<span class="text-danger">*</span>--></label>
+                        <label for="tt_lineaire_reseau">16/20 <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire10" name="tt_lineaire10" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire10:"")?>">
                     </div>
                     <div class="col-md-3">
