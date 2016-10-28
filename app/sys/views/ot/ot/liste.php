@@ -58,6 +58,7 @@
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                $('#devis_block_title').html('Devis');
                 $(ot_btns.join(',')).addClass("disabled");
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
@@ -73,6 +74,7 @@
                 $(this).removeClass('selected');
 
                 $(ot_btns.join(',')).addClass("disabled");
+                $('#devis_block_title').html('Devis');
 
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
@@ -81,7 +83,10 @@
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
+                console.log(ot_dt.row('.selected').data().iddevis);
+
                 $(ot_btns.join(',')).removeClass("disabled");
+                $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
 
