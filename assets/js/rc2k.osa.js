@@ -14,7 +14,7 @@
 				tache: {
 					create: function (token) {
 						console.log("123")
-						window.open(rc2k.osa.ui.url + token + '/tache_create/', '', 'location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
+						window.open(rc2k.osa.ui.url + token + '/tache_create/', '', 'width=620,location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
 					}
 				}
 			},
