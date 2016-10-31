@@ -68,15 +68,21 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-8"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <div class="col-md-8"><button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button></div>
             </div>
         </div>
     </form>
 </div>
+<script src="assets/js/rc2k.osa.js" ></script>
 <script>
     var design_formdata = {};
     $(document).ready(function() {
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             design_formdata[$( this ).attr('name')] = $( this).val();
+        });
+        $("#id_sous_projet_transport_design_btn_osa").click(function () {
+           alert();
+            rc2k.osa.ui.tache.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm");
         });
         $("#id_sous_projet_transport_design_btn").click(function () {
 
