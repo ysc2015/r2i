@@ -12,9 +12,11 @@
 				 $.ajax({'url':url + '/auth','method':'get','data':account}).done(callback);
 				 },*/
 				tache: {
-					create: function (token) {
-						console.log("123")
-						window.open(rc2k.osa.ui.url + token + '/tache_create/', '', 'width=620,location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no');
+					create: function (token, idp) {
+
+						window.open (rc2k.osa.ui.url + token + '/tache_create/' + idp, '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						//window.open (rc2k.osa.ui.url + token + '/tache_create/', '', "menubar=no, status=no, scrollbars=no, menubar=no, width=200, height=100");
+
 					}
 				}
 			},
