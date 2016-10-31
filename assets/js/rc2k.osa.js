@@ -1,4 +1,6 @@
 
+//NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm
+
 (function(w){
 
 	if(!JQuery) throw "RC2K: Missing JQuery module";
