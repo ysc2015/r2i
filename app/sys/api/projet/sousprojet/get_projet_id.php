@@ -11,7 +11,11 @@ $id = 0;
 $sousProjet = NULL;
 
 if(isset($idsp) && !empty($idsp)){
-    $sousProjet = SousProjet::find($idsp);
+    $sousProjet = SousProjet::first(
+        array('conditions' =>
+            array("id_sous_projet = ?", $idsp)
+        )
+    );
 }
 
 if($sousProjet !== NULL) {
