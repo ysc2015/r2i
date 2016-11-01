@@ -1,9 +1,6 @@
-<div class="block block-themed" id="synoptique_block">
+<div class="block block-themed" id="traitementot_block">
     <div class="block-header bg-info">
         <ul class="block-options">
-            <li>
-                <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"><i class="si si-size-actual"></i></button>
-            </li>
             <li>
                 <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
             </li>
@@ -11,7 +8,7 @@
                 <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
-        <h3 class="block-title">Synoptique</h3>
+        <h3 class="block-title">Traitement OT</h3>
     </div>
     <div class="block-content">
-        <div class="block" id="synoptique_block_content">
+        <div class="block" id="traitementot_block_content">

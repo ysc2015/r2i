@@ -459,11 +459,13 @@ class stt extends baseUser {
     }
 
     function myot() {
-        Page::ot(
+        Page::myot(
             array(
-                "ot" => array(),
-                "chambreot" => array(),
-                "synoptique" => array()
+                "ot" => array("liste"),
+                "chambreot" => array("liste"),
+                "synoptique" => array("synoptique"),
+                "devis" => array("formdevis"),
+                "traitementot" => array()
             )
         );
     }
