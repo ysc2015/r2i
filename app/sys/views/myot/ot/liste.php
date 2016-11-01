@@ -37,9 +37,11 @@
             <div class="block-header">
                 <h3 class="block-title">Infos OT</h3>
             </div>
-            <div class="block-content">
+            <div class="block-content" style="background-color: #e7e7e7">
                 <label style="display: block;">PCI en charge : </label>
+                <br>
                 <label style="display: block;">Equipe en charge : </label>
+                <br>
                 <label style="display: block;">Lien vers les plans : </label>
             </div>
         </div>

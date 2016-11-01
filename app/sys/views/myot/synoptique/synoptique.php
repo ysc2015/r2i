@@ -1,10 +1,10 @@
 <div class="block">
     <ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">
         <li class="active">
-            <a href="#btabs-alt-static-justified-home"><i class="fa fa-ellipsis-h"></i> Câbles</a>
+            <a href="#btabs-alt-static-justified-home"><i class="fa fa-chain"></i> Câbles</a>
         </li>
         <li>
-            <a href="#btabs-alt-static-justified-profile"><i class="fa fa-rupee"></i> Infras</a>
+            <a href="#btabs-alt-static-justified-profile"><i class="fa fa-info-circle"></i> Infras</a>
         </li>
     </ul>
     <div class="block-content tab-content">
