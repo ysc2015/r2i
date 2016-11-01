@@ -8,7 +8,7 @@
                 <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
-        <h3 class="block-title">Ordres de travail</h3>
+        <h3 class="block-title">Planning OT</h3>
     </div>
     <div class="block-content">
         <div class="block" id="planningot_block_content">
