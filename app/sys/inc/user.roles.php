@@ -434,6 +434,41 @@ class vpi extends baseUser {
     }
 }
 class pci extends baseUser {
+    function defaultpage() {
+        return "myot";
+    }
+
+    function myot() {
+        Page::ot(
+            array(
+                "ot" => array(),
+                "chambreot" => array(),
+                "planningot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar("myot_titre","myot_liste");
+    }
 }
 class stt extends baseUser {
+    function defaultpage() {
+        return "myot";
+    }
+
+    function myot() {
+        Page::ot(
+            array(
+                "ot" => array(),
+                "chambreot" => array(),
+                "synoptique" => array()
+            )
+        );
+    }
+
+    function sidebar() {
+        Page::sidebar("myot_titre","myot_liste","myot_planning");
+    }
 }
