@@ -14,6 +14,7 @@ if(isset($ids) && !empty($ids)){
 
 $err = 0;
 $message = array();
+$id = 0;
 
 if($sousProjet !== NULL) {
     if(isset($tentree) && !empty($tentree)) {
