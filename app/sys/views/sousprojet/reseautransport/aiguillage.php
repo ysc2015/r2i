@@ -363,9 +363,10 @@
                     tentree : 'transportaiguillage'
                 }
             }).done(function (msg) {
+                console.log(msg);
                 var obj = JSON.parse(msg);
                 if(obj.error == 0) {
-                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transportaiguillage';
+                    //document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transportaiguillage';
                 } else {
                     App.showMessage(msg, '#message_transport_aiguillage');
                 }
