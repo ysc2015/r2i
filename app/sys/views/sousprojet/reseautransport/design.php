@@ -90,17 +90,15 @@
                 },
                 success : function (e) {
                      console.log(e);
-                     console.log("******");
-                     console.log(e.id);
+
 
                  if(e.id ==0){
                      rc2k.osa.ws.projet.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",{
                         ref:"",//id_utilisateur connecte
                         prj:e.nom ,//nom de projet
                         des:e.nom,//desc else nom projet
-                        dat:"",//date fin de projet
-                        fil:"2",//ftth
-                        pol:"0"
+                        dat:new Date(),//date fin de projet
+                        fil:"2"//ftth
                     }, function(reponse){
                         console.log("repon rc2k.osa.ws.projet.create");
                         console.log(reponse);
