@@ -15,14 +15,13 @@
 							idp : id projet,
 							ide : id etape,
 							etape : nom de l'etape,
-							url: page a appelé aprés creation
+							url: http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php
 						}
 						*/
 						if(typeof obj == "undefined") throw "RC2K: id projet doit être défini"
 						window.open (rc2k.osa.url + 'tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
 						//window.open (rc2k.osa.ui.url + token + '/tache_create/', '', "menubar=no, status=no, scrollbars=no, menubar=no, width=200, height=100");
-
-					}
+ 					}
 				}
 			},
 			ws: {
