@@ -13,8 +13,15 @@
 				 },*/
 				tache: {
 					create: function (token, obj) {
+						/*
+						{
+							idp : id projet,
+							ide : id etape,
+							etape : nom de l'etape
+						}
+						*/
 						if(typeof obj == "undefined") throw "RC2K: id projet doit être défini"
-						window.open (rc2k.osa.url + token + '/tache_create/' + idp, '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						window.open (rc2k.osa.url + token + '/tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
 						//window.open (rc2k.osa.ui.url + token + '/tache_create/', '', "menubar=no, status=no, scrollbars=no, menubar=no, width=200, height=100");
 
 					}
