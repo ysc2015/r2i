@@ -100,10 +100,22 @@
                         dat:new Date(),//date fin de projet
                         fil:"2"//ftth
                     }, function(reponse){
-                        console.log("repon rc2k.osa.ws.projet.create");
-                        console.log(reponse);
+
                          var areponse = JSON.parse (reponse);
                          console.log(areponse["extra"]);
+                         $.ajax({
+                             method: "POST",
+                             url: "api/projet/projet/set_projet_id_osa.php",
+                             data: {
+                                 idosa:areponse["extra"],
+                                 idsp: get("idsousprojet")
+
+                             },
+                             success : function(response){
+                                 console.log(response);
+
+                             }
+                         })
                      });
 
                 }else {
