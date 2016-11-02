@@ -68,9 +68,9 @@
                                 <select class="form-control" id="stt_update_company" name="stt_update_company" size="1">
                                     <option value="" selected disabled>Séléctionnez Entreprise STT</option>
                                     <?php
-                                    $companies = SelectEntreprise::all();
+                                    $companies = EntrepriseSTT::all();
                                     foreach($companies as $company) {
-                                        echo "<option value=\"$company->id_entreprise\">$company->lib_entreprise</option>";
+                                        echo "<option value=\"$company->id_entreprise\">$company->nom</option>";
                                     }
                                     ?>
                                 </select>
