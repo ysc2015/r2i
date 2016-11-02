@@ -102,7 +102,7 @@
                     }, function(reponse){
                         console.log("repon rc2k.osa.ws.projet.create");
                         console.log(reponse);
-                         var areponse = parseJSON(reponse):
+                         var areponse = parseJSON(reponse);
                          console.log(areponse["extra"]);
                      });
 
