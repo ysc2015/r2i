@@ -81,7 +81,39 @@
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
-            rc2k.osa.ui.tache.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm");
+            $.ajax({
+                method: "POST",
+                url: "api/projet/sousprojet/get_projet_id.php",
+                dataType : "json",
+                data: {
+                    idsp: get("idsousprojet")
+                },
+                success : function (e) {
+                     console.log(e);
+                     console.log("******");
+                     console.log(e.id);
+
+                 if(e.id ==0){
+                     rc2k.osa.ws.projet.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",{
+                        ref:"",//id_utilisateur connecte
+                        prj:e.nom ,//nom de projet
+                        des:e.nom,//desc else nom projet
+                        dat:"",//date fin de projet
+                        fil:"2",//ftth
+                        pol:"0"
+                    }, function(reponse){
+                        console.log("repon rc2k.osa.ws.projet.create");
+                        console.log(reponse);
+                     });
+
+                }else {
+                //    rc2k.osa.ui.tache.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm");
+                }
+            }
+
+
+            })
+
         });
         $("#id_sous_projet_transport_design_btn").click(function () {
 
