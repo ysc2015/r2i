@@ -23,7 +23,7 @@
 			ws: {
 				// url: 'http://sd-83414.dedibox.fr/osa/rest',
 				projet: {
-					create: function (obj, callback) {
+					create: function (token, obj, callback) {
 						$.ajax({
 							method: "POST",
 							url: rc2k.osa.url + token + "/_/"+ "api/projet.php",
