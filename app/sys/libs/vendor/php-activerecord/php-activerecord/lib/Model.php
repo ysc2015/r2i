@@ -1372,7 +1372,7 @@ class Model
 			$table = static::table();
 
 			if (($association = $table->get_relationship($association_name)) ||
-				  ($association = $table->get_relationship(($association_name = Utils::pluralize($association_name)))))
+				($association = $table->get_relationship(($association_name = Utils::pluralize($association_name)))))
 			{
 				// access association to ensure that the relationship has been loaded
 				// so that we do not double-up on records if we append a newly created
@@ -1538,18 +1538,18 @@ class Model
 					$single = false;
 					break;
 
-			 	case 'last':
+				case 'last':
 					if (!array_key_exists('order',$options))
 						$options['order'] = join(' DESC, ',static::table()->pk) . ' DESC';
 					else
 						$options['order'] = SQLBuilder::reverse_order($options['order']);
 
-					// fall thru
+				// fall thru
 
-			 	case 'first':
-			 		$options['limit'] = 1;
-			 		$options['offset'] = 0;
-			 		break;
+				case 'first':
+					$options['limit'] = 1;
+					$options['offset'] = 0;
+					break;
 			}
 
 			$args = array_slice($args,1);
@@ -1729,30 +1729,30 @@ class Model
 		return $this->serialize('Xml', $options);
 	}
 
-   /**
-   * Returns an CSV representation of this model.
-   * Can take optional delimiter and enclosure
-   * (defaults are , and double quotes)
-   *
-   * Ex:
-   * <code>
-   * ActiveRecord\CsvSerializer::$delimiter=';';
-   * ActiveRecord\CsvSerializer::$enclosure='';
-   * YourModel::find('first')->to_csv(array('only'=>array('name','level')));
-   * returns: Joe,2
-   *
-   * YourModel::find('first')->to_csv(array('only_header'=>true,'only'=>array('name','level')));
-   * returns: name,level
-   * </code>
-   *
-   * @see Serialization
-   * @param array $options An array containing options for csv serialization (see {@link Serialization} for valid options)
-   * @return string CSV representation of the model
-   */
-  public function to_csv(array $options=array())
-  {
-    return $this->serialize('Csv', $options);
-  }
+	/**
+	 * Returns an CSV representation of this model.
+	 * Can take optional delimiter and enclosure
+	 * (defaults are , and double quotes)
+	 *
+	 * Ex:
+	 * <code>
+	 * ActiveRecord\CsvSerializer::$delimiter=';';
+	 * ActiveRecord\CsvSerializer::$enclosure='';
+	 * YourModel::find('first')->to_csv(array('only'=>array('name','level')));
+	 * returns: Joe,2
+	 *
+	 * YourModel::find('first')->to_csv(array('only_header'=>true,'only'=>array('name','level')));
+	 * returns: name,level
+	 * </code>
+	 *
+	 * @see Serialization
+	 * @param array $options An array containing options for csv serialization (see {@link Serialization} for valid options)
+	 * @return string CSV representation of the model
+	 */
+	public function to_csv(array $options=array())
+	{
+		return $this->serialize('Csv', $options);
+	}
 
 	/**
 	 * Returns an Array representation of this model.
