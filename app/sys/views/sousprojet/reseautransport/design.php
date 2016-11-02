@@ -81,6 +81,10 @@
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
+            rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response){
+                console.log(response);
+            });
+            throw "";
             $.ajax({
                 method: "POST",
                 url: "api/projet/sousprojet/get_projet_id.php",
@@ -113,13 +117,19 @@
                              },
                              success : function(response){
                                  console.log(response);
+                                 rc2k.osa.ui.tache.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",{
+                                     idp : areponse["extra"],
+                                     ide : ide,
+                                     etape : etape,
+                                 });
+
 
                              }
                          })
                      });
 
                 }else {
-                //    rc2k.osa.ui.tache.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm");
+                    rc2k.osa.ui.tache.create("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm");
                 }
             }
 
