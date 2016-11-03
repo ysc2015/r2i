@@ -209,7 +209,9 @@
                 <div class="col-xs-12">
                     <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                     <button id="id_sous_projet_transport_aiguillage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
+                     <button id="id_sous_projet_transport_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button>
                 </div>
+
             </div>
         </div>
     </form>
@@ -296,6 +298,12 @@
         taiguillage_chambre_uploader = $("#ta_fileuploader_chambre").uploadFile(taiguillage_chambre_uploader_options);
     });
     $(document).ready(function() {
+        $("#id_sous_projet_transport_aiguillage_btn_osa").click(function () {
+            var typeetape = "sous_projet_distribution_aiguillage";
+
+            var variable_etape = "transportaiguillage";
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         $('#transport_aiguillage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             aiguillage_formdata[$( this ).attr('name')] = $( this).val();
         });
