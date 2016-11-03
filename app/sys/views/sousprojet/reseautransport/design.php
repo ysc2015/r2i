@@ -69,9 +69,7 @@
             <div class="form-group">
                 <div class="col-md-3"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
                 <div class="col-md-3">
-                    <input type="hidden" name="type_etape" id="type_etape" value="sous_projet_distribution_design">
-                    <input type="hidden" name="variable_etape" id="variable_etape" value="transportdesign">
-                    <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button>
+                     <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button>
                 </div>
             </div>
         </div>
@@ -86,13 +84,10 @@
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
-            var typeetape = $("#type_etape").val();
+            var typeetape = "sous_projet_distribution_design";
             alert(typeetape);
-            var variable_etape = $("#variable_etape").val();
+            var variable_etape = "transportdesign";
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
-
-
-
         });
         $("#id_sous_projet_transport_design_btn").click(function () {
 
