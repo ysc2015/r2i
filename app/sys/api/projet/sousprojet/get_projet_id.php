@@ -23,7 +23,7 @@ if(isset($idsp) && !empty($idsp)){
 
 if($sousProjet !== NULL) {
     $id = ($sousProjet->projet->id_projet_osa!==NULL?$sousProjet->projet->id_projet_osa:0);
-
+/*
     if(isset($tentre) && !empty($tentre)) {
         switch($tentre) {//19
             case "infoplaque" :
@@ -95,7 +95,7 @@ if($sousProjet !== NULL) {
             $idetape = $sousProjet->{$tentre}->$primary_key;
         }
     }
-
+*/
 }
 
 echo json_encode(array("id" => $id, "nom" => $sousProjet->projet->projet_nom, "idetape" => $idetape));
