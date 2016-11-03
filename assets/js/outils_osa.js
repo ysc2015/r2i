@@ -9,7 +9,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
         var idetape=0;
         if(aresponse["error"]!="success") {
             alert("Authentification non autorisé");
-        }else{ alert("ok");
+        }else{ alert(ide+" ok "+id_sous_projet);
             //apres authentification
             $.ajax({
                 method: "POST",
