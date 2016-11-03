@@ -23,9 +23,9 @@ if(isset($idsp) && !empty($idsp)){
 
 if($sousProjet !== NULL) {
     $id = ($sousProjet->projet->id_projet_osa!==NULL?$sousProjet->projet->id_projet_osa:0);
-/*
+
     if(isset($tentre) && !empty($tentre)) {
-        switch($tentre) {//19
+        switch($tentre) {
             case "infoplaque" :
                 $primary_key = "SousProjetInfoPlaque";
                 break;
@@ -86,17 +86,15 @@ if($sousProjet !== NULL) {
             case "distributionrecette" :
                 $primary_key = "SousProjetDistributionRecette";
                 break;
-
-
             default : break;
         }
 
-        if($sousProjet->{$tentre} !== NULL) {
+        /*if($sousProjet->{$tentre} !== NULL) {
             $idetape = $sousProjet->{$tentre}->$primary_key;
-        }
+        }*/
     }
-*/
+
 }
-echo "";
-//echo json_encode(array("id" => $id, "nom" => $sousProjet->projet->projet_nom, "idetape" => $idetape));
+
+echo json_encode(array("id" => $id, "nom" => $sousProjet->projet->projet_nom, "idetape" => $idetape));
 ?>
