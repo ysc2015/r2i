@@ -69,7 +69,7 @@
             <div class="form-group">
                 <div class="col-md-3"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
                 <div class="col-md-3">
-                     <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button>
+                     <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                 </div>
             </div>
         </div>

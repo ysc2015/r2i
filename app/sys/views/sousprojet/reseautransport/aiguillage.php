@@ -209,7 +209,7 @@
                 <div class="col-xs-12">
                     <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                     <button id="id_sous_projet_transport_aiguillage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
-                     <button id="id_sous_projet_transport_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button>
+                     <button id="id_sous_projet_transport_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                 </div>
 
             </div>
