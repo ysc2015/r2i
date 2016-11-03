@@ -70,7 +70,9 @@
                 <div class="col-md-3"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
                 <div class="col-md-3">
                     <input type="hidden" name="type_etape" id="type_etape" value="sous_projet_distribution_design">
-                    <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button></div>
+                    <input type="hidden" name="variable_etape" id="variable_etape" value="transportdesign">
+                    <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button>
+                </div>
             </div>
         </div>
     </form>
@@ -86,8 +88,8 @@
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
             var typeetape = $("#type_etape").val();
             alert(typeetape);
-
-            appelscriptosa(typeetape,get("idsousprojet"),"1");//1 = ide
+            var variable_etape = $("#variable_etape").val();
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
 
 
 
