@@ -43,6 +43,18 @@
 							}
 						}).done(callback);
 					}
+				},
+				tache : {
+					list : function(idp, callback){
+						$.ajax({
+							method: "POST",
+							url: rc2k.osa.url + "_/"+ "api/tache.php",
+							data: {
+								r2i_list_tache: true,
+								id: idp
+							}
+						}).done(callback);
+					}
 				}
 			}
 		}
