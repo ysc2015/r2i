@@ -97,6 +97,6 @@ if($sousProjet !== NULL) {
     }
 */
 }
-
+echo $id;
 echo json_encode(array("id" => $id, "nom" => $sousProjet->projet->projet_nom, "idetape" => $idetape));
 ?>
