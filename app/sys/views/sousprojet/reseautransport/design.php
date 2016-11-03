@@ -67,13 +67,16 @@
         <div class="alert alert-success" id="message_transport_design" role="alert" style="display: none;"></div>
         <div class="row items-push">
             <div class="form-group">
-                <div class="col-md-8"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
-                <div class="col-md-8"><button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button></div>
+                <div class="col-md-3"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <div class="col-md-3">
+                    <input type="hidden" name="type_etape" id="type_etape" value="sous_projet_distribution_design">
+                    <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">OSA</button></div>
             </div>
         </div>
     </form>
 </div>
 <script src="assets/js/rc2k.osa.js" ></script>
+<script src="assets/js/outils_osa.js" ></script>
 <script>
     var design_formdata = {};
     $(document).ready(function() {
@@ -81,74 +84,10 @@
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
-            rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response){
-                console.log(response);
-                var aresponse = JSON.parse(response);
+            var typeetape = $("#type_etape").val();
+            alert(typeetape);
 
-                if(aresponse["error"]!="success") {
-                    alert("Authentification non autorisé");
-                }else{
-                    //apres authentification
-                    $.ajax({
-                        method: "POST",
-                        url: "api/projet/sousprojet/get_projet_id.php",
-                        dataType : "json",
-                        data: {
-                            idsp: get("idsousprojet")
-                        },
-                        success : function (e) {
-                            console.log(e);
-
-
-                            if(e.id ==0){
-                                rc2k.osa.ws.projet.create({
-                                    ref:"",//id_utilisateur connecte
-                                    prj:e.nom ,//nom de projet
-                                    des:e.nom,//desc else nom projet
-                                    dat:new Date(),//date fin de projet
-                                    fil:"2"//ftth
-                                }, function(reponse){
-
-                                    var areponse = JSON.parse (reponse);
-                                    console.log(areponse["extra"]);
-                                    $.ajax({
-                                        method: "POST",
-                                        url: "api/projet/projet/set_projet_id_osa.php",
-                                        data: {
-                                            idosa:areponse["extra"],
-                                            idsp: get("idsousprojet")
-
-                                        },
-                                        success : function(response){
-                                            console.log(response);
-                                            rc2k.osa.ui.tache.create({
-                                                idp : areponse["extra"],
-                                                ide : "1",
-                                                etape : "sous_projet_distribution_design",
-                                                url : "http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
-
-                                            });
-
-
-                                        }
-                                    })
-                                });
-
-                            }else {
-                                rc2k.osa.ui.tache.create({
-                                    idp : e.id,
-                                    ide : "1",
-                                    etape : "sous_projet_distribution_design",
-                                    url : "http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
-                                });
-                            }
-                        }
-
-
-                    });
-
-                }
-            });
+            appelscriptosa(typeetape,get("idsousprojet"),"1");//1 = ide
 
 
 
