@@ -24,16 +24,16 @@ if(isset($idsp) && !empty($idsp)){
 if($sousProjet !== NULL) {
     $id = ($sousProjet->projet->id_projet_osa!==NULL?$sousProjet->projet->id_projet_osa:0);
 
-    if(isset($tentree) && !empty($tentree)) {
-        switch($tentree) {
+    if(isset($tentre) && !empty($tentre)) {
+        switch($tentre) {
             case "transportdesign" :
                 $primary_key = "id_sous_projet_transport_design";
                 break;
             default : break;
         }
 
-        if($sousProjet->{$tentree} !== NULL) {
-            $idetape = $sousProjet->{$tentree}->$primary_key;
+        if($sousProjet->{$tentre} !== NULL) {
+            $idetape = $sousProjet->{$tentre}->$primary_key;
         }
     }
 
