@@ -300,7 +300,7 @@
     $(document).ready(function() {
         $("#id_sous_projet_transport_aiguillage_btn_osa").click(function () {
             var typeetape = "sous_projet_distribution_aiguillage";
-            console.log(get("idsousprojet"));
+
             var variable_etape = "transportaiguillage";
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });

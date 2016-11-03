@@ -85,7 +85,7 @@
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
             var typeetape = "sous_projet_distribution_design";
-            alert(typeetape);
+
             var variable_etape = "transportdesign";
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
