@@ -115,6 +115,8 @@
             }
             dcmd_fin_trvx_formdata['ids'] = get('idsousprojet');
 
+            console.log(dcmd_fin_trvx_formdata);
+
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseaudistribution/commandefintravaux_save.php",
