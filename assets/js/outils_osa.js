@@ -62,7 +62,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                             rc2k.osa.ui.tache.create({
                                 idp : e.id,
                                 ide : idetape,
-                                etape : "sous_projet_distribution_design",
+                                etape : typeetape,
                                 url : "http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
                             });
                         }
