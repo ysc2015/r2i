@@ -33,6 +33,7 @@ RewriteRule  "api/ot/planningot/(\w*\.php)"          "app/MY_ROUTER.php?script=o
 
 #myot api
 RewriteRule  "api/myot/ot/(\w*\.php)"          "app/MY_ROUTER.php?script=myot/ot/$1"  [QSA,L]
+RewriteRule  "api/osa/(\w*\.php)"          "app/MY_ROUTER.php?script=osa/$1"  [QSA,L]
 
 #pblq api
 RewriteRule  "api/pointbloquant/pointbloquant/(\w*\.php)"          "app/MY_ROUTER.php?script=pointbloquant/pointbloquant/$1"  [QSA,L]
