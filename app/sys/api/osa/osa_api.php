@@ -38,10 +38,35 @@ class OsaApi
     public static function tache(){
         $res = self::appel("r2i_list_tache=true&id=4", "tache.php");
         if($res === FALSE){
-            ///
-        }else{
-            /// decode reponse puis traitement
-            echo $res;
+            echo "attata";            ///
+        }else{ echo "dedede";
+            //extract($_GET);
+            $resultat = json_decode($res) ;
+            print_r($res);
+           //  echo implode(',',$resultat->ENCOURS);
+
+
+            $tabencours= [];
+            $tabtermine= [];
+            $i=0;
+die();
+            $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
+
+            while($resultatconteur= $bddresultat->fetch()){
+                  //echo $resultatconteur[1];
+                $tabencours [$i]= [$resultatconteur[0],$resultatconteur[1]];
+                $encoure = $resultatconteur[1] ;
+            }
+
+            $bddresultat = $bdd->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->TERMINE)) .")  and id_etape = '".$idetape."' and  type_etape = '".$typeetape."'");
+            while($resultatconteur= $bddresultat->fetch()){
+                 //echo $resultatconteur[1];
+                $tabtermine [$i]= [$resultatconteur[0],$resultatconteur[1]];
+                $termine = $resultatconteur[1];
+
+
+            }
+            echo $termine.'/'.$encoure."dededdedecece";
         }
     }
 }
