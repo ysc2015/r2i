@@ -88,8 +88,8 @@
                 idetape: 2,
                 typeetape: "sous_projet_transport_design"
             },
-            sucess:function(reponse){alert();
-                $('#detailstachedesign').html("dede"+reponse)
+            sucess:function(reponse){
+                $('#detailstachedesign').html("dede"+reponse);
             }
         });
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
