@@ -73,48 +73,48 @@ if(isset($ids) && !empty($ids)){
     $message[] = "Référence sous projet invalide !";
 }
 
-if(isset($cftrvx_intervenant_be)){
-    $stm->bindParam(':intervenant_be',$cftrvx_intervenant_be);
+if(isset($dcftrvx_intervenant_be)){
+    $stm->bindParam(':intervenant_be',$dcftrvx_intervenant_be);
     $insert = true;
 }
 
-if(isset($cftrvx_date_butoir)){
-    $stm->bindParam(':date_butoir',$cftrvx_date_butoir);
+if(isset($dcftrvx_date_butoir)){
+    $stm->bindParam(':date_butoir',$dcftrvx_date_butoir);
     $insert = true;
 }
 
-if(isset($cftrvx_traitement_retour_terrain)){
-    $stm->bindParam(':traitement_retour_terrain',$cftrvx_traitement_retour_terrain);
+if(isset($dcftrvx_traitement_retour_terrain)){
+    $stm->bindParam(':traitement_retour_terrain',$dcftrvx_traitement_retour_terrain);
     $insert = true;
 }
 
-if(isset($cftrvx_modification_carto)){
-    $stm->bindParam(':modification_carto',$cftrvx_modification_carto);
+if(isset($dcftrvx_modification_carto)){
+    $stm->bindParam(':modification_carto',$dcftrvx_modification_carto);
     $insert = true;
 }
 
-if(isset($cftrvx_commandes_fin_travaux)){
-    $stm->bindParam(':commandes_fin_travaux',$cftrvx_commandes_fin_travaux);
+if(isset($dcftrvx_commandes_fin_travaux)){
+    $stm->bindParam(':commandes_fin_travaux',$dcftrvx_commandes_fin_travaux);
     $insert = true;
 }
 
-if(isset($cftrvx_date_transmission_tfx)){
-    $stm->bindParam(':date_transmission_tfx',$cftrvx_date_transmission_tfx);
+if(isset($dcftrvx_date_transmission_tfx)){
+    $stm->bindParam(':date_transmission_tfx',$dcftrvx_date_transmission_tfx);
     $insert = true;
 }
 
-if(isset($cftrvx_ref_commande_fin_travaux)){
-    $stm->bindParam(':ref_commande_fin_travaux',$cftrvx_ref_commande_fin_travaux);
+if(isset($dcftrvx_ref_commande_fin_travaux)){
+    $stm->bindParam(':ref_commande_fin_travaux',$dcftrvx_ref_commande_fin_travaux);
     $insert = true;
 }
 
-if(isset($cftrvx_ok_ft)){
-    $stm->bindParam(':ok_ft',$cftrvx_ok_ft);
+if(isset($dcftrvx_ok_ft)){
+    $stm->bindParam(':ok_ft',$dcftrvx_ok_ft);
     $insert = true;
 }
 
-if(isset($cftrvx_ok)){
-    $stm->bindParam(':ok',$cftrvx_ok);
+if(isset($dcftrvx_ok)){
+    $stm->bindParam(':ok',$dcftrvx_ok);
     $insert = true;
 }
 
