@@ -70,6 +70,7 @@
                 <div class="col-md-3"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
                 <div class="col-md-3">
                      <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+                    <div id="detailstachedesign"></div>
                 </div>
             </div>
         </div>
@@ -80,11 +81,22 @@
 <script>
     var design_formdata = {};
     $(document).ready(function() {
+        $.ajax({
+            method:"GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_design"
+            },
+            sucess:function(reponse){
+                $('#detailstachedesign').html("dede"+reponse)
+            }
+        })
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
-            var typeetape = "sous_projet_distribution_design";
+            var typeetape = "sous_projet_transport_design";
 
             var variable_etape = "transportdesign";
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
