@@ -27,64 +27,64 @@ if($sousProjet !== NULL) {
     if(isset($tentre) && !empty($tentre)) {
         switch($tentre) {
             case "infoplaque" :
-                $primary_key = "SousProjetInfoPlaque";
+                $primary_key = "id_sous_projet_plaque";
                 break;
             case "infozone" :
-                $primary_key = "SousProjetZone";
+                $primary_key = "id_sous_projet_zone";
                 break;
             case "siteorigine" :
-                $primary_key = "SousProjetSiteOrigine";
+                $primary_key = "id_sous_projet_site_origine";
                 break;
             case "plaquephase" :
-                $primary_key = "SousProjetPlaquePhase";
+                $primary_key = "id_sous_projet_plaque_phase";
                 break;
             case "plaqueetude" :
-                $primary_key = "SousProjetPlaqueTraitementEtude";
+                $primary_key = "id_sous_projet_plaque_traitement_etude";
                 break;
             case "plaquecarto" :
-                $primary_key = "SousProjetPlaqueCarto";
+                $primary_key = "id_sous_projet_plaque_carto";
                 break;
             case "plaqueposadr" :
-                $primary_key = "SousProjetPlaquePosAdresse";
+                $primary_key = "id_sous_projet_plaque_pos_adresse";
                 break;
             case "plaquesurvadr" :
-                $primary_key = "SousProjetPlaqueSurveyAdresse";
+                $primary_key = "id_sous_projet_plaque_survey_adresse";
                 break;
             case "transportdesign" :
-                $primary_key = "SousProjetTransportDesign";
+                $primary_key = "id_sous_projet_transport_design";
                 break;
             case "transportaiguillage" :
                 $primary_key = "id_sous_projet_transport_aiguillage";
                 break;
             case "transportcmcctr" :
-                $primary_key = "SousProjetTransportCommandeCTR";
+                $primary_key = "id_sous_projet_transport_commande_ctr";
                 break;
             case "transporttirage" :
-                $primary_key = "SousProjetTransportTirage";
+                $primary_key = "id_sous_projet_transport_tirage";
                 break;
             case "transportraccordement" :
-                $primary_key = "SousProjetTransportRaccordement";
+                $primary_key = "id_sous_projet_transport_raccordements";
                 break;
             case "transportrecette" :
-                $primary_key = "SousProjetTransportRecette";
+                $primary_key = "id_sous_projet_transport_recette";
                 break;
             case "distributiondesign" :
-                $primary_key = "SousProjetDistributionDesign";
+                $primary_key = "id_sous_projet_distribution_design";
                 break;
             case "distributionaiguillage" :
-                $primary_key = "SousProjetDistributionAiguillage";
+                $primary_key = "id_sous_projet_distribution_aiguillage";
                 break;
             case "distributioncmdcdi" :
-                $primary_key = "SousProjetDistributionCommandeCDI";
+                $primary_key = "id_sous_projet_distribution_commande_cdi";
                 break;
             case "distributiontirage" :
-                $primary_key = "SousProjetDistributionTirage";
+                $primary_key = "id_sous_projet_distribution_tirage";
                 break;
             case "distributionraccordement" :
-                $primary_key = "SousProjetDistributionRaccordement";
+                $primary_key = "id_sous_projet_distribution_raccordements";
                 break;
             case "distributionrecette" :
-                $primary_key = "SousProjetDistributionRecette";
+                $primary_key = "id_sous_projet_distribution_recette";
                 break;
             default : break;
         }
