@@ -66,7 +66,7 @@ class OsaApi
 
 
             }
-            echo $termine.'/'.$encoure."dededdedecece";
+            echo $termine.'/'.$encoure."dedicace";
         }
     }
 }
