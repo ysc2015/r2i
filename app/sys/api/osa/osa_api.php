@@ -51,7 +51,7 @@ class OsaApi
             $tabtermine= [];
             $i=0;
 
-            $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
+            /*$bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
 
             while($resultatconteur= $bddresultat->fetch()){
                   //echo $resultatconteur[1];
@@ -66,7 +66,7 @@ class OsaApi
                 $termine = $resultatconteur[1];
 
 
-            }
+            }*/
             echo "dedicace";
         }
     }
