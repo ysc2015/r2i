@@ -399,11 +399,12 @@
                     tentree : 'transporttirage'
                 }
             }).done(function (msg) {
-                App.showMessage(msg, '#message_transport_raccordements');
                 var obj = JSON.parse(msg);
                 console.log(msg);
                 if(obj.error == 0) {
                     document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transporttirage';
+                } else {
+                    App.showMessage(msg, '#message_transport_raccordements');
                 }
             });
         });

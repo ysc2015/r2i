@@ -329,11 +329,12 @@
                     tentree : 'distributionaiguillage'
                 }
             }).done(function (msg) {
-                App.showMessage(msg, '#message_distribution_aiguillage');
                 var obj = JSON.parse(msg);
                 console.log(msg);
                 if(obj.error == 0) {
                     document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=distributionaiguillage';
+                } else {
+                    App.showMessage(msg, '#message_distribution_aiguillage');
                 }
             });
         });
