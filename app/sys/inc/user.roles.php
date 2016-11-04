@@ -200,7 +200,7 @@ class adm extends baseUser {
     function utilisateur() {
         Page::utilisateur(
             array(
-                "free" => array("liste","add","update","delete","nro"),
+                "free" => array("liste","add","update","delete","nro","nropci"),
                 "stt" => array("liste","add","update","delete")
             )
         );
@@ -218,6 +218,14 @@ class adm extends baseUser {
         Page::nro(
             array(
                 "nro" => array("liste","add","update","delete")
+            )
+        );
+    }
+
+    function nropci() {
+        Page::nropci(
+            array(
+                "nropci" => array("liste","update")
             )
         );
     }

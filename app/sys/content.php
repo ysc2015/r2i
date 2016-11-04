@@ -214,6 +214,10 @@ switch ($page) {
         $connectedProfil->nro();
         echo "<br><br>";
         break;
+    case "nropci":
+        $connectedProfil->nropci();
+        echo "<br><br>";
+        break;
 }
 
 ?>

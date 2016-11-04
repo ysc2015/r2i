@@ -43,6 +43,9 @@
                             <a class="list-group-item" href="?page=nro">
                                 <i class="fa fa-link push-5-r"></i> Nro
                             </a>
+                            <a class="list-group-item" href="?page=nropci">
+                                <i class="fa fa-link push-5-r"></i> Nro/PCI
+                            </a>
                             <a class="list-group-item" href="?page=mailcreation">
                                 <i class="fa fa-fw fa-list-alt push-5-r"></i> Mails création projet
                             </a>
