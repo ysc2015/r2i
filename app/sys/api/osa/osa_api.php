@@ -53,22 +53,25 @@ class OsaApi
             $i=0;
             $encoure = 0;
             $termine = 0;
+            if($resultat->ENCOURS!=""){
+                $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
 
-             $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
+                while($resultatconteur= $bddresultat->fetch()){
 
-            while($resultatconteur= $bddresultat->fetch()){
-                  //echo $resultatconteur[1];
-                $tabencours [$i]= [$resultatconteur[0],$resultatconteur[1]];
-                $encoure = $resultatconteur[1] ;
+                    $tabencours [$i]= [$resultatconteur[0],$resultatconteur[1]];
+                    $encoure = $resultatconteur[1] ;
+                }
             }
 
-            $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->TERMINE)) .")  and id_etape = '".$idetape."' and  type_etape = '".$typeetape."'");
-            while($resultatconteur= $bddresultat->fetch()){
-                 //echo $resultatconteur[1];
-                $tabtermine [$i]= [$resultatconteur[0],$resultatconteur[1]];
-                $termine = $resultatconteur[1];
+            if($resultat->TERMINE!="") {
+                $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (" . implode(',', array_values($resultat->TERMINE)) . ")  and id_etape = '" . $idetape . "' and  type_etape = '" . $typeetape . "'");
+                while ($resultatconteur = $bddresultat->fetch()) {
+
+                    $tabtermine [$i] = [$resultatconteur[0], $resultatconteur[1]];
+                    $termine = $resultatconteur[1];
 
 
+                }
             }
             echo $encoure.'#'.$termine;
         }
