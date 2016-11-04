@@ -98,6 +98,11 @@ class SousProjet extends ActiveRecord\Model {
             'class_name' => 'SousProjetTransportRecette',
             'foreign_key' => 'id_sous_projet'
         ),
+        array(
+            'transportcmdfintravaux',
+            'class_name' => 'SousProjetTransportCommandeFinTravaux',
+            'foreign_key' => 'id_sous_projet'
+        ),
         /**
          * RÉSEAU DE DISTRIBUTION
          */
@@ -129,6 +134,11 @@ class SousProjet extends ActiveRecord\Model {
         array(
             'distributionrecette',
             'class_name' => 'SousProjetDistributionRecette',
+            'foreign_key' => 'id_sous_projet'
+        ),
+        array(
+            'distributioncmdfintravaux',
+            'class_name' => 'SousProjetDistributionCommandeFinTravaux',
             'foreign_key' => 'id_sous_projet'
         )
     );

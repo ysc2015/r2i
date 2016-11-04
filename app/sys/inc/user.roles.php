@@ -165,8 +165,8 @@ class adm extends baseUser {
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
-                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
-                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette","commandefintravaux"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux"),
             )
         );
     }
