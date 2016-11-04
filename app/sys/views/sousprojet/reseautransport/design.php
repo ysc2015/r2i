@@ -82,11 +82,12 @@
     var design_formdata = {};
     $(document).ready(function() {
          $.ajax({
-            method : "POST",
+            method : "GET",
             url :"app/sys/api/osa/osa_api.php",
             data:{
                 idetape: 2,
-                typeetape: "sous_projet_transport_design"
+                typeetape: "sous_projet_transport_design",
+                idprojet:26
             },
             success : function(reponse){
                 $('#detailstachedesign').html(reponse);
