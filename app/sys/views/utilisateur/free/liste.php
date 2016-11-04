@@ -72,6 +72,7 @@
 
                 $(users_btns.join(',')).removeClass("disabled");
 
+                //VPI
                 if(users_dt.row('.selected').data().id_profil_utilisateur == 7) {
                     $('#link_nro_wrp').show();
                     $.ajax({
@@ -96,6 +97,33 @@
                      });
                 } else {
                     $('#link_nro_wrp').hide();
+                }
+
+                //PCI
+                if(users_dt.row('.selected').data().id_profil_utilisateur == 8) {
+                    $('#link_nro_wrp2').show();
+                    $.ajax({
+                        method: "POST",
+                        url: "api/utilisateur/free/get_user_nro_list2.php",
+                        dataType: "json",
+                        data: {
+                            idu : users_dt.row('.selected').data().id_utilisateur
+                        }
+                    })
+                        .done(function (data) {
+                            var values = [];
+                            $('#linked-nro2').html('<option value="">&nbsp;</option>');
+                            for(var i = 0 ; i < data.length ; i++) {
+                                if(users_dt.row('.selected').data().id_utilisateur == data[i]['idu']) {
+                                    values.push(data[i]['id']);
+                                }
+                                html = '<option value="'+data[i]['id']+'">'+data[i]['nro']+'</option>';
+                                $('#linked-nro2').append(html);
+                            }
+                            $('#linked-nro2').val(values);
+                        });
+                } else {
+                    $('#link_nro_wrp2').hide();
                 }
             }
 

@@ -47,3 +47,6 @@ RewriteRule  "api/mail/projetcreation/(\w*\.php)"          "app/MY_ROUTER.php?sc
 #nro menu api
 RewriteRule  "api/nro/nro/(\w*\.php)"          "app/MY_ROUTER.php?script=nro/nro/$1"  [QSA,L]
 
+#nropci menu api
+RewriteRule  "api/nropci/nropci/(\w*\.php)"          "app/MY_ROUTER.php?script=nropci/nropci/$1"  [QSA,L]
+
