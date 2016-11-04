@@ -7,7 +7,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
         console.log(response);
         var aresponse = JSON.parse(response);
         var idetape=0;
-        if(aresponse["error"]!="success") {
+        if(false) {
             alert("Authentification non autorisé");
         }else{ console.log(ide+" ok "+id_sous_projet);
             //apres authentification
