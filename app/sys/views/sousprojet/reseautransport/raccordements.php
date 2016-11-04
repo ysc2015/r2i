@@ -133,6 +133,7 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_transport_raccordements_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
+                    <button id="id_sous_projet_transport_raccord_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
                 </div>
             </div>
         </div>
@@ -389,6 +390,23 @@
 
             }
         } );
+        $("#id_sous_projet_transport_raccord_ot_btn").click(function () {
+            $.ajax({
+                method: "POST",
+                url: "api/ot/ot/check_ot.php",
+                data: {
+                    ids : get('idsousprojet'),
+                    tentree : 'transporttirage'
+                }
+            }).done(function (msg) {
+                App.showMessage(msg, '#message_transport_raccordements');
+                var obj = JSON.parse(msg);
+                console.log(msg);
+                if(obj.error == 0) {
+                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transporttirage';
+                }
+            });
+        });
         /*$.smoothScroll({
             scrollTarget: '#rtransport_block'
         });
