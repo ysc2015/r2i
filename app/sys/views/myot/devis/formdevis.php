@@ -14,6 +14,17 @@
             <div id="devis_autre_uploader"></div>
         </div>
     </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12">
+            <label for="comment_stt">Remarques <!--<span class="text-danger">*</span>--></label>
+            <textarea class="form-control" id="comment_stt" name="comment_stt" rows="6"></textarea>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12">
+            <button id="download_devis" class='btn btn-success btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Enregistrer</button>
+        </div>
+    </div>
 </div>
 <script>
     var uploader1_options = {
@@ -167,9 +178,11 @@
     $(function () {
         // Init page plugins & helpers
         uploader1_options = merge_options(defaultUploaderStrLocalisation,uploader1_options);
+        uploader1_options.showDelete = false;
         uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
 
         uploader2_options = merge_options(defaultUploaderStrLocalisation,uploader2_options);
+        uploader2_options.showDelete = false;
         uploader2 = $("#devis_autre_uploader").uploadFile(uploader2_options);
     });
     $(document).ready(function() {
