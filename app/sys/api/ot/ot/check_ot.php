@@ -22,7 +22,7 @@ if($sousProjet !== NULL) {
             $message[] = "ok";
         } else {
             $err++;
-            $message[] = "Etape non enregistré, enregistrer l'étape en cours!";
+            $message[] = "Etape ".$lang[$tentree]." non enregistrée, veuillez l'enregistrer svp!";
         }
     } else {
         $err++;

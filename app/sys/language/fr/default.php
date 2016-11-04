@@ -58,3 +58,8 @@ $lang["ref_chantier"] = "Référence";
 $lang["nature_travaux"] = "Nature des travaux";
 $lang["environement"] = "Environement";
 $lang["synthese"] = "Synthèse";
+
+$lang["transportaiguillage"] = "Transport aiguillage";
+$lang["transporttirage"] = "Transport tirage";
+$lang["distributionaiguillage"] = "Distribution aiguillage";
+$lang["distributiontirage"] = "Distribution tirage";
