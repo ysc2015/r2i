@@ -37,8 +37,9 @@ class OsaApi
     }
 
     public static function tache($db){
-        $res = self::appel("r2i_list_tache=true&id=26", "tache.php");
         extract($_GET);
+        $res = self::appel("r2i_list_tache=true&id=".$idprojet, "tache.php");
+
         if($res === FALSE){
             ///
         }else{ 
@@ -52,6 +53,7 @@ print_r($resultat);
             $i=0;
             $encoure = 0;
             $termine = 0;
+
              $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
 
             while($resultatconteur= $bddresultat->fetch()){
