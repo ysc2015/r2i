@@ -81,7 +81,7 @@
 <script>
     var design_formdata = {};
     $(document).ready(function() {
-        /*$.ajax({
+         $.ajax({
             method:"GET",
             url :"app/sys/api/osa/osa_api.php",
             data:{
@@ -91,7 +91,7 @@
             sucess:function(reponse){
                 $('#detailstachedesign').html("dede"+reponse)
             }
-        })*/
+        });
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
