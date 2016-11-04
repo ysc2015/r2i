@@ -54,7 +54,7 @@ if($sousProjet !== NULL) {
                 $primary_key = "SousProjetTransportDesign";
                 break;
             case "transportaiguillage" :
-                $primary_key = "SousProjetTransportAiguillage";
+                $primary_key = "id_sous_projet_transport_aiguillage";
                 break;
             case "transportcmcctr" :
                 $primary_key = "SousProjetTransportCommandeCTR";
