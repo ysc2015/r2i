@@ -40,12 +40,12 @@ class OsaApi
         $res = self::appel("r2i_list_tache=true&id=4", "tache.php");
         extract($_GET);
         if($res === FALSE){
-            //echo "attata";            ///
+            ///
         }else{ 
              $resultat = json_decode($res) ;
 
 
-
+print_r($resultat);
 
             $tabencours= [];
             $tabtermine= [];
