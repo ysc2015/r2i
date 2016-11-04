@@ -20,38 +20,38 @@ if(isset($idch) && !empty($idch)) {
     $stm->bindParam(':id_chambre',$idch);
     if (isset($_FILES["myfile"])) {
         $error = $_FILES["myfile"]["error"];
-        if (!is_array($_FILES["myfile"]["name"])) {
+        if (!is_array($filename)) {
 
-            $fileName = time() . "_" . $_FILES["myfile"]["name"];
+            $MyfileName = time() . "_" . $filename;
 
-            $stm->bindParam(':nom_fichier',$_FILES["myfile"]["name"]);
-            $stm->bindParam(':nom_fichier_disque',$fileName);
+            $stm->bindParam(':nom_fichier',$filename);
+            $stm->bindParam(':nom_fichier_disque',$MyfileName);
             $stm->bindParam(':date_creation',date('Y-m-d H:i:s'));
 
             if($stm->execute()) {
                 $details = array();
-                $details['name'] = $db->lastInsertId()."_".time() . "_" . $_FILES["myfile"]["name"];
+                $details['name'] = $db->lastInsertId()."_".time() . "_" . $filename;
                 $details['id'] = $db->lastInsertId();
 
-                $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $fileName)?$details:[]);
+                $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $MyfileName)?$details:[]);
             }
 
         } else  {
-            $fileCount = count($_FILES["myfile"]["name"]);
+            $fileCount = count($filename);
             for ($i = 0; $i < $fileCount; $i++) {
 
-                $fileName = time() . "_" . $_FILES["myfile"]["name"][$i];
+                $MyfileName = time() . "_" . $filename[$i];
 
-                $stm->bindParam(':nom_fichier',$_FILES["myfile"]["name"]);
-                $stm->bindParam(':nom_fichier_disque',$fileName);
+                $stm->bindParam(':nom_fichier',$filename);
+                $stm->bindParam(':nom_fichier_disque',$MyfileName);
                 $stm->bindParam(':date_creation',date('Y-m-d H:i:s'));
 
                 if($stm->execute()) {
                     $details = array();
-                    $details['name'] = $db->lastInsertId()."_".time() . "_" . $_FILES["myfile"]["name"];
+                    $details['name'] = $db->lastInsertId()."_".time() . "_" . $filename;
                     $details['id'] = $db->lastInsertId();
 
-                    $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $fileName)?$details:[]);
+                    $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $MyfileName)?$details:[]);
                 }
             }
         }
