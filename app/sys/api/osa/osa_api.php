@@ -46,7 +46,7 @@ class OsaApi
              $resultat = json_decode($res) ;
 
 
-            print_r($resultat);
+            //print_r($resultat);
 
             $tabencours= [];
             $tabtermine= [];
