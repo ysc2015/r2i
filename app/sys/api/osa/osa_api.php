@@ -38,18 +38,19 @@ class OsaApi
 
     public static function tache(){
         $res = self::appel("r2i_list_tache=true&id=4", "tache.php");
+        extract($_POST);
         if($res === FALSE){
             //echo "attata";            ///
         }else{ 
              $resultat = json_decode($res) ;
-             print_r($res);
+
 
 
 
             $tabencours= [];
             $tabtermine= [];
             $i=0;
-/*
+
             $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
 
             while($resultatconteur= $bddresultat->fetch()){
@@ -65,7 +66,7 @@ class OsaApi
                 $termine = $resultatconteur[1];
 
 
-            }*/
+            }
             echo "dedicace";
         }
     }
