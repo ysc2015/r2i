@@ -2,18 +2,19 @@
 
 class OsaApi
 {
-    public static function appel($postBody, $action){
+    public static function appel($postBody, $action_){
         $curl = curl_init();
-        $token = "NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm";
+        $token_ = "NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm";
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://sd-83414.dedibox.fr/osa/rest/auth/$token&param=$action",
+            //http://sd-83414.dedibox.fr
+            CURLOPT_URL => "http://localhost/osa/api/auth.php",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => $postBody . "&post_auth=true&rest=api",
+            CURLOPT_POSTFIELDS => $postBody . "&token=$token_&param=$action_&post_auth=true&rest=api",
             CURLOPT_HTTPHEADER => array(
                 "authorization: Basic cnJhaG1vdW5pOktlZXNoaWU3",
                 "cache-control: no-cache",
@@ -38,8 +39,9 @@ class OsaApi
     public static function tache(){
         $res = self::appel("r2i_list_tache=true&id=4", "tache.php");
         if($res === FALSE){
-            echo "attata";            ///
-        }else{ echo "dedede";
+            //echo "attata";            ///
+        }else{ 
+            // echo "dedede";
             //extract($_GET);
             $resultat = json_decode($res) ;
             print_r($res);
