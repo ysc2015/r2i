@@ -15,6 +15,7 @@
                         <th>tentree</th>
                         <th>type</th>
                         <th>commentaire</th>
+                        <th>nom</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,7 @@
                         <th>tentree</th>
                         <th>type</th>
                         <th>commentaire</th>
+                        <th>nom</th>
                     </tr>
                     </tfoot>
                 </table>
@@ -96,17 +98,24 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_liste.php'
+                "url": 'api/myot/ot/myot_liste.php'
             },
             "columns": [
                 { "data": "id_ordre_de_travail" },
                 { "data": "id_sous_projet" },
                 { "data": "type_entree" },
                 { "data": "type_ot" },/*lib_type_ordre_travail*/
-                { "data": "commentaire" }
+                { "data": "commentaire" }/*,
+                { "data": "ville_nom" }*/
             ],
             "columnDefs": [
-                { "targets": [ 0,1,2,4 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1,2,4 ], "visible": false, "searchable": false },
+                {
+                    "targets": 5,
+                    "render": function ( data, type, full, meta ) {
+                        return full.ville_nom + ' ' + full.lib_nro + ' ' + full.plaque + ' ' + full.zone;
+                    }
+                }
             ],
             "order": [[0, 'desc']]
             ,
