@@ -182,6 +182,16 @@ function setSousProjetUsers($sousprojet) {
 
             }
 
+            if($sousprojet->transportcmdfintravaux !== NULL) {
+
+                if($sousprojet->transportcmdfintravaux->intervenant_be > 0) {
+                    if(!in_array($sousprojet->transportcmdfintravaux->intervenant_be,$users_list)) {
+                        $users_list[] = $sousprojet->transportcmdfintravaux->intervenant_be;
+                    }
+                }
+
+            }
+
             if($sousprojet->distributiondesign !== NULL) {
 
                 if($sousprojet->distributiondesign->intervenant_be > 0) {
@@ -273,6 +283,16 @@ function setSousProjetUsers($sousprojet) {
                 if($sousprojet->distributionrecette->intervenant_free > 0) {
                     if(!in_array($sousprojet->distributionrecette->intervenant_free,$users_list)) {
                         $users_list[] = $sousprojet->distributionrecette->intervenant_free;
+                    }
+                }
+
+            }
+
+            if($sousprojet->distributioncmdfintravaux !== NULL) {
+
+                if($sousprojet->distributioncmdfintravaux->intervenant_be > 0) {
+                    if(!in_array($sousprojet->distributioncmdfintravaux->intervenant_be,$users_list)) {
+                        $users_list[] = $sousprojet->distributioncmdfintravaux->intervenant_be;
                     }
                 }
 

@@ -89,9 +89,9 @@ if($sousProjet !== NULL) {
             default : break;
         }
 
-        /*if($sousProjet->{$tentre} !== NULL) {
+        if($sousProjet->{$tentre} !== NULL) {
             $idetape = $sousProjet->{$tentre}->$primary_key;
-        }*/
+        }
     }
 
 }
