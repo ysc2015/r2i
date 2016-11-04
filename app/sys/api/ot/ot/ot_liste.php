@@ -30,12 +30,14 @@ if(isset($tentree)) {
     $condition .=" AND t1.type_entree='$tentree'";
 }
 
-switch($connectedProfil->profil->profil->shortlib) {
-    case "stt" :
-        $condition .=" AND t1.id_entreprise = ".$connectedProfil->profil->id_entreprise;
-        break;
+if(!isset($tab_imei)) {
+    switch($connectedProfil->profil->profil->shortlib) {
+        case "stt" :
+            $condition .=" AND t1.id_entreprise = ".$connectedProfil->profil->id_entreprise;
+            break;
 
-    default : break;
+        default : break;
+    }
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join ressource as res on t1.id_ordre_de_travail = res.id_ordre_de_travail"));
