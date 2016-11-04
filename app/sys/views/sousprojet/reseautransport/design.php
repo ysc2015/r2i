@@ -84,10 +84,7 @@
          $.ajax({
             method:"POST",
             url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: 2,
-                typeetape: "sous_projet_transport_design"
-            },
+
             sucess:function(reponse){
                alert();// $('#detailstachedesign').html("dede"+reponse);
             }
