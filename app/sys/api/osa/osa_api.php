@@ -37,7 +37,7 @@ class OsaApi
     }
 
     public static function tache($db){
-        $res = self::appel("r2i_list_tache=true&id=3", "tache.php");
+        $res = self::appel("r2i_list_tache=true&id=26", "tache.php");
         extract($_GET);
         if($res === FALSE){
             ///
