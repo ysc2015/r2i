@@ -6,7 +6,7 @@
 	if(typeof jQuery == "undefined") throw "RC2K: Missing JQuery module";
 	w.rc2k = {
 		osa : {
-			url: 'http://sd-83414.dedibox.fr/osa/rest/',
+			url: 'http://sd-83414.dedibox.fr/osa/',
 			ui: {
 				tache: {
 					create: function (obj) {
@@ -19,21 +19,22 @@
 						}
 						*/
 						if(typeof obj == "undefined") throw "RC2K: id projet doit être défini"
-						window.open (rc2k.osa.url + 'tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						window.open (rc2k.osa.url + 'ui/tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
 						//window.open (rc2k.osa.ui.url + token + '/tache_create/', '', "menubar=no, status=no, scrollbars=no, menubar=no, width=200, height=100");
  					}
 				}
 			},
 			ws: {
 				auth : function(token, callback){
-					$.ajax({'url':rc2k.osa.url + 'auth/' + token}).done(callback);
+					$.ajax({'url':rc2k.osa.url + 'ws/auth/' + token}).done(callback);
 				},
 				projet: {
 					create: function (obj, callback) {
 						$.ajax({
 							method: "POST",
-							url: rc2k.osa.url + "_/"+ "api/projet.php",
+							url: rc2k.osa.url + "api/projet.php",
 							data: {
+								r2i_agent : true,
 								referant_projet: obj.ref,
 								nom_projet: obj.prj,
 								description_projet: obj.des,
@@ -48,7 +49,7 @@
 					list : function(idp, callback){
 						$.ajax({
 							method: "POST",
-							url: rc2k.osa.url + "_/"+ "api/tache.php",
+							url: rc2k.osa.url + "api/tache.php",
 							data: {
 								r2i_list_tache: true,
 								id: idp
