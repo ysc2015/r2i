@@ -82,11 +82,14 @@
     var design_formdata = {};
     $(document).ready(function() {
          $.ajax({
-            method:"POST",
+            method : "POST",
             url :"app/sys/api/osa/osa_api.php",
-
-            sucess:function(reponse){
-               alert();// $('#detailstachedesign').html("dede"+reponse);
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_design"
+            },
+            success : function(reponse){
+                $('#detailstachedesign').html(reponse);
             }
         });
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
