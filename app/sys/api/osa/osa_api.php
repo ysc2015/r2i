@@ -41,17 +41,15 @@ class OsaApi
         if($res === FALSE){
             //echo "attata";            ///
         }else{ 
-            // echo "dedede";
-            //extract($_GET);
-            $resultat = json_decode($res) ;
-            print_r($res);
-           //  echo implode(',',$resultat->ENCOURS);
+             $resultat = json_decode($res) ;
+            //print_r($res);
+
 
 
             $tabencours= [];
             $tabtermine= [];
             $i=0;
-die();
+
             $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
 
             while($resultatconteur= $bddresultat->fetch()){
