@@ -74,7 +74,7 @@ class OsaApi
 
                 }
             }
-            echo "Tache en cours :". $encoure. ", Tache en terminé :".$termine;
+            echo "<class=\"badge bg-red\">". $encoure. "</span>, <class=\"badge bg-green\">".$termine."</span>";
         }
     }
 }
