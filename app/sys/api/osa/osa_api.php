@@ -74,7 +74,8 @@ class OsaApi
 
                 }
             }
-            echo "<class=\"badge bg-red\">". $encoure. "</span>, <class=\"badge bg-green\">".$termine."</span>";
+            //echo "<class=\"badge bg-red\">". $encoure. "</span>, <class=\"badge bg-green\">".$termine."</span>";
+            echo "<button class=\"btn btn-primary push-5-r push-10\" type=\"button\"><i class=\"fa fa-thumbs-up\"></i> Like</button>";
         }
     }
 }
