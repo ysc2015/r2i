@@ -52,8 +52,6 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                                             url : "http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
 
                                         });
-
-
                                     }
                                 })
                             });
