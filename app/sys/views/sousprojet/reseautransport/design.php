@@ -81,6 +81,7 @@
 <script>
     var design_formdata = {};
     $(document).ready(function() {
+        //calcule les tache traité et non traités
          $.ajax({
             method : "GET",
             url :"app/sys/api/osa/osa_api.php",
@@ -90,7 +91,7 @@
                 idprojet:26
             },
             success : function(reponse){
-                $('#design_href').html("Design"+reponse);
+                $('#design_href').html("Design: "+reponse);
             }
         });
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
