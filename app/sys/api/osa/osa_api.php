@@ -75,8 +75,7 @@ class OsaApi
                 }
             }
             //echo "<class=\"badge bg-red\">". $encoure. "</span>, <class=\"badge bg-green\">".$termine."</span>";
-         if($termine > 0)   echo "<button class=\"btn btn-success push-5-r push-5\" type=\"button\"><i class=\"fa fa-thumbs-up\"></i> ".$termine."</button>";
-         if($encoure > 0)    echo "<button class=\"btn btn-warning push-5-r push-5\" type=\"button\"><i class=\"fa fa-exclamation-triangle\"></i> ".$encoure."</button>";
+echo '('. $encoure.'/'.($termine+$encoure).')';
         }
     }
 }
