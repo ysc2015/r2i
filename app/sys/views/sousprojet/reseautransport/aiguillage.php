@@ -298,8 +298,21 @@
         taiguillage_chambre_uploader = $("#ta_fileuploader_chambre").uploadFile(taiguillage_chambre_uploader_options);
     });
     $(document).ready(function() {
+        //calcule les tache traité et non traités
+        $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_aiguillage",
+                idprojet:26
+            },
+            success : function(reponse){
+                $('#aiguillage_href').html("Aiguillage: "+reponse);
+            }
+        });
         $("#id_sous_projet_transport_aiguillage_btn_osa").click(function () {
-            var typeetape = "sous_projet_distribution_aiguillage";
+            var typeetape = "sous_projet_transport_aiguillage";
 
             var variable_etape = "transportaiguillage";
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
