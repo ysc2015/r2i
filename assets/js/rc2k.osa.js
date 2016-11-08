@@ -18,9 +18,23 @@
 							url: http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php
 						}
 						*/
-						if(typeof obj == "undefined") throw "RC2K: id projet doit être défini"
+						if(typeof obj == "undefined") throw "RC2K/OSA: parametre doit être défini"
 						window.open (rc2k.osa.url + 'ui/tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
 						//window.open (rc2k.osa.ui.url + token + '/tache_create/', '', "menubar=no, status=no, scrollbars=no, menubar=no, width=200, height=100");
+ 					},
+ 					traiter: function(obj){
+ 						/*
+						{
+							idt: id tache a traiter,
+							callback : {
+								param : parametres a envoyer avec l'url de callback,
+								url: url de callback
+							}	
+						}
+ 						*/
+ 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
+ 						window.open (rc2k.osa.url + 'ui/tache_traiter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+							
  					}
 				}
 			},
@@ -52,6 +66,7 @@
 							url: rc2k.osa.url + "api/tache.php",
 							data: {
 								r2i_list_tache: true,
+								r2i_all : true,
 								id: idp
 							}
 						}).done(callback);
