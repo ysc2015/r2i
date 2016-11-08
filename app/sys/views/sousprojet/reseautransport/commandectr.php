@@ -94,6 +94,8 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_transport_commande_ctr_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                    <button id="id_sous_projet_transport_commande_ctr_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
             </div>
         </div>
     </form>
@@ -102,6 +104,25 @@
 <script>
     var cmd_formdata = {};
     $(document).ready(function() {
+        //calcule les tache traité et non traités
+        $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_commande_ctr",
+                idprojet:26
+            },
+            success : function(reponse){
+                $('#commandectr_href').html("CMD Structurante CTR: "+reponse);
+            }
+        });
+        $("#id_sous_projet_transport_commande_ctr_btn_osa").click(function () {
+            var typeetape = "sous_projet_transport_commande_ctr";
+
+            var variable_etape = "transportcmcctr";
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         jQuery('#cctr_ref_commande_acces').tagsinput({});
         $('#transport_cmdctr_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             cmd_formdata[$( this ).attr('name')] = $( this).val();
