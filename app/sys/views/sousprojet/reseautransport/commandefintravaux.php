@@ -94,6 +94,8 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_transport_commande_fin_trvx_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <button id="id_sous_projet_transport_cmdfintravaux_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
             </div>
         </div>
     </form>
@@ -102,6 +104,24 @@
 <script>
     var cmd_fin_trvx_formdata = {};
     $(document).ready(function() {
+        $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_commande_fin_travaux",
+                idprojet:26
+            },
+            success : function(reponse){
+                $('#recette_href').html("Commandes Fin Travaux: "+reponse);
+            }
+        });
+        $("#id_sous_projet_transport_cmdfintravaux_btn_osa").click(function () {
+            var typeetape = "sous_projet_transport_commande_fin_travaux";
+
+            var variable_etape = "transportcmdfintravaux";
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         jQuery('#cftrvx_ref_commande_fin_travaux').tagsinput({});
         $('#transport_cmdfintrvx_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             cmd_fin_trvx_formdata[$( this ).attr('name')] = $( this).val();
