@@ -113,7 +113,7 @@
                 idprojet:26
             },
             success : function(reponse){
-                $('#recette_href').html("Commandes Fin Travaux: "+reponse);
+                $('#commandefintravaux_href').html("Commandes Fin Travaux: "+reponse);
             }
         });
         $("#id_sous_projet_transport_cmdfintravaux_btn_osa").click(function () {
