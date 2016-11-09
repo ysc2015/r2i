@@ -89,6 +89,7 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_transport_recette_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <button id="id_sous_projet_transport_recette_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
             </div>
         </div>
     </form>
@@ -97,6 +98,24 @@
 <script>
     var recette_formdata = {};
     $(document).ready(function() {
+        $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_recette",
+                idprojet:26
+            },
+            success : function(reponse){
+                $('#recette_href').html("Recette: "+reponse);
+            }
+        });
+        $("#id_sous_projet_transport_recette_btn_osa").click(function () {
+            var typeetape = "sous_projet_transport_recette";
+
+            var variable_etape = "transportrecette";
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         $('#transport_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             recette_formdata[$( this ).attr('name')] = $( this).val();
         });
