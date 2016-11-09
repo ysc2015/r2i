@@ -67,10 +67,10 @@
         <div class="alert alert-success" id="message_transport_design" role="alert" style="display: none;"></div>
         <div class="row items-push">
             <div class="form-group">
-                <div class="col-md-3"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
-                <div class="col-md-3">
+                <div class="col-md-8"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
+
                      <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
-                    <div id="detailstachedesign"></div>
+
                 </div>
             </div>
         </div>
