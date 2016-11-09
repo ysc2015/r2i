@@ -134,6 +134,7 @@
                 <div class="col-md-8">
                     <button id="id_sous_projet_transport_raccordements_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_transport_raccord_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
+                    <button id="id_sous_projet_transport_raccordemants_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                 </div>
             </div>
         </div>
@@ -329,6 +330,24 @@
         traccord_pboite_uploader = $("#tr_fileuploader_pboite").uploadFile(traccord_pboite_uploader_options);
     });
     $(document).ready(function() {
+        $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: 2,
+                typeetape: "sous_projet_transport_raccordements",
+                idprojet:26
+            },
+            success : function(reponse){
+                $('#raccordements_href').html("Raccordement: "+reponse);
+            }
+        });
+        $("#id_sous_projet_transport_raccordemants_btn_osa").click(function () {
+            var typeetape = "sous_projet_transport_raccordements";
+
+            var variable_etape = "transportraccordement";
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         $('#transport_raccord_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             raccord_formdata[$( this ).attr('name')] = $( this).val();
         });
