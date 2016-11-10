@@ -70,7 +70,7 @@
                 {
                     "targets": 2,
                     "render": function ( data, type, full, meta ) {
-                        return  full.projet_nom.replace('Etude ','')+ ' ' + full.lib_nro + ' ' + full.zone;
+                        return  'Plaque PON FTTH ' + full.lib_nro + ' poche ' + full.zone;
                     }
                 },
             ],
