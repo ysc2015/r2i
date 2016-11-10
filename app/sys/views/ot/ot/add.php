@@ -3,6 +3,7 @@
     $(document).ready(function() {
 
         $("#add_ot_show").click(function() {
+            getTypeOT('#type_ot');
             $("#add_ot_form")[0].reset();
         });
 

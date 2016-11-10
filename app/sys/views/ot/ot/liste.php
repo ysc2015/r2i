@@ -71,6 +71,22 @@
             $("#devis_uploads").hide();
         }
     }
+    function getTypeOT(selector) {
+        console.log('getTypeOT');
+        $.ajax({
+            method: "POST",
+            url: "api/ot/ot/get_type_ot.php",
+            dataType: "json",
+            data: {
+                idsousprojet : get('idsousprojet'),
+                tentree : get('tentree')
+            }
+        }).done(function (msg) {
+            //console.log(msg.html);
+            $(selector).html(msg.html);
+
+        });
+    }
     $(document).ready(function() {
         ot_dt = $('#ot_table').DataTable( {
             "language": {
