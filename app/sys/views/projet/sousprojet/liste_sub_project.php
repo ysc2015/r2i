@@ -66,7 +66,13 @@
                 { "data": "zone" }
             ],
             "columnDefs": [
-                { "targets": [ 0,1 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1 ], "visible": false, "searchable": false },
+                {
+                    "targets": 2,
+                    "render": function ( data, type, full, meta ) {
+                        return  full.projet_nom.replace('Etude ','')+ ' ' + full.lib_nro + ' ' + full.zone;
+                    }
+                },
             ],
             "order": [[1, 'desc']]
             ,

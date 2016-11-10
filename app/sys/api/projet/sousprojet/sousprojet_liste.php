@@ -9,7 +9,7 @@ ini_set("display_errors","1");
 extract($_POST);
 extract($_GET);
 
-$table = array("sous_projet as t1","projet as t2");
+$table = array("sous_projet as t1","projet as t2","nro as t3");
 $columns = array(
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
@@ -17,10 +17,11 @@ $columns = array(
     array( "db" => "t1.dep", "dt" => 'dep' ),
     array( "db" => "t1.ville", "dt" => 'ville' ),
     array( "db" => "t1.plaque", "dt" => 'plaque' ),
-    array( "db" => "t1.zone", "dt" => 'zone' )
+    array( "db" => "t1.zone", "dt" => 'zone' ),
+    array( "db" => "t3.lib_nro", "dt" => 'lib_nro' )
 );
 
-$condition = "t1.id_projet=t2.id_projet";
+$condition = "t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
 
 if(isset($qgis)) {
     if(isset($id_nro) && !empty($id_nro)) {

@@ -57,6 +57,12 @@
             "columnDefs": [
                 { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
                 {
+                    "targets": 3,
+                    "render": function ( data, type, full, meta ) {
+                        return  full.projet_nom.replace('Etude ','')+ ' ' + full.lib_nro;
+                    }
+                },
+                {
                     "targets": 6,
                     "data": "id_projet",
                     "render": function ( data, type, full, meta ) {
