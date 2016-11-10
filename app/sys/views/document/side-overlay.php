@@ -46,6 +46,9 @@
                             <a class="list-group-item" href="?page=nropci">
                                 <i class="fa fa-link push-5-r"></i> Nro/PCI
                             </a>
+                            <a class="list-group-item" href="?page=typeot">
+                                <i class="fa fa-list push-5-r"></i> Type OT
+                            </a>
                             <a class="list-group-item" href="?page=mailcreation">
                                 <i class="fa fa-fw fa-list-alt push-5-r"></i> Mails création projet
                             </a>

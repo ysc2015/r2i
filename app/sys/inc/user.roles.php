@@ -229,6 +229,14 @@ class adm extends baseUser {
             )
         );
     }
+
+    function typeot() {
+    Page::typeot(
+        array(
+            "typeot" => array("liste","add","update","delete")
+        )
+    );
+}
 }
 
 class dov extends baseUser {
