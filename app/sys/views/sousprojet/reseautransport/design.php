@@ -81,26 +81,17 @@
 <script>
     var design_formdata = {};
     $(document).ready(function() {
+        var typeetape = "sous_projet_transport_design";
+
+        var variable_etape = "transportdesign";
         //calcule les tache traité et non traités
-         $.ajax({
-            method : "GET",
-            url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: 2,
-                typeetape: "sous_projet_transport_design",
-                idprojet:26
-            },
-            success : function(reponse){
-                $('#design_href').html("Design: "+reponse);
-            }
-        });
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"design_href","Design: ");
+
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
-            var typeetape = "sous_projet_transport_design";
 
-            var variable_etape = "transportdesign";
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
         $("#id_sous_projet_transport_design_btn").click(function () {
