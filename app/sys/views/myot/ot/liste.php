@@ -1,52 +1,34 @@
 <!-- Table ot -->
-<div class="row items-push">
-    <div class="col-md-8">
-        <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Liste OT</h3>
-            </div>
-            <div class="block-content table-responsive">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                <table id="ot_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
-                    <thead>
-                    <tr>
-                        <th>idot</th>
-                        <th>idsp</th>
-                        <th>tentree</th>
-                        <th>type</th>
-                        <th>commentaire</th>
-                        <th>nom</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>idot</th>
-                        <th>idsp</th>
-                        <th>tentree</th>
-                        <th>type</th>
-                        <th>commentaire</th>
-                        <th>nom</th>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
+<div class="block">
+    <div class="block-header">
+        <h3 class="block-title">Liste OT</h3>
     </div>
-    <div class="col-md-4">
-        <div class="block">
-            <div class="block-header">
-                <h3 class="block-title">Infos OT</h3>
-            </div>
-            <div class="block-content" style="background-color: #e7e7e7">
-                <label style="display: block;">PCI en charge : </label>
-                <br>
-                <label style="display: block;">Equipe en charge : </label>
-                <br>
-                <label style="display: block;">Lien vers les plans : </label>
-            </div>
-        </div>
+    <div class="block-content table-responsive">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+        <table id="ot_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+            <thead>
+            <tr>
+                <th>idot</th>
+                <th>idsp</th>
+                <th>tentree</th>
+                <th>type</th>
+                <th>commentaire</th>
+                <th>nom</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>idot</th>
+                <th>idsp</th>
+                <th>tentree</th>
+                <th>type</th>
+                <th>commentaire</th>
+                <th>nom</th>
+            </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
 <!-- END Table ot -->
