@@ -90,7 +90,7 @@
                     url: 'api/myot/infosot/my_calendar_events.php',
                     data: function() { // a function that returns an object
                         return {
-                            test : 1,
+                            idot : (ot_dt.row('.selected').data()!==undefined?ot_dt.row('.selected').data().id_ordre_de_travail:0),
                         };
                     }
                 },
