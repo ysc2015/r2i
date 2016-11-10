@@ -76,8 +76,6 @@
         </div>
     </form>
 </div>
-<script src="assets/js/rc2k.osa.js" ></script>
-<script src="assets/js/outils_osa.js" ></script>
 <script>
     var design_formdata = {};
     $(document).ready(function() {
@@ -85,7 +83,6 @@
 
         var variable_etape = "transportdesign";
         //calcule les tache traité et non traités
-        console.log("calculetache_osa");
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"design_href","Design: ");
 
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
