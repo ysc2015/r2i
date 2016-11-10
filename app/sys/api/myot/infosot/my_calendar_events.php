@@ -1,6 +1,6 @@
 <?php
 /**
- * file: calendar_events.php
+ * file: my_calendar_events.php
  * User: rabii
  */
 
@@ -12,11 +12,7 @@ try {
 
     $sql .= " AND  ot.id_entreprise=es.id_entreprise AND ot.id_equipe_stt=eq.id_equipe_stt AND ot.id_type_ordre_travail=tot.id_type_ordre_travail";
 
-    if(isset($team_id) && !empty($team_id)) {
-        $sql .= " and ot.id_equipe_stt=$team_id";
-    } else if(isset($soc_id) && !empty($soc_id)) {
-        $sql .=  " and ot.id_entreprise=$soc_id";
-    }
+    $sql .=  " and ot.id_entreprise=".$connectedProfil->profil->id_entreprise;
 
     //echo $sql;
 
