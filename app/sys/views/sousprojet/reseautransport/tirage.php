@@ -322,22 +322,14 @@
         ttirage_chambre_uploader = $("#tt_fileuploader_chambre").uploadFile(ttirage_chambre_uploader_options);
     });
     $(document).ready(function() {
-        $.ajax({
-            method : "GET",
-            url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: 2,
-                typeetape: "sous_projet_transport_tirage",
-                idprojet:26
-            },
-            success : function(reponse){
-                $('#tirage_href').html("Tirage: "+reponse);
-            }
-        });
-        $("#id_sous_projet_transport_tirage_btn_osa").click(function () {
-            var typeetape = "sous_projet_transport_tirage";
+        var typeetape = "sous_projet_transport_tirage";
 
-            var variable_etape = "transporttirage";
+        var variable_etape = "transporttirage";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"tirage_href","Tirage: ");
+
+
+        $("#id_sous_projet_transport_tirage_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
 
