@@ -69,6 +69,7 @@
             }).done(function (message) {
                 if(message.error == 0) {
                     update = true;
+                    getTypeOT('#update_type_ot');
                 }
                 App.showMessage(message,'#message_ot_update');
             });
