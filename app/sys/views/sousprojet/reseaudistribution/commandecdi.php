@@ -93,9 +93,9 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-8">
-                    <button id="id_sous_projet_distribution_commande_cdi_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                    <button id="id_sous_projet_distribution_commande_cdi_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                 <button id="id_sous_projet_distribution_commandecdi_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
-
+                </div>
             </div>
         </div>
     </form>
