@@ -30,6 +30,26 @@ if($row !== NULL) {
             $link = $sousProjet->{$row->type_entree}->lien_plans;
         }
 
+        if($sousProjet->projet->nro !== NULL) {
+            $nro = Nro::first(
+                array('conditions' =>
+                    array("id_nro = ?", $sousProjet->projet->nro)
+                )
+            );
+
+            /*if($nro !== NULL) {
+                $userPci = Utilisateur::first(
+                    array('conditions' =>
+                        array("id_utilisateur = ?", $nro->id_utilisateur2)
+                    )
+                );
+
+                if($userPci !== NULL) {
+                    $pci = $userPci->prenom_utilisateur." ".$userPci->nom_utilisateur;
+                }
+            }*/
+        }
+
     }
 }
 

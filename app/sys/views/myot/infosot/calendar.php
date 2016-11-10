@@ -95,6 +95,7 @@
                     }
                 },
                 eventClick: function(calEvent, jsEvent, view) {
+                    console.log(calEvent);
 
                     if(calEvent.id > 0) {
                         $('#modal_cal_ot_title').html('ordre de travail : '+calEvent.etape + '-'+calEvent.typeot);

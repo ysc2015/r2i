@@ -30,12 +30,12 @@ function getDuree($date_debut,$date_ret) {
 function getObjectNameForEntry($entree) {
     $str = "";
     switch ($entree) {
-        case 'transportaiguillage' : $str='Transport Aiguillage';break;
-        case 'transporttirage' : $str='Transport Tirage';break;
-        case 'transportraccordement' : $str='Transport Raccordement';break;
-        case 'distributionaiguillage' : $str='Distribution Aiguillage';break;
-        case 'distributiontirage' : $str='Distribution Tirage';break;
-        case 'distributionraccordement' : $str='Distribution Raccordement';break;
+        case 'transportaiguillage' : $str='Aiguillage CTR';break;
+        case 'transporttirage' : $str='Tirage CTR';break;
+        case 'transportraccordement' : $str='Raccordement CTR';break;
+        case 'distributionaiguillage' : $str='Aiguillage CDI';break;
+        case 'distributiontirage' : $str='Tirage CDI';break;
+        case 'distributionraccordement' : $str='Raccordement CDI';break;
         default : break;
     }
 
