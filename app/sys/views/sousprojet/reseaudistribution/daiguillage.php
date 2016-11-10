@@ -150,7 +150,19 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="da_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="da_lien_plans" name="da_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lien_plans:"")?></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="da_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="da_retour_presta" name="da_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->retour_presta:"")?></textarea>
+                </div>
+                <div class="col-md-4">
                     <label for="da_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_ok" name="da_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>

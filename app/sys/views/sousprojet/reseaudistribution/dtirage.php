@@ -177,7 +177,19 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="dt_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="dt_lien_plans" name="dt_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->lien_plans:"")?></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="dt_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="dt_retour_presta" name="dt_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->retour_presta:"")?></textarea>
+                </div>
+                <div class="col-md-4">
                     <label for="dt_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_ok" name="dt_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>

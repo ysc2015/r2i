@@ -112,6 +112,18 @@
                             $('#affecter_date_fin_cal').val(calEvent.df);
                             $('#modal-ot-cal').modal('show');
                         });
+
+                        $.ajax({
+                            method: "POST",
+                            url: "api/myot/infosot/get_infos_ot.php",
+                            dataType: "json",
+                            data: {
+                                idot : calEvent.id
+                            }
+                        }).done(function (data) {
+                            console.log(data);
+                        });
+
                     } else {
                         console.log(calEvent.id);
                     }

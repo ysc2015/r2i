@@ -98,7 +98,19 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="tr_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="tr_lien_plans" name="tr_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportraccordement !== NULL?$sousProjet->transportraccordement->lien_plans:"")?></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="tr_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="tr_retour_presta" name="tr_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportraccordement !== NULL?$sousProjet->transportraccordement->retour_presta:"")?></textarea>
+                </div>
+                <div class="col-md-4">
                     <label for="tr_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_ok" name="tr_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>

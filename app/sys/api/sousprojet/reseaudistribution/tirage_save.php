@@ -196,6 +196,16 @@ if(isset($dt_etat_retour)){
     $insert = true;
 }
 
+if(isset($dt_lien_plans)){
+    $stm->bindParam(':lien_plans',$dt_lien_plans);
+    $insert = true;
+}
+
+if(isset($dt_retour_presta)){
+    $stm->bindParam(':retour_presta',$dt_retour_presta);
+    $insert = true;
+}
+
 if(isset($dt_ok)){
     $stm->bindParam(':ok',$dt_ok);
     $insert = true;
