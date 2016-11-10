@@ -48,7 +48,10 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-8">
-                    <button id="id_sous_projet_plaque_carto_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                    <button id="id_sous_projet_plaque_carto_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
+                    <button id="id_sous_projet_plaque_carto_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
+                </div>
             </div>
         </div>
     </form>
@@ -56,6 +59,14 @@
 <script>
     var carto_formdata = {};
     $(document).ready(function() {
+        var typeetape = "sous_projet_plaque_carto";
+        var variable_etape = "plaquecarto";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"preparationcarto_href","Préparation Carto: ");
+
+        $("#id_sous_projet_plaque_carto_btn_osa").click(function () {
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
+        });
         $('#prep_carto_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             carto_formdata[$( this ).attr('name')] = $( this).val();
         });
