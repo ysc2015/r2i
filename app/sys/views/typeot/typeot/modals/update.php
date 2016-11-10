@@ -44,3 +44,32 @@
     </div>
 </div>
 <!-- END modifier type ot Modal -->
+<script>
+    $(document).ready(function() {
+
+        $("#save_type_ot_update").click(function() {
+            console.log(type_ot_dt.row('.selected').data().id_ordre_de_travail);
+            $.ajax({
+                method: "POST",
+                url: "api/typeot/typeot/typeot_update.php",
+                dataType: "json",
+                data: {
+                    idt : type_ot_dt.row('.selected').data().id_type_ordre_travail,
+                    lib : $('#update_lib_type_ot').val(),
+                    type : $('#update_type_entree').val()
+                }
+            }).done(function (message) {
+                if(message.error == 0) {
+                    update = true;
+                }
+                App.showMessage(message,'#message_type_ot_update');
+            });
+        });
+
+        $('#mod-type-ot').on('hidden.bs.modal', function () {
+            if(update) {
+                type_ot_dt.draw(false);
+            }
+        })
+    } );
+</script>
