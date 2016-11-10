@@ -180,6 +180,9 @@
                 <div class="col-md-12">
                     <button id="id_sous_projet_distribution_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                     <button id="id_sous_projet_distribution_aiguillage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
+
+                    <button id="id_sous_projet_distribution_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
                 </div>
             </div>
         </div>
@@ -267,6 +270,14 @@
         daiguillage_chambre_uploader = $("#da_fileuploader_chambre").uploadFile(daiguillage_chambre_uploader_options);
     });
     $(document).ready(function() {
+        var typeetape = "sous_projet_distribution_aiguillage";
+        var variable_etape = "distributionaiguillage";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"daiguillage_href","Aiguillage: ");
+
+        $("#id_sous_projet_distribution_aiguillage_btn_osa").click(function () {
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
+        });
         $('#dist_aiguillage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             daiguillage_formdata[$( this ).attr('name')] = $( this).val();
         });
