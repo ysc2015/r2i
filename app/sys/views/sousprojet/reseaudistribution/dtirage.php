@@ -207,6 +207,8 @@
                 <div class="col-xs-12">
                     <button id="id_sous_projet_distribution_tirage_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_distribution_tirage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
+                    <button id="id_sous_projet_distribution_tirage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
                 </div>
             </div>
         </div>
@@ -294,6 +296,14 @@
         dtirage_chambre_uploader = $("#dt_fileuploader_chambre").uploadFile(dtirage_chambre_uploader_options);
     });
     $(document).ready(function() {
+        var typeetape = "sous_projet_distribution_tirage";
+        var variable_etape = "distributiontirage";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"dtirage_href","Tirage: ");
+
+        $("#id_sous_projet_distribution_tirage_btn_osa").click(function () {
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         $('#dist_tirage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             dtirage_formdata[$( this ).attr('name')] = $( this).val();
         });

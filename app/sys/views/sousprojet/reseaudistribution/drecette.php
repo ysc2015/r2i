@@ -89,6 +89,8 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_distribution_recette_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <button id="id_sous_projet_distribution_recette_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
             </div>
         </div>
     </form>
@@ -96,6 +98,14 @@
 <script>
     var drecette_formdata = {};
     $(document).ready(function() {
+        var typeetape = "sous_projet_distribution_recette";
+        var variable_etape = "distributionrecette";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"drecette_href","Recette: ");
+
+        $("#id_sous_projet_distribution_recette_btn_osa").click(function () {
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
         $('#dist_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             drecette_formdata[$( this ).attr('name')] = $( this).val();
         });

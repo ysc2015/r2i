@@ -94,6 +94,8 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_distribution_commande_cdi_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <button id="id_sous_projet_distribution_commandecdi_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
             </div>
         </div>
     </form>
@@ -101,6 +103,14 @@
 <script>
     var dcmd_formdata = {};
     $(document).ready(function() {
+        var typeetape = "sous_projet_distribution_commande_cdi";
+        var variable_etape = "distributioncmdcdi";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandecdi_href","CMD Structurante CDI: ");
+
+        $("#id_sous_projet_distribution_design_btn_osa").click(function () {
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
+        });
         jQuery('#dcc_ref_commande_acces').tagsinput({});
         $('#dist_cmdcdi_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             dcmd_formdata[$( this ).attr('name')] = $( this).val();
