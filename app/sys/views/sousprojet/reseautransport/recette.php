@@ -99,22 +99,14 @@
 <script>
     var recette_formdata = {};
     $(document).ready(function() {
-        $.ajax({
-            method : "GET",
-            url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: 2,
-                typeetape: "sous_projet_transport_recette",
-                idprojet:26
-            },
-            success : function(reponse){
-                $('#recette_href').html("Recette: "+reponse);
-            }
-        });
-        $("#id_sous_projet_transport_recette_btn_osa").click(function () {
-            var typeetape = "sous_projet_transport_recette";
+        var typeetape = "sous_projet_transport_recette";
 
-            var variable_etape = "transportrecette";
+        var variable_etape = "transportrecette";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"recette_href","Recette: ");
+
+
+        $("#id_sous_projet_transport_recette_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
         $('#transport_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){

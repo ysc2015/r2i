@@ -104,23 +104,12 @@
 <script>
     var cmd_formdata = {};
     $(document).ready(function() {
-        //calcule les tache traité et non traités
-        $.ajax({
-            method : "GET",
-            url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: 2,
-                typeetape: "sous_projet_transport_commande_ctr",
-                idprojet:26
-            },
-            success : function(reponse){
-                $('#commandectr_href').html("CMD Structurante CTR: "+reponse);
-            }
-        });
-        $("#id_sous_projet_transport_commande_ctr_btn_osa").click(function () {
-            var typeetape = "sous_projet_transport_commande_ctr";
+        var typeetape = "sous_projet_transport_commande_ctr";
 
-            var variable_etape = "transportcmcctr";
+        var variable_etape = "transportcmcctr";
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandectr_href","CMD Structurante CTR: ");
+
+        $("#id_sous_projet_transport_commande_ctr_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
         jQuery('#cctr_ref_commande_acces').tagsinput({});

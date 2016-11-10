@@ -104,22 +104,13 @@
 <script>
     var cmd_fin_trvx_formdata = {};
     $(document).ready(function() {
-        $.ajax({
-            method : "GET",
-            url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: 2,
-                typeetape: "sous_projet_transport_commande_fin_travaux",
-                idprojet:26
-            },
-            success : function(reponse){
-                $('#commandefintravaux_href').html("Commandes Fin Travaux: "+reponse);
-            }
-        });
-        $("#id_sous_projet_transport_cmdfintravaux_btn_osa").click(function () {
-            var typeetape = "sous_projet_transport_commande_fin_travaux";
+        var typeetape = "sous_projet_transport_commande_fin_travaux";
 
-            var variable_etape = "transportcmdfintravaux";
+        var variable_etape = "transportcmdfintravaux";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandefintravaux_href","Commandes Fin Travaux: ");
+
+        $("#id_sous_projet_transport_cmdfintravaux_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
         jQuery('#cftrvx_ref_commande_fin_travaux').tagsinput({});
