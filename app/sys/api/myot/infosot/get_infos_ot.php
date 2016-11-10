@@ -26,9 +26,12 @@ if($row !== NULL) {
     );
 
     if($sousProjet !== NULL) {
+        if($sousProjet->{$row->type_entree} !== NULL) {
+            $link = $sousProjet->{$row->type_entree}->lien_plans;
+        }
 
     }
 }
 
-echo json_encode($row);
+echo json_encode(array("pci" =>  $pci,"lien" => $link));
 

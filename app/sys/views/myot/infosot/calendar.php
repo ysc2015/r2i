@@ -54,6 +54,13 @@
                                 <input readonly class="form-control " type="date" id="affecter_date_fin_cal" name="affecter_date_fin_cal" value="">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                                <textarea readonly class="form-control" id="lien_plans" name="lien_plans" rows="6">
+                                </textarea>
+                            </div>
+                        </div>
                         <div class='alert alert-success' id='message_affecter_ot_cal' role='alert' style="display: none;">
                         </div>
                     </form>
@@ -121,7 +128,7 @@
                                 idot : calEvent.id
                             }
                         }).done(function (data) {
-                            console.log(data);
+                            $('#lien_plans').val(data.lien);
                         });
 
                     } else {
