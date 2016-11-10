@@ -88,8 +88,10 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
             idsp: id_sous_projet,
             tentre: ide
         },
-        success: function (e) { console.log(e);
-            console.log("calculetache_osa : "+e);
+        success: function (e) {
+            console.log(typeetape);
+            console.log(e);
+            console.log("calculetache_osa idetape: "+e.idetape+", id:"+e.id);
             if(e.idetape!=0) {
 
                     $.ajax({
