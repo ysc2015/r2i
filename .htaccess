@@ -51,3 +51,6 @@ RewriteRule  "api/nro/nro/(\w*\.php)"          "app/MY_ROUTER.php?script=nro/nro
 #nropci menu api
 RewriteRule  "api/nropci/nropci/(\w*\.php)"          "app/MY_ROUTER.php?script=nropci/nropci/$1"  [QSA,L]
 
+#typeot menu api
+RewriteRule  "api/typeot/typeot/(\w*\.php)"          "app/MY_ROUTER.php?script=typeot/typeot/$1"  [QSA,L]
+

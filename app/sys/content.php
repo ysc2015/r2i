@@ -218,6 +218,10 @@ switch ($page) {
         $connectedProfil->nropci();
         echo "<br><br>";
         break;
+    case "typeot":
+        $connectedProfil->typeot();
+        echo "<br><br>";
+        break;
 }
 
 ?>
