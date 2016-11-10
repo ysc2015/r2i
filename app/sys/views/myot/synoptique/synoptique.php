@@ -9,7 +9,7 @@
     </ul>
     <div class="block-content tab-content">
         <div class="tab-pane active" id="btabs-alt-static-justified-home">
-            <iframe src="app/sys/api/uploads/synoptiques/PDB_NULL_02001-BPI_NULL_02025.html" width="100%" height="100%" style="border: 1px dashed;height: 100%;">
+            <iframe src="app/sys/api/uploads/synoptiques/1478791916_synoptique_infra.html" width="100%" height="100%" style="border: 1px dashed;height: 100%;">
                 <p>Your browser does not support iframes.</p>
             </iframe>
         </div>
