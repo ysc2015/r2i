@@ -20,7 +20,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                     tentre: ide
                 },
                 success : function (e) {
-                    console.log("appelscriptosa"+e);
+                    console.log("appelscriptosa e.idetape: "+e.idetape+", e.id: "+e.id);
 
                     idetape = e.idetape;
                     if(idetape!=0){
