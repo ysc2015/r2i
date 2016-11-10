@@ -31,11 +31,8 @@
     var type_ot_dt;
     var id_devis = 0;
     var id_res = 0;
-    var type_ot_btns = ["#update_ot_show",
-        "#link_ot_show",
-        "#delete_ot","#open_pblq",
-        "#linked-ch",
-        "#link_ot","#linked-pb","#link_pb"];
+    var type_ot_btns = ["#update_type_ot_show",
+        "#delete_type_ot"];
     $(document).ready(function() {
         type_ot_dt = $('#type_ot_table').DataTable( {
             "language": {
