@@ -123,6 +123,16 @@ if(isset($tr_etat_retour)){
     $insert = true;
 }
 
+if(isset($tr_lien_plans)){
+    $stm->bindParam(':lien_plans',$tr_lien_plans);
+    $insert = true;
+}
+
+if(isset($tr_retour_presta)){
+    $stm->bindParam(':retour_presta',$tr_retour_presta);
+    $insert = true;
+}
+
 if(isset($tr_ok)){
     $stm->bindParam(':ok',$tr_ok);
     $insert = true;

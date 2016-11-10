@@ -98,7 +98,19 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="dr_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="dr_lien_plans" name="dr_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionraccordement !== NULL?$sousProjet->distributionraccordement->lien_plans:"")?></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="dr_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="dr_retour_presta" name="dr_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionraccordement !== NULL?$sousProjet->distributionraccordement->retour_presta:"")?></textarea>
+                </div>
+                <div class="col-md-4">
                     <label for="dr_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dr_ok" name="dr_ok">
                         <option value="">Sélectionnez une valeur</option>

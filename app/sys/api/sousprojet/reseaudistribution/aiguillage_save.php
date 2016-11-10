@@ -171,6 +171,16 @@ if(isset($da_etat_retour)){
     $insert = true;
 }
 
+if(isset($da_lien_plans)){
+    $stm->bindParam(':lien_plans',$da_lien_plans);
+    $insert = true;
+}
+
+if(isset($da_retour_presta)){
+    $stm->bindParam(':retour_presta',$da_retour_presta);
+    $insert = true;
+}
+
 if(isset($da_ok)){
     $stm->bindParam(':ok',$da_ok);
     $insert = true;
