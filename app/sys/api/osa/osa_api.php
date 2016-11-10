@@ -53,9 +53,8 @@ class OsaApi
             $i=0;
             $encoure = 0;
             $termine = 0;
-            echo count($resultat->ENCOURS)."#";
 
-            if($resultat->ENCOURS!=""){
+            if(count($resultat->ENCOURS)>0){
 
                 $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
 
@@ -65,8 +64,8 @@ class OsaApi
                     $encoure = $resultatconteur[1] ;
                 }
             }
-     echo count($resultat->TERMINE);
-            if($resultat->TERMINE!="") {
+
+            if(count($resultat->TERMINE)>0) {
                 $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (" . implode(',', array_values($resultat->TERMINE)) . ")  and id_etape = '" . $idetape . "' and  type_etape = '" . $typeetape . "'");
                 while ($resultatconteur = $bddresultat->fetch()) {
 
