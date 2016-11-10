@@ -79,6 +79,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 }
 
 function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
+    alert();
 
     $.ajax({
         method: "POST",

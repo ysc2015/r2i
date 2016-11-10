@@ -85,6 +85,7 @@
 
         var variable_etape = "transportdesign";
         //calcule les tache traité et non traités
+        console.log("calculetache_osa");
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"design_href","Design: ");
 
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
