@@ -37,6 +37,8 @@ if($row !== NULL) {
                 )
             );
 
+            //var_dump($userPci);
+
             if($userPci !== NULL) {
                 $pci = $userPci->prenom_utilisateur." ".$userPci->nom_utilisateur;
             }

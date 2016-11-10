@@ -129,6 +129,7 @@
                                 idot : calEvent.id
                             }
                         }).done(function (data) {
+                            $('#pci_in_charge').val(data.pci);
                             $('#lien_plans').val(data.lien);
                         });
 
