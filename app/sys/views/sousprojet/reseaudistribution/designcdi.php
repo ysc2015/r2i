@@ -85,6 +85,8 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_distribution_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button></div>
+                <button id="id_sous_projet_distribution_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+
             </div>
         </div>
     </form>
@@ -92,6 +94,15 @@
 <script>
     var ddesign_formdata = {};
     $(document).ready(function() {
+        var typeetape = "sous_projet_distribution_design";
+        var variable_etape = "distributiondesign";
+
+        calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"designcdi_href","Design CDI/CAD: ");
+
+        $("#id_sous_projet_distribution_design_btn_osa").click(function () {
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
+
         $('#dist_designcdi_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             ddesign_formdata[$( this ).attr('name')] = $( this).val();
         });
