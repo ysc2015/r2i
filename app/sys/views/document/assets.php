@@ -77,3 +77,8 @@
 <script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>
 
+<!--script OSA-->
+<script src="assets/js/rc2k.osa.js" ></script>
+<script src="assets/js/outils_osa.js" ></script>
+
+
