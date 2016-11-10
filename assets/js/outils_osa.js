@@ -20,7 +20,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                     tentre: ide
                 },
                 success : function (e) {
-                    console.log(e);
+                    console.log("appelscriptosa"+e);
 
                     idetape = e.idetape;
                     if(idetape!=0){
@@ -76,4 +76,40 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
         }
     });
+}
+
+function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
+
+    $.ajax({
+        method: "POST",
+        url: "api/projet/sousprojet/get_projet_id.php",
+        dataType: "json",
+        data: {
+            idsp: id_sous_projet,
+            tentre: ide
+        },
+        success: function (e) { console.log(e);
+            console.log("calculetache_osa : "+e);
+            if(e.idetape!=0) {
+
+                    $.ajax({
+                        method : "GET",
+                        url :"app/sys/api/osa/osa_api.php",
+                        data:{
+                            idetape: e.idetape,
+                            typeetape: typeetape,
+                            idprojet:e.id
+                        },
+                        success : function(reponse){
+                            $('#'+idhref).html(content_href+reponse);
+
+                        }
+                    });
+
+            }
+
+        }
+    });
+
+
 }
