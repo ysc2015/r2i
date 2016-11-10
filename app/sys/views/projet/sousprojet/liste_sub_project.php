@@ -70,7 +70,7 @@
                 {
                     "targets": 2,
                     "render": function ( data, type, full, meta ) {
-                        return  'Plaque PON FTTH ' + full.lib_nro + ' poche ' + full.zone;
+                        return  'Plaque PON FTTH ' + full.lib_nro + ' Poche ' + full.zone;
                     }
                 },
             ],
