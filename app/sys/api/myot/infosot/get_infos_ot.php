@@ -31,23 +31,15 @@ if($row !== NULL) {
         }
 
         if($sousProjet->projet->nro !== NULL) {
-            $nro = Nro::first(
+            $userPci = Utilisateur::first(
                 array('conditions' =>
-                    array("id_nro = ?", $sousProjet->projet->nro)
+                    array("id_utilisateur = ?", $sousProjet->projet->nro->id_utilisateur2)
                 )
             );
 
-            /*if($nro !== NULL) {
-                $userPci = Utilisateur::first(
-                    array('conditions' =>
-                        array("id_utilisateur = ?", $nro->id_utilisateur2)
-                    )
-                );
-
-                if($userPci !== NULL) {
-                    $pci = $userPci->prenom_utilisateur." ".$userPci->nom_utilisateur;
-                }
-            }*/
+            if($userPci !== NULL) {
+                $pci = $userPci->prenom_utilisateur." ".$userPci->nom_utilisateur;
+            }
         }
 
     }
