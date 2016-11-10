@@ -128,6 +128,7 @@
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
             }
 
+            calendar.refresh();
             displayDevis();
 
         } );

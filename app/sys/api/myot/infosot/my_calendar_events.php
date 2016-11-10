@@ -12,7 +12,11 @@ try {
 
     $sql .= " AND  ot.id_entreprise=es.id_entreprise AND ot.id_equipe_stt=eq.id_equipe_stt AND ot.id_type_ordre_travail=tot.id_type_ordre_travail";
 
-    $sql .=  " and ot.id_entreprise=".$connectedProfil->profil->id_entreprise;
+    $sql .=  " AND ot.id_entreprise=".$connectedProfil->profil->id_entreprise;
+
+    if(isset($idot) && !empty($idot)) {
+        $sql .= " AND ot.id_ordre_de_travail=$idot";
+    }
 
     //echo $sql;
 
