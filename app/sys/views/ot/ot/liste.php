@@ -10,6 +10,7 @@
                 <th>tentree</th>
                 <th>type</th>
                 <th>commentaire</th>
+                <th>état</th>
             </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                 <th>tentree</th>
                 <th>type</th>
                 <th>commentaire</th>
+                <th>état</th>
             </tr>
             </tfoot>
         </table>
@@ -103,7 +105,8 @@
                 { "data": "id_sous_projet" },
                 { "data": "type_entree" },
                 { "data": "type_ot" },/*lib_type_ordre_travail*/
-                { "data": "commentaire" }
+                { "data": "commentaire" },
+                { "data": "lib_etat_ot" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2,4 ], "visible": false, "searchable": false }
