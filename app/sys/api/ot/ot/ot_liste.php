@@ -16,7 +16,8 @@ $columns = array(
     array( "db" => "t1.date_fin", "dt" => 'date_fin' ),
     array( "db" => "t1.id_type_ordre_travail", "dt" => 'id_type_ordre_travail' ),
     array( "db" => "t2.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
-    array( "db" => "t1.commentaire", "dt" => 'commentaire' )
+    array( "db" => "t1.commentaire", "dt" => 'commentaire' ),
+    array( "db" => "etat.lib_etat_ot", "dt" => 'lib_etat_ot' )
 );
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail";
@@ -39,5 +40,5 @@ if(!isset($tab_imei)) {
     }
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,""));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join etat_ot as etat on t1.id_etat_ot = etat.id_etat_ot"));
 ?>
