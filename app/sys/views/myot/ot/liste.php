@@ -14,6 +14,7 @@
                 <th>type</th>
                 <th>commentaire</th>
                 <th>nom</th>
+                <th>état</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                 <th>type</th>
                 <th>commentaire</th>
                 <th>nom</th>
+                <th>état</th>
             </tr>
             </tfoot>
         </table>
@@ -90,9 +92,10 @@
                 { "data": "id_ordre_de_travail" },
                 { "data": "id_sous_projet" },
                 { "data": "type_entree" },
-                { "data": "type_ot" },/*lib_type_ordre_travail*/
-                { "data": "commentaire" }/*,
-                { "data": "ville_nom" }*/
+                { "data": "type_ot" },
+                { "data": "commentaire" },
+                { "data": "commentaire" },
+                { "data": "lib_etat_ot" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2,4 ], "visible": false, "searchable": false },
