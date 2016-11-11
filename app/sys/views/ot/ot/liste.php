@@ -132,6 +132,8 @@
 
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
+
+                chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
