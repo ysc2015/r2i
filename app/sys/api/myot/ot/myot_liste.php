@@ -17,6 +17,7 @@ $columns = array(
     array( "db" => "t1.id_type_ordre_travail", "dt" => 'id_type_ordre_travail' ),
     array( "db" => "t2.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
     array( "db" => "t1.commentaire", "dt" => 'commentaire' ),
+    array( "db" => "t1.commentaire2", "dt" => 'commentaire2' ),
     array( "db" => "t4.ville_nom", "dt" => 'ville_nom' ),
     array( "db" => "t5.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.plaque", "dt" => 'plaque' ),

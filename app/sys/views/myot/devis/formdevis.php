@@ -20,9 +20,11 @@
             <textarea class="form-control" id="comment_stt" name="comment_stt" rows="6"></textarea>
         </div>
     </div>
+    <div class='alert alert-success' id='message_remarque_devis' role='alert' style="display: none;">
+    </div>
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-12">
-            <button id="download_devis" class='btn btn-success btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Enregistrer</button>
+            <button id="remarque_devis" class='btn btn-success btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Enregistrer</button>
         </div>
     </div>
 </div>
@@ -191,6 +193,19 @@
             if(ot_dt.row('.selected').data()!== undefined) {
                 location.href="api/file/parserfile.php?id="+id_res;
             }
+        });
+
+        $("#remarque_devis").click(function() {
+            $.ajax({
+                method: "POST",
+                url: "api/myot/devis/update_remarque_devis.php",
+                data: {
+                    idot: ot_dt.row('.selected').data().id_ordre_de_travail,
+                    rem : $('#comment_stt').val()
+                }
+            }).done(function (message) {console.log(message);
+                App.showMessage(message,'#message_remarque_devis');
+            });
         });
 
     } );
