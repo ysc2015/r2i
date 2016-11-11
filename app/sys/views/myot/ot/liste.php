@@ -36,6 +36,7 @@
     var ot_dt;
     var id_devis = 0;
     var id_res = 0;
+    var rem = '';
     var ot_btns = [];
     function displayDevis() {
         if(ot_dt.row('.selected').data()!== undefined) {
@@ -50,8 +51,10 @@
                 if(msg.iddevis > 0) {
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
+                    rem = msg.rem;
                     $('#download_devis').removeClass('disabled');
                     $("#devis_uploads").show();
+                    $('#comment_stt').val(rem);
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
 
@@ -60,6 +63,7 @@
                 } else {
                     id_devis = 0;
                     id_res = 0;
+                    rem = '';
                     $('#download_devis').addClass('disabled');
                     $("#devis_uploads").hide();
                 }
