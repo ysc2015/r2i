@@ -17,7 +17,6 @@ $columns = array(
     array( "db" => "t1.id_type_ordre_travail", "dt" => 'id_type_ordre_travail' ),
     array( "db" => "t2.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
     array( "db" => "t1.commentaire", "dt" => 'commentaire' ),
-    array( "db" => "res.iddevis", "dt" => 'iddevis' ),
     array( "db" => "t4.ville_nom", "dt" => 'ville_nom' ),
     array( "db" => "t5.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.plaque", "dt" => 'plaque' ),
@@ -42,5 +41,5 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join ressource as res on t1.id_ordre_de_travail = res.id_ordre_de_travail"));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,""));
 ?>
