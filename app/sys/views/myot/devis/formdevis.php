@@ -115,7 +115,7 @@
             if(id_devis > 0) {
                 $.ajax({
                     cache: false,
-                    url: "api/ot/devis/load_bon_cmd.php",
+                    url: "api/ot/devis/load_devis_autre.php",
                     method:"POST",
                     data: {iddevis:id_devis},
                     dataType: "json",

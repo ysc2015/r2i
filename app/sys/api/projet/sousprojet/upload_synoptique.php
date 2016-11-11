@@ -14,7 +14,7 @@ $ret = array();
 
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into ressource (id_sous_projet,typesyn,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_sous_projet,:typesyn,:nom_fichier,:nom_fichier_disque,'synoptiques',:date_creation)");
+$stm = $db->prepare("insert into ressource (id_sous_projet,typesyn,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_sous_projet,:typesyn,:type_objet,:nom_fichier,:nom_fichier_disque,'synoptiques',:date_creation)");
 
 if(isset($idsp) && !empty($idsp)) {
     $stm->bindParam(':id_sous_projet',$idsp);
