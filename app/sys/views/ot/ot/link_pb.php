@@ -27,7 +27,8 @@
                 dataType: "json",
                 data: {
                     idf: $('#linked-pb').val(),
-                    idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                    idot : ot_dt.row('.selected').data().id_ordre_de_travail,
+                    objtype: getObjectTypeForEntryPB(get('tentree'))
                 }
             }).done(function (msg) {
                 App.showMessage(msg,'#message_ot_link2');

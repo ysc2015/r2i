@@ -10,10 +10,10 @@ $insert = false;
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("update ressource set id_ordre_de_travail=NULL where id_ordre_de_travail=:id_ordre_de_travail");
+$stm = $db->prepare("update ressource set id_ordre_de_travail=NULL where id_ordre_de_travail=:id_ordre_de_travail and type_objet=:type_objet");
 
 if(isset($idot) && !empty($idot)){
-    if($stm->execute(array(':id_ordre_de_travail' => $idot))) {
+    if($stm->execute(array(':id_ordre_de_travail' => $idot , ':type_objet' => $objtype))) {
         if(isset($idf) && !empty($idf)) {
             $stm = $db->prepare("update ressource set id_ordre_de_travail=:id_ordre_de_travail where id_ressource = $idf");
             if($stm->execute(array(':id_ordre_de_travail' => $idot))) {
