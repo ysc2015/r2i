@@ -8,7 +8,7 @@ extract($_GET);
 extract($_POST);
 
 try {
-    $sql = "select ot.*,es.nom as societe,eq.imei,eq.prenom,eq.nom,tot.lib_type_ordre_travail as typeot,DATE_ADD(date_fin, INTERVAL 1 DAY) AS df  from ordre_de_travail as ot,entreprises_stt as es,equipe_stt as eq,select_type_ordre_travail as tot where date_debut >='$start' and date_fin<='$end'";
+    $sql = "select ot.*,es.nom as societe,eq.imei,eq.prenom,eq.nom,tot.lib_type_ordre_travail as typeot,tot.system,DATE_ADD(date_fin, INTERVAL 1 DAY) AS df  from ordre_de_travail as ot,entreprises_stt as es,equipe_stt as eq,select_type_ordre_travail as tot where date_debut >='$start' and date_fin<='$end'";
 
     $sql .= " AND  ot.id_entreprise=es.id_entreprise AND ot.id_equipe_stt=eq.id_equipe_stt AND ot.id_type_ordre_travail=tot.id_type_ordre_travail";
 
@@ -52,6 +52,7 @@ try {
         $e['equipe'] = $row['prenom']." ".$row['nom'];
         $e['etape'] = getObjectNameForEntry($row['type_entree']);
         $e['typeot'] = $row['typeot'];
+        $e['system'] = $row['system'];
 
         $sousProjet = SousProjet::first(
             array('conditions' =>

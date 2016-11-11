@@ -21,7 +21,8 @@ $columns = array(
     array( "db" => "t4.ville_nom", "dt" => 'ville_nom' ),
     array( "db" => "t5.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.plaque", "dt" => 'plaque' ),
-    array( "db" => "t3.zone", "dt" => 'zone' )
+    array( "db" => "t3.zone", "dt" => 'zone' ),
+    array( "db" => "etat.lib_etat_ot", "dt" => 'lib_etat_ot' )
 );
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
@@ -42,5 +43,5 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,""));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join etat_ot as etat on t1.id_etat_ot=etat.id_etat_ot"));
 ?>
