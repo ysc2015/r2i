@@ -139,3 +139,34 @@ function setOtStatus(idot,status,selector,dt) {
         App.showMessage(msg,selector);
     });
 }
+
+function setRetourTerrain(idsp,idtot,selector,val) {
+    $.ajax({
+        url: "api/myot/traitement/update_retour_terrain.php",
+        dataType: "json",
+        method: "POST",
+        data: {
+            idsp : idsp,
+            idtot : idtot,
+            val : val
+        }
+    }).done(function (msg) {
+        console.log(msg.message);
+        App.showMessage(msg,selector);
+    });
+}
+
+function getRetourTerrain(idsp,idtot,selector) {
+    $.ajax({
+        url: "api/myot/traitement/get_retour_stt.php",
+        dataType: "json",
+        method: "POST",
+        data: {
+            idsp : idsp,
+            idtot : idtot
+        }
+    }).done(function (msg) {
+        console.log(msg.message);
+        $(selector).val(msg.retour);
+    });
+}

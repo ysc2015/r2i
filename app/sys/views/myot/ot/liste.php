@@ -154,6 +154,7 @@
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8) {
                     uploader3.reset();
                     uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
+                    getRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#link_retour_stt');
                     $('#retour_uploads').show();
                 } else {
                     $('#retour_uploads').hide();
