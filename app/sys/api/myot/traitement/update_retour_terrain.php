@@ -57,6 +57,7 @@ if($sousProjet !== NULL) {
 
 if($err == 0) {
     foreach($tentree as $key => $value) {
+        echo $value;
         $sousProjet->{$value}->retour_presta = $val;//$val posted
         $sousProjet->{$value}->save();
     }
