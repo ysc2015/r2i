@@ -147,7 +147,8 @@
                     <button id="id_sous_projet_transport_raccordements_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_transport_raccord_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
                     <button id="id_sous_projet_transport_raccordemants_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
-                </div>
+                    <button type="button" id="id_sous_projet_transport_raccordements_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter projet</button>
+                  </div>
             </div>
         </div>
     </form>
@@ -283,7 +284,7 @@
             location.href="api/file/download.php?id="+id;
 
             $('#traccord_pboite_table tbody').html('');
-            $('#traccord-pboite-modal').modal({backdrop: 'static', keyboard: false});
+            //$('#traccord-pboite-modal').modal({backdrop: 'static', keyboard: false});
             $("#traccord-pboite-block").toggleClass('block-opt-refresh');
 
             $.ajax({
@@ -342,6 +343,7 @@
         traccord_pboite_uploader = $("#tr_fileuploader_pboite").uploadFile(traccord_pboite_uploader_options);
     });
     $(document).ready(function() {
+
         var typeetape = "sous_projet_transport_raccordements";
         var variable_etape = "transportraccordement";
 
@@ -352,6 +354,9 @@
         });
         $('#transport_raccord_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             raccord_formdata[$( this ).attr('name')] = $( this).val();
+        });
+        $('#id_sous_projet_transport_raccordements_list_tache').click(function(){
+            liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);
         });
         $("#id_sous_projet_transport_raccordements_btn").click(function () {
 
@@ -436,42 +441,7 @@
     } );
 </script>
 <!-- plans boite Modal -->
-<div class="modal fade" id="traccord-pboite-modal"  role="dialog" aria-hidden="true"><!--tabindex="-1"-->
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="block block-themed block-transparent remove-margin-b" id="traccord-pboite-block">
-                <div class="block-header bg-primary">
-                    <ul class="block-options">
-                        <li>
-                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
-                        </li>
-                    </ul>
-                    <h3 class="block-title">Infos plans boite</h3>
-                </div>
-                <div class="block-content table-responsive">
-                    <table id="traccord_pboite_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Occurences (E)</th>
-                            <th>Cable en passage</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Occurences (E)</th>
-                            <th>Cable en passage</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- END plans boite Modal -->
 
 <!-- chambre Modal -->
