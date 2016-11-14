@@ -42,8 +42,8 @@ class OsaApi
 
         if($res === FALSE){
             ///
-        }else{ 
-             $resultat = json_decode($res) ;
+        }else{
+            $resultat = json_decode($res) ;
 
 
             //print_r($resultat);
@@ -75,12 +75,67 @@ class OsaApi
 
                 }
             }
-            //echo "<class=\"badge bg-red\">". $encoure. "</span>, <class=\"badge bg-green\">".$termine."</span>";
-echo '('. $encoure.'/'.($termine+$encoure).')';
+            echo '('. $encoure.'/'.($termine+$encoure).')';
         }
     }
-}
 
-OsaApi::tache($db);
+
+
+    public static function tache_liste($db){
+        extract($_GET);
+        $res = self::appel("r2i_all=&r2i_list_tache=true&id=".$idprojet, "tache.php");
+
+        if($res === FALSE){
+            ///
+        }else{
+
+            $resultat = json_decode($res) ;
+
+
+
+            $tabeidtache = [];
+
+            foreach ($resultat as $tache){
+                array_push($tabeidtache,$tache[0]);
+            }
+
+
+
+            $tablistetachereturn= [];
+            $i=0;
+
+
+
+            if(count($tabeidtache) >0){
+                $bddresultat = $db->query("SELECT id_osa FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', $tabeidtache) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
+
+                while($resultatconteur= $bddresultat->fetch()){
+
+                    foreach ($resultat as $tache){
+                        if($tache[0]==$resultatconteur[0]){
+                            array_push($tablistetachereturn,[$tache[0],$tache[1],$tache[2],'de',$idprojet]);
+                        }
+                    }
+
+
+                }
+            }
+            //print_r($tablistetachereturn);
+           echo json_encode($tablistetachereturn) ;
+
+
+
+
+        }
+    }
+
+
+
+}
+if(isset($_GET['methode']) )
+    OsaApi::$_GET['methode']($db);
+else
+    OsaApi::tache($db);
+
 
 
