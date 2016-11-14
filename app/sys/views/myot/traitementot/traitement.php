@@ -14,6 +14,8 @@
         <div class="col-md-6">
             <label for="comment_stt" style="margin-top: 20px;">Lien retour terrain <!--<span class="text-danger">*</span>--></label>
             <textarea class="form-control" id="comment_stt" name="comment_stt" rows="6"></textarea>
+            <br>
+            <button id="save_retour_link" class='btn btn-info btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Enregistrer</button>
         </div>
     </div>
 </div>
@@ -28,10 +30,10 @@
                 <div class="block-header bg-primary">
                     <ul class="block-options">
                         <li>
-                            <button id="close-project-add-form" data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Menu SNK</h3>
+                    <h3 class="block-title">Menu SNK
                 </div>
                 <div class="block-content">
                 </div>
@@ -73,7 +75,6 @@
         onLoad:function(obj)
         {
             if(ot_dt.row('.selected').data() !== undefined) {
-                console.log(ot_dt.row('.selected').data().id_ordre_de_travail);
                 $.ajax({
                     cache: false,
                     url: "api/myot/traitement/load_retour_stt.php",
@@ -150,6 +151,10 @@
             if(ot_dt.row('.selected').data()!== undefined) {
                 setOtStatus(ot_dt.row('.selected').data().id_ordre_de_travail,5,'#message_ot_statut',ot_dt);//statut 5 : En cours de Traitement
             }
+        });
+
+        $("#save_retour_link").click(function() {
+            console.log('save_retour_link');
         });
 
     } );
