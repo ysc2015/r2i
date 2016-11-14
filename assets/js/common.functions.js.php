@@ -141,7 +141,7 @@ function setOtStatus(idot,status,selector,dt) {
 }
 
 function setRetourTerrain(idsp,idtot,selector,val) {
-    console.log('tip script');
+    console.log('tip script ' + idtot);
     $.ajax({
         url: "api/myot/traitement/update_retour_terrain.php",
         dataType: "json",
