@@ -1,5 +1,8 @@
 <style>
-    .ajax-upload-dragdrop {
+    #devis_bon_cmd_uploader .ajax-upload-dragdrop {
+        display: none;
+    }
+    #devis_autre_uploader .ajax-upload-dragdrop {
         display: none;
     }
 </style>

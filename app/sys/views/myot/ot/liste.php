@@ -39,7 +39,7 @@
     var id_devis = 0;
     var id_res = 0;
     var rem = '';
-    var ot_btns = [];
+    var selectedOT = 0;
     function displayDevis() {
         if(ot_dt.row('.selected').data()!== undefined) {
             $.ajax({
@@ -108,33 +108,66 @@
             ],
             "order": [[0, 'desc']]
             ,
-            "drawCallback": function( /*settings*/ ) {
+            "drawCallback": function( settings ) {
+                //console.log('drawCallback');
                 displayDevis();
                 $('#devis_block_title').html('Devis');
-                $(ot_btns.join(',')).addClass("disabled");
+                $('#validate_start_ot').addClass("disabled");
+                $('#snk_show').addClass("disabled");
+                $('#foa_show').addClass("disabled");
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
+            },
+            "initComplete": function( settings ) {
+            },
+            rowId: 'id_ordre_de_travail',
+            "rowCallback": function( row, data ) {
+                if ( data.id_ordre_de_travail == selectedOT) {
+                    $(row).addClass('selected');
+                }
             }
         } );
 
-        $(ot_btns.join(',')).addClass("disabled");
+        $('#validate_start_ot').addClass("disabled");
+        $('#snk_show').addClass("disabled");
+        $('#foa_show').addClass("disabled");
+        $('#retour_uploads').hide();
 
         $('#ot_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
 
-                $(ot_btns.join(',')).addClass("disabled");
+                $('#validate_start_ot').addClass("disabled");
+                $('#snk_show').addClass("disabled");
+                $('#foa_show').addClass("disabled");
                 $('#devis_block_title').html('Devis');
 
+                $('#retour_uploads').hide();
+
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
+
+                selectedOT = 0;
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
-                $(ot_btns.join(',')).removeClass("disabled");
+                if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8) {
+                    uploader3.reset();
+                    uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
+                    $('#retour_uploads').show();
+                } else {
+                    $('#retour_uploads').hide();
+                }
+
+                if(ot_dt.row('.selected').data().id_etat_ot != 5) {
+                    $('#validate_start_ot').removeClass("disabled");
+                }
+                $('#snk_show').removeClass("disabled");
+                $('#foa_show').removeClass("disabled");
                 $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
+                selectedOT = ot_dt.row('.selected').data().id_ordre_de_travail;
             }
 
             calendar.refresh();
