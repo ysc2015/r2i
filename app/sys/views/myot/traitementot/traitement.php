@@ -62,8 +62,8 @@
 <!-- END FOA Modal -->
 <script>
     var uploader3_options = {
-        url: "api/ot/devis/upload_devis_bon_cmd.php",
-        multiple:true,
+        url: "api/myot/traitement/myot_upload_retour.php",
+        multiple:false,
         dragDrop:true,
         fileName: "myfile",
         autoSubmit: true,
@@ -72,12 +72,13 @@
         allowedTypes: "pdf",
         onLoad:function(obj)
         {
-            /*if(id_devis > 0) {
+            if(ot_dt.row('.selected').data() !== undefined) {
+                console.log(ot_dt.row('.selected').data().id_ordre_de_travail);
                 $.ajax({
                     cache: false,
-                    url: "api/ot/devis/load_bon_cmd.php",
+                    url: "api/myot/traitement/load_retour_stt.php",
                     method:"POST",
-                    data: {iddevis:id_devis},
+                    data: {idot:ot_dt.row('.selected').data().id_ordre_de_travail},
                     dataType: "json",
                     success: function(data)
                     {
@@ -87,14 +88,14 @@
                         }
                     }
                 });
-            }*/
+            }
         },
         dynamicFormData: function()
         {
-            /*var data ={
-                iddevis: id_devis
+            var data ={
+                idot: ot_dt.row('.selected').data().id_ordre_de_travail
             };
-            return data;*/
+            return data;
         },
         afterUploadAll:function(obj) {
         },
