@@ -70,6 +70,7 @@
                 <div class="col-md-8"><button id="id_sous_projet_transport_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
 
                      <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+                     <button id="id_sous_projet_transport_design_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
 
                 </div>
             </div>
@@ -88,9 +89,13 @@
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
+
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
 
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
+        $('#id_sous_projet_transport_design_list_tache').click(function(){
+            liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);
         });
         $("#id_sous_projet_transport_design_btn").click(function () {
 

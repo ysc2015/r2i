@@ -62,6 +62,7 @@
                 <div class="col-md-8">
                     <button id="id_sous_projet_plaque_pos_adresse_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_plaque_pos_adresse_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+                    <button id="id_sous_projet_plaque_pos_adresse_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
 
                 </div>
             </div>
@@ -78,6 +79,9 @@
 
         $("#id_sous_projet_plaque_carto_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
+        });
+        $("#id_sous_projet_plaque_pos_adresse_list_tache").click(function () {
+            liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);
         });
         $('#pos_adresse_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             posadr_formdata[$( this ).attr('name')] = $( this).val();

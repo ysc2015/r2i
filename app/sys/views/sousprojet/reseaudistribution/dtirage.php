@@ -220,7 +220,7 @@
                     <button id="id_sous_projet_distribution_tirage_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_distribution_tirage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
                     <button id="id_sous_projet_distribution_tirage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
-
+                    <button id="id_sous_projet_distribution_tirage_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
                 </div>
             </div>
         </div>
@@ -316,6 +316,10 @@
         $("#id_sous_projet_distribution_tirage_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
+        $("#id_sous_projet_distribution_tirage_list_tache").click(function () {
+            liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+        });
+
         $('#dist_tirage_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             dtirage_formdata[$( this ).attr('name')] = $( this).val();
         });
