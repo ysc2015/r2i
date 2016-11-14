@@ -120,3 +120,22 @@ var defaultUploaderStrLocalisation = {
     uploadErrorStr: "envoi de fichier non autorisé",
     maxFileCountErrorStr: "non autorisé. max fichiers autorisés :"
 }
+
+//set ot status
+
+function setOtStatus(idot,status,selector,dt) {
+    $.ajax({
+        url: "api/ot/ot/set_ot_status.php",
+        dataType: "json",
+        method: "POST",
+        data: {
+            idot : idot,
+            status : status
+        }
+    }).done(function (msg) {
+        if(msg.error == 0) {
+            dt.ajax.reload();
+        }
+        App.showMessage(msg,selector);
+    });
+}

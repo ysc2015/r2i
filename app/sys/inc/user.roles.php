@@ -482,7 +482,7 @@ class stt extends baseUser {
                 "chambreot" => array("liste"),
                 "synoptique" => array("synoptique"),
                 "devis" => array("formdevis"),
-                "traitementot" => array()
+                "traitementot" => array("traitement")
             )
         );
     }

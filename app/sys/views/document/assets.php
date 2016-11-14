@@ -74,6 +74,7 @@
 <script src="assets/js/plugins/fullcalendar/locale/fr.js"></script>
 <script src="assets/js/plugins/jquery-smooth-scroll/jquery.smooth-scroll.min.js"></script>
 <script src="assets/js/sharedPreferences.js"></script>
+<script src="assets/js/plugins/datatables/Select-1.2.0/js/dataTables.select.min.js"></script>
 <script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>
 

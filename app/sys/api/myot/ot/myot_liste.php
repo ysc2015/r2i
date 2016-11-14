@@ -22,6 +22,7 @@ $columns = array(
     array( "db" => "t5.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.plaque", "dt" => 'plaque' ),
     array( "db" => "t3.zone", "dt" => 'zone' ),
+    array( "db" => "t1.id_etat_ot", "dt" => 'id_etat_ot' ),
     array( "db" => "etat.lib_etat_ot", "dt" => 'lib_etat_ot' )
 );
 
