@@ -47,6 +47,20 @@
  						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
  						window.open (rc2k.osa.url + 'ui/tache_traiter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
 							
+ 					},
+ 					affecter: function(obj){
+ 						/*
+						{
+							idt: id tache a traiter,
+							callback : {
+								param : parametres a envoyer avec l'url de callback,
+								url: url de callback
+							}	
+						}
+ 						*/
+ 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
+ 						window.open (rc2k.osa.url + 'ui/tache_affecter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+							
  					}
 				}
 			},
