@@ -93,7 +93,9 @@
         dynamicFormData: function()
         {
             var data ={
-                idot: ot_dt.row('.selected').data().id_ordre_de_travail
+                idot: ot_dt.row('.selected').data().id_ordre_de_travail,
+                idsp: ot_dt.row('.selected').data().id_sous_projet,
+                idtot: ot_dt.row('.selected').data().id_type_ordre_travail
             };
             return data;
         },
