@@ -9,6 +9,18 @@
 			url: 'http://sd-83414.dedibox.fr/osa/',
 			ui: {
 				tache: {
+					list : function(obj){
+						/*
+						{
+							idp : id projet,
+							ide : id etape,
+							etape : nom de l'etape,
+							url: http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php
+						}
+						*/
+						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
+						window.open (rc2k.osa.url + 'ui/tache_list/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+					},
 					create: function (obj) {
 						/*
 						{
