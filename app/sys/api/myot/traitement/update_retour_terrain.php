@@ -33,7 +33,7 @@ if($sousProjet !== NULL) {
             $tentree[] = "transportraccordement";
             break;
         case "5" :
-            $tentree[] = "distributionraccordement";
+            $tentree[] = "distributionaiguillage";
             break;
         case "6" :
             $tentree[] = "distributiontirage";
