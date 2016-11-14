@@ -11,6 +11,8 @@ $duree = "";
 $sousProjet = NULL;
 $stm = NULL;
 
+$new = false;
+
 if(isset($ids) && !empty($ids)){
     $sousProjet = SousProjet::find($ids);
 }
@@ -56,6 +58,7 @@ if($sousProjet !== NULL) {
         $valueslist = rtrim($valueslist,",");
 
         $stm = $db->prepare("insert into sous_projet_transport_tirage ($fieldslist) values ($valueslist)");
+        $new = true;
     }
 } else {
     $err++;
@@ -248,6 +251,11 @@ if($insert == true && $err == 0){
     $duree = getDuree($tt_date_tirage,$tt_date_ret_prevue);
     $stm->bindParam(':duree',$duree);
     if($stm->execute()){
+        if($new) {
+            $transportraccordement = new SousProjetTransportRaccordement(array(
+                'id_sous_projet' => $ids));
+            $transportraccordement->save();
+        }
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
     } else {
