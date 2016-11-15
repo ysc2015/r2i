@@ -11,7 +11,12 @@ class EntrepriseSTT extends ActiveRecord\Model {
         array(
             'equipes',
             'class_name' => 'EquipeSTT',
-            'foreign_key' => 'id_entreprise_stt'
+            'foreign_key' => 'id_entreprise'
+        ),
+        array(
+            'users',
+            'class_name' => 'Utilisateur',
+            'foreign_key' => 'id_entreprise'
         )
     );
 }

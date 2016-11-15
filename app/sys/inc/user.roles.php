@@ -490,6 +490,14 @@ class stt extends baseUser {
         );
     }
 
+    function myotplanning() {
+        Page::myotplanning(
+            array(
+                "planning" => array("planning")
+            )
+        );
+    }
+
     function sidebar() {
         Page::sidebar("myot_titre","myot_liste","myot_planning");
     }
