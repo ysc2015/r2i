@@ -99,7 +99,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-8" style="background-color: #2b7169;">
+                        <div class="col-md-8">
                             <div id="calender2" class="js-calendar"><!--calendar wrapper-->
 
                             </div>
