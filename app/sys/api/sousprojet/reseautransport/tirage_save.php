@@ -252,9 +252,11 @@ if($insert == true && $err == 0){
     $stm->bindParam(':duree',$duree);
     if($stm->execute()){
         if($new) {
-            $transportraccordement = new SousProjetTransportRaccordement(array(
-                'id_sous_projet' => $ids));
-            $transportraccordement->save();
+            if($sousProjet->transportraccordement == NULL) {
+                $transportraccordement = new SousProjetTransportRaccordement(array(
+                    'id_sous_projet' => $ids));
+                $transportraccordement->save();
+            }
         }
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
