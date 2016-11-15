@@ -46,7 +46,7 @@
 
 <!-- affecter ot Modal -->
 <div class="modal fade" id="affecter-ot" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="block block-themed block-transparent remove-margin-b">
                 <div class="block-header bg-primary">
@@ -58,44 +58,53 @@
                     <h3 class="block-title">Affecter ordre de travail</h3>
                 </div>
                 <div class="block-content">
-                    <form class="js-validation-bootstrap form-horizontal" id="ot_affecter_form">
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="ot_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                                <select class="form-control " id="ot_entreprise" name="ot_entreprise" style="width: 100%;">
-                                    <option value="" selected="">Sélectionnez une entreprise</option>
-                                    <?php
-                                    $results = EntrepriseSTT::all();
-                                    foreach($results as $result) {
-                                        echo "<option value=\"$result->id_entreprise\" ". ($sousProjet->transportaiguillage!==NULL && $sousProjet->transportaiguillage->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->nom</option>";
-                                    }
-                                    ?>
-                                </select>
+                    <div class="row items-push">
+                        <div class="col-md-4">
+                            <form class="js-validation-bootstrap form-horizontal" id="ot_affecter_form">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="ot_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
+                                        <select class="form-control " id="ot_entreprise" name="ot_entreprise" style="width: 100%;">
+                                            <option value="" selected="">Sélectionnez une entreprise</option>
+                                            <?php
+                                            $results = EntrepriseSTT::all();
+                                            foreach($results as $result) {
+                                                echo "<option value=\"$result->id_entreprise\" ". ($sousProjet->transportaiguillage!==NULL && $sousProjet->transportaiguillage->id_entreprise==$result->id_entreprise ?"selected": "")." >$result->nom</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="ot_equipe">Equipe <!--<span class="text-danger">*</span>--></label>
+                                        <select class="form-control " id="ot_equipe" name="ot_equipe" style="width: 100%;">
+                                            <option value="" selected="">Sélectionnez une équipe</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="affecter_date_debut">Date début <!--<span class="text-danger">*</span>--></label>
+                                        <input class="form-control " type="date" id="affecter_date_debut" name="affecter_date_debut" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="affecter_date_fin">Date fin <!--<span class="text-danger">*</span>--></label>
+                                        <input class="form-control " type="date" id="affecter_date_fin" name="affecter_date_fin" value="">
+                                    </div>
+                                </div>
+                                <div class='alert alert-success' id='message_affecter_ot' role='alert' style="display: none;">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8" style="background-color: #2b7169;">
+                            <div id="calender2" class="js-calendar"><!--calendar wrapper-->
+
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="ot_equipe">Equipe <!--<span class="text-danger">*</span>--></label>
-                                <select class="form-control " id="ot_equipe" name="ot_equipe" style="width: 100%;">
-                                    <option value="" selected="">Sélectionnez une équipe</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="affecter_date_debut">Date début <!--<span class="text-danger">*</span>--></label>
-                                <input class="form-control " type="date" id="affecter_date_debut" name="affecter_date_debut" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="affecter_date_fin">Date fin <!--<span class="text-danger">*</span>--></label>
-                                <input class="form-control " type="date" id="affecter_date_fin" name="affecter_date_fin" value="">
-                            </div>
-                        </div>
-                        <div class='alert alert-success' id='message_affecter_ot' role='alert' style="display: none;">
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

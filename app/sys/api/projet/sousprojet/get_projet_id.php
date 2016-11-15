@@ -96,5 +96,5 @@ if($sousProjet !== NULL) {
 
 }
 
-echo json_encode(array("id" => $id, "nom" => $sousProjet->projet->projet_nom, "idetape" => $idetape));
+echo json_encode(array("id" => $id, "nom" => $sousProjet->dep." PON ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->ville, "idetape" => $idetape));
 ?>
