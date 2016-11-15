@@ -1,15 +1,16 @@
+var tache_dt;
 /**
  * Created by fadil on 02/11/16.
  */
 function appelscriptosa(typeetape, id_sous_projet,ide)
 {
     rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response){
-        console.log(response);
+       // console.log(response);
         var aresponse = JSON.parse(response);
         var idetape=0;
         if(false) {
             alert("Authentification non autorisé");
-        }else{ console.log(ide+" ok "+id_sous_projet);
+        }else{
             //apres authentification
             $.ajax({
                 method: "POST",
@@ -20,7 +21,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                     tentre: ide
                 },
                 success : function (e) {
-                    console.log("appelscriptosa e.idetape: "+e.idetape+", e.id: "+e.id);
+
 
                     idetape = e.idetape;
                     if(idetape!=0){
@@ -34,7 +35,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                             }, function(reponse){
 
                                 var areponse = JSON.parse (reponse);
-                                console.log(areponse["extra"]);
+
                                 $.ajax({
                                     method: "POST",
                                     url: "api/projet/projet/set_projet_id_osa.php",
@@ -44,7 +45,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
                                     },
                                     success : function(response){
-                                        console.log(response);
+
                                         rc2k.osa.ui.tache.create({
                                             idp : areponse["extra"],
                                             ide : idetape,
@@ -90,9 +91,7 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
             tentre: ide
         },
         success: function (e) {
-            console.log(typeetape);
-            console.log(e);
-            console.log("calculetache_osa idetape: "+e.idetape+", id:"+e.id);
+
             if(e.idetape!=0) {
 
                     $.ajax({
@@ -117,6 +116,8 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
 
 }
 function liste_tache_osa(typeetape,id_sous_projet,ide){
+
+
     var idligne=0;
     $.ajax({
         method: "POST",
@@ -128,7 +129,7 @@ function liste_tache_osa(typeetape,id_sous_projet,ide){
         },
         success: function (e) {
 
-            console.log("liste_tache_osa calculetache_osa idetape: "+e.idetape+", id:"+e.id);
+
             if(e.idetape!=0) {
 
                 $.ajax({
@@ -141,47 +142,26 @@ function liste_tache_osa(typeetape,id_sous_projet,ide){
                         methode:"tache_liste"
                     },
                     success : function(reponse){
-                        console.log(reponse);
+
                         var datajson = JSON.parse(reponse);
 
-                       console.log("resultat tache_liste_osa");
-                       console.log(datajson);
-                        projet_dt = $('#projet_table').DataTable({
+
+                        $('#tache_table').DataTable().destroy();
+
+
+                        tache_dt = $('#tache_table').DataTable({
 
                             "data": datajson,
+                            "columnDefs": [
+                                { "targets": [0], "visible": false, "searchable": false }
+
+
+                            ],
 
                         });
-                        $('#projet_table tbody').on( 'click', 'tr', function () {
-                            if ( $(this).hasClass('selected') ) {
-                                $(this).removeClass('selected');
 
 
-                            }
-                            else {
-                                projet_dt.$('tr.selected').removeClass('selected');
-                                $(this).addClass('selected');
 
-
-                             }
-
-                        } );
-
-                        $('#traite_tache_osa').click(function(){
-                            idligne = (projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data()[0]:0);
-
-
-                            rc2k.osa.ui.tache.traiter({
-                                idt : idligne
-                            });
-                        });
-                        $('#affecte_tache_osa').click(function(){
-                             idligne = (projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data()[0]:0);
-
-                            rc2k.osa.ui.tache.affecter({
-                                idt : idligne
-                            });
-
-                        });
                     }
                 });
 
