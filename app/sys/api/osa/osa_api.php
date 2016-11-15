@@ -113,7 +113,8 @@ class OsaApi
 
                     foreach ($resultat as $tache){
                         if($tache[0]==$resultatconteur[0]){
-                            array_push($tablistetachereturn,[$tache[0],$tache[1],$tache[2],'de',$idprojet]);
+                            //array_push($tablistetachereturn,[$tache[0],$tache[1],$tache[2],'de',$idprojet]);
+                            array_push($tablistetachereturn,[$tache[0],$tache[1],$tache[2]]);
                         }
                     }
 
