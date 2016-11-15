@@ -237,34 +237,30 @@ switch ($page) {
                 <div class="block-header bg-primary">
                     <ul class="block-options">
                         <li>
-                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            <button data-dismiss="modal" id="fermegestiontache" type="button"><i class="si si-close"></i></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Ajouter sous projet</h3>
+                    <h3 class="block-title">Gestion Tâche</h3>
                 </div>
                 <div class="block-content">
                     <div class="block">
                         <div class="block-content table-responsive">
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                            <table id="projet_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                            <table id="tache_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>id Tache</th>
+                                    <th>ID</th>
                                     <th>Nom Tache</th>
                                     <th>Statut</th>
-                                    <th>Traiter</th>
-                                    <th>Affecter</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>id Tache</th>
+                                    <th>ID</th>
                                     <th>Nom Tache</th>
                                     <th>Statut</th>
-                                    <th>Traiter</th>
-                                    <th>Affecter</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -280,3 +276,38 @@ switch ($page) {
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+
+
+        $('#tache_table tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                $('#tache_table tbody tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#traite_tache_osa').click(function(){
+
+            idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
+
+
+            rc2k.osa.ui.tache.traiter({
+                idt : idligne
+            });
+        });
+
+        $('#affecte_tache_osa').click(function(){
+            idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
+             rc2k.osa.ui.tache.affecter({
+                idt : idligne
+            });
+
+        });
+
+    } );
+</script>
