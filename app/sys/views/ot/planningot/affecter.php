@@ -482,8 +482,8 @@
                     return {
                         team_id : $('#ot_equipe_cal').val(),
                         soc_id : $('#ot_entreprise_cal2').val(),
-                        date1 : (date1!==null?date1.format('YYYY-MM-DD'):''),
-                        date2 : (date2!==null?date2.format('YYYY-MM-DD'):'')
+                        date1 : $('#affecter_date_debut_cal').val(),
+                        date2 : $('#affecter_date_fin_cal').val()
                     };
                 }
             },
@@ -502,9 +502,9 @@
 
         });
 
-        $('#modal-ot-cal').on('shown.bs.modal', function () {
+        $('#affecter-ot').on('shown.bs.modal', function () {
             console.log('shown');
-            $("#calendar2").fullCalendar('render');
+            $("#calender2").fullCalendar('render');
         });
     } );
 </script>
