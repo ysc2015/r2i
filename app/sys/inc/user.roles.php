@@ -175,6 +175,7 @@ class adm extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link","link_pb"),
+                "deot" => array("deot"),
                 "devis" => array("formdevis"),
                 "chambreot" => array("liste","update","add_pblq","open"),
                 "planningot" => array("affecter"),
@@ -430,6 +431,7 @@ class vpi extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link"),
+                "deot" => array("deot"),
                 "chambreot" => array("liste","update","add_pblq","open"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
