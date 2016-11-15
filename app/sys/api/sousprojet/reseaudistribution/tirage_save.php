@@ -217,9 +217,11 @@ if(isset($dt_ok)){
 if($insert == true && $err == 0){
     if($stm->execute()){
         if($new) {
-            $transportraccordement = new SousProjetDistributionRaccordement(array(
-                'id_sous_projet' => $ids));
-            $transportraccordement->save();
+            if($sousProjet->distributionraccordement == NULL) {
+                $distributionraccordement = new SousProjetDistributionRaccordement(array(
+                    'id_sous_projet' => $ids));
+                $distributionraccordement->save();
+            }
         }
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
