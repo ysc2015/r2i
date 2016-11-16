@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="tr_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="number" id="tr_duree" name="tr_duree" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->duree : "")?>">
+                    <input readonly class="form-control " type="text" id="tr_duree" name="tr_duree" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->duree : "")?>">
                 </div>
             </div>
         </div>
