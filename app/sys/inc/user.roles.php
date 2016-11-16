@@ -150,6 +150,14 @@ class adm extends baseUser {
         );
     }
 
+    function planning() {
+        Page::planning(
+            array(
+                "planning" => array("planning")
+            )
+        );
+    }
+
     function entreprise() {
         Page::entreprise(
             array(
@@ -193,7 +201,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste"/*,"user_titre","user_liste"*/,"menu_stt_titre","menu_stt_inc");
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 
     //admin only menu
@@ -415,6 +423,14 @@ class vpi extends baseUser {
         );
     }
 
+    function planning() {
+        Page::planning(
+            array(
+                "planning" => array("planning")
+            )
+        );
+    }
+
     function sousprojet() {
         Page::sousprojet(
             array(
@@ -448,7 +464,7 @@ class vpi extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("projet_titre","projet_liste");
+        Page::sidebar("projet_titre","projet_liste","planning_titre","planning_view");
     }
 }
 class pci extends baseUser {

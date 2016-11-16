@@ -206,6 +206,10 @@ switch ($page) {
         $connectedProfil->myotplanning();
         echo "<br><br>";
         break;
+    case "planning":
+        $connectedProfil->planning();
+        echo "<br><br>";
+        break;
     case "entreprise":
         $connectedProfil->entreprise();
         echo "<br><br>";
