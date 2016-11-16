@@ -125,6 +125,7 @@
         } );
 
         $(ot_btns.join(',')).addClass("disabled");
+        $('#other_files_uploader').hide();
 
         $('#ot_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
@@ -137,10 +138,16 @@
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
+
+                $('#other_files_uploader').hide();
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+
+                $('#other_files_uploader').show();
+                other_files_uploader.reset();
+                other_files_uploader = $("#other_files_uploader").uploadFile(other_files_uploader_options);
 
                 //console.log('iddevis' + ot_dt.row('.selected').data().iddevis);
 
