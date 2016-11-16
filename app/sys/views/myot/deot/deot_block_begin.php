@@ -1,3 +1,8 @@
+<style>
+    #other_files_uploader_wrapper .ajax-upload-dragdrop {
+        display: none;
+    }
+</style>
 <div class="block block-themed" id="deot_block">
     <div class="block-header bg-info">
         <ul class="block-options">

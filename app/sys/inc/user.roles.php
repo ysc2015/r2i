@@ -480,12 +480,12 @@ class stt extends baseUser {
         Page::myot(
             array(
                 "ot" => array("liste"),
+                "deot" => array("deot"),
                 "infosot" => array("calendar"),
                 "chambreot" => array("liste"),
                 "synoptique" => array("synoptique"),
                 "devis" => array("formdevis"),
-                "traitementot" => array("traitement"),
-                "deot" => array("deot")
+                "traitementot" => array("traitement")
             )
         );
     }

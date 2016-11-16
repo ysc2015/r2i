@@ -1,13 +1,15 @@
 <label for="other-files">Fichiers DE </label>
-<div id="other_files_uploader"></div>
+<div id="other_files_uploader_wrapper">
+    <div id="other_files_uploader"></div>
+</div>
 <script>
     var other_files_uploader_options = {
-        url: "api/myot/traitement/myot_upload_retour.php",
+        /*url: "api/ot/ot/upload_de_ot_file.php",*/
         multiple:false,
         dragDrop:true,
         fileName: "myfile",
         autoSubmit: true,
-        showDelete:true,
+        showDelete:false,
         showDownload:true,
         allowedTypes: "pdf",
         onLoad:function(obj)
@@ -15,7 +17,7 @@
             if(ot_dt.row('.selected').data() !== undefined) {
                 $.ajax({
                     cache: false,
-                    url: "api/myot/traitement/load_retour_stt.php",
+                    url: "api/ot/ot/load_de_ot.php",
                     method:"POST",
                     data: {idot:ot_dt.row('.selected').data().id_ordre_de_travail},
                     dataType: "json",
@@ -32,9 +34,7 @@
         dynamicFormData: function()
         {
             var data ={
-                idot: ot_dt.row('.selected').data().id_ordre_de_travail,
-                idsp: ot_dt.row('.selected').data().id_sous_projet,
-                idtot: ot_dt.row('.selected').data().id_type_ordre_travail
+                idot: ot_dt.row('.selected').data().id_ordre_de_travail
             };
             return data;
         },
@@ -80,7 +80,6 @@
     $(function () {
         // Init page plugins & helpers
         other_files_uploader_options = merge_options(defaultUploaderStrLocalisation,other_files_uploader_options);
-        other_files_uploader_options.showDelete = false;
         other_files_uploader = $("#other_files_uploader").uploadFile(other_files_uploader_options);
     });
     $(document).ready(function() {
