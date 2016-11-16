@@ -6,6 +6,8 @@
 
 extract($_POST);
 
+$duree = "";
+
 $sousProjet = NULL;
 $stm = NULL;
 
@@ -156,6 +158,43 @@ if(isset($da_duree)){
     $insert = true;
 }
 
+/*
+ * dates début
+ */
+
+if(isset($da_date_aiguillage) && isset($da_date_ret_prevue)) {
+
+    $dd = DateTime::createFromFormat('Y-m-d', $da_date_aiguillage);
+    $df = DateTime::createFromFormat('Y-m-d', $da_date_ret_prevue);
+
+
+    if($dd && $df && $df < $dd) {
+        $err++;
+        $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début !";
+    } else  {
+
+        if(isset($da_date_aiguillage)){
+            $stm->bindParam(':date_aiguillage',$da_date_aiguillage);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date de début aiguillage est obligatoire !";
+        }
+
+        if(isset($da_date_ret_prevue)){
+            $stm->bindParam(':date_ret_prevue',$da_date_ret_prevue);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date fin prévue aiguillage est obligatoire !";
+        }
+    }
+}
+
+/*
+ * dates fin
+ */
+
 if(isset($da_controle_demarrage_effectif)){
     $stm->bindParam(':controle_demarrage_effectif',$da_controle_demarrage_effectif);
     $insert = true;
@@ -187,6 +226,8 @@ if(isset($da_ok)){
 }
 
 if($insert == true && $err == 0){
+    $duree = getDuree($da_date_aiguillage,$da_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
@@ -195,5 +236,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message , "duree" => $duree));
 ?>
