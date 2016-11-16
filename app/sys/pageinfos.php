@@ -51,6 +51,12 @@ switch($page)
             "navigator"=>"<li>liste</li>")));
         break;
 
+    case "planning":
+        return json_decode(json_encode(array("header"=>"Planning",
+            "subheader"=>"Ordres de travail",
+            "navigator"=>"<li>planning</li>")));
+        break;
+
     default:
         return json_decode(json_encode(array("header"=>"header",
             "subheader"=>"subheader",
