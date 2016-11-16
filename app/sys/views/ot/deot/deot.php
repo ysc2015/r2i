@@ -1,5 +1,7 @@
 <label for="other-files">Fichiers DE </label>
-<div id="other_files_uploader"></div>
+<div id="other_files_uploader_wrapper">
+    <div id="other_files_uploader"></div>
+</div>
 <script>
     var other_files_uploader_options = {
         url: "api/ot/ot/upload_de_ot_file.php",
