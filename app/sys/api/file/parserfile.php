@@ -100,6 +100,21 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux->getCell("D84")->setValue($row->NBTUB);
         $sheetbordereaux->getCell("D86")->setValue($row->NBSOUD);
 
+        $sheetbordereaux->getCell("D33")->setValue($row->D33);
+        $sheetbordereaux->getCell("D36")->setValue($row->D36);
+        $sheetbordereaux->getCell("D43")->setValue($row->D43);
+        $sheetbordereaux->getCell("D44")->setValue($row->D44);
+        $sheetbordereaux->getCell("D46")->setValue($row->D46);
+        $sheetbordereaux->getCell("D47")->setValue($row->D47);
+        $sheetbordereaux->getCell("D48")->setValue($row->D48);
+        $sheetbordereaux->getCell("D53")->setValue($row->D53);
+        $sheetbordereaux->getCell("D54")->setValue($row->D54);
+        $sheetbordereaux->getCell("D56")->setValue($row->D56);
+
+
+
+
+
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
         $cacheSettings = array( ' memoryCacheSize ' => '16MB');
