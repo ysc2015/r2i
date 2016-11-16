@@ -474,8 +474,11 @@
                         }).done(function (message) {
                             //console.log(message);
                             if(message.error == 0) {
-                                $("#ot_affecter_form")[0].reset();
+                                //$("#ot_affecter_form")[0].reset();
+                                $("#affecter_date_debut").val('');
+                                $("#affecter_date_fin").val('');
                                 update = true;
+                                $('#calender2').fullCalendar( 'refetchEvents' );
                             }
                             App.showMessage(message,'#message_affecter_ot');
                         });
