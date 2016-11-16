@@ -98,6 +98,22 @@
         <br>
         <div class="row items-push">
             <div class="form-group">
+                <div class="col-md-4">
+                    <label for="da_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="da_date_ret_prevue">Date prévisionnelle de fin d’aiguillage <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="da_date_ret_prevue" name="da_date_ret_prevue" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_ret_prevue:"")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="da_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="text" id="da_duree" name="da_duree" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->duree:"")?>">
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-3">
                     <label for="da_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_id_entreprise" name="da_id_entreprise">
@@ -111,30 +127,6 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="da_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>">
-                </div>
-                <div class="col-md-3">
-                    <label for="da_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="number" id="da_duree" name="da_duree" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->duree:"")?>">
-                </div>
-                <div class="col-md-3">
-                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
-                        <option value="" selected="">Sélectionnez une valeur</option>
-                        <?php
-                        $results = SelectControleDemarrageEffectif::all();
-                        foreach($results as $result) {
-                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row items-push">
-            <div class="form-group">
-                <div class="col-md-3">
                     <label for="da_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="da_date_retour" name="da_date_retour" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_retour:"")?>">
                 </div>
@@ -146,6 +138,18 @@
                         $results = SelectEtatRetour::all();
                         foreach($results as $result) {
                             echo "<option value=\"$result->id_etat_retour\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->etat_retour==$result->id_etat_retour ?"selected": "")." >$result->lib_etat_retour</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control " id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectControleDemarrageEffectif::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
                         }
                         ?>
                     </select>
@@ -316,12 +320,17 @@
                 daiguillage_formdata[key] = $('#'+key).val();
             }
             daiguillage_formdata['ids'] = get('idsousprojet');
+            daiguillage_formdata['da_duree'] = $("#da_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseaudistribution/aiguillage_save.php",
                 data: daiguillage_formdata
             }).done(function (msg) {
+                var obj = JSON.parse(msg);
+                if(obj.error == 0) {
+                    $("#da_duree").val(obj.duree);
+                }
                 $("#rdistribution_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_distribution_aiguillage');
             });
