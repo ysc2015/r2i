@@ -119,6 +119,7 @@
                             $('#ot_equipe_cal').val(calEvent.equipeid);
                             $('#affecter_date_debut_cal').val(calEvent.dd);
                             $('#affecter_date_fin_cal').val(calEvent.df);
+                            $('#modal-ot-cal').modal({backdrop: 'static', keyboard: false});
                             $('#modal-ot-cal').modal('show');
                         });
                     } else {
@@ -219,6 +220,63 @@
                     });
                     break;
                 case 'list' :
+                    $('#calender2').fullCalendar({
+                        header: {
+                            left: 'prev,next',
+                            center: 'title',
+                            right: ''
+                        },
+                        events: {
+                            url: 'api/ot/planningot/calendar_events.php',
+                            data: function() { // a function that returns an object
+                                return {
+                                    soc_id : $('#ot_entreprise').val(),
+                                    team_id : $('#ot_equipe').val(),
+                                    date1 : $('#affecter_date_debut').val(),
+                                    date2 : $('#affecter_date_fin').val()
+                                };
+                            }
+                        },
+                        eventClick: function(calEvent, jsEvent, view) {
+                            if(calEvent.id > 0) {
+                                $('#modal_cal_ot_title').html('ordre de travail : '+calEvent.etape + '-'+calEvent.typeot);
+
+                                $('#ot_entreprise_cal2').val(calEvent.socid);
+
+                                $.ajax({
+                                    method: "POST",
+                                    url: "api/ot/planningot/get_entry_soc_teams.php",
+                                    dataType: "json",
+                                    data: {
+                                        ide: calEvent.socid
+                                    }
+                                }).done(function (data) {
+                                    $('#ot_equipe_cal').html('<option value="" selected="">Sélectionnez une équipe</option>');
+                                    for(var i = 0 ; i < data.length ; i++) {
+                                        html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
+                                        $('#ot_equipe_cal').append(html);
+                                    }
+                                    $('#ot_equipe_cal').val(calEvent.equipeid);
+                                    $('#affecter_date_debut_cal').val(calEvent.dd);
+                                    $('#affecter_date_fin_cal').val(calEvent.df);
+                                    $('#modal-ot-cal').modal({backdrop: 'static', keyboard: false});
+                                    $('#modal-ot-cal').modal('show');
+                                });
+                            } else {
+                                console.log(calEvent.id);
+                            }
+                        },
+                        eventRender: function(event, element) {
+                            if(event.id > 0) {
+                                element.attr('title','clicker ici pour afficher détails');
+                            } else {
+                                element.attr('title','clicker ici pour basculer vers la liste des ot et conserver la période choisie');
+                            }
+                        },
+                        dayClick: function(date, jsEvent, view) {
+                        }
+
+                    });
                     ot_affect_dt = $('#ot_affect_table').DataTable( {
                         "language": {
                             "url": "assets/js/plugins/datatables/French.json"
@@ -380,11 +438,10 @@
 
                     } );
                     $("#affecter_ot_show").click(function() {
-                        console.log('affecter_ot_show');
                         $("#ot_entreprise").select2('val', 'All');
                         update = false;
                         $("#ot_affecter_form")[0].reset();
-                        $("#ot_entreprise").trigger('change');
+                        //$("#ot_entreprise").trigger('change');
                     });
                     $("#annuler_affecter").click(function() {
                         $.ajax({
@@ -432,20 +489,39 @@
                                 ide: $("#ot_entreprise").val()
                             }
                         }).done(function (data) {
-                                console.log(data);
-                                $('#ot_equipe').html('<option value="" selected="">Sélectionnez une équipe</option>');
-                                for(var i = 0 ; i < data.length ; i++) {
-                                    html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
-                                    $('#ot_equipe').append(html);
-                                }
+                            console.log(data);
+                            $('#ot_equipe').html('<option value="" selected="">Sélectionnez une équipe</option>');
+                            for(var i = 0 ; i < data.length ; i++) {
+                                html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
+                                $('#ot_equipe').append(html);
+                            }
+
+
+                            console.log('calender2 refetchEvents');
+                            //$('#calender2').fullCalendar('removeEvents');
+                            $('#calender2').fullCalendar( 'refetchEvents' );
                         });
                     });
+                    $("#ot_equipe").change(function() {
+                        //$('#calender2').fullCalendar('removeEvents');
+                        $('#calender2').fullCalendar( 'refetchEvents' );
+                    });
+
+                    $("#affecter_date_debut").change(function() {
+                        $("#calender2").fullCalendar( 'gotoDate', $( this).val() );
+                    });
+
                     $('#affecter-ot').on('hidden.bs.modal', function () {
                         if(update) {
                             ot_affect_dt.draw(false);
                         }
                         console.log('hidden');
-                    })
+                    });
+                    $('#affecter-ot').on('shown.bs.modal', function () {
+                        console.log('shown');
+                        $("#calender2").fullCalendar('render');
+                        //$('#calender2').fullCalendar( 'refetchEvents' );
+                    });
                     break;
                 default:
                     break;
@@ -468,43 +544,5 @@
         });
         planning.init(defaultView);
         planning.initEvents(defaultView);
-
-        //
-        $('#calender2').fullCalendar({
-            header: {
-                left: 'prev,next',
-                center: 'title',
-                right: ''
-            },
-            events: {
-                url: 'api/ot/planningot/calendar_events.php',
-                data: function() { // a function that returns an object
-                    return {
-                        team_id : $('#ot_equipe_cal').val(),
-                        soc_id : $('#ot_entreprise_cal2').val(),
-                        date1 : $('#affecter_date_debut_cal').val(),
-                        date2 : $('#affecter_date_fin_cal').val()
-                    };
-                }
-            },
-            eventClick: function(calEvent, jsEvent, view) {
-
-            },
-            eventRender: function(event, element) {
-                if(event.id > 0) {
-                    element.attr('title','clicker ici pour afficher détails');
-                } else {
-                    element.attr('title','clicker ici pour basculer vers la liste des ot et conserver la période choisie');
-                }
-            },
-            dayClick: function(date, jsEvent, view) {
-            }
-
-        });
-
-        $('#affecter-ot').on('shown.bs.modal', function () {
-            console.log('shown');
-            $("#calender2").fullCalendar('render');
-        });
     } );
 </script>
