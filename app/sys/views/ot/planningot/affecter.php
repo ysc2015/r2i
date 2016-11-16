@@ -459,7 +459,7 @@
                         });
                     });
                     $("#save_ot_affecter").click(function() {
-                        console.log(ot_affect_dt.row('.selected').data().id_ordre_de_travail);
+                        //console.log(ot_affect_dt.row('.selected').data().id_ordre_de_travail);
                         $.ajax({
                             method: "POST",
                             url: "api/ot/planningot/affecter_ot_team.php",
@@ -472,7 +472,7 @@
                                 date2: $("#affecter_date_fin").val()
                             }
                         }).done(function (message) {
-                            console.log(message);
+                            //console.log(message);
                             if(message.error == 0) {
                                 $("#ot_affecter_form")[0].reset();
                                 update = true;
@@ -489,16 +489,12 @@
                                 ide: $("#ot_entreprise").val()
                             }
                         }).done(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             $('#ot_equipe').html('<option value="" selected="">Sélectionnez une équipe</option>');
                             for(var i = 0 ; i < data.length ; i++) {
                                 html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
                                 $('#ot_equipe').append(html);
                             }
-
-
-                            console.log('calender2 refetchEvents');
-                            //$('#calender2').fullCalendar('removeEvents');
                             $('#calender2').fullCalendar( 'refetchEvents' );
                         });
                     });
@@ -515,10 +511,10 @@
                         if(update) {
                             ot_affect_dt.draw(false);
                         }
-                        console.log('hidden');
+                        //console.log('hidden');
                     });
                     $('#affecter-ot').on('shown.bs.modal', function () {
-                        console.log('shown');
+                        //console.log('shown');
                         $("#calender2").fullCalendar('render');
                         //$('#calender2').fullCalendar( 'refetchEvents' );
                     });
