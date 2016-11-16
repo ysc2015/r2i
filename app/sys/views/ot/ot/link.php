@@ -1,15 +1,17 @@
 
 
-<br><br>
-<label for="linked-ch">Fichiers chambres </label>
-<select multiple class="js-select2" id="linked-ch" name="linked-ch" size="1" style="width: 100%;" data-placeholder="Séléctionner fichiers chambres..">
-    <option value="">&nbsp;</option>
-</select>
-<br>
-<div class='alert alert-success' id='message_ot_link' role='alert' style="display: none;">
+<div id="linked-ch-wrapper">
+    <br><br>
+    <label for="linked-ch">Fichiers chambres </label>
+    <select multiple class="js-select2" id="linked-ch" name="linked-ch" size="1" style="width: 100%;" data-placeholder="Séléctionner fichiers chambres..">
+        <option value="">&nbsp;</option>
+    </select>
+    <br>
+    <div class='alert alert-success' id='message_ot_link' role='alert' style="display: none;">
+    </div>
+    <br>
+    <button id="link_ot" class='btn btn-info btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Valider</button>
 </div>
-<br>
-<button id="link_ot" class='btn btn-info btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Valider</button>
 <script>
     $(function () {
         // Init page plugins & helpers

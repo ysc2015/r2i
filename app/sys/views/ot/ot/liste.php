@@ -127,6 +127,7 @@
         $(ot_btns.join(',')).addClass("disabled");
         $('#other_files_uploader_wrapper').hide();
         $('#linked-pb-wrapper').hide();
+        $('#linked-ch-wrapper').hide();
 
         $('#ot_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
@@ -141,6 +142,8 @@
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
 
                 $('#other_files_uploader_wrapper').hide();
+                $('#linked-pb-wrapper').hide();
+                $('#linked-ch-wrapper').hide();
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
@@ -153,7 +156,7 @@
                 //console.log('iddevis' + ot_dt.row('.selected').data().iddevis);
 
                 $(ot_btns.join(',')).removeClass("disabled");
-                $('#linked-pb-wrapper').hide();
+                $('#linked-ch-wrapper').show();
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
 
