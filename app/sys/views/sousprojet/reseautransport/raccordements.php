@@ -46,6 +46,22 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
+                <div class="col-md-4">
+                    <label for="tr_date_racco">Date de début du raccordement <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="tr_date_racco" name="tr_date_racco" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_racco : "")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="tr_date_ret_prevue">Date prévisionnelle de fin  du raccordement <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="tr_date_ret_prevue" name="tr_date_ret_prevue" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_ret_prevue : "")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="tr_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="number" id="tr_duree" name="tr_duree" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->duree : "")?>">
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-3">
                     <label for="tr_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="tr_id_entreprise" name="tr_id_entreprise">
@@ -59,30 +75,6 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_date_racco">Date Racco <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tr_date_racco" name="tr_date_racco" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_racco : "")?>">
-                </div>
-                <div class="col-md-3">
-                    <label for="tr_duree">Durée <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="number" id="tr_duree" name="tr_duree" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->duree : "")?>">
-                </div>
-                <div class="col-md-3">
-                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
-                        <option value="" selected="">Sélectionnez une valeur</option>
-                        <?php
-                        $results = SelectControleDemarrageEffectif::all();
-                        foreach($results as $result) {
-                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row items-push">
-            <div class="form-group">
-                <div class="col-md-3">
                     <label for="tr_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="tr_date_retour" name="tr_date_retour" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_retour : "")?>">
                 </div>
@@ -94,6 +86,18 @@
                         $results = SelectEtatRetour::all();
                         foreach($results as $result) {
                             echo "<option value=\"$result->id_etat_retour\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->etat_retour==$result->id_etat_retour ?"selected": "")." >$result->lib_etat_retour</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectControleDemarrageEffectif::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
                         }
                         ?>
                     </select>
@@ -367,12 +371,17 @@
                 raccord_formdata[key] = $('#'+key).val();
             }
             raccord_formdata['ids'] = get('idsousprojet');
+            raccord_formdata['tr_duree'] = $("#tr_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseautransport/raccord_save.php",
                 data: raccord_formdata
             }).done(function (msg) {
+                var obj = JSON.parse(msg);
+                if(obj.error == 0) {
+                    $("#tr_duree").val(obj.duree);
+                }
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_raccordements');
             });

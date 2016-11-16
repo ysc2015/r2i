@@ -158,6 +158,10 @@ if(isset($ta_id_entreprise)){
     $insert = true;
 }
 
+/*
+ * dates début
+ */
+
 if(isset($ta_date_aiguillage) && isset($ta_date_ret_prevue)) {
 
     $dd = DateTime::createFromFormat('Y-m-d', $ta_date_aiguillage);

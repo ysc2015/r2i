@@ -6,6 +6,8 @@
 
 extract($_POST);
 
+$duree = "";
+
 $sousProjet = NULL;
 $stm = NULL;
 
@@ -108,6 +110,43 @@ if(isset($tr_duree)){
     $insert = true;
 }
 
+/*
+ * dates début
+ */
+
+if(isset($tr_date_racco) && isset($tr_date_ret_prevue)) {
+
+    $dd = DateTime::createFromFormat('Y-m-d', $tr_date_racco);
+    $df = DateTime::createFromFormat('Y-m-d', $tr_date_ret_prevue);
+
+
+    if($dd && $df && $df < $dd) {
+        $err++;
+        $message[] = "la Date prévisionnelle de fin du raccordement doit étre superieure à la date de début !";
+    } else  {
+
+        if(isset($tr_date_racco)){
+            $stm->bindParam(':date_racco',$tr_date_racco);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date de début raccordement est obligatoire !";
+        }
+
+        if(isset($tr_date_ret_prevue)){
+            $stm->bindParam(':date_ret_prevue',$tr_date_ret_prevue);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date retour prévue est obligatoire !";
+        }
+    }
+}
+
+/*
+ * dates fin
+ */
+
 if(isset($tr_controle_demarrage_effectif)){
     $stm->bindParam(':controle_demarrage_effectif',$tr_controle_demarrage_effectif);
     $insert = true;
@@ -139,6 +178,8 @@ if(isset($tr_ok)){
 }
 
 if($insert == true && $err == 0){
+    $duree = getDuree($tr_date_racco,$tr_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
@@ -147,5 +188,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message, "duree" => $duree));
 ?>
