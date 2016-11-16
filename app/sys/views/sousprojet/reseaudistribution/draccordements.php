@@ -277,32 +277,7 @@
                 id = arr[0];
             }
 
-            location.href="api/file/parserfile.php?id="+id;
-
-            /*$('#draccord_pboite_table tbody').html('');
-            $('#draccord-pboite-modal').modal('show');
-            $("#draccord-pboite-block").toggleClass('block-opt-refresh');
-
-            $.ajax({
-                cache: false,
-                url: "api/fileboiteparser/get_plan_boite_infos.php",
-                method:"POST",
-                data: {id:id},
-                dataType: "json",
-                success: function(data)
-                {
-                    $('#draccord_pboite_table tbody').append('');
-                    for(var i = 0 ; i < data.length ; i++) {
-                        html = '<tr><td>' +
-                            data[i].name + '</td><td>' +
-                            data[i].occurence_e + '</td><td>' +
-                            data[i].cable_en_passage + '</td>';
-                        $('#draccord_pboite_table tbody').append(html);
-                    }
-                }
-            }).done(function (msg) {
-                $("#draccord-pboite-block").removeClass('block-opt-refresh');
-            });*/
+            location.href="api/file/download.php?id="+id;//parserfile
         },
         deleteCallback: function (data, pd) {
             var obj;
@@ -333,7 +308,7 @@
         draccord_chambre_uploader = $("#dr_fileuploader_chambre").uploadFile(draccord_chambre_uploader_options);
 
         draccord_pboite_uploader_options = merge_options(defaultUploaderStrLocalisation,draccord_pboite_uploader_options);
-        draccord_pboite_uploader_options.downloadStr = 'Téléchargez devis';
+        draccord_pboite_uploader_options.downloadStr = 'Téléchargez';
         draccord_pboite_uploader = $("#dr_fileuploader_pboite").uploadFile(draccord_pboite_uploader_options);
     });
     $(document).ready(function() {
