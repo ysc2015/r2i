@@ -46,6 +46,22 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
+                <div class="col-md-4">
+                    <label for="dr_date_racco">Date de début du raccordement <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_racco : "")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="dr_date_ret_prevue">Date prévisionnelle de fin du raccordement <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="dr_date_ret_prevue" name="dr_date_ret_prevue"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_ret_prevue : "")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="dr_duree">Durée <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="text" id="dr_duree" name="dr_duree" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->duree : "")?>">
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-3">
                     <label for="dr_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dr_id_entreprise" name="dr_id_entreprise">
@@ -59,14 +75,6 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dr_date_racco">Date Racco <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_racco : "")?>">
-                </div>
-                <div class="col-md-3">
-                    <label for="dr_duree">Durée <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="number" id="dr_duree" name="dr_duree" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->duree : "")?>">
-                </div>
-                <div class="col-md-3">
                     <label for="dr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dr_controle_demarrage_effectif" name="dr_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
@@ -78,10 +86,6 @@
                         ?>
                     </select>
                 </div>
-            </div>
-        </div>
-        <div class="row items-push">
-            <div class="form-group">
                 <div class="col-md-3">
                     <label for="dr_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="dr_date_retour" name="dr_date_retour" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_retour : "")?>">
@@ -336,12 +340,17 @@
                 draccord_formdata[key] = $('#'+key).val();
             }
             draccord_formdata['ids'] = get('idsousprojet');
+            draccord_formdata['dr_duree'] = $("#dr_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseaudistribution/raccord_save.php",
                 data: draccord_formdata
             }).done(function (msg) {
+                var obj = JSON.parse(msg);
+                if(obj.error == 0) {
+                    $("#dr_duree").val(obj.duree);
+                }
                 $("#rdistribution_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_distribution_raccordements');
             });

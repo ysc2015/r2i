@@ -6,6 +6,8 @@
 
 extract($_POST);
 
+$duree = "";
+
 $sousProjet = NULL;
 $stm = NULL;
 
@@ -98,15 +100,42 @@ if(isset($dr_id_entreprise)){
     $insert = true;
 }
 
-if(isset($dr_date_racco)){
-    $stm->bindParam(':date_racco',$dr_date_racco);
-    $insert = true;
+/*
+ * dates début
+ */
+
+if(isset($dr_date_racco) && isset($dr_date_ret_prevue)) {
+
+    $dd = DateTime::createFromFormat('Y-m-d', $dr_date_racco);
+    $df = DateTime::createFromFormat('Y-m-d', $dr_date_ret_prevue);
+
+
+    if($dd && $df && $df < $dd) {
+        $err++;
+        $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début !";
+    } else  {
+
+        if(isset($dr_date_racco)){
+            $stm->bindParam(':date_racco',$dr_date_racco);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs date de début du raccordement est obligatoire !";
+        }
+
+        if(isset($dr_date_ret_prevue)){
+            $stm->bindParam(':date_ret_prevue',$dr_date_ret_prevue);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs date prévisionnelle de fin du raccordement est obligatoire !";
+        }
+    }
 }
 
-if(isset($dr_duree)){
-    $stm->bindParam(':duree',$dr_duree);
-    $insert = true;
-}
+/*
+ * dates fin
+ */
 
 if(isset($dr_controle_demarrage_effectif)){
     $stm->bindParam(':controle_demarrage_effectif',$dr_controle_demarrage_effectif);
@@ -139,6 +168,8 @@ if(isset($dr_ok)){
 }
 
 if($insert == true && $err == 0){
+    $duree = getDuree($dr_date_racco,$dr_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
@@ -147,5 +178,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message , "duree" => $duree));
 ?>
