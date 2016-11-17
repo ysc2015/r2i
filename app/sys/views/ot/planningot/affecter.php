@@ -130,9 +130,9 @@
                 eventRender: function(event, element) {
                     if(event.id > 0) {
                         element.attr('title','clicker ici pour afficher détails');
-                    } else {
+                    } /*else {
                         element.attr('title','clicker ici pour basculer vers la liste des ot et conserver la période choisie');
-                    }
+                    }*/
                 },
                 dayClick: function(date, jsEvent, view) {
                     if(date1==null) {
