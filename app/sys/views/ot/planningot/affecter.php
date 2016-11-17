@@ -450,7 +450,9 @@
                             url: "api/ot/planningot/annuler_affectation.php",
                             dataType: "json",
                             data: {
-                                idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail
+                                idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail,
+                                idtot: ot_affect_dt.row('.selected').data().id_type_ordre_travail,
+                                idsp: ot_affect_dt.row('.selected').data().id_sous_projet
                             }
                         }).done(function (message) {
                             if(message.error == 0) {
