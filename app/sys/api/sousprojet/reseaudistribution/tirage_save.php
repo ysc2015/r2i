@@ -244,8 +244,8 @@ if(isset($dt_ok)){
 }
 
 if($insert == true && $err == 0){
-    $duree = getDuree($dt_date_tirage,$dt_date_ret_prevue);
-    $stm->bindParam(':duree',$duree);
+    /*$duree = getDuree($dt_date_tirage,$dt_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);*/
     if($stm->execute()){
         if($new) {
             if($sousProjet->distributionraccordement == NULL) {

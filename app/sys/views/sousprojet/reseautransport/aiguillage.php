@@ -113,11 +113,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="ta_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="ta_date_aiguillage" name="ta_date_aiguillage" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_aiguillage:"")?>">
+                    <input readonly class="form-control " type="date" id="ta_date_aiguillage" name="ta_date_aiguillage" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_aiguillage:"")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="ta_date_ret_prevue">Date prévisionnelle de fin d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="ta_date_ret_prevue" name="ta_date_ret_prevue" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_ret_prevue:"")?>">
+                    <input readonly class="form-control " type="date" id="ta_date_ret_prevue" name="ta_date_ret_prevue" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="ta_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -332,17 +332,17 @@
                 aiguillage_formdata[key] = $('#'+key).val();
             }
             aiguillage_formdata['ids'] = get('idsousprojet');
-            aiguillage_formdata['ta_duree'] = $("#ta_duree").val();
+            //aiguillage_formdata['ta_duree'] = $("#ta_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseautransport/aiguillage_save.php",
                 data: aiguillage_formdata
             }).done(function (msg) {
-                var obj = JSON.parse(msg);
+                /*var obj = JSON.parse(msg);
                 if(obj.error == 0) {
                     $("#ta_duree").val(obj.duree);
-                }
+                }*/
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_aiguillage');
             });

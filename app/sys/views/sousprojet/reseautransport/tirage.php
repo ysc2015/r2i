@@ -136,11 +136,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="tt_date_tirage">Date de début tirage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_tirage:"")?>">
+                    <input readonly class="form-control " type="date" id="tt_date_tirage" name="tt_date_tirage" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_tirage:"")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="tt_date_ret_prevue">Date prévisionnelle de fin tirage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_ret_prevue:"")?>">
+                    <input readonly class="form-control " type="date" id="tt_date_ret_prevue" name="tt_date_ret_prevue" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="tt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -356,17 +356,17 @@
                 tirage_formdata[key] = $('#'+key).val();
             }
             tirage_formdata['ids'] = get('idsousprojet');
-            tirage_formdata['tt_duree'] = $("#tt_duree").val();
+            //tirage_formdata['tt_duree'] = $("#tt_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseautransport/tirage_save.php",
                 data: tirage_formdata
             }).done(function (msg) {
-                var obj = JSON.parse(msg);
+                /*var obj = JSON.parse(msg);
                 if(obj.error == 0) {
                     $("#tt_duree").val(obj.duree);
-                }
+                }*/
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_tirage');
             });

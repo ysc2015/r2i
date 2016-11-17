@@ -100,11 +100,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="da_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>">
+                    <input readonly class="form-control " type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="da_date_ret_prevue">Date prévisionnelle de fin d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="da_date_ret_prevue" name="da_date_ret_prevue" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_ret_prevue:"")?>">
+                    <input readonly class="form-control " type="date" id="da_date_ret_prevue" name="da_date_ret_prevue" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_ret_prevue:"")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="da_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -320,17 +320,17 @@
                 daiguillage_formdata[key] = $('#'+key).val();
             }
             daiguillage_formdata['ids'] = get('idsousprojet');
-            daiguillage_formdata['da_duree'] = $("#da_duree").val();
+            //daiguillage_formdata['da_duree'] = $("#da_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseaudistribution/aiguillage_save.php",
                 data: daiguillage_formdata
             }).done(function (msg) {
-                var obj = JSON.parse(msg);
+                /*var obj = JSON.parse(msg);
                 if(obj.error == 0) {
                     $("#da_duree").val(obj.duree);
-                }
+                }*/
                 $("#rdistribution_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_distribution_aiguillage');
             });

@@ -248,8 +248,8 @@ if(isset($tt_ok)){
 }
 
 if($insert == true && $err == 0){
-    $duree = getDuree($tt_date_tirage,$tt_date_ret_prevue);
-    $stm->bindParam(':duree',$duree);
+    /*$duree = getDuree($tt_date_tirage,$tt_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);*/
     if($stm->execute()){
         if($new) {
             if($sousProjet->transportraccordement == NULL) {

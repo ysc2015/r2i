@@ -226,8 +226,8 @@ if(isset($da_ok)){
 }
 
 if($insert == true && $err == 0){
-    $duree = getDuree($da_date_aiguillage,$da_date_ret_prevue);
-    $stm->bindParam(':duree',$duree);
+    /*$duree = getDuree($da_date_aiguillage,$da_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);*/
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
