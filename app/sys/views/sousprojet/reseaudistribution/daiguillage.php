@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="da_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="da_date_transmission_plans" name="da_date_transmission_plans" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_transmission_plans:"")?>">
+                    <input readonly class="form-control " type="date" id="da_date_transmission_plans" name="da_date_transmission_plans" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_transmission_plans:"")?>">
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="da_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="da_id_entreprise" name="da_id_entreprise">
+                    <select disabled class="form-control " id="da_id_entreprise" name="da_id_entreprise">
                         <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
                         $results = EntrepriseSTT::all();
@@ -128,7 +128,19 @@
                 </div>
                 <div class="col-md-3">
                     <label for="da_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="da_date_retour" name="da_date_retour" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_retour:"")?>">
+                    <input readonly class="form-control " type="date" id="da_date_retour" name="da_date_retour" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_retour:"")?>">
+                </div>
+                <div class="col-md-3">
+                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <select disabled class="form-control " id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectControleDemarrageEffectif::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="col-md-3">
                     <label for="da_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
@@ -138,18 +150,6 @@
                         $results = SelectEtatRetour::all();
                         foreach($results as $result) {
                             echo "<option value=\"$result->id_etat_retour\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->etat_retour==$result->id_etat_retour ?"selected": "")." >$result->lib_etat_retour</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
-                        <option value="" selected="">Sélectionnez une valeur</option>
-                        <?php
-                        $results = SelectControleDemarrageEffectif::all();
-                        foreach($results as $result) {
-                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
                         }
                         ?>
                     </select>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="da_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea class="form-control" id="da_retour_presta" name="da_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->retour_presta:"")?></textarea>
+                    <textarea readonly class="form-control" id="da_retour_presta" name="da_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="da_ok">OK <!--<span class="text-danger">*</span>--></label>

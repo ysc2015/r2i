@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dr_date_transmission_pds">Date Transmission PDS <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_transmission_pds : "")?>">
+                    <input readonly class="form-control " type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_transmission_pds : "")?>">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="dr_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="dr_id_entreprise" name="dr_id_entreprise">
+                    <select disabled class="form-control " id="dr_id_entreprise" name="dr_id_entreprise">
                         <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
                         $results = EntrepriseSTT::all();
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="dr_controle_demarrage_effectif" name="dr_controle_demarrage_effectif">
+                    <select disabled class="form-control " id="dr_controle_demarrage_effectif" name="dr_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectControleDemarrageEffectif::all();
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dr_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dr_date_retour" name="dr_date_retour" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_retour : "")?>">
+                    <input disabled class="form-control " type="date" id="dr_date_retour" name="dr_date_retour" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_retour : "")?>">
                 </div>
                 <div class="col-md-3">
                     <label for="dr_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="dr_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea class="form-control" id="dr_retour_presta" name="dr_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionraccordement !== NULL?$sousProjet->distributionraccordement->retour_presta:"")?></textarea>
+                    <textarea readonly class="form-control" id="dr_retour_presta" name="dr_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionraccordement !== NULL?$sousProjet->distributionraccordement->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="dr_ok">OK <!--<span class="text-danger">*</span>--></label>

@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="tr_date_transmission_pds">Date Transmission PDS <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tr_date_transmission_pds" name="tr_date_transmission_pds" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_transmission_pds : "")?>">
+                    <input readonly class="form-control " type="date" id="tr_date_transmission_pds" name="tr_date_transmission_pds" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_transmission_pds : "")?>">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="tr_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="tr_id_entreprise" name="tr_id_entreprise">
+                    <select disabled class="form-control " id="tr_id_entreprise" name="tr_id_entreprise">
                         <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
                         $results = EntrepriseSTT::all();
@@ -76,7 +76,19 @@
                 </div>
                 <div class="col-md-3">
                     <label for="tr_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tr_date_retour" name="tr_date_retour" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_retour : "")?>">
+                    <input disabled class="form-control " type="date" id="tr_date_retour" name="tr_date_retour" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_retour : "")?>">
+                </div>
+                <div class="col-md-3">
+                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <select disabled class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectControleDemarrageEffectif::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="col-md-3">
                     <label for="tr_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
@@ -86,18 +98,6 @@
                         $results = SelectEtatRetour::all();
                         foreach($results as $result) {
                             echo "<option value=\"$result->id_etat_retour\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->etat_retour==$result->id_etat_retour ?"selected": "")." >$result->lib_etat_retour</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
-                        <option value="" selected="">Sélectionnez une valeur</option>
-                        <?php
-                        $results = SelectControleDemarrageEffectif::all();
-                        foreach($results as $result) {
-                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
                         }
                         ?>
                     </select>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="tr_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea class="form-control" id="tr_retour_presta" name="tr_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportraccordement !== NULL?$sousProjet->transportraccordement->retour_presta:"")?></textarea>
+                    <textarea readonly class="form-control" id="tr_retour_presta" name="tr_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportraccordement !== NULL?$sousProjet->transportraccordement->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="tr_ok">OK <!--<span class="text-danger">*</span>--></label>
