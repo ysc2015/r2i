@@ -77,7 +77,7 @@ if($ot->date_debut == NULL || $ot->date_debut=="") {
             $err++;
             $message[] = "La date de fin doit étre supérieure ou égale à la date de début !";
         } else {
-            $stm2 = $db->prepare("select * from ordre_de_travail where (id_entreprise=:id_entreprise and id_equipe_stt=:id_equipe_stt and date_debut <= :date_debut and date_fin >= :date_debut) or (id_entreprise=:id_entreprise and id_equipe_stt=:id_equipe_stt and date_debut <= :date_fin and date_fin >= :date_fin) or (date_debut >= :date_debut and date_fin <= :date_fin)");
+            $stm2 = $db->prepare("select * from ordre_de_travail where (id_entreprise=:id_entreprise and id_equipe_stt=:id_equipe_stt and date_debut <= :date_debut and date_fin >= :date_debut) or (id_entreprise=:id_entreprise and id_equipe_stt=:id_equipe_stt and date_debut <= :date_fin and date_fin >= :date_fin) or (id_entreprise=:id_entreprise and id_equipe_stt=:id_equipe_stt and date_debut >= :date_debut and date_fin <= :date_fin)");
             $stm2->bindParam(':id_entreprise',$ide);
             $stm2->bindParam(':id_equipe_stt',$ideq);
             $stm2->bindParam(':date_fin',$date2);
