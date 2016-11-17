@@ -192,7 +192,7 @@ if(isset($tt_date_tirage) && isset($tt_date_ret_prevue)) {
 
     if($dd && $df && $df < $dd) {
         $err++;
-        $message[] = "la Date prévisionnelle de fin tirage doit étre superieure à la date de début !";
+        $message[] = "la date prévisionnelle de fin tirage doit étre superieure à la date de début tirage !";
     } else  {
 
         if(isset($tt_date_tirage)){
@@ -200,7 +200,7 @@ if(isset($tt_date_tirage) && isset($tt_date_ret_prevue)) {
             $insert = true;
         } else {
             $err++;
-            $message[] = "Le champs Date de début tirage est obligatoire !";
+            $message[] = "Le champs date de début tirage est obligatoire !";
         }
 
         if(isset($tt_date_ret_prevue)){
@@ -208,7 +208,7 @@ if(isset($tt_date_tirage) && isset($tt_date_ret_prevue)) {
             $insert = true;
         } else {
             $err++;
-            $message[] = "Le champs Date retour prévue est obligatoire !";
+            $message[] = "Le champs date prévisionnelle de fin tirage est obligatoire !";
         }
     }
 }
