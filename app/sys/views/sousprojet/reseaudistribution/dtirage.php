@@ -123,11 +123,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="dt_date_tirage">Date de début tirage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_tirage : "")?>">
+                    <input readonly class="form-control " type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_tirage : "")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="dt_date_ret_prevue">Date prévisionnelle de fin tirage <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dt_date_ret_prevue" name="dt_date_ret_prevue" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_ret_prevue : "")?>">
+                    <input readonly class="form-control " type="date" id="dt_date_ret_prevue" name="dt_date_ret_prevue" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_ret_prevue : "")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="dt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -348,17 +348,17 @@
                 dtirage_formdata[key] = $('#'+key).val();
             }
             dtirage_formdata['ids'] = get('idsousprojet');
-            dtirage_formdata['dt_duree'] = $("#dt_duree").val();
+            //dtirage_formdata['dt_duree'] = $("#dt_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseaudistribution/tirage_save.php",
                 data: dtirage_formdata
             }).done(function (msg) {
-                var obj = JSON.parse(msg);
+                /*var obj = JSON.parse(msg);
                 if(obj.error == 0) {
                     $("#dt_duree").val(obj.duree);
-                }
+                }*/
                 $("#rdistribution_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_distribution_tirage');
             });

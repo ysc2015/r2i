@@ -178,8 +178,8 @@ if(isset($tr_ok)){
 }
 
 if($insert == true && $err == 0){
-    $duree = getDuree($tr_date_racco,$tr_date_ret_prevue);
-    $stm->bindParam(':duree',$duree);
+    /*$duree = getDuree($tr_date_racco,$tr_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);*/
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";

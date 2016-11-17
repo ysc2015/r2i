@@ -48,11 +48,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="tr_date_racco">Date de début du raccordement <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tr_date_racco" name="tr_date_racco" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_racco : "")?>">
+                    <input readonly class="form-control " type="date" id="tr_date_racco" name="tr_date_racco" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_racco : "")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="tr_date_ret_prevue">Date prévisionnelle de fin  du raccordement <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="tr_date_ret_prevue" name="tr_date_ret_prevue" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_ret_prevue : "")?>">
+                    <input readonly class="form-control " type="date" id="tr_date_ret_prevue" name="tr_date_ret_prevue" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_ret_prevue : "")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="tr_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -371,17 +371,17 @@
                 raccord_formdata[key] = $('#'+key).val();
             }
             raccord_formdata['ids'] = get('idsousprojet');
-            raccord_formdata['tr_duree'] = $("#tr_duree").val();
+            //raccord_formdata['tr_duree'] = $("#tr_duree").val();
 
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseautransport/raccord_save.php",
                 data: raccord_formdata
             }).done(function (msg) {
-                var obj = JSON.parse(msg);
+                /*var obj = JSON.parse(msg);
                 if(obj.error == 0) {
                     $("#tr_duree").val(obj.duree);
-                }
+                }*/
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_raccordements');
             });
