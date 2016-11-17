@@ -73,6 +73,7 @@
 </div>
 <script>
     var defaultView = 'list';
+    var soc_id_gen = 0;
     var calendar = function() {
         var team_id = 0;
         var soc_id = 0;
@@ -234,7 +235,7 @@
                             url: 'api/ot/planningot/calendar_events.php',
                             data: function() { // a function that returns an object
                                 return {
-                                    soc_id : $('#ot_entreprise').val(),
+                                    soc_id : soc_id_gen,//$('#ot_entreprise').val()
                                     team_id : $('#ot_equipe').val(),
                                     date1 : $('#affecter_date_debut').val(),
                                     date2 : $('#affecter_date_fin').val()
@@ -439,9 +440,10 @@
 
                     } );
                     $("#affecter_ot_show").click(function() {
-                        /*$("#ot_entreprise").select2('val', 'All');
+                        $("#ot_entreprise").select2('val', 'All');
                         update = false;
-                        $("#ot_affecter_form")[0].reset();*/
+                        $("#ot_affecter_form")[0].reset();
+                        soc_id_gen = 0;
                         $('#affecter-ot').modal({backdrop: 'static', keyboard: false});
                         $('#affecter-ot').modal('show');//tttt
                     });
@@ -490,6 +492,7 @@
                         });
                     });
                     $("#ot_entreprise").change(function() {
+                        soc_id_gen = $( this).val();
                         $.ajax({
                             method: "POST",
                             url: "api/ot/planningot/get_entry_soc_teams.php",
@@ -524,10 +527,6 @@
                     });
                     $('#affecter-ot').on('shown.bs.modal', function () {
                         //console.log('shown');
-                        $("#ot_entreprise").select2('val', 'All');
-                        update = false;
-                        $("#ot_affecter_form")[0].reset();
-                        $("#ot_entreprise").trigger('change');
                         $("#calender2").fullCalendar('render');
                         //$('#calender2').fullCalendar( 'refetchEvents' );
                     });
