@@ -218,8 +218,12 @@
                     jQuery('#ot_entreprise_cal').select2({
                         autocomplete: true
                     });
+
                     break;
                 case 'list' :
+                    jQuery('#ot_entreprise').select2({
+                        autocomplete: true
+                    });
                     $('#calender2').fullCalendar({
                         header: {
                             left: 'prev,next',
@@ -319,10 +323,6 @@
                     } );
 
                     $(ot_affect_btns.join(',')).addClass("disabled");
-
-                    jQuery('#ot_entreprise').select2({
-                        autocomplete: true
-                    });
 
                     break;
                 default:
@@ -438,10 +438,11 @@
 
                     } );
                     $("#affecter_ot_show").click(function() {
-                        $("#ot_entreprise").select2('val', 'All');
+                        /*$("#ot_entreprise").select2('val', 'All');
                         update = false;
-                        $("#ot_affecter_form")[0].reset();
-                        //$("#ot_entreprise").trigger('change');
+                        $("#ot_affecter_form")[0].reset();*/
+                        $('#affecter-ot').modal({backdrop: 'static', keyboard: false});
+                        $('#affecter-ot').modal('show');//tttt
                     });
                     $("#annuler_affecter").click(function() {
                         $.ajax({
@@ -520,6 +521,10 @@
                     });
                     $('#affecter-ot').on('shown.bs.modal', function () {
                         //console.log('shown');
+                        $("#ot_entreprise").select2('val', 'All');
+                        update = false;
+                        $("#ot_affecter_form")[0].reset();
+                        $("#ot_entreprise").trigger('change');
                         $("#calender2").fullCalendar('render');
                         //$('#calender2').fullCalendar( 'refetchEvents' );
                     });
