@@ -466,6 +466,8 @@
                             dataType: "json",
                             data: {
                                 idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail,
+                                idsp: ot_affect_dt.row('.selected').data().id_sous_projet,
+                                idtot: ot_affect_dt.row('.selected').data().id_type_ordre_travail,
                                 ide: $("#ot_entreprise").val(),
                                 ideq: $("#ot_equipe").val(),
                                 date1: $("#affecter_date_debut").val(),
