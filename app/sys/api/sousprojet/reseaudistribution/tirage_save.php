@@ -6,6 +6,8 @@
 
 extract($_POST);
 
+$duree = "";
+
 $sousProjet = NULL;
 $stm = NULL;
 
@@ -174,15 +176,42 @@ if(isset($dt_id_entreprise)){
     $insert = true;
 }
 
-if(isset($dt_date_tirage)){
-    $stm->bindParam(':date_tirage',$dt_date_tirage);
-    $insert = true;
+/*
+ * dates début
+ */
+
+if(isset($dt_date_tirage) && isset($dt_date_ret_prevue)) {
+
+    $dd = DateTime::createFromFormat('Y-m-d', $dt_date_tirage);
+    $df = DateTime::createFromFormat('Y-m-d', $dt_date_ret_prevue);
+
+
+    if($dd && $df && $df < $dd) {
+        $err++;
+        $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début !";
+    } else  {
+
+        if(isset($dt_date_tirage)){
+            $stm->bindParam(':date_tirage',$dt_date_tirage);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date de début aiguillage est obligatoire !";
+        }
+
+        if(isset($dt_date_ret_prevue)){
+            $stm->bindParam(':date_ret_prevue',$dt_date_ret_prevue);
+            $insert = true;
+        } else {
+            $err++;
+            $message[] = "Le champs Date retour prévue est obligatoire !";
+        }
+    }
 }
 
-if(isset($dt_duree)){
-    $stm->bindParam(':duree',$dt_duree);
-    $insert = true;
-}
+/*
+ * dates fin
+ */
 
 if(isset($dt_controle_demarrage_effectif)){
     $stm->bindParam(':controle_demarrage_effectif',$dt_controle_demarrage_effectif);
@@ -215,6 +244,8 @@ if(isset($dt_ok)){
 }
 
 if($insert == true && $err == 0){
+    $duree = getDuree($dt_date_tirage,$dt_date_ret_prevue);
+    $stm->bindParam(':duree',$duree);
     if($stm->execute()){
         if($new) {
             if($sousProjet->distributionraccordement == NULL) {
@@ -230,5 +261,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message , "duree" => $duree));
 ?>
