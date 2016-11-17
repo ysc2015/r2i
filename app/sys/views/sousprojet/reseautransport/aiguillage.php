@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="ta_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="ta_date_transmission_plans" name="ta_date_transmission_plans" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_transmission_plans:"")?>">
+                    <input readonly class="form-control " type="date" id="ta_date_transmission_plans" name="ta_date_transmission_plans" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_transmission_plans:"")?>">
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="ta_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="ta_id_entreprise" name="ta_id_entreprise">
+                    <select disabled class="form-control " id="ta_id_entreprise" name="ta_id_entreprise">
                         <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
                         $results = EntrepriseSTT::all();
@@ -141,7 +141,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="ta_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="ta_controle_demarrage_effectif" name="ta_controle_demarrage_effectif">
+                    <select disabled class="form-control " id="ta_controle_demarrage_effectif" name="ta_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectControleDemarrageEffectif::all();
@@ -153,7 +153,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="ta_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="ta_date_retour" name="ta_date_retour" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_retour:"")?>">
+                    <input readonly class="form-control " type="date" id="ta_date_retour" name="ta_date_retour" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_retour:"")?>">
                 </div>
                 <div class="col-md-3">
                     <label for="ta_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
@@ -177,7 +177,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="ta_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea class="form-control" id="ta_retour_presta" name="ta_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->retour_presta:"")?></textarea>
+                    <textarea readonly class="form-control" id="ta_retour_presta" name="ta_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="ta_ok">OK <!--<span class="text-danger">*</span>--></label>

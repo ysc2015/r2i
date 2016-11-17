@@ -139,7 +139,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="dt_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="dt_id_entreprise" name="dt_id_entreprise">
+                    <select disabled class="form-control " id="dt_id_entreprise" name="dt_id_entreprise">
                         <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
                         $results = EntrepriseSTT::all();
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dt_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="dt_controle_demarrage_effectif" name="dt_controle_demarrage_effectif">
+                    <select disabled class="form-control " id="dt_controle_demarrage_effectif" name="dt_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectControleDemarrageEffectif::all();
@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dt_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dt_date_retour" name="dt_date_retour" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_retour : "")?>">
+                    <input readonly class="form-control " type="date" id="dt_date_retour" name="dt_date_retour" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_retour : "")?>">
                 </div>
                 <div class="col-md-3">
                     <label for="dt_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
@@ -183,7 +183,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="dt_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_transmission_plans : "")?>">
+                    <input readonly class="form-control " type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_transmission_plans : "")?>">
                 </div>
             </div>
         </div>
@@ -195,7 +195,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="dt_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea class="form-control" id="dt_retour_presta" name="dt_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->retour_presta:"")?></textarea>
+                    <textarea readonly class="form-control" id="dt_retour_presta" name="dt_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributiontirage !== NULL?$sousProjet->distributiontirage->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="dt_ok">OK <!--<span class="text-danger">*</span>--></label>
