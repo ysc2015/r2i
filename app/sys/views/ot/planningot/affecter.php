@@ -300,12 +300,13 @@
                             { "data": "eqprenom" },
                             { "data": "eqnom" },
                             { "data": "date_debut" },
-                            { "data": "date_fin" }
+                            { "data": "date_fin" },
+                            { "data": "id_type_ordre_travail" }
                         ],
                         "columnDefs": [
-                            { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
+                            { "targets": [ 0,1,2,9 ], "visible": false, "searchable": false }
                         ],
-                        "order": [[0, 'desc']]
+                        "order": [[9, 'asc']]
                         ,
                         "drawCallback": function( /*settings*/ ) {
                             $(ot_affect_btns.join(',')).addClass("disabled");

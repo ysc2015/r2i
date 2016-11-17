@@ -106,12 +106,13 @@
                 { "data": "type_entree" },
                 { "data": "type_ot" },/*lib_type_ordre_travail*/
                 { "data": "commentaire" },
-                { "data": "lib_etat_ot" }
+                { "data": "lib_etat_ot" },
+                { "data": "id_type_ordre_travail" }
             ],
             "columnDefs": [
-                { "targets": [ 0,1,2,4 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1,2,4,6 ], "visible": false, "searchable": false }
             ],
-            "order": [[0, 'desc']]
+            "order": [[6, 'asc']]
             ,
             "drawCallback": function( /*settings*/ ) {
                 displayDevis();
