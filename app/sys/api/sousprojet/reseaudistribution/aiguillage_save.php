@@ -170,7 +170,7 @@ if(isset($da_date_aiguillage) && isset($da_date_ret_prevue)) {
 
     if($dd && $df && $df < $dd) {
         $err++;
-        $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début !";
+        $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début aiguillage!";
     } else  {
 
         if(isset($da_date_aiguillage)){
@@ -178,7 +178,7 @@ if(isset($da_date_aiguillage) && isset($da_date_ret_prevue)) {
             $insert = true;
         } else {
             $err++;
-            $message[] = "Le champs Date de début aiguillage est obligatoire !";
+            $message[] = "Le champs date de début aiguillage est obligatoire !";
         }
 
         if(isset($da_date_ret_prevue)){
@@ -186,7 +186,7 @@ if(isset($da_date_aiguillage) && isset($da_date_ret_prevue)) {
             $insert = true;
         } else {
             $err++;
-            $message[] = "Le champs Date fin prévue aiguillage est obligatoire !";
+            $message[] = "Le champs date fin prévue aiguillage est obligatoire !";
         }
     }
 }

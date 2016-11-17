@@ -122,7 +122,7 @@ if(isset($tr_date_racco) && isset($tr_date_ret_prevue)) {
 
     if($dd && $df && $df < $dd) {
         $err++;
-        $message[] = "la Date prévisionnelle de fin du raccordement doit étre superieure à la date de début !";
+        $message[] = "la date prévisionnelle de fin du raccordement doit étre superieure à la date de début raccordement !";
     } else  {
 
         if(isset($tr_date_racco)){
@@ -130,7 +130,7 @@ if(isset($tr_date_racco) && isset($tr_date_ret_prevue)) {
             $insert = true;
         } else {
             $err++;
-            $message[] = "Le champs Date de début raccordement est obligatoire !";
+            $message[] = "Le champs date de début raccordement est obligatoire !";
         }
 
         if(isset($tr_date_ret_prevue)){
@@ -138,7 +138,7 @@ if(isset($tr_date_racco) && isset($tr_date_ret_prevue)) {
             $insert = true;
         } else {
             $err++;
-            $message[] = "Le champs Date retour prévue est obligatoire !";
+            $message[] = "Le champs date prévisionnelle de fin du raccordement est obligatoire !";
         }
     }
 }

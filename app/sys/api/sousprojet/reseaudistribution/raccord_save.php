@@ -112,7 +112,7 @@ if(isset($dr_date_racco) && isset($dr_date_ret_prevue)) {
 
     if($dd && $df && $df < $dd) {
         $err++;
-        $message[] = "la Date prévisionnelle de fin d’aiguillage doit étre superieure à la date de début !";
+        $message[] = "la Date prévisionnelle de fin du raccordement doit étre superieure à la date de début raccordement !";
     } else  {
 
         if(isset($dr_date_racco)){
