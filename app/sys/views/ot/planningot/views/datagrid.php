@@ -39,7 +39,7 @@
 </div>
 
 <!-- END Table affectation -->
-<button id="affecter_ot_show" class='btn btn-success btn-sm' <!--data-toggle="modal" data-target='#affecter-ot' data-backdrop="static" data-keyboard="false"-->><span class='glyphicon glyphicon-check'>&nbsp;</span> Affecter ot</button>
+<button id="affecter_ot_show" class='btn btn-success btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Affecter ot</button>
 <button id="annuler_affecter" class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-remove'>&nbsp;</span> Annuler affectation</button>
 
 <!--<div class='alert alert-success' id='message_annuler_affecter_ot' role='alert' style="display: none;">-->
