@@ -114,7 +114,8 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
 
         },
         error:function (e) {
-            console.log("EROOR" + e)
+            console.log( "Error");
+            console.log( e);
         }
     });
 
