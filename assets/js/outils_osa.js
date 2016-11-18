@@ -93,7 +93,7 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
             tentre: ide
         },
         success: function (e) {
-console.log(e)
+            if(ide == "transportcmdfintravaux") console.log(e)
             if(e.idetape!=0) {
 
                     $.ajax({
