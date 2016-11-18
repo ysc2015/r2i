@@ -109,13 +109,14 @@
         var typeetape = "sous_projet_transport_commande_fin_travaux";
 
         var variable_etape = "transportcmdfintravaux";
-
+        console.log("commande fin travaux ")
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandefintravaux_href","Commandes Fin Travaux: ");
 
         $("#id_sous_projet_transport_cmdfintravaux_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
         $("#id_sous_projet_transport_cmdfintravaux_list_tache").click(function () {
+
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
 
