@@ -81,7 +81,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
 
 function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
-
+if(ide == "transportcmdfintravaux") console.log(typeetape + " * " + id_sous_projet + " * " + idhref)
     $.ajax({
         method: "POST",
         url: "api/projet/sousprojet/get_projet_id.php",
