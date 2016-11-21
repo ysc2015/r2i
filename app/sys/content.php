@@ -307,22 +307,22 @@ switch ($page) {
         });
 
         $('#affecte_tache_osa').click(function(){
-            tache_dt.row('.selected').data()[1] = "58";
             idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
-            /*rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response){
-                rc2k.osa.ui.tache.affecter({
-                    idt : idligne
-                });
-
-            }*/
+             rc2k.osa.ui.tache.affecter({
+                idt : idligne
+            });
 
         });
 
         $('#cloture_tache_osa').click(function (){
-            idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
-            rc2k.osa.ws.tache.cloturer(
-                 idligne
-            );
+            rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response) {
+                console.log(response);
+                idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
+                rc2k.osa.ws.tache.cloturer(
+                    idligne
+                );
+            });
+
         })
 
     } );
