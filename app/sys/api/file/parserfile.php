@@ -72,6 +72,17 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
 
+    $d33 = "";
+    $d36 = "";
+    $d43 = "";
+    $d44 = "";
+    $d46 = "";
+    $d47 = "";
+    $d48 = "";
+    $d53 = "";
+    $d54 = "";
+    $d56 = "";
+
     if(isset($_GET['idsp']) && !empty($_GET['idsp'])){
         $sousProjet = SousProjet::find($_GET['idsp']);
     }
@@ -113,17 +124,60 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         if($tentree !== "" ) {
             switch($tentree) {
                 case "transportaiguillage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $d33 = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                        $d43 = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                        $d44 = "";//nbr chambre
+                    }
+                    break;
                 case "distributionaiguillage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $d33 = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                        $d43 = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                        $d44 = "";//nbr chambre
+                    }
                     break;
 
                 case "transporttirage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $d36 = $sousProjet->{$tentree}->lineaire12 / 2;
+                        $d46 = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
+                        $d48 = $sousProjet->{$tentree}->lineaire12;
+                        $d53 = $sousProjet->{$tentree}->lineaire4;//cables
+                        $d54 = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
+                        $d56 = "";//nbrchambre * 3
+                    }
                     break;
                 case "distributiontirage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $d36 = $sousProjet->{$tentree}->lineaire12 / 2;
+                        $d46 = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
+                        $d47 = $sousProjet->{$tentree}->lineaire11;
+                        $d48 = $sousProjet->{$tentree}->lineaire12;
+                        $d53 = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                        $d54 = $sousProjet->{$tentree}->lineaire1;
+                        $d56 = "";//nbr chambre * 2
+                    }
                     break;
                 default :
                     break;
             }
         }
+
+        $update_statment = $db->prepare("UPDATE detaildevis SET D33=:D33,D36=:D36,D43=:D43,D44=:D44,D46=:D46,D47=:D47,D48=:D48,D53=:D53,D54=:D54,D56=:D56");
+
+        $update_statment->bindParam(':D33',$d33);
+        $update_statment->bindParam(':D36',$d36);
+        $update_statment->bindParam(':D43',$d43);
+        $update_statment->bindParam(':D44',$d44);
+        $update_statment->bindParam(':D46',$d46);
+        $update_statment->bindParam(':D47',$d47);
+        $update_statment->bindParam(':D48',$d48);
+        $update_statment->bindParam(':D53',$d53);
+        $update_statment->bindParam(':D54',$d54);
+        $update_statment->bindParam(':D56',$d56);
+
+        $update_statment->execute();
     }
 
      $tabreturn = [];
