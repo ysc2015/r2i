@@ -73,7 +73,7 @@
     var posadr_formdata = {};
     $(document).ready(function() {
         var typeetape = "sous_projet_plaque_pos_adresse";
-        var variable_etape = "SousProjetPlaquePosAdresse";
+        var variable_etape = "plaqueposadr";
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"positionnementadresses_href","Positionnement des Adresses: ");
 
