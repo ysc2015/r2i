@@ -11,7 +11,7 @@
         autoSubmit: true,
         showDelete:true,
         showDownload:true,
-        allowedTypes: "pdf",
+        allowedTypes: "pdf,xls,xlsx",
         onLoad:function(obj)
         {
             if(ot_dt.row('.selected').data() !== undefined) {
