@@ -95,6 +95,7 @@ if($sousProjet !== NULL) {
             default : break;
         }
 
+        var_dump($sousProjet);
         if($sousProjet->{$tentre} !== NULL) {
             $idetape = $sousProjet->{$tentre}->$primary_key;
         }
