@@ -276,6 +276,7 @@ switch ($page) {
                 <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
                 <button class="btn btn-sm btn-primary" id="traite_tache_osa" type="button"><i class="fa fa-check"></i> Traiter</button>
                 <button class="btn btn-sm btn-primary" id="affecte_tache_osa" type="button"><i class="fa fa-check"></i> Affecter</button>
+                <button class="btn btn-sm btn-primary" id="cloture_tache_osa" type="button"><i class="fa fa-check"></i> Cloturer</button>
             </div>
         </div>
     </div>
@@ -312,6 +313,13 @@ switch ($page) {
             });
 
         });
+
+        $('#cloture_tache_osa').click(function (){
+            idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
+            rc2k.osa.ws.tache.cloturer(
+                 idligne
+            );
+        })
 
     } );
 </script>
