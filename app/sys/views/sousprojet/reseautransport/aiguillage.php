@@ -229,7 +229,7 @@
         showDelete:true,
         showDownload:true,
         showAbort:true,
-        allowedTypes: "xlsx",
+        allowedTypes: "xlsx,xls",
         /*maxFileCount: 1,*/
         onLoad:function(obj)
         {
