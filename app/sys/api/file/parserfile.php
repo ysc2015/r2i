@@ -76,6 +76,56 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $sousProjet = SousProjet::find($idsp);
     }
 
+    $tentree = "";
+
+    if($sousProjet !== NULL) {
+        switch($_GET['idtot']) {
+            case "1" :
+                $tentree = "transportaiguillage";
+                break;
+            case "2" :
+                $tentree = "transporttirage";
+                break;
+            case "3" :
+                $tentree = "transportraccordement";
+                break;
+            case "4" :
+                $tentree = "transporttirage";
+                //$tentree = "transportraccordement";
+                break;
+            case "5" :
+                $tentree = "distributionaiguillage";
+                break;
+            case "6" :
+                $tentree = "distributiontirage";
+                break;
+            case "7" :
+                $tentree = "distributionraccordement";
+                break;
+            case "8" :
+                $tentree = "distributiontirage";
+                //$tentree = "distributionraccordement";
+                break;
+            default :
+                break;
+        }
+
+        if($tentree !== "" ) {
+            switch($tentree) {
+                case "transportaiguillage" :
+                case "distributionaiguillage" :
+                    break;
+
+                case "transporttirage" :
+                    break;
+                case "distributiontirage" :
+                    break;
+                default :
+                    break;
+            }
+        }
+    }
+
      $tabreturn = [];
     try {
         $stm = $db->prepare("SELECT * FROM detaildevis WHERE id_ressource=:id");
