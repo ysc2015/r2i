@@ -6,8 +6,6 @@ $templateFile = __DIR__."/../uploads/templates/Bordereaux de Prix FTTH_INT_HRZ_I
 
 define('WP_USE_THEMES', true);
 
-$sousProjet = NULL;
-
 if(isset($id)) {
 
 
@@ -72,8 +70,10 @@ function getLine(PHPExcel_Worksheet $sheet,$line,$max_column) {
 
 function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
-    if(isset($idsp) && !empty($idsp)){
-        $sousProjet = SousProjet::find($idsp);
+    $sousProjet = NULL;
+
+    if(isset($_GET['idsp']) && !empty($_GET['idsp'])){
+        $sousProjet = SousProjet::find($_GET['idsp']);
     }
 
     $tentree = "";
