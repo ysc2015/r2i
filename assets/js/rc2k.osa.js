@@ -100,7 +100,7 @@
 					cloturer : function(idt, callback){
 						$.ajax({
 				            method: 'POST',
-				            url: 'api/tache.php',
+				            url: rc2k.osa.url + 'api/tache.php',
 				            data: {
 				                cloturer: true,
 				                id: idt
