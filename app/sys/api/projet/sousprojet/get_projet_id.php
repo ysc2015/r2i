@@ -68,6 +68,9 @@ if($sousProjet !== NULL) {
             case "transportrecette" :
                 $primary_key = "id_sous_projet_transport_recette";
                 break;
+            case "transportcmdfintravaux" :
+                $primary_key = "id_sous_projet_transport_commande_fin_travaux";
+                break;
             case "distributiondesign" :
                 $primary_key = "id_sous_projet_distribution_design";
                 break;
@@ -85,6 +88,9 @@ if($sousProjet !== NULL) {
                 break;
             case "distributionrecette" :
                 $primary_key = "id_sous_projet_distribution_recette";
+                break;
+            case "distributioncmdfintravaux" :
+                $primary_key = "id_sous_projet_distribution_commande_fin_travaux";
                 break;
             default : break;
         }
