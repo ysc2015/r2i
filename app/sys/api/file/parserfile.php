@@ -164,7 +164,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
             }
         }
 
-        $update_statment = $db->prepare("UPDATE detaildevis SET D33=:D33,D36=:D36,D43=:D43,D44=:D44,D46=:D46,D47=:D47,D48=:D48,D53=:D53,D54=:D54,D56=:D56");
+        $update_statment = $db->prepare("UPDATE detaildevis SET D33=:D33,D36=:D36,D43=:D43,D44=:D44,D46=:D46,D47=:D47,D48=:D48,D53=:D53,D54=:D54,D56=:D56 WHERE id_ressource=:id");
 
         $update_statment->bindParam(':D33',$d33);
         $update_statment->bindParam(':D36',$d36);
@@ -176,6 +176,8 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $update_statment->bindParam(':D53',$d53);
         $update_statment->bindParam(':D54',$d54);
         $update_statment->bindParam(':D56',$d56);
+
+        $update_statment->bindParam(':id',$id);
 
         $update_statment->execute();
     }
