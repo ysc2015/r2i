@@ -6,7 +6,7 @@
 
 $server = "localhost";
 $db_name = "r2i";
-$user = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";
+$user = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";;
 $password = ($_SERVER['SERVER_NAME'] == "localhost") ? "" : "r2i";
 
 try {
