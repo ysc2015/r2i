@@ -96,8 +96,19 @@
 								id: idp
 							}
 						}).done(callback);
+					},
+					cloturer : function(idt, callback){
+						$.ajax({
+				            method: 'POST',
+				            url: 'api/tache.php',
+				            data: {
+				                cloturer: true,
+				                id: idt
+				            }
+				        }).done(callback);
 					}
-				}
+				},
+
 			}
 		}
 		};
