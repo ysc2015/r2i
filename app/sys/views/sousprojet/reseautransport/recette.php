@@ -84,6 +84,16 @@
                 </div>
             </div>
         </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="row" style="padding-left: 10px;">
+                        <label for="fileuploader_recette">Fichier(s) recette)</label>
+                        <div id="fileuploader_recette"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="alert alert-success" id="message_transport_recette" role="alert" style="display: none;"></div>
         <div class="row items-push">
             <div class="form-group">
@@ -100,6 +110,83 @@
 </div>
 <script>
     var recette_formdata = {};
+    var recette_uploader_options = {
+        url: "api/sousprojet/reseautransport/upload_recette_file.php",
+        multiple:true,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:true,
+        showDownload:true,
+        allowedTypes: "xlsx,xls,pdf",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/sousprojet/reseautransport/load.php",
+                method:"POST",
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'transport_recette_file'},
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        dynamicFormData: function()
+        {
+            var data ={
+                idsp: get('idsousprojet')
+            };
+            return data;
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    };
+    $(function () {
+        recette_uploader_options = merge_options(defaultUploaderStrLocalisation,recette_uploader_options);
+        recette_uploader = $("#fileuploader_recette").uploadFile(recette_uploader_options);
+        
+    });
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_recette";
 
