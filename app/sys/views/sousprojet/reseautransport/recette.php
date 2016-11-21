@@ -89,7 +89,8 @@
             <div class="form-group">
                 <div class="col-md-8">
                     <button id="id_sous_projet_transport_recette_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
-                <button id="id_sous_projet_transport_recette_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+                    <button id="id_sous_projet_transport_recette_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
+                    <button id="id_sous_projet_transport_recette_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_transport_recette_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
                 </div>
             </div>
@@ -134,6 +135,25 @@
             }).done(function (msg) {
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_recette');
+            });
+        });
+        $("#id_sous_projet_transport_recette_ot_btn").click(function () {
+            $.ajax({
+                method: "POST",
+                url: "api/ot/ot/check_ot.php",
+                data: {
+                    ids : get('idsousprojet'),
+                    tentree : 'transportrecette'
+                }
+            }).done(function (msg) {
+                console.log(msg);
+                var obj = JSON.parse(msg);
+                console.log(msg);
+                if(obj.error == 0) {
+                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transportrecette';
+                } else {
+                    App.showMessage(msg, '#message_transport_recette');
+                }
             });
         });
     } );

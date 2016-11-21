@@ -61,5 +61,7 @@ $lang["synthese"] = "Synthèse";
 
 $lang["transportaiguillage"] = "Transport aiguillage";
 $lang["transporttirage"] = "Transport tirage";
+$lang["transportrecette"] = "Transport recette";
 $lang["distributionaiguillage"] = "Distribution aiguillage";
 $lang["distributiontirage"] = "Distribution tirage";
+$lang["distributionrecette"] = "Distribution recette";

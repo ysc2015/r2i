@@ -26,8 +26,10 @@
                                     <option value="" selected>Séléctionnez type ot</option>
                                     <option value="transportaiguillage">Transport aiguillage</option>
                                     <option value="transporttirage">Transport tirage</option>
+                                    <option value="transportrecette">Transport recette</option>
                                     <option value="distributionaiguillage">Distribution aiguillage</option>
                                     <option value="distributiontirage">Distribution tirage</option>
+                                    <option value="distributionrecette">Distribution recette</option>
                                 </select>
                             </div>
                         </div>
