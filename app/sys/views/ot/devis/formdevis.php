@@ -176,7 +176,7 @@
 
         $("#download_devis").click(function() {
             if(ot_dt.row('.selected').data()!== undefined) {
-                location.href="api/file/parserfile.php?id="+id_res;
+                location.href="api/file/parserfile.php?id="+id_res+"&idsp="+ot_dt.row('.selected').data().id_sous_projet+"&idtot="+ot_dt.row('.selected').data().id_type_ordre_travail;
             }
         });
 
