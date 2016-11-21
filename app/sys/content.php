@@ -318,7 +318,7 @@ switch ($page) {
             rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response) {
                 console.log(response);
                 idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
-                rc2k.osa.ws.tache.cloturer(idligne, function(){tache_dt.row('.selected').data()[2] = 'TERMINEE';  tache_dt.draw(false);});
+                rc2k.osa.ws.tache.cloturer(idligne, function(){console.log(tache_dt.row('.selected'));  tache_dt.draw(false);});
             });
 
         })
