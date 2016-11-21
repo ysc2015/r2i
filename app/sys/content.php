@@ -321,6 +321,8 @@ switch ($page) {
                 rc2k.osa.ws.tache.cloturer(
                     idligne
                 );
+
+                tache_dt.draw(false);
             });
 
         })
