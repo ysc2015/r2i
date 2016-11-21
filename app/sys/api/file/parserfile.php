@@ -164,7 +164,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
             }
         }
 
-        $update_statment = $db->prepare("UPDATE detaildevis SET D33=:D33,D36=:D36,D43=:D43,D44=:D44,D46=:D46,D47=:D47,D48=:D48,D53=:D53,D54=:D54,D56=:D56 WHERE id_ressource=:id");
+        $update_statment = $db->prepare("UPDATE detaildevis SET D33=:D33,D36=:D36,D43=:D43,D44=:D44,D46=:D46,D47=:D47,D48=:D48,D53=:D53,D54=:D54,D56=:D56 WHERE iddevis=:id");
 
         $update_statment->bindParam(':D33',$d33);
         $update_statment->bindParam(':D36',$d36);
@@ -182,9 +182,9 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $update_statment->execute();
     }
 
-     $tabreturn = [];
+    $tabreturn = [];
     try {
-        $stm = $db->prepare("SELECT * FROM detaildevis WHERE id_ressource=:id");
+        $stm = $db->prepare("SELECT * FROM detaildevis WHERE iddevis=:id");
         $stm->bindParam(':id',$id);
         $stm->execute();
         $row = $stm->fetch(PDO::FETCH_OBJ);
@@ -193,24 +193,26 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux = $Bordereaux->getSheetByName("LOT7_FO");
 
 
-        $sheetbordereaux->getCell("D76")->setValue($row->TABRAC_24);
-        $sheetbordereaux->getCell("D74")->setValue($row->TABRAC_48);
-        $sheetbordereaux->getCell("D72")->setValue($row->TABRAC_72);
-        $sheetbordereaux->getCell("D70")->setValue($row->TABRAC_144);
-        $sheetbordereaux->getCell("D68")->setValue($row->TABRAC_288);
-        $sheetbordereaux->getCell("D66")->setValue($row->TABRAC_720);
+        if($_GET['idtot'] !=2 && $_GET['idtot'] !=6) {
+            $sheetbordereaux->getCell("D76")->setValue($row->TABRAC_24);
+            $sheetbordereaux->getCell("D74")->setValue($row->TABRAC_48);
+            $sheetbordereaux->getCell("D72")->setValue($row->TABRAC_72);
+            $sheetbordereaux->getCell("D70")->setValue($row->TABRAC_144);
+            $sheetbordereaux->getCell("D68")->setValue($row->TABRAC_288);
+            $sheetbordereaux->getCell("D66")->setValue($row->TABRAC_720);
 
 
-        $sheetbordereaux->getCell("D83")->setValue($row->TABFEN_24);
-        $sheetbordereaux->getCell("D82")->setValue($row->TABFEN_48);
-        $sheetbordereaux->getCell("D81")->setValue($row->TABFEN_72);
-        $sheetbordereaux->getCell("D80")->setValue($row->TABFEN_144);
-        $sheetbordereaux->getCell("D79")->setValue($row->TABFEN_288);
-        $sheetbordereaux->getCell("D78")->setValue($row->TABFEN_432);
+            $sheetbordereaux->getCell("D83")->setValue($row->TABFEN_24);
+            $sheetbordereaux->getCell("D82")->setValue($row->TABFEN_48);
+            $sheetbordereaux->getCell("D81")->setValue($row->TABFEN_72);
+            $sheetbordereaux->getCell("D80")->setValue($row->TABFEN_144);
+            $sheetbordereaux->getCell("D79")->setValue($row->TABFEN_288);
+            $sheetbordereaux->getCell("D78")->setValue($row->TABFEN_432);
 
 
-        $sheetbordereaux->getCell("D84")->setValue($row->NBTUB);
-        $sheetbordereaux->getCell("D86")->setValue($row->NBSOUD);
+            $sheetbordereaux->getCell("D84")->setValue($row->NBTUB);
+            $sheetbordereaux->getCell("D86")->setValue($row->NBSOUD);
+        }
 
         $sheetbordereaux->getCell("D33")->setValue($row->D33);
         $sheetbordereaux->getCell("D36")->setValue($row->D36);

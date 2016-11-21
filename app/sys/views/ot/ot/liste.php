@@ -45,7 +45,8 @@
                 url: "api/ot/devis/get_devis_id.php",
                 dataType: "json",
                 data: {
-                    idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                    idot : ot_dt.row('.selected').data().id_ordre_de_travail,
+                    idtot : ot_dt.row('.selected').data().id_type_ordre_travail
                 }
             }).done(function (msg) {
                 console.log(msg);
@@ -183,29 +184,33 @@
                 });
 
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8) {
-                    $('#linked-pb-wrapper').show();
-                    $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/ot/get_pb_files_list.php",
-                        dataType: "json",
-                        data: {
-                            objtype: getObjectTypeForEntryPB(get('tentree')),
-                            idot : ot_dt.row('.selected').data().id_ordre_de_travail,
-                            idsp : get('idsousprojet')
-                        }
-                    }).done(function (data) {
-                        var values = [];
-                        $('#linked-pb').html('<option value="">&nbsp;</option>');
-                        for(var i = 0 ; i < data.length ; i++) {
-                            if(ot_dt.row('.selected').data().id_ordre_de_travail == data[i]['idot']) {
-                                values.push(data[i]['id']);
+                    if(ot_dt.row('.selected').data().id_type_ordre_travail != 2 && ot_dt.row('.selected').data().id_type_ordre_travail != 6) {
+                        $('#linked-pb-wrapper').show();
+                        $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/ot/get_pb_files_list.php",
+                            dataType: "json",
+                            data: {
+                                objtype: getObjectTypeForEntryPB(get('tentree')),
+                                idot : ot_dt.row('.selected').data().id_ordre_de_travail,
+                                idsp : get('idsousprojet')
                             }
-                            html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
-                            $('#linked-pb').append(html);
-                        }
-                        $('#linked-pb').val(values);
-                    });
+                        }).done(function (data) {
+                            var values = [];
+                            $('#linked-pb').html('<option value="">&nbsp;</option>');
+                            for(var i = 0 ; i < data.length ; i++) {
+                                if(ot_dt.row('.selected').data().id_ordre_de_travail == data[i]['idot']) {
+                                    values.push(data[i]['id']);
+                                }
+                                html = '<option value="'+data[i]['id']+'">'+data[i]['nom']+'</option>';
+                                $('#linked-pb').append(html);
+                            }
+                            $('#linked-pb').val(values);
+                        });
+                    } else {
+                        $('#linked-pb-wrapper').hide();
+                    }
                     displayDevis();
                 } else {
                     $('#linked-pb-wrapper').hide();
