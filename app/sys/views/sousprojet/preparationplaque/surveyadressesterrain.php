@@ -234,7 +234,7 @@
     });
     $(document).ready(function() {
         var typeetape = "sous_projet_plaque_survey_adresse";
-        var variable_etape = "SousProjetPlaqueSurveyAdresse";
+        var variable_etape = "plaquesurvadr";
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"surveyadressesterrain_href","Survey Adresses Terrain: ");
 
