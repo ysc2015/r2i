@@ -81,8 +81,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
 
 function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
-    console.log("calculetache_osa : "+ide)
-    if(ide == "SousProjetPlaqueSurveyAdresse") console.log(typeetape + " * " + id_sous_projet + " * " + ide)
+   // console.log("calculetache_osa : "+ide)
+    //if(ide == "SousProjetPlaqueSurveyAdresse") console.log(typeetape + " * " + id_sous_projet + " * " + ide)
 
     $.ajax({
         method: "POST",
@@ -93,7 +93,7 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
             tentre: ide
         },
         success: function (e) {
-            if(ide == "transportcmdfintravaux") console.log(e);
+           // if(ide == "transportcmdfintravaux") console.log(e);
             if(e.idetape!=0) {
 
                     $.ajax({
