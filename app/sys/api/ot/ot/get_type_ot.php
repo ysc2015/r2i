@@ -46,6 +46,14 @@ switch($tentree) {
             }
         }
         break;
+    case "transportrecette" :
+        //echo "select * from ordre_de_travail where id_sous_projet=$idsousprojet and type_entree = '$tentree' and id_type_ordre_travail = 1";
+        $stm = $db->prepare("select * from ordre_de_travail where id_sous_projet=$idsousprojet and type_entree = '$tentree' and id_type_ordre_travail = 9");
+        $stm->execute();
+        if($stm->rowCount()==0) {
+            $options .= "<option value=\"9\">Recette Optique CTR ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->zone."</option>";
+        }
+        break;
     case "distributionaiguillage" :
         $stm = $db->prepare("select * from ordre_de_travail where id_sous_projet=$idsousprojet and type_entree = '$tentree' and id_type_ordre_travail = 5");
         $stm->execute();
@@ -75,6 +83,14 @@ switch($tentree) {
                 $options .= "<option value=\"7\">Raccordement CDI ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->zone."</option>";
                 $options .= "<option value=\"8\">Tirage et Raccordement CDI ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->zone."</option>";
             }
+        }
+        break;
+    case "distributionrecette" :
+        //echo "select * from ordre_de_travail where id_sous_projet=$idsousprojet and type_entree = '$tentree' and id_type_ordre_travail = 1";
+        $stm = $db->prepare("select * from ordre_de_travail where id_sous_projet=$idsousprojet and type_entree = '$tentree' and id_type_ordre_travail = 10");
+        $stm->execute();
+        if($stm->rowCount()==0) {
+            $options .= "<option value=\"10\">Recette Optique CDI ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->zone."</option>";
         }
         break;
     default : break;
