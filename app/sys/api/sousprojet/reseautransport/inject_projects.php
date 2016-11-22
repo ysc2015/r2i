@@ -48,7 +48,7 @@ foreach($plaques as $plaque) {
         echo "taille -> "."0";
         echo "etat_site_origine -> "."1";
         echo "date_mad_site_origine -> "."2016-07-01";
-        echo "date_creation -> ".$prj_infos->date_Lancement;
+        echo "date_creation -> ".$prj_infos->date_lancement;
         $i++;
     }
 
