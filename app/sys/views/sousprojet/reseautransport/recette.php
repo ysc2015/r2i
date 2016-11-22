@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="trec_date_recette">Date prévisionnelle de fin recette <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>">
+                    <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_ret_prevue : "")?>">
                 </div>
                 <div class="col-md-4">
                     <label for="tt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>

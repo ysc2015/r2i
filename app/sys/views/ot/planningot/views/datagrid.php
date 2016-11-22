@@ -11,12 +11,14 @@
                 <th>idot</th>
                 <th>idsp</th>
                 <th>tentree</th>
-                <th>type</th>
+                <th>ot</th>
                 <th>entreprise</th>
                 <th>prenom</th>
                 <th>nom</th>
                 <th>date début</th>
                 <th>date fin</th>
+                <th>état</th>
+                <th>état</th>
             </tr>
             </thead>
             <tbody>
@@ -26,12 +28,14 @@
                 <th>idot</th>
                 <th>idsp</th>
                 <th>tentree</th>
-                <th>type</th>
+                <th>ot</th>
                 <th>entreprise</th>
                 <th>prenom</th>
                 <th>nom</th>
                 <th>date début</th>
                 <th>date fin</th>
+                <th>état</th>
+                <th>état</th>
             </tr>
             </tfoot>
         </table>

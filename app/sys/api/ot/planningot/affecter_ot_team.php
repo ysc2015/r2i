@@ -101,6 +101,13 @@ if($ot->date_debut == NULL || $ot->date_debut=="") {
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+        if($ot->id_etat_ot == 1) {
+            $ot->id_etat_ot = 2;
+        } else {
+            $ot->id_etat_ot = 8;
+        }
+        $ot->save();
+
         $message [] = "Affectation faite avec succès";
         //update matching step(s)
         if($sousProjet !== NULL) {
@@ -130,6 +137,12 @@ if($insert == true && $err == 0){
                 case "8" :
                     $tentree[] = array("distributiontirage","date_tirage");
                     $tentree[] = array("distributionraccordement","date_racco");
+                    break;
+                case "9" :
+                    $tentree[] = array("transportrecette","date_recette");
+                    break;
+                case "10" :
+                    $tentree[] = array("distributionrecette","date_recette");
                     break;
                 default :
                     break;
@@ -165,6 +178,16 @@ if($insert == true && $err == 0){
                             break;
                         case "distributionraccordement" :
                             $step = new SousProjetDistributionRaccordement(array(
+                                'id_sous_projet' => $idsp));
+                            $step->save();
+                            break;
+                        case "transportrecette" :
+                            $step = new SousProjetTransportRecette(array(
+                                'id_sous_projet' => $idsp));
+                            $step->save();
+                            break;
+                        case "distributionrecette" :
+                            $step = new SousProjetDistributionRecette(array(
                                 'id_sous_projet' => $idsp));
                             $step->save();
                             break;
