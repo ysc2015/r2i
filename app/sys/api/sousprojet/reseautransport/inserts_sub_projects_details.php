@@ -43,6 +43,6 @@ foreach($sousprojets as $sousprojet)
         $i++;
     }
 
-    echo $injected_sub_projects_details;
+    //echo $injected_sub_projects_details;
 
 }
