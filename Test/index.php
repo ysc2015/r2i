@@ -28,7 +28,7 @@
 
 
 <div class="row items-push">
-    <div class="form-group">
+    <!--<div class="form-group">
         <div class="col-md-6">
             <div class="row" style="padding-left: 10px;">
                 <label for="ta_fileuploader_chambre">Fichier(s) bkp</label>
@@ -38,6 +38,9 @@
     </div>
     <div class="form-group">
         <button id="addProjects" class="btn btn-primary">Injecter projets</button>
+    </div>-->
+    <div class="form-group">
+        <button id="addSubProjects" class="btn btn-primary">Injecter projets</button>
     </div>
 </div>
 
@@ -242,6 +245,18 @@
             }).done(function (message) {
                 console.log(message);
             });
+        });
+        $('#addSubProjects').click(function (){
+            console.log('addSubProjects');
+            /*$.ajax({
+                method: "POST",
+                url: "api/sousprojet/reseautransport/inject_projects.php"/!*,
+                 data: {
+                 id: id
+                 }*!/
+            }).done(function (message) {
+                console.log(message);
+            });*/
         });
     });
 </script>
