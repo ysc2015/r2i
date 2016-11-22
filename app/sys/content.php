@@ -73,7 +73,7 @@ switch ($page) {
         echo "<br><br>";
         break;
     case "ot":
-        if(isset($idsousprojet) && isset($tentree) && in_array($tentree,array("transportaiguillage","transporttirage","distributionaiguillage","distributiontirage","transportrecette","distributionrecette"))) {
+        if(isset($idsousprojet) && isset($tentree) && in_array($tentree,array("transportaiguillage","transporttirage","distributionaiguillage","distributiontirage","transportraccordement","distributionraccordement","transportrecette","distributionrecette"))) {
             $sousProjet = SousProjet::first(
                 array('conditions' =>
                     array("id_sous_projet = ?", $idsousprojet)

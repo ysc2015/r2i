@@ -21,6 +21,8 @@ if(isset($idsp) && !empty($idsp)){
 }
 
 if(isset($tentree) && !empty($tentree)){
+    if($tentree == "transportraccordement") $tentree = "transporttirage";
+    if($tentree == "distributionraccordement") $tentree = "distributiontirage";
     $stm->bindParam(':type_entree',$tentree);
     $insert = true;
 } else {

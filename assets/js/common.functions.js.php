@@ -49,12 +49,12 @@ function getObjectTypeForEntry(entree) {
     var str = '';
     switch (entree) {
         case 'transportaiguillage' : str='transport_aiguillage_chambre';break;
-        case 'transporttirage' : str='transport_tirage_chambre';break;
-        case 'transportraccordement' : str='transport_raccord_chambre';break;
+        case 'transporttirage' : str='transport_tirage_chambre,transport_raccord_chambre';break;
+        case 'transportraccordement' : str='transport_raccord_chambre,transport_tirage_chambre';break;
         case 'transportrecette' : str='transport_recette_chambre_file';break;
         case 'distributionaiguillage' : str='distribution_aiguillage_chambre';break;
-        case 'distributiontirage' : str='distribution_tirage_chambre';break;
-        case 'distributionraccordement' : str='distribution_raccord_chambre';break;
+        case 'distributiontirage' : str='distribution_tirage_chambre,distribution_raccord_chambre';break;
+        case 'distributionraccordement' : str='distribution_raccord_chambre,distribution_tirage_chambre';break;
         case 'distributionrecette' : str='distribution_recette_chambre_file';break;
         default : str='';break;
     }
