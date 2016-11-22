@@ -27,7 +27,7 @@ foreach($sousprojets as $sousprojet)
         $stm2 = $db->prepare("insert into  sous_projet_plaque (id_sous_projet,phase,type) values (:id_sous_projet,:phase,:type)");
         $stm3 = $db->prepare("insert into  sous_projet_zone (id_sous_projet,nbr_zone,lr_sur_pm,lr,nbr_de_site,nb_fo_sur_pm,nb_fo_sur_pmz) values (:id_sous_projet,:nbr_zone,:lr_sur_pm,:lr,:nbr_de_site,:nb_fo_sur_pm,:nb_fo_sur_pmz)");//
         $stm4 = $db->prepare("insert into  sous_projet_site_origine (id_sous_projet,auto_adduction,travaux_adduction,recette_adduction) values (:id_sous_projet,:auto_adduction,:travaux_adduction,:recette_adduction)");
-        $stm5 = $db->prepare("insert into  sous_projet_plaque_phase (id_sous_projet,instigateur) values (:id_sous_projet,:instigateur)");
+        $stm5 = $db->prepare("insert into  sous_projet_plaque_phase (id_sous_projet,instigateur,date_lancement) values (:id_sous_projet,:instigateur,:date_lancement)");
 
         /*if(!$i) {
 
@@ -126,6 +126,8 @@ foreach($sousprojets as $sousprojet)
         $idinstigateur = ($instigateur!==NULL?$instigateur->id_phase_instigateur:NULL);
         $stm5->bindParam(':instigateur',$idinstigateur);
         //echo "instigateur -> ".$idinstigateur;
+
+        $stm5->bindParam(':date_lancement',$abkp_line->date_lancement);
 
 
         if($stm2->execute() && $stm3->execute() && $stm4->execute() && $stm5->execute()) {
