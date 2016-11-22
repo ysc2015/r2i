@@ -4,7 +4,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="so_code_site">Code Site <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control" type="text" id="so_code_site" name="so_code_site" readonly="" value="<?=($sousProjet->projet !== NULL?$sousProjet->projet->id_nro:"")?>">
+                    <input class="form-control" type="text" id="so_code_site" name="so_code_site" readonly="" value="<?=($sousProjet->projet !== NULL?($sousProjet->projet->nro!==NULL?$sousProjet->projet->nro->lib_nro:""):"")?>">
                 </div>
                 <div class="col-md-3">
                     <label for="so_type">Type <!--<span class="text-danger">*</span>--></label>
