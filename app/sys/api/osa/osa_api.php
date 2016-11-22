@@ -2,9 +2,11 @@
 
 class OsaApi
 {
+
     public static function appel($postBody, $action_){
         $curl = curl_init();
-        $token_ = "NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm";
+
+        $token_ = $_GET['token'];
         curl_setopt_array($curl, array(
             //http://sd-83414.dedibox.fr
             CURLOPT_URL => "http://sd-83414.dedibox.fr/osa/api/auth.php",

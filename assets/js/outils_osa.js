@@ -147,7 +147,8 @@ function liste_tache_osa(typeetape,id_sous_projet,ide){
                         idetape: e.idetape,
                         typeetape: typeetape,
                         idprojet:e.id,
-                        methode:"tache_liste"
+                        methode:"tache_liste",
+                        token:window.token
                     },
                     success : function(reponse){
 
