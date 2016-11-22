@@ -10,6 +10,8 @@ $list_plq_statment = $db->prepare("SELECT DISTINCT  Emprise FROM  abkp WHERE 1")
 $list_plq_statment->execute();
 $plaques = $list_plq_statment->fetchAll(PDO::FETCH_ASSOC);
 
+$i = 0;
+
 foreach($plaques as $plaque) {
     $prj_infos = Abkp::first(
         array('conditions' =>
@@ -17,5 +19,8 @@ foreach($plaques as $plaque) {
         )
     );
 
-    var_dump($prj_infos);
+    if(!$i) {
+        var_dump($prj_infos);
+        $i++;
+    }
 }
