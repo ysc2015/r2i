@@ -103,7 +103,8 @@ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
                         data:{
                             idetape: e.idetape,
                             typeetape: typeetape,
-                            idprojet:e.id
+                            idprojet:e.id,
+                            token:window.token
                         },
                         success : function(reponse){
                             $('#'+idhref).html(content_href+reponse);
