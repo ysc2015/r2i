@@ -40,7 +40,7 @@
         <button id="addProjects" class="btn btn-primary">Injecter projets</button>
     </div>-->
     <div class="form-group">
-        <button id="addSubProjects" class="btn btn-primary">Injecter projets</button>
+        <button id="addSubProjects" class="btn btn-primary">Injecter sous projets</button>
     </div>
 </div>
 
@@ -248,15 +248,15 @@
         });
         $('#addSubProjects').click(function (){
             console.log('addSubProjects');
-            /*$.ajax({
+            $.ajax({
                 method: "POST",
-                url: "api/sousprojet/reseautransport/inject_projects.php"/!*,
+                url: "api/sousprojet/reseautransport/inject_sousprojets.php"/*,
                  data: {
                  id: id
-                 }*!/
+                 }*/
             }).done(function (message) {
                 console.log(message);
-            });*/
+            });
         });
     });
 </script>
