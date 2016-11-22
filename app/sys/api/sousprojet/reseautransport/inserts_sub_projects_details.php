@@ -4,11 +4,11 @@
  * User: rabii
  */
 
-$stm = $db->prepare("select sp.*,n.lib_nro from sous_projet as sp,projet as p, nro as n where sp.id_projet = p.id_projet and p.id_nro = n.id_nro");
+$stm1 = $db->prepare("select sp.*,n.lib_nro from sous_projet as sp,projet as p, nro as n where sp.id_projet = p.id_projet and p.id_nro = n.id_nro");
 
-$stm->execute();
+$stm1->execute();
 
-$sousprojets = $stm->fetchAll();
+$sousprojets = $stm1->fetchAll();
 
 $i=0;
 
@@ -24,10 +24,12 @@ foreach($sousprojets as $sousprojet)
 
     if($abkp_line !== NULL) {
 
-        if(!$i) {
+
+
+        /*if(!$i) {
             var_dump($abkp_line);
             $i++;
-        }
+        }*/
 
         $injected_sub_projects_details++;
     }
