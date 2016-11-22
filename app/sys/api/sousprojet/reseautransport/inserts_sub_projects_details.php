@@ -31,6 +31,11 @@ foreach($sousprojets as $sousprojet)
 
         if(!$i) {
 
+            $stm2->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
+            $stm3->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
+            $stm4->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
+            $stm5->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
+
             /**
              * stm2 sous_projet_plaque
              */
@@ -52,13 +57,24 @@ foreach($sousprojets as $sousprojet)
              * stm3 sous_projet_zone
              */
 
-
+            $stm3->bindParam(':nbr_zone',$abkp_line->nb_zone_plaque);
             echo "nbr_zone -> ".$abkp_line->nb_zone_plaque;
+
+            $stm3->bindParam(':lr_sur_pm',$abkp_line->lr_pm_exist);
             echo "lr_sur_pm -> ".$abkp_line->lr_pm_exist;
+
+            $stm3->bindParam(':lr',$abkp_line->lr);
             echo "lr -> ".$abkp_line->lr;
+
+            $stm3->bindParam(':nbr_de_site',$abkp_line->nbr_site);
             echo "nbr_de_site -> ".$abkp_line->nbr_site;
+
+            $stm3->bindParam(':nb_fo_sur_pm',$abkp_line->nb_fo_pm);
             echo "nb_fo_sur_pm -> ".$abkp_line->nb_fo_pm;
+
+            $stm3->bindParam(':nb_fo_sur_pmz',$abkp_line->nb_fo_pmz);
             echo "nb_fo_sur_pmz -> ".$abkp_line->nb_fo_pmz;
+
             echo "auto_adduction -> ".$abkp_line->auto_adduction;
             echo "travaux_adduction -> ".$abkp_line->travaux_adduction;
             echo "recette_adduction -> ".$abkp_line->recette_adduction;
