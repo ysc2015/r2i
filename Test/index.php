@@ -36,6 +36,9 @@
             </div>
         </div>
     </div>
+    <div class="form-group">
+        <button id="addProjects" class="btn btn-primary">Injecter projets</button>
+    </div>
 </div>
 
 <script>
@@ -228,7 +231,17 @@
         taiguillage_chambre_uploader = $("#ta_fileuploader_chambre").uploadFile(taiguillage_chambre_uploader_options);
     });
     $(document).ready(function () {
-        $('#addNewTracon').click(function (){
+        $('#addProjects').click(function (){
+            console.log('addProjects');
+            /*$.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });*/
         });
     });
 </script>
