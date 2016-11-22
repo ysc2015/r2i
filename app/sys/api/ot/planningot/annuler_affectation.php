@@ -42,6 +42,8 @@ if($ot !== NULL) {
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+        $ot->id_etat_ot = 7;
+        $ot->save();
         $message [] = "Affectation annulée avec succès";
         //update matching step(s)
         if($sousProjet !== NULL) {
