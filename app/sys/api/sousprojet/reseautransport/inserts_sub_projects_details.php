@@ -29,6 +29,21 @@ foreach($sousprojets as $sousprojet)
         $stm4 = $db->prepare("insert into  sous_projet_site_origine (id_sous_projet,auto_adduction,travaux_adduction,recette_adduction) values ()");
         $stm5 = $db->prepare("insert into  sous_projet_plaque_phase (id_sous_projet,instigateur) values ()");
 
+        if(!$i) {
+            echo "phase -> ".$abkp_line->phase;
+            echo "type -> ".$abkp_line->type1;
+            echo "nbr_zone -> ".$abkp_line->nb_zone_plaque;
+            echo "lr_sur_pm -> ".$abkp_line->lr_pm_exist;
+            echo "lr -> ".$abkp_line->lr;
+            echo "nbr_de_site -> ".$abkp_line->nbr_site;
+            echo "nb_fo_sur_pm -> ".$abkp_line->nb_fo_pm;
+            echo "nb_fo_sur_pmz -> ".$abkp_line->nb_fo_pmz;
+            echo "auto_adduction -> ".$abkp_line->auto_adduction;
+            echo "travaux_adduction -> ".$abkp_line->travaux_adduction;
+            echo "recette_adduction -> ".$abkp_line->recette_adduction;
+            echo "instigateur -> ".$abkp_line->instigateur;
+            $i++;
+        }
 
         $injected_sub_projects_details++;
     }
