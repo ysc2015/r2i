@@ -35,18 +35,20 @@ foreach($plaques as $plaque) {
     $project_name = "Etude Plaque PON FTTH ".$id_nro." ".$ville_nom;*/
 
     if(!$i) {
-        echo "ville_nom -> ".$prj_infos->Ville;
+
+        var_dump($prj_infos);
+
+        /*echo "ville_nom -> ".$prj_infos->Ville;
         echo "ville -> ".$prj_infos->dep;
         echo "trigramme_dept -> ".$prj_infos->Emprise;
 
 
-        /*echo "id_nro -> ".$prj_infos->dep;
-        echo "type_site_origine -> ".$prj_infos->dep;*/
+        echo "id_nro -> ".$prj_infos->dep;
+        echo "type_site_origine -> ".$prj_infos->dep;
         echo "taille -> "."0";
         echo "etat_site_origine -> "."1";
         echo "date_mad_site_origine -> "."2016-07-01";
-        echo "date_creation -> ".$prj_infos->Date_Lancement;
-        //echo "projet_nom -> ".$prj_infos->dep;
+        echo "date_creation -> ".$prj_infos->Date_Lancement;*/
         $i++;
     }
 
