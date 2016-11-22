@@ -100,8 +100,14 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <div class="row" style="padding-left: 10px;">
-                        <label for="fileuploader_recette2">Fichier(s) recette)</label>
+                        <label for="fileuploader_recette2">Fichier(s) recette</label>
                         <div id="fileuploader_recette2"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row" style="padding-left: 10px;">
+                        <label for="fileuploader_recette2_chambre">Fichier(s) chambres</label>
+                        <div id="fileuploader_recette2_chambre"></div>
                     </div>
                 </div>
             </div>
@@ -194,9 +200,84 @@
 
         }
     };
+    var recette_chambre_uploader2_options2 = {
+        url: "api/sousprojet/reseaudistribution/upload_recette_file.php",
+        multiple:true,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:true,
+        showDownload:true,
+        allowedTypes: "xlsx,xls,pdf",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/sousprojet/reseaudistribution/load.php",
+                method:"POST",
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'distribution_recette_file'},
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        dynamicFormData: function()
+        {
+            var data ={
+                idsp: get('idsousprojet')
+            };
+            return data;
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    };
     $(function () {
         recette_uploader2_options2 = merge_options(defaultUploaderStrLocalisation,recette_uploader2_options2);
         recette_uploader2 = $("#fileuploader_recette2").uploadFile(recette_uploader2_options2);
+
+        recette_chambre_uploader2_options2 = merge_options(defaultUploaderStrLocalisation,recette_chambre_uploader2_options2);
+        recette_chambre_uploader2 = $("#fileuploader_recette2_chambre").uploadFile(recette_chambre_uploader2_options2);
 
     });
     $(document).ready(function() {
