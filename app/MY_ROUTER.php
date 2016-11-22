@@ -50,7 +50,7 @@ if(isset($_GET['tab_imei']) || isset($_GET['qgis'])){
         }
 
         echo json_encode(array(
-            "datas" => array()
+            "data" => array()
         ));
 
 
