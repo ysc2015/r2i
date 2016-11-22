@@ -24,6 +24,8 @@ foreach($sousprojets as $sousprojet)
 
     if($abkp_line !== NULL) {
         $injected_sub_projects_details++;
+    } else {
+        echo "nopz ->".$sousprojet['id_sous_projet'];
     }
 
 }
