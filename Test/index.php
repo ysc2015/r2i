@@ -38,9 +38,12 @@
     </div>
     <div class="form-group">
         <button id="addProjects" class="btn btn-primary">Injecter projets</button>
-    </div>-->
+    </div>
     <div class="form-group">
         <button id="addSubProjects" class="btn btn-primary">Injecter sous projets</button>
+    </div>-->
+    <div class="form-group">
+        <button id="addSubProjectsDetails" class="btn btn-primary">Injecter détails</button>
     </div>
 </div>
 
@@ -251,6 +254,18 @@
             $.ajax({
                 method: "POST",
                 url: "api/sousprojet/reseautransport/inject_sousprojets.php"/*,
+                 data: {
+                 id: id
+                 }*/
+            }).done(function (message) {
+                console.log(message);
+            });
+        });
+        $('#addSubProjects').click(function (){
+            console.log('addSubProjectsDetails');
+            $.ajax({
+                method: "POST",
+                url: "api/sousprojet/reseautransport/inserts_sub_projects_details.php"/*,
                  data: {
                  id: id
                  }*/
