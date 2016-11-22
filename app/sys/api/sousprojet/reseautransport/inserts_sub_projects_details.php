@@ -77,13 +77,18 @@ foreach($sousprojets as $sousprojet)
             $stm3->bindParam(':nb_fo_sur_pmz',$abkp_line->nb_fo_pmz);
             echo "nb_fo_sur_pmz -> ".$abkp_line->nb_fo_pmz;
 
+
+            /**
+             * stm4 sous_projet_site_origine
+             */
+
             $auto1 = SelectSiteOrigineAutoAdduction::first(
                 array('conditions' =>
                     array("lib_site_origine_auto_adduction = ?", $abkp_line->auto_adduction)
                 )
             );
             $idauto1 = ($auto1!==NULL?$auto1->id_site_origine_auto_adduction:NULL);
-            $stm3->bindParam(':auto_adduction',$idauto1);
+            $stm4->bindParam(':auto_adduction',$idauto1);
             echo "auto_adduction -> ".$idauto1;
 
 
@@ -93,7 +98,7 @@ foreach($sousprojets as $sousprojet)
                 )
             );
             $idauto2 = ($auto2!==NULL?$auto2->id_site_origine_travaux_adduction:NULL);
-            $stm3->bindParam(':travaux_adduction',$idauto2);
+            $stm4->bindParam(':travaux_adduction',$idauto2);
             echo "travaux_adduction -> ".$idauto2;
 
 
@@ -103,9 +108,12 @@ foreach($sousprojets as $sousprojet)
                 )
             );
             $idauto3 = ($auto3!==NULL?$auto3->id_site_origine_recette_adduction:NULL);
-            $stm3->bindParam(':recette_adduction',$idauto3);
+            $stm4->bindParam(':recette_adduction',$idauto3);
             echo "recette_adduction -> ".$idauto3;
 
+            /**
+             * stm5 sous_projet_plaque_phase
+             */
 
             $instigateur = SelectPhaseInstigateur::first(
                 array('conditions' =>
@@ -113,7 +121,7 @@ foreach($sousprojets as $sousprojet)
                 )
             );
             $idinstigateur = ($instigateur!==NULL?$instigateur->id_phase_instigateur:NULL);
-            $stm3->bindParam(':instigateur',$idinstigateur);
+            $stm5->bindParam(':instigateur',$idinstigateur);
             echo "instigateur -> ".$idinstigateur;
 
             $i++;
