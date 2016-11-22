@@ -8,7 +8,7 @@ $str = "";
 
 $list_plq_statment = $db->prepare("SELECT DISTINCT  Emprise FROM  abkp WHERE 1");
 $list_plq_statment->execute();
-$plaques = $list_plq_statment->fetchAll(PDO::FETCH_OBJ);
+$plaques = $list_plq_statment->fetchAll(PDO::FETCH_ASSOC);
 
 foreach($plaques as $plaque) {
     $prj_infos = Abkp::first(
