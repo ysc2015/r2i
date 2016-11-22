@@ -31,6 +31,8 @@ foreach($sousprojets as $sousprojet)
 
         if(!$i) {
 
+            echo $sousprojet['lib_nro']."-".$sousprojet['zone']." ***********";
+
             $stm2->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
             $stm3->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
             $stm4->bindParam(':id_sous_projet',$sousprojet['id_sous_projet']);
