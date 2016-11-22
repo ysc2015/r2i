@@ -21,22 +21,37 @@ foreach($plaques as $plaque) {
         )
     );
 
-    $stm = $db->prepare("insert into projet (ville_nom,ville,trigramme_dept,id_nro,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:ville_nom,:ville,:trigramme_dept,:id_nro,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
+    $stm = $db->prepare("insert into projet (ville_nom,ville,trigramme_dept,id_nro,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:ville_nom,:ville,:trigramme_dept,:id_nro,:type_site_origine,0,8,'2016-07-01',:date_creation)");
 
-    /*$stm->bindParam(':ville_nom',$ville_nom);
-    $stm->bindParam(':ville',$ville);
-    $stm->bindParam(':trigramme_dept',$trigramme_dept);
-    $stm->bindParam(':id_nro',$id_nro);
-    $stm->bindParam(':type_site_origine',$type_site_origine);
-    $stm->bindParam(':taille',$taille);
-    $stm->bindParam(':etat_site_origine',$etat_site_origine);
-    $stm->bindParam(':date_mad_site_origine',$date_mad_site_origine);
-    $stm->bindParam(':date_creation',date('Y-m-d'));
-    $project_name = "Etude Plaque PON FTTH ".$id_nro." ".$ville_nom;*/
+    $stm->bindParam(':ville_nom',$prj_infos->ville);
+    $stm->bindParam(':ville',$prj_infos->dep);
+    $stm->bindParam(':trigramme_dept',$prj_infos->emprise);
 
-    if(!$i) {
+    $nro = Nro::first(
+        array('conditions' =>
+            array("lib_nro = ?", explode('-',$prj_infos->zone)[0])
+        )
+    );
+    $idnro = ($nro!==NULL?$nro->id_nro:NULL);
+    $stm->bindParam(':id_nro',$idnro);
 
-        //var_dump($prj_infos);
+    $typesite = SelectSiteOrigineType::first(
+        array('conditions' =>
+            array("lib_site_origine_type = ?", $prj_infos->type2)
+        )
+    );
+    $idtype = ($typesite!==NULL?$typesite->id_site_origine_type:NULL);
+    $stm->bindParam(':type_site_origine',$idtype);
+
+    $stm->bindParam(':date_creation',$prj_infos->date_lancement);
+
+    if($stm->execute()) {
+        $injected_prj_nbr++;
+    }
+
+    /*if(!$i) {
+
+        var_dump($prj_infos);
 
         echo "ville_nom -> ".$prj_infos->ville;
         echo "ville -> ".$prj_infos->dep;
@@ -61,9 +76,7 @@ foreach($plaques as $plaque) {
         echo "date_mad_site_origine -> "."2016-07-01";
         echo "date_creation -> ".$prj_infos->date_lancement;
         $i++;
-    }
-
-    $injected_prj_nbr++;
+    }*/
 }
 
 echo $injected_prj_nbr;
