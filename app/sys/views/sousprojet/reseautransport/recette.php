@@ -201,21 +201,21 @@
         }
     };
     var recette_chambre_uploader_options = {
-        url: "api/sousprojet/reseautransport/upload_recette_file.php",
+        url: "api/sousprojet/reseautransport/upload_recette_chambre_file.php",
         multiple:true,
         dragDrop:true,
         fileName: "myfile",
         autoSubmit: true,
         showDelete:true,
         showDownload:true,
-        allowedTypes: "xlsx,xls,pdf",
+        allowedTypes: "xlsx,xls",
         onLoad:function(obj)
         {
             $.ajax({
                 cache: false,
                 url: "api/sousprojet/reseautransport/load.php",
                 method:"POST",
-                data: {id_sous_projet:get('idsousprojet'),type_objet:'transport_recette_file'},
+                data: {id_sous_projet:get('idsousprojet'),type_objet:'transport_recette_chambre_file'},
                 dataType: "json",
                 success: function(data)
                 {
