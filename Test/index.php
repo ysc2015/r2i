@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="icheck-1.x/skins/all.css">
 
-    <link rel="stylesheet" href="assets/js/plugins/jquery-upload-file/css/uploadfile.css">
-    <script src="assets/js/plugins/jquery-upload-file/js/jquery.form.js"></script>
-    <script src="assets/js/plugins/jquery-upload-file/js/jquery.uploadfile.min.js"></script>
+    <link rel="stylesheet" href="../assets/js/plugins/jquery-upload-file/css/uploadfile.css">
+    <script src="../assets/js/plugins/jquery-upload-file/js/jquery.form.js"></script>
+    <script src="../assets/js/plugins/jquery-upload-file/js/jquery.uploadfile.min.js"></script>
 
 
     <style type="text/css">
