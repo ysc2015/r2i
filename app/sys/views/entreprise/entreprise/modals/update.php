@@ -9,7 +9,7 @@
                             <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Ajouter Entreprise STT</h3>
+                    <h3 class="block-title">Modifier Entreprise STT</h3>
                 </div>
                 <div class="block-content">
                     <form class="js-validation-bootstrap form-horizontal" id="entreprise_update_form">
@@ -17,6 +17,12 @@
                             <div class="col-md-6">
                                 <label for="entreprise_update_nom">Nom <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" id="entreprise_update_nom" name="entreprise_update_nom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="entreprise_update_code">Code entreprise <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" id="entreprise_update_code" name="entreprise_update_code">
                             </div>
                         </div>
                         <div class="form-group">
@@ -93,6 +99,7 @@
                 data: {
                     ide: entreprise_dt.row('.selected').data().id_entreprise,
                     nom: $('#entreprise_update_nom').val(),
+                    code: $('#entreprise_update_code').val(),
                     adresse_siege: $('#entreprise_update_adresse_siege').val(),
                     adresse_livraison: $('#entreprise_update_adresse_livraison').val(),
                     gerant_entreprise: $('#entreprise_update_gerant_entreprise').val(),

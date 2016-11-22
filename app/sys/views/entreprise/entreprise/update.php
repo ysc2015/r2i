@@ -10,6 +10,7 @@
             update = false;
 
             $("#entreprise_update_nom").val(entreprise_dt.row('.selected').data().nom);
+            $("#entreprise_update_code").val(entreprise_dt.row('.selected').data().code_entreprise);
             $("#entreprise_update_adresse_siege").val(entreprise_dt.row('.selected').data().adresse_siege);
             $("#entreprise_update_adresse_livraison").val(entreprise_dt.row('.selected').data().adresse_livraison);
             $("#entreprise_update_gerant_entreprise").val(entreprise_dt.row('.selected').data().gerant_entreprise);

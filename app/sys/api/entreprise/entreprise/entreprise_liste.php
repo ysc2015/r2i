@@ -8,6 +8,7 @@ $table = array("entreprises_stt as t1");
 $columns = array(
     array( "db" => "t1.id_entreprise", "dt" => 'id_entreprise' ),
     array( "db" => "t1.nom", "dt" => 'nom' ),
+    array( "db" => "t1.code_entreprise", "dt" => 'code_entreprise' ),
     array( "db" => "t1.adresse_siege", "dt" => 'adresse_siege' ),
     array( "db" => "t1.adresse_livraison", "dt" => 'adresse_livraison' ),
     array( "db" => "t1.gerant_entreprise", "dt" => 'gerant_entreprise' ),

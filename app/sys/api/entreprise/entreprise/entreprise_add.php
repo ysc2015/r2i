@@ -9,7 +9,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into entreprises_stt (nom,adresse_siege,adresse_livraison,gerant_entreprise,contact_nom,contact_prenom,contact_tel_mobile,contact_tel_fixe,contact_email) values (:nom,:adresse_siege,:adresse_livraison,:gerant_entreprise,:contact_nom,:contact_prenom,:contact_tel_mobile,:contact_tel_fixe,:contact_email)");
+$stm = $db->prepare("insert into entreprises_stt (nom,code_entreprise,adresse_siege,adresse_livraison,gerant_entreprise,contact_nom,contact_prenom,contact_tel_mobile,contact_tel_fixe,contact_email) values (:nom,:code_entreprise,:adresse_siege,:adresse_livraison,:gerant_entreprise,:contact_nom,:contact_prenom,:contact_tel_mobile,:contact_tel_fixe,:contact_email)");
 
 if(isset($nom) && !empty($nom)){
     $stm->bindParam(':nom',$nom);
@@ -17,6 +17,14 @@ if(isset($nom) && !empty($nom)){
 } else {
     $err++;
     $message[] = "Le champs nom est obligatoire !";
+}
+
+if(isset($code) && !empty($code)){
+    $stm->bindParam(':code_entreprise',$code);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs code entreprise est obligatoire !";
 }
 
 if(isset($adresse_siege) && !empty($adresse_siege)){
