@@ -261,7 +261,7 @@
                 console.log(message);
             });
         });
-        $('#addSubProjects').click(function (){
+        $('#addSubProjectsDetails').click(function (){
             console.log('addSubProjectsDetails');
             $.ajax({
                 method: "POST",
