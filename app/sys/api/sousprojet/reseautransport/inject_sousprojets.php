@@ -26,7 +26,7 @@ foreach($projets as $projet)
         foreach($plaques as $plaque) {
             $insert_stm = $db->prepare("insert into sous_projet(id_projet_osa,id_projet,dep,ville,plaque,zone) values (0,:id_projet,:dep,:ville,:plaque,:zone)");
 
-            $insert_stm->bindParam(':id_projet',$projet['']);
+            $insert_stm->bindParam(':id_projet',$projet['id_projet']);
             $insert_stm->bindParam(':dep',$projet['ville']);
             $insert_stm->bindParam(':ville',$projet['ville_nom']);
             $insert_stm->bindParam(':plaque',$projet['trigramme_dept']);
