@@ -19,7 +19,8 @@ $columns = array(
     array( "db" => "t2.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
     array( "db" => "es.nom", "dt" => 'nom' ),
     array( "db" => "eq.prenom as eqprenom", "dt" => 'eqprenom' ),
-    array( "db" => "eq.nom as eqnom", "dt" => 'eqnom' )
+    array( "db" => "eq.nom as eqnom", "dt" => 'eqnom' ),
+    array( "db" => "etat.lib_etat_ot", "dt" => 'lib_etat_ot' )
 );
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail";
@@ -33,5 +34,5 @@ if(isset($tentree)) {
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join entreprises_stt as es on t1.id_entreprise=es.id_entreprise
-left join equipe_stt as eq on t1.id_equipe_stt=eq.id_equipe_stt"));
+left join equipe_stt as eq on t1.id_equipe_stt=eq.id_equipe_stt left join etat_ot as etat on t1.id_etat_ot = etat.id_etat_ot"));
 ?>

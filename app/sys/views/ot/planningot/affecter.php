@@ -74,6 +74,7 @@
 <script>
     var defaultView = 'list';
     var soc_id_gen = 0;
+    var ot_status_updated = false;
     var calendar = function() {
         var team_id = 0;
         var soc_id = 0;
@@ -296,13 +297,14 @@
                             { "data": "id_ordre_de_travail" },
                             { "data": "id_sous_projet" },
                             { "data": "type_entree" },
-                            { "data": "type_ot" },/*lib_type_ordre_travail*/
+                            { "data": "type_ot" },
                             { "data": "nom" },
                             { "data": "eqprenom" },
                             { "data": "eqnom" },
                             { "data": "date_debut" },
                             { "data": "date_fin" },
-                            { "data": "id_type_ordre_travail" }
+                            { "data": "id_type_ordre_travail" },
+                            { "data": "lib_etat_ot" }
                         ],
                         "columnDefs": [
                             { "targets": [ 0,1,2,9 ], "visible": false, "searchable": false }
@@ -311,6 +313,10 @@
                         ,
                         "drawCallback": function( /*settings*/ ) {
                             $(ot_affect_btns.join(',')).addClass("disabled");
+                            if(ot_status_updated) {
+                                ot_dt.draw(false);
+                                ot_status_updated = false;
+                            }
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             /*if ( data[4] == "A" ) {
@@ -486,6 +492,7 @@
                                 $("#affecter_date_debut").val('');
                                 $("#affecter_date_fin").val('');
                                 update = true;
+                                ot_status_updated = true;
                                 $('#calender2').fullCalendar( 'refetchEvents' );
                             }
                             App.showMessage(message,'#message_affecter_ot');
