@@ -75,9 +75,22 @@ foreach($sousprojets as $sousprojet)
             $stm3->bindParam(':nb_fo_sur_pmz',$abkp_line->nb_fo_pmz);
             echo "nb_fo_sur_pmz -> ".$abkp_line->nb_fo_pmz;
 
-            echo "auto_adduction -> ".$abkp_line->auto_adduction;
+            $auto1 = SelectSiteOrigineAutoAdduction::first(
+                array('conditions' =>
+                    array("lib_site_origine_auto_adduction = ?", $abkp_line->auto_adduction)
+                )
+            );
+            $idauto1 = ($auto1!==NULL?$auto1->id_site_origine_auto_adduction:NULL);
+            $stm3->bindParam(':auto_adduction',$idauto1);
+            echo "auto_adduction -> ".$idauto1;
+
+
             echo "travaux_adduction -> ".$abkp_line->travaux_adduction;
             echo "recette_adduction -> ".$abkp_line->recette_adduction;
+
+
+
+
             echo "instigateur -> ".$abkp_line->instigateur;
             $i++;
         }
