@@ -36,11 +36,11 @@ foreach($plaques as $plaque) {
 
     if(!$i) {
 
-        var_dump($prj_infos);
+        //var_dump($prj_infos);
 
-        /*echo "ville_nom -> ".$prj_infos->Ville;
+        echo "ville_nom -> ".$prj_infos->ville;
         echo "ville -> ".$prj_infos->dep;
-        echo "trigramme_dept -> ".$prj_infos->Emprise;
+        echo "trigramme_dept -> ".$prj_infos->emprise;
 
 
         echo "id_nro -> ".$prj_infos->dep;
@@ -48,7 +48,7 @@ foreach($plaques as $plaque) {
         echo "taille -> "."0";
         echo "etat_site_origine -> "."1";
         echo "date_mad_site_origine -> "."2016-07-01";
-        echo "date_creation -> ".$prj_infos->Date_Lancement;*/
+        echo "date_creation -> ".$prj_infos->date_Lancement;
         $i++;
     }
 
