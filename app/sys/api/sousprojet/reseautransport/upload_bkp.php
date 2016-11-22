@@ -87,7 +87,7 @@ if (isset($_FILES["myfile"])) {
                 $stm->bindParam(':Recette_Adduction',trim($value[16]));
                 $stm->bindParam(':Instigateur',trim($value[17]));
                 $stm->bindParam(':Vague',trim($value[18]));
-                $stm->bindParam(':Date_Lancement',trim($value[19]));
+                $stm->bindParam(':Date_Lancement',date($format = "Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($value[18])));
 
                 //inject values SQL
                 $stm->execute();
