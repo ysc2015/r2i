@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-$stm = $db->prepare("select * from sous_projet");
+$stm = $db->prepare("select sp.*,n.lib_nro from sous_projet as sp,projet as p, nro as n where sp.id_projet = p.id_projet and p.id_nro = n.id_nro");
 
 $stm->execute();
 
@@ -14,7 +14,9 @@ $i=0;
 
 $injected_sub_projects_details = 0;
 
-foreach($sousprojets as $sousprojet)
+echo $stm->rowCount();
+
+/*iforeach($sousprojets as $sousprojet)
 {
     $abkp_line = Abkp::all(
         array('conditions' =>
@@ -22,7 +24,7 @@ foreach($sousprojets as $sousprojet)
         )
     );
 
-    /*if($abkp_lines !== NULL) {
+    f($abkp_lines !== NULL) {
         foreach($abkp_lines as $abkp_line) {
             $insert_stm = $db->prepare("insert into sous_projet(id_projet_osa,id_projet,dep,ville,plaque,zone) values (0,:id_projet,:dep,:ville,:plaque,:zone)");
 
@@ -36,13 +38,8 @@ foreach($sousprojets as $sousprojet)
                 $injected_sub_projects++;
             }
         }
-    }*/
-
-    if(!$i) {
-        var_dump($abkp_line);
-        $i++;
     }
 
-    //echo $injected_sub_projects_details;
+    echo $injected_sub_projects_details;
 
-}
+}*/
