@@ -18,7 +18,7 @@ foreach($sousprojets as $sousprojet)
 {
     $abkp_line = Abkp::all(
         array('conditions' =>
-            array("zone = ?", $sousprojet['plaque']."-".$sousprojet['zone'])
+            array("Zone = ?", $sousprojet['plaque']."-".$sousprojet['zone'])
         )
     );
 
