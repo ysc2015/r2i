@@ -54,9 +54,25 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
+                <div class="col-md-4">
+                    <label for="trec_date_recette">Date de début recette <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="trec_date_recette">Date prévisionnelle de fin recette <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>">
+                </div>
+                <div class="col-md-4">
+                    <label for="tt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="text" id="trec_duree" name="tt_duree" value="<?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->duree:"")?>">
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-3">
                     <label for="trec_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control" id="trec_id_entreprise" name="trec_id_entreprise">
+                    <select disabled class="form-control" id="trec_id_entreprise" name="trec_id_entreprise">
                         <option value="" selected="">Sélectionnez une entreprise</option>
                         <?php
                         $results = EntrepriseSTT::all();
@@ -65,10 +81,6 @@
                         }
                         ?>
                     </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="trec_date_recette">Date Recette <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>">
                 </div>
                 <div class="col-md-3">
                     <label for="trec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
