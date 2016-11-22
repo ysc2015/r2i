@@ -192,7 +192,7 @@
     var old_tr = null;
     var old_tr_class = '';
     var ot_affect_dt;
-    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter"];
+    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter","#transmettre_ot"];
     var planning = function() {
         var initContent = function(view) {
 
@@ -442,6 +442,12 @@
                             } else {
                                 $("#annuler_affecter").removeClass('disabled');
                             }
+
+                            //console.log(ot_affect_dt.row('.selected').data().id_etat_ot);
+
+                            if(ot_affect_dt.row('.selected').data().id_etat_ot == 2 || ot_affect_dt.row('.selected').data().id_etat_ot == 8) {
+                                $("#transmettre_ot").removeClass('disabled');
+                            }
                         }
 
                     } );
@@ -467,6 +473,24 @@
                             if(message.error == 0) {
                                 ot_status_updated = true;
                                 ot_affect_dt.draw(false);
+                            }
+                            App.showMessage(message,'#message_annuler_affecter_ot');
+                        });
+                    });
+                    $("#transmettre_ot").click(function() {
+                        //console.log('transmettre_ot');
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/ot/set_ot_status.php",
+                            dataType: "json",
+                            data: {
+                                status: 3,
+                                idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                ot_status_updated = true;
+                                ot_dt.draw(false);
                             }
                             App.showMessage(message,'#message_annuler_affecter_ot');
                         });
