@@ -85,13 +85,35 @@ foreach($sousprojets as $sousprojet)
             echo "auto_adduction -> ".$idauto1;
 
 
-            echo "travaux_adduction -> ".$abkp_line->travaux_adduction;
-            echo "recette_adduction -> ".$abkp_line->recette_adduction;
+            $auto2 = SelectSiteOrigineTravauxAdduction::first(
+                array('conditions' =>
+                    array("lib_site_origine_travaux_adduction = ?", $abkp_line->travaux_adduction)
+                )
+            );
+            $idauto2 = ($auto2!==NULL?$auto2->id_site_origine_travaux_adduction:NULL);
+            $stm3->bindParam(':travaux_adduction',$idauto2);
+            echo "travaux_adduction -> ".$idauto2;
 
 
+            $auto3 = SelectSiteOrigineRecetteAdduction::first(
+                array('conditions' =>
+                    array("lib_site_origine_recette_adduction = ?", $abkp_line->recette_adduction)
+                )
+            );
+            $idauto3 = ($auto3!==NULL?$auto3->id_site_origine_recette_adduction:NULL);
+            $stm3->bindParam(':recette_adduction',$idauto3);
+            echo "recette_adduction -> ".$idauto3;
 
 
-            echo "instigateur -> ".$abkp_line->instigateur;
+            $instigateur = SelectPhaseInstigateur::first(
+                array('conditions' =>
+                    array("lib_phase_instigateur = ?", $abkp_line->instigateur)
+                )
+            );
+            $idinstigateur = ($instigateur!==NULL?$instigateur->id_phase_instigateur:NULL);
+            $stm3->bindParam(':instigateur',$idinstigateur);
+            echo "instigateur -> ".$idinstigateur;
+
             $i++;
         }
 
