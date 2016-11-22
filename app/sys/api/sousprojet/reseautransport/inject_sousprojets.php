@@ -21,7 +21,11 @@ foreach($projets as $projet)
     );
 
     if(!$i) {
-        var_dump($plaques);
+        if($plaques !== NULL) {
+            foreach($plaques as $plaque) {
+                echo $plaque->zone;
+            }
+        }
         $i++;
     }
 
