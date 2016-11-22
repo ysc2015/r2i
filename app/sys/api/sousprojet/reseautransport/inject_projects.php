@@ -11,9 +11,11 @@ $list_plq_statment->execute();
 $plaques = $list_plq_statment->fetchAll(PDO::FETCH_OBJ);
 
 foreach($plaques as $plaque) {
-    $str .= $plaque->Emprise;
+    $prj_infos = Abkp::first(
+        array('conditions' =>
+            array("Emprise = ?", $plaque)
+        )
+    );
+
+    var_dump($prj_infos);
 }
-
-echo $str;
-
-//echo json_encode(array("projets" => $projets));
