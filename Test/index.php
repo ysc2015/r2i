@@ -235,7 +235,6 @@
             console.log('addProjects');
             $.ajax({
                 method: "POST",
-                dataType: "json",
                 url: "api/sousprojet/reseautransport/inject_projects.php"/*,
                 data: {
                     id: id
