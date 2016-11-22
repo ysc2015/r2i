@@ -437,7 +437,7 @@
                 var obj = JSON.parse(msg);
                 console.log(msg);
                 if(obj.error == 0) {
-                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transporttirage';
+                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=transportraccordement';
                 } else {
                     App.showMessage(msg, '#message_transport_raccordements');
                 }

@@ -367,7 +367,7 @@
                 var obj = JSON.parse(msg);
                 console.log(msg);
                 if(obj.error == 0) {
-                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=distributiontirage';
+                    document.location.href = '?page=ot&idsousprojet='+get('idsousprojet')+'&tentree=distributionraccordement';
                 } else {
                     App.showMessage(msg, '#message_distribution_raccordements');
                 }

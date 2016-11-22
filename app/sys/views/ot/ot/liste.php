@@ -82,7 +82,7 @@
             dataType: "json",
             data: {
                 idsousprojet : get('idsousprojet'),
-                tentree : get('tentree')
+                tentree : (get('tentree')=="transportraccordement"?"transporttirage":(get('tentree')=="distributionraccordement"?"distributiontirage":get('tentree')))
             }
         }).done(function (msg) {
             //console.log(msg.html);

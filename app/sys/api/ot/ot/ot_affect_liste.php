@@ -30,6 +30,8 @@ if(isset($idsp)) {
 }
 
 if(isset($tentree)) {
+    if($tentree == "transportraccordement") $tentree = "transporttirage";
+    if($tentree == "distributionraccordement") $tentree = "distributiontirage";
     $condition .=" AND t1.type_entree='$tentree'";
 }
 
