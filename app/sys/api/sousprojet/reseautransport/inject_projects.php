@@ -17,7 +17,5 @@ foreach($plaques as $plaque) {
         )
     );
 
-    //$prj_infos = Abkp::all();
-
-    //var_dump($prj_infos);
+    var_dump($prj_infos);
 }
