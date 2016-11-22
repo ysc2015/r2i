@@ -7,6 +7,7 @@
             <tr>
                 <th>id</th>
                 <th>nom</th>
+                <th>code</th>
                 <th>gérant</th>
                 <th>contact nom</th>
                 <th>contact prénom</th>
@@ -19,6 +20,7 @@
             <tr>
                 <th>id</th>
                 <th>nom</th>
+                <th>code</th>
                 <th>gérant</th>
                 <th>contact nom</th>
                 <th>contact prénom</th>
@@ -46,6 +48,7 @@
             "columns": [
                 { "data": "id_entreprise" },
                 { "data": "nom" },
+                { "data": "code_entreprise" },
                 { "data": "gerant_entreprise" },
                 { "data": "contact_nom" },
                 { "data": "contact_prenom" },
@@ -53,7 +56,7 @@
             ],
             "columnDefs": [
                 { "targets": [0], "visible": false, "searchable": false } ],
-            "order": [[1, 'desc']]
+            "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
                 $(btns.join(',')).addClass("disabled");

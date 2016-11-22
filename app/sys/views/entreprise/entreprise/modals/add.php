@@ -20,6 +20,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="entreprise_code">Code entreprise <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" id="entreprise_code" name="entreprise_code">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-12">
                                 <label for="entreprise_adresse_siege">Adresse siége <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" id="entreprise_adresse_siege" name="entreprise_adresse_siege">
@@ -91,6 +97,7 @@
                 url: "api/entreprise/entreprise/entreprise_add.php",
                 data: {
                     nom: $('#entreprise_nom').val(),
+                    code: $('#entreprise_code').val(),
                     adresse_siege: $('#entreprise_adresse_siege').val(),
                     adresse_livraison: $('#entreprise_adresse_livraison').val(),
                     gerant_entreprise: $('#entreprise_gerant_entreprise').val(),
