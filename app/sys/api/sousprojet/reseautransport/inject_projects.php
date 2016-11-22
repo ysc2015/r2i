@@ -11,11 +11,13 @@ $list_plq_statment->execute();
 $plaques = $list_plq_statment->fetchAll(PDO::FETCH_OBJ);
 
 foreach($plaques as $plaque) {
-    $prj_infos = Abkp::first(
+    /*$prj_infos = Abkp::first(
         array('conditions' =>
             array("Emprise = ?", $plaque)
         )
-    );
+    );*/
+
+    $prj_infos = Abkp::all();
 
     //var_dump($prj_infos);
 }
