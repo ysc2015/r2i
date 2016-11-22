@@ -233,15 +233,16 @@
     $(document).ready(function () {
         $('#addProjects').click(function (){
             console.log('addProjects');
-            /*$.ajax({
+            $.ajax({
                 method: "POST",
-                url: "api/file/delete.php",
+                dataType: "json",
+                url: "api/sousprojet/reseautransport/inject_projects.php"/*,
                 data: {
                     id: id
-                }
+                }*/
             }).done(function (message) {
                 console.log(message);
-            });*/
+            });
         });
     });
 </script>
