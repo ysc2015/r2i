@@ -14,7 +14,7 @@ $i=0;
 
 foreach($projets as $projet)
 {
-    $plaques = Abkp::first(
+    $plaques = Abkp::find(
         array('conditions' =>
             array("Emprise = ?", $projet['trigramme_dept'])
         )
