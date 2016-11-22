@@ -17,5 +17,5 @@ foreach($plaques as $plaque) {
         )
     );
 
-    var_dump($prj_infos);
+    //var_dump($prj_infos);
 }
