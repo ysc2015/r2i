@@ -21,7 +21,7 @@ foreach($plaques as $plaque) {
         )
     );
 
-    $stm = $db->prepare("insert into projet (projet_nom,ville_nom,ville,trigramme_dept,id_nro,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:projet_nom,:ville_nom,:ville,:trigramme_dept,:id_nro,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
+    $stm = $db->prepare("insert into projet (ville_nom,ville,trigramme_dept,id_nro,type_site_origine,taille,etat_site_origine,date_mad_site_origine,date_creation) values (:ville_nom,:ville,:trigramme_dept,:id_nro,:type_site_origine,:taille,:etat_site_origine,:date_mad_site_origine,:date_creation)");
 
     /*$stm->bindParam(':ville_nom',$ville_nom);
     $stm->bindParam(':ville',$ville);
@@ -32,8 +32,7 @@ foreach($plaques as $plaque) {
     $stm->bindParam(':etat_site_origine',$etat_site_origine);
     $stm->bindParam(':date_mad_site_origine',$date_mad_site_origine);
     $stm->bindParam(':date_creation',date('Y-m-d'));
-    $project_name = "Etude Plaque PON FTTH ".$id_nro." ".$ville_nom;
-    $stm->bindParam(':projet_nom',$project_name);*/
+    $project_name = "Etude Plaque PON FTTH ".$id_nro." ".$ville_nom;*/
 
     if(!$i) {
         echo "ville_nom -> ".$prj_infos->Ville;
@@ -41,14 +40,13 @@ foreach($plaques as $plaque) {
         echo "trigramme_dept -> ".$prj_infos->Emprise;
 
 
-        echo "id_nro -> ".$prj_infos->dep;
-        echo "type_site_origine -> ".$prj_infos->dep;
-
+        /*echo "id_nro -> ".$prj_infos->dep;
+        echo "type_site_origine -> ".$prj_infos->dep;*/
         echo "taille -> "."0";
         echo "etat_site_origine -> "."1";
-        echo "date_mad_site_origine -> "."";
-        echo "date_creation -> ".$prj_infos->dep;
-        echo "projet_nom -> ".$prj_infos->dep;
+        echo "date_mad_site_origine -> "."2016-07-01";
+        echo "date_creation -> ".$prj_infos->Date_Lancement;
+        //echo "projet_nom -> ".$prj_infos->dep;
         $i++;
     }
 
