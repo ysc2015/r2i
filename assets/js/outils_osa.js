@@ -4,7 +4,8 @@ var tache_dt;
  */
 function appelscriptosa(typeetape, id_sous_projet,ide)
 {
-    rc2k.osa.ws.auth("NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm",function(response){
+
+    rc2k.osa.ws.auth(window.token,function(response){
        // console.log(response);
         var aresponse = JSON.parse(response);
         var idetape=0;
