@@ -15,13 +15,23 @@ include __DIR__."/app/sys/views/document/init.php";
     <meta charset="utf-8">
 
     <title>R2I - Outils de gestion déploiement</title>
-
     <meta name="description" content="R2I - Outils de gestion déploiement">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
     <?php include "app/sys/views/document/assets.php"; ?>
 </head>
 <body>
+<?php
+if($connectedProfil){
+    ?>
+    <script>
+        window.token = "<?=base64_encode(md5($connectedProfil->email_utilisateur)."::".md5($connectedProfil->pass_utilisateur))?>";
+    </script>
+<?php
+}
+
+?>
+
 <?php
 
 extract($_GET);
