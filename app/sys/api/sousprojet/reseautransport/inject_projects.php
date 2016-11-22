@@ -42,9 +42,20 @@ foreach($plaques as $plaque) {
         echo "ville -> ".$prj_infos->dep;
         echo "trigramme_dept -> ".$prj_infos->emprise;
 
+        $nro = Nro::first(
+            array('conditions' =>
+                array("lib_nro = ?", explode('-',$prj_infos->zone)[0])
+            )
+        );
+        echo "id_nro -> ".($nro!==NULL?$nro->id_nro:NULL);
 
-        echo "id_nro -> ".$prj_infos->dep;
-        echo "type_site_origine -> ".$prj_infos->dep;
+        $typesite = SelectSiteOrigineType::first(
+            array('conditions' =>
+                array("lib_site_origine_type = ?", $prj_infos->type2)
+            )
+        );
+        echo "type_site_origine -> ".($typesite!==NULL?$typesite->id_site_origine_type:NULL);
+
         echo "taille -> "."0";
         echo "etat_site_origine -> "."1";
         echo "date_mad_site_origine -> "."2016-07-01";
