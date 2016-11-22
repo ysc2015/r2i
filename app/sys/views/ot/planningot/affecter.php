@@ -465,6 +465,7 @@
                             }
                         }).done(function (message) {
                             if(message.error == 0) {
+                                ot_status_updated = true;
                                 ot_affect_dt.draw(false);
                             }
                             App.showMessage(message,'#message_annuler_affecter_ot');
