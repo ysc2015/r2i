@@ -26,7 +26,7 @@ $columns = array(
     array( "db" => "etat.lib_etat_ot", "dt" => 'lib_etat_ot' )
 );
 
-$condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
+$condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro AND t1.id_etat_ot IN(3,4,5,6,8)";
 
 if(isset($idsp)) {
     $condition .=" AND t1.id_sous_projet=$idsp";
