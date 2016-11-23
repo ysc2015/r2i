@@ -21,7 +21,7 @@ if($err==0) {
     if($stm->execute()) {
         $message[] = "MAJ réussite !";
 
-        if($status == 3) {
+        if($status == 3 || $status == 5) {
             /**
              * maj etapes fields
              */
@@ -125,7 +125,11 @@ if($err==0) {
                         }
                     }
 
-                    $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
+                    if($status == 3) {
+                        $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
+                    } else {
+                        $sousProjet->{$value[0]}->controle_demarrage_effectif = $status;
+                    }
                     $sousProjet->{$value[0]}->save();
 
                 }
