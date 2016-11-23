@@ -169,6 +169,7 @@ function getRetourTerrain(idsp,idtot,selector) {
             idtot : idtot
         }
     }).done(function (msg) {
+        console.log('getRetourTerrain');
         console.log(msg);
         $(selector).val(msg.retour);
     });
