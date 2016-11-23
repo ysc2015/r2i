@@ -114,6 +114,14 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
+                <div class="col-md-3">
+                    <label for="trec_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="date" id="trec_date_transmission_plans" name="trec_date_transmission_plans" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_transmission_plans : "")?>">
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-4">
                     <label for="trec_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="trec_lien_plans" name="trec_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->lien_plans:"")?></textarea>

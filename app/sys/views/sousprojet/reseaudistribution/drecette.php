@@ -114,6 +114,14 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
+                <div class="col-md-3">
+                    <label for="drec_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="date" id="drec_date_transmission_plans" name="drec_date_transmission_plans" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->date_transmission_plans : "")?>">
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-4">
                     <label for="drec_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="drec_lien_plans" name="drec_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->lien_plans:"")?></textarea>
