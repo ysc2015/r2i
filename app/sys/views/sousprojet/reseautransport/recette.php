@@ -63,8 +63,8 @@
                     <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_ret_prevue : "")?>">
                 </div>
                 <div class="col-md-4">
-                    <label for="tt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="text" id="trec_duree" name="tt_duree" value="<?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->duree:"")?>">
+                    <label for="trec_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="text" id="trec_duree" name="trec_duree" value="<?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->duree:"")?>">
                 </div>
             </div>
         </div>
@@ -109,6 +109,18 @@
                         }
                         ?>
                     </select>
+                </div>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="trec_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                    <textarea class="form-control" id="trec_lien_plans" name="trec_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->lien_plans:"")?></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="trec_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                    <textarea readonly class="form-control" id="trec_retour_presta" name="trec_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->retour_presta:"")?></textarea>
                 </div>
             </div>
         </div>
