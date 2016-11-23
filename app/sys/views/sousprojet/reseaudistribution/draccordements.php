@@ -144,6 +144,16 @@
                 </div>
             </div>
         </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="row retourpresta" style="padding-left: 10px;">
+                        <label for="dr_fileuploader_retour">Fichier(s) retour presta</label>
+                        <div id="dr_fileuploader_retour"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="alert alert-success" id="message_distribution_raccordements" role="alert" style="display: none;"></div>
         <div class="row items-push">
             <div class="form-group">
@@ -306,6 +316,71 @@
 
         }
     };
+    var dr_fileuploader_retour_options = {
+        url: "api/myot/traitement/myot_upload_retour.php",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:false,
+        showDownload:true,
+        allowedTypes: "pdf,xls,xlsx",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/myot/traitement/load_retour_stt_etape.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'),etapes:'7,8'},//Raccordement CDI - Tirage et Raccordement CDI
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
     $(function () {
         draccord_chambre_uploader_options = merge_options(defaultUploaderStrLocalisation,draccord_chambre_uploader_options);
         draccord_chambre_uploader_options.abortStr = 'Injection en cours ...';
@@ -314,6 +389,9 @@
         draccord_pboite_uploader_options = merge_options(defaultUploaderStrLocalisation,draccord_pboite_uploader_options);
         draccord_pboite_uploader_options.downloadStr = 'Téléchargez';
         draccord_pboite_uploader = $("#dr_fileuploader_pboite").uploadFile(draccord_pboite_uploader_options);
+
+        dr_fileuploader_retour_options = merge_options(defaultUploaderStrLocalisation,dr_fileuploader_retour_options);
+        dr_fileuploader_retour = $("#dr_fileuploader_retour").uploadFile(dr_fileuploader_retour_options);
     });
     $(document).ready(function() {
         var typeetape = "sous_projet_distribution_raccordements";

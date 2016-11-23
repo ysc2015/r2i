@@ -188,6 +188,12 @@
                         <div id="da_fileuploader_chambre"></div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="row retourpresta" style="padding-left: 10px;">
+                        <label for="da_fileuploader_retour">Fichier(s) retour presta</label>
+                        <div id="da_fileuploader_retour"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="alert alert-success" id="message_distribution_aiguillage" role="alert" style="display: none;"></div>
@@ -281,10 +287,78 @@
 
         }
     };
+    var da_fileuploader_retour_options = {
+        url: "api/myot/traitement/myot_upload_retour.php",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:false,
+        showDownload:true,
+        allowedTypes: "pdf,xls,xlsx",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/myot/traitement/load_retour_stt_etape.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'),etapes:'5'},//Aiguillage CDI
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
     $(function () {
         daiguillage_chambre_uploader_options = merge_options(defaultUploaderStrLocalisation,daiguillage_chambre_uploader_options);
         daiguillage_chambre_uploader_options.abortStr = 'Injection en cours ...';
         daiguillage_chambre_uploader = $("#da_fileuploader_chambre").uploadFile(daiguillage_chambre_uploader_options);
+
+        da_fileuploader_retour_options = merge_options(defaultUploaderStrLocalisation,da_fileuploader_retour_options);
+        da_fileuploader_retour = $("#da_fileuploader_retour").uploadFile(da_fileuploader_retour_options);
     });
     $(document).ready(function() {
         var typeetape = "sous_projet_distribution_aiguillage";

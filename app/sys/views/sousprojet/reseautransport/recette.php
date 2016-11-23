@@ -148,6 +148,16 @@
                 </div>
             </div>
         </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="row retourpresta" style="padding-left: 10px;">
+                        <label for="trec_fileuploader_retour">Fichier(s) retour presta</label>
+                        <div id="trec_fileuploader_retour"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="alert alert-success" id="message_transport_recette" role="alert" style="display: none;"></div>
         <div class="row items-push">
             <div class="form-group">
@@ -308,13 +318,80 @@
 
         }
     };
+    var trec_fileuploader_retour_options = {
+        url: "api/myot/traitement/myot_upload_retour.php",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:false,
+        showDownload:true,
+        allowedTypes: "pdf,xls,xlsx",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/myot/traitement/load_retour_stt_etape.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'),etapes:'9'},//Recette Optique CTR
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
     $(function () {
         recette_uploader_options = merge_options(defaultUploaderStrLocalisation,recette_uploader_options);
         recette_uploader = $("#fileuploader_recette").uploadFile(recette_uploader_options);
 
         recette_chambre_uploader_options = merge_options(defaultUploaderStrLocalisation,recette_chambre_uploader_options);
         recette_chambre_uploader = $("#fileuploader_recette_chambre").uploadFile(recette_chambre_uploader_options);
-        
+
+        trec_fileuploader_retour_options = merge_options(defaultUploaderStrLocalisation,trec_fileuploader_retour_options);
+        trec_fileuploader_retour = $("#trec_fileuploader_retour").uploadFile(trec_fileuploader_retour_options);
     });
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_recette";

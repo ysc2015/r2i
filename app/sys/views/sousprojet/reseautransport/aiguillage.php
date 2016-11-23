@@ -315,7 +315,7 @@
                 cache: false,
                 url: "api/myot/traitement/load_retour_stt_etape.php",
                 method:"POST",
-                data: {idsp:get('idsousprojet')},
+                data: {idsp:get('idsousprojet'),etapes:'1'},//Aiguillage CTR
                 dataType: "json",
                 success: function(data)
                 {
