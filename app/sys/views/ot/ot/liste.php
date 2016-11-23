@@ -116,6 +116,7 @@
             "order": [[6, 'asc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                $('#other_files_uploader_wrapper').hide();
                 displayDevis();
                 $('#devis_block_title').html('Devis');
                 $(ot_btns.join(',')).addClass("disabled");
