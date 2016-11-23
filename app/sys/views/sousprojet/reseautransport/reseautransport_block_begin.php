@@ -1,3 +1,8 @@
+<style>
+    .retourpresta .ajax-upload-dragdrop {
+        display: none;
+    }
+</style>
 <div class="block block-themed" id="rtransport_block">
     <div class="block-header bg-info">
         <ul class="block-options">

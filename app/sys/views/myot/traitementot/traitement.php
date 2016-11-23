@@ -143,7 +143,6 @@
     $(function () {
         // Init page plugins & helpers
         uploader3_options = merge_options(defaultUploaderStrLocalisation,uploader3_options);
-        //uploader3_options.showDelete = false;
         uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
     });
     $(document).ready(function() {
