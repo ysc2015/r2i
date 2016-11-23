@@ -5,6 +5,7 @@
 	//console.log(jQuery)
 	if(typeof jQuery == "undefined") throw "RC2K: Missing JQuery module";
 	w.rc2k = {
+		dispatch : function(a){setTimeout((function(){this.postMessage('init','*');}).bind(a),2000)},
 		osa : {
 			url: 'http://sd-83414.dedibox.fr/osa/',
 			ui: {
@@ -19,7 +20,8 @@
 						}
 						*/
 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
-						window.open (rc2k.osa.url + 'ui/tache_list/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						var popup = window.open (rc2k.osa.url + 'ui/tache_list/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						dispatch(popup);
 					},
 					create: function (obj) {
 						/*
@@ -31,8 +33,8 @@
 						}
 						*/
 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre doit être défini"
-						window.open (rc2k.osa.url + 'ui/tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
-						//window.open (rc2k.osa.ui.url + token + '/tache_create/', '', "menubar=no, status=no, scrollbars=no, menubar=no, width=200, height=100");
+						var popup = window.open (rc2k.osa.url + 'ui/tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+ 						dispatch(popup);
  					},
  					traiter: function(obj){
  						/*
@@ -45,8 +47,8 @@
 						}
  						*/
  						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
- 						window.open (rc2k.osa.url + 'ui/tache_traiter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
-							
+ 						var popup = window.open (rc2k.osa.url + 'ui/tache_traiter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						dispatch(popup);
  					},
  					affecter: function(obj){
  						/*
@@ -59,8 +61,8 @@
 						}
  						*/
  						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
- 						window.open (rc2k.osa.url + 'ui/tache_affecter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
-							
+ 						var popup = window.open (rc2k.osa.url + 'ui/tache_affecter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
+						dispatch(popup);
  					}
 				}
 			},
@@ -112,6 +114,12 @@
 			}
 		}
 		};
+
+		window.addEventListener("message", function(event){
+			if (event.data == "close") {
+				event.source.close();
+			}
+		}, false);
 
 
 })(window);
