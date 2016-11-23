@@ -108,6 +108,31 @@ if(isset($drec_etat_recette)){
     $insert = true;
 }
 
+if(isset($drec_controle_demarrage_effectif)){
+    $stm->bindParam(':controle_demarrage_effectif',$drec_controle_demarrage_effectif);
+    $insert = true;
+}
+
+if(isset($drec_date_retour)){
+    $stm->bindParam(':date_retour',$drec_date_retour);
+    $insert = true;
+}
+
+if(isset($drec_etat_retour)){
+    $stm->bindParam(':etat_retour',$drec_etat_retour);
+    $insert = true;
+}
+
+if(isset($drec_lien_plans)){
+    $stm->bindParam(':lien_plans',$drec_lien_plans);
+    $insert = true;
+}
+
+if(isset($drec_retour_presta)){
+    $stm->bindParam(':retour_presta',$drec_retour_presta);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
