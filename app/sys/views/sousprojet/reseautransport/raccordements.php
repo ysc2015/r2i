@@ -144,6 +144,16 @@
                 </div>
             </div>
         </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="row retourpresta" style="padding-left: 10px;">
+                        <label for="tr_fileuploader_retour">Fichier(s) retour presta</label>
+                        <div id="tr_fileuploader_retour"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="alert alert-success" id="message_transport_raccordements" role="alert" style="display: none;"></div>
         <div class="row items-push">
             <div class="form-group">
@@ -335,6 +345,71 @@
 
         }
     };
+    var tr_fileuploader_retour_options = {
+        url: "api/myot/traitement/myot_upload_retour.php",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:false,
+        showDownload:true,
+        allowedTypes: "pdf,xls,xlsx",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/myot/traitement/load_retour_stt_etape.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'),etapes:'3,4'},//Raccordement CTR - Tirage et Raccordement CTR
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
     var traccord_chambre_idres = 0;
     var traccord_chambre_table;
     $(function () {
@@ -345,6 +420,9 @@
         traccord_pboite_uploader_options = merge_options(defaultUploaderStrLocalisation,traccord_pboite_uploader_options);
         traccord_pboite_uploader_options.downloadStr = 'Téléchargez/Voir infos';
         traccord_pboite_uploader = $("#tr_fileuploader_pboite").uploadFile(traccord_pboite_uploader_options);
+
+        tr_fileuploader_retour_options = merge_options(defaultUploaderStrLocalisation,tr_fileuploader_retour_options);
+        tr_fileuploader_retour = $("#tr_fileuploader_retour").uploadFile(tr_fileuploader_retour_options);
     });
     $(document).ready(function() {
 

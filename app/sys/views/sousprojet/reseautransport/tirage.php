@@ -224,6 +224,12 @@
                         <div id="tt_fileuploader_chambre"></div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="row retourpresta" style="padding-left: 10px;">
+                        <label for="tt_fileuploader_retour">Fichier(s) retour presta</label>
+                        <div id="tt_fileuploader_retour"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="alert alert-success" id="message_transport_tirage" role="alert" style="display: none;"></div>
@@ -317,10 +323,78 @@
 
         }
     };
+    var tt_fileuploader_retour_options = {
+        url: "api/myot/traitement/myot_upload_retour.php",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:false,
+        showDownload:true,
+        allowedTypes: "pdf,xls,xlsx",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/myot/traitement/load_retour_stt_etape.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'),etapes:'2,4'},//Tirage CTR - Tirage et Raccordement CTR
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
     $(function () {
         ttirage_chambre_uploader_options = merge_options(defaultUploaderStrLocalisation,ttirage_chambre_uploader_options);
         ttirage_chambre_uploader_options.abortStr = 'Injection en cours ...';
         ttirage_chambre_uploader = $("#tt_fileuploader_chambre").uploadFile(ttirage_chambre_uploader_options);
+
+        tt_fileuploader_retour_options = merge_options(defaultUploaderStrLocalisation,tt_fileuploader_retour_options);
+        tt_fileuploader_retour = $("#tt_fileuploader_retour").uploadFile(tt_fileuploader_retour_options);
     });
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_tirage";

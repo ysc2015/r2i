@@ -7,7 +7,17 @@ extract($_POST);
 
 $ret= array();
 
-$stm = $db->prepare("select * from ressource where type_objet='stt_retour_terrain' and id_sous_projet=:id_sous_projet");
+$arr = array();
+
+$exp = explode(',',$etapes);
+
+foreach($exp as $ex) {
+    $arr[] = "'".$ex."'";
+}
+
+$in = "(".implode(',',$arr).")";
+
+$stm = $db->prepare("select * from ressource where type_objet='stt_retour_terrain' and id_sous_projet=:id_sous_projet and id_type_ordre_travail in $in");
 
 if(isset($idsp) && !empty($idsp) ){
     $stm->execute(array(':id_sous_projet' => $idsp));
