@@ -158,7 +158,7 @@
                 other_files_uploader.reset();
                 other_files_uploader = $("#other_files_uploader").uploadFile(other_files_uploader_options);
 
-                if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8) {
+                if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=10) {
                     uploader3.reset();
                     uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
                     getRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#link_retour_stt');
