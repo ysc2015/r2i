@@ -9,7 +9,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update ordre_de_travail set id_type_ordre_travail=:id_type_ordre_travail,type_ot=:type_ot,commentaire=:commentaire where id_ordre_de_travail=:id_ordre_de_travail");
+$stm = $db->prepare("update ordre_de_travail set commentaire=:commentaire where id_ordre_de_travail=:id_ordre_de_travail");
 
 if(isset($idot) && !empty($idot)){
     $stm->bindParam(':id_ordre_de_travail',$idot);
@@ -19,21 +19,21 @@ if(isset($idot) && !empty($idot)){
     $message[] = "Référence OT invalide !";
 }
 
-if(isset($type_ot) && !empty($type_ot)){
+/*if(isset($type_ot) && !empty($type_ot)){
     $stm->bindParam(':id_type_ordre_travail',$type_ot);
     $insert = true;
 } else {
     $err++;
     $message[] = "Le champs type ot est obligatoire !";
-}
+}*/
 
-if(isset($type_ot_text) && !empty($type_ot_text)){
+/*if(isset($type_ot_text) && !empty($type_ot_text)){
     $stm->bindParam(':type_ot',$type_ot_text);
     $insert = true;
 } else {
     $err++;
     $message[] = "Type entrée invalide  !";
-}
+}*/
 
 if(isset($commentaire)){
     $stm->bindParam(':commentaire',$commentaire);

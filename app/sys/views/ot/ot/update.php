@@ -4,9 +4,9 @@
     var update;
     $(document).ready(function() {
         $("#update_ot_show").click(function() {
-            getTypeOT('#update_type_ot');
+            //getTypeOT('#update_type_ot');
             update = false;
-            $('#update_type_ot').val(ot_dt.row('.selected').data().id_type_ordre_travail);
+            //$('#update_type_ot').val(ot_dt.row('.selected').data().id_type_ordre_travail);
             $('#update_commentaire').val(ot_dt.row('.selected').data().commentaire);
         });
     } );

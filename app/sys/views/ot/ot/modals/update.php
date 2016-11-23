@@ -14,26 +14,6 @@
                 <div class="block-content">
                     <form class="js-validation-bootstrap form-horizontal" id="update_ot_form">
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="update_type_ot">Type Ordre de travail <span class="text-danger">*</span></label>
-                                <select class="form-control" id="update_type_ot" name="update_type_ot" size="1" style="width: 100%;" data-placeholder="Séléctionner type ot..">
-                                    <option value="" selected disabled>Séléctionnez type ot</option>
-                                    <?php
-                                    extract($_GET);
-                                    $sousProjet = SousProjet::first(
-                                        array('conditions' =>
-                                            array("id_sous_projet = ?", $idsousprojet)
-                                        )
-                                    );
-                                    $typesot = SelectOrdreTravailType::all(array('conditions' => array('type_entree' => $tentree)));
-                                    foreach($typesot as $typeot) {
-                                        echo "<option value=\"$typeot->id_type_ordre_travail\">".($typeot->system==1?$typeot->lib_type_ordre_travail." ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->zone:$typeot->lib_type_ordre_travail)."</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-md-10">
                                 <label for="update_commentaire">Commentaire <span class="text-danger">*</span></label>
                                 <textarea class="form-control" id="update_commentaire" name="update_commentaire" rows="6" placeholder="Commentaire.."></textarea>
@@ -62,8 +42,8 @@
                 dataType: "json",
                 data: {
                     idot : ot_dt.row('.selected').data().id_ordre_de_travail,
-                    type_ot : $('#update_type_ot').val(),
-                    type_ot_text : $('#update_type_ot option:selected').text(),
+                    /*type_ot : $('#update_type_ot').val(),
+                    type_ot_text : $('#update_type_ot option:selected').text(),*/
                     commentaire : $('#update_commentaire').val()
                 }
             }).done(function (message) {
