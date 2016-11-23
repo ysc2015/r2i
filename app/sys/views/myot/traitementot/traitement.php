@@ -72,7 +72,7 @@
         autoSubmit: true,
         showDelete:true,
         showDownload:true,
-        allowedTypes: "pdf",
+        allowedTypes: "pdf,xls,xlsx",
         onLoad:function(obj)
         {
             if(ot_dt.row('.selected').data() !== undefined) {
@@ -143,7 +143,7 @@
     $(function () {
         // Init page plugins & helpers
         uploader3_options = merge_options(defaultUploaderStrLocalisation,uploader3_options);
-        uploader3_options.showDelete = false;
+        //uploader3_options.showDelete = false;
         uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
     });
     $(document).ready(function() {
