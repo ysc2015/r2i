@@ -45,6 +45,12 @@ if($sousProjet !== NULL) {
         case "8" :
             $tentree = "distributiontirage";
             break;
+        case "9" :
+            $tentree = "transportrecette";
+            break;
+        case "10" :
+            $tentree = "distributionrecette";
+            break;
         default :
             $err++;
             $message[] = "cet OT n'est pas natif ou erreur traitement !";

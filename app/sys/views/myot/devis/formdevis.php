@@ -203,7 +203,7 @@
                     idot: ot_dt.row('.selected').data().id_ordre_de_travail,
                     rem : $('#comment_stt').val()
                 }
-            }).done(function (message) {console.log(message);
+            }).done(function (message) {//console.log(message);
                 App.showMessage(message,'#message_remarque_devis');
             });
         });
