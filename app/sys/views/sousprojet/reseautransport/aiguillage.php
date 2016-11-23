@@ -144,9 +144,9 @@
                     <select disabled class="form-control " id="ta_controle_demarrage_effectif" name="ta_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
-                        $results = SelectControleDemarrageEffectif::all();
+                        $results = EtatOT::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->transportaiguillage!==NULL && $sousProjet->transportaiguillage->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
+                            echo "<option value=\"$result->id_etat_ot\" ". ($sousProjet->transportaiguillage!==NULL && $sousProjet->transportaiguillage->controle_demarrage_effectif==$result->id_etat_ot ?"selected": "")." >$result->lib_etat_ot</option>";
                         }
                         ?>
                     </select>

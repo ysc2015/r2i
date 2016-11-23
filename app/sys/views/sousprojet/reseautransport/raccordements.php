@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="tr_date_transmission_pds">Date Transmission PDS <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="tr_date_transmission_pds" name="tr_date_transmission_pds" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_transmission_pds : "")?>">
+                    <input readonly class="form-control " type="date" id="tr_date_transmission_pds" name="tr_date_transmission_pds" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_transmission_plans : "")?>">
                 </div>
             </div>
         </div>
@@ -83,9 +83,9 @@
                     <select disabled class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
-                        $results = SelectControleDemarrageEffectif::all();
+                        $results = EtatOT::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_controle_demarrage_effectif\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->controle_demarrage_effectif==$result->id_controle_demarrage_effectif ?"selected": "")." >$result->lib_controle_demarrage_effectif</option>";
+                            echo "<option value=\"$result->id_etat_ot\" ". ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->controle_demarrage_effectif==$result->id_etat_ot ?"selected": "")." >$result->lib_etat_ot</option>";
                         }
                         ?>
                     </select>

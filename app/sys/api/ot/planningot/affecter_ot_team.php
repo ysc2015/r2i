@@ -12,17 +12,9 @@ $insert = false;
 $err = 0;
 $message = array();
 
-$tentree = array();
-
 $ot = OrdreDeTravail::first(
     array('conditions' =>
         array("id_ordre_de_travail = ?", $idot)
-    )
-);
-
-$sousProjet = SousProjet::first(
-    array('conditions' =>
-        array("id_sous_projet = ?", $idsp)
     )
 );
 
@@ -101,6 +93,22 @@ if($ot->date_debut == NULL || $ot->date_debut=="") {
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+
+        $message [] = "Affectation faite avec succès";
+
+        /**
+         * maj etapes fields
+         */
+
+        $tentree = array();
+
+        $sousProjet = SousProjet::first(
+            array('conditions' =>
+                array("id_sous_projet = ?", $idsp)
+            )
+        );
+
+
         if($ot->id_etat_ot == 1) {
             $ot->id_etat_ot = 2;
         } else {
@@ -108,8 +116,6 @@ if($insert == true && $err == 0){
         }
         $ot->save();
 
-        $message [] = "Affectation faite avec succès";
-        //update matching step(s)
         if($sousProjet !== NULL) {
             switch($idtot) {
                 case "1" :
@@ -195,13 +201,23 @@ if($insert == true && $err == 0){
                     }
                 }
 
+                /*$sousProjet->{$value[0]}->date_transmission_plans = NULL;
+                $sousProjet->{$value[0]}->date_retour = NULL;
+                $sousProjet->{$value[0]}->lien_plans = NULL;
+                $sousProjet->{$value[0]}->retour_presta = NULL;*/
+                $sousProjet->{$value[0]}->controle_demarrage_effectif = $ot->id_etat_ot;
                 $sousProjet->{$value[0]}->id_entreprise	 = $ide;
                 $sousProjet->{$value[0]}->{$value[1]} = $date1;
                 $sousProjet->{$value[0]}->date_ret_prevue = $date2;
                 $sousProjet->{$value[0]}->duree = getDuree($date1,$date2);
                 $sousProjet->{$value[0]}->save();
+
             }
         }
+
+        /**
+         * end maj etapes fields
+         */
 
     } else {
         $err++;

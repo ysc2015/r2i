@@ -83,6 +83,22 @@
                     </select>
                 </div>
                 <div class="col-md-3">
+                    <label for="trec_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <select disabled class="form-control " id="trec_controle_demarrage_effectif" name="trec_controle_demarrage_effectif">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = EtatOT::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_etat_ot\" ". ($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->controle_demarrage_effectif==$result->id_etat_ot ?"selected": "")." >$result->lib_etat_ot</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="trec_date_retour">Date Retour <!--<span class="text-danger">*</span>--></label>
+                    <input readonly class="form-control " type="date" id="trec_date_retour" name="trec_date_retour" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_retour : "")?>">
+                </div>
+                <div class="col-md-3">
                     <label for="trec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="trec_etat_recette" name="trec_etat_recette">
                         <option value="" selected="">Sélectionnez une valeur</option>
