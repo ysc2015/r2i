@@ -169,6 +169,8 @@
 
                 if(ot_dt.row('.selected').data().id_etat_ot != 5) {
                     $('#validate_start_ot').removeClass("disabled");
+                } else {
+                    $('#validate_start_ot').addClass("disabled");
                 }
                 $('#snk_show').removeClass("disabled");
                 $('#foa_show').removeClass("disabled");
