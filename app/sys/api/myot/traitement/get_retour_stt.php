@@ -12,6 +12,7 @@ $err = 0;
 $message = array();
 
 $retour = "";
+$lien = "";
 
 if(isset($idsp) && !empty($idsp)){
     $sousProjet = SousProjet::find($idsp);
@@ -62,8 +63,9 @@ if($sousProjet !== NULL) {
 }
 
 if($err == 0) {
-     $retour = $sousProjet->{$tentree}->retour_presta;
+    $retour = $sousProjet->{$tentree}->retour_presta;
+    $lien = $sousProjet->{$tentree}->lien_plans;
 }
 
-echo json_encode(array("error" => $err, "retour" => $retour));
+echo json_encode(array("error" => $err, "retour" => $retour, "lien" => $lien, "idtot" => $idtot, "err" => $err, "idsp" => $idsp));
 

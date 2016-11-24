@@ -1,6 +1,18 @@
-<label for="other-files">Fichiers DE </label>
-<div id="other_files_uploader_wrapper">
-    <div id="other_files_uploader"></div>
+<div class="row items-push">
+    <div class="form-group">
+        <div class="col-md-6">
+            <label for="other-files">Fichiers DE </label>
+            <div id="other_files_uploader_wrapper">
+                <div id="other_files_uploader"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="link_lien_plans_wrapper">
+                <label for="link_lien_plans" style="margin-top: 20px;">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                <textarea readonly class="form-control" id="link_lien_plans" name="link_lien_plans" rows="6"></textarea>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     var other_files_uploader_options = {

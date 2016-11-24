@@ -172,5 +172,6 @@ function getRetourTerrain(idsp,idtot,selector) {
         console.log('getRetourTerrain');
         console.log(msg);
         $(selector).val(msg.retour);
+        $('#link_lien_plans').val(msg.lien);
     });
 }
