@@ -67,7 +67,7 @@
      * déclarations scripts points bloquants
      * */
     var pblq_dt;
-    var pblq_btns = ["#add_pblq_show","#update_pblq_show","#delete_pblq"];
+    var pblq_btns = ["#update_pblq_show","#delete_pblq"];
     var update_pblq;
     /**
      * fin déclarations scripts points bloquants
