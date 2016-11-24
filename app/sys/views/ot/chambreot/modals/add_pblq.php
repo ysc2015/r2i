@@ -593,6 +593,7 @@
     var pblq2_formdata = {};
     var pblq3_formdata = {};
     var pblq4_formdata = {};
+    var redraw_pblq = false;
     var id;
     var last_msg;
     // Init wizards with validation, for more examples you can check out http://vadimg.com/twitter-bootstrap-wizard-example/
@@ -677,6 +678,7 @@
                                 //pblq_dt.draw(false);
                                 last_msg = message;
                                 ret = true;
+                                redraw_pblq = true;
                             }
                         });
                         break;
@@ -791,5 +793,14 @@
                 App.showMessage(message,'#message_pblq4_add');
             });
         });
+
+        $('#add-pblq').on('hidden.bs.modal', function () {
+            console.log('hidden.bs.modal');
+            $('body').addClass('modal-open');
+            if(redraw_pblq) {
+                console.log('hidden.bs.modal redraw');
+                pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
+            }
+        })
     } );
 </script>

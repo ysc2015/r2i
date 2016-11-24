@@ -1,11 +1,11 @@
 
 <button id="update_pblq_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#update-pblq' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier</button>
 <script>
-    var update;
+    var update_pblq;
     $(document).ready(function() {
         $("#update_pblq_show").click(function() {
 
-            update = false;
+            update_pblq = false;
 
             for (var key in upblq1_formdata) {
                 $('#'+key).val(pblq_dt.row('.selected').data()[key]);

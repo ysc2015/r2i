@@ -89,6 +89,8 @@ if(isset($idchambre) && !empty($idchambre)) {
 } else {
     if(isset($idot) && !empty($idot)) {
         $condition .=" AND t1.id_chambre=t5.id_chambre AND t5.id_ressource = t6.id_ressource AND t6.id_ordre_de_travail=$idot";
+    } else {
+        $condition .=" AND t1.id_chambre=-1";
     }
 }
 
