@@ -119,7 +119,7 @@ switch ($page) {
         }
         echo "<br><br>";
         break;
-    case "pointbloquant":
+    /*case "pointbloquant":
         if(isset($idchambre)) {
             $ch = Chambre::first(
                 array('conditions' =>
@@ -197,7 +197,7 @@ switch ($page) {
             $connectedProfil->ressourceNotFound();
         }
         echo "<br><br>";
-        break;
+        break;*/
     case "myot":
         $connectedProfil->myot();
         echo "<br><br>";
