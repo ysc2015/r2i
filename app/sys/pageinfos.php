@@ -28,15 +28,41 @@ switch($page)
         break;
 
     case "sousprojet":
+        $nro = "";
+        $sousProjet = SousProjet::first(
+            array('conditions' =>
+                array("id_sous_projet = ?", $idsousprojet)
+            )
+        );
+        if($sousProjet !== NULL) {
+            if($sousProjet->projet !== NULL) {
+                if($sousProjet->projet->nro !== NULL) {
+                    $nro = $sousProjet->projet->nro->lib_nro;
+                }
+            }
+        }
         return json_decode(json_encode(array("header"=>"Sous projet",
             "subheader"=>"Avancements",
-            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>Avancements</li>")));
+            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".$nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone)."</li>")));
         break;
 
     case "ot":
-        return json_decode(json_encode(array("header"=>"Ordre de travail",
-            "subheader"=>"infos/chambres/synoptique/cp",
-            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">Sous-projet</a></li><li>OT</li>")));
+        $nro = "";
+        $sousProjet = SousProjet::first(
+            array('conditions' =>
+                array("id_sous_projet = ?", $idsousprojet)
+            )
+        );
+        if($sousProjet !== NULL) {
+            if($sousProjet->projet !== NULL) {
+                if($sousProjet->projet->nro !== NULL) {
+                    $nro = $sousProjet->projet->nro->lib_nro;
+                }
+            }
+        }
+        return json_decode(json_encode(array("header"=>"Ordres de travail",
+            "subheader"=>"Ordres de travail",
+            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">".$nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone)."</a></li><li>OT</li>")));
         break;
 
     case "chambre":
@@ -61,6 +87,36 @@ switch($page)
         return json_decode(json_encode(array("header"=>"Planning",
             "subheader"=>"Ordres de travail",
             "navigator"=>"<li>planning</li>")));
+        break;
+
+    case "utilisateur":
+        return json_decode(json_encode(array("header"=>"Utilisateurs",
+            "subheader"=>"Utilisateurs",
+            "navigator"=>"<li>liste</li>")));
+        break;
+
+    case "nro":
+        return json_decode(json_encode(array("header"=>"NRO",
+            "subheader"=>"Nro",
+            "navigator"=>"<li>liste</li>")));
+        break;
+
+    case "nropci":
+        return json_decode(json_encode(array("header"=>"NRO/PCI",
+            "subheader"=>"Nro/PCI",
+            "navigator"=>"<li>liste</li>")));
+        break;
+
+    case "typeot":
+        return json_decode(json_encode(array("header"=>"Types OT",
+            "subheader"=>"Types OT",
+            "navigator"=>"<li>liste</li>")));
+        break;
+
+    case "mailcreation":
+        return json_decode(json_encode(array("header"=>"Utilisateurs",
+            "subheader"=>"Liste d'envoi à la création de projet",
+            "navigator"=>"<li>liste</li>")));
         break;
 
     default:
