@@ -23,7 +23,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                 },
                 success : function (e) {
 
-
+console.log(e);
                     idetape = e.idetape;
                     if(idetape!=0){
                         if(e.id ==0){
