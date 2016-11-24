@@ -101,7 +101,8 @@
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"designcdi_href","Design CDI/CAD: ");
 
         $("#id_sous_projet_distribution_design_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+           // appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            console.log("message affiche");
         });
         $("#id_sous_projet_distribution_design_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
