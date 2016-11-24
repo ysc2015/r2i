@@ -2,8 +2,8 @@
 
 
 <button id="delete_pblq" class='btn btn-danger btn-sm' data-toggle="modal" data-target="#"><span class='glyphicon glyphicon-remove'>&nbsp;</span>Supprimer</button>
-<div id="delete-pblq-dialog-confirm" title="Supprimer ce projet?">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Tous les sous-projets liés seront supprimés. Etes vous sur?</p>
+<div id="delete-pblq-dialog-confirm" title="Supprimer ce point bloquant?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>confirmer?</p>
 </div>
 <script>
     $(document).ready(function() {

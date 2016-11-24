@@ -74,12 +74,6 @@
 
         $(pblq_btns.join(',')).addClass("disabled");
 
-        /*if(table.fnSettings().aoData.length===0) {
-            alert('no data');
-        } else {
-            alert('data exists!');
-        }*/
-
         $('#pblq_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');

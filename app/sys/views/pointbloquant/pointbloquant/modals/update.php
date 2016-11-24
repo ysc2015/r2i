@@ -637,7 +637,7 @@
             }).done(function (message) {
                 var obj = $.parseJSON(message);
                 if(obj.error == 0) {
-                    update = true;
+                    update_pblq = true;
                 }
 
                 App.showMessage(message,'#message_pblq1_update');
@@ -659,7 +659,7 @@
             }).done(function (message) {
                 var obj = $.parseJSON(message);
                 if(obj.error == 0) {
-                    update =true;
+                    update_pblq =true;
                 }
 
                 App.showMessage(message,'#message_pblq2_update');
@@ -681,7 +681,7 @@
             }).done(function (message) {
                 var obj = $.parseJSON(message);
                 if(obj.error == 0) {
-                    update = true;
+                    update_pblq = true;
                 }
 
                 App.showMessage(message,'#message_pblq3_update');
@@ -703,7 +703,7 @@
             }).done(function (message) {
                 var obj = $.parseJSON(message);
                 if(obj.error == 0) {
-                    update = true;
+                    update_pblq = true;
                 }
 
                 App.showMessage(message,'#message_pblq4_update');
@@ -717,7 +717,7 @@
     * */
 
     $('#update-pblq').on('hidden.bs.modal', function () {
-        if(update) {
+        if(update_pblq) {
             $(pblq_btns.join(',')).addClass("disabled");
             pblq_dt.draw(false);
         }
