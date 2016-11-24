@@ -21,7 +21,7 @@
 						*/
 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
 						var popup = window.open (rc2k.osa.url + 'ui/tache_list/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
-						dispatch(popup);
+						rc2k.dispatch(popup);
 					},
 					create: function (obj) {
 						/*
@@ -34,7 +34,7 @@
 						*/
 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre doit être défini"
 						var popup = window.open (rc2k.osa.url + 'ui/tache_create/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
- 						dispatch(popup);
+ 						rc2k.dispatch(popup);
  					},
  					traiter: function(obj){
  						/*
@@ -48,7 +48,7 @@
  						*/
  						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
  						var popup = window.open (rc2k.osa.url + 'ui/tache_traiter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
-						dispatch(popup);
+						rc2k.dispatch(popup);
  					},
  					affecter: function(obj){
  						/*
@@ -62,7 +62,7 @@
  						*/
  						if(typeof obj == "undefined") throw "RC2K/OSA: parametre non défini";
  						var popup = window.open (rc2k.osa.url + 'ui/tache_affecter/' + btoa(JSON.stringify(obj)), '', "menubar=no, status=no, scrollbars=no, menubar=no, titlebar=no, toolbar=no width=600, height=600");
-						dispatch(popup);
+						rc2k.dispatch(popup);
  					}
 				}
 			},
