@@ -12,46 +12,47 @@ $err = 0;
 $message = array();
 
 $retour = "";
-$lien = "";
+$lien = array();
 
 if(isset($idsp) && !empty($idsp)){
     $sousProjet = SousProjet::find($idsp);
 }
 
-$tentree = "";
+$tentree = array();
 
 if($sousProjet !== NULL) {
     switch($idtot) {
         case "1" :
-            $tentree = "transportaiguillage";
+            $tentree[] = array("transportaiguillage","Lien vers les plans Aiguillage CTR","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");//(step,begin step date field):end field is the same for all steps
             break;
         case "2" :
-            $tentree = "transporttirage";
+            $tentree[] = array("transporttirage","Lien vers les plans Tirage CTR","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
             break;
         case "3" :
-            $tentree = "transportraccordement";
+            $tentree[] = array("transportraccordement","Lien vers les plans Raccordement CTR","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
             break;
         case "4" :
-            $tentree = "transporttirage";
+            $tentree[] = array("transporttirage","Lien vers les plans Aiguillage CTR","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
+            $tentree[] = array("transportraccordement","Lien vers les plans Raccordement CTR","link_lien_plans_wrapper2","label_link_lien_plans2","link_lien_plans2");
             break;
         case "5" :
-            $tentree = "distributionaiguillage";
+            $tentree[] = array("distributionaiguillage","Lien vers les plans Aiguillage CDI","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
             break;
         case "6" :
-            $tentree = "distributiontirage";
+            $tentree[] = array("distributiontirage","Lien vers les plans Tirage CDI","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
             break;
         case "7" :
-            $tentree = "distributionraccordement";
+            $tentree[] = array("distributionraccordement","Lien vers les plans Raccordement CDI","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
             break;
         case "8" :
-            $tentree = "distributiontirage";
+            $tentree[] = array("distributiontirage","Lien vers les plans Tirage CDI","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
+            $tentree[] = array("distributionraccordement","Lien vers les plans CDI","link_lien_plans_wrapper2","label_link_lien_plans2","link_lien_plans2");
             break;
         case "9" :
-            $tentree = "transportrecette";
+            $tentree[] = array("transportrecette","Lien vers les plans Recette Optique CTR","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
             break;
         case "10" :
-            $tentree = "distributionrecette";
-            break;
+            $tentree[] = array("distributionrecette","Lien vers les plans Recette Optique CDI","link_lien_plans_wrapper1","label_link_lien_plans1","link_lien_plans1");
         default :
             $err++;
             $message[] = "cet OT n'est pas natif ou erreur traitement !";
@@ -63,9 +64,22 @@ if($sousProjet !== NULL) {
 }
 
 if($err == 0) {
-    $retour = $sousProjet->{$tentree}->retour_presta;
-    $lien = $sousProjet->{$tentree}->lien_plans;
+    foreach($tentree as $key => $value) {
+        if($sousProjet->{$value[0]} !== NULL) {
+            $retour = $sousProjet->{$value[0]}->retour_presta;
+
+            $lien[] = array(
+                "label" => $value[1],
+                "wrapper" => $value[2],
+                "labelid" => $value[3],
+                "selector" => $value[4],
+                "value" => $sousProjet->{$value[0]}->lien_plans,
+            );
+        }
+    }
+
+
 }
 
-echo json_encode(array("error" => $err, "retour" => $retour, "lien" => $lien, "idtot" => $idtot, "err" => $err, "idsp" => $idsp));
+echo json_encode(array("error" => $err, "retour" => $retour, "liens" => $lien));
 

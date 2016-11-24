@@ -172,6 +172,11 @@ function getRetourTerrain(idsp,idtot,selector) {
         console.log('getRetourTerrain');
         console.log(msg);
         $(selector).val(msg.retour);
-        $('#link_lien_plans').val(msg.lien);
+        for(var i = 0 ; i < msg.liens.length ; i++) {
+            //console.log();
+            $('#'+msg.liens[i].wrapper).show();
+            $('#'+msg.liens[i].labelid).html(msg.liens[i].label);
+            $('#'+msg.liens[i].selector).html(msg.liens[i].value);
+        }
     });
 }

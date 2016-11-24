@@ -131,7 +131,8 @@
         $('#snk_show').addClass("disabled");
         $('#foa_show').addClass("disabled");
         $('#retour_uploads').hide();
-        $('#link_lien_plans_wrapper').hide();
+        $('#link_lien_plans_wrapper1').hide();
+        $('#link_lien_plans_wrapper2').hide();
         $('#other_files_uploader_wrapper').hide();
 
         $('#ot_table tbody').on( 'click', 'tr', function () {
@@ -144,7 +145,8 @@
                 $('#devis_block_title').html('Devis');
 
                 $('#retour_uploads').hide();
-                $('#link_lien_plans_wrapper').hide();
+                $('#link_lien_plans_wrapper1').hide();
+                $('#link_lien_plans_wrapper2').hide();
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
 
@@ -165,10 +167,10 @@
                     uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
                     getRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#link_retour_stt');
                     $('#retour_uploads').show();
-                    $('#link_lien_plans_wrapper').show();
                 } else {
                     $('#retour_uploads').hide();
-                    $('#link_lien_plans_wrapper').hide();
+                    $('#link_lien_plans_wrapper1').hide();
+                    $('#link_lien_plans_wrapper2').hide();
                 }
 
                 if(ot_dt.row('.selected').data().id_etat_ot != 5) {
