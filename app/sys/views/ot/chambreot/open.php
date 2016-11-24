@@ -52,7 +52,7 @@
                 <div class="modal-footer">
                     <button style="float: left;" id="add_pblq_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-pblq' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter point bloquant</button>
                     <button style="float: left;" id="update_pblq_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#update-pblq' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier</button>
-                    <button id="delete_pblq" class='btn btn-danger btn-sm' data-toggle="modal" data-target="#"><span class='glyphicon glyphicon-remove'>&nbsp;</span>Supprimer</button>
+                    <button style="float: left;" id="delete_pblq" class='btn btn-danger btn-sm' data-toggle="modal" data-target="#"><span class='glyphicon glyphicon-remove'>&nbsp;</span>Supprimer</button>
                     <div id="delete-pblq-dialog-confirm" title="Supprimer ce point bloquant?">
                         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>confirmer?</p>
                     </div>
