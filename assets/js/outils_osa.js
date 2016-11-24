@@ -12,6 +12,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
         if(false) {
             alert("Authentification non autorisé");
         }else{
+            console.log("api/projet/sousprojet/get_projet_id.php : id_sous_projet " + id_sous_projet + ", ide : " + ide);
             //apres authentification
             $.ajax({
                 method: "POST",
@@ -23,7 +24,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                 },
                 success : function (e) {
 
-console.log(e);
+                console.log("e");
+                console.log(e);
                     idetape = e.idetape;
                     if(idetape!=0){
                         if(e.id ==0){
@@ -34,7 +36,8 @@ console.log(e);
                                 dat:new Date(),//date fin de projet
                                 fil:"2"//ftth
                             }, function(reponse){
-
+                                console.log("areponse rc2k.osa.ws.projet.create")
+                                console.log(reponse)
                                 var areponse = JSON.parse (reponse);
 
                                 $.ajax({
@@ -46,6 +49,8 @@ console.log(e);
 
                                     },
                                     success : function(response){
+                                        console.log("api/projet/projet/set_projet_id_osa.php")
+                                        console.log(response)
 
                                         rc2k.osa.ui.tache.create({
                                             idp : areponse["extra"],
