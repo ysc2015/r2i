@@ -77,7 +77,7 @@
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"positionnementadresses_href","Positionnement des Adresses: ");
 
-        $("#id_sous_projet_plaque_carto_btn_osa").click(function () {
+        $("#id_sous_projet_plaque_pos_adresse_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
         });
         $("#id_sous_projet_plaque_pos_adresse_list_tache").click(function () {
