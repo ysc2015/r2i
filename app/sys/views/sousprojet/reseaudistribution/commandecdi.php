@@ -109,7 +109,7 @@
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandecdi_href","CMD Structurante CDI: ");
 
-        $("#id_sous_projet_distribution_design_btn_osa").click(function () {
+        $("#id_sous_projet_distribution_commandecdi_btn_osa").click(function () {
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
         });
         $("#id_sous_projet_distribution_commandecdi_list_tache").click(function () {
