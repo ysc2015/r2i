@@ -6,10 +6,20 @@
                 <div id="other_files_uploader"></div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row items-push" id="link_lien_plans_wrapper_global">
+    <div class="form-group">
         <div class="col-md-6">
-            <div id="link_lien_plans_wrapper">
-                <label for="link_lien_plans" style="margin-top: 20px;">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
-                <textarea readonly class="form-control" id="link_lien_plans" name="link_lien_plans" rows="6"></textarea>
+            <div id="link_lien_plans_wrapper1">
+                <label id="label_link_lien_plans1" for="link_lien_plans1" style="margin-top: 20px;">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                <textarea readonly class="form-control" id="link_lien_plans1" name="link_lien_plans1" rows="6"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="link_lien_plans_wrapper2">
+                <label id="label_link_lien_plans2" for="link_lien_plans2" style="margin-top: 20px;">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
+                <textarea readonly class="form-control" id="link_lien_plans2" name="link_lien_plans2" rows="6"></textarea>
             </div>
         </div>
     </div>
