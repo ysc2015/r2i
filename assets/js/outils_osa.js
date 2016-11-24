@@ -4,7 +4,7 @@ var tache_dt;
  */
 function appelscriptosa(typeetape, id_sous_projet,ide)
 {
-
+    throw "duplicate";
     rc2k.osa.ws.auth(window.token,function(response){
        // console.log(response);
         var aresponse = JSON.parse(response);
