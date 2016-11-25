@@ -43,24 +43,48 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="apblq1_utilisateur">Effectué par <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="apblq1_utilisateur" name="apblq1_utilisateur">
+                                            <label for="apblq1_id_utilisateur">Effectué par <span class="text-danger">*</span></label>
+                                            <select disabled class="form-control " id="apblq1_id_utilisateur" name="apblq1_id_utilisateur">
+                                                <option value="" selected="">Sélectionnez un utilisateur</option>
+                                                <?php
+                                                $results = Utilisateur::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_utilisateur\" ". ($connectedProfil->profil->id_utilisateur==$result->id_utilisateur ?"selected": "")." >".$result->prenom_utilisateur." ".$result->nom_utilisateur."</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="apblq1_entreprise">Entreprise <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="apblq1_entreprise" name="apblq1_entreprise">
+                                            <label for="apblq1_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                                            <select disabled class="form-control " id="apblq1_id_entreprise" name="apblq1_id_entreprise">
+                                                <option value="" selected="">Sélectionnez une entreprise</option>
+                                                <?php
+                                                $results = EntrepriseSTT::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_entreprise\">$result->nom</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="apblq1_responsable">Résponsable d'équipe <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="apblq1_responsable" name="apblq1_responsable">
+                                            <label for="apblq1_id_equipe_stt">Résponsable d'équipe <span class="text-danger">*</span></label>
+                                            <select disabled class="form-control " id="apblq1_id_equipe_stt" name="apblq1_id_equipe_stt">
+                                                <option value="" selected="">Sélectionnez une équipe</option>
+                                                <?php
+                                                $results = EquipeSTT::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_equipe_stt\">$result->prenom $result->nom</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
@@ -83,15 +107,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <label for="apblq1_nature_travaux">Nature des travaux <span class="text-danger">*</span></label>
-                                            <select class="form-control" id="apblq1_nature_travaux" name="apblq1_nature_travaux" size="1">
-                                                <option value="" selected>Séléctionnez une valeur</option>
-                                                <?php
-                                                $results = SelectNatureTravaux::all();
-                                                foreach($results as $result) {
-                                                    echo "<option value=\"$result->id_nature_travaux\">$result->lib_nature_travaux</option>";
-                                                }
-                                                ?>
-                                            </select>
+                                            <input readonly class="form-control" type="text" id="apblq1_nature_travaux" name="apblq1_nature_travaux">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -663,6 +679,11 @@
                         pblq1_formdata['suffix'] = 'apblq1';
                         pblq1_formdata['apblq1_date_controle'] = '';
                         pblq1_formdata['apblq1_id_chambre'] = chambre_ot_dt.row('.selected').data().id_chambre;
+
+                        pblq1_formdata['apblq1_id_utilisateur'] = <?= $connectedProfil->profil->id_utilisateur?>;
+                        pblq1_formdata['apblq1_id_entreprise'] = ot_dt.row('.selected').data().id_entreprise;
+                        pblq1_formdata['apblq1_id_equipe_stt'] = ot_dt.row('.selected').data().id_equipe_stt;
+                        pblq1_formdata['apblq1_nature_travaux'] = ot_dt.row('.selected').data().type_ot;
 
                         $.ajax({
                             method: "POST",

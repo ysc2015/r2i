@@ -185,7 +185,7 @@ class adm extends baseUser {
                 "ot" => array("liste","add","update","open_pblq","delete","link","link_pb"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis"),
-                "chambreot" => array("liste","update","open"),
+                "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
             )
@@ -284,7 +284,7 @@ class dov extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link"),
-                "chambreot" => array("liste","update","open"),
+                "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
             )
@@ -339,7 +339,7 @@ class pov extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link"),
-                "chambreot" => array("liste","update","open"),
+                "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
             )
@@ -448,7 +448,7 @@ class vpi extends baseUser {
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link"),
                 "deot" => array("deot"),
-                "chambreot" => array("liste","update","open"),
+                "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
             )

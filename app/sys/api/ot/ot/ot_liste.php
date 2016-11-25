@@ -11,6 +11,8 @@ $columns = array(
     array( "db" => "t1.id_ordre_de_travail", "dt" => 'id_ordre_de_travail' ),
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t1.type_entree", "dt" => 'type_entree' ),
+    array( "db" => "t1.id_entreprise", "dt" => 'id_entreprise' ),
+    array( "db" => "t1.id_equipe_stt", "dt" => 'id_equipe_stt' ),
     array( "db" => "t1.type_ot", "dt" => 'type_ot' ),
     array( "db" => "t1.date_debut", "dt" => 'date_debut' ),
     array( "db" => "t1.date_fin", "dt" => 'date_fin' ),

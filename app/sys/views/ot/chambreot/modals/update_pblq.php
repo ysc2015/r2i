@@ -33,24 +33,48 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="pblq1_utilisateur">Effectué par <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_utilisateur" name="pblq1_utilisateur">
+                                            <label for="pblq1_id_utilisateur">Effectué par <span class="text-danger">*</span></label>
+                                            <select disabled class="form-control " id="pblq1_id_utilisateur" name="pblq1_id_utilisateur">
+                                                <option value="" selected="">Sélectionnez un utilisateur</option>
+                                                <?php
+                                                $results = Utilisateur::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_utilisateur\">".$result->prenom_utilisateur." ".$result->nom_utilisateur."</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="pblq1_entreprise">Entreprise <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_entreprise" name="pblq1_entreprise">
+                                            <label for="pblq1_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                                            <select disabled class="form-control " id="pblq1_id_entreprise" name="pblq1_id_entreprise">
+                                                <option value="" selected="">Sélectionnez une entreprise</option>
+                                                <?php
+                                                $results = EntrepriseSTT::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_entreprise\">$result->nom</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="pblq1_responsable">Résponsable d'équipe <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_responsable" name="pblq1_responsable">
+                                            <label for="pblq1_id_equipe_stt">Résponsable d'équipe <span class="text-danger">*</span></label>
+                                            <select disabled class="form-control " id="pblq1_id_equipe_stt" name="pblq1_id_equipe_stt">
+                                                <option value="" selected="">Sélectionnez une équipe</option>
+                                                <?php
+                                                $results = EquipeSTT::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_equipe_stt\">$result->prenom $result->nom</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
@@ -73,15 +97,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <label for="pblq1_nature_travaux">Nature des travaux <span class="text-danger">*</span></label>
-                                            <select class="form-control" id="pblq1_nature_travaux" name="pblq1_nature_travaux" size="1">
-                                                <option value="" selected>Séléctionnez une valeur</option>
-                                                <?php
-                                                $results = SelectNatureTravaux::all();
-                                                foreach($results as $result) {
-                                                    echo "<option value=\"$result->id_nature_travaux\">$result->lib_nature_travaux</option>";
-                                                }
-                                                ?>
-                                            </select>
+                                            <input readonly class="form-control" type="text" id="pblq1_nature_travaux" name="pblq1_nature_travaux">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -250,344 +266,344 @@
                                                     echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
                                                 }
                                                 ?>
-</select>
-<label for="pblq2_observation_probleme_d_acces">Observation</label>
-<textarea class="form-control" id="pblq2_observation_probleme_d_acces" name="pblq2_observation_probleme_d_acces" rows="6" placeholder="Observation.."></textarea>
-</div>
-</div>
-<div class="form-group">
-    <div class="col-sm-8 col-sm-offset-2">
-        <label for="pblq2_autre_point_de_blocage">Autre point de blocage(décrire au mieux le point)</label>
-        <textarea class="form-control" id="pblq2_autre_point_de_blocage" name="pblq2_autre_point_de_blocage" rows="6" placeholder="Observation.."></textarea>
-    </div>
-</div>
-<div class="col-sm-8 col-sm-offset-2">
-    <div class='alert alert-success' id='message_pblq2_update' role='alert'>
-    </div>
-</div>
-<div class="block-content block-content-mini block-content-full border-t">
-    <div class="row">
-        <div class="col-xs-6">
-            <!--<button class="wizard-prev btn btn-warning" type="button"><i class="fa fa-arrow-circle-o-left"></i> Previous</button>-->
-        </div>
-        <div class="col-xs-6 text-right">
-            <button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Fermer</button>
-            <button class="btn btn-success" type="button" id="update_pblq2">Valider <i class="fa fa-check"></i></button>
-        </div>
-    </div>
-</div>
-</form>
-</div>
-<div class="tab-pane" id="pblq3_update_tab">
-    <form id="info_pblq_uform3" class="js-form1 form-horizontal">
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_aiguillage_au_compresseur">Aiguillage au compresseur</label>
-                <div class="help-block text-left">(Min 5000L)</div>
-                <select class="form-control" id="pblq3_aiguillage_au_compresseur" name="pblq3_aiguillage_au_compresseur" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_aiguillage_au_compresseur">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_aiguillage_au_compresseur" name="pblq3_observation_aiguillage_au_compresseur" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_aiguillage_avec_aiguille_de_11_13mm">Aiguillage avec aiguille de 11->13mm</label>
-                <div class="help-block text-left">(Préciser le diamètre)</div>
-                <select class="form-control" id="pblq3_aiguillage_avec_aiguille_de_11_13mm" name="pblq3_aiguillage_avec_aiguille_de_11_13mm" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_aiguillage_avec_aiguille_de_11_13mm">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_aiguillage_avec_aiguille_de_11_13mm" name="pblq3_observation_aiguillage_avec_aiguille_de_11_13mm" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_aiguillage_aux_cannes">Aiguillage aux cannes</label>
-                <select class="form-control" id="pblq3_aiguillage_aux_cannes" name="pblq3_aiguillage_aux_cannes" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_aiguillage_aux_cannes">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_aiguillage_aux_cannes" name="pblq3_observation_aiguillage_aux_cannes" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_hydrocurage">Hydrocurage</label>
-                <div class="help-block text-left">(Préciser le valideur)</div>
-                <select class="form-control" id="pblq3_hydrocurage" name="pblq3_hydrocurage" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_hydrocurage">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_hydrocurage" name="pblq3_observation_hydrocurage" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_identification_du_point_bloquant_au_metre">Identification du point bloquant au métré</label>
-                <div class="help-block text-left">(En mesurant au sol la partie de l'aiguille dans l'alvéole)</div>
-                <select class="form-control" id="pblq3_identification_du_point_bloquant_au_metre" name="pblq3_identification_du_point_bloquant_au_metre" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_identification_du_point_bloquant_au_metre">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_identification_du_point_bloquant_au_metre" name="pblq3_observation_identification_du_point_bloquant_au_metre" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_identification_a_la_sonde">Identification à la sonde</label>
-                <div class="help-block text-left">(Aiguille avec sonde et teledetecteur)</div>
-                <select class="form-control" id="pblq3_identification_a_la_sonde" name="pblq3_identification_a_la_sonde" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_identification_a_la_sonde">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_identification_a_la_sonde" name="pblq3_observation_identification_a_la_sonde" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq3_tentative_de_contact_du_proprietaire_ou_gestionnaire">Tentative de contact du propriétaire ou gestionnaire</label>
-                <div class="help-block text-left">(Préciser un contact s'il y eu identification)</div>
-                <select class="form-control" id="pblq3_tentative_de_contact_du_proprietaire_ou_gestionnaire" name="pblq3_tentative_de_contact_du_proprietaire_ou_gestionnaire" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefault::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq3_observation_tentative_de_contact_du_proprietaire_ou_gestionnaire">Observation</label>
-                <textarea class="form-control" id="pblq3_observation_tentative_de_contact_du_proprietaire_ou_gestionnaire" name="pblq3_observation_tentative_de_contact_du_proprietaire_ou_gestionnaire" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="col-sm-8 col-sm-offset-2">
-            <div class='alert alert-success' id='message_pblq3_update' role='alert'>
-            </div>
-        </div>
-        <div class="block-content block-content-mini block-content-full border-t">
-            <div class="row">
-                <div class="col-xs-6">
-                    <!--<button class="wizard-prev btn btn-warning" type="button"><i class="fa fa-arrow-circle-o-left"></i> Previous</button>-->
-                </div>
-                <div class="col-xs-6 text-right">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Fermer</button>
-                    <button class="btn btn-success" type="button" id="update_pblq3">Valider <i class="fa fa-check"></i></button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="tab-pane" id="pblq4_update_tab">
-    <form id="info_pblq_uform4" class="js-form1 form-horizontal">
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_aiguillage_au_compresseur">Aiguillage au compresseur</label>
-                <div class="help-block text-left">(Min 5000L)</div>
-                <select class="form-control" id="pblq4_aiguillage_au_compresseur" name="pblq4_aiguillage_au_compresseur" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_aiguillage_au_compresseur">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_aiguillage_au_compresseur" name="pblq4_observation_aiguillage_au_compresseur" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_aiguillage_avec_aiguille">Aiguillage avec aiguille de 13mm</label>
-                <select class="form-control" id="pblq4_aiguillage_avec_aiguille" name="pblq4_aiguillage_avec_aiguille" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_aiguillage_avec_aiguille_de_13mm">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_aiguillage_avec_aiguille_de_13mm" name="pblq4_observation_aiguillage_avec_aiguille_de_13mm" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_aiguillage_aux_cannes">Aiguillage aux cannes</label>
-                <select class="form-control" id="pblq4_aiguillage_aux_cannes" name="pblq4_aiguillage_aux_cannes" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_aiguillage_aux_cannes">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_aiguillage_aux_cannes" name="pblq4_observation_aiguillage_aux_cannes" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_hydrocurage">Hydrocurage</label>
-                <select class="form-control" id="pblq4_hydrocurage" name="pblq4_hydrocurage" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_hydrocurage">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_hydrocurage" name="pblq4_observation_hydrocurage" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_changement_de_parcourt">Changement de parcourt</label>
-                <div class="help-block text-left">(Appui bureau d'étude non efficace)</div>
-                <select class="form-control" id="pblq4_changement_de_parcourt" name="pblq4_changement_de_parcourt" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_changement_de_parcourt">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_changement_de_parcourt" name="pblq4_observation_changement_de_parcourt" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_fouille_ponctuelle">Fouille ponctuelle</label>
-                <div class="help-block text-left">(Dans le cas ou le point de blocage inférieur à 1ML)</div>
-                <select class="form-control" id="pblq4_fouille_ponctuelle" name="pblq4_fouille_ponctuelle" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_fouille_ponctuelle">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_fouille_ponctuelle" name="pblq4_observation_fouille_ponctuelle" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_genie_civil">Génie civil</label>
-                <div class="help-block text-left">(Cas ou la fouille ponctuelle ne permet pas de palier au probléme)</div>
-                <select class="form-control" id="pblq4_genie_civil" name="pblq4_genie_civil" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_genie_civil">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_genie_civil" name="pblq4_observation_genie_civil" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_negociation_avec_le_gestionnaire_prive">Négociation avec le géstionnaire privé</label>
-                <div class="help-block text-left">(Indiquer toutes les informations disponibles)</div>
-                <select class="form-control" id="pblq4_negociation_avec_le_gestionnaire_prive" name="pblq4_negociation_avec_le_gestionnaire_prive" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectPBLQDefaultN::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
-                    }
-                    ?>
-                </select>
-                <label for="pblq4_observation_negociation_avec_le_gestionnaire_prive">Observation</label>
-                <textarea class="form-control" id="pblq4_observation_negociation_avec_le_gestionnaire_prive" name="pblq4_observation_negociation_avec_le_gestionnaire_prive" rows="6" placeholder="Observation.."></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_accompagnement_FREE">Accompagnement FREE</label>
-                <select class="form-control" id="pblq4_accompagnement_FREE" name="pblq4_accompagnement_FREE" size="1">
-                    <option value="" selected>Séléctionnez une valeur</option>
-                    <?php
-                    $results = SelectOk::all();
-                    foreach($results as $result) {
-                        echo "<option value=\"$result->id_ok\">$result->lib_ok</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <label for="pblq4_commentaires_supplementaire">Commentaires supplémentaires <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="pblq4_commentaires_supplementaire" name="pblq4_commentaires_supplementaire" rows="6" placeholder="Commentaires.."></textarea>
-            </div>
-        </div>
-        <div class="col-sm-8 col-sm-offset-2">
-            <div class='alert alert-success' id='message_pblq4_update' role='alert'>
-            </div>
-        </div>
-        <div class="block-content block-content-mini block-content-full border-t">
-            <div class="row">
-                <div class="col-xs-6">
-                    <!--<button class="wizard-prev btn btn-warning" type="button"><i class="fa fa-arrow-circle-o-left"></i> Previous</button>-->
-                </div>
-                <div class="col-xs-6 text-right">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Fermer</button>
-                    <button class="btn btn-success" type="button" id="update_pblq4">Valider <i class="fa fa-check"></i></button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-</div>
+                                            </select>
+                                            <label for="pblq2_observation_probleme_d_acces">Observation</label>
+                                            <textarea class="form-control" id="pblq2_observation_probleme_d_acces" name="pblq2_observation_probleme_d_acces" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq2_autre_point_de_blocage">Autre point de blocage(décrire au mieux le point)</label>
+                                            <textarea class="form-control" id="pblq2_autre_point_de_blocage" name="pblq2_autre_point_de_blocage" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <div class='alert alert-success' id='message_pblq2_update' role='alert'>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-mini block-content-full border-t">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <!--<button class="wizard-prev btn btn-warning" type="button"><i class="fa fa-arrow-circle-o-left"></i> Previous</button>-->
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Fermer</button>
+                                                <button class="btn btn-success" type="button" id="update_pblq2">Valider <i class="fa fa-check"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="pblq3_update_tab">
+                                <form id="info_pblq_uform3" class="js-form1 form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_aiguillage_au_compresseur">Aiguillage au compresseur</label>
+                                            <div class="help-block text-left">(Min 5000L)</div>
+                                            <select class="form-control" id="pblq3_aiguillage_au_compresseur" name="pblq3_aiguillage_au_compresseur" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_aiguillage_au_compresseur">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_aiguillage_au_compresseur" name="pblq3_observation_aiguillage_au_compresseur" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_aiguillage_avec_aiguille_de_11_13mm">Aiguillage avec aiguille de 11->13mm</label>
+                                            <div class="help-block text-left">(Préciser le diamètre)</div>
+                                            <select class="form-control" id="pblq3_aiguillage_avec_aiguille_de_11_13mm" name="pblq3_aiguillage_avec_aiguille_de_11_13mm" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_aiguillage_avec_aiguille_de_11_13mm">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_aiguillage_avec_aiguille_de_11_13mm" name="pblq3_observation_aiguillage_avec_aiguille_de_11_13mm" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_aiguillage_aux_cannes">Aiguillage aux cannes</label>
+                                            <select class="form-control" id="pblq3_aiguillage_aux_cannes" name="pblq3_aiguillage_aux_cannes" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_aiguillage_aux_cannes">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_aiguillage_aux_cannes" name="pblq3_observation_aiguillage_aux_cannes" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_hydrocurage">Hydrocurage</label>
+                                            <div class="help-block text-left">(Préciser le valideur)</div>
+                                            <select class="form-control" id="pblq3_hydrocurage" name="pblq3_hydrocurage" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_hydrocurage">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_hydrocurage" name="pblq3_observation_hydrocurage" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_identification_du_point_bloquant_au_metre">Identification du point bloquant au métré</label>
+                                            <div class="help-block text-left">(En mesurant au sol la partie de l'aiguille dans l'alvéole)</div>
+                                            <select class="form-control" id="pblq3_identification_du_point_bloquant_au_metre" name="pblq3_identification_du_point_bloquant_au_metre" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_identification_du_point_bloquant_au_metre">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_identification_du_point_bloquant_au_metre" name="pblq3_observation_identification_du_point_bloquant_au_metre" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_identification_a_la_sonde">Identification à la sonde</label>
+                                            <div class="help-block text-left">(Aiguille avec sonde et teledetecteur)</div>
+                                            <select class="form-control" id="pblq3_identification_a_la_sonde" name="pblq3_identification_a_la_sonde" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_identification_a_la_sonde">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_identification_a_la_sonde" name="pblq3_observation_identification_a_la_sonde" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq3_tentative_de_contact_du_proprietaire_ou_gestionnaire">Tentative de contact du propriétaire ou gestionnaire</label>
+                                            <div class="help-block text-left">(Préciser un contact s'il y eu identification)</div>
+                                            <select class="form-control" id="pblq3_tentative_de_contact_du_proprietaire_ou_gestionnaire" name="pblq3_tentative_de_contact_du_proprietaire_ou_gestionnaire" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefault::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_default\">$result->lib_pblq_default</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq3_observation_tentative_de_contact_du_proprietaire_ou_gestionnaire">Observation</label>
+                                            <textarea class="form-control" id="pblq3_observation_tentative_de_contact_du_proprietaire_ou_gestionnaire" name="pblq3_observation_tentative_de_contact_du_proprietaire_ou_gestionnaire" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <div class='alert alert-success' id='message_pblq3_update' role='alert'>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-mini block-content-full border-t">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <!--<button class="wizard-prev btn btn-warning" type="button"><i class="fa fa-arrow-circle-o-left"></i> Previous</button>-->
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Fermer</button>
+                                                <button class="btn btn-success" type="button" id="update_pblq3">Valider <i class="fa fa-check"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="pblq4_update_tab">
+                                <form id="info_pblq_uform4" class="js-form1 form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_aiguillage_au_compresseur">Aiguillage au compresseur</label>
+                                            <div class="help-block text-left">(Min 5000L)</div>
+                                            <select class="form-control" id="pblq4_aiguillage_au_compresseur" name="pblq4_aiguillage_au_compresseur" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_aiguillage_au_compresseur">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_aiguillage_au_compresseur" name="pblq4_observation_aiguillage_au_compresseur" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_aiguillage_avec_aiguille">Aiguillage avec aiguille de 13mm</label>
+                                            <select class="form-control" id="pblq4_aiguillage_avec_aiguille" name="pblq4_aiguillage_avec_aiguille" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_aiguillage_avec_aiguille_de_13mm">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_aiguillage_avec_aiguille_de_13mm" name="pblq4_observation_aiguillage_avec_aiguille_de_13mm" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_aiguillage_aux_cannes">Aiguillage aux cannes</label>
+                                            <select class="form-control" id="pblq4_aiguillage_aux_cannes" name="pblq4_aiguillage_aux_cannes" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_aiguillage_aux_cannes">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_aiguillage_aux_cannes" name="pblq4_observation_aiguillage_aux_cannes" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_hydrocurage">Hydrocurage</label>
+                                            <select class="form-control" id="pblq4_hydrocurage" name="pblq4_hydrocurage" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_hydrocurage">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_hydrocurage" name="pblq4_observation_hydrocurage" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_changement_de_parcourt">Changement de parcourt</label>
+                                            <div class="help-block text-left">(Appui bureau d'étude non efficace)</div>
+                                            <select class="form-control" id="pblq4_changement_de_parcourt" name="pblq4_changement_de_parcourt" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_changement_de_parcourt">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_changement_de_parcourt" name="pblq4_observation_changement_de_parcourt" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_fouille_ponctuelle">Fouille ponctuelle</label>
+                                            <div class="help-block text-left">(Dans le cas ou le point de blocage inférieur à 1ML)</div>
+                                            <select class="form-control" id="pblq4_fouille_ponctuelle" name="pblq4_fouille_ponctuelle" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_fouille_ponctuelle">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_fouille_ponctuelle" name="pblq4_observation_fouille_ponctuelle" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_genie_civil">Génie civil</label>
+                                            <div class="help-block text-left">(Cas ou la fouille ponctuelle ne permet pas de palier au probléme)</div>
+                                            <select class="form-control" id="pblq4_genie_civil" name="pblq4_genie_civil" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_genie_civil">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_genie_civil" name="pblq4_observation_genie_civil" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_negociation_avec_le_gestionnaire_prive">Négociation avec le géstionnaire privé</label>
+                                            <div class="help-block text-left">(Indiquer toutes les informations disponibles)</div>
+                                            <select class="form-control" id="pblq4_negociation_avec_le_gestionnaire_prive" name="pblq4_negociation_avec_le_gestionnaire_prive" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectPBLQDefaultN::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_pblq_defaultn\">$result->lib_pblq_defaultn</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="pblq4_observation_negociation_avec_le_gestionnaire_prive">Observation</label>
+                                            <textarea class="form-control" id="pblq4_observation_negociation_avec_le_gestionnaire_prive" name="pblq4_observation_negociation_avec_le_gestionnaire_prive" rows="6" placeholder="Observation.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_accompagnement_FREE">Accompagnement FREE</label>
+                                            <select class="form-control" id="pblq4_accompagnement_FREE" name="pblq4_accompagnement_FREE" size="1">
+                                                <option value="" selected>Séléctionnez une valeur</option>
+                                                <?php
+                                                $results = SelectOk::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_ok\">$result->lib_ok</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-2">
+                                            <label for="pblq4_commentaires_supplementaire">Commentaires supplémentaires <span class="text-danger">*</span></label>
+                                            <textarea class="form-control" id="pblq4_commentaires_supplementaire" name="pblq4_commentaires_supplementaire" rows="6" placeholder="Commentaires.."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <div class='alert alert-success' id='message_pblq4_update' role='alert'>
+                                        </div>
+                                    </div>
+                                    <div class="block-content block-content-mini block-content-full border-t">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <!--<button class="wizard-prev btn btn-warning" type="button"><i class="fa fa-arrow-circle-o-left"></i> Previous</button>-->
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <button class="btn btn-primary" type="button" data-dismiss="modal"><i class="fa fa-close"></i> Fermer</button>
+                                                <button class="btn btn-success" type="button" id="update_pblq4">Valider <i class="fa fa-check"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 </div>
 </div>
 </div>
@@ -629,6 +645,12 @@
 
             upblq1_formdata['suffix'] = 'pblq1';
             upblq1_formdata['idp'] = pblq_dt.row('.selected').data().id_point_bloquant;
+
+
+            pblq1_formdata['apblq1_id_utilisateur'] = <?= $connectedProfil->profil->id_utilisateur?>;
+            pblq1_formdata['apblq1_id_entreprise'] = pblq_dt.row('.selected').data().id_entreprise;
+            pblq1_formdata['apblq1_id_equipe_stt'] = pblq_dt.row('.selected').data().id_equipe_stt;
+            pblq1_formdata['apblq1_nature_travaux'] = pblq_dt.row('.selected').data().pblq1_nature_travaux;
 
             $.ajax({
                 method: "POST",
