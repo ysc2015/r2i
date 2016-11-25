@@ -240,7 +240,7 @@
                     <button id="id_sous_projet_transport_tirage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
                     <button id="id_sous_projet_transport_tirage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_transport_tirage_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
-
+                    <button id="id_sous_projet_transport_tirage_blq" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#blq-modal' data-backdrop="static" data-keyboard="false" type="button"><i class="fa fa-question push-5-r"></i> BLQ</button>
                 </div>
             </div>
         </div>
@@ -445,6 +445,18 @@
                 App.showMessage(msg, '#message_transport_tirage');
             });
         });
+
+        $("#id_sous_projet_transport_tirage_blq").click(function () {
+            if(!$('#blq_block').hasClass('block-opt-hidden')) {
+                $('#blq_block').addClass('block-opt-hidden');
+            }
+            if(!$('#blq2_block').hasClass('block-opt-hidden')) {
+                $('#blq2_block').addClass('block-opt-hidden');
+            }
+
+            blq_ot_dt.ajax.url( 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet')+'&tentree=transporttirage' ).load();
+        });
+
         $("#id_lineaire_transport_tirage_btn").click(function () {
 
             if ( $( "#tt_lineare_groupe" ).is( ":hidden" ) ) {

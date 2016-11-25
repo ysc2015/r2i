@@ -202,10 +202,9 @@
                 <div class="col-md-12">
                     <button id="id_sous_projet_distribution_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                     <button id="id_sous_projet_distribution_aiguillage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
-
                     <button id="id_sous_projet_distribution_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_distribution_aiguillage_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
-
+                    <button id="id_sous_projet_distribution_aiguillage_blq" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#blq-modal' data-backdrop="static" data-keyboard="false" type="button"><i class="fa fa-question push-5-r"></i> BLQ</button>
                 </div>
             </div>
         </div>
@@ -408,6 +407,17 @@
                 $("#rdistribution_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_distribution_aiguillage');
             });
+        });
+
+        $("#id_sous_projet_distribution_aiguillage_blq").click(function () {
+            if(!$('#blq_block').hasClass('block-opt-hidden')) {
+                $('#blq_block').addClass('block-opt-hidden');
+            }
+            if(!$('#blq2_block').hasClass('block-opt-hidden')) {
+                $('#blq2_block').addClass('block-opt-hidden');
+            }
+
+            blq_ot_dt.ajax.url( 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet')+'&tentree=distributionaiguillage' ).load();
         });
 
         $("#id_lineaire_distribution_aiguillage_btn").click(function () {
