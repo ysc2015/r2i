@@ -43,7 +43,7 @@ switch($page)
         }
         return json_decode(json_encode(array("header"=>"Sous projet",
             "subheader"=>"Avancements",
-            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".$nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone)."</li>")));
+            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".($sousProjet !== NULL ? $nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone):"")."</li>")));
         break;
 
     case "ot":
