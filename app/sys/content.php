@@ -234,6 +234,7 @@ switch ($page) {
 
 ?>
 
+<?php if(isset($page) && $page == "sousprojet") {?>
 <div class="modal fade" id="liste_tache_osa" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -281,10 +282,6 @@ switch ($page) {
         </div>
     </div>
 </div>
-
-
-
-
 <div class="modal fade" id="blq-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -414,7 +411,7 @@ switch ($page) {
 
         $('#affecte_tache_osa').click(function(){
             idligne = (tache_dt.row('.selected').data()!=undefined?tache_dt.row('.selected').data()[0]:0);
-             rc2k.osa.ui.tache.affecter({
+            rc2k.osa.ui.tache.affecter({
                 idt : idligne
             });
 
@@ -471,4 +468,4 @@ switch ($page) {
         } );
 
     } );
-</script>
+<?php } ?>
