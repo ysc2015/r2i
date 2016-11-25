@@ -6,18 +6,18 @@
 
 extract($_GET);
 
-$table = array("point_bloquant as t1","point_bloquant_type_de_blocage as t2","point_bloquant_moyens_mis_en_oeuvre as t3","point_bloquant_solutions_preconisees as t4");
-if(isset($idot) && !empty($idot)) {
+$table = array("point_bloquant as t1","point_bloquant_type_de_blocage as t2","point_bloquant_moyens_mis_en_oeuvre as t3","point_bloquant_solutions_preconisees as t4","chambre as t5","ressource as t6","ordre_de_travail as t7","utilisateur as t8","entreprises_stt as t9","equipe_stt as t10");
+/*if(isset($idot) && !empty($idot)) {
     $table[] = "chambre as t5";
     $table[] = "ressource as t6";
-}
+}*/
 $columns = array(
     array( "db" => "t1.id_point_bloquant", "dt" => 'id_point_bloquant' ),
     array( "db" => "t1.id_chambre as pblq1_id_chambre", "dt" => 'pblq1_id_chambre' ),
     array( "db" => "t1.date_controle as pblq1_date_controle", "dt" => 'pblq1_date_controle' ),
-    array( "db" => "t1.utilisateur as pblq1_utilisateur", "dt" => 'pblq1_utilisateur' ),
-    array( "db" => "t1.entreprise as pblq1_entreprise", "dt" => 'pblq1_entreprise' ),
-    array( "db" => "t1.responsable as pblq1_responsable", "dt" => 'pblq1_responsable' ),
+    array( "db" => "t1.id_utilisateur as pblq1_utilisateur", "dt" => 'pblq1_utilisateur' ),
+    array( "db" => "t1.id_entreprise as pblq1_entreprise", "dt" => 'pblq1_entreprise' ),
+    array( "db" => "t1.id_equipe_stt as pblq1_responsable", "dt" => 'pblq1_responsable' ),
     array( "db" => "t1.adresse as pblq1_adresse", "dt" => 'pblq1_adresse' ),
     array( "db" => "t1.ref_chantier as pblq1_ref_chantier", "dt" => 'pblq1_ref_chantier' ),
     array( "db" => "t1.nature_travaux as pblq1_nature_travaux", "dt" => 'pblq1_nature_travaux' ),
@@ -78,20 +78,29 @@ $columns = array(
     array( "db" => "t4.observation_negociation_avec_le_gestionnaire_prive as pblq4_observation_negociation_avec_le_gestionnaire_prive", "dt" => 'pblq4_observation_negociation_avec_le_gestionnaire_prive' ),
     array( "db" => "t4.accompagnement_FREE as pblq4_accompagnement_FREE", "dt" => 'pblq4_accompagnement_FREE' ),
     array( "db" => "t4.observation_accompagnement_FREE as pblq4_observation_accompagnement_FREE", "dt" => 'pblq4_observation_accompagnement_FREE' ),
-    array( "db" => "t4.commentaires_supplementaire as pblq4_commentaires_supplementaire", "dt" => 'pblq4_commentaires_supplementaire' )
+    array( "db" => "t4.commentaires_supplementaire as pblq4_commentaires_supplementaire", "dt" => 'pblq4_commentaires_supplementaire' ),
+    array( "db" => "t8.prenom_utilisateur", "dt" => 'prenom_utilisateur' ),
+    array( "db" => "t8.nom_utilisateur", "dt" => 'nom_utilisateur' ),
+    array( "db" => "t9.nom as entname", "dt" => 'entname' ),
+    array( "db" => "t10.nom", "dt" => 'nom' ),
+    array( "db" => "t10.prenom", "dt" => 'prenom' )
 
 );
 
-$condition = "t1.id_point_bloquant = t2.id_point_bloquant AND t1.id_point_bloquant = t3.id_point_bloquant AND t1.id_point_bloquant = t4.id_point_bloquant";
+$condition = "t1.id_point_bloquant = t2.id_point_bloquant AND t1.id_point_bloquant = t3.id_point_bloquant AND t1.id_point_bloquant = t4.id_point_bloquant AND t1.id_chambre=t5.id_chambre AND t5.id_ressource = t6.id_ressource AND t6.id_ordre_de_travail=t7.id_ordre_de_travail AND t1.id_utilisateur = t8.id_utilisateur AND t1.id_entreprise = t9.id_entreprise AND t1.id_equipe_stt = t10.id_equipe_stt";
 
 if(isset($idchambre) && !empty($idchambre)) {
     $condition .=" AND t1.id_chambre=$idchambre";
-} else {
+} /*else {
     if(isset($idot) && !empty($idot)) {
         $condition .=" AND t1.id_chambre=t5.id_chambre AND t5.id_ressource = t6.id_ressource AND t6.id_ordre_de_travail=$idot";
     } else {
         $condition .=" AND t1.id_chambre=-1";
     }
+}*/
+
+else {
+    $condition .=" AND t1.id_chambre=-1";
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_point_bloquant",$columns,$condition));

@@ -9,7 +9,7 @@
                             <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Modifier point bloquant</h3>
+                    <h3 class="block-title">Modifier point bloquantz</h3>
                 </div>
                 <div class="block-content">
                     <div class="block">
@@ -33,24 +33,48 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="pblq1_utilisateur">Effectué par <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_utilisateur" name="pblq1_utilisateur">
+                                            <label for="pblq1_id_utilisateur">Effectué par <span class="text-danger">*</span></label>
+                                            <select class="form-control " id="pblq1_id_utilisateur" name="pblq1_id_utilisateur">
+                                                <option value="" selected="">Sélectionnez un utilisateur</option>
+                                                <?php
+                                                $results = Utilisateur::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_utilisateur\">".$result->prenom_utilisateur." ".$result->nom_utilisateur."</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="pblq1_entreprise">Entreprise <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_entreprise" name="pblq1_entreprise">
+                                            <label for="pblq1_id_entreprise">Entreprise <span class="text-danger">*</span></label>
+                                            <select class="form-control " id="pblq1_id_entreprise" name="pblq1_id_entreprise">
+                                                <option value="" selected="">Sélectionnez une entreprise</option>
+                                                <?php
+                                                $results = EntrepriseSTT::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_entreprise\">$result->nom</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
-                                            <label for="pblq1_responsable">Résponsable d'équipe <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_responsable" name="pblq1_responsable">
+                                            <label for="pblq1_id_equipe_stt">Résponsable d'équipe <span class="text-danger">*</span></label>
+                                            <select class="form-control " id="pblq1_id_equipe_stt" name="pblq1_id_equipe_stt">
+                                                <option value="" selected="">Sélectionnez une équipe</option>
+                                                <?php
+                                                $results = EquipeSTT::all();
+                                                foreach($results as $result) {
+                                                    echo "<option value=\"$result->id_equipe_stt\">$result->prenom $result->nom</option>";
+                                                }
+                                                ?>
+                                            </select>
                                             <!--</div>-->
                                         </div>
                                     </div>
@@ -73,15 +97,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <label for="pblq1_nature_travaux">Nature des travaux <span class="text-danger">*</span></label>
-                                            <select class="form-control" id="pblq1_nature_travaux" name="pblq1_nature_travaux" size="1">
-                                                <option value="" selected>Séléctionnez une valeur</option>
-                                                <?php
-                                                $results = SelectNatureTravaux::all();
-                                                foreach($results as $result) {
-                                                    echo "<option value=\"$result->id_nature_travaux\">$result->lib_nature_travaux</option>";
-                                                }
-                                                ?>
-                                            </select>
+                                            <input class="form-control" type="text" id="pblq1_nature_travaux" name="pblq1_nature_travaux">
                                         </div>
                                     </div>
                                     <div class="form-group">
