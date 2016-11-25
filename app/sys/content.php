@@ -468,4 +468,5 @@ switch ($page) {
         } );
 
     } );
+</script>
 <?php } ?>
