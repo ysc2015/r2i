@@ -215,9 +215,9 @@
                 <div class="col-xs-12">
                     <button id="id_sous_projet_transport_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
                     <button id="id_sous_projet_transport_aiguillage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
-                     <button id="id_sous_projet_transport_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
+                    <button id="id_sous_projet_transport_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_transport_aiguillage_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
-
+                    <button id="id_sous_projet_transport_aiguillage_blq" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#blq-modal' data-backdrop="static" data-keyboard="false" type="button"><i class="fa fa-question push-5-r"></i> BLQ</button>
                 </div>
 
             </div>
@@ -420,6 +420,17 @@
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_aiguillage');
             });
+        });
+
+        $("#id_sous_projet_transport_aiguillage_blq").click(function () {
+            if(!$('#blq_block').hasClass('block-opt-hidden')) {
+                $('#blq_block').addClass('block-opt-hidden');
+            }
+            if(!$('#blq2_block').hasClass('block-opt-hidden')) {
+                $('#blq2_block').addClass('block-opt-hidden');
+            }
+
+            blq_ot_dt.ajax.url( 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet')+'&tentree=transportaiguillage' ).load();
         });
 
         $("#id_lineaire_transport_aiguillage_btn").click(function () {

@@ -282,7 +282,113 @@ switch ($page) {
     </div>
 </div>
 
+
+
+
+<div class="modal fade" id="blq-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="block-header bg-primary">
+                <ul class="block-options">
+                    <li>
+                        <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                    </li>
+                </ul>
+                <h3 class="block-title">Gestion BLQ</h3>
+            </div>
+            <div class="block-content">
+                <div class="block block-themed block-opt-hidden" id="blq_block">
+                    <div class="block-header bg-info">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">ordres de travail</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="block" id="blq_block_content">
+                            <div class="block-content table-responsive">
+                                <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+                                <table id="blq_ot_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>idot</th>
+                                        <th>idsp</th>
+                                        <th>tentree</th>
+                                        <th>type</th>
+                                        <th>commentaire</th>
+                                        <th>état</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>idot</th>
+                                        <th>idsp</th>
+                                        <th>tentree</th>
+                                        <th>type</th>
+                                        <th>commentaire</th>
+                                        <th>état</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                <div class="block block-themed block-opt-hidden" id="blq2_block">
+                    <div class="block-header bg-info">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">Questions</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="block" id="blq2_block_content">
+                            <ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">
+                                <li class="active">
+                                    <a href="#btabs-alt-static-justified-q1"><i class="fa fa-question-circle"></i> Type1</a>
+                                </li>
+                                <li class="">
+                                    <a href="#btabs-alt-static-justified-q2"><i class="fa fa-pencil"></i> Type2</a>
+                                </li>
+                            </ul>
+                            <div class="block-content tab-content">
+                                <div class="tab-pane active" id="btabs-alt-static-justified-q1">
+                                    <h4 class="font-w300 push-15">Q1</h4>
+                                    <p>...</p>
+                                </div>
+                                <div class="tab-pane" id="btabs-alt-static-justified-q2">
+                                    <h4 class="font-w300 push-15">Q2</h4>
+                                    <p>...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+
+    var blq_ot_dt;//traitement blq rabii
+
     $(document).ready(function() {
 
 
@@ -322,6 +428,47 @@ switch ($page) {
             });
 
         })
+
+        //traitement blq rabii
+
+        blq_ot_dt = $('#blq_ot_table').DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet')+'&tentree='
+            },
+            "columns": [
+                { "data": "id_ordre_de_travail" },
+                { "data": "id_sous_projet" },
+                { "data": "type_entree" },
+                { "data": "type_ot" },/*lib_type_ordre_travail*/
+                { "data": "commentaire" },
+                { "data": "lib_etat_ot" },
+                { "data": "id_type_ordre_travail" }
+            ],
+            "columnDefs": [
+                { "targets": [ 0,1,2,4,6 ], "visible": false, "searchable": false }
+            ],
+            "order": [[6, 'asc']]
+            ,
+            "drawCallback": function( /*settings*/ ) {
+            }
+        } );
+
+        $('#blq_ot_table tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                blq_ot_dt.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+
+        } );
 
     } );
 </script>
