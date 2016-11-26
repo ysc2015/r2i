@@ -238,8 +238,8 @@ function checkFileStructure($inputFileName) {
  function loadExcelDEF_CABLE($db,$inputFileName) {
 
      $tabreturn = [];
-    include("config/config.php");
-     $bdd = bdd_connect();
+    //include("config/config.php");
+    // $bdd = bdd_connect();
 
     try {
         $excel = openExcelFile($inputFileName);
