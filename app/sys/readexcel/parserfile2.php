@@ -257,7 +257,7 @@ function checkFileStructure($inputFileName) {
 
             if($value=="DEF_BPE"){
                // $bdd->query("TRUNCATE testDEF_BPE");
-
+die("dedede");
                 $row = 5;
                 $max = count($header);
                 while($read = getLine($sheet,$row,13)) {
