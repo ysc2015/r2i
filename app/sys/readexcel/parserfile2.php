@@ -262,13 +262,13 @@ function checkFileStructure($inputFileName) {
                 $max = count($header);
                 while($read = getLine($sheet,$row,13)) {
                     if( strstr($read[0], "PDB")) {
-                        $tab[$i][0] = $read[12];//nom
+                       // $tab[$i][0] = $read[12];//nom
                         //$tab[$i][1] = $read[1];//cpaacite
                         //$tab[$i][2] = $read[8];//nb_cdi_sortant
                         //$tab[$i][3] = $read[9];//nb_cad_sortant
                         //$tab[$i][4] = $read[12];//capa_cable_entrant
 
-                        print_r($tab[$i]);         die( $read[12]);
+                                 die( $read[12]);
                  //       $bdd->query("insert into testDEF_BPE (id,nom,capacite,nb_cdi_sortant,nb_cad_sortant,capa_cable_entrant) values(NULL,'" . $read[0] . "','" . $read[1] . "','" . $read[8] . "','" . $read[9] . "','" . $read[12] . "')");
                         $i++;
 
