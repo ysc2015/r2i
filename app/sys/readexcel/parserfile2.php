@@ -496,5 +496,5 @@ function transform(PDO $pdo,$userId,$taskId,$sheetId) {
 
 //ini_set('max_execution_time',0);
 set_time_limit(0);
-loadExcelDEF_CABLE(null,'/opt/lampp/htdocs/r2i/app/sys/readexcel/file/PDS_PEI69-02-test.xls');
+loadExcelDEF_CABLE(null,'http://sd-83414.dedibox.fr/svn/r2i/app/sys/readexcel/file/PDS_PEI69-02-test.xls');
 //loadExcelDEF_CABLE(null,'/opt/lampp/htdocs/congresm/pds/file/PDS_PEI69-02-test.xls');
