@@ -26,6 +26,7 @@ if($connectedProfil){
     ?>
     <script>
         window.token = "<?=base64_encode(md5($connectedProfil->email_utilisateur)."::".md5($connectedProfil->pass_utilisateur))?>";
+        OSA_SERVER = "<?=OSA_SERVER?>";
     </script>
 <?php
 }
