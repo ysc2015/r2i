@@ -33,11 +33,11 @@ $condition = "t1.type_site_origine=t2.id_site_origine_type AND t1.etat_site_orig
 
 
 switch($connectedProfil->profil->profil->shortlib) {
-    case "bei" :
+    /*case "bei" :
         $table[] = "sous_projet as t6";
         $condition .=" AND t1.id_projet = t6.id_projet";
         $condition .=" AND t6.users_in  LIKE '%|".$connectedProfil->profil->id_utilisateur."|%'";
-        break;
+        break;*/
 
     case "cdp" :
         $condition .=" AND t1.id_chef_projet = ".$connectedProfil->profil->id_utilisateur;
