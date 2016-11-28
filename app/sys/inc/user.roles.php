@@ -498,7 +498,7 @@ class stt extends baseUser {
                 "ot" => array("liste"),
                 "deot" => array("deot"),
                 "infosot" => array("calendar"),
-                "chambreot" => array("liste"),
+                "chambreot" => array("liste","update","pointbloquant"),
                 "synoptique" => array("synoptique"),
                 "devis" => array("formdevis"),
                 "traitementot" => array("traitement")
