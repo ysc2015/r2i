@@ -7,7 +7,7 @@
 	w.rc2k = {
 		dispatch : function(a){setTimeout((function(){this.postMessage('init','*');}).bind(a),2000)},
 		osa : {
-			url: OSA_SERVER+'osa/',
+			url: window.OSA_SERVER+'osa/',
 			ui: {
 				tache: {
 					list : function(obj){
