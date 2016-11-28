@@ -56,7 +56,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                                             idp : areponse["extra"],
                                             ide : idetape,
                                             etape : typeetape,
-                                            url : OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+                                            url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
 
                                         });
                                     }
@@ -68,7 +68,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                                 idp : e.id,
                                 ide : idetape,
                                 etape : typeetape,
-                                url : OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+                                url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
                             });
                         }
                     }else{
