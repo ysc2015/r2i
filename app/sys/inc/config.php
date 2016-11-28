@@ -8,6 +8,7 @@ $server = "localhost";
 $db_name = "r2i";
 $user = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";;
 $password = ($_SERVER['SERVER_NAME'] == "localhost") ? "" : "r2i";
+define('OSA_SERVER',"http://sd-83414.dedibox.fr/");
 
 try {
     $db = new PDO("mysql:host=$server;dbname=$db_name", $user, $password,array( PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
