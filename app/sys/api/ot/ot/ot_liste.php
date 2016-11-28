@@ -44,5 +44,5 @@ if(!isset($tab_imei)) {
     }
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join etat_ot as etat on t1.id_etat_ot = etat.id_etat_ot"));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,"left join etat_ot as etat on t1.id_etat_ot = etat.id_etat_ot"));
 ?>

@@ -32,9 +32,9 @@ if(isset($qgis)) {
         $condition .= " AND t1.id_projet=$idp";
     }
     switch($connectedProfil->profil->profil->shortlib) {
-        case "bei" :
+        /*case "bei" :
             $condition .=" AND t1.users_in  LIKE '%|".$connectedProfil->profil->id_utilisateur."|%'";
-            break;
+            break;*/
 
         case "cdp" :
             $condition .=" AND t2.id_chef_projet = ".$connectedProfil->profil->id_utilisateur;

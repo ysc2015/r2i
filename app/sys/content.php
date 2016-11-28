@@ -31,13 +31,13 @@ switch ($page) {
         }
         if($sousProjet !== NULL) {
             switch($connectedProfil->profil->profil->shortlib) {
-                case "bei":
+                /*case "bei":
                     if(in_array($connectedProfil->profil->id_utilisateur,explode("|",trim($sousProjet->users_in,"|")))) {
                         $connectedProfil->sousprojet();
                     } else {
                         $connectedProfil->ressourceAccessDenied();
                     }
-                    break;
+                    break;*/
                 case "cdp":
                     if($sousProjet->projet->id_chef_projet === $connectedProfil->profil->id_utilisateur ) {
                         $connectedProfil->sousprojet();
@@ -350,22 +350,50 @@ switch ($page) {
                                 <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
                             </li>
                         </ul>
-                        <h3 class="block-title">Questions</h3>
+                        <h3 class="block-title">BLQ / PBC</h3>
                     </div>
                     <div class="block-content">
                         <div class="block" id="blq2_block_content">
                             <ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">
                                 <li class="active">
-                                    <a href="#btabs-alt-static-justified-q1"><i class="fa fa-question-circle"></i> Type1</a>
+                                    <a href="#btabs-alt-static-justified-q1"><i class="fa fa-question-circle"></i> Infos complémentaires</a>
                                 </li>
                                 <li class="">
-                                    <a href="#btabs-alt-static-justified-q2"><i class="fa fa-pencil"></i> Type2</a>
+                                    <a href="#btabs-alt-static-justified-q2"><i class="fa fa-pencil"></i> Corrections</a>
                                 </li>
                             </ul>
                             <div class="block-content tab-content">
                                 <div class="tab-pane active" id="btabs-alt-static-justified-q1">
-                                    <h4 class="font-w300 push-15">Q1</h4>
-                                    <p>...</p>
+                                    <table id="blq_pbc_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>idot</th>
+                                            <th>type</th>
+                                            <th>snake</th>
+                                            <th>planche a3</th>
+                                            <th>chambre amont</th>
+                                            <th>chambre aval</th>
+                                            <th>question</th>
+                                            <th>reponse</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>idot</th>
+                                            <th>type</th>
+                                            <th>snake</th>
+                                            <th>planche a3</th>
+                                            <th>chambre amont</th>
+                                            <th>chambre aval</th>
+                                            <th>question</th>
+                                            <th>reponse</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                                 <div class="tab-pane" id="btabs-alt-static-justified-q2">
                                     <h4 class="font-w300 push-15">Q2</h4>
@@ -385,6 +413,7 @@ switch ($page) {
 <script>
 
     var blq_ot_dt;//traitement blq rabii
+    var blq_pbc_dt;//traitement blq rabii
 
     $(document).ready(function() {
 
@@ -451,6 +480,35 @@ switch ($page) {
                 { "targets": [ 0,1,2,4,6 ], "visible": false, "searchable": false }
             ],
             "order": [[6, 'asc']]
+            ,
+            "drawCallback": function( /*settings*/ ) {
+            }
+        } );
+        blq_pbc_dt = $('#blq_pbc_table').DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'api/ot/ot/ot_blq_pbc_liste.php?idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1)
+            },
+            "columns": [
+                { "data": "id_blq_pbc" },
+                { "data": "id_ordre_de_travail" },
+                { "data": "type" },
+                { "data": "snake" },
+                { "data": "planche_a3" },
+                { "data": "chambre_amont" },
+                { "data": "chambre_aval" },
+                { "data": "question_information" },
+                { "data": "reponse_ajustement" }
+            ],
+            "columnDefs": [
+                { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
+            ],
+            "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
             }
