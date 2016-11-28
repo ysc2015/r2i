@@ -12,6 +12,17 @@ include __DIR__."/app/sys/views/document/init.php";
 <!--[if IE 9]><html class="ie9 no-focus"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-focus"> <!--<![endif]-->
 <head>
+    <?php
+    if($connectedProfil){
+        ?>
+        <script>
+            window.token = "<?=base64_encode(md5($connectedProfil->email_utilisateur)."::".md5($connectedProfil->pass_utilisateur))?>";
+            window.OSA_SERVER = "<?=OSA_SERVER?>";
+        </script>
+        <?php
+    }
+
+    ?>
     <meta charset="utf-8">
 
     <title>R2I - Outils de gestion déploiement</title>
@@ -21,17 +32,7 @@ include __DIR__."/app/sys/views/document/init.php";
     <?php include "app/sys/views/document/assets.php"; ?>
 </head>
 <body>
-<?php
-if($connectedProfil){
-    ?>
-    <script>
-        window.token = "<?=base64_encode(md5($connectedProfil->email_utilisateur)."::".md5($connectedProfil->pass_utilisateur))?>";
-        window.OSA_SERVER = "<?=OSA_SERVER?>";
-    </script>
-<?php
-}
 
-?>
 
 <?php
 
