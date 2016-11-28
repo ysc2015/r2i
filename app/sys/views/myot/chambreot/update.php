@@ -1,0 +1,1 @@
+<button id="update_ch" class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier chambre</button>

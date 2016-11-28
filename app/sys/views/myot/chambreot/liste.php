@@ -41,7 +41,7 @@
 <!-- END Table chambre -->
 <script>
     var chambre_ot_dt;
-    var ch_btns = [];
+    var ch_btns = ["#open_ch","#update_ch","#add_pblq_show","#open_list_pblq"];
     $(document).ready(function() {
         chambre_ot_dt = $('#ot_chambre_table').DataTable( {
             "language": {
