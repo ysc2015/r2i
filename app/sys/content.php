@@ -282,6 +282,7 @@ switch ($page) {
         </div>
     </div>
 </div>
+<!--Gestion BLQ modal-->
 <div class="modal fade" id="blq-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -374,8 +375,7 @@ switch ($page) {
                                             <th>planche a3</th>
                                             <th>chambre amont</th>
                                             <th>chambre aval</th>
-                                            <th>question</th>
-                                            <th>reponse</th>
+                                            <th>question / reponse</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -389,8 +389,7 @@ switch ($page) {
                                             <th>planche a3</th>
                                             <th>chambre amont</th>
                                             <th>chambre aval</th>
-                                            <th>question</th>
-                                            <th>reponse</th>
+                                            <th>question / reponse</th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -409,8 +408,7 @@ switch ($page) {
                                             <th>planche a3</th>
                                             <th>chambre amont</th>
                                             <th>chambre aval</th>
-                                            <th>information</th>
-                                            <th>ajustement</th>
+                                            <th>information / ajustement</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -424,14 +422,13 @@ switch ($page) {
                                             <th>planche a3</th>
                                             <th>chambre amont</th>
                                             <th>chambre aval</th>
-                                            <th>information</th>
-                                            <th>ajustement</th>
+                                            <th>information / ajustement</th>
                                         </tr>
                                         </tfoot>
                                     </table>
-                                    <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
-                                    <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
-                                    <button id="delete_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer correction</button>
+                                    <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
+                                    <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
+                                    <button id="delete_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer correction</button>
                                 </div>
                             </div>
                         </div>
@@ -444,6 +441,65 @@ switch ($page) {
         </div>
     </div>
 </div>
+<!--end Gestion BLQ modal-->
+<!-- ajouter info/question Modal -->
+<div class="modal fade" id="add-info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">Ajouter question</h3>
+                    </div>
+                    <div class="block-content">
+                        <form class="js-validation-bootstrap form-horizontal" id="add_info_form">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="snake">Snake <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="snake" name="snake">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="planche_a3">Planche A3 <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="planche_a3" name="planche_a3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="chambre_amont">Chambre Amont <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="chambre_amont" name="chambre_amont">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="chambre_aval">Chambre Aval <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="chambre_aval" name="chambre_aval">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="question_information">Question <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="question_information" name="question_information" rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class='alert alert-success' id='message_info_add' role='alert' style="display: none;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary" id="save_info" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END ajouter info/question Modal -->
 <script>
 
     var blq_ot_dt;
@@ -451,6 +507,8 @@ switch ($page) {
     var blq_pbc_dt2;
     var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
     var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
+    var update_info = false;
+    var update_correction = false;
 
     $(document).ready(function() {
 
@@ -490,7 +548,7 @@ switch ($page) {
                 rc2k.osa.ws.tache.cloturer(idligne, function(){console.log(tache_dt.row('.selected'));  tache_dt.draw(false);});
             });
 
-        })
+        });
 
         //traitement blq rabii
 
@@ -542,8 +600,7 @@ switch ($page) {
                 { "data": "planche_a3" },
                 { "data": "chambre_amont" },
                 { "data": "chambre_aval" },
-                { "data": "question_information" },
-                { "data": "reponse_ajustement" }
+                { "data": "question_information" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
@@ -571,11 +628,16 @@ switch ($page) {
                 { "data": "planche_a3" },
                 { "data": "chambre_amont" },
                 { "data": "chambre_aval" },
-                { "data": "question_information" },
-                { "data": "reponse_ajustement" }
+                { "data": "question_information" }
             ],
             "columnDefs": [
-                { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
+                {
+                    "targets": 7,
+                    "render": function ( data, type, full, meta ) {
+                        return  '<button>voir information / ajustement</button>';
+                    }
+                }
             ],
             "order": [[0, 'desc']]
             ,
@@ -584,43 +646,70 @@ switch ($page) {
         } );
 
         $('#blq_ot_table tbody').on( 'click', 'tr', function () {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-            }
-            else {
-                blq_ot_dt.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
+            if(true) { //TODO check if dt is not empty
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    blq_ot_dt.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
             }
 
         } );
 
         $('#blq_pbc_table tbody').on( 'click', 'tr', function () {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-                $(blq_pbc_btns.join(',')).addClass('disabled');
-            }
-            else {
-                blq_pbc_dt.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
+            if(true) { //TODO check if dt is not empty
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    $(blq_pbc_btns.join(',')).addClass('disabled');
+                }
+                else {
+                    blq_pbc_dt.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
 
-                $(blq_pbc_btns.join(',')).removeClass('disabled');
+                    $(blq_pbc_btns.join(',')).removeClass('disabled');
+                }
             }
 
         } );
 
         $('#blq_pbc_table2 tbody').on( 'click', 'tr', function () {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-                $(blq_pbc_btns2.join(',')).addClass('disabled');
-            }
-            else {
-                blq_pbc_dt2.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
+            if(true) { //TODO check if dt is not empty
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    $(blq_pbc_btns2.join(',')).addClass('disabled');
+                }
+                else {
+                    blq_pbc_dt2.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
 
-                $(blq_pbc_btns2.join(',')).removeClass('disabled');
+                    $(blq_pbc_btns2.join(',')).removeClass('disabled');
+                }
             }
 
         } );
+
+        $('#add_pbc_show').click(function (){
+            update_info = false;
+        });
+        $('#save_info').click(function (){
+            console.log('save_info');
+        });
+        $('#mod_pbc_show').click(function (){
+            update_info = false;
+        });
+        $('#delete_pbc_show').click(function (){
+            console.log('delete_pbc_show');
+        });
+
+        $('#add-info').on('hidden.bs.modal', function () {
+            $('body').addClass('modal-open');
+            /*if(redraw_pblq) {
+                console.log('hidden.bs.modal redraw');
+                pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
+            }*/
+        })
 
     } );
 </script>
