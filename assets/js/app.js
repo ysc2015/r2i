@@ -497,12 +497,28 @@ var App = function() {
                         }
                         break;
                     case 'refresh_toggle':
-                        //console.log($elBlock.attr('id'));
                         switch ($elBlock.attr('id')) {
-                         /*case 'infozone_block' :
-                                SProjet.infozone.refresh();
-                                break;
-                            case 'gestionplaque_block' :
+                            case 'infozone_block' :
+                             console.log($('#infozone_block').find('.tab-pane.active').attr("id"));//ajax function on common.js file to add,$elBlock as parameter
+                             switch ($('#infozone_block').find('.tab-pane.active').attr("id")) {
+                                 case "nom_content" :
+                                     break;
+                                 case "infoplaque_content" :
+                                     break;
+                                 case "zone_content" :
+                                     break;
+                                 case "siteorigine_content" :
+                                     break;
+                                 default : break;
+                             }
+                             /*$elBlock.toggleClass('block-opt-refresh');
+                             if (jQuery('[data-toggle="block-option"][data-action="refresh_toggle"][data-action-mode="demo"]', $elBlock).length) {
+                                 setTimeout(function(){
+                                     $elBlock.removeClass('block-opt-refresh');
+                                 }, 2000);
+                             }*/
+                             break;
+                          /*case 'gestionplaque_block' :
                                 SProjet.gestionplaque.refresh();
                                 break
                             case 'preparationplaque_block' :
