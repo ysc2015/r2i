@@ -82,13 +82,13 @@ switch ($page) {
         }
         if($sousProjet !== NULL) {
             switch($connectedProfil->profil->profil->shortlib) {
-                case "bei":
+                /*case "bei":
                     if(in_array($connectedProfil->profil->id_utilisateur,explode("|",trim($sousProjet->users_in,"|")))) {
                         $connectedProfil->ot();
                     } else {
                         $connectedProfil->ressourceAccessDenied();
                     }
-                    break;
+                    break;*/
                 case "cdp":
                     if($sousProjet->projet->id_chef_projet === $connectedProfil->profil->id_utilisateur ) {
                         $connectedProfil->ot();
