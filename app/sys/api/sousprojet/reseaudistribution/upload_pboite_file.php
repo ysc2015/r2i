@@ -355,5 +355,172 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
     }
     return -1;
 }
+function loadExcelDEF_BPE_EBM($db,$inputFileName) {
+
+    $tabreturn = [];
+
+
+
+    try {
+        $excel = openExcelFile($inputFileName);
+
+        $arr = $excel->getSheetNames();
+        $tab=[];
+        $i=0;
+
+        foreach ($arr as $key => $value) {
+
+            $sheet = $excel->getSheetByName($value);
+            $header = getHeader($sheet);
+
+            //if(!strstr($value,'CTR')) continue;
+
+            if($value=="DEF_BPE"){
+                $db->query("TRUNCATE testDEF_BPE");
+
+                $row = 5;
+                $max = count($header);
+                while($read = getLine($sheet,$row,13)) {
+                    if( strstr($read[0], "PDB")) {
+                        $tab[$i][0] = strval($read[0]);//nom
+                        $tab[$i][1] = strval($read[1]);//cpaacite
+                        $tab[$i][2] = strval($read[8]);//nb_cdi_sortant
+                        $tab[$i][3] = strval($read[9]);//nb_cad_sortant
+                        $tab[$i][4] = strval(   $read[12]);//capa_cable_entrant
+
+                        $db->query("insert into testDEF_BPE (id,nom,capacite,nb_cdi_sortant,nb_cad_sortant,capa_cable_entrant) values(NULL,'" . $read[0] . "','" . $read[1] . "','" . $read[8] . "','" . $read[9] . "','" . $read[12] . "')");
+                        $i++;
+
+                    }
+                    $row++;
+                }
+
+
+
+                $Bordereaux = openExcelFile(__DIR__."/../../uploads/templates/EBM_PON_HRZ_indice_E.xlsx");
+                $sheetbordereaux = $Bordereaux->getSheetByName("EBM_PON_HRZ");
+                $cdisortant48 = 0;
+                $cdisortant72 = 0;
+                $cdisortant144 = 0;
+                $cdisortant288 = 0;
+                $cdisortant432 = 0;
+                $cdisortant720 = 0;
+
+                $somboitie720   = 0;
+                $somboitie432   = 0;
+                $somboitie288   = 0;
+                $somboitie144   = 0;
+                $somboitie72   = 0;
+                $somboitie48   = 0;
+
+                $LINTUBN14 = 0;
+                $LINTUBN18 = 0;
+                $LINTUBN25 = 0;
+                $capaFO48 = 0;
+                $capaFO72 = 0;
+                $capaFO144 = 0;
+                $capaFO288 = 0;
+                $capaFO432 = 0;
+                $capaFO720 = 0;
+
+                $reqselcap =  $db->query("SELECT count(nom) as somme_boitier,SUM(nb_cdi_sortant) as sommenb_cdi_sortant,capa_cable_entrant FROM `testDEF_BPE` group by capa_cable_entrant");
+                while ($selcap = $reqselcap->fetch()){
+                    print_r($selcap );
+                    switch ($selcap['capa_cable_entrant']){
+                        case '48':
+                            $cdisortant48   = $sheetbordereaux->getCell("L35")->setValue($selcap['sommenb_cdi_sortant']);
+                            $somboitie48    = $sheetbordereaux->getCell("L37")->setValue(ceil($selcap['somme_boitier']/60));
+                            break;
+                        case '72':
+                            $cdisortant72   = $sheetbordereaux->getCell("L34")->setValue($selcap['sommenb_cdi_sortant']);
+                            $somboitie72    = $sheetbordereaux->getCell("L39")->setValue($selcap['somme_boitier']);
+                            break;
+                        case '144' :
+                            $cdisortant144 = $sheetbordereaux->getCell("L33")->setValue($selcap['sommenb_cdi_sortant']);
+                            $val144 = (6 * $selcap['somme_boitier']) - $selcap['sommenb_cdi_sortant'];
+                            if($val144 < 0 ){
+                                $val144 = 0;
+                            }else{
+                                $val144 = ceil($val144 / 5 );
+                            }
+                            $somboitie144   = $sheetbordereaux->getCell("L50")->setValue($val144); //Soustraire le nombre total de CDI sortant par (6* le nombre de BPE 144) si le résultat est négatif mettre la valeur 0 sinon diviser le résultat par 5. Mettre la valeur dans la ligne 50 (Référence FREE TENIO-SKG3-7/10).
+                            break;
+                        case '288':
+                            $cdisortant288  = $sheetbordereaux->getCell("L32")->setValue($selcap['sommenb_cdi_sortant']);
+                            $somboitie288   = $sheetbordereaux->getCell("L47")->setValue($selcap['somme_boitier']);
+                            break;
+                        case '432':
+                            $cdisortant432 = $sheetbordereaux->getCell("L31")->setValue($selcap['sommenb_cdi_sortant']);
+
+                            break;
+                        case '720':
+                            $cdisortant720 = $sheetbordereaux->getCell("L30")->setValue($selcap['sommenb_cdi_sortant']);
+
+                            break;
+
+
+                    }
+                }
+
+                $stm = $db->prepare("INSERT INTO `detail_raccordement_cdi` (`id_detail_raccordement_cdi`, `cdisortant48`, `cdisortant72`, `cdisortant144`, `cdisortant288`, `cdisortant432`, `cdisortant720`, `somboitie48`, `somboitie72`, `somboitie144`, `somboitie288`, `somboitie432`, `somboitie720`, `LINTUBN14`, `LINTUBN18`, `LINTUBN25`, `capaFO48`, `capaFO72`, `capaFO144`, `capaFO288`, `capaFO432`, `capaFO720`) VALUES (
+                    NULL, :cdisortant48, :cdisortant72, :cdisortant144, :cdisortant288, :cdisortant432, :cdisortant720, :somboitie48, :somboitie72, 
+                :somboitie144, :somboitie288, :somboitie432, :somboitie720, :LINTUBN14, :LINTUBN18, :LINTUBN25, :capaFO48, :capaFO72, :capaFO144, :capaFO288, :capaFO432, :capaFO720)");
+                $stm->bindParam(':cdisortant48',$cdisortant48);
+                $stm->bindParam(':cdisortant72',$cdisortant72);
+                $stm->bindParam(':cdisortant144',$cdisortant144);
+                $stm->bindParam(':cdisortant288',$cdisortant288);
+                $stm->bindParam(':cdisortant432',$cdisortant432);
+                $stm->bindParam(':cdisortant720',$cdisortant720);
+                $stm->bindParam(':somboitie48',$somboitie48);
+                $stm->bindParam(':somboitie72',$somboitie72);
+                $stm->bindParam(':somboitie144',$somboitie144);
+                $stm->bindParam(':somboitie288',$somboitie288);
+                $stm->bindParam(':somboitie432',$somboitie432);
+                $stm->bindParam(':somboitie720',$somboitie720);
+                $stm->bindParam(':LINTUBN14',$LINTUBN14);
+                $stm->bindParam(':LINTUBN18',$LINTUBN18);
+                $stm->bindParam(':LINTUBN25',$LINTUBN25);
+                $stm->bindParam(':capaFO48',$capaFO48);
+                $stm->bindParam(':capaFO72',$capaFO72);
+                $stm->bindParam(':capaFO144',$capaFO144);
+                $stm->bindParam(':capaFO288',$capaFO288);
+                $stm->bindParam(':capaFO432',$capaFO432);
+                $stm->bindParam(':capaFO720',$capaFO720);
+
+                if($stm->execute()){
+                    $tabreturn[0] =  "OK";
+                } else  $tabreturn[0] = "NOK";
+
+                $writer = PHPExcel_IOFactory::createWriter($Bordereaux,'Excel2007');
+                $writer->save(__DIR__."/../../uploads/file_saved-2.xlsx");
+
+                $row--;
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return json_encode($tabreturn);
+
+    } catch (Exception $e) {
+        die ('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+    }
+    return -1;
+}
+
+
 //fin traitement de fichier excel
 echo json_encode($ret);
