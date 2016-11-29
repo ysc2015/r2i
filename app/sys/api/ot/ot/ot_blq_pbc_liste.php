@@ -21,9 +21,9 @@ $columns = array(
 
 $condition = "t1.id_ordre_de_travail=t2.id_ordre_de_travail";
 
-/*if(isset($idot)) {
+if(isset($idot)) {
     $condition .=" AND t1.id_ordre_de_travail=$idot";
-}*/
+}
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition));
 ?>
