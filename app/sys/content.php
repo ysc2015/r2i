@@ -394,10 +394,44 @@ switch ($page) {
                                         </tr>
                                         </tfoot>
                                     </table>
+                                    <button id="add_pbc_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter info</button>
+                                    <button id="mod_pbc_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier info</button>
+                                    <button id="delete_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer info</button>
                                 </div>
                                 <div class="tab-pane" id="btabs-alt-static-justified-q2">
-                                    <h4 class="font-w300 push-15">Q2</h4>
-                                    <p>...</p>
+                                    <table id="blq_pbc_table2" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>idot</th>
+                                            <th>type</th>
+                                            <th>snake</th>
+                                            <th>planche a3</th>
+                                            <th>chambre amont</th>
+                                            <th>chambre aval</th>
+                                            <th>information</th>
+                                            <th>ajustement</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>idot</th>
+                                            <th>type</th>
+                                            <th>snake</th>
+                                            <th>planche a3</th>
+                                            <th>chambre amont</th>
+                                            <th>chambre aval</th>
+                                            <th>information</th>
+                                            <th>ajustement</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                    <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
+                                    <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
+                                    <button id="delete_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer correction</button>
                                 </div>
                             </div>
                         </div>
@@ -412,8 +446,11 @@ switch ($page) {
 </div>
 <script>
 
-    var blq_ot_dt;//traitement blq rabii
-    var blq_pbc_dt;//traitement blq rabii
+    var blq_ot_dt;
+    var blq_pbc_dt;
+    var blq_pbc_dt2;
+    var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
+    var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
 
     $(document).ready(function() {
 
@@ -456,6 +493,9 @@ switch ($page) {
         })
 
         //traitement blq rabii
+
+        $(blq_pbc_btns.join(',')).addClass('disabled');
+        $(blq_pbc_btns2.join(',')).addClass('disabled');
 
         blq_ot_dt = $('#blq_ot_table').DataTable( {
             "language": {
@@ -513,6 +553,35 @@ switch ($page) {
             "drawCallback": function( /*settings*/ ) {
             }
         } );
+        blq_pbc_dt2 = $('#blq_pbc_table2').DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'api/ot/ot/ot_blq_pbc_liste.php?idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1)
+            },
+            "columns": [
+                { "data": "id_blq_pbc" },
+                { "data": "id_ordre_de_travail" },
+                { "data": "type" },
+                { "data": "snake" },
+                { "data": "planche_a3" },
+                { "data": "chambre_amont" },
+                { "data": "chambre_aval" },
+                { "data": "question_information" },
+                { "data": "reponse_ajustement" }
+            ],
+            "columnDefs": [
+                { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
+            ],
+            "order": [[0, 'desc']]
+            ,
+            "drawCallback": function( /*settings*/ ) {
+            }
+        } );
 
         $('#blq_ot_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
@@ -521,6 +590,34 @@ switch ($page) {
             else {
                 blq_ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+            }
+
+        } );
+
+        $('#blq_pbc_table tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+                $(blq_pbc_btns.join(',')).addClass('disabled');
+            }
+            else {
+                blq_pbc_dt.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+
+                $(blq_pbc_btns.join(',')).removeClass('disabled');
+            }
+
+        } );
+
+        $('#blq_pbc_table2 tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+                $(blq_pbc_btns2.join(',')).addClass('disabled');
+            }
+            else {
+                blq_pbc_dt2.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+
+                $(blq_pbc_btns2.join(',')).removeClass('disabled');
             }
 
         } );
