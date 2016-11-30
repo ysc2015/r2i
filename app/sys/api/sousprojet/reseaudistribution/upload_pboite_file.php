@@ -47,7 +47,8 @@ if(isset($idsp) && !empty($idsp)) {
 
                 $fileName = $row->nom_fichier;
 
-                loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile,$details['id']);
+                loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+                loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
                 //fin de traitement du devis pour l'enregistrement dans la base
             }
 
@@ -77,7 +78,8 @@ if(isset($idsp) && !empty($idsp)) {
 
                     $fileName = $row->nom_fichier;
 
-                    loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile,$details['id']);
+                    loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+                    loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
 
                     //fin de traitement du devis pour l'enregistrement dans la base
 
@@ -143,7 +145,7 @@ function getLine(PHPExcel_Worksheet $sheet,$line,$max_column) {
     return $cells;
 }
 
-function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
+function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
 
     $tabreturn = [];
@@ -388,6 +390,8 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                         $tab[$i][4] = strval(   $read[12]);//capa_cable_entrant
 
                         $db->query("insert into testDEF_BPE (id,nom,capacite,nb_cdi_sortant,nb_cad_sortant,capa_cable_entrant) values(NULL,'" . $read[0] . "','" . $read[1] . "','" . $read[8] . "','" . $read[9] . "','" . $read[12] . "')");
+
+                        var_dump($db->errorInfo());
                         $i++;
 
                     }
@@ -421,6 +425,7 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                 $capaFO720 = 0;
 
                 $reqselcap =  $db->query("SELECT count(nom) as somme_boitier,SUM(nb_cdi_sortant) as sommenb_cdi_sortant,capa_cable_entrant FROM `testDEF_BPE` group by capa_cable_entrant");
+                var_dump($db->errorInfo());
                 while ($selcap = $reqselcap->fetch()){
                     print_r($selcap );
                     switch ($selcap['capa_cable_entrant']){
@@ -490,26 +495,13 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                 if($stm->execute()){
                     $tabreturn[0] =  "OK";
                 } else  $tabreturn[0] = "NOK";
-
+                var_dump($db->errorInfo());
 
                 $row--;
             }
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         return json_encode($tabreturn);
 
