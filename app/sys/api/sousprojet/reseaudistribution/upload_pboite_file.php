@@ -355,7 +355,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
     }
     return -1;
 }
-function loadExcelDEF_BPE_EBM($db,$inputFileName) {
+function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
 
     $tabreturn = [];
 
@@ -462,9 +462,10 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName) {
                     }
                 }
 
-                $stm = $db->prepare("INSERT INTO `detail_EBM` (`id_detail_EBM`, `cdisortant48`, `cdisortant72`, `cdisortant144`, `cdisortant288`, `cdisortant432`, `cdisortant720`, `somboitie48`, `somboitie72`, `somboitie144`, `somboitie288`, `somboitie432`, `somboitie720`, `LINTUBN14`, `LINTUBN18`, `LINTUBN25`, `capaFO48`, `capaFO72`, `capaFO144`, `capaFO288`, `capaFO432`, `capaFO720`) VALUES (
-                    NULL, :cdisortant48, :cdisortant72, :cdisortant144, :cdisortant288, :cdisortant432, :cdisortant720, :somboitie48, :somboitie72, 
+                $stm = $db->prepare("INSERT INTO `detail_EBM` (`id_detail_EBM`,`id_ressource`, `cdisortant48`, `cdisortant72`, `cdisortant144`, `cdisortant288`, `cdisortant432`, `cdisortant720`, `somboitie48`, `somboitie72`, `somboitie144`, `somboitie288`, `somboitie432`, `somboitie720`, `LINTUBN14`, `LINTUBN18`, `LINTUBN25`, `capaFO48`, `capaFO72`, `capaFO144`, `capaFO288`, `capaFO432`, `capaFO720`) VALUES (
+                    NULL,:id_ressource, :cdisortant48, :cdisortant72, :cdisortant144, :cdisortant288, :cdisortant432, :cdisortant720, :somboitie48, :somboitie72, 
                 :somboitie144, :somboitie288, :somboitie432, :somboitie720, :LINTUBN14, :LINTUBN18, :LINTUBN25, :capaFO48, :capaFO72, :capaFO144, :capaFO288, :capaFO432, :capaFO720)");
+                $stm->bindParam(':id_ressource',$idressource);
                 $stm->bindParam(':cdisortant48',$cdisortant48);
                 $stm->bindParam(':cdisortant72',$cdisortant72);
                 $stm->bindParam(':cdisortant144',$cdisortant144);
