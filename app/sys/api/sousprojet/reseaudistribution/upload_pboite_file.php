@@ -467,30 +467,30 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                 $stm = $db->prepare("INSERT INTO `detail_EBM` (`id_detail_EBM`,`id_ressource`, `cdisortant48`, `cdisortant72`, `cdisortant144`, `cdisortant288`, `cdisortant432`, `cdisortant720`, `somboitie48`, `somboitie72`, `somboitie144`, `somboitie288`, `somboitie432`, `somboitie720`, `LINTUBN14`, `LINTUBN18`, `LINTUBN25`, `capaFO48`, `capaFO72`, `capaFO144`, `capaFO288`, `capaFO432`, `capaFO720`) VALUES (
                     NULL,:id_ressource, :id_ordre_de_travail, :cdisortant48, :cdisortant72, :cdisortant144, :cdisortant288, :cdisortant432, :cdisortant720, :somboitie48, :somboitie72, 
                 :somboitie144, :somboitie288, :somboitie432, :somboitie720, :LINTUBN14, :LINTUBN18, :LINTUBN25, :capaFO48, :capaFO72, :capaFO144, :capaFO288, :capaFO432, :capaFO720)");
-                $stm->bindParam(':id_ressource',$idressource);
-                $stm->bindParam(':cdisortant48',$cdisortant48);
-                $stm->bindParam(':cdisortant72',$cdisortant72);
-                $stm->bindParam(':cdisortant144',$cdisortant144);
-                $stm->bindParam(':cdisortant288',$cdisortant288);
-                $stm->bindParam(':cdisortant432',$cdisortant432);
-                $stm->bindParam(':cdisortant720',$cdisortant720);
-                $stm->bindParam(':somboitie48',$somboitie48);
-                $stm->bindParam(':somboitie72',$somboitie72);
-                $stm->bindParam(':somboitie144',$somboitie144);
-                $stm->bindParam(':somboitie288',$somboitie288);
-                $stm->bindParam(':somboitie432',$somboitie432);
-                $stm->bindParam(':somboitie720',$somboitie720);
+                $stm->bindValue(':id_ressource',$idressource);
+                $stm->bindValue(':cdisortant48',$cdisortant48);
+                $stm->bindValue(':cdisortant72',$cdisortant72);
+                $stm->bindValue(':cdisortant144',$cdisortant144);
+                $stm->bindValue(':cdisortant288',$cdisortant288);
+                $stm->bindValue(':cdisortant432',$cdisortant432);
+                $stm->bindValue(':cdisortant720',$cdisortant720);
+                $stm->bindValue(':somboitie48',$somboitie48);
+                $stm->bindValue(':somboitie72',$somboitie72);
+                $stm->bindValue(':somboitie144',$somboitie144);
+                $stm->bindValue(':somboitie288',$somboitie288);
+                $stm->bindValue(':somboitie432',$somboitie432);
+                $stm->bindValue(':somboitie720',$somboitie720);
 
-                $stm->bindParam(':LINTUBN14',$LINTUBN14);
-                $stm->bindParam(':LINTUBN18',$LINTUBN18);
-                $stm->bindParam(':LINTUBN25',$LINTUBN25);
+                $stm->bindValue(':LINTUBN14',$LINTUBN14);
+                $stm->bindValue(':LINTUBN18',$LINTUBN18);
+                $stm->bindValue(':LINTUBN25',$LINTUBN25);
 
-                $stm->bindParam(':capaFO48',$capaFO48);
-                $stm->bindParam(':capaFO72',$capaFO72);
-                $stm->bindParam(':capaFO144',$capaFO144);
-                $stm->bindParam(':capaFO288',$capaFO288);
-                $stm->bindParam(':capaFO432',$capaFO432);
-                $stm->bindParam(':capaFO720',$capaFO720);
+                $stm->bindValue(':capaFO48',$capaFO48);
+                $stm->bindValue(':capaFO72',$capaFO72);
+                $stm->bindValue(':capaFO144',$capaFO144);
+                $stm->bindValue(':capaFO288',$capaFO288);
+                $stm->bindValue(':capaFO432',$capaFO432);
+                $stm->bindValue(':capaFO720',$capaFO720);
 
                 if($stm->execute()){
                     $tabreturn[0] =  "OK";
