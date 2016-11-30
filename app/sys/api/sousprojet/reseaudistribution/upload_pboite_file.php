@@ -397,8 +397,6 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
 
 
 
-                $Bordereaux = openExcelFile(__DIR__."/../../uploads/templates/EBM_PON_HRZ_indice_E.xlsx");
-                $sheetbordereaux = $Bordereaux->getSheetByName("EBM_PON_HRZ");
                 $cdisortant48 = 0;
                 $cdisortant72 = 0;
                 $cdisortant144 = 0;
@@ -428,33 +426,33 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                     print_r($selcap );
                     switch ($selcap['capa_cable_entrant']){
                         case '48':
-                            $cdisortant48   = $sheetbordereaux->getCell("L35")->setValue($selcap['sommenb_cdi_sortant']);
-                            $somboitie48    = $sheetbordereaux->getCell("L37")->setValue(ceil($selcap['somme_boitier']/60));
+                            $cdisortant48   = $selcap['sommenb_cdi_sortant'];
+                            $somboitie48    = ceil($selcap['somme_boitier']/60);
                             break;
                         case '72':
-                            $cdisortant72   = $sheetbordereaux->getCell("L34")->setValue($selcap['sommenb_cdi_sortant']);
-                            $somboitie72    = $sheetbordereaux->getCell("L39")->setValue($selcap['somme_boitier']);
+                            $cdisortant72   = $selcap['sommenb_cdi_sortant'];
+                            $somboitie72    = $selcap['somme_boitier'];
                             break;
                         case '144' :
-                            $cdisortant144 = $sheetbordereaux->getCell("L33")->setValue($selcap['sommenb_cdi_sortant']);
+                            $cdisortant144 = $selcap['sommenb_cdi_sortant'];
                             $val144 = (6 * $selcap['somme_boitier']) - $selcap['sommenb_cdi_sortant'];
                             if($val144 < 0 ){
                                 $val144 = 0;
                             }else{
                                 $val144 = ceil($val144 / 5 );
                             }
-                            $somboitie144   = $sheetbordereaux->getCell("L50")->setValue($val144); //Soustraire le nombre total de CDI sortant par (6* le nombre de BPE 144) si le résultat est négatif mettre la valeur 0 sinon diviser le résultat par 5. Mettre la valeur dans la ligne 50 (Référence FREE TENIO-SKG3-7/10).
+                            $somboitie144   =   $val144; //Soustraire le nombre total de CDI sortant par (6* le nombre de BPE 144) si le résultat est négatif mettre la valeur 0 sinon diviser le résultat par 5. Mettre la valeur dans la ligne 50 (Référence FREE TENIO-SKG3-7/10).
                             break;
                         case '288':
-                            $cdisortant288  = $sheetbordereaux->getCell("L32")->setValue($selcap['sommenb_cdi_sortant']);
-                            $somboitie288   = $sheetbordereaux->getCell("L47")->setValue($selcap['somme_boitier']);
+                            $cdisortant288  = $selcap['sommenb_cdi_sortant'];
+                            $somboitie288   = $selcap['somme_boitier'];
                             break;
                         case '432':
-                            $cdisortant432 = $sheetbordereaux->getCell("L31")->setValue($selcap['sommenb_cdi_sortant']);
+                            $cdisortant432 = $selcap['sommenb_cdi_sortant'];
 
                             break;
                         case '720':
-                            $cdisortant720 = $sheetbordereaux->getCell("L30")->setValue($selcap['sommenb_cdi_sortant']);
+                            $cdisortant720 = $selcap['sommenb_cdi_sortant'];
 
                             break;
 
@@ -478,9 +476,11 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                 $stm->bindParam(':somboitie288',$somboitie288);
                 $stm->bindParam(':somboitie432',$somboitie432);
                 $stm->bindParam(':somboitie720',$somboitie720);
+
                 $stm->bindParam(':LINTUBN14',$LINTUBN14);
                 $stm->bindParam(':LINTUBN18',$LINTUBN18);
                 $stm->bindParam(':LINTUBN25',$LINTUBN25);
+
                 $stm->bindParam(':capaFO48',$capaFO48);
                 $stm->bindParam(':capaFO72',$capaFO72);
                 $stm->bindParam(':capaFO144',$capaFO144);
@@ -492,8 +492,6 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                     $tabreturn[0] =  "OK";
                 } else  $tabreturn[0] = "NOK";
 
-                $writer = PHPExcel_IOFactory::createWriter($Bordereaux,'Excel2007');
-                $writer->save(__DIR__."/../../uploads/file_saved-2.xlsx");
 
                 $row--;
             }
