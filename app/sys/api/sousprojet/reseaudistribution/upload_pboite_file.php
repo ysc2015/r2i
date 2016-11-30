@@ -47,7 +47,8 @@ if(isset($idsp) && !empty($idsp)) {
 
                 $fileName = $row->nom_fichier;
 
-                loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile,$details['id']);
+                loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+                loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
                 //fin de traitement du devis pour l'enregistrement dans la base
             }
 
@@ -78,6 +79,7 @@ if(isset($idsp) && !empty($idsp)) {
                     $fileName = $row->nom_fichier;
 
                     loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile,$details['id']);
+                    loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$templateFile,$details['id']);
 
                     //fin de traitement du devis pour l'enregistrement dans la base
 
@@ -143,7 +145,7 @@ function getLine(PHPExcel_Worksheet $sheet,$line,$max_column) {
     return $cells;
 }
 
-function loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$idressource) {
+function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
 
     $tabreturn = [];
