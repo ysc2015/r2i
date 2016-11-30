@@ -359,7 +359,6 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
 
     $tabreturn = [];
 
-    $id_ordre_de_travail = 0;
 
     try {
         $excel = openExcelFile($inputFileName);
@@ -460,11 +459,10 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                     }
                 }
 
-                $stm = $db->prepare("INSERT INTO `detail_EBM` (`id_detail_EBM`,`id_ressource`, `id_ordre_de_travail`, `cdisortant48`, `cdisortant72`, `cdisortant144`, `cdisortant288`, `cdisortant432`, `cdisortant720`, `somboitie48`, `somboitie72`, `somboitie144`, `somboitie288`, `somboitie432`, `somboitie720`, `LINTUBN14`, `LINTUBN18`, `LINTUBN25`, `capaFO48`, `capaFO72`, `capaFO144`, `capaFO288`, `capaFO432`, `capaFO720`) VALUES (
+                $stm = $db->prepare("INSERT INTO `detail_EBM` (`id_detail_EBM`,`id_ressource`, `cdisortant48`, `cdisortant72`, `cdisortant144`, `cdisortant288`, `cdisortant432`, `cdisortant720`, `somboitie48`, `somboitie72`, `somboitie144`, `somboitie288`, `somboitie432`, `somboitie720`, `LINTUBN14`, `LINTUBN18`, `LINTUBN25`, `capaFO48`, `capaFO72`, `capaFO144`, `capaFO288`, `capaFO432`, `capaFO720`) VALUES (
                     NULL,:id_ressource, :id_ordre_de_travail, :cdisortant48, :cdisortant72, :cdisortant144, :cdisortant288, :cdisortant432, :cdisortant720, :somboitie48, :somboitie72, 
                 :somboitie144, :somboitie288, :somboitie432, :somboitie720, :LINTUBN14, :LINTUBN18, :LINTUBN25, :capaFO48, :capaFO72, :capaFO144, :capaFO288, :capaFO432, :capaFO720)");
                 $stm->bindParam(':id_ressource',$idressource);
-                $stm->bindParam(':id_ordre_de_travail',$id_ordre_de_travail);
                 $stm->bindParam(':cdisortant48',$cdisortant48);
                 $stm->bindParam(':cdisortant72',$cdisortant72);
                 $stm->bindParam(':cdisortant144',$cdisortant144);
