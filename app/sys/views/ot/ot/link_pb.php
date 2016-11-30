@@ -23,7 +23,7 @@
     $(document).ready(function() {
         $("#link_pb").click(function() {
 
-            console.log(id_res);
+            console.log(ot_dt.row('.selected').data().id_ordre_de_travail);
 
             $.ajax({
                 method: "POST",
