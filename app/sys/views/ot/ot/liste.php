@@ -54,6 +54,7 @@
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
                     $('#download_devis').removeClass('disabled');
+                    $('#download_ebm').removeClass('disabled');
                     $("#devis_uploads").show();
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
@@ -64,6 +65,7 @@
                     id_devis = 0;
                     id_res = 0;
                     $('#download_devis').addClass('disabled');
+                    $('#download_ebm').addClass('disabled');
                     $("#devis_uploads").hide();
                 }
             });
@@ -71,6 +73,7 @@
             id_devis = 0;
             id_res = 0;
             $('#download_devis').addClass('disabled');
+            $('#download_ebm').addClass('disabled');
             $("#devis_uploads").hide();
         }
     }
@@ -118,7 +121,7 @@
             "drawCallback": function( /*settings*/ ) {
                 $('#other_files_uploader_wrapper').hide();
                 displayDevis();
-                $('#devis_block_title').html('Devis');
+                $('#devis_block_title').html('Suivi Facturation');
                 $(ot_btns.join(',')).addClass("disabled");
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
@@ -137,7 +140,7 @@
                 $(this).removeClass('selected');
 
                 $(ot_btns.join(',')).addClass("disabled");
-                $('#devis_block_title').html('Devis');
+                $('#devis_block_title').html('Suivi Facturation');
 
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
@@ -187,7 +190,7 @@
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8) {
                     if(ot_dt.row('.selected').data().id_type_ordre_travail != 2 && ot_dt.row('.selected').data().id_type_ordre_travail != 6) {
                         $('#linked-pb-wrapper').show();
-                        $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
+                        $('#devis_block_title').html('Suivi Facturation ' + ot_dt.row('.selected').data().type_ot);
                         $.ajax({
                             method: "POST",
                             url: "api/ot/ot/get_pb_files_list.php",
@@ -212,11 +215,12 @@
                     } else {
                         $('#linked-pb-wrapper').hide();
                     }
-                    displayDevis();
                 } else {
                     $('#linked-pb-wrapper').hide();
                 }
             }
+
+            displayDevis();
 
         } );
 
