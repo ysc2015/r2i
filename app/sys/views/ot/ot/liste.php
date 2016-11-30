@@ -32,6 +32,7 @@
 <script>
     var ot_dt;
     var id_devis = 0;
+    var id_ebm = 0;
     var id_res = 0;
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
@@ -54,7 +55,6 @@
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
                     $('#download_devis').removeClass('disabled');
-                    $('#download_ebm').removeClass('disabled');
                     $("#devis_uploads").show();
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
@@ -65,7 +65,6 @@
                     id_devis = 0;
                     id_res = 0;
                     $('#download_devis').addClass('disabled');
-                    $('#download_ebm').addClass('disabled');
                     $("#devis_uploads").hide();
                 }
             });
@@ -73,8 +72,32 @@
             id_devis = 0;
             id_res = 0;
             $('#download_devis').addClass('disabled');
-            $('#download_ebm').addClass('disabled');
             $("#devis_uploads").hide();
+        }
+    }
+    function displayEBM() {
+        if(ot_dt.row('.selected').data()!== undefined) {
+            $.ajax({
+                method: "POST",
+                url: "api/ot/devis/get_ebm_id.php",
+                dataType: "json",
+                data: {
+                    idot : ot_dt.row('.selected').data().id_ordre_de_travail,
+                    idtot : ot_dt.row('.selected').data().id_type_ordre_travail
+                }
+            }).done(function (msg) {
+                console.log(msg);
+                if(msg.idebm > 0) {
+                    id_ebm = msg.idebm;
+                    $('#download_ebm').removeClass('disabled');
+                } else {
+                    id_ebm = 0;
+                    $('#download_ebm').addClass('disabled');
+                }
+            });
+        } else {
+            id_ebm = 0;
+            $('#download_ebm').addClass('disabled');
         }
     }
     function getTypeOT(selector) {
@@ -121,6 +144,7 @@
             "drawCallback": function( /*settings*/ ) {
                 $('#other_files_uploader_wrapper').hide();
                 displayDevis();
+                displayEBM();
                 $('#devis_block_title').html('Suivi Facturation');
                 $(ot_btns.join(',')).addClass("disabled");
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
@@ -221,6 +245,7 @@
             }
 
             displayDevis();
+            displayEBM();
 
         } );
 
