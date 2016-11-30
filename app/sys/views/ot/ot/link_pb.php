@@ -23,6 +23,8 @@
     $(document).ready(function() {
         $("#link_pb").click(function() {
 
+            console.log(id_res);
+
             $.ajax({
                 method: "POST",
                 url: "api/ot/ot/update_pb_files_list.php",
