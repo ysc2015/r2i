@@ -500,6 +500,38 @@ switch ($page) {
         </div>
     </div>
 <!-- END ajouter info/question Modal -->
+<!-- voir question/correction Modal -->
+<div class="modal fade" id="question-correction" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title" id="question-correction-title"></h3>
+                    </div>
+                    <div class="block-content">
+                        <form class="js-validation-bootstrap form-horizontal" id="question_correction_form">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="question_information">Question <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="question_information" name="question_information" rows="6"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary" id="save_info" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END voir question/correction Modal -->
 <script>
 
     var blq_ot_dt;
@@ -603,7 +635,13 @@ switch ($page) {
                 { "data": "question_information" }
             ],
             "columnDefs": [
-                { "targets": [ 0,1,2 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
+                {
+                    "targets": 7,
+                    "render": function ( data, type, full, meta ) {
+                        return  '<button class="btn btn-info btn-sm view-question disabled">voir question / réponse</button>';
+                    }
+                }
             ],
             "order": [[0, 'desc']]
             ,
@@ -635,7 +673,7 @@ switch ($page) {
                 {
                     "targets": 7,
                     "render": function ( data, type, full, meta ) {
-                        return  '<button>voir information / ajustement</button>';
+                        return  '<button class="btn btn-info btn-sm view-correction disabled">voir information / ajustement</button>';
                     }
                 }
             ],
@@ -658,7 +696,7 @@ switch ($page) {
 
         } );
 
-        $('#blq_pbc_table tbody').on( 'click', 'tr', function () {
+        /*$('#blq_pbc_table tbody').on( 'click', 'tr', function () {
             if(true) { //TODO check if dt is not empty
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
@@ -672,33 +710,66 @@ switch ($page) {
                 }
             }
 
-        } );
+        } );*/
 
-        $('#blq_pbc_table2 tbody').on( 'click', 'tr', function () {
+        $('body').on('click',"#blq_pbc_table tbody tr",function (){
             if(true) { //TODO check if dt is not empty
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
+
+                    $(blq_pbc_btns.join(',')).addClass('disabled');
+                    $('.view-question').addClass('disabled');
+                }
+                else {
+                    blq_pbc_dt.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+
+                    $(blq_pbc_btns.join(',')).removeClass('disabled');
+                    $('.view-question').removeClass('disabled');
+                }
+            }
+        });
+
+        $('body').on('click',"#blq_pbc_table2 tbody tr",function (){
+            if(true) { //TODO check if dt is not empty
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+
                     $(blq_pbc_btns2.join(',')).addClass('disabled');
+                    $('.view-correction').addClass('disabled');
                 }
                 else {
                     blq_pbc_dt2.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
 
                     $(blq_pbc_btns2.join(',')).removeClass('disabled');
+                    $('.view-correction').removeClass('disabled');
                 }
             }
+        });
 
-        } );
+        $('body').on('click', '.view-correction', function(e) {
+            e.stopPropagation();
+            console.log("view-correction Clicked");
+        });
+
+        $('body').on('click', '.view-question', function(e) {
+            e.stopPropagation();
+            console.log("view-question Clicked");
+        });
 
         $('#add_pbc_show').click(function (){
             update_info = false;
         });
+
         $('#save_info').click(function (){
             console.log('save_info');
         });
+
         $('#mod_pbc_show').click(function (){
             update_info = false;
         });
+
         $('#delete_pbc_show').click(function (){
             console.log('delete_pbc_show');
         });
@@ -709,7 +780,7 @@ switch ($page) {
                 console.log('hidden.bs.modal redraw');
                 pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
             }*/
-        })
+        });
 
     } );
 </script>
