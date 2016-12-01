@@ -792,7 +792,7 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
 
                         $db->query("insert into testDEF_BPE (id,nom,capacite,nb_cdi_sortant,nb_cad_sortant,capa_cable_entrant) values(NULL,'" . $read[0] . "','" . $read[1] . "','" . $read[8] . "','" . $read[9] . "','" . $read[12] . "')");
 
-                        var_dump($db->errorInfo());
+
                         $i++;
 
                     }
@@ -826,9 +826,9 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                 $capaFO720 = 0;
 
                 $reqselcap =  $db->query("SELECT count(nom) as somme_boitier,SUM(nb_cdi_sortant) as sommenb_cdi_sortant,capa_cable_entrant FROM `testDEF_BPE` group by capa_cable_entrant");
-                var_dump($db->errorInfo());
+
                 while ($selcap = $reqselcap->fetch()){
-                    print_r($selcap );
+
                     switch ($selcap['capa_cable_entrant']){
                         case '48':
                             $cdisortant48   = $selcap['sommenb_cdi_sortant'];
@@ -898,7 +898,6 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                 if($stm->execute()){
                     $tabreturn[0] =  "OK";
                 } else  $tabreturn[0] = "NOK";
-                var_dump($db->errorInfo());
 
                 $row--;
             }
