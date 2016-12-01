@@ -91,6 +91,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                 $sheetbordereaux->getCell("L31")->setValue($row->cdisortant432);
                 $sheetbordereaux->getCell("L30")->setValue($row->cdisortant720);
 
+
                 $sheetbordereaux->getCell("L24")->setValue($row->capaFO48);
                 $sheetbordereaux->getCell("L25")->setValue($row->capaFO72);
                 $sheetbordereaux->getCell("L26")->setValue($row->capaFO144);
@@ -114,7 +115,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $writer = PHPExcel_IOFactory::createWriter($Bordereaux,'Excel2007');
 
         header('Content-type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment; filename="DETAIL_EBM.xlsx"');
+        header('Content-Disposition: attachment; filename="DETAIL_EBM_.xlsx"');
 
         // download
         $writer->save('php://output');
