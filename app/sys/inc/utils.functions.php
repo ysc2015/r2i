@@ -832,7 +832,7 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                     switch ($selcap['capa_cable_entrant']){
                         case '48':
                             $cdisortant48   = $selcap['sommenb_cdi_sortant'];
-                            $somboitie48    = ceil($selcap['somme_boitier']/60);
+                            $somboitie48    = ceil($selcap['somme_boitier']/60);//Diviser le volume total par 60, arrondir à l’entier supérieur et mettre la valeur dans la ligne 37 (Référence FREE MFOA20276)
                             break;
                         case '72':
                             $cdisortant72   = $selcap['sommenb_cdi_sortant'];
@@ -924,18 +924,20 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
         $Bordereaux = openExcelFile($templateFileName);
         $sheetbordereaux = $Bordereaux->getSheetByName("EBM_PON_HRZ");
-
-        $sheetbordereaux->getCell("L35")->setValue($row->cdisortant48);
-        $sheetbordereaux->getCell("L37")->setValue($row->somboitie48);
-        $sheetbordereaux->getCell("L34")->setValue($row->cdisortant48);
-        $sheetbordereaux->getCell("L39")->setValue($row->somboitie72);
-        $sheetbordereaux->getCell("L33")->setValue($row->cdisortant144);
-        $sheetbordereaux->getCell("L50")->setValue($row->somboitie144);
-        $sheetbordereaux->getCell("L32")->setValue($row->cdisortant288);
-        $sheetbordereaux->getCell("L47")->setValue($row->somboitie288);
-        $sheetbordereaux->getCell("L31")->setValue($row->cdisortant432);
         $sheetbordereaux->getCell("L30")->setValue($row->cdisortant720);
+        $sheetbordereaux->getCell("L31")->setValue($row->cdisortant432);
+        $sheetbordereaux->getCell("L32")->setValue($row->cdisortant288);
+        $sheetbordereaux->getCell("L33")->setValue($row->cdisortant144);
+        $sheetbordereaux->getCell("L34")->setValue($row->cdisortant48);
+        $sheetbordereaux->getCell("L35")->setValue($row->cdisortant48);
 
+        $sheetbordereaux->getCell("L37")->setValue($row->somboitie48);
+        $sheetbordereaux->getCell("L39")->setValue($row->somboitie72);
+        $sheetbordereaux->getCell("L50")->setValue($row->somboitie144);
+        $sheetbordereaux->getCell("L47")->setValue($row->somboitie288);
+
+
+        $sheetbordereaux->getCell("L23")->setValue(""); //Si capa non existante = 0
 
         $sheetbordereaux->getCell("L24")->setValue($row->capaFO48);
         $sheetbordereaux->getCell("L25")->setValue($row->capaFO72);
@@ -947,6 +949,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux->getCell("L56")->setValue($row->LINTUBN14);
         $sheetbordereaux->getCell("L58")->setValue($row->LINTUBN18);
         $sheetbordereaux->getCell("L60")->setValue($row->LINTUBN25);
+
 
 
 
