@@ -426,8 +426,8 @@ switch ($page) {
                                         </tr>
                                         </tfoot>
                                     </table>
-                                    <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
-                                    <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
+                                    <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
+                                    <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
                                     <button id="delete_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer correction</button>
                                 </div>
                             </div>
@@ -453,7 +453,7 @@ switch ($page) {
                                 <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                             </li>
                         </ul>
-                        <h3 class="block-title">Ajouter question</h3>
+                        <h3 class="block-title" id="add-info-title"></h3>
                     </div>
                     <div class="block-content">
                         <form class="js-validation-bootstrap form-horizontal" id="add_info_form">
@@ -483,7 +483,7 @@ switch ($page) {
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="question_information">Question <span class="text-danger">*</span></label>
+                                    <label for="question_information" id="add-info-type"><span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="question_information" name="question_information" rows="6"></textarea>
                                 </div>
                             </div>
@@ -495,6 +495,64 @@ switch ($page) {
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
                     <button class="btn btn-sm btn-primary" id="save_info" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END ajouter info/question Modal -->
+<!-- ajouter info/question Modal -->
+<div class="modal fade" id="mod-info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title" id="mod-info-title"></h3>
+                    </div>
+                    <div class="block-content">
+                        <form class="js-validation-bootstrap form-horizontal" id="mod_info_form">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="snake_update">Snake <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="snake_update" name="snake_update">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="planche_a3_update">Planche A3 <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="planche_a3_update" name="planche_a3_update">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="chambre_amont_update">Chambre Amont <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="chambre_amont_update" name="chambre_amont_update">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label for="chambre_aval_update">Chambre Aval <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="chambre_aval_update" name="chambre_aval_update">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="question_information_update" id="mod-info-type"> <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="question_information_update" name="question_information_update" rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class='alert alert-success' id='message_info_mod' role='alert' style="display: none;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary" id="mod_info" type="button"><i class="fa fa-check"></i> Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -517,8 +575,12 @@ switch ($page) {
                         <form class="js-validation-bootstrap form-horizontal" id="question_correction_form">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="question_information">Question <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="question_information" name="question_information" rows="6"></textarea>
+                                    <label for="text1">Question</label>
+                                    <textarea class="form-control" id="text1" name="text1" rows="6"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="text2">Question</label>
+                                    <textarea class="form-control" id="text2" name="text2" rows="6"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -526,7 +588,6 @@ switch ($page) {
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
-                    <button class="btn btn-sm btn-primary" id="save_info" type="button"><i class="fa fa-check"></i> Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -537,6 +598,7 @@ switch ($page) {
     var blq_ot_dt;
     var blq_pbc_dt;
     var blq_pbc_dt2;
+    var blq_ot_btns = ["#add_pbc_show", "#add_pbc_show2"];
     var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
     var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
     var update_info = false;
@@ -584,6 +646,7 @@ switch ($page) {
 
         //traitement blq rabii
 
+        $(blq_ot_btns.join(',')).addClass('disabled');
         $(blq_pbc_btns.join(',')).addClass('disabled');
         $(blq_pbc_btns2.join(',')).addClass('disabled');
 
@@ -612,6 +675,9 @@ switch ($page) {
             "order": [[6, 'asc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                $(blq_ot_btns.join(',')).addClass('disabled');
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
             }
         } );
         blq_pbc_dt = $('#blq_pbc_table').DataTable( {
@@ -687,11 +753,17 @@ switch ($page) {
             if(true) { //TODO check if dt is not empty
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
+                    $(blq_ot_btns.join(',')).addClass('disabled');
                 }
                 else {
                     blq_ot_dt.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
+                    $(blq_ot_btns.join(',')).removeClass('disabled');
+                    console.log(blq_ot_dt.row('.selected').data().id_ordre_de_travail);
                 }
+
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
             }
 
         } );
@@ -751,19 +823,31 @@ switch ($page) {
         $('body').on('click', '.view-correction', function(e) {
             e.stopPropagation();
             console.log("view-correction Clicked");
+            $('#question-correction').modal({backdrop: 'static', keyboard: false});
+            $('#question-correction').modal('show');
         });
 
         $('body').on('click', '.view-question', function(e) {
             e.stopPropagation();
             console.log("view-question Clicked");
+            $('#question-correction').modal({backdrop: 'static', keyboard: false});
+            $('#question-correction').modal('show');
         });
 
         $('#add_pbc_show').click(function (){
-            update_info = false;
+            $("#add_info_form")[0].reset();
+        });
+
+        $('#add_pbc_show2').click(function (){
+            $("#add_info_form")[0].reset();
         });
 
         $('#save_info').click(function (){
             console.log('save_info');
+        });
+
+        $('#mod_info').click(function (){
+            console.log('mod_info');
         });
 
         $('#mod_pbc_show').click(function (){
@@ -780,6 +864,18 @@ switch ($page) {
                 console.log('hidden.bs.modal redraw');
                 pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
             }*/
+        });
+
+        $('#mod-info').on('hidden.bs.modal', function () {
+            $('body').addClass('modal-open');
+            /*if(redraw_pblq) {
+             console.log('hidden.bs.modal redraw');
+             pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
+             }*/
+        });
+
+        $('#question-correction').on('hidden.bs.modal', function () {
+            $('body').addClass('modal-open');
         });
 
     } );
