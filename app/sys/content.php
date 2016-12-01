@@ -605,6 +605,9 @@ switch ($page) {
         </div>
     </div>
 <!-- END voir question/correction Modal -->
+<div id="delete-blq-dialog-confirm" title="Supprimer cet élément?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
+</div>
 <script>
 
     var blq_ot_dt;
@@ -614,11 +617,12 @@ switch ($page) {
     var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
     var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
     var update_info = false;
+    var update_info2 = false;
+    var type_info = 0;
     var update_correction = false;
 
     $(document).ready(function() {
-
-
+        
         $('#tache_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
@@ -725,6 +729,7 @@ switch ($page) {
             ,
             "drawCallback": function( /*settings*/ ) {
                 $(blq_pbc_btns.join(',')).addClass('disabled');
+                update_info = false;
             }
         } );
         blq_pbc_dt2 = $('#blq_pbc_table2').DataTable( {
@@ -760,6 +765,7 @@ switch ($page) {
             ,
             "drawCallback": function( /*settings*/ ) {
                 $(blq_pbc_btns2.join(',')).addClass('disabled');
+                update_info2 = false;
             }
         } );
 
@@ -843,6 +849,7 @@ switch ($page) {
         });
 
         $('#add_pbc_show').click(function (){
+            type_info = 1;
             $("#add_info_form")[0].reset();
             $('#reponse_ajustement_block').hide();
             $('#add-info-title').html('Ajouter Question');
@@ -850,6 +857,7 @@ switch ($page) {
         });
 
         $('#add_pbc_show2').click(function (){
+            type_info = 2;
             $("#add_info_form")[0].reset();
             $('#reponse_ajustement_block').show();
             $('#add-info-title').html('Ajouter Information / Ajustement');
@@ -857,45 +865,175 @@ switch ($page) {
         });
 
         $('#save_info').click(function (){
-            console.log('save_info');
+            console.log('save_info ' + type_info);
+            $.ajax({
+                method: "POST",
+                url: "api/ot/ot/add_blq.php",
+                dataType: "json",
+                data: {
+                    idot : blq_ot_dt.row('.selected').data().id_ordre_de_travail,
+                    type : type_info,
+                    snake : $('#snake').val(),
+                    planche_a3 : $('#planche_a3').val(),
+                    chambre_amont : $('#chambre_amont').val(),
+                    chambre_aval : $('#chambre_aval').val(),
+                    question_information : $('#question_information').val(),
+                    reponse_ajustement : $('#reponse_ajustement').val()
+                }
+            }).done(function (message) {
+                if(message.error == 0) {
+                    switch (type_info) {
+                        case 1 :
+                            blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                            break;
+                        case 2 :
+                            blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                            break;
+                        default : break;
+                    }
+                    $("#add_info_form")[0].reset();
+                }
+                App.showMessage(message,'#message_info_add');
+            });
         });
 
         $('#mod_info').click(function (){
             console.log('mod_info');
+            var idblq = 0;
+            if(type_info == 1) {
+                idblq = blq_pbc_dt.row('.selected').data().id_blq_pbc;
+            } else  if(type_info == 2) {
+                idblq = blq_pbc_dt2.row('.selected').data().id_blq_pbc;
+            }
+            $.ajax({
+                method: "POST",
+                url: "api/ot/ot/update_blq.php",
+                dataType: "json",
+                data: {
+                    idblq : idblq,
+                    type : type_info,
+                    snake : $('#snake_update').val(),
+                    planche_a3 : $('#planche_a3_update').val(),
+                    chambre_amont : $('#chambre_amont_update').val(),
+                    chambre_aval : $('#chambre_aval_update').val(),
+                    question_information : $('#question_information_update').val(),
+                    reponse_ajustement : $('#reponse_ajustement_update').val()
+                }
+            }).done(function (message) {
+                if(message.error == 0) {
+                    switch (type_info) {
+                        case 1 :
+                            update_info = true;
+                            break;
+                        case 2 :
+                            update_info2 = true;
+                            break;
+                        default : break;
+                    }
+                }
+                App.showMessage(message,'#message_info_mod');
+            });
         });
 
         $('#mod_pbc_show').click(function (){
             update_info = false;
+            type_info = 1;
+            $('#snake_update').val(blq_pbc_dt.row('.selected').data().snake);
+            $('#planche_a3_update').val(blq_pbc_dt.row('.selected').data().planche_a3);
+            $('#chambre_amont_update').val(blq_pbc_dt.row('.selected').data().chambre_amont);
+            $('#chambre_aval_update').val(blq_pbc_dt.row('.selected').data().chambre_aval);
+            $('#question_information_update').val(blq_pbc_dt.row('.selected').data().question_information);
+            $('#reponse_ajustement_update').val(blq_pbc_dt.row('.selected').data().reponse_ajustement);
+
             $('#reponse_ajustement_update_block').hide();
             $('#mod-info-title').html('Modifier Question');
             $('#mod-info-type').html('Question <span class="text-danger">*</span>');
         });
 
         $('#mod_pbc_show2').click(function (){
-            update_info = false;
+            update_info2 = false;
+            type_info = 2;
+            $('#snake_update').val(blq_pbc_dt2.row('.selected').data().snake);
+            $('#planche_a3_update').val(blq_pbc_dt2.row('.selected').data().planche_a3);
+            $('#chambre_amont_update').val(blq_pbc_dt2.row('.selected').data().chambre_amont);
+            $('#chambre_aval_update').val(blq_pbc_dt2.row('.selected').data().chambre_aval);
+            $('#question_information_update').val(blq_pbc_dt2.row('.selected').data().question_information);
+            $('#reponse_ajustement_update').val(blq_pbc_dt2.row('.selected').data().reponse_ajustement);
+
             $('#reponse_ajustement_update_block').show();
             $('#mod-info-title').html('Modifier Information / Ajustement');
             $('#mod-info-type').html('Information <span class="text-danger">*</span>');
         });
 
-        $('#delete_pbc_show').click(function (){
-            console.log('delete_pbc_show');
+        $( "#delete-blq-dialog-confirm" ).dialog({
+            appendTo : '#blq-modal',
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Oui": function() {
+                    var idblq = 0;
+                    if(type_info == 1) {
+                        idblq = blq_pbc_dt.row('.selected').data().id_blq_pbc;
+                    } else  if(type_info == 2) {
+                        idblq = blq_pbc_dt2.row('.selected').data().id_blq_pbc;
+                    }
+                    $.ajax({
+                        method: "POST",
+                        url: "api/ot/ot/delete_blq.php",
+                        dataType: "json",
+                        data: {
+                            idblq: idblq
+                        }
+                    }).done(function (message) {
+                        if(message.error == 0) {
+                            switch (type_info) {
+                                case 1 :
+                                    blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                    break;
+                                case 2 :
+                                    blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                    break;
+                                default : break;
+                            }
+                        }
+                        $( "#delete-blq-dialog-confirm" ).dialog( "close" );
+                    });
+                },
+                Non: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+
+        $('#delete_pbc_show').click(function (e){
+            e.preventDefault();
+            type_info = 1;
+            $("#delete-blq-dialog-confirm").dialog("open");
+        });
+
+        $('#delete_pbc_show2').click(function (e){
+            e.preventDefault();
+            type_info = 2;
+            $("#delete-blq-dialog-confirm").dialog("open");
         });
 
         $('#add-info').on('hidden.bs.modal', function () {
             $('body').addClass('modal-open');
-            /*if(redraw_pblq) {
-                console.log('hidden.bs.modal redraw');
-                pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
-            }*/
         });
 
         $('#mod-info').on('hidden.bs.modal', function () {
             $('body').addClass('modal-open');
-            /*if(redraw_pblq) {
-             console.log('hidden.bs.modal redraw');
-             pblq_dt.ajax.url( 'api/pointbloquant/pointbloquant/pblq_liste.php?idchambre='+(chambre_ot_dt.row('.selected').data()!==undefined?chambre_ot_dt.row('.selected').data().id_chambre:0) ).load();
-             }*/
+            if(update_info) {
+
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+
+             } else if(update_info2) {
+
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+            }
         });
 
         $('#question-correction').on('hidden.bs.modal', function () {
