@@ -929,7 +929,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux->getCell("L32")->setValue($row->cdisortant288);
         $sheetbordereaux->getCell("L33")->setValue($row->cdisortant144);
         $sheetbordereaux->getCell("L34")->setValue($row->cdisortant48);
-        $sheetbordereaux->getCell("L35")->setValue($row->cdisortant48);
+        //$sheetbordereaux->getCell("L35")->setValue($row->cdisortant48);
 
         $sheetbordereaux->getCell("L37")->setValue($row->somboitie48);
         $sheetbordereaux->getCell("L39")->setValue($row->somboitie72);
