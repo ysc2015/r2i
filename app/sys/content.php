@@ -483,8 +483,14 @@ switch ($page) {
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="question_information" id="add-info-type"><span class="text-danger">*</span></label>
+                                    <label for="question_information" id="add-info-type"></label>
                                     <textarea class="form-control" id="question_information" name="question_information" rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" id="reponse_ajustement_block">
+                                <div class="col-md-12">
+                                    <label for="reponse_ajustement">Ajustement <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="reponse_ajustement" name="reponse_ajustement" rows="6"></textarea>
                                 </div>
                             </div>
                             <div class='alert alert-success' id='message_info_add' role='alert' style="display: none;">
@@ -500,7 +506,7 @@ switch ($page) {
         </div>
     </div>
 <!-- END ajouter info/question Modal -->
-<!-- ajouter info/question Modal -->
+<!-- modifier info/question Modal -->
 <div class="modal fade" id="mod-info" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -541,8 +547,14 @@ switch ($page) {
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="question_information_update" id="mod-info-type"> <span class="text-danger">*</span></label>
+                                    <label for="question_information_update" id="mod-info-type"></label>
                                     <textarea class="form-control" id="question_information_update" name="question_information_update" rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" id="reponse_ajustement_update_block">
+                                <div class="col-md-12">
+                                    <label for="reponse_ajustement_update" id="mod-info-type">Ajustement <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="reponse_ajustement_update" name="reponse_ajustement_update" rows="6"></textarea>
                                 </div>
                             </div>
                             <div class='alert alert-success' id='message_info_mod' role='alert' style="display: none;">
@@ -557,7 +569,7 @@ switch ($page) {
             </div>
         </div>
     </div>
-<!-- END ajouter info/question Modal -->
+<!-- END modifier info/question Modal -->
 <!-- voir question/correction Modal -->
 <div class="modal fade" id="question-correction" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -712,6 +724,7 @@ switch ($page) {
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                $(blq_pbc_btns.join(',')).addClass('disabled');
             }
         } );
         blq_pbc_dt2 = $('#blq_pbc_table2').DataTable( {
@@ -746,6 +759,7 @@ switch ($page) {
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                $(blq_pbc_btns2.join(',')).addClass('disabled');
             }
         } );
 
@@ -830,10 +844,16 @@ switch ($page) {
 
         $('#add_pbc_show').click(function (){
             $("#add_info_form")[0].reset();
+            $('#reponse_ajustement_block').hide();
+            $('#add-info-title').html('Ajouter Question');
+            $('#add-info-type').html('Question <span class="text-danger">*</span>');
         });
 
         $('#add_pbc_show2').click(function (){
             $("#add_info_form")[0].reset();
+            $('#reponse_ajustement_block').show();
+            $('#add-info-title').html('Ajouter Information / Ajustement');
+            $('#add-info-type').html('Information <span class="text-danger">*</span>');
         });
 
         $('#save_info').click(function (){
@@ -846,6 +866,16 @@ switch ($page) {
 
         $('#mod_pbc_show').click(function (){
             update_info = false;
+            $('#reponse_ajustement_update_block').hide();
+            $('#mod-info-title').html('Modifier Question');
+            $('#mod-info-type').html('Question <span class="text-danger">*</span>');
+        });
+
+        $('#mod_pbc_show2').click(function (){
+            update_info = false;
+            $('#reponse_ajustement_update_block').show();
+            $('#mod-info-title').html('Modifier Information / Ajustement');
+            $('#mod-info-type').html('Information <span class="text-danger">*</span>');
         });
 
         $('#delete_pbc_show').click(function (){
