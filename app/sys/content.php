@@ -575,12 +575,12 @@ switch ($page) {
                         <form class="js-validation-bootstrap form-horizontal" id="question_correction_form">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="text1">Question</label>
-                                    <textarea class="form-control" id="text1" name="text1" rows="6"></textarea>
+                                    <label for="text1" id="label1"></label>
+                                    <textarea readonly class="form-control" id="text1" name="text1" rows="6"></textarea>
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="text2">Question</label>
-                                    <textarea class="form-control" id="text2" name="text2" rows="6"></textarea>
+                                    <label for="text2" id="label2"></label>
+                                    <textarea readonly class="form-control" id="text2" name="text2" rows="6"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -768,22 +768,6 @@ switch ($page) {
 
         } );
 
-        /*$('#blq_pbc_table tbody').on( 'click', 'tr', function () {
-            if(true) { //TODO check if dt is not empty
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                    $(blq_pbc_btns.join(',')).addClass('disabled');
-                }
-                else {
-                    blq_pbc_dt.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-
-                    $(blq_pbc_btns.join(',')).removeClass('disabled');
-                }
-            }
-
-        } );*/
-
         $('body').on('click',"#blq_pbc_table tbody tr",function (){
             if(true) { //TODO check if dt is not empty
                 if ( $(this).hasClass('selected') ) {
@@ -820,16 +804,26 @@ switch ($page) {
             }
         });
 
-        $('body').on('click', '.view-correction', function(e) {
+        $('body').on('click', '.view-question', function(e) {
             e.stopPropagation();
-            console.log("view-correction Clicked");
+            console.log("view-question Clicked");
+            $('#question-correction-title').html('Question / Réponse');
+            $('#label1').html('Question');
+            $('#label2').html('Réponse');
+            $('#text1').html(blq_pbc_dt.row('.selected').data().question_information);
+            $('#text2').html(blq_pbc_dt.row('.selected').data().reponse_ajustement);
             $('#question-correction').modal({backdrop: 'static', keyboard: false});
             $('#question-correction').modal('show');
         });
 
-        $('body').on('click', '.view-question', function(e) {
+        $('body').on('click', '.view-correction', function(e) {
             e.stopPropagation();
-            console.log("view-question Clicked");
+            console.log("view-correction Clicked");
+            $('#question-correction-title').html('Information / Ajustement');
+            $('#label1').html('Information');
+            $('#label2').html('Ajustement');
+            $('#text1').html(blq_pbc_dt2.row('.selected').data().question_information);
+            $('#text2').html(blq_pbc_dt2.row('.selected').data().reponse_ajustement);
             $('#question-correction').modal({backdrop: 'static', keyboard: false});
             $('#question-correction').modal('show');
         });
