@@ -1096,7 +1096,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
             }
         }
 
-        $update_statment = $db->prepare("UPDATE detail_EBM SET L8=:L8,L9=:L9,L14=:L14,cdisortant720=:cdisortant720,cdisortant432=:cdisortant432,capaFO144=:capaFO144,cdisortant144=:cdisortant144,cdisortant48=:cdisortant48,cdisortant48=:cdisortant48,capaFO48=:capaFO48,capaFO72=:capaFO72,capaFO144=:capaFO144,capaFO288=:capaFO288,capaFO432=:capaFO432,capaFO720=:capaFO720,LINTUBN14=:LINTUBN14,LINTUBN18=:LINTUBN18,LINTUBN25=:LINTUBN25 WHERE id_detail_EBM=:id");
+        $update_statment = $db->prepare("UPDATE detail_EBM SET L8=:L8,L9=:L9,L14=:L14,cdisortant720=:cdisortant720,cdisortant432=:cdisortant432,cdisortant288=:cdisortant288,cdisortant144=:cdisortant144,cdisortant48=:cdisortant48,capaFO48=:capaFO48,capaFO72=:capaFO72,capaFO144=:capaFO144,capaFO288=:capaFO288,capaFO432=:capaFO432,capaFO720=:capaFO720,LINTUBN14=:LINTUBN14,LINTUBN18=:LINTUBN18,LINTUBN25=:LINTUBN25 WHERE id_detail_EBM=:id");
 
         $update_statment->bindParam(':L8',$l8);
         $update_statment->bindParam(':L9',$l9);
@@ -1114,7 +1114,6 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $update_statment->bindParam(':cdisortant288',$l32);
         $update_statment->bindParam(':cdisortant144',$l33);
         $update_statment->bindParam(':cdisortant48',$l34);
-        $update_statment->bindParam(':cdisortant48',$l35);
 
         $update_statment->bindParam(':LINTUBN14',$l56);
         $update_statment->bindParam(':LINTUBN18',$l58);
@@ -1135,9 +1134,9 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $Bordereaux = openExcelFile($templateFileName);
         $sheetbordereaux = $Bordereaux->getSheetByName("EBM_PON_HRZ");
 
-        $sheetbordereaux->getCell("L8")->setValue($row->cdisortant720);
-        $sheetbordereaux->getCell("L9")->setValue($row->cdisortant720);
-        $sheetbordereaux->getCell("L14")->setValue($row->cdisortant720);
+        $sheetbordereaux->getCell("L8")->setValue($row->L8);
+        $sheetbordereaux->getCell("L9")->setValue($row->L9);
+        $sheetbordereaux->getCell("L14")->setValue($row->L14);
 
         $sheetbordereaux->getCell("L30")->setValue($row->cdisortant720);
         $sheetbordereaux->getCell("L31")->setValue($row->cdisortant432);
