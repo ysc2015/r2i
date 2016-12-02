@@ -794,14 +794,17 @@ switch ($page) {
                     $(this).removeClass('selected');
 
                     $(blq_pbc_btns.join(',')).addClass('disabled');
-                    $('.view-question').addClass('disabled');
+                    //$('.view-question').addClass('disabled');
+                    $(this).find('.view-question').addClass('disabled');
                 }
                 else {
                     blq_pbc_dt.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
+                    $('.view-question').addClass('disabled');
 
                     $(blq_pbc_btns.join(',')).removeClass('disabled');
-                    $('.view-question').removeClass('disabled');
+                    //$('.view-question').removeClass('disabled');
+                    $(this).find('.view-question').removeClass('disabled');
                 }
             }
         });
@@ -812,14 +815,17 @@ switch ($page) {
                     $(this).removeClass('selected');
 
                     $(blq_pbc_btns2.join(',')).addClass('disabled');
-                    $('.view-correction').addClass('disabled');
+                    $(this).find('.view-correction').addClass('disabled');
+                    //$('.view-correction').addClass('disabled');
                 }
                 else {
                     blq_pbc_dt2.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
+                    $('.view-correction').addClass('disabled');
 
                     $(blq_pbc_btns2.join(',')).removeClass('disabled');
-                    $('.view-correction').removeClass('disabled');
+                    //$('.view-correction').removeClass('disabled');
+                    $(this).find('.view-correction').removeClass('disabled');
                 }
             }
         });
@@ -830,8 +836,8 @@ switch ($page) {
             $('#question-correction-title').html('Question / Réponse');
             $('#label1').html('Question');
             $('#label2').html('Réponse');
-            $('#text1').html(blq_pbc_dt.row('.selected').data().question_information);
-            $('#text2').html(blq_pbc_dt.row('.selected').data().reponse_ajustement);
+            $('#text1').val(blq_pbc_dt.row('.selected').data().question_information);
+            $('#text2').val(blq_pbc_dt.row('.selected').data().reponse_ajustement);
             $('#question-correction').modal({backdrop: 'static', keyboard: false});
             $('#question-correction').modal('show');
         });
@@ -842,8 +848,8 @@ switch ($page) {
             $('#question-correction-title').html('Information / Ajustement');
             $('#label1').html('Information');
             $('#label2').html('Ajustement');
-            $('#text1').html(blq_pbc_dt2.row('.selected').data().question_information);
-            $('#text2').html(blq_pbc_dt2.row('.selected').data().reponse_ajustement);
+            $('#text1').val(blq_pbc_dt2.row('.selected').data().question_information);
+            $('#text2').val(blq_pbc_dt2.row('.selected').data().reponse_ajustement);
             $('#question-correction').modal({backdrop: 'static', keyboard: false});
             $('#question-correction').modal('show');
         });
@@ -884,10 +890,12 @@ switch ($page) {
                 if(message.error == 0) {
                     switch (type_info) {
                         case 1 :
-                            blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                            //blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                            blq_pbc_dt.draw(false);
                             break;
                         case 2 :
-                            blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                            //blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                            blq_pbc_dt2.draw(false);
                             break;
                         default : break;
                     }
@@ -991,10 +999,12 @@ switch ($page) {
                         if(message.error == 0) {
                             switch (type_info) {
                                 case 1 :
-                                    blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                    //blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                    blq_pbc_dt.draw(false);
                                     break;
                                 case 2 :
-                                    blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                    //blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                    blq_pbc_dt2.draw(false);
                                     break;
                                 default : break;
                             }
@@ -1028,11 +1038,13 @@ switch ($page) {
             $('body').addClass('modal-open');
             if(update_info) {
 
-                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                //blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt.draw(false);
 
              } else if(update_info2) {
 
-                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                //blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt2.draw(false);
             }
         });
 
