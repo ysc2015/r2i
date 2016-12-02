@@ -38,9 +38,9 @@
         "#delete_project"];
     $(document).ready(function() {
         projet_dt = $('#projet_table').DataTable( {
-            /*"language": {
+            "language": {
                 "url": "assets/js/plugins/datatables/French.json"
-            },*/
+            },
             "autoWidth": false,
             "processing": true,
             "serverSide": true,
@@ -59,7 +59,7 @@
                 {
                     "targets": 3,
                     "render": function ( data, type, full, meta ) {
-                        return  'Plaque PON FTTH ' + full.lib_nro + ' ' + full.ville_nom;
+                        return  'Plaque-PON-FTTH-' + full.lib_nro + '-' + full.ville_nom;
                     }
                 },
                 {
