@@ -925,6 +925,10 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
 
+    $l8 = 0;
+    $l9 = 0;
+    $l14 = 0;
+
     //$l23 = 0;//288
     $l24 = 0;//48
     $l25 = 0;//72
@@ -932,6 +936,14 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
     $l27 = 0;//288
     $l28 = 0;//432
     $l29 = 0;//720
+
+    $l30 = 0;
+    $l31 = 0;
+    $l32 = 0;
+    $l33 = 0;
+    $l34 = 0;
+    $l35 = 0;
+
     $l56 = 0;//11/14
     $l58 = 0;//15/18
     $l60 = 0;//21/25
@@ -978,6 +990,11 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
             switch($tentree) {
                 case "transportaiguillage" :
                     if($sousProjet->{$tentree} !== NULL) {
+
+                        $l8 = $sousProjet->{$tentree}->lineaire9;
+                        $l9 = (!empty($sousProjet->{$tentree}->lineaire10) ? 1 : 0);
+                        $l14 = $sousProjet->{$tentree}->lineaire10;
+
                         //$l23 = $sousProjet->{$tentree}->lineaire3;//288
                         //$l24 = $sousProjet->{$tentree}->lineaire5;//48
                         //$l25 = $sousProjet->{$tentree}->lineaire5;//72
@@ -985,10 +1002,24 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                         $l27 = $sousProjet->{$tentree}->lineaire3;//288
                         $l28 = $sousProjet->{$tentree}->lineaire2;//432
                         $l29 = $sousProjet->{$tentree}->lineaire1;//720
+
+                        $l30 = $sousProjet->{$tentree}->lineaire5;//720
+                        $l31 = $sousProjet->{$tentree}->lineaire6;//432
+                        $l32 = $sousProjet->{$tentree}->lineaire7;//288
+                        $l33 = $sousProjet->{$tentree}->lineaire8;//144
+                        //$l34 = $sousProjet->{$tentree}->lineaire8;//48
+                        //$l35 = $sousProjet->{$tentree}->lineaire8;//48
+
+
                     }
                     break;
                 case "distributionaiguillage" :
                     if($sousProjet->{$tentree} !== NULL) {
+
+                        //$l8 = $sousProjet->{$tentree}->lineaire9;
+                        //$l9 = (!empty($sousProjet->{$tentree}->lineaire10) ? 1 : 0);
+                        //$l14 = $sousProjet->{$tentree}->lineaire10;
+
                         //$l23 = $sousProjet->{$tentree}->lineaire1;//288
                         $l24 = $sousProjet->{$tentree}->lineaire4;//48
                         $l25 = $sousProjet->{$tentree}->lineaire3;//72
@@ -996,11 +1027,23 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                         $l27 = $sousProjet->{$tentree}->lineaire1;//288
                         //$l28 = $sousProjet->{$tentree}->lineaire2;//432
                         //$l29 = $sousProjet->{$tentree}->lineaire1;//720
+
+                        //$l30 = $sousProjet->{$tentree}->lineaire5;//720
+                        //$l31 = $sousProjet->{$tentree}->lineaire6;//432
+                        $l32 = $sousProjet->{$tentree}->lineaire5;//288
+                        $l33 = $sousProjet->{$tentree}->lineaire6;//144
+                        $l34 = $sousProjet->{$tentree}->lineaire8;//48
+                        $l35 = $sousProjet->{$tentree}->lineaire8;//48
                     }
                     break;
 
                 case "transporttirage" :
                     if($sousProjet->{$tentree} !== NULL) {
+
+                        $l8 = $sousProjet->{$tentree}->lineaire13;
+                        $l9 = (!empty($sousProjet->{$tentree}->lineaire14) ? 1 : 0);
+                        $l14 = $sousProjet->{$tentree}->lineaire14;
+
                         //$l23 = $sousProjet->{$tentree}->lineaire3;//288
                         //$l24 = $sousProjet->{$tentree}->lineaire5;//48
                         //$l25 = $sousProjet->{$tentree}->lineaire5;//72
@@ -1012,10 +1055,22 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                         //$l56 = $sousProjet->{$tentree}->lineaire11;//11/14
                         $l58 = $sousProjet->{$tentree}->lineaire11;//15/18
                         $l60 = $sousProjet->{$tentree}->lineaire9;//21/25
+
+                        $l30 = $sousProjet->{$tentree}->lineaire5;//720
+                        $l31 = $sousProjet->{$tentree}->lineaire6;//432
+                        $l32 = $sousProjet->{$tentree}->lineaire7;//288
+                        $l33 = $sousProjet->{$tentree}->lineaire8;//144
+                        //$l34 = $sousProjet->{$tentree}->lineaire8;//48
+                        //$l35 = $sousProjet->{$tentree}->lineaire8;//48
                     }
                     break;
                 case "distributiontirage" :
                     if($sousProjet->{$tentree} !== NULL) {
+
+                        //$l8 = $sousProjet->{$tentree}->lineaire9;
+                        //$l9 = (!empty($sousProjet->{$tentree}->lineaire10) ? 1 : 0);
+                        //$l14 = $sousProjet->{$tentree}->lineaire10;
+
                         //$l23 = $sousProjet->{$tentree}->lineaire1;//288
                         $l24 = $sousProjet->{$tentree}->lineaire4;//48
                         $l25 = $sousProjet->{$tentree}->lineaire3;//72
@@ -1027,6 +1082,13 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                         $l56 = $sousProjet->{$tentree}->lineaire11;//11/14
                         $l58 = $sousProjet->{$tentree}->lineaire10;//15/18
                         //$l60 = $sousProjet->{$tentree}->lineaire9;//21/25
+
+                        //$l30 = $sousProjet->{$tentree}->lineaire5;//720
+                        //$l31 = $sousProjet->{$tentree}->lineaire6;//432
+                        $l32 = $sousProjet->{$tentree}->lineaire5;//288
+                        $l33 = $sousProjet->{$tentree}->lineaire6;//144
+                        $l34 = $sousProjet->{$tentree}->lineaire8;//48
+                        $l35 = $sousProjet->{$tentree}->lineaire8;//48
                     }
                     break;
                 default :
@@ -1034,7 +1096,11 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
             }
         }
 
-        $update_statment = $db->prepare("UPDATE detail_EBM SET capaFO48=:capaFO48,capaFO72=:capaFO72,capaFO144=:capaFO144,capaFO288=:capaFO288,capaFO432=:capaFO432,capaFO720=:capaFO720,LINTUBN14=:LINTUBN14,LINTUBN18=:LINTUBN18,LINTUBN25=:LINTUBN25 WHERE id_detail_EBM=:id");
+        $update_statment = $db->prepare("UPDATE detail_EBM SET L8=:L8,L9=:L9,L14=:L14,cdisortant720=:cdisortant720,cdisortant432=:cdisortant432,capaFO144=:capaFO144,cdisortant144=:cdisortant144,cdisortant48=:cdisortant48,cdisortant48=:cdisortant48,capaFO48=:capaFO48,capaFO72=:capaFO72,capaFO144=:capaFO144,capaFO288=:capaFO288,capaFO432=:capaFO432,capaFO720=:capaFO720,LINTUBN14=:LINTUBN14,LINTUBN18=:LINTUBN18,LINTUBN25=:LINTUBN25 WHERE id_detail_EBM=:id");
+
+        $update_statment->bindParam(':L8',$l8);
+        $update_statment->bindParam(':L9',$l9);
+        $update_statment->bindParam(':L14',$l14);
 
         $update_statment->bindParam(':capaFO48',$l24);
         $update_statment->bindParam(':capaFO72',$l25);
@@ -1042,6 +1108,14 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $update_statment->bindParam(':capaFO288',$l27);
         $update_statment->bindParam(':capaFO432',$l28);
         $update_statment->bindParam(':capaFO720',$l29);
+
+        $update_statment->bindParam(':cdisortant720',$l30);
+        $update_statment->bindParam(':cdisortant432',$l31);
+        $update_statment->bindParam(':cdisortant288',$l32);
+        $update_statment->bindParam(':cdisortant144',$l33);
+        $update_statment->bindParam(':cdisortant48',$l34);
+        $update_statment->bindParam(':cdisortant48',$l35);
+
         $update_statment->bindParam(':LINTUBN14',$l56);
         $update_statment->bindParam(':LINTUBN18',$l58);
         $update_statment->bindParam(':LINTUBN25',$l60);
@@ -1060,12 +1134,17 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
         $Bordereaux = openExcelFile($templateFileName);
         $sheetbordereaux = $Bordereaux->getSheetByName("EBM_PON_HRZ");
+
+        $sheetbordereaux->getCell("L8")->setValue($row->cdisortant720);
+        $sheetbordereaux->getCell("L9")->setValue($row->cdisortant720);
+        $sheetbordereaux->getCell("L14")->setValue($row->cdisortant720);
+
         $sheetbordereaux->getCell("L30")->setValue($row->cdisortant720);
         $sheetbordereaux->getCell("L31")->setValue($row->cdisortant432);
         $sheetbordereaux->getCell("L32")->setValue($row->cdisortant288);
         $sheetbordereaux->getCell("L33")->setValue($row->cdisortant144);
         $sheetbordereaux->getCell("L34")->setValue($row->cdisortant48);
-        //$sheetbordereaux->getCell("L35")->setValue($row->cdisortant48);
+        $sheetbordereaux->getCell("L35")->setValue($row->cdisortant48);
 
         $sheetbordereaux->getCell("L37")->setValue($row->somboitie48);
         $sheetbordereaux->getCell("L39")->setValue($row->somboitie72);
