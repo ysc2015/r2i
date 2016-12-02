@@ -916,7 +916,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
 
-    $l23 = 0;//288
+    //$l23 = 0;//288
     $l24 = 0;//48
     $l25 = 0;//72
     $l26 = 0;//144
@@ -969,7 +969,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
             switch($tentree) {
                 case "transportaiguillage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $l23 = $sousProjet->{$tentree}->lineaire3;//288
+                        //$l23 = $sousProjet->{$tentree}->lineaire3;//288
                         //$l24 = $sousProjet->{$tentree}->lineaire5;//48
                         //$l25 = $sousProjet->{$tentree}->lineaire5;//72
                         $l26 = $sousProjet->{$tentree}->lineaire4;//144
@@ -980,7 +980,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                     break;
                 case "distributionaiguillage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $l23 = $sousProjet->{$tentree}->lineaire1;//288
+                        //$l23 = $sousProjet->{$tentree}->lineaire1;//288
                         $l24 = $sousProjet->{$tentree}->lineaire4;//48
                         $l25 = $sousProjet->{$tentree}->lineaire3;//72
                         $l26 = $sousProjet->{$tentree}->lineaire2;//144
@@ -992,7 +992,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
                 case "transporttirage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $l23 = $sousProjet->{$tentree}->lineaire3;//288
+                        //$l23 = $sousProjet->{$tentree}->lineaire3;//288
                         //$l24 = $sousProjet->{$tentree}->lineaire5;//48
                         //$l25 = $sousProjet->{$tentree}->lineaire5;//72
                         $l26 = $sousProjet->{$tentree}->lineaire4;//144
@@ -1007,7 +1007,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
                     break;
                 case "distributiontirage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $l23 = $sousProjet->{$tentree}->lineaire1;//288
+                        //$l23 = $sousProjet->{$tentree}->lineaire1;//288
                         $l24 = $sousProjet->{$tentree}->lineaire4;//48
                         $l25 = $sousProjet->{$tentree}->lineaire3;//72
                         $l26 = $sousProjet->{$tentree}->lineaire2;//144
@@ -1064,7 +1064,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux->getCell("L47")->setValue($row->somboitie288);
 
 
-        $sheetbordereaux->getCell("L23")->setValue($row->capaFO288); //Si capa non existante = 0
+        //$sheetbordereaux->getCell("L23")->setValue($row->capaFO288); //Si capa non existante = 0
 
         $sheetbordereaux->getCell("L24")->setValue($row->capaFO48);
         $sheetbordereaux->getCell("L25")->setValue($row->capaFO72);
