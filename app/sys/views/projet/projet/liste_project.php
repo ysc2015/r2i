@@ -42,7 +42,7 @@
                 "url": "assets/js/plugins/datatables/French.json"
             },
             "autoWidth": false,
-            "processing": true,
+            //"processing": true,
             "serverSide": true,
             "ajax": "api/projet/projet/projet_liste.php",
             "columns": [
@@ -59,7 +59,7 @@
                 {
                     "targets": 3,
                     "render": function ( data, type, full, meta ) {
-                        return  'plaque PON FTTH ' + full.lib_nro + ' ' + full.ville_nom;
+                        return  'Plaque PON FTTH ' + full.lib_nro + ' ' + full.ville_nom;
                     }
                 },
                 {
