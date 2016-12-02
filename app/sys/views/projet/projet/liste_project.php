@@ -59,7 +59,7 @@
                 {
                     "targets": 3,
                     "render": function ( data, type, full, meta ) {
-                        return  'Plaque PON FTTH ' + full.lib_nro + ' ' + full.ville_nom;
+                        return  'plaque PON FTTH ' + full.lib_nro + ' ' + full.ville_nom;
                     }
                 },
                 {
