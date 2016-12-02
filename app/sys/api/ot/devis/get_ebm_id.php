@@ -20,7 +20,7 @@ if($sousProjet !== NULL) {
     switch($idtot) {
         case "1" : $display_ebm = checkLinearsForEntry($sousProjet,"transportaiguillage",10);break;
         case "2" : $display_ebm = checkLinearsForEntry($sousProjet,"transporttirage",14);break;
-        //case "3" : $display_ebm = false;break;
+        case "3" : $display_ebm = false;break;
         case "4" : $display_ebm = checkLinearsForEntry($sousProjet,"transporttirage",14);break;
         default : break;
     }
