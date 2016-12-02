@@ -18,7 +18,7 @@ try {
         $sql .=  " and ot.id_entreprise=$soc_id";
     }
 
-    //echo $sql;
+    echo $sql;
 
     $stm = $db->prepare($sql);
     $stm->execute();
