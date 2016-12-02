@@ -27,9 +27,6 @@ if($sousProjet !== NULL) {
 
     if($display_ebm) {
         switch($idtot) {
-            case "1" :
-            case "3" :
-            case "4" :
             case "5" :
             case "7" :
             case "8" :
@@ -47,6 +44,9 @@ if($sousProjet !== NULL) {
                 }
                 break;
             //tirage cdi/ctr
+            case "1" :
+            case "3" :
+            case "4" :
             case "2" :
             case "6" :
                 $detailsEBM = DetailsEBM::first(
