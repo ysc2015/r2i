@@ -912,6 +912,15 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
     }
     return -1;
 }
+function loadExcelDEF_BPE_EBM_CTR($db,$inputFileName,$idressource) {
+    $stm = $db->prepare("insert into detail_EBM (id_ressource) values (:id_ressource)");
+    $stm->bindParam(":id_ressource",$idressource);
+    if($stm->execute()) {
+        return true;
+    }
+
+    return false;
+}
 function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
@@ -1095,4 +1104,16 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         die ('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
     }
     return -1;
+}
+
+
+function checkLinearsForEntry($sousProjet,$entree,$lcount) {
+    /*var_dump($entree);
+    var_dump($lcount);*/
+    if($sousProjet->{$entree} !== NULL) {
+        for($i=1;$i<=$lcount;$i++) {
+            if($sousProjet->{$entree}->{"lineaire".$i} == NULL || empty($sousProjet->{$entree}->{"lineaire".$i})) return false;
+        }
+    }
+    return true;
 }

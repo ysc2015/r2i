@@ -83,7 +83,8 @@
                 dataType: "json",
                 data: {
                     idot : ot_dt.row('.selected').data().id_ordre_de_travail,
-                    idtot : ot_dt.row('.selected').data().id_type_ordre_travail
+                    idtot : ot_dt.row('.selected').data().id_type_ordre_travail,
+                    idsp : ot_dt.row('.selected').data().id_sous_projet
                 }
             }).done(function (msg) {
                 console.log(msg);

@@ -34,6 +34,19 @@ if(isset($idsp) && !empty($idsp)) {
                 $details['id'] = $db->lastInsertId();
 
                 $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $fileName)?$details:[]);
+                //traitement du devis pour l'enregistrement dans la base
+                $templateFile = __DIR__."/../../uploads/templates/Bordereaux de Prix FTTH_INT_HRZ_INDA.xlsx";
+
+                $stm = $db->prepare("SELECT * FROM ressource WHERE id_ressource=:id");
+                $stm->bindParam(':id',$details['id']);
+                $stm->execute();
+                $row = $stm->fetch(PDO::FETCH_OBJ);
+
+                $fileName = $row->nom_fichier;
+
+                //loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+                loadExcelDEF_BPE_EBM_CTR($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+                //fin de traitement du devis pour l'enregistrement dans la base
             }
 
         } else  {
@@ -52,6 +65,20 @@ if(isset($idsp) && !empty($idsp)) {
                     $details['id'] = $db->lastInsertId();
 
                     $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $fileName)?$details:[]);
+                    //traitement du devis pour l'enregistrement dans la base
+                    $templateFile = __DIR__."/../../uploads/templates/Bordereaux de Prix FTTH_INT_HRZ_INDA.xlsx";
+
+                    $stm = $db->prepare("SELECT * FROM ressource WHERE id_ressource=:id");
+                    $stm->bindParam(':id',$details['id']);
+                    $stm->execute();
+                    $row = $stm->fetch(PDO::FETCH_OBJ);
+
+                    $fileName = $row->nom_fichier;
+
+                    //loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+                    loadExcelDEF_BPE_EBM_CTR($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
+
+                    //fin de traitement du devis pour l'enregistrement dans la base
                 }
             }
         }
