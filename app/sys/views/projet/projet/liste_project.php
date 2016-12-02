@@ -38,11 +38,11 @@
         "#delete_project"];
     $(document).ready(function() {
         projet_dt = $('#projet_table').DataTable( {
-            "language": {
+            /*"language": {
                 "url": "assets/js/plugins/datatables/French.json"
-            },
+            },*/
             "autoWidth": false,
-            //"processing": true,
+            "processing": true,
             "serverSide": true,
             "ajax": "api/projet/projet/projet_liste.php",
             "columns": [
