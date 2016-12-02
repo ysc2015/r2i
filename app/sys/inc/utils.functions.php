@@ -914,6 +914,134 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
 }
 function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
+    $sousProjet = NULL;
+
+    $l23 = 0;//288
+    $l24 = 0;//48
+    $l25 = 0;//72
+    $l26 = 0;//144
+    $l27 = 0;//288
+    $l28 = 0;//432
+    $l29 = 0;//720
+    $l56 = 0;//11/14
+    $l58 = 0;//15/18
+    $l60 = 0;//21/25
+
+    if(isset($_GET['idsp']) && !empty($_GET['idsp'])){
+        $sousProjet = SousProjet::find($_GET['idsp']);
+    }
+
+    $tentree = "";
+
+    if($sousProjet !== NULL) {
+        switch($_GET['idtot']) {
+            case "1" :
+                $tentree = "transportaiguillage";
+                break;
+            case "2" :
+                $tentree = "transporttirage";
+                break;
+            case "3" :
+                $tentree = "transportraccordement";
+                break;
+            case "4" :
+                $tentree = "transporttirage";
+                //$tentree = "transportraccordement";
+                break;
+            case "5" :
+                $tentree = "distributionaiguillage";
+                break;
+            case "6" :
+                $tentree = "distributiontirage";
+                break;
+            case "7" :
+                $tentree = "distributionraccordement";
+                break;
+            case "8" :
+                $tentree = "distributiontirage";
+                //$tentree = "distributionraccordement";
+                break;
+            default :
+                break;
+        }
+
+        if($tentree !== "" ) {
+            switch($tentree) {
+                case "transportaiguillage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $l23 = $sousProjet->{$tentree}->lineaire3;//288
+                        //$l24 = $sousProjet->{$tentree}->lineaire5;//48
+                        //$l25 = $sousProjet->{$tentree}->lineaire5;//72
+                        $l26 = $sousProjet->{$tentree}->lineaire4;//144
+                        $l27 = $sousProjet->{$tentree}->lineaire3;//288
+                        $l28 = $sousProjet->{$tentree}->lineaire2;//432
+                        $l29 = $sousProjet->{$tentree}->lineaire1;//720
+                    }
+                    break;
+                case "distributionaiguillage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $l23 = $sousProjet->{$tentree}->lineaire1;//288
+                        $l24 = $sousProjet->{$tentree}->lineaire4;//48
+                        $l25 = $sousProjet->{$tentree}->lineaire3;//72
+                        $l26 = $sousProjet->{$tentree}->lineaire2;//144
+                        $l27 = $sousProjet->{$tentree}->lineaire1;//288
+                        //$l28 = $sousProjet->{$tentree}->lineaire2;//432
+                        //$l29 = $sousProjet->{$tentree}->lineaire1;//720
+                    }
+                    break;
+
+                case "transporttirage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $l23 = $sousProjet->{$tentree}->lineaire3;//288
+                        //$l24 = $sousProjet->{$tentree}->lineaire5;//48
+                        //$l25 = $sousProjet->{$tentree}->lineaire5;//72
+                        $l26 = $sousProjet->{$tentree}->lineaire4;//144
+                        $l27 = $sousProjet->{$tentree}->lineaire3;//288
+                        $l28 = $sousProjet->{$tentree}->lineaire2;//432
+                        $l29 = $sousProjet->{$tentree}->lineaire1;//720
+
+                        //$l56 = $sousProjet->{$tentree}->lineaire11;//11/14
+                        $l58 = $sousProjet->{$tentree}->lineaire11;//15/18
+                        $l60 = $sousProjet->{$tentree}->lineaire9;//21/25
+                    }
+                    break;
+                case "distributiontirage" :
+                    if($sousProjet->{$tentree} !== NULL) {
+                        $l23 = $sousProjet->{$tentree}->lineaire1;//288
+                        $l24 = $sousProjet->{$tentree}->lineaire4;//48
+                        $l25 = $sousProjet->{$tentree}->lineaire3;//72
+                        $l26 = $sousProjet->{$tentree}->lineaire2;//144
+                        $l27 = $sousProjet->{$tentree}->lineaire1;//288
+                        //$l28 = $sousProjet->{$tentree}->lineaire2;//432
+                        //$l29 = $sousProjet->{$tentree}->lineaire1;//720
+
+                        $l56 = $sousProjet->{$tentree}->lineaire11;//11/14
+                        $l58 = $sousProjet->{$tentree}->lineaire10;//15/18
+                        //$l60 = $sousProjet->{$tentree}->lineaire9;//21/25
+                    }
+                    break;
+                default :
+                    break;
+            }
+        }
+
+        $update_statment = $db->prepare("UPDATE detail_EBM SET capaFO48=:capaFO48,capaFO72=:capaFO72,capaFO144=:capaFO144,capaFO288=:capaFO288,capaFO432=:capaFO432,capaFO720=:capaFO720,LINTUBN14=:LINTUBN14,LINTUBN18=:LINTUBN18,LINTUBN25=:LINTUBN25 WHERE id_detail_EBM=:id");
+
+        $update_statment->bindParam(':capaFO48',$l24);
+        $update_statment->bindParam(':capaFO72',$l25);
+        $update_statment->bindParam(':capaFO144',$l26);
+        $update_statment->bindParam(':capaFO288',$l27);
+        $update_statment->bindParam(':capaFO432',$l28);
+        $update_statment->bindParam(':capaFO720',$l29);
+        $update_statment->bindParam(':LINTUBN14',$l56);
+        $update_statment->bindParam(':LINTUBN18',$l58);
+        $update_statment->bindParam(':LINTUBN25',$l60);
+
+        $update_statment->bindParam(':id',$id);
+
+        $update_statment->execute();
+    }
+
     $tabreturn = [];
     try {
         $stm = $db->prepare("SELECT * FROM detail_EBM WHERE id_detail_EBM=:id");
@@ -936,7 +1064,7 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux->getCell("L47")->setValue($row->somboitie288);
 
 
-        $sheetbordereaux->getCell("L23")->setValue(""); //Si capa non existante = 0
+        $sheetbordereaux->getCell("L23")->setValue($row->capaFO288); //Si capa non existante = 0
 
         $sheetbordereaux->getCell("L24")->setValue($row->capaFO48);
         $sheetbordereaux->getCell("L25")->setValue($row->capaFO72);
@@ -948,12 +1076,6 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
         $sheetbordereaux->getCell("L56")->setValue($row->LINTUBN14);
         $sheetbordereaux->getCell("L58")->setValue($row->LINTUBN18);
         $sheetbordereaux->getCell("L60")->setValue($row->LINTUBN25);
-
-
-
-
-
-
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
         $cacheSettings = array( ' memoryCacheSize ' => '16MB');
