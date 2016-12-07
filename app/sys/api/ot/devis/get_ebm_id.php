@@ -11,6 +11,8 @@ $stm = NULL;
 
 $detailsEBM = NULL;
 
+$sql = "";
+
 $sousProjet = SousProjet::find($idsp);
 
 $display_ebm = true;
@@ -33,6 +35,7 @@ if($sousProjet !== NULL) {
                 /*case "9" :
                   case "10" :
                 */
+                $sql = "select detail_EBM.id_detail_EBM,detail_EBM.id_ressource from detail_EBM,ressource where detail_EBM.id_ressource = ressource.id_ressource and ressource.id_ordre_de_travail=$idot LIMIT 1";
                 $stm = $db->prepare("select detail_EBM.id_detail_EBM,detail_EBM.id_ressource from detail_EBM,ressource where detail_EBM.id_ressource = ressource.id_ressource and ressource.id_ordre_de_travail=$idot LIMIT 1");
 
                 if($stm->execute()) {
@@ -72,4 +75,4 @@ if($sousProjet !== NULL) {
 }
 
 
-echo json_encode(array("idebm" => $idebm, "idres" => $idres));
+echo json_encode(array("idebm" => $idebm, "idres" => $idres, "sql" => $sql));
