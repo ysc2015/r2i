@@ -567,7 +567,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
   `NBTUB`, `NBSOUD`, `dateinsert`) VALUES (NULL,$idressource, '".$TABEXT_432."', '".$TABEXT_288."', '".$TABEXT_144."', '".$TABEXT_72."', '".$TABEXT_48."', '".$TABEXT_24."',
    '".$TABRAC_720."', '".$TABRAC_432."', '".$TABRAC_288."', '".$TABRAC_144."', '".$TABRAC_72."', '".$TABRAC_48."', '".$TABRAC_24."',
    '".$TABFEN_432."', '".$TABFEN_288."', '".$TABFEN_144."', '".$TABFEN_72."', '".$TABFEN_48."', '".$TABFEN_24."',
-    '".$nbtub."', '".$NBSOUD."','".date('Y-m-d G:i:s')."');");
+    '".$nbtub."', '".$NBSOUD."','".date('Y-m-d G:i:s')."');") or die("error insertion");
 
 
         return json_encode($tabreturn);
