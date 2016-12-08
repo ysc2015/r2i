@@ -63,10 +63,12 @@
                 { "data": "dep" },
                 { "data": "ville" },
                 { "data": "plaque" },
-                { "data": "zone" }
+                { "data": "zone" },
+                { "data": "lib_nro" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1 ], "visible": false, "searchable": false },
+                { "targets": [ 7 ], "visible": false, "searchable": true },
                 {
                     "targets": 2,
                     "render": function ( data, type, full, meta ) {
