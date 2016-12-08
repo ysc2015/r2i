@@ -10,6 +10,7 @@
                 <th>prénom</th>
                 <th>email</th>
                 <th>profil</th>
+                <th>shortlib</th>
             </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                 <th>prénom</th>
                 <th>email</th>
                 <th>profil</th>
+                <th>shortlib</th>
             </tr>
             </tfoot>
         </table>
@@ -45,11 +47,14 @@
                 { "data": "nom_utilisateur" },
                 { "data": "prenom_utilisateur" },
                 { "data": "email_utilisateur" },
-                { "data": "lib_profil_utilisateur" }
+                { "data": "lib_profil_utilisateur" },
+                { "data": "shortlib" }
             ],
             "order": [[0, 'desc']],
             "columnDefs": [
-                { "targets": [ 0 ], "visible": false, "searchable": false } ],
+                { "targets": [ 0 ], "visible": false, "searchable": false },
+                { "targets": [ 5 ], "visible": false, "searchable": true }
+            ],
             "drawCallback": function( /*settings*/ ) {
                 $('#linked-nro').html('<option value="">&nbsp;</option>');
             }
