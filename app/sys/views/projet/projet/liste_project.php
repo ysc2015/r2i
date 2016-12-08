@@ -43,7 +43,7 @@
             },
             "autoWidth": false,
             "processing": true,
-            //"serverSide": true,
+            "serverSide": true,
             "ajax": "api/projet/projet/projet_liste.php",
             "columns": [
                 { "data": "id_projet" },
