@@ -55,7 +55,7 @@ class OsaApi
             $i=0;
             $encoure = 0;
             $termine = 0;
-            var_dump($resultat);
+            var_dump($res);
             if(count($resultat->ENCOURS)>0){
 
                 $bddresultat = $db->query("SELECT id_etape,count(*) FROM `sous_projet_taches_osa` where id_osa IN (".implode(',', array_values($resultat->ENCOURS)) .") and id_etape = '".$idetape."' and type_etape = '".$typeetape."'");
