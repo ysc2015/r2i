@@ -53,11 +53,12 @@
                 { "data": "date_creation" },
                 { "data": "date_attribution" },
                 { "data": "id_projet" },
-                { "data": "ville_nom" }
+                { "data": "ville_nom" },
+                { "data": "lib_nro" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
-                { "targets": [ 7 ], "visible": false, "searchable": true },
+                { "targets": [ 7,8 ], "visible": false, "searchable": true },
                 {
                     "targets": 3,
                     "render": function ( data, type, full, meta ) {
