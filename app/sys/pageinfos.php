@@ -15,6 +15,12 @@ switch($page)
             "navigator"=>"<li>projets</li>")));
         break;
 
+    case "pointbloquant":
+        return json_decode(json_encode(array("header"=>"Points bloquants",
+            "subheader"=>"Liste des points bloquants",
+            "navigator"=>"<li>points bloquants</li>")));
+        break;
+
     case "myot":
         return json_decode(json_encode(array("header"=>"Ordres de travail",
             "subheader"=>"",
