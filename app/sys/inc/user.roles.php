@@ -196,13 +196,14 @@ class adm extends baseUser {
     function pointbloquant() {
         Page::pointbloquant(
             array(
-                "pointbloquant" => array("liste","update","delete")
+                "pointbloquant" => array("liste","update","delete"),
+                "info" => array("liste")
             )
         );
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 
     //admin only menu
@@ -210,7 +211,7 @@ class adm extends baseUser {
     function utilisateur() {
         Page::utilisateur(
             array(
-                "free" => array("liste","add","update","delete","nro","nropci"),
+                "free" => array("liste","add","update","delete","nro"),
                 "stt" => array("liste","add","update","delete")
             )
         );

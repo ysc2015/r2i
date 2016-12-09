@@ -119,8 +119,11 @@ switch ($page) {
         }
         echo "<br><br>";
         break;
-    /*case "pointbloquant":
-        if(isset($idchambre)) {
+    case "pointbloquant":
+        $connectedProfil->pointbloquant();
+        echo "<br><br>";
+        break;
+      /*  if(isset($idchambre)) {
             $ch = Chambre::first(
                 array('conditions' =>
                     array("id_chambre = ?", $idchambre)

@@ -56,6 +56,7 @@
                 { "targets": [ 5 ], "visible": false, "searchable": true }
             ],
             "drawCallback": function( /*settings*/ ) {
+                $('#link_nro_wrp').hide();
                 $('#linked-nro').html('<option value="">&nbsp;</option>');
             }
         } );
@@ -70,14 +71,48 @@
                 $(users_btns.join(',')).addClass("disabled");
 
                 $('#linked-nro').html('<option value="">&nbsp;</option>');
+
+                $('#link_nro_wrp').hide();
             }
             else {
                 users_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
+                //console.log(users_dt.row('.selected').data().shortlib);
+
                 $(users_btns.join(',')).removeClass("disabled");
 
-                //VPI
+                switch (users_dt.row('.selected').data().shortlib) {
+                    case 'vpi':
+                    case 'bei':
+                    case 'pci':
+                        $('#link_nro_wrp').show();
+                        $.ajax({
+                            method: "POST",
+                            url: "api/utilisateur/free/get_user_nro_list.php",
+                            dataType: "json",
+                            data: {
+                                idu : users_dt.row('.selected').data().id_utilisateur
+                            }
+                        })
+                            .done(function (data) {
+                                var values = [];
+                                $('#linked-nro').html('<option value="">&nbsp;</option>');
+                                for(var i = 0 ; i < data.length ; i++) {
+                                    if(users_dt.row('.selected').data().id_utilisateur == data[i]['idu']) {
+                                        values.push(data[i]['id']);
+                                    }
+                                    html = '<option value="'+data[i]['id']+'">'+data[i]['nro']+'</option>';
+                                    $('#linked-nro').append(html);
+                                }
+                                $('#linked-nro').val(values);
+                            });
+                        break;
+
+                    default : $('#link_nro_wrp').hide();break;
+                }
+
+                /*//VPI
                 if(users_dt.row('.selected').data().id_profil_utilisateur == 7) {
                     $('#link_nro_wrp').show();
                     $.ajax({
@@ -129,7 +164,7 @@
                         });
                 } else {
                     $('#link_nro_wrp2').hide();
-                }
+                }*/
             }
 
         } );
