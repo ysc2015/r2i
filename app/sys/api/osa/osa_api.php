@@ -79,7 +79,7 @@ class OsaApi
                      }
                  }
              }else{
-                 $pasdereponse = 'Problème de liaison';
+                 $pasdereponse = '<span style="color: red">Problème de liaison</span>';
              }
 
             echo $pasdereponse . '('. $encoure.'/'.($termine+$encoure).')';
