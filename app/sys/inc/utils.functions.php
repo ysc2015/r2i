@@ -1186,8 +1186,6 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
 
 
 function checkLinearsForEntry($sousProjet,$entree,$lcount) {
-    /*var_dump($entree);
-    var_dump($lcount);*/
     if($sousProjet->{$entree} !== NULL) {
         for($i=1;$i<=$lcount;$i++) {
             if($sousProjet->{$entree}->{"lineaire".$i} == NULL || /*empty($sousProjet->{$entree}->{"lineaire".$i})*/ $sousProjet->{$entree}->{"lineaire".$i} < 0 || !is_numeric($sousProjet->{$entree}->{"lineaire".$i})) return false;
