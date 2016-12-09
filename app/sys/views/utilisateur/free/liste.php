@@ -94,8 +94,7 @@
                             data: {
                                 idu : users_dt.row('.selected').data().id_utilisateur
                             }
-                        })
-                            .done(function (data) {
+                        }).done(function (data) {
                                 var values = [];
                                 $('#linked-nro').html('<option value="">&nbsp;</option>');
                                 for(var i = 0 ; i < data.length ; i++) {
@@ -106,7 +105,7 @@
                                     $('#linked-nro').append(html);
                                 }
                                 $('#linked-nro').val(values);
-                            });
+                        });
                         break;
 
                     default : $('#link_nro_wrp').hide();break;
