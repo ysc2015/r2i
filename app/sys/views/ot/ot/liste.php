@@ -55,7 +55,7 @@
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
                     $('#download_devis').removeClass('disabled');
-                    $("#devis_uploads").show();
+                    //$("#devis_uploads").show();
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
 
@@ -65,14 +65,14 @@
                     id_devis = 0;
                     id_res = 0;
                     $('#download_devis').addClass('disabled');
-                    $("#devis_uploads").hide();
+                    //$("#devis_uploads").hide();
                 }
             });
         } else {
             id_devis = 0;
             id_res = 0;
             $('#download_devis').addClass('disabled');
-            $("#devis_uploads").hide();
+            //$("#devis_uploads").hide();
         }
     }
     function displayEBM() {
@@ -144,6 +144,7 @@
             ,
             "drawCallback": function( /*settings*/ ) {
                 $('#other_files_uploader_wrapper').hide();
+                $("#devis_uploads").hide();
                 displayDevis();
                 displayEBM();
                 $('#devis_block_title').html('Suivi Facturation');
@@ -175,6 +176,7 @@
                 $('#other_files_uploader_wrapper').hide();
                 $('#linked-pb-wrapper').hide();
                 $('#linked-ch-wrapper').hide();
+                $("#devis_uploads").hide();
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
@@ -188,6 +190,7 @@
 
                 $(ot_btns.join(',')).removeClass("disabled");
                 $('#linked-ch-wrapper').show();
+                $("#devis_uploads").show();
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
 
