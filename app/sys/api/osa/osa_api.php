@@ -78,11 +78,12 @@ class OsaApi
 
                      }
                  }
+                 $pasdereponse = '('. $encoure.'/'.($termine+$encoure).')';
              }else{
-                 $pasdereponse = '<span style="color: red">Problème de liaison</span>';
+                 $pasdereponse = '<span style="color: red">Problème de liaison OSA</span>';
              }
 
-            echo $pasdereponse . '('. $encoure.'/'.($termine+$encoure).')';
+            echo $pasdereponse ;
         }
     }
 
