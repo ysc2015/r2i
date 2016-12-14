@@ -174,7 +174,7 @@ class adm extends baseUser {
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
                 "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette","commandefintravaux"),
-                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux")
             )
         );
     }
@@ -377,8 +377,8 @@ class bei extends baseUser {
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
-                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
-                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette","commandefintravaux"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux")
             )
         );
     }
@@ -439,8 +439,8 @@ class vpi extends baseUser {
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
-                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
-                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette","commandefintravaux"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux")
             )
         );
     }
@@ -450,6 +450,8 @@ class vpi extends baseUser {
             array(
                 "ot" => array("liste","add","update","open_pblq","delete","link"),
                 "deot" => array("deot"),
+                "devis" => array("formdevis"),
+                "ebm" => array("formebm"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
