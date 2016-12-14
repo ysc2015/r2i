@@ -64,7 +64,7 @@
                 { "data": "ville" },
                 { "data": "plaque" },
                 { "data": "zone" },
-                { "data": "lib_nro" }
+                { "data": "lib_nro" }//maj
             ],
             "columnDefs": [
                 { "targets": [ 0,1 ], "visible": false, "searchable": false },
