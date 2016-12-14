@@ -45,11 +45,11 @@ class OsaApi
         if($res === FALSE){
             ///
         }else{
-            print_r($res);
+            //print_r($res);
             $resultat = json_decode($res, true) ;
 
 
-            //print_r($resultat);
+            var_dump($resultat);
 
             $tabencours= [];
             $tabtermine= [];
