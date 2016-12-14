@@ -45,6 +45,7 @@ class OsaApi
         if($res === FALSE){
             ///
         }else{
+            print_r($res);
             $resultat = json_decode($res) ;
 
 
