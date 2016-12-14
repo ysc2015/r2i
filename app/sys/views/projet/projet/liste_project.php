@@ -54,7 +54,7 @@
                 { "data": "date_attribution" },
                 { "data": "id_projet" },
                 { "data": "ville_nom" },
-                { "data": "lib_nro" }
+                { "data": "lib_nro" }//maj
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
