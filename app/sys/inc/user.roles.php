@@ -448,7 +448,7 @@ class vpi extends baseUser {
     function ot() {
         Page::ot(
             array(
-                "ot" => array("liste","add","update","open_pblq","delete","link"),
+                "ot" => array("liste","add","update","open_pblq","delete","link","link_pb"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis"),
                 "ebm" => array("formebm"),
