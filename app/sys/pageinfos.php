@@ -107,11 +107,11 @@ switch($page)
             "navigator"=>"<li>liste</li>")));
         break;
 
-    case "nropci":
+    /*case "nropci":
         return json_decode(json_encode(array("header"=>"NRO/PCI",
             "subheader"=>"Nro/PCI",
             "navigator"=>"<li>liste</li>")));
-        break;
+        break;*/
 
     case "typeot":
         return json_decode(json_encode(array("header"=>"Types OT",

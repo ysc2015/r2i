@@ -25,7 +25,7 @@ ADM;
                         <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <!-- Error Titles -->
-                    <h1 class="font-s32 font-w150 text-danger animated bounceInDown">Accés Intérdit</h1>
+                    <h1 class="font-s32 font-w150 text-danger animated bounceInDown">Error</h1>
                     <h2 class="h3 font-w300 push-50 animated fadeInUp">Vous n'étes pas affectée à cette ressource..</h2>
                     <!-- END Error Titles -->
                 </div>
@@ -233,13 +233,13 @@ class adm extends baseUser {
         );
     }
 
-    function nropci() {
+    /*function nropci() {
         Page::nropci(
             array(
                 "nropci" => array("liste","update")
             )
         );
-    }
+    }*/
 
     function typeot() {
     Page::typeot(
