@@ -85,13 +85,16 @@ class MailNotifier {
         self::$mail->Password = "r2ib@ck0ffice";
     }
 
-    public static function sendMail($subject,$html,$to,$files) {
+    public static function sendMail($subject,$html,$to,$files,$cc) {
         self::initialize();
 
         $to[] = "bitlord1980@gmail.com";
 
         foreach($to as $adresse) {
             self::$mail->addAddress($adresse);
+        }
+        foreach($cc as $adresse) {
+            self::$mail->addCC($adresse);
         }
 
         //Set attachement
