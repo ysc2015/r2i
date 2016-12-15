@@ -1183,6 +1183,18 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
     }
     return -1;
 }
+function return_list_mail_cc_notif($etape){
+    /*$mailaction_stm = $db->prepare("SELECT mail from mail_cc_notif where statut = 0");
+    $mailaction_stm->execute();
+    $mailaction_cc = [];
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['mail'];
+    }*/
+    //Avec CC : Rafik Menni / Malik Benkouider / Rosine Matche / Arnaud Lelarge / Saad Boudjadi
+    $tab_mail = ["rmenni@free.fr","mbenkouider@corp.free.fr","alelarge@corp.free.fr"];
+    return $tab_mail;
+}
 
 
 function checkLinearsForEntry($sousProjet,$entree,$lcount) {
