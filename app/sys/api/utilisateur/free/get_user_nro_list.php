@@ -12,7 +12,9 @@ extract($_POST);
 
 $ret= array();
 
-$stm = $db->prepare("select * from nro where id_utilisateur IS NULL or id_utilisateur=:id_utilisateur");
+$sql = "select n.* from nro_utilisateur as nu, nro as n,utilisateur as u";
+
+$stm = $db->prepare("select * from nro as n where id_utilisateur IS NULL or id_utilisateur=:id_utilisateur");
 
 if(isset($idu) && !empty($idu)){
     $stm->execute(array(':id_utilisateur' => $idu));
