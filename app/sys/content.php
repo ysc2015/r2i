@@ -225,14 +225,15 @@ switch ($page) {
         $connectedProfil->nro();
         echo "<br><br>";
         break;
-    case "nropci":
+    /*case "nropci":
         $connectedProfil->nropci();
         echo "<br><br>";
-        break;
+        break;*/
     case "typeot":
         $connectedProfil->typeot();
         echo "<br><br>";
         break;
+    default : $connectedProfil->ressourceNotFound();break;
 }
 
 ?>

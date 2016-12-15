@@ -12,9 +12,11 @@ extract($_POST);
 
 $ret= array();
 
-$sql = "select n.* from nro_utilisateur as nu, nro as n,utilisateur as u";
+$sql = "select n.id_nro,n.lib_nro,nu.id_utilisateur from nro as n ";
+$sql .="left join nro_utilisateur as nu on n.id_nro = nu.id_nro and nu.id_utilisateur = :id_utilisateur";
+//$sql .="where nu.id_utilisateur = :id_utilisateur";
 
-$stm = $db->prepare("select * from nro as n where id_utilisateur IS NULL or id_utilisateur=:id_utilisateur");
+$stm = $db->prepare($sql);
 
 if(isset($idu) && !empty($idu)){
     $stm->execute(array(':id_utilisateur' => $idu));

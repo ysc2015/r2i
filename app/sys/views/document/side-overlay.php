@@ -41,11 +41,11 @@
                                 <i class="fa fa-users push-5-r"></i> Utilisateurs
                             </a>
                             <a class="list-group-item" href="?page=nro">
-                                <i class="fa fa-link push-5-r"></i> Nro
+                                <i class="fa fa-link push-5-r"></i> Nro/VPI
                             </a>
-                            <a class="list-group-item" href="?page=nropci">
+                            <!--<a class="list-group-item" href="?page=nropci">
                                 <i class="fa fa-link push-5-r"></i> Nro/PCI
-                            </a>
+                            </a>-->
                             <a class="list-group-item" href="?page=typeot">
                                 <i class="fa fa-list push-5-r"></i> Type OT
                             </a>

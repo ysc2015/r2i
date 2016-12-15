@@ -83,7 +83,7 @@
                 $(users_btns.join(',')).removeClass("disabled");
 
                 switch (users_dt.row('.selected').data().shortlib) {
-                    case 'vpi':
+                    /*case 'vpi':*/
                     case 'bei':
                     case 'pci':
                         $('#link_nro_wrp').show();
@@ -95,6 +95,7 @@
                                 idu : users_dt.row('.selected').data().id_utilisateur
                             }
                         }).done(function (data) {
+                                console.log(data.length );
                                 var values = [];
                                 $('#linked-nro').html('<option value="">&nbsp;</option>');
                                 for(var i = 0 ; i < data.length ; i++) {
