@@ -1195,6 +1195,9 @@ function return_list_mail_cc_notif($etape){
     $tab_mail = ["rmenni@free.fr","mbenkouider@corp.free.fr","alelarge@corp.free.fr"];
     return $tab_mail;
 }
+function return_list_mail_vpi_par_nro($etape){
+    return ["fadelghani@gmail.com","fadelghani@rc2k.fr"];
+}
 
 
 function checkLinearsForEntry($sousProjet,$entree,$lcount) {
