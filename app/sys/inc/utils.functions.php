@@ -1192,7 +1192,7 @@ function return_list_mail_cc_notif($etape){
         $mailaction_cc[] = $mailaction_mail_cc['mail'];
     }*/
     //Avec CC : Rafik Menni / Malik Benkouider / Rosine Matche / Arnaud Lelarge / Saad Boudjadi
-    $tab_mail = ["rmenni@free.fr","mbenkouider@corp.free.fr","alelarge@corp.free.fr"];
+    $tab_mail = ["rmenni@free.fr","mbenkouider@corp.free.fr","alelarge@corp.free.fr","rmatche@free-infra.fr","sboudjadi@corp.free.fr"];
     return $tab_mail;
 }
 function return_list_mail_vpi_par_nro($idnro){
