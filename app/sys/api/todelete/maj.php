@@ -22,9 +22,9 @@ if($stm->execute()) {
 
     }
 
-    echo "table nro suppression colonne(id_utilisateur2)...<br><br>";
-    $dropColsStm = $db->prepare("ALTER TABLE nro DROP id_utilisateur2");
-    @$dropColsStm->execute();
+    //echo "table nro suppression colonne(id_utilisateur2)...<br><br>";
+    //$dropColsStm = $db->prepare("ALTER TABLE nro DROP id_utilisateur2");
+    //@$dropColsStm->execute();
 
     echo "fin traitement";
 }
