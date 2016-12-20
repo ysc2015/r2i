@@ -2,42 +2,104 @@ var tache_dt;
 /**
  * Created by fadil on 02/11/16.
  */
+
+var idprojet = undefined;
+var nomprojet  = undefined;
+var ajaxc  = false;
+var tab_etape  = [];
+
 function appelscriptosa(typeetape, id_sous_projet,ide)
 {
 
     rc2k.osa.ws.auth(window.token,function(response){
-       // console.log(response);
+
         var aresponse = JSON.parse(response);
         var idetape=0;
+        var id=0;
         if(false) {
             alert("Authentification non autorisé");
         }else{
-            console.log("api/projet/sousprojet/get_projet_id.php : id_sous_projet " + id_sous_projet + ", ide : " + ide);
-            //apres authentification
+
+            if(idprojet!==undefined){
+
+
+
+                idetape = tab_etape[ide];
+                id = idprojet;
+                if(idetape!=0){
+                    if(id ==0){
+                        rc2k.osa.ws.projet.create({
+                            ref:"",//id_utilisateur connecte
+                            prj:nomprojet ,//nom de projet
+                            des:nomprojet,//desc else nom projet
+                            dat:new Date(),//date fin de projet
+                            fil:"2"//ftth
+                        }, function(reponse){
+
+                            var areponse = JSON.parse (reponse);
+
+                            $.ajax({
+                                method: "POST",
+                                url: "api/projet/projet/set_projet_id_osa.php",
+                                data: {
+                                    idosa:areponse["extra"],
+                                    idsp: id_sous_projet
+
+                                },
+                                success : function(response){
+
+                                    rc2k.osa.ui.tache.create({
+                                        idp : areponse["extra"],
+                                        ide : idetape,
+                                        etape : typeetape,
+                                        url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+
+                                    });
+                                }
+                            })
+                        });
+
+                    }else {
+                        rc2k.osa.ui.tache.create({
+                            idp : id,
+                            ide : idetape,
+                            etape : typeetape,
+                            url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+                        });
+                    }
+                }else{
+                    alert("Etape non creer merci de l'enregistrer");
+
+                }
+            }else{
             $.ajax({
                 method: "POST",
                 url: "api/projet/sousprojet/get_projet_id.php",
-                dataType : "json",
+                dataType: "json",
+                async : false,
                 data: {
                     idsp: id_sous_projet,
                     tentre: ide
                 },
-                success : function (e) {
+                success: function (e) {
+                    // if(ide == "transportcmdfintravaux") console.log(e);
 
-                console.log("e");
-                console.log(e);
-                    idetape = e.idetape;
+                        idprojet = e.id;
+                        nomprojet = e.nom;
+                        tab_etape = e.tab_etape;
+
+                    idetape = tab_etape[ide];
+                    id = idprojet;
                     if(idetape!=0){
-                        if(e.id ==0){
+                        if(id ==0){
                             rc2k.osa.ws.projet.create({
                                 ref:"",//id_utilisateur connecte
-                                prj:e.nom ,//nom de projet
-                                des:e.nom,//desc else nom projet
+                                prj:nomprojet ,//nom de projet
+                                des:nomprojet,//desc else nom projet
                                 dat:new Date(),//date fin de projet
                                 fil:"2"//ftth
                             }, function(reponse){
-                                console.log("areponse rc2k.osa.ws.projet.create")
-                                console.log(reponse)
+
                                 var areponse = JSON.parse (reponse);
 
                                 $.ajax({
@@ -49,8 +111,6 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
                                     },
                                     success : function(response){
-                                        console.log("api/projet/projet/set_projet_id_osa.php")
-                                        console.log(response)
 
                                         rc2k.osa.ui.tache.create({
                                             idp : areponse["extra"],
@@ -65,7 +125,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
                         }else {
                             rc2k.osa.ui.tache.create({
-                                idp : e.id,
+                                idp : id,
                                 ide : idetape,
                                 etape : typeetape,
                                 url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
@@ -76,113 +136,178 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
                     }
 
+
+
+                },
+                error:function (e) {
+                    console.log( "Error");
+                    console.log( e);
                 }
-
-
             });
+
+        }
+
+
+
+
 
         }
     });
 }
 
+ function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
 
-function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
-   // console.log("calculetache_osa : "+ide)
-    //if(ide == "SousProjetPlaqueSurveyAdresse") console.log(typeetape + " * " + id_sous_projet + " * " + ide)
+    if(idprojet!==undefined && tab_etape[ide]!=0){
+        console.log(tab_etape);
+         $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: tab_etape[ide],
+                typeetape: typeetape,
+                idprojet:idprojet,
+                token:window.token
+            },
+            success : function(reponse){
+                $('#'+idhref).html(content_href+reponse);
 
-    $.ajax({
-        method: "POST",
-        url: "api/projet/sousprojet/get_projet_id.php",
-        dataType: "json",
-        data: {
-            idsp: id_sous_projet,
-            tentre: ide
-        },
-        success: function (e) {
-           // if(ide == "transportcmdfintravaux") console.log(e);
-            if(e.idetape!=0) {
+            },
+            error:function (e) {
+                console.log( "Error");
+                console.log( e);
+            }
+        });
 
+    }else{
+        $.ajax({
+            method: "POST",
+            url: "api/projet/sousprojet/get_projet_id.php",
+            dataType: "json",
+            async : false,
+            data: {
+                idsp: id_sous_projet,
+                tentre: ide
+            },
+            success: function (e) {
+
+
+                    idprojet = e.id;
+                    nomprojet = e.nom;
+                    tab_etape = e.tab_etape;
+                if(tab_etape[ide]!=0) {
                     $.ajax({
                         method : "GET",
                         url :"app/sys/api/osa/osa_api.php",
                         data:{
-                            idetape: e.idetape,
+                            idetape: tab_etape[ide],
                             typeetape: typeetape,
-                            idprojet:e.id,
+                            idprojet:idprojet,
                             token:window.token
                         },
                         success : function(reponse){
                             $('#'+idhref).html(content_href+reponse);
 
+                        },
+                        error:function (e) {
+                            console.log( "Error");
+                            console.log( e);
                         }
                     });
+                }
 
+
+
+
+            },
+            error:function (e) {
+                console.log( "Error");
+                console.log( e);
             }
+        });
 
-        },
-        error:function (e) {
-            console.log( "Error");
-            console.log( e);
-        }
-    });
+    }
 
 
 }
 function liste_tache_osa(typeetape,id_sous_projet,ide){
-
-
     var idligne=0;
-    $.ajax({
-        method: "POST",
-        url: "api/projet/sousprojet/get_projet_id.php",
-        dataType: "json",
-        data: {
-            idsp: id_sous_projet,
-            tentre: ide
-        },
-        success: function (e) {
-
-
-
-            if(e.idetape!=0) {
-
-                $.ajax({
-                    method : "GET",
-                    url :"app/sys/api/osa/osa_api.php",
-                    data:{
-                        idetape: e.idetape,
-                        typeetape: typeetape,
-                        idprojet:e.id,
-                        methode:"tache_liste",
-                        token:window.token
-                    },
-                    success : function(reponse){
-
-                        var datajson = JSON.parse(reponse);
-
-
-                        $('#tache_table').DataTable().destroy();
-
-
-                        tache_dt = $('#tache_table').DataTable({
-
-                            "data": datajson,
-                            "columnDefs": [
-                                { "targets": [0], "visible": false, "searchable": false }
-
-
-                            ],
-
-                        });
-
-
-
-                    }
+if(idprojet!==undefined){
+    if(idprojet!=0) {
+        $.ajax({
+            method : "GET",
+            url :"app/sys/api/osa/osa_api.php",
+            data:{
+                idetape: tab_etape[ide],
+                typeetape: typeetape,
+                idprojet:idprojet,
+                methode:"tache_liste",
+                token:window.token
+            },
+            success : function(reponse){
+                var datajson = JSON.parse(reponse);
+                $('#tache_table').DataTable().destroy();
+                tache_dt = $('#tache_table').DataTable({
+                    "data": datajson,
+                    "columnDefs": [
+                        { "targets": [0], "visible": false, "searchable": false }
+                    ],
                 });
-
             }
+        });
 
-        }
-    });
+    }
+}else{
+        $.ajax({
+            method: "POST",
+            url: "api/projet/sousprojet/get_projet_id.php",
+            dataType: "json",
+            async : false,
+            data: {
+                idsp: id_sous_projet,
+                tentre: ide
+            },
+            success: function (e) {
+
+                    idprojet = e.id;
+                    nomprojet = e.nom;
+                    tab_etape = e.tab_etape;
+
+                if(idprojet!=0) {
+                    $.ajax({
+                        method : "GET",
+                        url :"app/sys/api/osa/osa_api.php",
+                        data:{
+                            idetape: tab_etape[ide],
+                            typeetape: typeetape,
+                            idprojet:idprojet,
+                            methode:"tache_liste",
+                            token:window.token
+                        },
+                        success : function(reponse){
+                            var datajson = JSON.parse(reponse);
+                            $('#tache_table').DataTable().destroy();
+                            tache_dt = $('#tache_table').DataTable({
+                                "data": datajson,
+                                "columnDefs": [
+                                    { "targets": [0], "visible": false, "searchable": false }
+                                ],
+                            });
+                        }
+                    });
+
+                }
+
+
+
+            },
+            error:function (e) {
+                console.log( "Error");
+                console.log( e);
+            }
+        });
+
+    }
+
+
 
 }
