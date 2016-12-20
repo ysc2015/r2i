@@ -210,6 +210,7 @@ if($err==0) {
                     }
 
                     if($status == 3) {
+                        //svn
                         $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
                         //envoi de mail
                         $totallineaire = $c720 + $c432 + $c144 + $c48 ;
