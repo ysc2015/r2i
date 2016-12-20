@@ -15,6 +15,9 @@ if(isset($ids) && !empty($ids)){
     $sousProjet = SousProjet::find($ids);
 }
 
+$mailaction_new = false;
+$mailaction_entite = NULL;
+
 $insert = false;
 $err = 0;
 $message = array();
@@ -26,6 +29,7 @@ $paramcount = 0;
 
 if($sousProjet !== NULL) {
     if($sousProjet->distributionraccordement !== NULL) {
+        $mailaction_entite = $sousProjet->distributionraccordement;
         foreach( $_POST as $key => $value ) {
 
             if(strpos($key,$suffix) !== false) {
@@ -39,6 +43,7 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
 
         $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+        $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
         foreach( $_POST as $key => $value ) {
@@ -56,6 +61,7 @@ if($sousProjet !== NULL) {
         $valueslist = rtrim($valueslist,",");
 
         $stm = $db->prepare("insert into sous_projet_distribution_raccordements ($fieldslist) values ($valueslist)");
+        $mailaction_new = true;
     }
 } else {
     $err++;
@@ -171,7 +177,67 @@ if($insert == true && $err == 0){
     /*$duree = getDuree($dr_date_racco,$dr_date_ret_prevue);
     $stm->bindParam(':duree',$duree);*/
     if($stm->execute()){
-        setSousProjetUsers(SousProjet::find($ids));
+        if($mailaction_new && isset($dr_controle_plans) && $dr_controle_plans == 2 &&  isset($dr_etat_retour) && $dr_etat_retour == 2 && (isset($dr_lien_plans)) && $dr_lien_plans != "" &&
+            ($mailaction_entite->controle_plans != $dr_controle_plans || $mailaction_entite->etat_retour != $dr_etat_retour || $mailaction_entite->lien_plans != $dr_lien_plans ) ) {
+            //envoi de mail
+            $mailaction_object = "[R2i] Plan Raccordement CDI disponible ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
+            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
+            $mailaction_html .='<html>';
+            $mailaction_html .='<head>';
+            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
+            $mailaction_html .='<title>'.$mailaction_object.'</title>';
+            $mailaction_html .='</head>';
+            $mailaction_html .='<body>';
+            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
+            $mailaction_html .='<h3>Bonjour,</h3>';
+            $mailaction_html .='<p>Un nouveau plan de Raccordement CDI est disponible : <h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5></p>';
+            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
+            $mailaction_html .='</div>';
+            $mailaction_html .='</body>';
+            $mailaction_html .='</html>';
+            //Action = envoyer un mail au VPI concerné par le NRO
+
+            $mailaction_to =return_list_mail_vpi_par_nro($sousProjet->projet->nro->id_nro);
+            $mailaction_cc =return_list_mail_cc_notif("distributionraccordement");
+            if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+        }else if($mailaction_new && $mailaction_entite->intervenant_be  != $dr_intervenant_be  ){
+            $mailaction_email_sender = [];
+            //envoi de mail
+
+            $mailaction_object = "[R2i] Attribution charge de Travail « Phase » « type CTR ou CDI » ";//code sous projet;
+            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
+            $mailaction_html .='<html>';
+            $mailaction_html .='<head>';
+            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
+            $mailaction_html .='<title>'.$mailaction_object.'</title>';
+            $mailaction_html .='</head>';
+            $mailaction_html .='<body>';
+            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
+            $mailaction_html .='<h3>Bonjour,</h3>';
+            $mailaction_html .='<p>Une nouvelle charge de travail vient de vous être attribuée : </p>';
+            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
+            $mailaction_html .='<h5>CDI || CTR</h5>';
+            $mailaction_html .='<h5>ETAPE</h5>';
+            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
+            $mailaction_html .='</div>';
+            $mailaction_html .='</body>';
+            $mailaction_html .='</html>';
+            $mailaction_cc  =return_list_mail_cc_notif_tache($connectedProfil->email_utilisateur);
+            $mailaction_to  =get_email_by_id([$dr_intervenant_be]);
+            if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+
+        }
+        //setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();
