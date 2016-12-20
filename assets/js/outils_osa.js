@@ -157,26 +157,29 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
  function calculetache_osa(typeetape,id_sous_projet,ide,idhref,content_href){
 
-    if(idprojet!==undefined && tab_etape[ide]!=0){
+    if(idprojet!==undefined  ){
+        console.log(tab_etape);
+        if(tab_etape[ide]!=0){
+            $.ajax({
+                method : "GET",
+                url :"app/sys/api/osa/osa_api.php",
+                data:{
+                    idetape: tab_etape[ide],
+                    typeetape: typeetape,
+                    idprojet:idprojet,
+                    token:window.token
+                },
+                success : function(reponse){
+                    $('#'+idhref).html(content_href+reponse);
 
-         $.ajax({
-            method : "GET",
-            url :"app/sys/api/osa/osa_api.php",
-            data:{
-                idetape: tab_etape[ide],
-                typeetape: typeetape,
-                idprojet:idprojet,
-                token:window.token
-            },
-            success : function(reponse){
-                $('#'+idhref).html(content_href+reponse);
+                },
+                error:function (e) {
+                    console.log( "Error");
+                    console.log( e);
+                }
+            });
+        }
 
-            },
-            error:function (e) {
-                console.log( "Error");
-                console.log( e);
-            }
-        });
 
     }else{
         console.log(typeetape);
