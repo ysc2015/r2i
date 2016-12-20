@@ -220,9 +220,6 @@
                 id = arr[0];
             }
 
-            /*traccord_chambre_idres = id;
-            $('#traccord-chambre-modal').modal({backdrop: 'static', keyboard: false});
-            traccord_chambre_table.draw(false);*/
 
             location.href="api/file/download.php?id="+id;
         },
@@ -411,8 +408,6 @@
 
         }
     }
-    var traccord_chambre_idres = 0;
-    var traccord_chambre_table;
     $(function () {
         traccord_chambre_uploader_options = merge_options(defaultUploaderStrLocalisation,traccord_chambre_uploader_options);
         traccord_chambre_uploader_options.abortStr = 'Injection en cours ...';
@@ -477,44 +472,6 @@
             blq_ot_dt.ajax.url( 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet')+'&tentree=transportraccordement' ).load();
         });
 
-        traccord_chambre_table = $('#traccord_chambre_table').DataTable( {
-            "language": {
-                "url": "assets/js/plugins/datatables/French.json"
-            },
-            "autoWidth": false,
-            "processing": true,
-            "serverSide": true,
-            "bJQueryUI": true,
-            "bStateSave": true,
-            "ajax": {
-                "url": 'api/ot/chambreot/chambre_liste.php',
-                "type": 'POST',
-                "data": function ( d ) {
-                    return {idres : traccord_chambre_idres}
-                }
-            },
-            "columns": [
-                { "data": "id_chambre" },
-                { "data": "id_ressource" },
-                { "data": "id_sous_projet" },
-                { "data": "type_entree" },
-                { "data": "ref_chambre" },
-                { "data": "villet" },
-                { "data": "sous_projet" },
-                { "data": "ref_note" },
-                { "data": "code_ch1" },
-                { "data": "code_ch2" },
-                { "data": "gps" }
-            ],
-            "columnDefs": [
-                { "targets": [ 0,1,2,3 ], "visible": false, "searchable": false }
-            ],
-            "order": [[0, 'desc']]
-            ,
-            "drawCallback": function( /*settings*/ ) {
-
-            }
-        } );
         $("#id_sous_projet_transport_raccord_ot_btn").click(function () {
             $.ajax({
                 method: "POST",
@@ -539,61 +496,3 @@
         $("#recette_href").trigger('click');*/
     } );
 </script>
-<!-- plans boite Modal -->
-
-<!-- END plans boite Modal -->
-
-<!-- chambre Modal -->
-<div class="modal fade" id="traccord-chambre-modal"  role="dialog" aria-hidden="true"><!--tabindex="-1"-->
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="block block-themed block-transparent remove-margin-b" id="traccord-chambre-block">
-                <div class="block-header bg-primary">
-                    <ul class="block-options">
-                        <li>
-                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
-                        </li>
-                    </ul>
-                    <h3 class="block-title">Chambres injectées</h3>
-                </div>
-                <div class="block-content table-responsive">
-                    <table id="traccord_chambre_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
-                        <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>id_res</th>
-                            <th>ids</th>
-                            <th>tentree</th>
-                            <th>ref chambre</th>
-                            <th>villet</th>
-                            <th>sous projet</th>
-                            <th>ref note</th>
-                            <th>code ch1</th>
-                            <th>code ch2</th>
-                            <th>gps</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>id</th>
-                            <th>id_res</th>
-                            <th>ids</th>
-                            <th>tentree</th>
-                            <th>ref chambre</th>
-                            <th>villet</th>
-                            <th>sous projet</th>
-                            <th>ref note</th>
-                            <th>code ch1</th>
-                            <th>code ch2</th>
-                            <th>gps</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END chambre Modal -->
