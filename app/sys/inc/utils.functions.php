@@ -1195,8 +1195,23 @@ function return_list_mail_cc_notif($etape){
     $tab_mail = ["rmenni@free.fr","mbenkouider@corp.free.fr","alelarge@corp.free.fr","rmatche@free-infra.fr","sboudjadi@corp.free.fr"];
     return $tab_mail;
 }
-function return_list_mail_vpi_par_nro($idnro){
-    return ["fadelghani@gmail.com","fadelghani@rc2k.fr"];
+function return_list_mail_cc_notif_tache($email_utilisateur_connecte){
+
+    $tab_mail = [$email_utilisateur_connecte,"rmenni@free.fr","alelarge@corp.free.fr","sboudjadi@corp.free.fr"];
+    return $tab_mail;
+
+}
+function return_list_mail_vpi_par_nro($db,$idnro){
+    $mailaction_stm = $db->prepare("SELECT * FROM `nro`,nro_utilisateur,utilisateur where nro.id_nro = nro_utilisateur.id_nro and nro_utilisateur.id_nro =  '".$idnro."' and utilisateur.id_utilisateur = nro_utilisateur.id_utilisateur");
+    $mailaction_stm->execute();
+    $mailaction_cc = [];
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
+    $mailaction_cc[] = "fadelghani@gmail.com";
+    $mailaction_cc[] = "fadelghani@rc2k.fr";
+    return $mailaction_cc;
 }
 
 
