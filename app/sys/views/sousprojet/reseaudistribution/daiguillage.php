@@ -131,7 +131,7 @@
                     <input readonly class="form-control " type="date" id="da_date_retour" name="da_date_retour" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_retour:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="da_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <label for="da_controle_demarrage_effectif">Avancement Travaux <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="da_controle_demarrage_effectif" name="da_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
