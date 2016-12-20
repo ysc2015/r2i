@@ -1214,6 +1214,14 @@ function return_list_mail_vpi_par_nro($db,$idnro){
     return $mailaction_cc;
 }
 
+function get_email_by_id($db,$tabusers){
+    $mailaction_email_by_id[] = "fadelghani@gmail.com";
+    $mailaction_email_by_id[] = "fadelghani@rc2k.fr";
+
+    return $mailaction_email_by_id;
+
+}
+
 
 function checkLinearsForEntry($sousProjet,$entree,$lcount) {
     if($sousProjet->{$entree} !== NULL) {

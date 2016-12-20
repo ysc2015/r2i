@@ -234,7 +234,7 @@ if(isset($idot) && !empty($idot)) {
                  $mailaction_html .='</html>';
                  //Action = envoyer un mail au VPI concerné par le NRO
 
-                 $mailaction_to =return_list_mail_vpi_par_nro($sousProjet->projet->nro->id_nro);
+                 $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
                  if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),array())) {
                      $message[] = "Mail envoyé !";
                  } else {

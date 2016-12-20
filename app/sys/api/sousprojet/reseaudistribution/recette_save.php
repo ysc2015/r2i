@@ -159,7 +159,7 @@ if($insert == true && $err == 0){
             $mailaction_html .='</html>';
             //Action = envoyer un mail au VPI concerné par le NRO
             $mailaction_cc =return_list_mail_cc_notif("distributionrecette");
-            $mailaction_to =return_list_mail_vpi_par_nro($sousProjet->projet->nro->id_nro);
+            $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
@@ -189,7 +189,7 @@ if($insert == true && $err == 0){
             $mailaction_html .='</body>';
             $mailaction_html .='</html>';
             $mailaction_cc  =return_list_mail_cc_notif_tache($connectedProfil->email_utilisateur);
-            $mailaction_to  =get_email_by_id([$drec_intervenant_be,$drec_intervenant_free]);
+            $mailaction_to  =get_email_by_id($db,[$drec_intervenant_be,$drec_intervenant_free]);
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
