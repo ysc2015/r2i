@@ -220,8 +220,8 @@ if($insert == true && $err == 0){
             $mailaction_html .='<h3>Bonjour,</h3>';
             $mailaction_html .='<p>Une nouvelle charge de travail vient de vous être attribuée : </p>';
             $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<h5>CDI || CTR</h5>';
-            $mailaction_html .='<h5>ETAPE</h5>';
+            $mailaction_html .='<h5>CDI</h5>';
+            $mailaction_html .='<h5>Raccordement</h5>';
             $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
             $mailaction_html .='</div>';
             $mailaction_html .='</body>';
