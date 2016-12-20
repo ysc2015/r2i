@@ -79,7 +79,7 @@
                     <input disabled class="form-control " type="date" id="tr_date_retour" name="tr_date_retour" value="<?=($sousProjet->transportraccordement !== NULL ? $sousProjet->transportraccordement->date_retour : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="tr_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <label for="tr_controle_demarrage_effectif">Avancement Travaux <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="tr_controle_demarrage_effectif" name="tr_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

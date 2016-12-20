@@ -83,7 +83,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_controle_demarrage_effectif">Contrôle démarrage effectif <!--<span class="text-danger">*</span>--></label>
+                    <label for="trec_controle_demarrage_effectif">Avancement Travaux <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="trec_controle_demarrage_effectif" name="trec_controle_demarrage_effectif">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
