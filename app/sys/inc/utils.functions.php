@@ -1231,3 +1231,41 @@ function checkLinearsForEntry($sousProjet,$entree,$lcount) {
     }
     return true;
 }
+
+function getOTColorFromStatus($status) {
+    $color = "#ffe699";
+    switch($status) {
+        case 1 : //Crée
+            $color = "#ffe699";
+            break;
+        case 2 ://Affecté
+            $color = "#bdd7ee";
+            break;
+        case 3 ://Transmis
+            $color = "#2e75b6";
+            break;
+        case 4 ://Pris en charge
+            $color = "#c5e0b4";
+            break;
+        case 5 ://En cours de Traitement
+            $color = "#548235";
+            break;
+        case 6 ://Traité
+            $color = "#7030a0";
+            break;
+        case 7 ://Annulé
+            $color = "#c9c9c9";
+            break;
+        case 8 ://Reprogrammé
+            $color = "#9dc3e6";
+            break;
+        case 9 ://Indisponibilité Equipe
+            $color = "#ff0000";
+            break;
+
+        default : $color = "#ffe699";break;
+    }
+
+    return $color;
+
+}

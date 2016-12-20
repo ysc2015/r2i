@@ -46,7 +46,7 @@ try {
         $e['start'] = $row['date_debut']." 00:00:00";
         $e['end'] = $row['df']." 00:00:00";
         $e['allDay'] = true;
-        $e['color'] = '#faeab9';
+        $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
         $e['textColor'] = '#000';
         $e['dd'] = $row['date_debut'];
         $e['df'] = $row['date_fin'];
