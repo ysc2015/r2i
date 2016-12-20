@@ -15,6 +15,7 @@ class SousProjet extends ActiveRecord\Model {
         )
     );
 
+    //liaison ot
     static $has_many = array(
         array(
             'ots',

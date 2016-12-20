@@ -7,6 +7,7 @@
 class OrdreDeTravail extends ActiveRecord\Model {
     static $table_name = 'ordre_de_travail';
 
+    //liaison sousprojet
     static $belongs_to = array(
         array(
             'sousprojet',
