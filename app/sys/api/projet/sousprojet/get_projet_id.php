@@ -11,6 +11,33 @@ $nom = "";
 $idetape = 0;
 $primary_key = "";
 
+$tab_etape = array();
+
+$etapes = array(
+    "infoplaque",
+    "infozone",
+    "siteorigine",
+    "plaquephase",
+    "plaqueetude",
+    "plaquecarto",
+    "plaqueposadr",
+    "plaquesurvadr",
+    "transportdesign",
+    "transportaiguillage",
+    "transportcmcctr",
+    "transporttirage",
+    "transportraccordement",
+    "transportrecette",
+    "transportcmdfintravaux",
+    "distributiondesign",
+    "distributionaiguillage",
+    "distributioncmdcdi",
+    "distributiontirage",
+    "distributionraccordement",
+    "distributionrecette",
+    "distributioncmdfintravaux"
+);
+
 $sousProjet = NULL;
 
 if(isset($idsp) && !empty($idsp)){
@@ -24,8 +51,8 @@ if(isset($idsp) && !empty($idsp)){
 if($sousProjet !== NULL) {
     $id = ($sousProjet->projet->id_projet_osa!==NULL?$sousProjet->projet->id_projet_osa:0);
 
-    if(isset($tentre) && !empty($tentre)) {
-        switch($tentre) {
+    foreach($etapes as $e) {
+        switch($e) {
             case "infoplaque" :
                 $primary_key = "id_sous_projet_plaque";
                 break;
@@ -96,12 +123,14 @@ if($sousProjet !== NULL) {
         }
 
         //var_dump($sousProjet);
-        if($sousProjet->{$tentre} !== NULL) {
-            $idetape = $sousProjet->{$tentre}->$primary_key;
+        if($sousProjet->{$e} !== NULL) {
+            $tab_etape[$e] = $sousProjet->{$e}->$primary_key;
+        } else {
+            $tab_etape[$e] = 0;
         }
     }
 
 }
 
-echo json_encode(array("id" => $id, "nom" => "PON ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->ville, "idetape" => $idetape));
+echo json_encode(array("id" => $id, "nom" => "PON ".$sousProjet->projet->nro->lib_nro." ".$sousProjet->ville, "tab_etape" => $tab_etape));
 ?>
