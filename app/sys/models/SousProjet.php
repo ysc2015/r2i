@@ -15,6 +15,14 @@ class SousProjet extends ActiveRecord\Model {
         )
     );
 
+    static $has_many = array(
+        array(
+            'ots',
+            'class_name' => 'OrdreDeTravail',
+            'foreign_key' => 'id_sous_projet'
+        )
+    );
+
     static $has_one = array(
         /**
          * INFO ZONE DE TRAVAUX (SOUS-PROJET)
