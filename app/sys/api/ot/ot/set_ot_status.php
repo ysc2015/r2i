@@ -10,6 +10,23 @@ $err=0;
 $message = array();
 $stm = NULL;
 
+$b720 = 0;
+$b432 = 0;
+$b288 = 0;
+$b144 = 0;
+$b48 = 0;
+
+$c720 = 0;
+$c432 = 0;
+$c288 = 0;
+$c144 = 0;
+$c48 = 0;
+
+$nberchambre = 0 ;
+$totallineaire = 0 ;
+
+$sql = "";
+
 if(isset($status) && !empty($status) && isset($idot) && !empty($idot)) {
     $stm = $db->prepare("update ordre_de_travail set id_etat_ot = $status where id_ordre_de_travail=$idot");
 } else {
@@ -22,10 +39,10 @@ if($err==0) {
         $message[] = "MAJ réussite !";
 
         if($status == 3 || $status == 5) {
+
             /**
              * maj etapes fields
              */
-
             $ot = OrdreDeTravail::first(
                 array('conditions' =>
                     array("id_ordre_de_travail = ?", $idot)
@@ -123,10 +140,119 @@ if($err==0) {
                                 break;
                             default : break;
                         }
+                    }else{
+                        if($value[0] == "transportaiguillage" || $value[0] == "transporttirage" || $value[0] == "distributionaiguillage" || $value[0] == "distributiontirage" ){
+                            $sql = "select ch.* from chambre as ch,ressource as res, ordre_de_travail as ot  where ch.id_ressource = res.id_ressource and res.id_ordre_de_travail = ot.id_ordre_de_travail and ot.id_ordre_de_travail =  $idot";
+                            $chstmt = $db->prepare($sql);
+                            if($chstmt->execute()) {
+                                $nberchambre = $chstmt->rowCount();
+                            }
+                            //print_r($countchambre);
+                            switch ($value[0]){
+                                case "transportaiguillage" :
+                                    $b720 = $sousProjet->{$value[0]}->lineaire5;
+                                    $b432 = $sousProjet->{$value[0]}->lineaire6;
+                                    $b288 = $sousProjet->{$value[0]}->lineaire7;
+                                    $b144 = $sousProjet->{$value[0]}->lineaire8;
+                                    $b48 = 0;
+                                    $c720 = $sousProjet->{$value[0]}->lineaire1;
+                                    $c432 = $sousProjet->{$value[0]}->lineaire2;
+                                    $c288 = $sousProjet->{$value[0]}->lineaire3;
+                                    $c144 = $sousProjet->{$value[0]}->lineaire4;
+                                    $c48 = 0;
+                                    break;
+                                case "transporttirage" :
+                                    $b720 = $sousProjet->{$value[0]}->lineaire5;
+                                    $b432 = $sousProjet->{$value[0]}->lineaire6;
+                                    $b288 = $sousProjet->{$value[0]}->lineaire7;
+                                    $b144 = $sousProjet->{$value[0]}->lineaire8;
+                                    $b48 = 0;
+                                    $c720 = $sousProjet->{$value[0]}->lineaire1;
+                                    $c432 = $sousProjet->{$value[0]}->lineaire2;
+                                    $c288 = $sousProjet->{$value[0]}->lineaire3;
+                                    $c144 = $sousProjet->{$value[0]}->lineaire4;
+                                    $c48 = 0;
+                                    break;
+                                case "transportraccordement" :
+                                    break;
+                                case "distributionaiguillage" :
+                                    $b288 = $sousProjet->{$value[0]}->lineaire5;
+                                    $b144 = $sousProjet->{$value[0]}->lineaire6;
+                                    $b48 = $sousProjet->{$value[0]}->lineaire8;
+                                    $c720 = 0;
+                                    $c432 = 0;
+                                    $c288 = $sousProjet->{$value[0]}->lineaire1;
+                                    $c144 = $sousProjet->{$value[0]}->lineaire2;
+                                    $c48 = $sousProjet->{$value[0]}->lineaire4;
+                                    break;
+                                case "distributiontirage" :
+                                    $b288 = $sousProjet->{$value[0]}->lineaire5;
+                                    $b144 = $sousProjet->{$value[0]}->lineaire6;
+                                    $b48 = $sousProjet->{$value[0]}->lineaire8;
+                                    $c720 = 0;
+                                    $c432 = 0;
+                                    $c288 = $sousProjet->{$value[0]}->lineaire1;
+                                    $c144 = $sousProjet->{$value[0]}->lineaire2;
+                                    $c48 = $sousProjet->{$value[0]}->lineaire4;
+                                    break;
+                                case "distributionraccordement" :
+                                    break;
+                                case "transportrecette" :
+                                    break;
+                                case "distributionrecette" :
+                                    break;
+                                default : break;
+
+                            }
+                        }
+
+
                     }
 
                     if($status == 3) {
                         $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
+                        //envoi de mail
+                        $totallineaire = $c720 + $c432 + $c144 + $c48 ;
+                        $mailaction_object = "[R2i] Attribution OT";
+                        $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
+                        $mailaction_html .='<html>';
+                        $mailaction_html .='<head>';
+                        $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
+                        $mailaction_html .='<title>'.$mailaction_object.'</title>';
+                        $mailaction_html .='</head>';
+                        $mailaction_html .='<body>';
+                        $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
+                        $mailaction_html .='<h3>Bonjour,</h3>';
+                        $mailaction_html .='<p>Il vous a été attribué un OT "<strong>'.$ot->type_ot.'</strong>" provenant de la zone NR "<strong>'.$ot->sousprojet->projet->nro->lib_nro."-".$ot->sousprojet->zone.'</strong>" "'.$ot->sousprojet->ville.'",</p>';
+                        $mailaction_html .='<p>Infos OT :</p>';
+                        $mailaction_html .='<h5>Nombre de boitier :</h5>';
+                        $mailaction_html .='<p>720 : '.$b720.'<br />';
+                        $mailaction_html .='432 : '.$b432.'<br />';
+                        $mailaction_html .='288 : '.$b288.'<br />';
+                        $mailaction_html .='144 : '.$b144.'<br />';
+                        $mailaction_html .='48 : '.$b48.'</p>';
+                        $mailaction_html .='<h5>Linéaire de Câble :</h5>';
+                        $mailaction_html .='<p>720 : '.$c720.'ml<br />';
+                        $mailaction_html .='432 : '.$c432.'ml<br />';
+                        $mailaction_html .='288 : '.$c288.'ml<br />';
+                        $mailaction_html .='144 : '.$c144.'ml<br />';
+                        $mailaction_html .='48 : '.$c48.'ml</p>';
+                        $mailaction_html .='<p>Nombre de chambres empruntées : "'.$nberchambre.'"';
+                        $mailaction_html .='<p>Linéaire des infrastructures empruntées : "'.$totallineaire.'" ml</p>';
+                        $mailaction_html .='<p>pour retrouver ces informations connectez vous à R2i (https://r2i.free-infra.vlq16.iliad.fr).</p>';
+                        $mailaction_html .='</div>';
+                        $mailaction_html .='</body>';
+                        $mailaction_html .='</html>';
+
+                         $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro);
+                        //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
+                        $mailaction_cc  =["fadelghani@gmail.com","fadelghani@rc2k.fr"];
+                        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                            $message[] = "Mail envoyé !";
+                        } else {
+                            $message[] = "Mail non envoyé !";
+                            $err++;
+                        }
                     } else {
                         $sousProjet->{$value[0]}->controle_demarrage_effectif = $status;
                     }
@@ -145,5 +271,5 @@ if($err==0) {
     $message[] = $stm->errorInfo();
 }
 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message ));
 
