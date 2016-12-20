@@ -5,7 +5,6 @@ var tache_dt;
 
 var idprojet = undefined;
 var nomprojet  = undefined;
-var ajaxc  = false;
 var tab_etape  = [];
 
 function appelscriptosa(typeetape, id_sous_projet,ide)
