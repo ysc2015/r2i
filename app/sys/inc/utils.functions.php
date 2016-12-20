@@ -1202,7 +1202,7 @@ function return_list_mail_cc_notif_tache($email_utilisateur_connecte){
 
 }
 function return_list_mail_vpi_par_nro($db,$idnro){
-    $mailaction_stm = $db->prepare("SELECT * FROM `nro`,nro_utilisateur,utilisateur where nro.id_nro = nro_utilisateur.id_nro and nro_utilisateur.id_nro =  '".$idnro."' and utilisateur.id_utilisateur = nro_utilisateur.id_utilisateur");
+    $mailaction_stm = $db->prepare("SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur");
     $mailaction_stm->execute();
     $mailaction_cc = [];
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
@@ -1212,6 +1212,21 @@ function return_list_mail_vpi_par_nro($db,$idnro){
     $mailaction_cc[] = "fadelghani@gmail.com";
     $mailaction_cc[] = "fadelghani@rc2k.fr";
     return $mailaction_cc;
+}
+function return_list_mail_vpi_par_nro_ot($db,$idnro){
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
+    print_r($sql);
+    $mailaction_stm = $db->prepare($sql);
+    $mailaction_stm->execute();
+    $mailaction_cc = [];
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
+    $mailaction_cc[] = "rmenni@free.fr";
+    $mailaction_cc[] = "mbenkouider@corp.free.fr";
+    return $mailaction_cc;
+
 }
 
 function get_email_by_id($db,$tabusers){
