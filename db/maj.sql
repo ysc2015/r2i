@@ -18,3 +18,10 @@ CREATE TABLE `nro_utilisateur` (
  CONSTRAINT `fk_nro_utilisateur_nro` FOREIGN KEY (`id_nro`) REFERENCES `nro` (`id_nro`) ON DELETE CASCADE ON UPDATE CASCADE,
  CONSTRAINT `fk_nro_utilisateur_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+update ordre_de_travail set id_etat_ot = NULL where id_etat_ot = 0;
+ALTER TABLE `ordre_de_travail` CHANGE `id_etat_ot` `id_etat_ot` INT(11) NULL DEFAULT NULL;
+ALTER TABLE ordre_de_travail ADD CONSTRAINT fk_ordre_de_travail_etat_ot FOREIGN KEY(id_etat_ot) REFERENCES etat_ot(id_etat_ot) ON DELETE SET NULL ON UPDATE CASCADE;
+
+
+INSERT INTO `r2i`.`etat_ot` (`id_etat_ot`, `lib_etat_ot`) VALUES ('9', 'Indisponibilité Equipe');
