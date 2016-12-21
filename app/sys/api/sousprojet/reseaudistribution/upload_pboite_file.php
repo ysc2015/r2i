@@ -29,7 +29,8 @@ if(isset($idsp) && !empty($idsp)) {
 
             $stm->bindParam(':nom_fichier',$_FILES["myfile"]["name"]);
             $stm->bindParam(':nom_fichier_disque',$fileName);
-            $stm->bindParam(':date_creation',date('Y-m-d H:i:s'));
+            $date = date('Y-m-d H:i:s');
+            $stm->bindParam(':date_creation',$date);
 
             if($stm->execute()) {
                 $details = array();
@@ -46,10 +47,9 @@ if(isset($idsp) && !empty($idsp)) {
                 $row = $stm->fetch(PDO::FETCH_OBJ);
 
                 $fileName = $row->nom_fichier;
-
                 loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
                 loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$details['id']);
-                //fin de traitement du devis pour l'enregistrement dans la base
+
             }
 
         } else  {

@@ -388,7 +388,6 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
             $sheet = $excel->getSheetByName($value);
             $header = getHeader($sheet);
             $stop = microtime(true);
-            //  echo "Contenu ".$value." généré en ".number_format(($stop-$start), 3)." seconde(s)<br /><br />";
 
             if($value=="DEF_CABLE"){
                 $db->query("TRUNCATE testDEF_CABLE");
@@ -425,7 +424,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                 }
                 $row--;
             }elseif(strstr($value,"CDI")){
-                $g1 = $sheet->getCell("G1")->getValue();
+                $g1 = $sheet->getCell("G1")->getCalculatedValue();
                 $countg1 = ($countg1 + intval($g1));
 
             }elseif (strstr($value,"CTR")) {
@@ -528,7 +527,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
 
         }
-
+        $NBSOUD = $countg1 + $NBSOUD;
         $tabreturn[0] = $tabext;
         $tabreturn[1] = $tabfen;
         $tabreturn[2] = $tabrac;
@@ -547,7 +546,6 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                 case 432 :  $TABRAC_720 = $item[0];break;
             }
         }
-
         foreach ($tabfen as $item){
             switch ($item[1]){
                 case 24 :  $TABFEN_24 = $item[0];break;
@@ -560,14 +558,37 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         }
 
 
-        $db->query("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `TABEXT_432`, `TABEXT_288`, `TABEXT_144`, `TABEXT_72`, `TABEXT_48`, `TABEXT_24`,
+        $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `TABEXT_432`, `TABEXT_288`, `TABEXT_144`, `TABEXT_72`, `TABEXT_48`, `TABEXT_24`,
 `TABRAC_720`, `TABRAC_432`, `TABRAC_288`, `TABRAC_144`, `TABRAC_72`, `TABRAC_48`, `TABRAC_24`,
- `TABFEN_432`, `TABFEN_288`, `TABFEN_144`, `TABFEN_72`,
-  `TABFEN_48`, `TABFEN_24`,
-  `NBTUB`, `NBSOUD`, `dateinsert`) VALUES (NULL,$idressource, '".$TABEXT_432."', '".$TABEXT_288."', '".$TABEXT_144."', '".$TABEXT_72."', '".$TABEXT_48."', '".$TABEXT_24."',
-   '".$TABRAC_720."', '".$TABRAC_432."', '".$TABRAC_288."', '".$TABRAC_144."', '".$TABRAC_72."', '".$TABRAC_48."', '".$TABRAC_24."',
-   '".$TABFEN_432."', '".$TABFEN_288."', '".$TABFEN_144."', '".$TABFEN_72."', '".$TABFEN_48."', '".$TABFEN_24."',
-    '".$nbtub."', '".$NBSOUD."','".date('Y-m-d G:i:s')."');") or die("error insertion");
+ `TABFEN_432`, `TABFEN_288`, `TABFEN_144`, `TABFEN_72`,  `TABFEN_48`, `TABFEN_24`,`NBTUB`, `NBSOUD`, `dateinsert`) 
+ VALUES (NULL,  :id_ressource,  :TABEXT_432, :TABEXT_288, :TABEXT_144,  :TABEXT_72, :TABEXT_48, :TABEXT_24,
+   :TABRAC_720, :TABRAC_432,    :TABRAC_288, :TABRAC_144, :TABRAC_72,   :TABRAC_48, :TABRAC_24,
+   :TABFEN_432, :TABFEN_288,    :TABFEN_144, :TABFEN_72,  :TABFEN_48,   :TABFEN_24, :nbtub, :NBSOUD,:dateaction )");
+
+        $stm->bindValue(':id_ressource',$idressource);
+        $stm->bindValue(':TABEXT_432',$TABEXT_432);
+        $stm->bindValue(':TABEXT_288',$TABEXT_288);
+        $stm->bindValue(':TABEXT_144',$TABEXT_144);
+        $stm->bindValue(':TABEXT_72',$TABEXT_72);
+        $stm->bindValue(':TABEXT_48',$TABEXT_48);
+        $stm->bindValue(':TABEXT_24',$TABEXT_24);
+        $stm->bindValue(':TABRAC_720',$TABRAC_720);
+        $stm->bindValue(':TABRAC_432',$TABRAC_432);
+        $stm->bindValue(':TABRAC_288',$TABRAC_288);
+        $stm->bindValue(':TABRAC_144',$TABRAC_144);
+        $stm->bindValue(':TABRAC_72',$TABRAC_72);
+        $stm->bindValue(':TABRAC_48',$TABRAC_48);
+        $stm->bindValue(':TABRAC_24',$TABRAC_24);
+        $stm->bindValue(':TABFEN_432',$TABFEN_432);
+        $stm->bindValue(':TABFEN_288',$TABFEN_288);
+        $stm->bindValue(':TABFEN_144',$TABFEN_144);
+        $stm->bindValue(':TABFEN_72',$TABFEN_72);
+        $stm->bindValue(':TABFEN_48',$TABFEN_48);
+        $stm->bindValue(':TABFEN_24',$TABFEN_24);
+        $stm->bindValue(':NBSOUD',$NBSOUD);
+        $stm->bindValue(':nbtub',$nbtub);
+        $stm->bindValue(':dateaction',date('Y-m-d G:i:s'));
+        $stm->execute();
 
 
         return json_encode($tabreturn);
