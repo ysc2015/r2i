@@ -7,7 +7,8 @@
                 method: "POST",
                 url: "api/mail/projetcreation/user_add.php",
                 data: {
-                    idu : $("#user").val()
+                    idu : $("#user").val(),
+                    type_notif : $("#type_notif").val()
                 }
             }).done(function (msg) {
                 if(App.showMessage(msg, '#message_mail_add')) {
@@ -16,7 +17,8 @@
                     $.ajax({
                         method: "POST",
                         url: "api/mail/projetcreation/get_users_liste.php",
-                        dataType: "json"
+                        dataType: "json",
+                        data: {type_notif : $('#type_notif').val()}
                     }).done(function (data) {
                         $('#user').html('');
                         for(var i = 0 ; i < data.length ; i++) {
@@ -26,6 +28,22 @@
                         $("#user").select2('val', 'All');
                     });
                 }
+            });
+        });
+
+        $("#type_notif").change(function() {
+            $.ajax({
+                method: "POST",
+                url: "api/mail/projetcreation/get_users_liste.php",
+                dataType: "json",
+                data: {type_notif : $('#type_notif').val()}
+            }).done(function (data) {
+                $('#user').html('');
+                for(var i = 0 ; i < data.length ; i++) {
+                    html = '<option value="'+data[i]['id']+'">'+data[i]['prenom']+' '+data[i]['nom']+'</option>';
+                    $('#user').append(html);
+                }
+                $("#user").select2('val', 'All');
             });
         });
     } );
@@ -45,6 +63,20 @@
                 </div>
                 <div class="block-content">
                     <form class="js-validation-bootstrap form-horizontal" id="add_mail_form">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="type_notif">Type notification <span class="text-danger">*</span></label>
+                                <select class="form-control" id="type_notif" name="type_notif" style="width: 100%;">
+                                    <option value="" selected="">Sélectionnez un type</option>
+                                    <?php
+                                    $results = MailNotificationType::all();
+                                    foreach($results as $result) {
+                                        echo "<option value=\"$result->id_type_notification\">$result->lib_type_notification</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6">
                                 <label for="user">Utilisateur <span class="text-danger">*</span></label>

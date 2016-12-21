@@ -121,7 +121,7 @@ switch($page)
 
     case "mailcreation":
         return json_decode(json_encode(array("header"=>"Utilisateurs",
-            "subheader"=>"Liste d'envoi à la création de projet",
+            "subheader"=>"Liste d'envoi selon type",
             "navigator"=>"<li>liste</li>")));
         break;
 
