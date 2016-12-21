@@ -4,6 +4,8 @@
 
 -- --------------------------------------------------------
 
+UPDATE `chambre` SET `gps` = REPLACE(`gps`, ' ', '');
+
 --
 -- Structure de la table `nro_utilisateur`
 --

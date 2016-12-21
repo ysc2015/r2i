@@ -75,7 +75,7 @@ if(isset($idsp) && !empty($idsp)) {
                     $stm->bindParam(':ref_note',$value[3]);
                     $stm->bindParam(':code_ch1',$value[4]);
                     $stm->bindParam(':code_ch2',$value[5]);
-                    $stm->bindParam(':gps',$value[6]);
+                    $stm->bindParam(':gps',str_replace(" ","",$value[6]));
                     //inject values SQL
                     $stm->execute();
 
