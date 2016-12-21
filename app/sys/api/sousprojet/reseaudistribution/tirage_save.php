@@ -319,7 +319,7 @@ if($insert == true && $err == 0){
             }
 
         }
-        //setSousProjetUsers(SousProjet::find($ids));
+        //setSousProjetUsers(SousProjet::find($ids));;
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();

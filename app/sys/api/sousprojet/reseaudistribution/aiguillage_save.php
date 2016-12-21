@@ -237,7 +237,7 @@ if($insert == true && $err == 0){
     if($stm->execute()){
         if($mailaction_new && isset($da_plans) && $da_plans == 3 &&  isset($da_controle_plans) && $da_controle_plans == 2 && (isset($da_lien_plans)) && $da_lien_plans != "" &&
             ($mailaction_entite->plans != $da_plans || $mailaction_entite->controle_plans != $da_controle_plans || $mailaction_entite->lien_plans != $da_lien_plans)) {
-            //envoi de mail
+            //envoi de maile
             $mailaction_object = "[R2i] Plan aiguillage disponible  ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
             $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
             $mailaction_html .='<html>';

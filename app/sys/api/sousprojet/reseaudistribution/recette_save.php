@@ -168,7 +168,7 @@ if($insert == true && $err == 0){
             }
         }else if($mailaction_new && ($mailaction_entite->intervenant_be  != $drec_intervenant_be || $mailaction_entite->intervenant_free  != $drec_intervenant_free)  ){
             $mailaction_email_sender = [];
-            //envoi de mail
+            //envoi de mail;
 
             $mailaction_object = "[R2i] Attribution charge de Travail « Phase » « type CTR ou CDI » ";//code sous projet;
             $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
