@@ -245,10 +245,10 @@ if($err==0) {
                         $mailaction_html .='</body>';
                         $mailaction_html .='</html>';
 
-                         $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro);
+                        $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro);
                         //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
-                        $mailaction_cc  =["fadelghani@gmail.com","fadelghani@rc2k.fr"];
-                        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+
+                        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),array())) {
                             $message[] = "Mail envoyé !";
                         } else {
                             $message[] = "Mail non envoyé !";
