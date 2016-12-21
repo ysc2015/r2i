@@ -11,7 +11,8 @@
             $.ajax({
                 method: "POST",
                 url: "api/mail/projetcreation/get_users_liste.php",
-                dataType: "json"
+                dataType: "json",
+                data: {type_notif : $('#type_notif').val()}
             }).done(function (data) {
                 $('#user').html('');
                 for(var i = 0 ; i < data.length ; i++) {

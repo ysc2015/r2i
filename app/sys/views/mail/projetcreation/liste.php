@@ -17,11 +17,13 @@
                 { "data": "prenom_utilisateur" },
                 { "data": "nom_utilisateur" },
                 { "data": "email_utilisateur" },
-                { "data": "lib_profil_utilisateur" }
+                { "data": "lib_profil_utilisateur" },
+                { "data": "id_type_notification" },
+                { "data": "lib_type_notification" }
             ],
-            "order": [[5, 'asc']],
+            "order": [[6, 'asc']],
             "columnDefs": [
-                { "targets": [ 0,1 ], "visible": false, "searchable": false } ]
+                { "targets": [ 0,1,6 ], "visible": false, "searchable": false } ]
         } );
 
         $(mails_btns.join(',')).addClass("disabled");
@@ -55,6 +57,8 @@
                 <th>nom</th>
                 <th>email</th>
                 <th>profil</th>
+                <th>id type CC</th>
+                <th>Type CC</th>
             </tr>
             </thead>
             <tbody>
@@ -67,6 +71,8 @@
                 <th>nom</th>
                 <th>email</th>
                 <th>profil</th>
+                <th>id type CC</th>
+                <th>Type CC</th>
             </tr>
             </tfoot>
         </table>
