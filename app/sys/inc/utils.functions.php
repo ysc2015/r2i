@@ -1205,23 +1205,25 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
     return -1;
 }
 function return_list_mail_cc_notif($db,$etape,$type){
-    $mailaction_stm = $db->prepare("SELECT mail from mail_cc_notif where statut = 0 and type = $type");
+    $mailaction_stm = $db->prepare("SELECT u.email_utilisateur from projet_mail_creation as pm, utilisateur as u
+                        where u.id_utilisateur=pm.id_utilisateur and pm.id_type_notification=$type");
     $mailaction_stm->execute();
     $mailaction_cc = [];
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
-        $mailaction_cc[] = $mailaction_mail_cc['mail'];
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
     return $mailaction_cc;
 }
 function return_list_mail_cc_notif_tache($db,$email_utilisateur_connecte,$type){
-    $mailaction_stm = $db->prepare("SELECT mail from mail_cc_notif where statut = 0 and type = $type");
+    $mailaction_stm = $db->prepare("SELECT u.email_utilisateur from projet_mail_creation as pm, utilisateur as u
+                        where u.id_utilisateur=pm.id_utilisateur and pm.id_type_notification=$type");
     $mailaction_stm->execute();
     $mailaction_cc = [];
     $mailaction_cc[] = $email_utilisateur_connecte;
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
-        $mailaction_cc[] = $mailaction_mail_cc['mail'];
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
 
     return $mailaction_cc;
