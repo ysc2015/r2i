@@ -175,7 +175,7 @@ if(isset($dr_ok)){
 
 if($insert == true && $err == 0){
     /*$duree = getDuree($dr_date_racco,$dr_date_ret_prevue);
-    $stm->bindParam(':duree',$duree);*/
+    $stm->bindParam(':duree',$duree);;*/
     if($stm->execute()){
         if($mailaction_new && isset($dr_controle_plans) && $dr_controle_plans == 2 &&  isset($dr_etat_retour) && $dr_etat_retour == 2 && (isset($dr_lien_plans)) && $dr_lien_plans != "" &&
             ($mailaction_entite->controle_plans != $dr_controle_plans || $mailaction_entite->etat_retour != $dr_etat_retour || $mailaction_entite->lien_plans != $dr_lien_plans ) ) {
