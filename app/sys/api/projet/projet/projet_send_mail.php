@@ -54,7 +54,7 @@ if(isset($idp) && !empty($idp)){
     $files = $stm->fetchAll();
 
     $stm2 = $db->prepare("SELECT u.email_utilisateur from projet_mail_creation as pm, utilisateur as u
-                        where u.id_utilisateur=pm.id_utilisateur");
+                        where u.id_utilisateur=pm.id_utilisateur and pm.id_type_notification=1");
     $stm2->execute();
 
     $receipients = $stm2->fetchAll();
