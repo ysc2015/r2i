@@ -1183,22 +1183,27 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
     }
     return -1;
 }
-function return_list_mail_cc_notif($etape){
-    /*$mailaction_stm = $db->prepare("SELECT mail from mail_cc_notif where statut = 0");
+function return_list_mail_cc_notif($db,$etape,$type){
+    $mailaction_stm = $db->prepare("SELECT mail from mail_cc_notif where statut = 0 and type = $type");
     $mailaction_stm->execute();
     $mailaction_cc = [];
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['mail'];
-    }*/
-    //Avec CC : Rafik Menni / Malik Benkouider / Rosine Matche / Arnaud Lelarge / Saad Boudjadi
-    $tab_mail = ["rmenni@free.fr","mbenkouider@corp.free.fr","alelarge@corp.free.fr","rmatche@free-infra.fr","sboudjadi@corp.free.fr"];
-    return $tab_mail;
+    }
+    return $mailaction_cc;
 }
-function return_list_mail_cc_notif_tache($email_utilisateur_connecte){
+function return_list_mail_cc_notif_tache($db,$email_utilisateur_connecte,$type){
+    $mailaction_stm = $db->prepare("SELECT mail from mail_cc_notif where statut = 0 and type = $type");
+    $mailaction_stm->execute();
+    $mailaction_cc = [];
+    $mailaction_cc[] = $email_utilisateur_connecte;
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['mail'];
+    }
 
-    $tab_mail = [$email_utilisateur_connecte,"rmenni@free.fr","alelarge@corp.free.fr","sboudjadi@corp.free.fr"];
-    return $tab_mail;
+    return $mailaction_cc;
 
 }
 function return_list_mail_vpi_par_nro($db,$idnro){
@@ -1209,13 +1214,11 @@ function return_list_mail_vpi_par_nro($db,$idnro){
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
-    $mailaction_cc[] = "fadelghani@gmail.com";
-    $mailaction_cc[] = "fadelghani@rc2k.fr";
     return $mailaction_cc;
 }
 function return_list_mail_vpi_par_nro_ot($db,$idnro){
     $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
-    print_r($sql);
+
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
     $mailaction_cc = [];
@@ -1223,18 +1226,23 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro){
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
-    $mailaction_cc[] = "rmenni@free.fr";
-    $mailaction_cc[] = "mbenkouider@corp.free.fr";
+    $mailaction_cc[] = return_list_mail_cc_notif($db,"",3);
     return $mailaction_cc;
 
 }
 
 function get_email_by_id($db,$tabusers){
-    $mailaction_email_by_id[] = "fadelghani@gmail.com";
-    $mailaction_email_by_id[] = "fadelghani@rc2k.fr";
+     $sql = "SELECT utilisateur.email_utilisateur FROM utilisateur where utilisateur.id_utilisateur IN (".implode(",",$tabusers).") ";
 
-    return $mailaction_email_by_id;
+    $mailaction_stm = $db->prepare($sql);
+    $mailaction_stm->execute();
+    $mailaction_cc = [];
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
 
+    return $mailaction_cc;
 }
 
 
