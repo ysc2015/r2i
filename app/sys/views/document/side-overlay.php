@@ -50,7 +50,7 @@
                                 <i class="fa fa-list push-5-r"></i> Type OT
                             </a>
                             <a class="list-group-item" href="?page=mailcreation">
-                                <i class="fa fa-fw fa-list-alt push-5-r"></i> Mails création projet
+                                <i class="fa fa-fw fa-list-alt push-5-r"></i> Mails lists (cc)
                             </a>
                         </div>
                         <!-- END gestion List -->
