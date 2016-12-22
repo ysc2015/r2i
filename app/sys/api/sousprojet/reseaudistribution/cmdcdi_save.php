@@ -160,7 +160,7 @@ if($insert == true && $err == 0){
             $mailaction_email_sender = [];
             //envoi de maile
 
-            $mailaction_object = "[R2i] Attribution charge de Travail « Phase » « type CTR ou CDI » ";//code sous projet;
+            $mailaction_object = "[R2i] Attribution charge de Travail Commande CDI ";//code sous projet;
             $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
             $mailaction_html .='<html>';
             $mailaction_html .='<head>';
