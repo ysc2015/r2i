@@ -13,7 +13,7 @@ curl_setopt_array($curl, array(
     //CURLOPT_USERAGENT => 'cURL Request',
     CURLOPT_POST => 1,
     CURLOPT_POSTFIELDS => array(
-        num_commande_fci => 'F99625190416'
+        'num_commande_fci' => 'F99625190416'
     ),
     CURLOPT_SSL_VERIFYHOST => false,
     CURLOPT_SSL_VERIFYPEER => false
