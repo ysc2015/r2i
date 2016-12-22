@@ -9,7 +9,7 @@ $curl = curl_init();
 // Set some options - we are passing in a useragent too here
 curl_setopt_array($curl, array(
     CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'http://gbts.free-infra.vlq16.iliad.fr/curl_dedibox/get_fci_data.php',
+    CURLOPT_URL => 'https://gbts.free-infra.vlq16.iliad.fr/curl_dedibox/get_fci_data.php',
     //CURLOPT_USERAGENT => 'cURL Request',
     CURLOPT_POST => 1,
     CURLOPT_POSTFIELDS => array(
