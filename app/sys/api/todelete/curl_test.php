@@ -16,6 +16,9 @@ curl_setopt_array($curl, array(
         'num_commande_fci' => 'F99625190416'
     )
 ));
+
+curl_setopt($curl,CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($curl,CURLOPT_SSL_VERIFYPEER, false);
 // Send the request & save response to $resp
 $resp = curl_exec($curl);
 // Close request to clear up some resources
