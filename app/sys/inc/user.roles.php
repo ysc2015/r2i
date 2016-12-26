@@ -220,7 +220,8 @@ class adm extends baseUser {
     function mail() {
         Page::mail(
             array(
-                "projetcreation" => array("liste","add","delete")
+                "projetcreation" => array("liste","add","delete"),
+                "edittemplate" => array("editor")
             )
         );
     }
