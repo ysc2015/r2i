@@ -205,6 +205,10 @@ switch ($page) {
         $connectedProfil->myot();
         echo "<br><br>";
         break;
+    case "pcip":
+        $connectedProfil->pcip();
+        echo "<br><br>";
+        break;
     case "myotplanning":
         $connectedProfil->myotplanning();
         echo "<br><br>";
