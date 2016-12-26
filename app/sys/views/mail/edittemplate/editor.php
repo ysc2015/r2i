@@ -21,7 +21,7 @@
 
         </div>
         <div class="col-md-12">
-            <textarea id="js-ckeditor" name="ckeditor">Hello CKEditor!</textarea>
+            <textarea id="js-ckeditor" name="ckeditor"></textarea>
         </div>
     </div>
 </div>
