@@ -65,5 +65,30 @@ CREATE TABLE IF NOT EXISTS `projet_mail_creation` (
  CONSTRAINT `fk_projet_mail_creation_type_notification` FOREIGN KEY (`id_type_notification`) REFERENCES `type_notification` (`id_type_notification`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
+--
+-- Structure de la table `mail_notification_template`
+--
 
+
+CREATE TABLE `mail_notification_template` (
+  `id_mail_notification` int(11) NOT NULL,
+  `template` text NOT NULL,
+  `type` int(11) NOT NULL,
+  `object` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `mail_notification_template`
+--
+
+INSERT INTO `mail_notification_template` (`id_mail_notification`, `template`, `type`, `object`) VALUES
+(1, '<p>Bonjour,</p>\n\n<p>Le STT @nom_entreprise_stt&nbsp;vient de r&eacute;aliser le retour @etape_sous_projet&nbsp;du @CRT_CDI de&nbsp;:</p>\n\n<p>@code_sous_projet</p>\n\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\n', 2, '[R2i] Retour OT Aiguillage Réalisé par le STT @code_sous_projet'),
+(2, '<p>Bonjour,&nbsp;<br />\n<br />\nIl vous a &eacute;t&eacute; attribu&eacute; un OT @nom_ot&nbsp;provenant de la zone NR@code_sous_projet&nbsp;@ville,<br />\n<br />\nInfos OT :</p>\n\n<p>&nbsp;</p>\n\n<p>Nombre de boitier</p>\n\n<p>@b_720 :&nbsp;</p>\n\n<p>@b_432 :&nbsp;</p>\n\n<p>@b_288 :&nbsp;</p>\n\n<p>@b_144 :</p>\n\n<p>@b_48 :&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>Lin&eacute;aire de C&acirc;ble :&nbsp;</p>\n\n<p>720 : @c_720 ml&nbsp;</p>\n\n<p>432 :&nbsp;@c_432 ml&nbsp;</p>\n\n<p>288 : @c_288&nbsp;ml</p>\n\n<p>144 : @c_144&nbsp;ml</p>\n\n<p>48 : &nbsp;@c_48&nbsp;ml</p>\n\n<p><br />\nNombre de chambres emprunt&eacute;es :@nombres_chambre<br />\nLin&eacute;aire des infrastructures emprunt&eacute;es : @total_lineaire ml</p>\n\n<p>&nbsp;</p>\n\n<p>pour retrouver ces informations connectez vous &agrave; R2i (https://r2i.free-infra.vlq16.iliad.fr).</p>\n\n<p><br />\n&nbsp;</p>\n', 3, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet'),
+(3, '<p>Bonjour,</p>\n\n<p>Un nouveau plan @etape_sous_projet @CDi_CTR est termin&eacute;&nbsp;:</p>\n\n<p>@code_sous_projet</p>\n\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\n', 4, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet');
+
+ALTER TABLE `mail_notification_template`
+  ADD PRIMARY KEY (`id_mail_notification`);
+
+ALTER TABLE `mail_notification_template`
+  MODIFY `id_mail_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
