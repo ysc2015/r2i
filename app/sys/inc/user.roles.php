@@ -474,22 +474,24 @@ class vpi extends baseUser {
 }
 class pci extends baseUser {
     function defaultpage() {
-        return "myot";
+        return "pcip";
     }
 
-    function myot() {
-        Page::ot(
+    function pcip() {
+        Page::pcip(
             array(
-                "ot" => array(),
-                "chambreot" => array(),
-                "planningot" => array(),
-                "synoptique" => array()
+                "ot" => array("liste"),
+                "deot" => array("deot"),
+                "infosot" => array("calendar"),
+                "chambreot" => array("liste","update","pointbloquant"),
+                "synoptique" => array("synoptique"),
+                "traitementot" => array("traitement")
             )
         );
     }
 
     function sidebar() {
-        Page::sidebar("myot_titre","myot_liste");
+        Page::sidebar("pci_titre","pci_liste");
     }
 }
 class stt extends baseUser {
