@@ -34,14 +34,14 @@
 <script>
     var pblq_dt;
     var pblq_btns = ["#update_pblq_show","#delete_pblq"];
-    var qStringUrl;
+    /*var qStringUrl;
     if(get('idchambre')!== undefined) {
         qStringUrl = 'idchambre='+get('idchambre');
     } else {
         if(get('idot')!== undefined) {
             qStringUrl = 'idot='+get('idot');
         }
-    }
+    }*/
     $(document).ready(function() {
         pblq_dt = $('#pblq_table').DataTable( {
             "language": {
@@ -51,7 +51,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/pointbloquant/pointbloquant/pblq_liste.php?'+qStringUrl
+                "url": 'api/pointbloquant/pointbloquant/pblq_liste2.php'
             },
             "columns": [
                 { "data": "id_point_bloquant" },

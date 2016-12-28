@@ -47,7 +47,8 @@
                 url: "api/ot/devis/get_devis_id.php",
                 dataType: "json",
                 data: {
-                    idot : ot_dt.row('.selected').data().id_ordre_de_travail
+                    idot : ot_dt.row('.selected').data().id_ordre_de_travail,
+                    idtot : ot_dt.row('.selected').data().type_ot
                 }
             }).done(function (msg) {
                 if(msg.iddevis > 0) {
@@ -152,6 +153,8 @@
                 $('#link_lien_plans_wrapper2').hide();
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot=-1' ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot=-1' ).load();
 
                 selectedOT = 0;
 

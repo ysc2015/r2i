@@ -481,6 +481,7 @@ class pci extends baseUser {
         Page::pcip(
             array(
                 "ot" => array("liste"),
+                "blq" => array("blq"),
                 "deot" => array("deot"),
                 "infosot" => array("calendar"),
                 "chambreot" => array("liste","update","pointbloquant"),
