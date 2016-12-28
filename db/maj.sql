@@ -92,3 +92,7 @@ ALTER TABLE `mail_notification_template`
 ALTER TABLE `mail_notification_template`
   MODIFY `id_mail_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+
+ALTER TABLE `utilisateur` CHANGE `email_utilisateur` `email_utilisateur` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+ALTER TABLE `utilisateur` ADD UNIQUE(`email_utilisateur`);

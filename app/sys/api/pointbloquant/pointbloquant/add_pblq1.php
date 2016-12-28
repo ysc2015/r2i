@@ -50,7 +50,8 @@ foreach( $_POST as $key => $value ) {
     }
 }
 
-$stm->bindParam(':date_controle',date('Y-m-d'));
+$dc = date('Y-m-d');
+$stm->bindParam(':date_controle',$dc);
 
 if($paramcount < 1) {
     $err++;
