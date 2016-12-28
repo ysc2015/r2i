@@ -684,6 +684,7 @@
                         pblq1_formdata['apblq1_id_entreprise'] = ot_dt.row('.selected').data().id_entreprise;
                         pblq1_formdata['apblq1_id_equipe_stt'] = ot_dt.row('.selected').data().id_equipe_stt;
                         pblq1_formdata['apblq1_nature_travaux'] = ot_dt.row('.selected').data().type_ot;
+                        pblq1_formdata['apblq1_id_sous_projet'] = ot_dt.row('.selected').data().id_sous_projet;
 
                         $.ajax({
                             method: "POST",
