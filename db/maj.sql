@@ -96,3 +96,7 @@ ALTER TABLE `mail_notification_template`
 ALTER TABLE `utilisateur` CHANGE `email_utilisateur` `email_utilisateur` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 
 ALTER TABLE `utilisateur` ADD UNIQUE(`email_utilisateur`);
+
+ALTER TABLE `point_bloquant` ADD `id_sous_projet` INT NULL DEFAULT NULL AFTER `id_point_bloquant`;
+
+ALTER TABLE point_bloquant ADD CONSTRAINT fk_point_bloquant_sous_projet FOREIGN KEY(id_sous_projet) REFERENCES sous_projet(id_sous_projet) ON DELETE SET NULL ON UPDATE CASCADE;
