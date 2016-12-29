@@ -182,7 +182,7 @@ class adm extends baseUser {
     function ot() {
         Page::ot(
             array(
-                "ot" => array("liste","add","update","open_pblq","delete","link","link_pb"),
+                "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis"),
                 "ebm" => array("formebm"),
@@ -286,7 +286,7 @@ class dov extends baseUser {
     function ot() {
         Page::ot(
             array(
-                "ot" => array("liste","add","update","open_pblq","delete","link"),
+                "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
@@ -341,7 +341,7 @@ class pov extends baseUser {
     function ot() {
         Page::ot(
             array(
-                "ot" => array("liste","add","update","open_pblq","delete","link"),
+                "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
@@ -449,7 +449,7 @@ class vpi extends baseUser {
     function ot() {
         Page::ot(
             array(
-                "ot" => array("liste","add","update","open_pblq","delete","link","link_pb"),
+                "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis"),
                 "ebm" => array("formebm"),
