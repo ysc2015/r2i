@@ -38,10 +38,11 @@ try {
 
         $e = array();
         $e['id'] = $row['id_ordre_de_travail'];
-        $nom = getObjectNameForEntry($row['type_entree']);
+        /*$nom = getObjectNameForEntry($row['type_entree']);
         $nro = ($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d");
         $zone = $sousProjet->zone;
-        $e['title'] = $nom." ".$nro." - ".$zone;
+        $e['title'] = $nom." ".$nro." - ".$zone;*/
+        $e['title'] = $row['type_ot'];
         //$e['title'] = $row['type_entree'];
         $e['start'] = $row['date_debut']." 00:00:00";
         $e['end'] = $row['df']." 00:00:00";

@@ -83,9 +83,11 @@ function getObjectNameForEntry(entree) {
         case 'transportaiguillage' : str='Transport Aiguillage';break;
         case 'transporttirage' : str='Transport Tirage';break;
         case 'transportraccordement' : str='Transport Raccordement';break;
+        case 'transportrecette' : str='Transport Recette';break;
         case 'distributionaiguillage' : str='Distribution Aiguillage';break;
         case 'distributiontirage' : str='Distribution Tirage';break;
         case 'distributionraccordement' : str='Distribution Raccordement';break;
+        case 'distributionrecette' : str='Distribution Recette';break;
         default : str='';break;
     }
 
