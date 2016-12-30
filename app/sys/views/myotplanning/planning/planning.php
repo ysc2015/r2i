@@ -90,7 +90,6 @@
         </div>
     </div>
 </div>
-<br>
 <script>
     var calendar = function() {
         var team_id = 0;
