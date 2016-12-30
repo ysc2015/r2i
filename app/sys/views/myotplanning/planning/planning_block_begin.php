@@ -11,4 +11,4 @@
         <h3 class="block-title">Planning des équipes</h3>
     </div>
     <div class="block-content">
-        <div class="block" id="myotplanning_block_content" style="background-color: transparent;">
+        <div class="block" id="myotplanning_block_content" style=height:auto;">
