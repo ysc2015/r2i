@@ -103,7 +103,7 @@ switch($page)
 
     case "myotplanning":
         return json_decode(json_encode(array("header"=>"Planning",
-            "subheader"=>"(".strtoupper($connectedProfil->profil->entreprise->nom)."})",
+            "subheader"=>"(".strtoupper($connectedProfil->profil->entreprise->nom).")",
             "navigator"=>"<li>planning</li>")));
         break;
 
