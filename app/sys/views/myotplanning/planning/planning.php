@@ -1,4 +1,4 @@
-<div class="rows items-push">
+<div class="rows">
     <div class="col-md-3">
         <div class="form-group">
             <label for="ot_entreprise_cal">Entreprise <!--<span class="text-danger">*</span>--></label>
