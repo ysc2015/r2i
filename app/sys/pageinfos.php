@@ -101,6 +101,12 @@ switch($page)
             "navigator"=>"<li>planning</li>")));
         break;
 
+    case "myotplanning":
+        return json_decode(json_encode(array("header"=>"Planning",
+            "subheader"=>"$connectedProfil->profil->entreprise->nom",
+            "navigator"=>"<li>planning</li>")));
+        break;
+
     case "utilisateur":
         return json_decode(json_encode(array("header"=>"Utilisateurs",
             "subheader"=>"Utilisateurs",
@@ -130,6 +136,7 @@ switch($page)
             "subheader"=>"Liste d'envoi selon type",
             "navigator"=>"<li>liste</li>")));
         break;
+
 
     default:
         return json_decode(json_encode(array("header"=>"header",
