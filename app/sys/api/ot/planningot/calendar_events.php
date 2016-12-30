@@ -30,11 +30,11 @@ try {
     // Fetch results
     while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 
-        $sousProjet = SousProjet::first(
+        /*$sousProjet = SousProjet::first(
             array('conditions' =>
                 array("id_sous_projet = ?", $row['id_sous_projet'])
             )
-        );
+        );*/
 
         $e = array();
         $e['id'] = $row['id_ordre_de_travail'];
@@ -59,17 +59,17 @@ try {
         $e['etape'] = getObjectNameForEntry($row['type_entree']);
         $e['typeot'] = $row['typeot'];
 
-        $sousProjet = SousProjet::first(
+        /*$sousProjet = SousProjet::first(
             array('conditions' =>
                 array("id_sous_projet = ?", $row['id_sous_projet'])
             )
-        );
+        );*/
 
         array_push($events, $e);
 
     }
 
-    if(isset($date1) && !empty($date1) && isset($date2) && !empty($date2)) {
+    /*if(isset($date1) && !empty($date1) && isset($date2) && !empty($date2)) {
         $e = array();
         $e['id'] = '-1';
         $e['title'] = 'clicker ici pour valider l\'affectation';
@@ -89,7 +89,7 @@ try {
         $e['typeot'] = '';
 
         array_push($events, $e);
-    }
+    }*/
 
     echo json_encode($events);
     exit();
