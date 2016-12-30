@@ -104,7 +104,7 @@
                     right: ''
                 },
                 events: {
-                    url: 'api/ot/planningot/calendar_events.php',
+                    url: 'api/ot/planningot/my_calendar_events.php',
                     data: function() { // a function that returns an object
                         return {
                             team_id : getTeamId(),
