@@ -55,6 +55,7 @@
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
                     $('#download_devis').removeClass('disabled');
+                    $('#id_devis_edit_btn').removeClass('disabled');
                     //$("#devis_uploads").show();
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
@@ -65,6 +66,7 @@
                     id_devis = 0;
                     id_res = 0;
                     $('#download_devis').addClass('disabled');
+                    $('#id_devis_edit_btn').addClass('disabled');
                     //$("#devis_uploads").hide();
                 }
             });
@@ -72,6 +74,7 @@
             id_devis = 0;
             id_res = 0;
             $('#download_devis').addClass('disabled');
+            $('#id_devis_edit_btn').addClass('disabled');
             //$("#devis_uploads").hide();
         }
     }
