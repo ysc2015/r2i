@@ -4,7 +4,9 @@
     </div>
 </div>
 <div class="row">
-    <button id="id_devis_edit_btn" class="btn btn-info btn-sm" type="button"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Linéaire de réseau</button>
+    <div class="col-md-12">
+        <button id="id_devis_edit_btn" class="btn btn-info btn-sm" type="button"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Linéaire de réseau</button>
+    </div>
     <div id="lineare_groupe" style="border-left: dashed 1px #000;border-right: dashed 1px #000;border-bottom: dashed 1px #000;margin-top: 5px;padding: 5px;display: none">
         <label><span class="label label-info">Câbles </span></label>
         <div class="form-group">
