@@ -257,6 +257,7 @@
                 $( "#lineare_groupe" ).show( "fast" );
 
                 console.log('get debis info from ajax');
+                $('#lineare_groupe').addClass('block-opt-hidden');
             } else {
                 $( "#lineare_groupe" ).slideUp();
                 $("#hdf0454ff").removeClass("fa-minus");
