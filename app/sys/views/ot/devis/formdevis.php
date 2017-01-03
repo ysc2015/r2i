@@ -68,9 +68,9 @@
                 <input class="form-control  lineareInput" type="number" id="ta_lineaire10" name="ta_lineaire10" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->lineaire10:"")?>">
             </div>
         </div>
+        <br>
     </div>
 </div>
-<br>
 <div id="devis_uploads">
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-6">
