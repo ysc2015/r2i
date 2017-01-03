@@ -255,6 +255,8 @@
                 $("#hdf0454ff").removeClass("fa-plus");
                 $("#hdf0454ff").addClass("fa-minus");
                 $( "#lineare_groupe" ).show( "fast" );
+
+                console.log('get debis info from ajax');
             } else {
                 $( "#lineare_groupe" ).slideUp();
                 $("#hdf0454ff").removeClass("fa-minus");
