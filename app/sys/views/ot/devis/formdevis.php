@@ -3,6 +3,7 @@
         <button id="download_devis" class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-download'>&nbsp;</span> Télécharger devis</button>
     </div>
 </div>
+<br>
 <div class="row items-push">
     <div class="col-md-12">
         <button id="id_devis_edit_btn" class="btn btn-info btn-sm" type="button"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Linéaire de réseau</button>
@@ -69,6 +70,7 @@
         </div>
     </div>
 </div>
+<br>
 <div id="devis_uploads">
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-6">
