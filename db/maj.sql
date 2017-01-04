@@ -45,8 +45,10 @@ CREATE TABLE IF NOT EXISTS `type_notification` (
 INSERT INTO `type_notification` (`id_type_notification`, `lib_type_notification`) VALUES
 (1, 'Création de projet'),
 (2, 'Attribution de charge(bei)'),
-(3, 'Attribution OT'),
-(4, 'Contrôles des plans OK');
+(3, 'Affectation de l''OT'),
+(4, 'Contrôles des plans OK'),
+(5, 'Sous-traitant uploade les retours OT');
+
 
 --
 -- projet_mail_creation : suppress - creation
