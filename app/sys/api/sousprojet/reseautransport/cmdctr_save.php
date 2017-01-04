@@ -127,57 +127,47 @@ if(isset($cctr_ok)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
-        if($mailaction_new && isset($cctr_go_ft) && ($cctr_go_ft == 2) && $mailaction_entite->go_ft != $cctr_go_ft)  {
+        if($mailaction_new
+            && (
+                (isset($cctr_go_ft) && ($cctr_go_ft == 2) && $mailaction_entite ==null )
+                ||
+                ((isset($cctr_go_ft) && ($cctr_go_ft == 2) &&  $mailaction_entite->go_ft != $cctr_go_ft && $mailaction_entite != null))
+            ) )  {
             //envoi de mail
-            $mailaction_object = "[R2i] Commande structurante CTR validée ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>La commande du CTR «<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>» a été validée.  </p>';
-            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
-            //Action = envoyer un mail au VPI concerné par le NRO + intervenant BE
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Commande',4,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
             $mailaction_cc =return_list_mail_cc_notif($db,"transportcmdctr",4);
             $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+
+            $message[] = $mailaction_cc;
+            $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
+
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
                 $err++;
             }
-        }else if($mailaction_new && $mailaction_entite->intervenant_be != $cctr_intervenant_be){
+        }
+
+        if($mailaction_new && (($mailaction_entite!= null && $mailaction_entite->intervenant_be != $cctr_intervenant_be) || ($mailaction_entite == null && $cctr_intervenant_be!=""  && isset($cctr_intervenant_be) )) ){
             $mailaction_email_sender = [];
             //envoi de mail
 
-            $mailaction_object = "[R2i] Attribution charge de Travail Commande CTR ";//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>Une nouvelle charge de travail vient de vous être attribuée : : </p>';
-            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<h5>CTR</h5>';
-            $mailaction_html .='<h5>Commande CTR</h5>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Commande',2,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
             $mailaction_cc =return_list_mail_cc_notif_tache($db,$connectedProfil->email_utilisateur,2);
             $mailaction_to =get_email_by_id($db,[$cctr_intervenant_be]);
+            $message[] = $mailaction_cc;
+            $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
+
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {

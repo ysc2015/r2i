@@ -140,56 +140,64 @@ if(isset($drec_retour_presta)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
-        if($mailaction_new &&  isset($drec_etat_recette) && $drec_etat_recette == 3 && $mailaction_entite ->etat_recette != $drec_etat_recette) {
+        if($mailaction_new && (
+                (   $mailaction_entite == null
+                    && isset($drec_etat_recette)
+                    && $drec_etat_recette == 3
+                )
+                ||
+                (   $mailaction_entite != null
+                    && isset($drec_etat_recette)
+                    && $drec_etat_recette == 3
+                    && $mailaction_entite ->etat_recette != $drec_etat_recette
+                )
+            ))
+
+            {
             //envoi de mail
-            $mailaction_object = "[R2i] Retour Recette CDI ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>La recette du CDI : <h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5> est désormais OK. </p>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
-            //Action = envoyer un mail au VPI concerné par le NRO
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',4,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
             $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",4);
             $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+            $message[] = $mailaction_cc;
+            $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
+
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
                 $err++;
             }
-        }else if($mailaction_new && ($mailaction_entite->intervenant_be  != $drec_intervenant_be || $mailaction_entite->intervenant_free  != $drec_intervenant_free)  ){
+        }
+        if($mailaction_new &&
+            (
+                ($mailaction_entite != null &&
+                ($mailaction_entite->intervenant_be  != $drec_intervenant_be || $mailaction_entite->intervenant_free  != $drec_intervenant_free)
+            )
+            ||
+            ($mailaction_entite == null &&
+                ( $drec_intervenant_be!="" || $drec_intervenant_free != "")
+            )
+        )
+        ){
             $mailaction_email_sender = [];
             //envoi de mail;
+            if($drec_intervenant_be==null ) $drec_intervenant_be = 0;
+            if($drec_intervenant_free==null) $drec_intervenant_free = 0;
 
-            $mailaction_object = "[R2i] Attribution charge de Travail Recette CDI  ";//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>Une nouvelle charge de travail vient de vous être attribuée : </p>';
-            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<h5>CDI</h5>';
-            $mailaction_html .='<h5>Recette</h5>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',2,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
             $mailaction_cc  =return_list_mail_cc_notif_tache($db,$connectedProfil->email_utilisateur,2);
             $mailaction_to  =get_email_by_id($db,[$drec_intervenant_be,$drec_intervenant_free]);
+            $message[] = $mailaction_cc;
+            $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
