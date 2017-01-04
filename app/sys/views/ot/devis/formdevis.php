@@ -9,9 +9,11 @@
     <div class="col-md-12">
         <button id="id_devis_edit_btn" class="btn btn-info btn-sm" type="button"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Editer devis</button>
     </div>
-    <div id="lineare_groupe" style="border-left: dashed 1px #000;border-right: dashed 1px #000;border-bottom: dashed 1px #000;margin-top: 5px;padding: 5px;display: none">
-
-        <div class="form-group col-md-12"> <label><span class="label label-info">Préparation d'un Câble </span></label>
+    <div id="lineare_groupe" style="margin-top: 5px;padding: 5px;display: none">
+        <div class="form-group col-md-12">
+            <label><span class="label label-info">Préparation d'un Câble </span></label>
+        </div>
+        <div class="form-group col-md-12">
             <div class="col-md-2">
                 <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                 <label for="ta_lineaire1">RFO_01_01 <!--<span class="text-danger">*</span>--></label>
@@ -48,8 +50,10 @@
                 <input class="form-control  lineareInput" type="number" id="RFO_01_13" name="RFO_01_13" value="">
             </div>
         </div>
-
-        <div class="form-group col-md-12"><label><span class="label label-warning">Fenêtre sur câble sur câble </span></label>
+        <div class="form-group col-md-12">
+            <label><span class="label label-warning">Fenêtre sur câble sur câble </span></label>
+        </div>
+        <div class="form-group col-md-12">
             <div class="col-md-2">
                 <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
                 <label for="ta_lineaire_reseau">RFO_01_15 <!--<span class="text-danger">*</span>--></label>
@@ -87,7 +91,9 @@
             </div>
 
         </div>
+        <div class="form-group col-md-12">
         <label><span class="label label-primary">Débutable d'un tube en passage pour stockage FO en passage dans une casette </span></label>
+        </div>
         <div class="form-group col-md-12">
             <div class="col-md-2">
                 <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
@@ -96,7 +102,9 @@
             </div>
 
         </div>
+        <div class="form-group col-md-12">
         <label><span class="label label-primary">Soudure à l'unité sur câble préparé et intervenant sur place</span></label>
+            </div>
         <div class="form-group col-md-12">
             <div class="col-md-2">
                 <!--<label for="ta_lineaire_reseau"><span class="label label-success">720FO </span></label>-->
@@ -105,13 +113,13 @@
             </div>
 
         </div>
-        <div class="row items-push">
-            <div class="form-group">
-                <div class="col-xs-12">
+
+            <div class="form-group col-md-12">
+                <div class="col-md-3">
                     <button id="btn_update_devis" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                 </div>
             </div>
-        </div>
+
         <br>
         <br>
     </div>
