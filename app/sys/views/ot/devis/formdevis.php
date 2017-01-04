@@ -84,11 +84,6 @@
                 <label for="ta_lineaire_reseau">RFO_01_20 <!--<span class="text-danger">*</span>--></label>
                 <input class="form-control  lineareInput" type="number" id="RFO_01_20" name="RFO_01_20" value="">
             </div>
-            <div class="col-md-2">
-                <!--<label for="ta_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                <label for="ta_lineaire_reseau">RFO_01_20 <!--<span class="text-danger">*</span>--></label>
-                <input class="form-control  lineareInput" type="number" id="RFO_01_20" name="RFO_01_20" value="">
-            </div>
 
         </div>
         <div class="form-group col-md-12">
