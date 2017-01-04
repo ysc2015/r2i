@@ -19,7 +19,7 @@ $mailaction_object = "";
 $mailaction_html = "";
 $mailaction_html_message = "";
 $mailaction_etape = "";
-
+$mailaction_phase= "";
 $err = 0;
 $message = array();
 $stm = $db->prepare("insert into ressource (id_sous_projet,id_ordre_de_travail,id_type_ordre_travail,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation) values (:id_sous_projet,:id_ordre_de_travail,:id_type_ordre_travail,'stt_retour_terrain',:nom_fichier,:nom_fichier_disque,'sousprojets',:date_creation)");
@@ -160,48 +160,56 @@ if(isset($idot) && !empty($idot)) {
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "transportaiguillage";
+                                $mailaction_phase = "CRT";
                                 break;
                             case "transporttirage" :
                                 $step = new SousProjetTransportTirage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "transporttirage";
+                                $mailaction_phase = "CRT";
                                 break;
                             case "transportraccordement" :
                                 $step = new SousProjetTransportRaccordement(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "transportraccordement";
+                                $mailaction_phase = "CRT";
                                 break;
                             case "distributionaiguillage" :
                                 $step = new SousProjetDistributionAiguillage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "distributionaiguillage";
+                                $mailaction_phase = "CDI";
                                 break;
                             case "distributiontirage" :
                                 $step = new SousProjetDistributionTirage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "distributiontirage";
+                                $mailaction_phase = "CDI";
                                 break;
                             case "distributionraccordement" :
                                 $step = new SousProjetDistributionRaccordement(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "distributionraccordement";
+                                $mailaction_phase = "CDI";
                                 break;
                             case "transportrecette" :
                                 $step = new SousProjetTransportRecette(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape= "transportrecette";
+                                $mailaction_phase = "CRT";
                                 break;
                             case "distributionrecette" :
                                 $step = new SousProjetDistributionRecette(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
                                 $mailaction_etape = "distributionrecette";
+                                $mailaction_phase = "CDI";
                                 break;
                             default : break;
                         }
@@ -218,22 +226,13 @@ if(isset($idot) && !empty($idot)) {
              */
 
              if($mailaction_new){
-                 $mailaction_object = "[R2i] Retour Recette CDI ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
-                 $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-                 $mailaction_html .='<html>';
-                 $mailaction_html .='<head>';
-                 $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-                 $mailaction_html .='<title>'.$mailaction_object.'</title>';
-                 $mailaction_html .='</head>';
-                 $mailaction_html .='<body>';
-                 $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-                 $mailaction_html .='<h3>Bonjour,</h3>';
-                 $mailaction_html .=$mailaction_html_message;
-                 $mailaction_html .='</div>';
-                 $mailaction_html .='</body>';
-                 $mailaction_html .='</html>';
-                 //Action = envoyer un mail au VPI concerné par le NRO
-                 $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",4);
+                 $mailaction_nom_entreprise = $connectedProfil->profil->entreprise->nom;
+                 $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,$mailaction_phase,$mailaction_etape,5,$mailaction_nom_entreprise);
+                 $mailaction_object = $mailaction_html[1];
+                 $mailaction_html =  $mailaction_html[0];
+
+
+                 $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",5);
                  $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
                  if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                      $message[] = "Mail envoyé !";

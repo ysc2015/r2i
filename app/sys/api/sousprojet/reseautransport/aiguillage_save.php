@@ -238,29 +238,19 @@ if($insert == true && $err == 0){
     if($stm->execute()){
 
         if($mailaction_new && (isset($ta_controle_plans)) &&  $ta_controle_plans == 2 && (isset($ta_lien_plans)) && $ta_lien_plans != ""
-        && ($mailaction_entite->controle_plans != $ta_controle_plans || $mailaction_entite->lien_plans != $ta_lien_plans) ) {
+        && (  $mailaction_entite != null && ($mailaction_entite->controle_plans != $ta_controle_plans || $mailaction_entite->lien_plans != $ta_lien_plans) ) ) {
 
             //envoi de mail
-            $mailaction_object = "[R2i] Plan aiguillage disponible ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>Un nouveau plan d’aiguillage réseau transport (CTR) est terminé : </p>';
-            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',4,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
             $mailaction_cc =return_list_mail_cc_notif($db,"transportaiguillage",4);
             $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
             $message[] = $mailaction_cc;
             $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
 
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
 
@@ -270,32 +260,23 @@ if($insert == true && $err == 0){
                 $err++;
             }
 
-        }else if($mailaction_new && $mailaction_entite->intervenant_be != $ta_intervenant_be){
+        }
+        if($mailaction_new && (($mailaction_entite!= null && $mailaction_entite->intervenant_be != $ta_intervenant_be) || $ta_intervenant_be != "")){
             $mailaction_email_sender = [];
             //envoi de mail
 
-            $mailaction_object = "[R2i] Attribution charge de Travail Aiguillage CTR ";//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>Une nouvelle charge de travail vient de vous être attribuée : : </p>';
-            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<h5>CTR</h5>';
-            $mailaction_html .='<h5>Aiguillage</h5>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',2,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
+
             $mailaction_cc =return_list_mail_cc_notif_tache($db, $connectedProfil->email_utilisateur,2);
             $mailaction_to =get_email_by_id($db,[$ta_intervenant_be]);
             $message[] = $mailaction_cc;
             $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
+
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {

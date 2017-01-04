@@ -127,59 +127,65 @@ if(isset($dcc_ok)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
-        if($mailaction_new && isset($dcc_commandes_acces) && $dcc_commandes_acces == 2 &&  isset($dcc_go_ft) && $dcc_go_ft == 2 && (isset($dcc_ok)) && $dcc_ok == 1 &&
-            ($mailaction_entite->commandes_acces != $dcc_commandes_acces
-                || $mailaction_entite->go_ft != $dcc_go_ft
-                || $mailaction_entite->ok != $dcc_ok )) {
+        if($mailaction_new
+            &&
+            (
+                ($mailaction_entite ==null
+                && isset($dcc_commandes_acces)
+                && $dcc_commandes_acces == 2
+                &&  isset($dcc_go_ft)
+                && $dcc_go_ft == 2
+                && isset($dcc_ok)
+                && $dcc_ok == 1 )
+            ||
+                ($mailaction_entite!=null
+                    && isset($dcc_commandes_acces)
+                    && $dcc_commandes_acces == 2
+                    &&  isset($dcc_go_ft)
+                    && $dcc_go_ft == 2
+                    && isset($dcc_ok)
+                    && $dcc_ok == 1
+                    &&
+                    ($mailaction_entite->commandes_acces != $dcc_commandes_acces
+                    || $mailaction_entite->go_ft != $dcc_go_ft
+                    || $mailaction_entite->ok != $dcc_ok)
+                )
+            )
+        ) {
             //envoi de mail
-            $mailaction_object = "[R2i] Commande structurante CDI validée ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>La commande du CDI <h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5> a été validée.  </p>';
-            $mailaction_html .='<h6>Les données sont accessibles sous R2i.</h6>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
-            //Action = envoyer un mail au VPI concerné par le NRO
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Commande',4,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
+
             $mailaction_cc =return_list_mail_cc_notif($db,"distributioncmdcdi",4);
             $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+            $message[] = $mailaction_cc;
+            $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
+
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
                 $err++;
             }
-        }else if($mailaction_new && $mailaction_entite->intervenant_be  != $dcc_intervenant_be  ){
+        }else if($mailaction_new && (( $mailaction_entite !=null && $mailaction_entite->intervenant_be  != $dcc_intervenant_be ) || ($dcc_intervenant_be!="" && $mailaction_entite==null))  ){
             $mailaction_email_sender = [];
             //envoi de maile
 
-            $mailaction_object = "[R2i] Attribution charge de Travail Commande CDI ";//code sous projet;
-            $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-            $mailaction_html .='<html>';
-            $mailaction_html .='<head>';
-            $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-            $mailaction_html .='<title>'.$mailaction_object.'</title>';
-            $mailaction_html .='</head>';
-            $mailaction_html .='<body>';
-            $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-            $mailaction_html .='<h3>Bonjour,</h3>';
-            $mailaction_html .='<p>Une nouvelle charge de travail vient de vous être attribuée : </p>';
-            $mailaction_html .='<h5>'.$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone.'</h5>';
-            $mailaction_html .='<h5>CDI</h5>';
-            $mailaction_html .='<h5>Commande</h5>';
-            $mailaction_html .='<p>Les données sont accessibles sous R2i.</p>';
-            $mailaction_html .='</div>';
-            $mailaction_html .='</body>';
-            $mailaction_html .='</html>';
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Commande',2,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
             $mailaction_cc  =return_list_mail_cc_notif_tache($db,$connectedProfil->email_utilisateur,2);
             $mailaction_to  =get_email_by_id($db,[$dcc_intervenant_be]);
+            $message[] = $mailaction_cc;
+            $message[] = $mailaction_to;
+            $message[] = $mailaction_object;
+            $message[] = $mailaction_html;
+
             if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
