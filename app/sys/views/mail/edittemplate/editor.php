@@ -5,15 +5,13 @@
                 <option value="">
                     Séléctionner une template à modifier
                 </option>
-                <option value="2">
-                    Mail Notif Attribution de charge (BEI)
-                </option>
-                <option value="3">
-                    Mail Notif Attribution OT
-                </option>
-                <option value="4">
-                    Mail Notif Control des plan OK
-                </option>
+                <?php
+                $results = MailNotificationType::all();
+                foreach($results as $result) {
+                    echo "<option value=\"$result->id_type_notification\">$result->lib_type_notification</option>";
+                }
+                ?>
+
             </select>
         </div>
         <div class="col-md-6">

@@ -113,3 +113,13 @@ ALTER TABLE `detaildevis` CHANGE `TABEXT_24` `RFO_01_11` INT(11) NOT NULL, CHANG
 ALTER TABLE `detaildevis` CHANGE `TABRAC_48` `RFO_01_19` INT(11) NOT NULL, CHANGE `TABRAC_24` `RFO_01_20` INT(11) NOT NULL, CHANGE `TABFEN_432` `RFO_01_21` INT(11) NOT NULL, CHANGE `TABFEN_288` `RFO_01_23` INT(11) NOT NULL, CHANGE `TABFEN_144` `RFO_01_01_PEC` INT(11) NOT NULL, CHANGE `TABFEN_72` `RFO_01_03_PEC` INT(11) NOT NULL, CHANGE `TABFEN_48` `RFO_01_05_PEC` INT(11) NOT NULL, CHANGE `TABFEN_24` `RFO_01_07_PEC` INT(11) NOT NULL, CHANGE `NBTUB` `RFO_01_09_PEC` INT(11) NOT NULL, CHANGE `NBSOUD` `RFO_01_11_PEC` INT(11) NOT NULL;
 ALTER TABLE `detaildevis` ADD `RFO_01_13_PEC` INT NOT NULL AFTER `RFO_01_11_PEC`;
 
+
+--
+--template mail notification
+TRUNCATE mail_notification_template;
+INSERT INTO `mail_notification_template` (`id_mail_notification`, `template`, `type`, `object`) VALUES
+(1, '<p>Bonjour,</p>\r\n\r\n<p>Le STT @nom_entreprise_stt&nbsp;vient de r&eacute;aliser le retour @etape_sous_projet&nbsp;du @CDI_CTR de&nbsp;:</p>\r\n\r\n<p>@code_sous_projet</p>\r\n\r\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\r\n', 5, '[R2i] Retour OT Aiguillage Réalisé par le STT @code_sous_projet'),
+(2, '<p>Bonjour,&nbsp;<br />\n<br />\nIl vous a &eacute;t&eacute; attribu&eacute; un OT @nom_ot&nbsp;provenant de la zone NR@code_sous_projet&nbsp;@ville,<br />\n<br />\nInfos OT :</p>\n\n<p>&nbsp;</p>\n\n<p>Nombre de boitier</p>\n\n<p>@b_720 :&nbsp;</p>\n\n<p>@b_432 :&nbsp;</p>\n\n<p>@b_288 :&nbsp;</p>\n\n<p>@b_144 :</p>\n\n<p>@b_48 :&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>Lin&eacute;aire de C&acirc;ble :&nbsp;</p>\n\n<p>720 : @c_720 ml&nbsp;</p>\n\n<p>432 :&nbsp;@c_432 ml&nbsp;</p>\n\n<p>288 : @c_288&nbsp;ml</p>\n\n<p>144 : @c_144&nbsp;ml</p>\n\n<p>48 : &nbsp;@c_48&nbsp;ml</p>\n\n<p><br />\nNombre de chambres emprunt&eacute;es :@nombres_chambre<br />\nLin&eacute;aire des infrastructures emprunt&eacute;es : @total_lineaire ml</p>\n\n<p>&nbsp;</p>\n\n<p>pour retrouver ces informations connectez vous &agrave; R2i (https://r2i.free-infra.vlq16.iliad.fr).</p>\n\n<p><br />\n&nbsp;</p>\n', 3, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet'),
+(3, '<p>Bonjour,</p>\r\n\r\n<p>Un nouveau plan @etape_sous_projet @CDI_CTR est termin&eacute;&nbsp;:</p>\r\n\r\n<p>@code_sous_projet</p>\r\n\r\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\r\n', 4, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet'),
+(4, 'Bonjour,\r\n\r\nUne nouvelle charge de travail vient de vous être attribuée :\r\n@code_sous_projet\r\n@CDI_CTR\r\n@etape_sous_projet\r\nLes données sont accessibles sous R2i', 2, '[R2i] Attribution charge de Travail @etape_sous_projet @CDI_CTR');
+
