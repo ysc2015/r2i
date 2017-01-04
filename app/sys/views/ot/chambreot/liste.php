@@ -72,7 +72,8 @@
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
-
+                $(ch_btns.join(',')).addClass("disabled");
+                $('#open_list_pblq').addClass("disabled");
             }
         } );
 
