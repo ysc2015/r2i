@@ -8,6 +8,11 @@
             $("#info_pblq_form2")[0].reset();
             $("#info_pblq_form3")[0].reset();
             $("#info_pblq_form4")[0].reset();
+
+            $('#apblq1_id_entreprise').val(ot_dt.row('.selected').data().id_entreprise);
+            $('#apblq1_id_equipe_stt').val(ot_dt.row('.selected').data().id_equipe_stt);
+            $('#apblq1_nature_travaux').val(ot_dt.row('.selected').data().type_ot);
+
             App.activaTab('validation-step1');
         });
 

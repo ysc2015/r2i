@@ -41,7 +41,7 @@
 <!-- END Table chambre -->
 <script>
     var chambre_ot_dt;
-    var ch_btns = ["#open_ch","#update_ch","#add_pblq_show","#open_list_pblq"];
+    var ch_btns = ["#open_ch","#update_ch","#add_pblq_show"/*,"#open_list_pblq"*/];
     $(document).ready(function() {
         chambre_ot_dt = $('#ot_chambre_table').DataTable( {
             "language": {
@@ -77,18 +77,22 @@
         } );
 
         $(ch_btns.join(',')).addClass("disabled");
+        $('#open_list_pblq').addClass("disabled");
 
         $('#ot_chambre_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
 
                 $(ch_btns.join(',')).addClass("disabled");
+                $('#open_list_pblq').addClass("disabled");
             }
             else {
                 chambre_ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
                 $(ch_btns.join(',')).removeClass("disabled");
+
+                if(ot_dt.row('.selected').data().id_entreprise > 0) $('#open_list_pblq').removeClass("disabled");
             }
 
         } );

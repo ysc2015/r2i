@@ -37,7 +37,10 @@ foreach( $_POST as $key => $value ) {
         $arr = explode("_",$key);
         array_shift($arr);
         if($key !== $suffix."_date_controle") {
-            if($key === $suffix."_synthese") {
+            if($key === $suffix."_synthese" /*|| $key === $suffix."_id_entreprise" || $key === $suffix."_id_equipe_stt"*/) {
+                /*$v = (empty($_POST[$key]) ? NULL : $_POST[$key]);
+                $stm->bindParam(":".implode("_",$arr),$v);*/
+
                 $stm->bindParam(":".implode("_",$arr),$_POST[$key]);
             } else {
                 if(!empty($value)) $stm->bindParam(":".implode("_",$arr),$_POST[$key]);
