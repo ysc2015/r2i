@@ -34,7 +34,7 @@
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
                                             <label for="pblq1_id_utilisateur">Effectué par <span class="text-danger">*</span></label>
-                                            <select class="form-control " id="pblq1_id_utilisateur" name="pblq1_id_utilisateur">
+                                            <select disabled class="form-control " id="pblq1_id_utilisateur" name="pblq1_id_utilisateur">
                                                 <option value="" selected="">Sélectionnez un utilisateur</option>
                                                 <?php
                                                 $results = Utilisateur::all();
@@ -50,7 +50,7 @@
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
                                             <label for="pblq1_id_entreprise">Entreprise <span class="text-danger">*</span></label>
-                                            <select class="form-control " id="pblq1_id_entreprise" name="pblq1_id_entreprise">
+                                            <select disabled class="form-control " id="pblq1_id_entreprise" name="pblq1_id_entreprise">
                                                 <option value="" selected="">Sélectionnez une entreprise</option>
                                                 <?php
                                                 $results = EntrepriseSTT::all();
@@ -66,7 +66,7 @@
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <!--<div class="form-material">-->
                                             <label for="pblq1_id_equipe_stt">Résponsable d'équipe <span class="text-danger">*</span></label>
-                                            <select class="form-control " id="pblq1_id_equipe_stt" name="pblq1_id_equipe_stt">
+                                            <select disabled class="form-control " id="pblq1_id_equipe_stt" name="pblq1_id_equipe_stt">
                                                 <option value="" selected="">Sélectionnez une équipe</option>
                                                 <?php
                                                 $results = EquipeSTT::all();
@@ -97,7 +97,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-2">
                                             <label for="pblq1_nature_travaux">Nature des travaux <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="pblq1_nature_travaux" name="pblq1_nature_travaux">
+                                            <input readonly class="form-control" type="text" id="pblq1_nature_travaux" name="pblq1_nature_travaux">
                                         </div>
                                     </div>
                                     <div class="form-group">

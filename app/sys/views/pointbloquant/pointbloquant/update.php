@@ -8,7 +8,14 @@
             update_pblq = false;
 
             for (var key in upblq1_formdata) {
+
+                console.log('key => ' + key + ' value => ' + pblq_dt.row('.selected').data()[key]);
                 $('#'+key).val(pblq_dt.row('.selected').data()[key]);
+
+                $('#pblq1_id_utilisateur').val(pblq_dt.row('.selected').data().pblq1_utilisateur);
+                $('#pblq1_id_entreprise').val(pblq_dt.row('.selected').data().pblq1_entreprise);
+                $('#pblq1_id_equipe_stt').val(pblq_dt.row('.selected').data().pblq1_responsable);
+                $('#pblq1_nature_travaux').val(pblq_dt.row('.selected').data().pblq1_nature_travaux);
             }
             for (var key in upblq2_formdata) {
                 $('#'+key).val(pblq_dt.row('.selected').data()[key]);
