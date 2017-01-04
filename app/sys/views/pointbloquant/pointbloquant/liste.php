@@ -57,13 +57,25 @@
                 { "data": "id_point_bloquant" },
                 { "data": "pblq1_id_chambre" },
                 { "data": "pblq1_utilisateur" },
-                { "data": "pblq1_entreprise" },
+                { "data": "entname" },
                 { "data": "pblq1_responsable" },
                 { "data": "pblq1_ref_chantier" },
                 { "data": "pblq1_date_controle" }
             ],
             "columnDefs": [
-                { "targets": [ 0,1 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1 ], "visible": false, "searchable": false },
+                {
+                    "targets": 2,
+                    "render": function ( data, type, full, meta ) {
+                        return  full.prenom_utilisateur + ' ' + full.nom_utilisateur;
+                    }
+                },
+                {
+                    "targets": 4,
+                    "render": function ( data, type, full, meta ) {
+                        return  full.prenom + ' ' + full.nom;
+                    }
+                }
             ],
             "order": [[0, 'desc']]
             ,
