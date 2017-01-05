@@ -210,42 +210,18 @@ if($err==0) {
                     }
 
                     if($status == 3) {
+                        $boite = array($b720,$b432,$b288,$b144,$b48);
+                        $chambre = array($c720,$c432,$c288,$c144,$c48);
                         //svn
                         $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
                         //envoi de mail
                         $totallineaire = $c720 + $c432 + $c144 + $c48 ;
-                        $mailaction_object = "[R2i] Attribution OT";
-                        $mailaction_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-                        $mailaction_html .='<html>';
-                        $mailaction_html .='<head>';
-                        $mailaction_html .='<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">';
-                        $mailaction_html .='<title>'.$mailaction_object.'</title>';
-                        $mailaction_html .='</head>';
-                        $mailaction_html .='<body>';
-                        $mailaction_html .='<div style="width: 640px;float: left;text-align: left">';
-                        $mailaction_html .='<h3>Bonjour,</h3>';
-                        $mailaction_html .='<p>Il vous a été attribué un OT "<strong>'.$ot->type_ot.'</strong>" provenant de la zone NR "<strong>'.$ot->sousprojet->projet->nro->lib_nro."-".$ot->sousprojet->zone.'</strong>" "'.$ot->sousprojet->ville.'",</p>';
-                        $mailaction_html .='<p>Infos OT :</p>';
-                        $mailaction_html .='<h5>Nombre de boitier :</h5>';
-                        $mailaction_html .='<p>720 : '.$b720.'<br />';
-                        $mailaction_html .='432 : '.$b432.'<br />';
-                        $mailaction_html .='288 : '.$b288.'<br />';
-                        $mailaction_html .='144 : '.$b144.'<br />';
-                        $mailaction_html .='48 : '.$b48.'</p>';
-                        $mailaction_html .='<h5>Linéaire de Câble :</h5>';
-                        $mailaction_html .='<p>720 : '.$c720.'ml<br />';
-                        $mailaction_html .='432 : '.$c432.'ml<br />';
-                        $mailaction_html .='288 : '.$c288.'ml<br />';
-                        $mailaction_html .='144 : '.$c144.'ml<br />';
-                        $mailaction_html .='48 : '.$c48.'ml</p>';
-                        $mailaction_html .='<p>Nombre de chambres empruntées : "'.$nberchambre.'"';
-                        $mailaction_html .='<p>Linéaire des infrastructures empruntées : "'.$totallineaire.'" ml</p>';
-                        $mailaction_html .='<p>pour retrouver ces informations connectez vous à R2i (https://r2i.free-infra.vlq16.iliad.fr).</p>';
-                        $mailaction_html .='</div>';
-                        $mailaction_html .='</body>';
-                        $mailaction_html .='</html>';
 
-                        $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro);
+                        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire);
+                        $mailaction_object = $mailaction_html[1];
+                        $mailaction_html =  $mailaction_html[0];
+
+                        $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro);//ajouter id_equipe_stt pour pouvoir sortir le stt;
                         //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
 
                         if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),array())) {
