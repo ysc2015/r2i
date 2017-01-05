@@ -1604,7 +1604,7 @@ function return_list_mail_cc_notif($db,$etape,$type,$id_equipe_stt=null){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
     if($type==3){
-        $mailaction_stm_stt = $db->prepare("SELECT mail FROM `equipe_stt`,`ordre_de_travail` where `ordre_de_travail`.`id_equipe_stt` = `equipe_stt`.`id_equipe_stt` where  `equipe_stt`.`id_equipe_stt` = $id_equipe_stt");
+        $mailaction_stm_stt = $db->prepare("SELECT mail FROM `equipe_stt`,`ordre_de_travail` where `ordre_de_travail`.`id_equipe_stt` = `equipe_stt`.`id_equipe_stt` and  `equipe_stt`.`id_equipe_stt` = $id_equipe_stt group by mail");
         $mailaction_stm_stt->execute();
         $mailactions_mail_cc = $mailaction_stm_stt->fetchAll();
         foreach($mailactions_mail_cc as $mailaction_mail_cc){
@@ -1638,7 +1638,7 @@ function return_list_mail_vpi_par_nro($db,$idnro){
     }
     return $mailaction_cc;
 }
-function return_list_mail_vpi_par_nro_ot($db,$idnro){
+function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt){
     $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
 
     $mailaction_stm = $db->prepare($sql);
@@ -1648,7 +1648,7 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro){
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
-    
+    $mailaction_cc[]= return_list_mail_cc_notif($db,'',3,$id_equipe_stt);
     return $mailaction_cc;
 
 }
