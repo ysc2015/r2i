@@ -1593,14 +1593,24 @@ function parse_DEF_BPE_EBM($db,$inputFileName,$templateFileName,$id) {
     }
     return -1;
 }
-function return_list_mail_cc_notif($db,$etape,$type){
+function return_list_mail_cc_notif($db,$etape,$type,$id_equipe_stt=null){
     $mailaction_stm = $db->prepare("SELECT u.email_utilisateur from projet_mail_creation as pm, utilisateur as u
                         where u.id_utilisateur=pm.id_utilisateur and pm.id_type_notification=$type");
     $mailaction_stm->execute();
     $mailaction_cc = [];
+
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
+    if($type==3){
+        $mailaction_stm_stt = $db->prepare("SELECT mail FROM `equipe_stt`,`ordre_de_travail` where `ordre_de_travail`.`id_equipe_stt` = `equipe_stt`.`id_equipe_stt` where  `equipe_stt`.`id_equipe_stt` = $id_equipe_stt");
+        $mailaction_stm_stt->execute();
+        $mailactions_mail_cc = $mailaction_stm_stt->fetchAll();
+        foreach($mailactions_mail_cc as $mailaction_mail_cc){
+            $mailaction_cc[] = $mailaction_mail_cc['mail'];
+        }
+
     }
     return $mailaction_cc;
 }
@@ -1638,7 +1648,7 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro){
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
-    $mailaction_cc[] = return_list_mail_cc_notif($db,"",3);
+    
     return $mailaction_cc;
 
 }
@@ -1667,7 +1677,7 @@ function get_email_by_id($db,$tabusers){
  * @param $type_mail
  * @return array
  */
-function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$type_mail,$nom_entreprise){
+function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null){
     $sql = "SELECT * FROM `mail_notification_template` where type = :type";
     $sqlstatement = $db->prepare($sql);
     $sqlstatement->bindValue(':type',$type_mail);
@@ -1678,6 +1688,23 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$ty
     $statement[0][1]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][1] );
     $statement[0][1]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][1] );
     $statement[0][1]    = str_replace('@nom_entreprise_stt',$nom_entreprise,$statement[0][1] );
+
+    $statement[0][1]    = str_replace('@b_720',$boite[0],$statement[0][1] );
+    $statement[0][1]    = str_replace('@b_432',$boite[1],$statement[0][1] );
+    $statement[0][1]    = str_replace('@b_288',$boite[2],$statement[0][1] );
+    $statement[0][1]    = str_replace('@b_144',$boite[3],$statement[0][1] );
+    $statement[0][1]    = str_replace('@b_48',$boite[4],$statement[0][1] );
+
+    $statement[0][1]    = str_replace('@c_720',$chambre[0],$statement[0][1] );
+    $statement[0][1]    = str_replace('@c_432',$chambre[1],$statement[0][1] );
+    $statement[0][1]    = str_replace('@c_288',$chambre[2],$statement[0][1] );
+    $statement[0][1]    = str_replace('@c_144',$chambre[3],$statement[0][1] );
+    $statement[0][1]    = str_replace('@c_48',$chambre[4],$statement[0][1] );
+
+    $statement[0][1]    = str_replace('@nom_ot',$nom_ot,$statement[0][1] );
+    $statement[0][1]    = str_replace('@ville',$ville,$statement[0][1] );
+    $statement[0][1]    = str_replace('@nombres_chambre',$nberchambre,$statement[0][1] );
+    $statement[0][1]    = str_replace('@total_lineaire',$totallineaire,$statement[0][1] );
 
     $statement[0][3]    = str_replace('@etape_sous_projet',$etape,$statement[0][3]);
     $statement[0][3]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][3] );
