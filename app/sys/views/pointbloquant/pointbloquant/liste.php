@@ -12,6 +12,7 @@
                 <th>responsable</th>
                 <th>ref chantier</th>
                 <th>date controle</th>
+                <th>zone</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                 <th>responsable</th>
                 <th>ref chantier</th>
                 <th>date controle</th>
+                <th>zone</th>
             </tr>
             </tfoot>
         </table>
@@ -33,7 +35,7 @@
 <!-- END Table pblq -->
 <script>
     var pblq_dt;
-    var pblq_btns = ["#update_pblq_show","#delete_pblq"];
+    var pblq_btns = ["#update_pblq_show","#add_info_show","#delete_pblq"];
     /*var qStringUrl;
     if(get('idchambre')!== undefined) {
         qStringUrl = 'idchambre='+get('idchambre');
@@ -60,7 +62,8 @@
                 { "data": "entname" },
                 { "data": "pblq1_responsable" },
                 { "data": "pblq1_ref_chantier" },
-                { "data": "pblq1_date_controle" }
+                { "data": "pblq1_date_controle" },
+                { "data": "zone" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1 ], "visible": false, "searchable": false },

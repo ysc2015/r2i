@@ -65,3 +65,18 @@ $lang["transportrecette"] = "Transport recette";
 $lang["distributionaiguillage"] = "Distribution aiguillage";
 $lang["distributiontirage"] = "Distribution tirage";
 $lang["distributionrecette"] = "Distribution recette";
+
+
+$lang["ville"] = "ville";
+$lang["planches"] = "planches";
+$lang["chambre1"] = "chambre 1";
+$lang["chambre2"] = "chambre 2";
+$lang["id_pci_user"] = "Intervenant PCI";
+$lang["id_bei_user"] = "Intervenant BEI";
+$lang["id_type_traitement_pbt"] = "Traitement";
+$lang["commentaire"] = "Commentaire";
+$lang["date_rendu"] = "Date rendu";
+$lang["id_solution_traitement_pbt"] = "Solutions";
+$lang["id_entreprise"] = "Prestataire";
+
+
