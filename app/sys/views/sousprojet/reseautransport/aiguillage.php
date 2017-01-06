@@ -3,7 +3,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="ta_intervenant_be">Intervenant BEEEE <!--<span class="text-danger">*</span>--></label>
+                    <label for="ta_intervenant_be">Intervenant BE <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="ta_intervenant_be" name="ta_intervenant_be">
                         <option value="" selected="">Sélectionnez un utilisateur</option>
                         <?php
