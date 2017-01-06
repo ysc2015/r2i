@@ -123,3 +123,119 @@ INSERT INTO `mail_notification_template` (`id_mail_notification`, `template`, `t
 (3, '<p>Bonjour,</p>\r\n\r\n<p>Un nouveau plan @etape_sous_projet @CDI_CTR est termin&eacute;&nbsp;:</p>\r\n\r\n<p>@code_sous_projet</p>\r\n\r\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\r\n', 4, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet'),
 (4, 'Bonjour,\r\n\r\nUne nouvelle charge de travail vient de vous être attribuée :\r\n@code_sous_projet\r\n@CDI_CTR\r\n@etape_sous_projet\r\nLes données sont accessibles sous R2i', 2, '[R2i] Attribution charge de Travail @etape_sous_projet @CDI_CTR');
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `r2i`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `select_solution_traitement_pbt`
+--
+
+CREATE TABLE IF NOT EXISTS `select_solution_traitement_pbt` (
+  `id_solution_traitement_pbt` int(11) NOT NULL,
+  `lib_solution_traitement_pbt` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `select_solution_traitement_pbt`
+--
+
+INSERT INTO `select_solution_traitement_pbt` (`id_solution_traitement_pbt`, `lib_solution_traitement_pbt`) VALUES
+(1, 'AIGUILLAGE'),
+(2, 'CANNES'),
+(3, 'HYDROCURAGE'),
+(4, 'CONTOURNEMENT'),
+(5, 'REPARATION CONDUITE'),
+(6, 'GENIE CIVIL');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `select_type_traitement_pbt`
+--
+
+CREATE TABLE IF NOT EXISTS `select_type_traitement_pbt` (
+  `id_type_traitement_pbt` int(11) NOT NULL,
+  `lib_type_traitement_pbt` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `select_type_traitement_pbt`
+--
+
+INSERT INTO `select_type_traitement_pbt` (`id_type_traitement_pbt`, `lib_type_traitement_pbt`) VALUES
+(1, 'EN COURS'),
+(2, 'EN ATTENTE BE'),
+(3, 'TRAITE');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `traitement_pbt`
+--
+
+CREATE TABLE IF NOT EXISTS `traitement_pbt` (
+  `id_traitement_pbt` int(11) NOT NULL,
+  `id_point_bloquant` int(11) NOT NULL,
+  `ville` varchar(150) NOT NULL,
+  `planches` int(11) NOT NULL,
+  `chambre1` int(11) NOT NULL,
+  `chambre2` int(11) NOT NULL,
+  `date_creation` date NOT NULL,
+  `id_pci_user` int(11) DEFAULT NULL,
+  `id_bei_user` int(11) DEFAULT NULL,
+  `id_type_traitement_pbt` int(11) NOT NULL,
+  `commentaire` text NOT NULL,
+  `date_rendu` date NOT NULL,
+  `id_solution_traitement_pbt` int(11) NOT NULL,
+  `id_entreprise` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `select_solution_traitement_pbt`
+--
+ALTER TABLE `select_solution_traitement_pbt`
+  ADD PRIMARY KEY (`id_solution_traitement_pbt`);
+
+--
+-- Index pour la table `select_type_traitement_pbt`
+--
+ALTER TABLE `select_type_traitement_pbt`
+  ADD PRIMARY KEY (`id_type_traitement_pbt`);
+
+--
+-- Index pour la table `traitement_pbt`
+--
+ALTER TABLE `traitement_pbt`
+  ADD PRIMARY KEY (`id_traitement_pbt`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `select_solution_traitement_pbt`
+--
+ALTER TABLE `select_solution_traitement_pbt`
+  MODIFY `id_solution_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `select_type_traitement_pbt`
+--
+ALTER TABLE `select_type_traitement_pbt`
+  MODIFY `id_type_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `traitement_pbt`
+--
+ALTER TABLE `traitement_pbt`
+  MODIFY `id_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
