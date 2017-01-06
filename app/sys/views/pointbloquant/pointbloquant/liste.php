@@ -36,14 +36,6 @@
 <script>
     var pblq_dt;
     var pblq_btns = ["#update_pblq_show","#add_info_show","#delete_pblq"];
-    /*var qStringUrl;
-    if(get('idchambre')!== undefined) {
-        qStringUrl = 'idchambre='+get('idchambre');
-    } else {
-        if(get('idot')!== undefined) {
-            qStringUrl = 'idot='+get('idot');
-        }
-    }*/
     $(document).ready(function() {
         pblq_dt = $('#pblq_table').DataTable( {
             "language": {
@@ -83,7 +75,12 @@
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+                $(pblq_btns.join(',')).addClass("disabled");
 
+                if(typeof pblq_info_dt !== 'undefined') {
+                    pblq_info_dt.ajax.url( 'api/pointbloquant/pointbloquant/info_pblq_liste.php?idpblq='+(pblq_dt.row('.selected').data()!=undefined?pblq_dt.row('.selected').data().id_point_bloquant:0) ).load();
+                }
+                
             }
         } );
 
@@ -100,6 +97,10 @@
                 $(this).addClass('selected');
 
                 $(pblq_btns.join(',')).removeClass("disabled");
+            }
+
+            if(typeof pblq_info_dt !== 'undefined') {
+                pblq_info_dt.ajax.url( 'api/pointbloquant/pointbloquant/info_pblq_liste.php?idpblq='+(pblq_dt.row('.selected').data()!=undefined?pblq_dt.row('.selected').data().id_point_bloquant:0) ).load();
             }
 
         } );
