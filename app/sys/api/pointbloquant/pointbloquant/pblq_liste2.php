@@ -80,11 +80,12 @@ $columns = array(
     array( "db" => "t8.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t9.nom as entname", "dt" => 'entname' ),
     array( "db" => "t10.nom", "dt" => 'nom' ),
-    array( "db" => "t10.prenom", "dt" => 'prenom' )
+    array( "db" => "t10.prenom", "dt" => 'prenom' ),
+    array( "db" => "sp.zone", "dt" => 'zone' )
 
 );
 
 $condition = "t1.id_point_bloquant = t2.id_point_bloquant AND t1.id_point_bloquant = t3.id_point_bloquant AND t1.id_point_bloquant = t4.id_point_bloquant AND t1.id_chambre=t5.id_chambre AND t5.id_ressource = t6.id_ressource AND t6.id_ordre_de_travail=t7.id_ordre_de_travail AND t1.id_utilisateur = t8.id_utilisateur AND t1.id_entreprise = t9.id_entreprise AND t1.id_equipe_stt = t10.id_equipe_stt";
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_point_bloquant",$columns,$condition));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_point_bloquant",$columns,$condition,"left join sous_projet as sp on t1.id_sous_projet = sp.id_sous_projet"));
 ?>

@@ -196,8 +196,8 @@ class adm extends baseUser {
     function pointbloquant() {
         Page::pointbloquant(
             array(
-                "pointbloquant" => array("liste","update","delete"),
-                "info" => array("liste")
+                "pointbloquant" => array("liste","update","add_info"/*,"delete"*/),
+                "info" => array("liste","update","delete")
             )
         );
     }
