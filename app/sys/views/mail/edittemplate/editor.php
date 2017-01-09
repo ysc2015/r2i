@@ -21,6 +21,51 @@
         <div class="col-md-12">
             <textarea id="js-ckeditor" name="ckeditor"></textarea>
         </div>
+
+        <table class="table table-bordered table-striped js-dataTable-full dataTable">
+            <tr>
+                <th>Code</th>
+                <th>Désignation</th>
+            </tr>
+            <tr>
+                <td>@code_sous_projet</td>
+                <td>Code sours projet</td>
+            </tr>
+            <tr>
+                <td>@CDI_CTR</td>
+                <td>CDI OU CTR</td>
+            </tr>
+            <tr>
+                <td>@etape_sous_projet </td>
+                <td>Etape sous projet</td>
+            </tr>
+            <tr>
+                <td>@nom_ot</td>
+                <td>Nom OT</td>
+            </tr>
+            <tr>
+                <td>@nombres_chambre</td>
+                <td>Nombre de chambre</td>
+            </tr>
+            <tr>
+                <td>@total_lineaire</td>
+                <td>le Total lineaire en ml </td>
+            </tr>
+            <tr>
+                <td>@b_720 , @b_432 , @b_288 , @b_144 , @b_48</td>
+                <td>Nombre de boitier</td>
+            </tr>
+            <tr>
+                <td>@c_720 , @c_432 , @c_288 , @c_144 , @c_48</td>
+                <td>Linéaire de Câble en ml</td>
+            </tr>
+            <tr>
+                <td>@nom_entreprise_stt</td>
+                <td>Le nom de l'entreprise STT</td>
+            </tr>
+
+
+        </table>
     </div>
 </div>
 
