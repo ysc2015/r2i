@@ -8,7 +8,7 @@ extract($_GET);
 extract($_POST);
 
 try {
-    $sql = "select ot.*,es.nom as societe,eq.imei,eq.prenom,eq.nom,tot.lib_type_ordre_travail as typeot,DATE_ADD(date_fin, INTERVAL 1 DAY) AS df  from ordre_de_travail as ot,entreprises_stt as es,equipe_stt as eq,select_type_ordre_travail as tot where date_debut >='$start' and date_fin<='$end'";
+    $sql = "select ot.*,es.nom as societe,eq.imei,eq.prenom,eq.nom,tot.lib_type_ordre_travail as typeot,DATE_ADD(date_fin, INTERVAL 1 DAY) AS df  from ordre_de_travail as ot,entreprises_stt as es,equipe_stt as eq,select_type_ordre_travail as tot where (date_debut between '$start' and '$end' or date_fin between '$start' and '$end' or '$start' between date_debut and date_fin)";
 
     $sql .= " AND  ot.id_entreprise=es.id_entreprise AND ot.id_equipe_stt=eq.id_equipe_stt AND ot.id_type_ordre_travail=tot.id_type_ordre_travail";
 
@@ -30,24 +30,23 @@ try {
     // Fetch results
     while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 
-        /*$sousProjet = SousProjet::first(
+        $sousProjet = SousProjet::first(
             array('conditions' =>
                 array("id_sous_projet = ?", $row['id_sous_projet'])
             )
-        );*/
+        );
 
         $e = array();
         $e['id'] = $row['id_ordre_de_travail'];
-        /*$nom = getObjectNameForEntry($row['type_entree']);
+        $nom = getObjectNameForEntry($row['type_entree']);
         $nro = ($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d");
         $zone = $sousProjet->zone;
-        $e['title'] = $nom." ".$nro." - ".$zone;*/
-        $e['title'] = $row['type_ot'];
+        $e['title'] = $nom." ".$nro." - ".$zone;
         //$e['title'] = $row['type_entree'];
         $e['start'] = $row['date_debut']." 00:00:00";
         $e['end'] = $row['df']." 00:00:00";
         $e['allDay'] = true;
-        $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
+        $e['color'] = '#faeab9';
         $e['textColor'] = '#000';
         $e['dd'] = $row['date_debut'];
         $e['df'] = $row['date_fin'];
@@ -59,17 +58,17 @@ try {
         $e['etape'] = getObjectNameForEntry($row['type_entree']);
         $e['typeot'] = $row['typeot'];
 
-        /*$sousProjet = SousProjet::first(
+        $sousProjet = SousProjet::first(
             array('conditions' =>
                 array("id_sous_projet = ?", $row['id_sous_projet'])
             )
-        );*/
+        );
 
         array_push($events, $e);
 
     }
 
-    /*if(isset($date1) && !empty($date1) && isset($date2) && !empty($date2)) {
+    if(isset($date1) && !empty($date1) && isset($date2) && !empty($date2)) {
         $e = array();
         $e['id'] = '-1';
         $e['title'] = 'clicker ici pour valider l\'affectation';
@@ -89,7 +88,7 @@ try {
         $e['typeot'] = '';
 
         array_push($events, $e);
-    }*/
+    }
 
     echo json_encode($events);
     exit();
