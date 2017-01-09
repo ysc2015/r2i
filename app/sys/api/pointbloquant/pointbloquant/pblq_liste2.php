@@ -81,11 +81,18 @@ $columns = array(
     array( "db" => "t9.nom as entname", "dt" => 'entname' ),
     array( "db" => "t10.nom", "dt" => 'nom' ),
     array( "db" => "t10.prenom", "dt" => 'prenom' ),
-    array( "db" => "sp.zone", "dt" => 'zone' )
+    array( "db" => "sp.zone", "dt" => 'zone' ),
+    array( "db" => "n.lib_nro", "dt" => 'lib_nro' )
 
 );
 
 $condition = "t1.id_point_bloquant = t2.id_point_bloquant AND t1.id_point_bloquant = t3.id_point_bloquant AND t1.id_point_bloquant = t4.id_point_bloquant AND t1.id_chambre=t5.id_chambre AND t5.id_ressource = t6.id_ressource AND t6.id_ordre_de_travail=t7.id_ordre_de_travail AND t1.id_utilisateur = t8.id_utilisateur AND t1.id_entreprise = t9.id_entreprise AND t1.id_equipe_stt = t10.id_equipe_stt";
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_point_bloquant",$columns,$condition,"left join sous_projet as sp on t1.id_sous_projet = sp.id_sous_projet"));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_point_bloquant",$columns,$condition,"
+left join sous_projet as sp
+    inner join projet as pj
+    on sp.id_projet=pj.id_projet
+    inner join nro as n
+    on pj.id_nro=n.id_nro
+on t1.id_sous_projet = sp.id_sous_projet"));/* AND sp.id_projet = t11.id_projet AND t11.id_nro = t12.id_nro*/
 ?>

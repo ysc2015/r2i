@@ -70,6 +70,12 @@
                     "render": function ( data, type, full, meta ) {
                         return  full.prenom + ' ' + full.nom;
                     }
+                },
+                {
+                    "targets": 7,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.lib_nro != null && full.zone != null ? (full.lib_nro) + '-' + full.zone : '');
+                    }
                 }
             ],
             "order": [[0, 'desc']]
