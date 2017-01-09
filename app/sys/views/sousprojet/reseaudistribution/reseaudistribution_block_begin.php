@@ -8,7 +8,7 @@
                 <button id="rdistribution_block_btn" type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-down"></i></button>
             </li>
         </ul>
-        <h3 class="block-title"><?=$lang["RESEAUDISTRIBUTION"]?></h3>
+        <h3 class="block-title"><?=$lang["RESEAUDISTRIBUTION"]?> <?=($sousProjet->infozone !==NULL?(!empty($sousProjet->infozone->tranche_cdi)?"(Tranche CDI : ".$sousProjet->infozone->tranche_cdi.")":""):"")?></h3>
     </div>
     <div class="block-content">
         <div class="block" id="rdistribution_block_content">
