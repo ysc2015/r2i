@@ -118,6 +118,16 @@ if(isset($cftrvx_ok)){
     $insert = true;
 }
 
+if(isset($cftrvx_date_debut_travaux_ft)){
+    $stm->bindParam(':date_debut_travaux_ft',$cftrvx_date_debut_travaux_ft);
+    $insert = true;
+}
+
+if(isset($cftrvx_date_fin_travaux_ft)){
+    $stm->bindParam(':date_fin_travaux_ft',$cftrvx_date_fin_travaux_ft);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         setSousProjetUsers(SousProjet::find($ids));
