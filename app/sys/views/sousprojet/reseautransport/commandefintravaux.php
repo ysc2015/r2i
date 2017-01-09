@@ -64,6 +64,14 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
+                    <label for="cftrvx_date_debut_travaux_ft">Date Début Travaux FT <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="cftrvx_date_debut_travaux_ft" name="cftrvx_date_debut_travaux_ft" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_debut_travaux_ft : "")?>">
+                </div>
+                <div class="col-md-3">
+                    <label for="cftrvx_date_fin_travaux_ft">Date Fin Travaux FT <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="cftrvx_date_fin_travaux_ft" name="cftrvx_date_fin_travaux_ft" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_fin_travaux_ft : "")?>">
+                </div>
+                <div class="col-md-3">
                     <label for="cftrvx_ok_ft">OK FT <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="cftrvx_ok_ft" name="cftrvx_ok_ft">
                         <option value="" selected="">Sélectionnez une valeur</option>
