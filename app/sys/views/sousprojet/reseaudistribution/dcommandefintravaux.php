@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="dcftrvx_date_butoir">Date butoire traitement retour Aig <!--<span class="text-danger">*</span>--></label>
+                    <label for="dcftrvx_date_butoir">Date butoire traitement retour Tir <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="dcftrvx_date_butoir" name="dcftrvx_date_butoir" value="<?=($sousProjet->distributioncmdfintravaux !== NULL ? $sousProjet->distributioncmdfintravaux->date_butoir : "")?>">
                 </div>
                 <div class="col-md-3">
