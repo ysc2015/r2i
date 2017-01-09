@@ -239,3 +239,8 @@ ALTER TABLE `select_type_traitement_pbt`
 --
 ALTER TABLE `traitement_pbt`
   MODIFY `id_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
+
+ALTER TABLE `sous_projet_distribution_commande_fin_travaux` ADD `date_debut_travaux_ft` DATE NULL DEFAULT NULL AFTER `ok`, ADD `date_fin_travaux_ft` DATE NULL DEFAULT NULL AFTER `date_debut_travaux_ft`;
+ALTER TABLE  `sous_projet_transport_commande_fin_travaux` ADD  `date_debut_travaux_ft` DATE NULL DEFAULT NULL , ADD  `date_fin_travaux_ft` DATE NULL DEFAULT NULL ;
+
