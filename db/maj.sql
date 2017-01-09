@@ -25,9 +25,6 @@ update ordre_de_travail set id_etat_ot = NULL where id_etat_ot = 0;
 ALTER TABLE `ordre_de_travail` CHANGE `id_etat_ot` `id_etat_ot` INT(11) NULL DEFAULT NULL;
 ALTER TABLE ordre_de_travail ADD CONSTRAINT fk_ordre_de_travail_etat_ot FOREIGN KEY(id_etat_ot) REFERENCES etat_ot(id_etat_ot) ON DELETE SET NULL ON UPDATE CASCADE;
 
-
-INSERT INTO `r2i`.`etat_ot` (`id_etat_ot`, `lib_etat_ot`) VALUES ('9', 'Indisponibilité Equipe');
-
 --
 -- Structure de la table `type_notification`
 --
@@ -103,49 +100,25 @@ ALTER TABLE `point_bloquant` ADD `id_sous_projet` INT NULL DEFAULT NULL AFTER `i
 
 ALTER TABLE point_bloquant ADD CONSTRAINT fk_point_bloquant_sous_projet FOREIGN KEY(id_sous_projet) REFERENCES sous_projet(id_sous_projet) ON DELETE SET NULL ON UPDATE CASCADE;
 
-
-
---
---Modification table devisdetail
---
 ALTER TABLE `detaildevis` CHANGE `TABEXT_432` `RFO_01_01` INT(11) NOT NULL, CHANGE `TABEXT_288` `RFO_01_03` INT(11) NOT NULL, CHANGE `TABEXT_144` `RFO_01_05` INT(11) NOT NULL, CHANGE `TABEXT_72` `RFO_01_07` INT(11) NOT NULL, CHANGE `TABEXT_48` `RFO_01_09` INT(11) NOT NULL;
 ALTER TABLE `detaildevis` CHANGE `TABEXT_24` `RFO_01_11` INT(11) NOT NULL, CHANGE `TABRAC_720` `RFO_01_13` INT(11) NOT NULL, CHANGE `TABRAC_432` `RFO_01_15` INT(11) NOT NULL, CHANGE `TABRAC_288` `RFO_01_16` INT(11) NOT NULL, CHANGE `TABRAC_144` `RFO_01_17` INT(11) NOT NULL, CHANGE `TABRAC_72` `RFO_01_18` INT(11) NOT NULL;
 ALTER TABLE `detaildevis` CHANGE `TABRAC_48` `RFO_01_19` INT(11) NOT NULL, CHANGE `TABRAC_24` `RFO_01_20` INT(11) NOT NULL, CHANGE `TABFEN_432` `RFO_01_21` INT(11) NOT NULL, CHANGE `TABFEN_288` `RFO_01_23` INT(11) NOT NULL, CHANGE `TABFEN_144` `RFO_01_01_PEC` INT(11) NOT NULL, CHANGE `TABFEN_72` `RFO_01_03_PEC` INT(11) NOT NULL, CHANGE `TABFEN_48` `RFO_01_05_PEC` INT(11) NOT NULL, CHANGE `TABFEN_24` `RFO_01_07_PEC` INT(11) NOT NULL, CHANGE `NBTUB` `RFO_01_09_PEC` INT(11) NOT NULL, CHANGE `NBSOUD` `RFO_01_11_PEC` INT(11) NOT NULL;
 ALTER TABLE `detaildevis` ADD `RFO_01_13_PEC` INT NOT NULL AFTER `RFO_01_11_PEC`;
 
 
---
---template mail notification
-TRUNCATE mail_notification_template;
+TRUNCATE TABLE mail_notification_template;
 INSERT INTO `mail_notification_template` (`id_mail_notification`, `template`, `type`, `object`) VALUES
 (1, '<p>Bonjour,</p>\r\n\r\n<p>Le STT @nom_entreprise_stt&nbsp;vient de r&eacute;aliser le retour @etape_sous_projet&nbsp;du @CDI_CTR de&nbsp;:</p>\r\n\r\n<p>@code_sous_projet</p>\r\n\r\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\r\n', 5, '[R2i] Retour OT Aiguillage Réalisé par le STT @code_sous_projet'),
 (2, '<p>Bonjour,&nbsp;<br />\n<br />\nIl vous a &eacute;t&eacute; attribu&eacute; un OT @nom_ot&nbsp;provenant de la zone NR@code_sous_projet&nbsp;@ville,<br />\n<br />\nInfos OT :</p>\n\n<p>&nbsp;</p>\n\n<p>Nombre de boitier</p>\n\n<p>@b_720 :&nbsp;</p>\n\n<p>@b_432 :&nbsp;</p>\n\n<p>@b_288 :&nbsp;</p>\n\n<p>@b_144 :</p>\n\n<p>@b_48 :&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p>Lin&eacute;aire de C&acirc;ble :&nbsp;</p>\n\n<p>720 : @c_720 ml&nbsp;</p>\n\n<p>432 :&nbsp;@c_432 ml&nbsp;</p>\n\n<p>288 : @c_288&nbsp;ml</p>\n\n<p>144 : @c_144&nbsp;ml</p>\n\n<p>48 : &nbsp;@c_48&nbsp;ml</p>\n\n<p><br />\nNombre de chambres emprunt&eacute;es :@nombres_chambre<br />\nLin&eacute;aire des infrastructures emprunt&eacute;es : @total_lineaire ml</p>\n\n<p>&nbsp;</p>\n\n<p>pour retrouver ces informations connectez vous &agrave; R2i (https://r2i.free-infra.vlq16.iliad.fr).</p>\n\n<p><br />\n&nbsp;</p>\n', 3, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet'),
 (3, '<p>Bonjour,</p>\r\n\r\n<p>Un nouveau plan @etape_sous_projet @CDI_CTR est termin&eacute;&nbsp;:</p>\r\n\r\n<p>@code_sous_projet</p>\r\n\r\n<p>Les donn&eacute;es sont accessibles sous R2i.</p>\r\n', 4, '[R2i] Plan @etape_sous_projet disponible @code_sous_projet'),
 (4, 'Bonjour,\r\n\r\nUne nouvelle charge de travail vient de vous être attribuée :\r\n@code_sous_projet\r\n@CDI_CTR\r\n@etape_sous_projet\r\nLes données sont accessibles sous R2i', 2, '[R2i] Attribution charge de Travail @etape_sous_projet @CDI_CTR');
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données :  `r2i`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `select_solution_traitement_pbt`
---
 
 CREATE TABLE IF NOT EXISTS `select_solution_traitement_pbt` (
   `id_solution_traitement_pbt` int(11) NOT NULL,
   `lib_solution_traitement_pbt` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `select_solution_traitement_pbt`
---
 
 INSERT INTO `select_solution_traitement_pbt` (`id_solution_traitement_pbt`, `lib_solution_traitement_pbt`) VALUES
 (1, 'AIGUILLAGE'),
@@ -155,31 +128,16 @@ INSERT INTO `select_solution_traitement_pbt` (`id_solution_traitement_pbt`, `lib
 (5, 'REPARATION CONDUITE'),
 (6, 'GENIE CIVIL');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `select_type_traitement_pbt`
---
-
 CREATE TABLE IF NOT EXISTS `select_type_traitement_pbt` (
   `id_type_traitement_pbt` int(11) NOT NULL,
   `lib_type_traitement_pbt` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `select_type_traitement_pbt`
---
 
 INSERT INTO `select_type_traitement_pbt` (`id_type_traitement_pbt`, `lib_type_traitement_pbt`) VALUES
 (1, 'EN COURS'),
 (2, 'EN ATTENTE BE'),
 (3, 'TRAITE');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `traitement_pbt`
---
 
 CREATE TABLE IF NOT EXISTS `traitement_pbt` (
   `id_traitement_pbt` int(11) NOT NULL,
@@ -198,45 +156,21 @@ CREATE TABLE IF NOT EXISTS `traitement_pbt` (
   `id_entreprise` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `select_solution_traitement_pbt`
---
 ALTER TABLE `select_solution_traitement_pbt`
   ADD PRIMARY KEY (`id_solution_traitement_pbt`);
 
---
--- Index pour la table `select_type_traitement_pbt`
---
 ALTER TABLE `select_type_traitement_pbt`
   ADD PRIMARY KEY (`id_type_traitement_pbt`);
 
---
--- Index pour la table `traitement_pbt`
---
 ALTER TABLE `traitement_pbt`
   ADD PRIMARY KEY (`id_traitement_pbt`);
 
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `select_solution_traitement_pbt`
---
 ALTER TABLE `select_solution_traitement_pbt`
   MODIFY `id_solution_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `select_type_traitement_pbt`
---
+
 ALTER TABLE `select_type_traitement_pbt`
   MODIFY `id_type_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `traitement_pbt`
---
+
 ALTER TABLE `traitement_pbt`
   MODIFY `id_traitement_pbt` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 
