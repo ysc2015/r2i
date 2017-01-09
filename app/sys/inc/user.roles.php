@@ -203,7 +203,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 
     //admin only menu
@@ -277,8 +277,8 @@ class dov extends baseUser {
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
-                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
-                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette","commandefintravaux"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux")
             )
         );
     }
@@ -332,8 +332,8 @@ class pov extends baseUser {
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
-                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette"),
-                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette"),
+                "reseautransport" => array("design","aiguillage","commandectr","tirage","raccordements","recette","commandefintravaux"),
+                "reseaudistribution" => array("designcdi","daiguillage","commandecdi","dtirage","draccordements","drecette","dcommandefintravaux")
             )
         );
     }
