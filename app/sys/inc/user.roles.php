@@ -203,7 +203,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 
     //admin only menu
