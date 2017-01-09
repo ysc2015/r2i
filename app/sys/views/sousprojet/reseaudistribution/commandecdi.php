@@ -64,6 +64,14 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
+                    <label for="dcc_date_debut_travaux_ft">Date Début Travaux FT <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control" type="date" id="dcc_date_debut_travaux_ft" name="dcc_date_debut_travaux_ft" value="<?=($sousProjet->distributioncmdcdi !==NULL ? $sousProjet->distributioncmdcdi->date_debut_travaux_ft : "")?>">
+                </div>
+                <div class="col-md-3">
+                    <label for="dcc_date_fin_travaux_ft">Date Fin Travaux FT <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control" type="date" id="dcc_date_fin_travaux_ft" name="dcc_date_fin_travaux_ft" value="<?=($sousProjet->distributioncmdcdi !==NULL ? $sousProjet->distributioncmdcdi->date_fin_travaux_ft : "")?>">
+                </div>
+                <div class="col-md-3">
                     <label for="dcc_go_ft">GO FT <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_go_ft" name="dcc_go_ft">
                         <option value="" selected="">Sélectionnez une valeur</option>
