@@ -31,7 +31,7 @@
                     <input class="form-control" type="number" id="sz_nb_fo_sur_pmz" name="sz_nb_fo_sur_pmz" value="<?=($sousProjet->infozone !==NULL?$sousProjet->infozone->nb_fo_sur_pmz:"")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="sz_tranche_cdi">Tranche CDI <!--<span class="text-danger">*</span>--></label>
+                    <label for="sz_tranche_cdi">Début numérotation CDI <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="number" id="sz_tranche_cdi" name="sz_tranche_cdi" value="<?=($sousProjet->infozone !==NULL?$sousProjet->infozone->tranche_cdi:"")?>">
                 </div>
             </div>
