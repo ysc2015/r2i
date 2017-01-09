@@ -245,3 +245,7 @@ ALTER TABLE `sous_projet_distribution_commande_fin_travaux` ADD `date_debut_trav
 ALTER TABLE  `sous_projet_transport_commande_fin_travaux` ADD  `date_debut_travaux_ft` DATE NULL DEFAULT NULL , ADD  `date_fin_travaux_ft` DATE NULL DEFAULT NULL ;
 
 ALTER TABLE `sous_projet_zone` ADD `tranche_cdi` INT NULL DEFAULT NULL AFTER `nb_fo_sur_pmz`;
+
+ALTER TABLE `sous_projet_distribution_commande_cdi` ADD `date_debut_travaux_ft` DATE NULL DEFAULT NULL AFTER `ok`, ADD `date_fin_travaux_ft` DATE NULL DEFAULT NULL AFTER `date_debut_travaux_ft`;
+
+ALTER TABLE `sous_projet_transport_commande_ctr` ADD `date_debut_travaux_ft` DATE NULL DEFAULT NULL AFTER `ok`, ADD `date_fin_travaux_ft` DATE NULL DEFAULT NULL AFTER `date_debut_travaux_ft`;
