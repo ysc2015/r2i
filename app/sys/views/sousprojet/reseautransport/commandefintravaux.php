@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="cftrvx_date_butoir">Date butoire traitement retour Tir <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="cftrvx_date_butoir" name="cftrvx_date_butoir" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_butoir : "")?>">
+                    <input disabled class="form-control " type="date" id="cftrvx_date_butoir" name="cftrvx_date_butoir" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_butoir : "")?>">
                 </div>
                 <div class="col-md-3">
                     <label for="cftrvx_traitement_retour_terrain">Traitement Retours terrain <!--<span class="text-danger">*</span>--></label>
