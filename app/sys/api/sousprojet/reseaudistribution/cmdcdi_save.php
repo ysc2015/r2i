@@ -125,6 +125,16 @@ if(isset($dcc_ok)){
     $insert = true;
 }
 
+if(isset($dcc_date_debut_travaux_ft)){
+    $stm->bindParam(':date_debut_travaux_ft',$dcc_date_debut_travaux_ft);
+    $insert = true;
+}
+
+if(isset($dcc_date_fin_travaux_ft)){
+    $stm->bindParam(':date_fin_travaux_ft',$dcc_date_fin_travaux_ft);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         if($mailaction_new
