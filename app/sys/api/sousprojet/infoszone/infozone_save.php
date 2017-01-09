@@ -103,6 +103,11 @@ if(isset($sz_nb_fo_sur_pmz)){
     $insert = true;
 }
 
+if(isset($sz_tranche_cdi)){
+    $stm->bindParam(':tranche_cdi',$sz_tranche_cdi);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         $message [] = "Enregistrement fait avec succès";
