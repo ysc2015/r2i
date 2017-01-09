@@ -504,13 +504,13 @@ class stt extends baseUser {
         Page::myot(
             array(
                 "ot" => array("liste"),
-                "blq" => array("blq"),
                 "deot" => array("deot"),
                 "infosot" => array("calendar"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "synoptique" => array("synoptique"),
                 "devis" => array("formdevis"),
-                "traitementot" => array("traitement")
+                "traitementot" => array("traitement"),
+                "blq" => array("blq")
             )
         );
     }
