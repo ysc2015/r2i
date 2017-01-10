@@ -180,5 +180,11 @@ function getRetourTerrain(idsp,idtot,selector) {
             $('#'+msg.liens[i].labelid).html(msg.liens[i].label);
             $('#'+msg.liens[i].selector).html(msg.liens[i].value);
         }
+
+        if(ot_dt.row('.selected').data().id_type_ordre_travail == 9 || ot_dt.row('.selected').data().id_type_ordre_travail == 10) {
+            $("#ret_etat_retour2").val(msg.etatretour);
+        } else {
+            $("#ret_etat_retour").val(msg.etatretour);
+        }
     });
 }
