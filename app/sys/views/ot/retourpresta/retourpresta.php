@@ -129,9 +129,28 @@
 
         $("#save_etat_retour").click(function() {
             console.log('save_etat_retour click');
-            /*if(ot_dt.row('.selected').data()!== undefined) {
-                setOtStatus(ot_dt.row('.selected').data().id_ordre_de_travail,5,'#message_etat_retour_save',ot_dt);//statut 5 : En cours de Traitement
-            }*/
+
+            $.ajax({
+                url: "api/ot/retourpresta/update_etat_retour.php",
+                dataType: "json",
+                method: "POST",
+                data: {
+                    idsp : get('idsousprojet'),
+                    idtot : ot_dt.row('.selected').data().id_type_ordre_travail,
+                    val : etat_retour
+                }
+            }).done(function (msg) {
+                console.log(msg.message);
+                App.showMessage(msg,'#message_etat_retour_save');
+            });
+        });
+
+        $("#ret_etat_retour").change(function() {
+            etat_retour = $("#ret_etat_retour").val();
+
+        });
+        $("#ret_etat_retour2").change(function() {
+            etat_retour = $("#ret_etat_retour2").val();
         });
 
     } );
