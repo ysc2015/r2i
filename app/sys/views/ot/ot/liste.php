@@ -34,6 +34,7 @@
     var id_devis = 0;
     var id_ebm = 0;
     var id_res = 0;
+    var etat_retour = 0;
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
         "#delete_ot","#open_pblq",
@@ -204,7 +205,7 @@
                     getRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#link_retour_stt');
                     $('#retour_uploads').show();
 
-                    if(true) {
+                    if(ot_dt.row('.selected').data().id_type_ordre_travail == 9 || ot_dt.row('.selected').data().id_type_ordre_travail == 10) {
                         $('#ret_etat_retour_wrapper').hide();
                         $('#ret_etat_retour2_wrapper').show();
                     } else {
