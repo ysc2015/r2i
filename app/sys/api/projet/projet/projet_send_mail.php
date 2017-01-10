@@ -67,7 +67,7 @@ if(isset($idp) && !empty($idp)){
 
 
 
-    if(MailNotifier::sendMail($subject,$html,$to,$files,array())) {
+    if(@MailNotifier::sendMail($subject,$html,$to,$files,array())) {
         $message[] = "Mail envoyé !";
     } else {
         $message[] = "Mail non envoyé !";
