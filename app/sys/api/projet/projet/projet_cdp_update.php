@@ -44,7 +44,8 @@ if(isset($id_chef_projet) && !empty($id_chef_projet)){
     $message[] = "Le champs chef de projet est obligatoire !";
 }
 
-$stm->bindParam(':date_attribution',date('Y-m-d'));
+$dt = date('Y-m-d');
+$stm->bindParam(':date_attribution',$dt);
 
 if($insert == true && $err == 0){
     if($stm->execute()){
