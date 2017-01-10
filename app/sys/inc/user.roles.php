@@ -186,6 +186,7 @@ class adm extends baseUser {
                 "deot" => array("deot"),
                 "devis" => array("formdevis"),
                 "ebm" => array("formebm"),
+                "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
