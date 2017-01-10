@@ -88,7 +88,9 @@ if(isset($date_mad_site_origine) && !empty($date_mad_site_origine)){
     $message[] = "Le champs Date Mise à disposition est obligatoire !";
 }
 
-$stm->bindParam(':date_creation',date('Y-m-d'));
+$dt = date('Y-m-d');
+
+$stm->bindParam(':date_creation',$dt);
 
 if($insert == true && $err == 0){
     $project_name = "Etude Plaque PON FTTH ".$id_nro." ".$ville_nom;
