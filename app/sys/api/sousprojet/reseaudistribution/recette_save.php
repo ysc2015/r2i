@@ -165,7 +165,7 @@ if($insert == true && $err == 0){
             $message[] = $mailaction_object;
             $message[] = $mailaction_html;
 
-            if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
@@ -198,7 +198,7 @@ if($insert == true && $err == 0){
             $message[] = $mailaction_to;
             $message[] = $mailaction_object;
             $message[] = $mailaction_html;
-            if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";

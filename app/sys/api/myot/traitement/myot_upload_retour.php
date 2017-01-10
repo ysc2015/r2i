@@ -235,7 +235,7 @@ if(isset($idot) && !empty($idot)) {
 
                  $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",5);
                  $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
-                 if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                 if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                      $message[] = "Mail envoyé !";
                  } else {
                      $message[] = "Mail non envoyé !";
