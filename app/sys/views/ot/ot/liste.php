@@ -208,9 +208,11 @@
                     if(ot_dt.row('.selected').data().id_type_ordre_travail == 9 || ot_dt.row('.selected').data().id_type_ordre_travail == 10) {
                         $('#ret_etat_retour_wrapper').hide();
                         $('#ret_etat_retour2_wrapper').show();
+                        $("#ret_etat_retour2").val(etat_retour);
                     } else {
                         $('#ret_etat_retour_wrapper').show();
                         $('#ret_etat_retour2_wrapper').hide();
+                        $("#ret_etat_retour").val(etat_retour);
                     }
                 } else {
                     $('#retour_uploads').hide();

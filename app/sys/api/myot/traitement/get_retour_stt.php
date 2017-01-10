@@ -13,6 +13,7 @@ $message = array();
 
 $retour = "";
 $lien = array();
+$etatretour = "";
 
 if(isset($idsp) && !empty($idsp)){
     $sousProjet = SousProjet::find($idsp);
@@ -64,8 +65,17 @@ if($sousProjet !== NULL) {
 }
 
 if($err == 0) {
+    $i=0;
     foreach($tentree as $key => $value) {
         if($sousProjet->{$value[0]} !== NULL) {
+
+            if($i == 0) {
+                if($idtot == 9 || $idtot == 10)
+                    $etatretour = $sousProjet->{$value[0]}->etat_recette;
+                else
+                    $etatretour = $sousProjet->{$value[0]}->etat_retour;
+            }
+
             $retour = $sousProjet->{$value[0]}->retour_presta;
 
             $lien[] = array(
@@ -76,10 +86,11 @@ if($err == 0) {
                 "value" => $sousProjet->{$value[0]}->lien_plans,
             );
         }
+        $i++;
     }
 
 
 }
 
-echo json_encode(array("error" => $err, "retour" => $retour, "liens" => $lien));
+echo json_encode(array("error" => $err, "retour" => $retour, "liens" => $lien, "etatretour" => $etatretour));
 
