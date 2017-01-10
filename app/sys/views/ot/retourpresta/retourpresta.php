@@ -1,8 +1,10 @@
 <div id="retour_uploads">
     <div class="row items-push">
         <div class="col-md-6">
-            <label for="devis_bon_cmd_uploader" style="margin-top: 20px;">Upload retour terrain</label>
-            <div id="stt_retour_uploader"></div>
+            <div class="row retourpresta2">
+                <label for="devis_bon_cmd_uploader" style="margin-top: 20px;">Retour terrain</label>
+                <div id="stt_retour_uploader"></div>
+            </div>
         </div>
         <div class="col-md-6">
             <label for="link_retour_stt" style="margin-top: 20px;">Lien retour terrain <!--<span class="text-danger">*</span>--></label>
