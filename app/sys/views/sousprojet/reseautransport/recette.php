@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="trec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control" id="trec_etat_recette" name="trec_etat_recette">
+                    <select disabled class="form-control" id="trec_etat_recette" name="trec_etat_recette">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRecette::all();
@@ -126,10 +126,12 @@
                     <label for="trec_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="trec_lien_plans" name="trec_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->lien_plans:"")?></textarea>
                 </div>
-                <div class="col-md-4">
-                    <label for="trec_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea readonly class="form-control" id="trec_retour_presta" name="trec_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->retour_presta:"")?></textarea>
-                </div>
+                <?php if($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->etat_recette==3) {?>
+                    <div class="col-md-4">
+                        <label for="trec_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                        <textarea readonly class="form-control" id="trec_retour_presta" name="trec_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transportrecette !== NULL?$sousProjet->transportrecette->retour_presta:"")?></textarea>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <div class="row items-push">
@@ -150,12 +152,14 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
-                <div class="col-md-6">
-                    <div class="row retourpresta" style="padding-left: 10px;">
-                        <label for="trec_fileuploader_retour">Fichier(s) retour presta</label>
-                        <div id="trec_fileuploader_retour"></div>
+                <?php if($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->etat_recette==3) {?>
+                    <div class="col-md-6">
+                        <div class="row retourpresta" style="padding-left: 10px;">
+                            <label for="trec_fileuploader_retour">Fichier(s) retour presta</label>
+                            <div id="trec_fileuploader_retour"></div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
         <div class="alert alert-success" id="message_transport_recette" role="alert" style="display: none;"></div>

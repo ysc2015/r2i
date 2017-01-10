@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="drec_etat_recette">Etat Recette <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="drec_etat_recette" name="drec_etat_recette">
+                    <select disabled class="form-control " id="drec_etat_recette" name="drec_etat_recette">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRecette::all();
@@ -126,10 +126,12 @@
                     <label for="drec_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="drec_lien_plans" name="drec_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->lien_plans:"")?></textarea>
                 </div>
-                <div class="col-md-4">
-                    <label for="drec_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea readonly class="form-control" id="drec_retour_presta" name="drec_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->retour_presta:"")?></textarea>
-                </div>
+                <?php if($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->etat_recette==3) {?>
+                    <div class="col-md-4">
+                        <label for="drec_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                        <textarea readonly class="form-control" id="drec_retour_presta" name="drec_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->retour_presta:"")?></textarea>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <div class="row items-push">
@@ -150,12 +152,14 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
-                <div class="col-md-6">
-                    <div class="row retourpresta" style="padding-left: 10px;">
-                        <label for="drec_fileuploader_retour">Fichier(s) retour presta</label>
-                        <div id="drec_fileuploader_retour"></div>
+                <?php if($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->etat_recette==3) {?>
+                    <div class="col-md-6">
+                        <div class="row retourpresta" style="padding-left: 10px;">
+                            <label for="drec_fileuploader_retour">Fichier(s) retour presta</label>
+                            <div id="drec_fileuploader_retour"></div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
         <div class="alert alert-success" id="message_distribution_recette" role="alert" style="display: none;"></div>

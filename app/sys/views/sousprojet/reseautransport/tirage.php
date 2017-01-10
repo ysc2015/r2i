@@ -180,7 +180,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="tt_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="tt_etat_retour" name="tt_etat_retour">
+                    <select disabled class="form-control " id="tt_etat_retour" name="tt_etat_retour">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRetour::all();
@@ -198,10 +198,12 @@
                     <label for="tt_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="tt_lien_plans" name="tt_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lien_plans:"")?></textarea>
                 </div>
-                <div class="col-md-4">
-                    <label for="tt_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea readonly class="form-control" id="tt_retour_presta" name="tt_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->retour_presta:"")?></textarea>
-                </div>
+                <?php if($sousProjet->transporttirage!==NULL && $sousProjet->transporttirage->etat_retour==2) {?>
+                    <div class="col-md-4">
+                        <label for="tt_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                        <textarea readonly class="form-control" id="tt_retour_presta" name="tt_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->retour_presta:"")?></textarea>
+                    </div>
+                <?php } ?>
                 <div class="col-md-4">
                     <label for="tt_ok">OK <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="tt_ok" name="tt_ok">
@@ -224,12 +226,14 @@
                         <div id="tt_fileuploader_chambre"></div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row retourpresta" style="padding-left: 10px;">
-                        <label for="tt_fileuploader_retour">Fichier(s) retour presta</label>
-                        <div id="tt_fileuploader_retour"></div>
+                <?php if($sousProjet->transporttirage!==NULL && $sousProjet->transporttirage->etat_retour==2) {?>
+                    <div class="col-md-6">
+                        <div class="row retourpresta" style="padding-left: 10px;">
+                            <label for="tt_fileuploader_retour">Fichier(s) retour presta</label>
+                            <div id="tt_fileuploader_retour"></div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
         <div class="alert alert-success" id="message_transport_tirage" role="alert" style="display: none;"></div>

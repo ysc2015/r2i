@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="da_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="da_etat_retour" name="da_etat_retour">
+                    <select disabled class="form-control " id="da_etat_retour" name="da_etat_retour">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectEtatRetour::all();
@@ -161,10 +161,6 @@
                 <div class="col-md-4">
                     <label for="da_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="da_lien_plans" name="da_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lien_plans:"")?></textarea>
-                </div>
-                <div class="col-md-4">
-                    <label for="da_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
-                    <textarea readonly class="form-control" id="da_retour_presta" name="da_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->retour_presta:"")?></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="da_ok">OK <!--<span class="text-danger">*</span>--></label>
@@ -188,12 +184,14 @@
                         <div id="da_fileuploader_chambre"></div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row retourpresta" style="padding-left: 10px;">
-                        <label for="da_fileuploader_retour">Fichier(s) retour presta</label>
-                        <div id="da_fileuploader_retour"></div>
+                <?php if($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->etat_retour==2) {?>
+                    <div class="col-md-6">
+                        <div class="row retourpresta" style="padding-left: 10px;">
+                            <label for="da_fileuploader_retour">Fichier(s) retour presta</label>
+                            <div id="da_fileuploader_retour"></div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
         <div class="alert alert-success" id="message_distribution_aiguillage" role="alert" style="display: none;"></div>
