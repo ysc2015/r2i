@@ -43,12 +43,11 @@
 </div>
 <script>
     var uploader3_options = {
-        url: "api/myot/traitement/myot_upload_retour.php",
         multiple:false,
         dragDrop:true,
         fileName: "myfile",
         autoSubmit: true,
-        showDelete:true,
+        showDelete:false,
         showDownload:true,
         allowedTypes: "pdf,xls,xlsx",
         onLoad:function(obj)
