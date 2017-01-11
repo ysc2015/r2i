@@ -195,7 +195,7 @@
                 selectedOT = ot_dt.row('.selected').data().id_ordre_de_travail;
             }
 
-            calendar.refresh();
+            //calendar.refresh();
             displayDevis();
 
         } );
