@@ -14,9 +14,9 @@ try {
 
     $sql .=  " AND ot.id_entreprise=".$connectedProfil->profil->id_entreprise;
 
-    if(isset($idot) && !empty($idot)) {
+    /*if(isset($idot) && !empty($idot)) {
         $sql .= " AND ot.id_ordre_de_travail=$idot";
-    }
+    }*/
 
     //echo $sql;
 
@@ -41,7 +41,7 @@ try {
         $e['start'] = $row['date_debut']." 00:00:00";
         $e['end'] = $row['df']." 00:00:00";
         $e['allDay'] = true;
-        $e['color'] = '#faeab9';
+        $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
         $e['textColor'] = '#000';
         $e['dd'] = $row['date_debut'];
         $e['df'] = $row['date_fin'];
@@ -54,11 +54,11 @@ try {
         $e['typeot'] = $row['typeot'];
         $e['system'] = $row['system'];
 
-        $sousProjet = SousProjet::first(
+        /*$sousProjet = SousProjet::first(
             array('conditions' =>
                 array("id_sous_projet = ?", $row['id_sous_projet'])
             )
-        );
+        );*/
 
         array_push($events, $e);
 
