@@ -25,6 +25,8 @@ $fieldslist = "";
 $valueslist = ":id_sous_projet,";
 $paramcount = 0;
 
+$fields = array();
+
 if($sousProjet !== NULL) {
     if($sousProjet->distributioncmdcdi !== NULL) {
         $mailaction_entite = $sousProjet->distributioncmdcdi;
@@ -36,6 +38,8 @@ if($sousProjet !== NULL) {
                 $arr = explode("_",$key);
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -53,6 +57,8 @@ if($sousProjet !== NULL) {
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr).",";
                 $valueslist .= ":".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -137,6 +143,27 @@ if(isset($dcc_date_fin_travaux_ft)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+
+        $sousProjet = SousProjet::find($ids);//re-fetch sp
+        if($sousProjet->is_master == 1) {
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->distributioncmdcdi == NULL && $sp->id_sous_projet != $sousProjet->id_sous_projet) {
+                    $stm_create = $db->prepare("insert into sous_projet_distribution_commande_cdi (id_sous_projet) values ($sp->id_sous_projet)");
+                    $stm_create->execute();
+                }
+            }
+            $sousProjet = SousProjet::find($ids);//re-fetch sp
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->id_sous_projet !== $sousProjet->id_sous_projet) {
+                    $sp->distributioncmdcdi->id_sous_projet = $sp->id_sous_projet;
+                    foreach($fields as $field) {
+                        $sp->distributioncmdcdi->{$field} = $sousProjet->distributioncmdcdi->{$field};
+                    }
+                    $sp->distributioncmdcdi->save();
+                }
+            }
+        }
+        
         if($mailaction_new
             &&
             (

@@ -24,6 +24,8 @@ $fieldslist = "";
 $valueslist = ":id_sous_projet,";
 $paramcount = 0;
 
+$fields = array();
+
 if($sousProjet !== NULL) {
     if($sousProjet->transportdesign !== NULL) {
         foreach( $_POST as $key => $value ) {
@@ -33,6 +35,8 @@ if($sousProjet !== NULL) {
                 $arr = explode("_",$key);
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -49,6 +53,8 @@ if($sousProjet !== NULL) {
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr).",";
                 $valueslist .= ":".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -150,7 +156,26 @@ if($insert == true && $err == 0){
     $duree = getDuree($td_date_debut,$td_date_ret_prevue);
     $stm->bindParam(':duree',$duree);
     if($stm->execute()){
-        setSousProjetUsers(SousProjet::find($ids));
+
+        $sousProjet = SousProjet::find($ids);//re-fetch sp
+        if($sousProjet->is_master == 1) {
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->transportdesign == NULL && $sp->id_sous_projet != $sousProjet->id_sous_projet) {
+                    $stm_create = $db->prepare("insert into sous_projet_transport_design (id_sous_projet) values ($sp->id_sous_projet)");
+                    $stm_create->execute();
+                }
+            }
+            $sousProjet = SousProjet::find($ids);//re-fetch sp
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->id_sous_projet !== $sousProjet->id_sous_projet) {
+                    $sp->transportdesign->id_sous_projet = $sp->id_sous_projet;
+                    foreach($fields as $field) {
+                        $sp->transportdesign->{$field} = $sousProjet->transportdesign->{$field};
+                    }
+                    $sp->transportdesign->save();
+                }
+            }
+        }
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();

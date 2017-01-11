@@ -27,6 +27,8 @@ $fieldslist = "";
 $valueslist = ":id_sous_projet,";
 $paramcount = 0;
 
+$fields = array();
+
 if($sousProjet !== NULL) {
     if($sousProjet->transportaiguillage !== NULL) {
         $mailaction_entite = $sousProjet->transportaiguillage;
@@ -37,6 +39,8 @@ if($sousProjet !== NULL) {
                 $arr = explode("_",$key);
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -54,6 +58,8 @@ if($sousProjet !== NULL) {
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr).",";
                 $valueslist .= ":".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -236,6 +242,26 @@ if($insert == true && $err == 0){
     $stm->bindParam(':duree',$duree);*/
 
     if($stm->execute()){
+
+        $sousProjet = SousProjet::find($ids);//re-fetch sp
+        if($sousProjet->is_master == 1) {
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->transportaiguillage == NULL && $sp->id_sous_projet != $sousProjet->id_sous_projet) {
+                    $stm_create = $db->prepare("insert into sous_projet_transport_aiguillage (id_sous_projet) values ($sp->id_sous_projet)");
+                    $stm_create->execute();
+                }
+            }
+            $sousProjet = SousProjet::find($ids);//re-fetch sp
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->id_sous_projet !== $sousProjet->id_sous_projet) {
+                    $sp->transportaiguillage->id_sous_projet = $sp->id_sous_projet;
+                    foreach($fields as $field) {
+                        $sp->transportaiguillage->{$field} = $sousProjet->transportaiguillage->{$field};
+                    }
+                    $sp->transportaiguillage->save();
+                }
+            }
+        }
 
         if($mailaction_new && (isset($ta_controle_plans)) &&  $ta_controle_plans == 2 && (isset($ta_lien_plans)) && $ta_lien_plans != ""
         && (  $mailaction_entite != null && ($mailaction_entite->controle_plans != $ta_controle_plans || $mailaction_entite->lien_plans != $ta_lien_plans) ) ) {

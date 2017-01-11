@@ -41,6 +41,7 @@ switch($page)
 
     case "sousprojet":
         $nro = "";
+        $btn = "";
         $sousProjet = SousProjet::first(
             array('conditions' =>
                 array("id_sous_projet = ?", $idsousprojet)
@@ -51,11 +52,51 @@ switch($page)
                 if($sousProjet->projet->nro !== NULL) {
                     $nro = $sousProjet->projet->nro->lib_nro;
                 }
+
+                if($connectedProfil->profil->profil->shortlib == "adm" || $connectedProfil->profil->profil->shortlib == "pov") {
+
+                    if($sousProjet->is_master !== 1) {
+                        $btn =
+                            <<<ADM
+                                    <div class="dropdown" style="display: inline-block;">
+                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="open-sub-project" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    sous projet
+                                    <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="open-sub-project">
+                                        <li style="font-size:10px;"><a class="list-group-item" href="javascript:void(0)" id="set_as_master" >CTR maitre ?</a></li>
+                                    </ul>
+                                </div>
+ADM;
+                    } else {
+                        $btn =
+                            <<<ADM
+                                    <div class="dropdown" style="display: inline-block;">
+                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="open-sub-project" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    sous projet
+                                    <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="open-sub-project">
+                                        <li style="font-size:10px;"><a class="list-group-item disabled" href="javascript:void(0)">CTR maitre ?</a></li>
+                                        <li style="font-size:10px;"><a class="list-group-item" href="javascript:void(0)" id="unset_master_ctr">Annuler Maitre CTR</a></li>
+                                    </ul>
+                                </div>
+ADM;
+                    }
+                } else {
+                    $btn = ($sousProjet !== NULL ? $nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone):"");
+                }
             }
         }
-        return json_decode(json_encode(array("header"=>"Sous projet",
+
+        /*return json_decode(json_encode(array("header"=>"Sous projet",
             "subheader"=>"Avancements",
             "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".($sousProjet !== NULL ? $nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone):"")."</li>")));
+        */
+
+        return json_decode(json_encode(array("header"=>"Sous projet",
+            "subheader"=>"Avancements",
+            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".$btn."</li>")));
         break;
 
     case "ot":
