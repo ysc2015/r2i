@@ -193,10 +193,7 @@ if($insert == true && $err == 0){
 
             $mailaction_cc =return_list_mail_cc_notif($db,"transportrecette",4);
             $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
-            $message[] = $mailaction_cc;
-            $message[] = $mailaction_to;
-            $message[] = $mailaction_object;
-            $message[] = $mailaction_html;
+
 
             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                $message[] = "Mail envoyé !";
@@ -222,10 +219,7 @@ if($insert == true && $err == 0){
             $mailaction_html =  $mailaction_html[0];
             $mailaction_cc  =return_list_mail_cc_notif_tache($db,$connectedProfil->email_utilisateur,2);
             $mailaction_to  =get_email_by_id($db,[$trec_intervenant_be,$trec_intervenant_free]);
-            $message[] = $mailaction_cc;
-            $message[] = $mailaction_to;
-            $message[] = $mailaction_object;
-            $message[] = $mailaction_html;
+
 
             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
