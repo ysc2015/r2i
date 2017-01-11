@@ -26,6 +26,8 @@ $fieldslist = "";
 $valueslist = ":id_sous_projet,";
 $paramcount = 0;
 
+$fields = array();
+
 if($sousProjet !== NULL) {
     if($sousProjet->transportcmcctr !== NULL) {
         $mailaction_entite = $sousProjet->transportcmcctr;
@@ -36,6 +38,8 @@ if($sousProjet !== NULL) {
                 $arr = explode("_",$key);
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr)."=:".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -53,6 +57,8 @@ if($sousProjet !== NULL) {
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr).",";
                 $valueslist .= ":".implode("_",$arr).",";
+
+                $fields[] = implode("_",$arr);
             }
         }
 
@@ -137,6 +143,27 @@ if(isset($cctr_date_fin_travaux_ft)){
 
 if($insert == true && $err == 0){
     if($stm->execute()){
+
+        $sousProjet = SousProjet::find($ids);//re-fetch sp
+        if($sousProjet->is_master == 1) {
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->transportcmcctr == NULL && $sp->id_sous_projet != $sousProjet->id_sous_projet) {
+                    $stm_create = $db->prepare("insert into sous_projet_transport_commande_ctr (id_sous_projet) values ($sp->id_sous_projet)");
+                    $stm_create->execute();
+                }
+            }
+            $sousProjet = SousProjet::find($ids);//re-fetch sp
+            foreach($sousProjet->projet->sousprojets as $sp) {
+                if($sp->id_sous_projet !== $sousProjet->id_sous_projet) {
+                    $sp->transportcmcctr->id_sous_projet = $sp->id_sous_projet;
+                    foreach($fields as $field) {
+                        $sp->transportcmcctr->{$field} = $sousProjet->transportcmcctr->{$field};
+                    }
+                    $sp->transportcmcctr->save();
+                }
+            }
+        }
+        
         if($mailaction_new
             && (
                 (isset($cctr_go_ft) && ($cctr_go_ft == 2) && $mailaction_entite ==null )

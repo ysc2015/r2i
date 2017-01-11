@@ -1063,3 +1063,114 @@ switch ($page) {
         } );
     </script>
 <?php } ?>
+<?php if($page == "sousprojet" && ($connectedProfil->profil->profil->shortlib == "adm" || $connectedProfil->profil->profil->shortlib == "pov")) {?>
+    <div id="set-as-master-dialog-confirm" title="Définir comme sous projet maitre CTR?">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Tous les sous projets du méme projet y seront liés?</p>
+    </div>
+    <div id="set-as-master-success-dialog-confirm" title="Info">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Maj réussite !</p>
+    </div>
+    <div id="set-as-master-error-dialog-confirm" title="Info">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Erreur lors de la Maj !</p>
+    </div>
+    <div id="unset-master-dialog-confirm" title="Info">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Ce sous projet est déjà maitre ctr, voulez vous désactiver ce maitre ctr ?</p>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $( "#set-as-master-dialog-confirm" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Oui": function() {
+                        $.ajax({
+                            method: "POST",
+                            url: "api/projet/projet/set_master_ctr.php",
+                            dataType: "json",
+                            data: {
+                                idsp: get('idsousprojet')
+                            }
+                        }).done(function (msg) {
+                            $( "#set-as-master-dialog-confirm" ).dialog( "close" );
+
+                            if(msg.error==0) {
+                                $("#set-as-master-success-dialog-confirm").dialog("open");
+                            } else {
+                                $("#set-as-master-error-dialog-confirm").dialog("open");
+                            }
+                        });
+                    },
+                    Non: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $( "#unset-master-dialog-confirm" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Oui": function() {
+                        $.ajax({
+                            method: "POST",
+                            url: "api/projet/projet/unset_master_ctr.php",
+                            dataType: "json",
+                            data: {
+                                idsp: get('idsousprojet')
+                            }
+                        }).done(function (msg) {
+                            $( "#unset-master-dialog-confirm" ).dialog( "close" );
+
+                            if(msg.error==0) {
+                                $("#set-as-master-success-dialog-confirm").dialog("open");
+                            } else {
+                                $("#set-as-master-error-dialog-confirm").dialog("open");
+                            }
+                        });
+                    },
+                    Non: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $( "#set-as-master-success-dialog-confirm" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    Ok: function() {
+                        $( this ).dialog( "close" );
+                        window.location.reload();
+                    }
+                }
+            });
+            $( "#set-as-master-error-dialog-confirm" ).dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    Ok: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $("#set_as_master").click(function(e) {
+                e.preventDefault();
+                $("#set-as-master-dialog-confirm").dialog("open");
+            });
+            $("#unset_master_ctr").click(function(e) {
+                e.preventDefault();
+                $("#unset-master-dialog-confirm").dialog("open");
+            });
+        } );
+    </script>
+<?php } ?>
