@@ -244,10 +244,21 @@
                 dataType: "json",
                 success: function(data)
                 {
+                    console.log('debut log');
                     for(var i=0;i<data.length;i++)
                     {
                         obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                        console.log('name ' + data[i]["name"]);
+                        console.log('path ' + data[i]["path"]);
+                        console.log('size ' + data[i]["size"]);
+                        console.log('id ' + data[i]["id"]);
+                        console.log('id_sous_projet ' + data[i]["id_sous_projet"]);
+                        console.log('id_ordre_de_travail ' + data[i]["id_ordre_de_travail"]);
+                        console.log('id_type_ordre_travail ' + data[i]["id_type_ordre_travail"]);
+                        console.log('id_chambre ' + data[i]["id_chambre"]);
+                        console.log('type_objet ' + data[i]["type_objet"]);
                     }
+                    console.log('fin log');
                 }
             });
         },

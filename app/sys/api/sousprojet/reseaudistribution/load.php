@@ -17,6 +17,14 @@ if((isset($id_sous_projet) && !empty($id_sous_projet) && (isset($type_objet) && 
         $details['path']=$filePath;
         $details['size']=filesize($filePath);
         $details['id']=$file['id_ressource'];
+
+        //TODO to delete
+        $details['id_sous_projet']=$file['id_sous_projet'];
+        $details['id_ordre_de_travail']=$file['id_ordre_de_travail'];
+        $details['id_type_ordre_travail']=$file['id_type_ordre_travail'];
+        $details['id_chambre']=$file['id_chambre'];
+        $details['type_objet']=$file['type_objet'];
+        //end todelete
         $ret[] = $details;
 
     }
