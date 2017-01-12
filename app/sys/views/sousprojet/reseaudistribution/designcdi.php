@@ -84,20 +84,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-8">
-                    <?php
-                    $sousProjet_master = SousProjet::first(
-                        array('conditions' =>
-                            array("id_projet = ? AND is_master = 1", $sousProjet->id_projet)
-                        )
-                    );
-                    ?>
-                    <?php if($sousProjet_master == NULL) {?>
-                        <button id="id_sous_projet_distribution_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
-                    <?php } else if($sousProjet_master->id_sous_projet == $sousProjet->id_sous_projet) {?>
-                        <button id="id_sous_projet_distribution_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
-                    <?php } else {?>
-                        <a href="?page=sousprojet&idsousprojet=<?=$sousProjet_master->id_sous_projet?>" class="btn btn-primary btn-sm" type="button">Maitre CTR</a>
-                    <?php }?>
+                    <button id="id_sous_projet_distribution_design_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_distribution_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_distribution_design_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
                 </div>
