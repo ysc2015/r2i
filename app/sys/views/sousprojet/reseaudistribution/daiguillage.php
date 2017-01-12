@@ -244,10 +244,11 @@
                 dataType: "json",
                 success: function(data)
                 {
-                    console.log('debut log');
+                    console.log('*****************debut log*****************');
                     for(var i=0;i<data.length;i++)
                     {
                         obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                        console.log('**********************************************');
                         console.log('name ' + data[i]["name"]);
                         console.log('path ' + data[i]["path"]);
                         console.log('size ' + data[i]["size"]);
@@ -258,7 +259,7 @@
                         console.log('id_chambre ' + data[i]["id_chambre"]);
                         console.log('type_objet ' + data[i]["type_objet"]);
                     }
-                    console.log('fin log');
+                    console.log('*****************fin log*****************');
                 }
             });
         },
