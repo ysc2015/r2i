@@ -152,7 +152,7 @@ if($insert == true && $err == 0){
     $stm->bindParam(':duree',$duree);
     if($stm->execute()){
 
-        $sousProjet = SousProjet::find($ids);//re-fetch sp
+        /*$sousProjet = SousProjet::find($ids);//re-fetch sp
         if($sousProjet->is_master == 1) {
             foreach($sousProjet->projet->sousprojets as $sp) {
                 if($sp->distributiondesign == NULL && $sp->id_sous_projet != $sousProjet->id_sous_projet) {
@@ -170,7 +170,7 @@ if($insert == true && $err == 0){
                     $sp->distributiondesign->save();
                 }
             }
-        }
+        }*/
         
         $message [] = "Enregistrement fait avec succès";
     } else {
