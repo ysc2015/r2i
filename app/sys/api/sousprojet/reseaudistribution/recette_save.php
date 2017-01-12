@@ -147,7 +147,7 @@ if(isset($drec_retour_presta)){
 if($insert == true && $err == 0){
     if($stm->execute()){
 
-        $sousProjet = SousProjet::find($ids);//re-fetch sp
+        /*$sousProjet = SousProjet::find($ids);//re-fetch sp
         if($sousProjet->is_master == 1) {
             foreach($sousProjet->projet->sousprojets as $sp) {
                 if($sp->distributionrecette == NULL && $sp->id_sous_projet != $sousProjet->id_sous_projet) {
@@ -165,7 +165,7 @@ if($insert == true && $err == 0){
                     $sp->distributionrecette->save();
                 }
             }
-        }
+        }*/
         
         if($mailaction_new && (
                 (   $mailaction_entite == null
