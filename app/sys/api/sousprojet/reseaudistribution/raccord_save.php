@@ -249,7 +249,7 @@ if($insert == true && $err == 0){
         if($mailaction_new && $mailaction_entite->intervenant_be  != $dr_intervenant_be  ){
             $mailaction_email_sender = [];
             //envoi de mail
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Raccordement',2,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Raccordement',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 

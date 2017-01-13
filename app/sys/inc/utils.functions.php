@@ -1689,7 +1689,8 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$ty
         $sqlstatement_utilisateur = $db->prepare($sql);
         $sqlstatement_utilisateur->bindValue(':id_utilisateur',$id_chef_equipe);
         $sqlstatement_utilisateur->execute();
-        $statement_utilisateur = $sqlstatement_utilisateur->fetchAll();
+        $statement_utilisateur = $sqlstatement_utilisateur->fetch();
+        print_r($statement_utilisateur);
         $num_tel_chef_projet = $statement_utilisateur['telephone_utilisateur'];
     }
 
