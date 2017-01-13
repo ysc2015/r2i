@@ -14,12 +14,6 @@ try {
 
     $sql .=  " AND ot.id_entreprise=".$connectedProfil->profil->id_entreprise;
 
-    /*if(isset($idot) && !empty($idot)) {
-        $sql .= " AND ot.id_ordre_de_travail=$idot";
-    }*/
-
-    //echo $sql;
-
     $stm = $db->prepare($sql);
     $stm->execute();
 
