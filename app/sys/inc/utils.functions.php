@@ -1677,12 +1677,21 @@ function get_email_by_id($db,$tabusers){
  * @param $type_mail
  * @return array
  */
-function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null){
+function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null){
     $sql = "SELECT * FROM `mail_notification_template` where type = :type";
     $sqlstatement = $db->prepare($sql);
     $sqlstatement->bindValue(':type',$type_mail);
     $sqlstatement->execute();
     $statement = $sqlstatement->fetchAll();
+    $num_tel_chef_projet = "";
+    if($id_chef_equipe!=null){
+        $sql = "SELECT * FROM `utilisateur` where id_utilisateur = :id_utilisateur";
+        $sqlstatement_utilisateur = $db->prepare($sql);
+        $sqlstatement_utilisateur->bindValue(':id_utilisateur',$id_chef_equipe);
+        $sqlstatement_utilisateur->execute();
+        $statement_utilisateur = $sqlstatement->fetchAll();
+        $num_tel_chef_projet = $statement_utilisateur['telephone_utilisateur'];
+    }
 
     $statement[0][1]    = str_replace('@etape_sous_projet',$etape,$statement[0][1]);
     $statement[0][1]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][1] );
@@ -1706,9 +1715,12 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$ty
     $statement[0][1]    = str_replace('@nombres_chambre',$nberchambre,$statement[0][1] );
     $statement[0][1]    = str_replace('@total_lineaire',$totallineaire,$statement[0][1] );
 
+    $statement[0][1]    = str_replace('@num_tel_chef_equipe',$num_tel_chef_projet,$statement[0][1] );
+
     $statement[0][3]    = str_replace('@etape_sous_projet',$etape,$statement[0][3]);
     $statement[0][3]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][3] );
     $statement[0][3]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][3] );
+
 
 
 
