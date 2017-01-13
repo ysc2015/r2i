@@ -287,7 +287,7 @@ if($insert == true && $err == 0){
             $mailaction_email_sender = [];
             //envoi de mail
 
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',2,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
@@ -295,7 +295,7 @@ if($insert == true && $err == 0){
             $mailaction_cc =return_list_mail_cc_notif_tache($db, $connectedProfil->email_utilisateur,2);
             $mailaction_to =get_email_by_id($db,[$ta_intervenant_be]);
 
-            $message[] = $mailaction_object;
+            $message[] = $mailaction_object."*".$sousProjet->projet->id_chef_projet;
             $message[] = $mailaction_html;
             $message[] = $mailaction_cc;
             $message[] = $mailaction_to;
