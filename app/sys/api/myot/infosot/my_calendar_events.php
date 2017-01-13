@@ -18,7 +18,7 @@ try {
         $sql .= " AND ot.id_ordre_de_travail=$idot";
     }*/
 
-    //echo $sql;
+    echo $sql;
 
     $stm = $db->prepare($sql);
     $stm->execute();
