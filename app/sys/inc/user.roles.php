@@ -401,7 +401,7 @@ class bei extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("projet_titre","projet_liste");
+        Page::sidebar("projet_titre","projet_liste","pointbloquant_liste");
     }
 }
 class cdp extends baseUser {
@@ -486,7 +486,7 @@ class vpi extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("projet_titre","projet_liste","planning_titre","planning_view");
+        Page::sidebar("projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view");
     }
 }
 class pci extends baseUser {
@@ -518,7 +518,7 @@ class pci extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("pci_titre","pci_liste");
+        Page::sidebar("pci_titre","pci_liste","pointbloquant_liste");
     }
 }
 class stt extends baseUser {
