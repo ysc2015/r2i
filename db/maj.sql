@@ -184,3 +184,4 @@ ALTER TABLE `sous_projet_zone` ADD `tranche_cdi` INT NULL DEFAULT NULL AFTER `nb
 ALTER TABLE `sous_projet_distribution_commande_cdi` ADD `date_debut_travaux_ft` DATE NULL DEFAULT NULL AFTER `ok`, ADD `date_fin_travaux_ft` DATE NULL DEFAULT NULL AFTER `date_debut_travaux_ft`;
 
 ALTER TABLE `sous_projet_transport_commande_ctr` ADD `date_debut_travaux_ft` DATE NULL DEFAULT NULL AFTER `ok`, ADD `date_fin_travaux_ft` DATE NULL DEFAULT NULL AFTER `date_debut_travaux_ft`;
+ALTER TABLE  `utilisateur` ADD  `telephone_utilisateur` VARCHAR( 50 ) NOT NULL ;
