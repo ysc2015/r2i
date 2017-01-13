@@ -1697,18 +1697,21 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$ty
     $statement[0][1]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][1] );
     $statement[0][1]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][1] );
     $statement[0][1]    = str_replace('@nom_entreprise_stt',$nom_entreprise,$statement[0][1] );
+    if($boite!=null){
+        $statement[0][1]    = str_replace('@b_720',$boite[0],$statement[0][1] );
+        $statement[0][1]    = str_replace('@b_432',$boite[1],$statement[0][1] );
+        $statement[0][1]    = str_replace('@b_288',$boite[2],$statement[0][1] );
+        $statement[0][1]    = str_replace('@b_144',$boite[3],$statement[0][1] );
+        $statement[0][1]    = str_replace('@b_48',$boite[4],$statement[0][1] );
+    }
+    if($chambre!=null){
+        $statement[0][1]    = str_replace('@c_720',$chambre[0],$statement[0][1] );
+        $statement[0][1]    = str_replace('@c_432',$chambre[1],$statement[0][1] );
+        $statement[0][1]    = str_replace('@c_288',$chambre[2],$statement[0][1] );
+        $statement[0][1]    = str_replace('@c_144',$chambre[3],$statement[0][1] );
+        $statement[0][1]    = str_replace('@c_48',$chambre[4],$statement[0][1] );
 
-    $statement[0][1]    = str_replace('@b_720',$boite[0],$statement[0][1] );
-    $statement[0][1]    = str_replace('@b_432',$boite[1],$statement[0][1] );
-    $statement[0][1]    = str_replace('@b_288',$boite[2],$statement[0][1] );
-    $statement[0][1]    = str_replace('@b_144',$boite[3],$statement[0][1] );
-    $statement[0][1]    = str_replace('@b_48',$boite[4],$statement[0][1] );
-
-    $statement[0][1]    = str_replace('@c_720',$chambre[0],$statement[0][1] );
-    $statement[0][1]    = str_replace('@c_432',$chambre[1],$statement[0][1] );
-    $statement[0][1]    = str_replace('@c_288',$chambre[2],$statement[0][1] );
-    $statement[0][1]    = str_replace('@c_144',$chambre[3],$statement[0][1] );
-    $statement[0][1]    = str_replace('@c_48',$chambre[4],$statement[0][1] );
+    }
 
     $statement[0][1]    = str_replace('@nom_ot',$nom_ot,$statement[0][1] );
     $statement[0][1]    = str_replace('@ville',$ville,$statement[0][1] );
