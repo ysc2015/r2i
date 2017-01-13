@@ -391,6 +391,15 @@ class bei extends baseUser {
         );
     }
 
+    function pointbloquant() {
+        Page::pointbloquant(
+            array(
+                "pointbloquant" => array("liste","update","add_info"/*,"delete"*/),
+                "info" => array("liste","update","delete")
+            )
+        );
+    }
+
     function sidebar() {
         Page::sidebar("projet_titre","projet_liste");
     }
@@ -453,6 +462,15 @@ class vpi extends baseUser {
         );
     }
 
+    function pointbloquant() {
+        Page::pointbloquant(
+            array(
+                "pointbloquant" => array("liste","update","add_info"/*,"delete"*/),
+                "info" => array("liste","update","delete")
+            )
+        );
+    }
+
     function ot() {
         Page::ot(
             array(
@@ -463,14 +481,6 @@ class vpi extends baseUser {
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
                 "synoptique" => array("synoptique")
-            )
-        );
-    }
-
-    function pointbloquant() {
-        Page::pointbloquant(
-            array(
-                "pointbloquant" => array("liste","update","delete")
             )
         );
     }
@@ -494,6 +504,15 @@ class pci extends baseUser {
                 "chambreot" => array("liste","update","pointbloquant"),
                 "synoptique" => array("synoptique"),
                 "traitementot" => array("traitement")
+            )
+        );
+    }
+
+    function pointbloquant() {
+        Page::pointbloquant(
+            array(
+                "pointbloquant" => array("liste","update","add_info"/*,"delete"*/),
+                "info" => array("liste","update","delete")
             )
         );
     }
