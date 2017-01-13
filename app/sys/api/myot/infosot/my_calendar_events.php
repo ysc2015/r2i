@@ -28,39 +28,39 @@ try {
     // Fetch results
     while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 
-        $sousProjet = SousProjet::first(
-            array('conditions' =>
-                array("id_sous_projet = ?", $row['id_sous_projet'])
-            )
-        );
 
         $e = array();
-        $e['id'] = $row['id_ordre_de_travail'];
-        $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
-        //$e['title'] = $row['type_entree'];
-        $e['start'] = $row['date_debut']." 00:00:00";
-        $e['end'] = $row['df']." 00:00:00";
-        $e['allDay'] = true;
-        $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
-        $e['textColor'] = '#000';
-        $e['dd'] = $row['date_debut'];
-        $e['df'] = $row['date_fin'];
-        $e['socid'] = $row['id_entreprise'];
-        $e['equipeid'] = $row['id_equipe_stt'];
-        $e['societe'] = $row['societe'];
-        $e['imei'] = $row['imei'];
-        $e['equipe'] = $row['prenom']." ".$row['nom'];
-        $e['etape'] = getObjectNameForEntry($row['type_entree']);
-        $e['typeot'] = $row['typeot'];
-        $e['system'] = $row['system'];
 
-        /*$sousProjet = SousProjet::first(
-            array('conditions' =>
-                array("id_sous_projet = ?", $row['id_sous_projet'])
-            )
-        );*/
+        if($row['id_sous_projet'] > 0) {
 
-        array_push($events, $e);
+            $sousProjet = SousProjet::first(
+                array('conditions' =>
+                    array("id_sous_projet = ?", $row['id_sous_projet'])
+                )
+            );
+
+            $e['id'] = $row['id_ordre_de_travail'];
+            $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
+            //$e['title'] = $row['type_entree'];
+            $e['start'] = $row['date_debut']." 00:00:00";
+            $e['end'] = $row['df']." 00:00:00";
+            $e['allDay'] = true;
+            $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
+            $e['textColor'] = '#000';
+            $e['dd'] = $row['date_debut'];
+            $e['df'] = $row['date_fin'];
+            $e['socid'] = $row['id_entreprise'];
+            $e['equipeid'] = $row['id_equipe_stt'];
+            $e['societe'] = $row['societe'];
+            $e['imei'] = $row['imei'];
+            $e['equipe'] = $row['prenom']." ".$row['nom'];
+            $e['etape'] = getObjectNameForEntry($row['type_entree']);
+            $e['typeot'] = $row['typeot'];
+            $e['system'] = $row['system'];
+
+            array_push($events, $e);
+
+        }
 
     }
 
