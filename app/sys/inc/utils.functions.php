@@ -395,7 +395,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
     $capacite288_pec = 0;
     $capacite432_pec = 0;
     $capacite720_pec = 0;
-
+    $tab_pdb_E_pec_capacite = [];
 
     $tabreturn = [];
     try {
@@ -712,29 +712,29 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
 
 
-        $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01`, `RFO_01_03`, `RFO_01_05`, `RFO_01_07`, `RFO_01_09`, `RFO_01_11`,
-`RFO_01_13`, `RFO_01_15`, `RFO_01_16`, `RFO_01_17`, `RFO_01_18`, `RFO_01_19`, `RFO_01_20`,
- `RFO_01_21`, `RFO_01_23`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `dateinsert`) 
- VALUES (NULL,  :id_ressource,  :RFO_01_01, :RFO_01_03, :RFO_01_05,  :RFO_01_07, :RFO_01_09, :RFO_01_11,
-   :RFO_01_13, :RFO_01_15,    :RFO_01_16, :RFO_01_17, :RFO_01_18,   :RFO_01_19, :RFO_01_20,
-   :RFO_01_21, :RFO_01_23,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC,:dateaction )");
-
+        $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
+`RFO_01_13_qt`, `RFO_01_15_qt`, `RFO_01_16_qt`, `RFO_01_17_qt`, `RFO_01_18_qt`, `RFO_01_19_qt`, `RFO_01_20_qt`,
+ `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `dateinsert`) 
+ VALUES (NULL,  :id_ressource,  :RFO_01_01_qt, :RFO_01_03_qt, :RFO_01_05_qt,  :RFO_01_07_qt, :RFO_01_09_qt, :RFO_01_11_qt,
+   :RFO_01_13_qt, :RFO_01_15_qt,    :RFO_01_16_qt, :RFO_01_17_qt, :RFO_01_18_qt,   :RFO_01_19_qt, :RFO_01_20_qt,
+   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC ,:dateaction  )");
+        $dateaction = date('Y-m-d G:i:s');
         $stm->bindValue(':id_ressource',$idressource);
-        $stm->bindValue(':RFO_01_01',$RFO_01_01);
-        $stm->bindValue(':RFO_01_03',$RFO_01_03);
-        $stm->bindValue(':RFO_01_05',$RFO_01_05);
-        $stm->bindValue(':RFO_01_07',$RFO_01_07);
-        $stm->bindValue(':RFO_01_09',$RFO_01_09);
-        $stm->bindValue(':RFO_01_11',$RFO_01_11);
-        $stm->bindValue(':RFO_01_13',$RFO_01_13);
-        $stm->bindValue(':RFO_01_15',$RFO_01_15_432);
-        $stm->bindValue(':RFO_01_16',$RFO_01_16_288);
-        $stm->bindValue(':RFO_01_17',$RFO_01_17_144);
-        $stm->bindValue(':RFO_01_18',$RFO_01_18_72);
-        $stm->bindValue(':RFO_01_19',$RFO_01_19_48);
-        $stm->bindValue(':RFO_01_20',$RFO_01_20_24);
-        $stm->bindValue(':RFO_01_21',$RFO_01_21);
-        $stm->bindValue(':RFO_01_23',$RFO_01_23);
+        $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
+        $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
+        $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
+        $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
+        $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
+        $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
+        $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
+        $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
+        $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
+        $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
+        $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
+        $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
+        $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
+        $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
+        $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
         $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
         $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
         $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
@@ -742,7 +742,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
         $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
         $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
-        $stm->bindValue(':dateaction',date('Y-m-d G:i:s'));
+        $stm->bindValue(':dateaction',$dateaction);
         $stm->execute();
 
 
@@ -1117,24 +1117,24 @@ function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
 
         if($_GET['idtot'] !=2 && $_GET['idtot'] !=6) {
-            $sheetbordereaux->getCell("D76")->setValue($row->RFO_01_13);
-            $sheetbordereaux->getCell("D74")->setValue($row->RFO_01_11);
-            $sheetbordereaux->getCell("D72")->setValue($row->RFO_01_09);
-            $sheetbordereaux->getCell("D70")->setValue($row->RFO_01_07);
-            $sheetbordereaux->getCell("D68")->setValue($row->RFO_01_05);
-            $sheetbordereaux->getCell("D66")->setValue($row->RFO_01_03);
+            $sheetbordereaux->getCell("D76")->setValue($row->RFO_01_13_qt);
+            $sheetbordereaux->getCell("D74")->setValue($row->RFO_01_11_qt);
+            $sheetbordereaux->getCell("D72")->setValue($row->RFO_01_09_qt);
+            $sheetbordereaux->getCell("D70")->setValue($row->RFO_01_07_qt);
+            $sheetbordereaux->getCell("D68")->setValue($row->RFO_01_05_qt);
+            $sheetbordereaux->getCell("D66")->setValue($row->RFO_01_03_qt);
 
 
-            $sheetbordereaux->getCell("D83")->setValue($row->RFO_01_20);
-            $sheetbordereaux->getCell("D82")->setValue($row->RFO_01_19);
-            $sheetbordereaux->getCell("D81")->setValue($row->RFO_01_18);
-            $sheetbordereaux->getCell("D80")->setValue($row->RFO_01_17);
-            $sheetbordereaux->getCell("D79")->setValue($row->RFO_01_16);
-            $sheetbordereaux->getCell("D78")->setValue($row->RFO_01_15);
+            $sheetbordereaux->getCell("D83")->setValue($row->RFO_01_20_qt);
+            $sheetbordereaux->getCell("D82")->setValue($row->RFO_01_19_qt);
+            $sheetbordereaux->getCell("D81")->setValue($row->RFO_01_18_qt);
+            $sheetbordereaux->getCell("D80")->setValue($row->RFO_01_17_qt);
+            $sheetbordereaux->getCell("D79")->setValue($row->RFO_01_16_qt);
+            $sheetbordereaux->getCell("D78")->setValue($row->RFO_01_15_qt);
 
 
-            $sheetbordereaux->getCell("D84")->setValue($row->RFO_01_21);
-            $sheetbordereaux->getCell("D86")->setValue($row->RFO_01_23);
+            $sheetbordereaux->getCell("D84")->setValue($row->RFO_01_21_qt);
+            $sheetbordereaux->getCell("D86")->setValue($row->RFO_01_23_qt);
         }
 
         $sheetbordereaux->getCell("D33")->setValue($row->D33);
