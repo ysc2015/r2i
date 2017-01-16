@@ -1,11 +1,11 @@
-<script src="../../../../../r2i/editablegrid-master/editablegrid.js"></script>
-<!-- [DO NOT DEPLOY] --> <script src="../../../../../r2i/editablegrid-master/editablegrid_renderers.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="../../../../../r2i/editablegrid-master/editablegrid_editors.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="../../../../../r2i/editablegrid-master/editablegrid_validators.js" ></script>
-<!-- [DO NOT DEPLOY] --> <script src="../../../../../r2i/editablegrid-master/editablegrid_utils.js" ></script>
+<script src="../../r2i/assets/js/editablegrid/editablegrid.js"></script>
+<!-- [DO NOT DEPLOY] --> <script src="../../r2i/assets/js/editablegrid/editablegrid_renderers.js" ></script>
+<!-- [DO NOT DEPLOY] --> <script src="../../r2i/assets/js/editablegrid/editablegrid_editors.js" ></script>
+<!-- [DO NOT DEPLOY] --> <script src="../../r2i/assets/js/editablegrid/editablegrid_validators.js" ></script>
+<!-- [DO NOT DEPLOY] --> <script src="../../r2i/assets/js/editablegrid/editablegrid_utils.js" ></script>
 
 <script src="../../r2i/assets/js/edit_devis_js.js" ></script>
-<link rel="stylesheet" type="text/css" href="../../../../r2i/editablegrid-master/examples/full/css/edit_devis_css.css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="../../r2i/assets/css/edit_devis_css.css" media="screen"/>
 
 <div class="row">
     <div class="col-md-12">
