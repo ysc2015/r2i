@@ -19,7 +19,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
             alert("Authentification non autorisé");
         }else{
 
-            if(idprojet!==undefined){
+            if((idprojet!==undefined) && (idprojet!==0)){
                 console.log("idprojet : "+ idprojet);
 
 
