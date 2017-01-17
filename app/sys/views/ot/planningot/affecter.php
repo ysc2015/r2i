@@ -94,7 +94,8 @@
                             team_id : getTeamId(),
                             soc_id : getSocId(),
                             date1 : (date1!==null?date1.format('YYYY-MM-DD'):''),
-                            date2 : (date2!==null?date2.format('YYYY-MM-DD'):'')
+                            date2 : (date2!==null?date2.format('YYYY-MM-DD'):''),
+                            my : ($("#my-plannings").is(':checked') ? '1' : '0')
                         };
                     }
                 },
