@@ -20,6 +20,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
         }else{
 
             if(idprojet!==undefined){
+                console.log("idprojet : "+ idprojet);
 
 
 
@@ -81,6 +82,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                     tentre: ide
                 },
                 success: function (e) {
+                    console.log(" e : ");
+                    console.log(e);
                         idprojet = e.id;
                         nomprojet = e.nom;
                         tab_etape = e.tab_etape;
