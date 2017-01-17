@@ -402,6 +402,10 @@
                         $('.teamsfrom').removeClass('active');
                         $( this ).addClass('active');
                     });
+                    $("#my-plannings").change(function(e) {
+                        e.preventDefault();
+                        calendar.refresh();
+                    });
                     break;
                 case 'list' :
                     $('#ot_affect_table tbody').on( 'click', 'tr', function () {
