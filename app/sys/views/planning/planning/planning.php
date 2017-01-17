@@ -288,6 +288,7 @@
             //console.log('my-plannings change ' + $(this).val());
 
             console.log(($(this).is(':checked') ? '1' : '0'));
+            calendar.refresh();
         });
 
 
