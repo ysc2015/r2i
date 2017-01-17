@@ -6,6 +6,7 @@
             $("#user_update_nom").val(users_dt.row('.selected').data().nom_utilisateur);
             $("#user_update_prenom").val(users_dt.row('.selected').data().prenom_utilisateur);
             $("#user_update_email").val(users_dt.row('.selected').data().email_utilisateur);
+            $("#user_update_tel").val(users_dt.row('.selected').data().telephone_utilisateur);
             $("#user_update_pwd").val(users_dt.row('.selected').data().pass_utilisateur);
             $("#user_update_profil").val(users_dt.row('.selected').data().id_profil_utilisateur);
         });

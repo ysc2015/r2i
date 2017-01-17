@@ -9,7 +9,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into utilisateur (nom_utilisateur,prenom_utilisateur,email_utilisateur,pass_utilisateur,id_profil_utilisateur) values (:nom,:prenom,:email,:pwd,:profil)");
+$stm = $db->prepare("insert into utilisateur (nom_utilisateur,prenom_utilisateur,email_utilisateur,telephone_utilisateur,pass_utilisateur,id_profil_utilisateur) values (:nom,:prenom,:email,:tel,:pwd,:profil)");
 
 if(isset($nom) && !empty($nom)){
     $stm->bindParam(':nom',$nom);
@@ -38,6 +38,14 @@ if(isset($email) && !empty($email)){
 } else {
     $err++;
     $message[] = "Le champs email est obligatoire !";
+}
+
+if(isset($tel)){
+    $stm->bindParam(':tel',$tel);
+    $insert = true;
+} else {
+    $err++;
+    $message[] = "Le champs prénom est obligatoire !";
 }
 
 if(isset($pwd) && !empty($pwd)){

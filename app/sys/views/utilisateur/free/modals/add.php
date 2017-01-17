@@ -10,6 +10,7 @@
                     nom : $("#user_add_nom").val(),
                     prenom : $("#user_add_prenom").val(),
                     email : $("#user_add_email").val(),
+                    tel : $("#user_add_tel").val(),
                     pwd : $("#user_add_pwd").val(),
                     profil : $("#user_add_profil").val()
                 }
@@ -54,6 +55,12 @@
                             <div class="col-md-6">
                                 <label for="user_add_email">Email <span class="text-danger">*</span></label>
                                 <input class="form-control" type="email" id="user_add_email" name="user_add_email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="user_add_tel">Tel</label>
+                                <input class="form-control" type="email" id="user_add_tel" name="user_add_tel">
                             </div>
                         </div>
                         <div class="form-group">

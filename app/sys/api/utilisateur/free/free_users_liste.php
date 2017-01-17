@@ -9,6 +9,7 @@ $columns = array(
     array( "db" => "t1.id_utilisateur", "dt" => 'id_utilisateur' ),
     array( "db" => "t1.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t1.prenom_utilisateur", "dt" => 'prenom_utilisateur' ),
+    array( "db" => "t1.telephone_utilisateur", "dt" => 'telephone_utilisateur' ),
     array( "db" => "t1.email_utilisateur", "dt" => 'email_utilisateur' ),
     array( "db" => "t1.id_profil_utilisateur", "dt" => 'id_profil_utilisateur' ),
     array( "db" => "t1.pass_utilisateur", "dt" => 'pass_utilisateur' ),
