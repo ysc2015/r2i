@@ -41,25 +41,30 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                             console.log(reponse);
                             var areponse = JSON.parse (reponse);
 
-                            $.ajax({
-                                method: "POST",
-                                url: "api/projet/projet/set_projet_id_osa.php",
-                                data: {
-                                    idosa:areponse["extra"],
-                                    idsp: id_sous_projet
+                                if(areponse['error']!=1){
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "api/projet/projet/set_projet_id_osa.php",
+                                        data: {
+                                            idosa:areponse["extra"],
+                                            idsp: id_sous_projet
 
-                                },
-                                success : function(response){
+                                        },
+                                        success : function(response){
 
-                                    rc2k.osa.ui.tache.create({
-                                        idp : areponse["extra"],
-                                        ide : idetape,
-                                        etape : typeetape,
-                                        url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+                                            rc2k.osa.ui.tache.create({
+                                                idp : areponse["extra"],
+                                                ide : idetape,
+                                                etape : typeetape,
+                                                url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
 
-                                    });
+                                            });
+                                        }
+                                    })
+                                }else{
+                                    alert("probleme de création de projet au niveau OSA");
                                 }
-                            })
+
                         });
 
                     }else {
