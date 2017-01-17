@@ -1,6 +1,11 @@
 <div class="row" id="planning_wrapper" style="padding-top: 10px;">
     <div class="col-md-3">
         <div class="form-group">
+            <div class="checkbox">
+                <label for="my-plannings">
+                    <input type="checkbox" id="my-plannings" name="my-plannings" value="1" checked> Mes plannings
+                </label>
+            </div>
             <label for="ot_entreprise_cal">Entreprise <!--<span class="text-danger">*</span>--></label>
             <select class="form-control " id="ot_entreprise_cal" name="ot_entreprise_cal" style="width: 100%;">
                 <option value="" selected="">Tous</option>
@@ -109,7 +114,8 @@
                             team_id : getTeamId(),
                             soc_id : getSocId(),
                             date1 : (date1!==null?date1.format('YYYY-MM-DD'):''),
-                            date2 : (date2!==null?date2.format('YYYY-MM-DD'):'')
+                            date2 : (date2!==null?date2.format('YYYY-MM-DD'):''),
+                            my : ($("#my-plannings").is(':checked') ? '1' : '0')
                         };
                     }
                 },
@@ -276,6 +282,16 @@
             $('.teamsfrom').removeClass('active');
             $( this ).addClass('active');
         });
+
+        $("#my-plannings").change(function(e) {
+            e.preventDefault();
+            //console.log('my-plannings change ' + $(this).val());
+
+            console.log(($(this).is(':checked') ? '1' : '0'));
+        });
+
+
+        console.log(($("#my-plannings").is(':checked') ? '1' : '0'));
 
 
     } );
