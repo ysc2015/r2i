@@ -31,14 +31,15 @@ try {
 
         if($row['id_sous_projet'] > 0) {
 
+            $sousProjet = SousProjet::first(
+                array('conditions' =>
+                    array("id_sous_projet = ?", $row['id_sous_projet'])
+                )
+            );
+
             if(isset($my)) {
                 if($my==1) {
                     if($sousProjet->projet->nro->id_utilisateur == $connectedProfil->profil->id_utilisateur) {
-                        $sousProjet = SousProjet::first(
-                            array('conditions' =>
-                                array("id_sous_projet = ?", $row['id_sous_projet'])
-                            )
-                        );
 
                         $e['id'] = $row['id_ordre_de_travail'];
                         $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
@@ -62,11 +63,6 @@ try {
                         array_push($events, $e);
                     }
                 } else {
-                    $sousProjet = SousProjet::first(
-                        array('conditions' =>
-                            array("id_sous_projet = ?", $row['id_sous_projet'])
-                        )
-                    );
 
                     $e['id'] = $row['id_ordre_de_travail'];
                     $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
@@ -90,11 +86,6 @@ try {
                     array_push($events, $e);
                 }
             } else {
-                $sousProjet = SousProjet::first(
-                    array('conditions' =>
-                        array("id_sous_projet = ?", $row['id_sous_projet'])
-                    )
-                );
 
                 $e['id'] = $row['id_ordre_de_travail'];
                 $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
