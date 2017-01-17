@@ -11,6 +11,7 @@
                     nom : $("#user_update_nom").val(),
                     prenom : $("#user_update_prenom").val(),
                     email : $("#user_update_email").val(),
+                    tel : $("#user_update_tel").val(),
                     pwd : $("#user_update_pwd").val(),
                     profil : $("#user_update_profil").val()
                 }
@@ -54,6 +55,12 @@
                             <div class="col-md-6">
                                 <label for="user_update_email">Email <span class="text-danger">*</span></label>
                                 <input class="form-control" type="email" id="user_update_email" name="user_update_email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="user_update_tel">Tél <span class="text-danger">*</span></label>
+                                <input class="form-control" type="email" id="user_update_tel" name="user_update_tel" required>
                             </div>
                         </div>
                         <div class="form-group">
