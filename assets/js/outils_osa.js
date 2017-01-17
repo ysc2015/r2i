@@ -21,6 +21,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
 
             if(idprojet!==undefined){
                 console.log("idprojet : "+ idprojet);
+                console.log("nomprojet : "+ nomprojet);
 
 
 
