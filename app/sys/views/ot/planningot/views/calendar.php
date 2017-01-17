@@ -1,5 +1,10 @@
 <div class="col-md-3">
     <div class="form-group">
+        <div class="checkbox">
+            <label for="my-plannings">
+                <input type="checkbox" id="my-plannings" name="my-plannings" value="1" checked> Mes plannings
+            </label>
+        </div>
         <label for="ot_entreprise_cal">Entreprise <!--<span class="text-danger">*</span>--></label>
         <select class="form-control " id="ot_entreprise_cal" name="ot_entreprise_cal" style="width: 100%;">
             <option value="" selected="">Tous</option>
