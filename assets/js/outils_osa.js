@@ -37,7 +37,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                             dat:new Date(),//date fin de projet
                             fil:"2"//ftth
                         }, function(reponse){
-
+                            console.log("reponse");
+                            console.log(reponse);
                             var areponse = JSON.parse (reponse);
 
                             $.ajax({
