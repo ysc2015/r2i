@@ -62,7 +62,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                                         }
                                     })
                                 }else{
-                                    alert("probleme de création de projet au niveau OSA");
+                                    alert("probleme de création de projet au niveau OSA :"+ areponse['message']);
                                 }
 
                         });
