@@ -166,6 +166,10 @@
         $('#linked-ch-wrapper').hide();
         $('#retour_uploads').hide();
 
+        $('#link_lien_plans_wrapper1').hide();
+        $('#link_lien_plans_wrapper2').hide();
+        $('#other_files_uploader_wrapper').hide();
+
         $('#ot_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
@@ -178,12 +182,14 @@
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
 
-                $('#other_files_uploader_wrapper').hide();
                 $('#linked-pb-wrapper').hide();
                 $('#linked-ch-wrapper').hide();
                 $("#devis_uploads").hide();
 
                 $('#retour_uploads').hide();
+                $('#link_lien_plans_wrapper1').hide();
+                $('#link_lien_plans_wrapper2').hide();
+                $('#other_files_uploader_wrapper').hide();
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
