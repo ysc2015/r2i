@@ -19,7 +19,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
             alert("Authentification non autorisé");
         }else{
 
-            if((idprojet!==undefined) && (idprojet!==0)){
+            if(idprojet!==undefined){
                 console.log("idprojet : "+ idprojet);
 
 
@@ -28,6 +28,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                 id = idprojet;
                 if(idetape!=0){
                     if(id ==0){
+                        console.log("rentre sur rc2k.osa.ws.projet.create");
                         rc2k.osa.ws.projet.create({
                             ref:"",//id_utilisateur connecte
                             prj:nomprojet ,//nom de projet
@@ -60,6 +61,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                         });
 
                     }else {
+                        console.log("rentre else et donc direct sur rc2k.osa.ui.tache.create");
+
                         rc2k.osa.ui.tache.create({
                             idp : id,
                             ide : idetape,
@@ -124,6 +127,7 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                             });
 
                         }else {
+                            console.log("rentre deuxieme else et donc normale direct sur rc2k.osa.ui.tache.create");
                             rc2k.osa.ui.tache.create({
                                 idp : id,
                                 ide : idetape,
