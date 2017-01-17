@@ -309,8 +309,8 @@ if(idprojet!==undefined){
 
             },
             error:function (e) {
-                console.log( "Error");
-                console.log( e);
+                console.log("Error");
+                console.log(e);
             }
         });
 
