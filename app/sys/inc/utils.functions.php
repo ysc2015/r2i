@@ -1648,7 +1648,7 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt){
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
-    $mailaction_cc[]= return_list_mail_cc_notif($db,'',3,$id_equipe_stt);
+
     return $mailaction_cc;
 
 }
@@ -1690,7 +1690,7 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$ty
         $sqlstatement_utilisateur->bindValue(':id_utilisateur',$id_chef_equipe);
         $sqlstatement_utilisateur->execute();
         $statement_utilisateur = $sqlstatement_utilisateur->fetch();
-        print_r($statement_utilisateur);
+
         $num_tel_chef_projet = $statement_utilisateur['telephone_utilisateur'];
     }
 
