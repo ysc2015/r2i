@@ -38,7 +38,108 @@ try {
             );
 
             if(isset($my)) {
-                if($my==1) {
+
+                switch($my) {
+                    case "1" :
+                        if($sousProjet->projet->nro->id_utilisateur == $connectedProfil->profil->id_utilisateur) {
+
+                            $e['id'] = $row['id_ordre_de_travail'];
+                            $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
+                            //$e['title'] = $row['type_entree'];
+                            $e['start'] = $row['date_debut']." 00:00:00";
+                            $e['end'] = $row['df']." 00:00:00";
+                            $e['allDay'] = true;
+                            $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
+                            $e['textColor'] = '#000';
+                            $e['dd'] = $row['date_debut'];
+                            $e['df'] = $row['date_fin'];
+                            $e['socid'] = $row['id_entreprise'];
+                            $e['equipeid'] = $row['id_equipe_stt'];
+                            $e['societe'] = $row['societe'];
+                            $e['imei'] = $row['imei'];
+                            $e['equipe'] = $row['prenom']." ".$row['nom'];
+                            $e['etape'] = getObjectNameForEntry($row['type_entree']);
+                            $e['typeot'] = $row['typeot'];
+                            $e['system'] = $row['system'];
+
+                            array_push($events, $e);
+                        } break;
+                    case "vpi" :
+                        if($sousProjet->projet->nro->id_utilisateur == $id) {
+
+                            $e['id'] = $row['id_ordre_de_travail'];
+                            $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
+                            //$e['title'] = $row['type_entree'];
+                            $e['start'] = $row['date_debut']." 00:00:00";
+                            $e['end'] = $row['df']." 00:00:00";
+                            $e['allDay'] = true;
+                            $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
+                            $e['textColor'] = '#000';
+                            $e['dd'] = $row['date_debut'];
+                            $e['df'] = $row['date_fin'];
+                            $e['socid'] = $row['id_entreprise'];
+                            $e['equipeid'] = $row['id_equipe_stt'];
+                            $e['societe'] = $row['societe'];
+                            $e['imei'] = $row['imei'];
+                            $e['equipe'] = $row['prenom']." ".$row['nom'];
+                            $e['etape'] = getObjectNameForEntry($row['type_entree']);
+                            $e['typeot'] = $row['typeot'];
+                            $e['system'] = $row['system'];
+
+                            array_push($events, $e);
+                        }
+                        break;
+                    case "nro" :
+                        if($sousProjet->projet->id_nro == $id) {
+
+                            $e['id'] = $row['id_ordre_de_travail'];
+                            $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
+                            //$e['title'] = $row['type_entree'];
+                            $e['start'] = $row['date_debut']." 00:00:00";
+                            $e['end'] = $row['df']." 00:00:00";
+                            $e['allDay'] = true;
+                            $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
+                            $e['textColor'] = '#000';
+                            $e['dd'] = $row['date_debut'];
+                            $e['df'] = $row['date_fin'];
+                            $e['socid'] = $row['id_entreprise'];
+                            $e['equipeid'] = $row['id_equipe_stt'];
+                            $e['societe'] = $row['societe'];
+                            $e['imei'] = $row['imei'];
+                            $e['equipe'] = $row['prenom']." ".$row['nom'];
+                            $e['etape'] = getObjectNameForEntry($row['type_entree']);
+                            $e['typeot'] = $row['typeot'];
+                            $e['system'] = $row['system'];
+
+                            array_push($events, $e);
+                        }
+                        break;
+
+                    default :
+                        $e['id'] = $row['id_ordre_de_travail'];
+                        $e['title'] = getObjectNameForEntry($row['type_entree'])." ".($sousProjet->projet->nro !==NULL?$sousProjet->projet->nro->lib_nro:"n/d")." - ".$sousProjet->zone;
+                        //$e['title'] = $row['type_entree'];
+                        $e['start'] = $row['date_debut']." 00:00:00";
+                        $e['end'] = $row['df']." 00:00:00";
+                        $e['allDay'] = true;
+                        $e['color'] = getOTColorFromStatus($row['id_etat_ot']);
+                        $e['textColor'] = '#000';
+                        $e['dd'] = $row['date_debut'];
+                        $e['df'] = $row['date_fin'];
+                        $e['socid'] = $row['id_entreprise'];
+                        $e['equipeid'] = $row['id_equipe_stt'];
+                        $e['societe'] = $row['societe'];
+                        $e['imei'] = $row['imei'];
+                        $e['equipe'] = $row['prenom']." ".$row['nom'];
+                        $e['etape'] = getObjectNameForEntry($row['type_entree']);
+                        $e['typeot'] = $row['typeot'];
+                        $e['system'] = $row['system'];
+
+                        array_push($events, $e);
+                        break;
+
+                }
+                /*if($my==1) {
                     if($sousProjet->projet->nro->id_utilisateur == $connectedProfil->profil->id_utilisateur) {
 
                         $e['id'] = $row['id_ordre_de_travail'];
@@ -84,7 +185,7 @@ try {
                     $e['system'] = $row['system'];
 
                     array_push($events, $e);
-                }
+                }*/
             } else {
 
                 $e['id'] = $row['id_ordre_de_travail'];
