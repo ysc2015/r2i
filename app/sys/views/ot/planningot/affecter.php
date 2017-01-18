@@ -75,6 +75,7 @@
     var defaultView = 'list';
     var soc_id_gen = 0;
     var ot_status_updated = false;
+    var id_vpi_nro = 0;
     var calendar = function() {
         var team_id = 0;
         var soc_id = 0;
@@ -95,7 +96,8 @@
                             soc_id : getSocId(),
                             date1 : (date1!==null?date1.format('YYYY-MM-DD'):''),
                             date2 : (date2!==null?date2.format('YYYY-MM-DD'):''),
-                            my : ($("#my-plannings").is(':checked') ? '1' : '0')
+                            my : ($("#my-plannings").is(':checked') ? '1' : ($('#vpi-inline-checkbox').is(':checked') || $('#nro-inline-checkbox').is(':checked')) ? ($('#vpi-inline-checkbox').is(':checked')?$('#vpi-inline-checkbox').val():$('#nro-inline-checkbox').val()) : '0'),
+                            id : id_vpi_nro
                         };
                     }
                 },
@@ -221,6 +223,19 @@
                     jQuery('#ot_entreprise_cal').select2({
                         autocomplete: true
                     });
+
+                    if($('#vpi-inline-checkbox').is(':checked') || $('#nro-inline-checkbox').is(':checked')) {
+                        if($('#vpi-inline-checkbox').is(':checked')) {
+                            $('#vpi_select').show();
+                            $('#nro_select').hide();
+                        } else {
+                            $('#nro_select').show();
+                            $('#vpi_select').hide();
+                        }
+                    } else {
+                        $('#vpi_select').hide();
+                        $('#nro_select').hide();
+                    }
 
                     break;
                 case 'list' :
@@ -406,6 +421,38 @@
                     $("#my-plannings").change(function(e) {
                         e.preventDefault();
                         calendar.refresh();
+                    });
+                    $(".select-vpi-nro").change(function(e) {
+                        e.preventDefault();
+                        id_vpi_nro = $(this).val();
+
+                        calendar.refresh();
+                    });
+
+                    $(".chb").change(function(e) {
+                        e.preventDefault();
+                        var checked = $(this).is(':checked');
+                        $(".chb").prop('checked',false);
+                        if(checked) {
+                            $(this).prop('checked',true);
+                        }
+
+                        if($('#vpi-inline-checkbox').is(':checked') || $('#nro-inline-checkbox').is(':checked')) {
+                            if($('#vpi-inline-checkbox').is(':checked')) {
+                                $('#vpi_select').show();
+                                $('#nro_select').hide();
+                            } else {
+                                $('#nro_select').show();
+                                $('#vpi_select').hide();
+                            }
+                        } else {
+                            $('#vpi_select').hide();
+                            $('#nro_select').hide();
+                        }
+
+                        calendar.refresh();
+
+                        //console.log(($('#vpi-inline-checkbox').is(':checked') || $('#nro-inline-checkbox').is(':checked')) ? ($('#vpi-inline-checkbox').is(':checked')?$('#vpi-inline-checkbox').val():$('#nro-inline-checkbox').val()) : "no")
                     });
                     break;
                 case 'list' :
