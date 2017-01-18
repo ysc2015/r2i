@@ -2,7 +2,7 @@
 //NjQ1YjM1ZTAzMDVmMTg4YzBjMWMzNTAxY2FmZGI5OTM6Ojk3MGJkNjI3ZjQxNWUwYTEyNzIxMGQyY2VjZjIzMTFm
 
 (function(w){
-	console.log("window.server " +window.OSA_SERVER);
+
 	if(typeof jQuery == "undefined") throw "RC2K: Missing JQuery module";
 	w.rc2k = {
 		dispatch : function(a){setTimeout((function(){this.postMessage('init','*');}).bind(a),2000)},
