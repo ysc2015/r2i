@@ -1,6 +1,6 @@
 <div class="row" id="planning_wrapper" style="padding-top: 10px;">
     <div class="col-md-3">
-        <div class="form-group">
+        <?php if($connectedProfil->profil->profil->shortlib == "adm" || $connectedProfil->profil->profil->shortlib == "dov" || $connectedProfil->profil->profil->shortlib == "pov") {?>
             <div class="form-group">
                 <label>Filtre vpi / nro</label>
                 <div>
@@ -31,14 +31,15 @@
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="checkbox">
-                <label for="my-plannings">
-                    <input type="checkbox" id="my-plannings" name="my-plannings" value="1" checked> Mes plannings
-                </label>
+        <?php } else {?>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label for="my-plannings">
+                        <input type="checkbox" id="my-plannings" name="my-plannings" value="1" checked> Mes plannings
+                    </label>
+                </div>
             </div>
-        </div>
+        <?php }?>
         <div class="form-group">
             <label for="ot_entreprise_cal">Entreprise <!--<span class="text-danger">*</span>--></label>
             <select class="form-control " id="ot_entreprise_cal" name="ot_entreprise_cal" style="width: 100%;">
