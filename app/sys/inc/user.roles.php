@@ -263,6 +263,14 @@ class dov extends baseUser {
         );
     }
 
+    function planning() {
+        Page::planning(
+            array(
+                "planning" => array("planning")
+            )
+        );
+    }
+
     function entreprise() {
         Page::entreprise(
             array(
@@ -307,7 +315,7 @@ class dov extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("projet_titre","projet_liste","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("projet_titre","projet_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 }
 class pov extends baseUser {
@@ -321,6 +329,14 @@ class pov extends baseUser {
         );
     }
 
+    function planning() {
+        Page::planning(
+            array(
+                "planning" => array("planning")
+            )
+        );
+    }
+
     function entreprise() {
         Page::entreprise(
             array(
@@ -365,7 +381,7 @@ class pov extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("projet_titre","projet_liste","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("projet_titre","projet_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 }
 class bei extends baseUser {
