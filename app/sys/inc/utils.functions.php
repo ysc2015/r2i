@@ -314,18 +314,36 @@ function setSousProjetUsers($sousprojet) {
 function openExcelFile($file) {
     try {
         /**  Create an Instance of the Read Filter  **/
-        $filterSubset = new MyReadFilter();
+        //$filterSubset = new MyReadFilter();
 
         $inputFileType = PHPExcel_IOFactory::identify($file);
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 
+        /** Define how many rows we want to read for each "chunk" **/
+        $chunkSize = 2048;
+        /** Create a new Instance of our Read Filter **/
+        $chunkFilter = new chunkReadFilter();
+
         /**  Tell the Reader that we want to use the Read Filter  **/
-        $objReader->setReadFilter($filterSubset);
+        $objReader->setReadFilter($chunkFilter);
 
         $objReader->setReadDataOnly(true);
 
-        $objPHPExcel = $objReader->load($file);
-        return $objPHPExcel;
+        $data = NULL;
+
+        /** Loop to read our worksheet in "chunk size" blocks **/
+        for ($startRow = 2; $startRow <= 65536; $startRow += $chunkSize) {
+            /** Tell the Read Filter which rows we want this iteration **/
+            $chunkFilter->setRows($startRow,$chunkSize);
+            /** Load only the rows that match our filter **/
+            $excelObj = $objReader->load($file);
+            $data = $excelObj->getActiveSheet()->toArray(null, true,true,true);
+// Do some processing here - the $data variable will contain an array which is always limited to 2048 elements regardless of the size of the entire sheet
+
+        }
+
+        //$objPHPExcel = $objReader->load($file);
+        return $data;
     } catch (Exception $ex) {
         throw $ex;
     }
@@ -1796,4 +1814,24 @@ class MyReadFilter implements PHPExcel_Reader_IReadFilter {
         }
           return false;
       }
+}
+
+class ChunkReadFilter implements PHPExcel_Reader_IReadFilter
+{
+    private $_startRow = 0;
+    private $_endRow = 0;
+
+    /** Set the list of rows that we want to read */
+    public function setRows($startRow, $chunkSize) {
+        $this->_startRow = $startRow;
+        $this->_endRow = $startRow + $chunkSize;
+    }
+
+    public function readCell($column, $row, $worksheetName = '') {
+// Only read the heading row, and the configured rows
+        if (($row == 1) || ($row >= $this->_startRow && $row < $this->_endRow)) {
+            return true;
+        }
+        return false;
+    }
 }
