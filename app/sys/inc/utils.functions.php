@@ -313,9 +313,17 @@ function setSousProjetUsers($sousprojet) {
 
 function openExcelFile($file) {
     try {
+        /**  Create an Instance of the Read Filter  **/
+        $filterSubset = new MyReadFilter();
+
         $inputFileType = PHPExcel_IOFactory::identify($file);
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+
+        /**  Tell the Reader that we want to use the Read Filter  **/
+        $objReader->setReadFilter($filterSubset);
+
         $objReader->setReadDataOnly(true);
+
         $objPHPExcel = $objReader->load($file);
         return $objPHPExcel;
     } catch (Exception $ex) {
@@ -1779,5 +1787,13 @@ function getOTColorFromStatus($status) {
     return $color;
 
 }
-//svn
-//calcule_devis_from_pds("","/opt/lampp/htdocs/r2i/file/PDS_VIC92-02.xlsx","");
+
+class MyReadFilter implements PHPExcel_Reader_IReadFilter {
+    public function readCell($column, $row, $worksheetName = '') {
+        // Read columns from 'A' to 'AF'
+        if ((PHPExcel_Cell::columnIndexFromString($column) -1 >= 0) && PHPExcel_Cell::columnIndexFromString($column) -1 <= 32) {
+            return true;
+        }
+          return false;
+      }
+}
