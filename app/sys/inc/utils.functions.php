@@ -315,6 +315,7 @@ function openExcelFile($file) {
     try {
         $inputFileType = PHPExcel_IOFactory::identify($file);
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+        $objReader->setReadDataOnly(true);
         $objPHPExcel = $objReader->load($file);
         return $objPHPExcel;
     } catch (Exception $ex) {
