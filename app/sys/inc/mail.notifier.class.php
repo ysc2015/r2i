@@ -61,28 +61,28 @@ class MailNotifier {
         self::$mail->Debugoutput = 'html';
 
         //Set the hostname of the mail server
-        self::$mail->Host = 'smtp.gmail.com';
+        self::$mail->Host = 'smtp.rc2k.fr';
 
         //Set who the message is to be sent from
-        self::$mail->setFrom('r2ibackoffice@gmail.com', 'Contact R2I');
+        self::$mail->setFrom('rrahmouni@rc2k.fr', 'Contact R2I');
         // use
         // $mail->Host = gethostbyname('smtp.gmail.com');
         // if your network does not support SMTP over IPv6
 
         //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-        self::$mail->Port = 587;
+        self::$mail->Port = 465;
 
         //Set the encryption system to use - ssl (deprecated) or tls
-        self::$mail->SMTPSecure = 'tls';
+        self::$mail->SMTPSecure = 'ssl';
 
         //Whether to use SMTP authentication
         self::$mail->SMTPAuth = true;
 
         //Username to use for SMTP authentication - use full email address for gmail
-        self::$mail->Username = "r2ibackoffice@gmail.com";
+        self::$mail->Username = "rrahmouni@rc2k.fr";
 
         //Password to use for SMTP authentication
-        self::$mail->Password = "r2ib@ck0ffice";
+        self::$mail->Password = "GtjdFE152T";
     }
 
     public static function sendMail($subject,$html,$to,$files,$cc) {
