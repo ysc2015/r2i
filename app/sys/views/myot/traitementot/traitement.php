@@ -63,7 +63,7 @@
     </div>
 </div>
 <!-- END FOA Modal -->
-<script>
+<script>//
     var uploader3_options = {
         url: "api/myot/traitement/myot_upload_retour.php",
         multiple:false,
