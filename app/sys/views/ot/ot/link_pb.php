@@ -25,6 +25,8 @@
 
             console.log(ot_dt.row('.selected').data().id_ordre_de_travail);
 
+            $('#ot_block').addClass('block-opt-refresh');
+
             $.ajax({
                 method: "POST",
                 url: "api/ot/ot/update_pb_files_list.php",
@@ -35,6 +37,7 @@
                     objtype: getObjectTypeForEntryPB(get('tentree'))
                 }
             }).done(function (msg) {
+                $('#ot_block').removeClass('block-opt-refresh');
                 App.showMessage(msg,'#message_ot_link2');
                 displayDevis();
             });

@@ -1098,10 +1098,22 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
     return -1;
 }
 function loadExcelDEF_BPE_EBM_CTR($db,$inputFileName,$idressource) {
-    $stm = $db->prepare("insert into detail_EBM (id_ressource) values (:id_ressource)");
-    $stm->bindParam(":id_ressource",$idressource);
-    if($stm->execute()) {
-        return true;
+    $stm_ckeck = $db->prepare("select * from detail_EBM where id_ressource=:id_ressource");
+
+    $stm_ckeck->bindParam(":id_ressource",$idressource);
+
+    if($stm_ckeck->execute()) {
+
+        if($stm_ckeck->rowCount() == 0) {
+
+            $stm = $db->prepare("insert into detail_EBM (id_ressource) values (:id_ressource)");
+            $stm->bindParam(":id_ressource",$idressource);
+            if($stm->execute()) {
+                return true;
+            }
+
+        }
+
     }
 
     return false;
