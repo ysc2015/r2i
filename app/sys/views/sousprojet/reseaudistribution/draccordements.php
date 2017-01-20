@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="dr_date_transmission_pds">Date Transmission PDS <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_transmission_plans : "")?>">
+                    <input readonly class="form-control " type="text" id="dr_date_transmission_pds" name="dr_date_transmission_pds" value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_transmission_plans : "")?>" placeholder="Plans non transmis">
                 </div>
             </div>
         </div>
@@ -48,11 +48,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="dr_date_racco">Date de début du raccordement <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_racco : "")?>">
+                    <input readonly class="form-control " type="text" id="dr_date_racco" name="dr_date_racco"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_racco : "")?>" placeholder="Raccordement non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="dr_date_ret_prevue">Date prévisionnelle de fin du raccordement <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="dr_date_ret_prevue" name="dr_date_ret_prevue"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_ret_prevue : "")?>">
+                    <input readonly class="form-control " type="text" id="dr_date_ret_prevue" name="dr_date_ret_prevue"  value="<?=($sousProjet->distributionraccordement !== NULL ? $sousProjet->distributionraccordement->date_ret_prevue : "")?>" placeholder="Raccordement non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="dr_duree">Durée <!--<span class="text-danger">*</span>--></label>
@@ -65,7 +65,7 @@
                 <div class="col-md-3">
                     <label for="dr_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="dr_id_entreprise" name="dr_id_entreprise">
-                        <option value="" selected="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Non Attribué</option>
                         <?php
                         $results = EntrepriseSTT::all();
                         foreach($results as $result) {
@@ -117,7 +117,7 @@
                     </div>
                 <?php } ?>
                 <div class="col-md-4">
-                    <label for="dr_ok">OK <!--<span class="text-danger">*</span>--></label>
+                    <label for="dr_ok">Retours Prestataire Validés <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dr_ok" name="dr_ok">
                         <option value="">Sélectionnez une valeur</option>
                         <?php

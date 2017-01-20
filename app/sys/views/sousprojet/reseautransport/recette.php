@@ -56,11 +56,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="trec_date_recette">Date de début recette <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>">
+                    <input readonly class="form-control" type="text" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_recette : "")?>" placeholder="Recette non plannifiée">
                 </div>
                 <div class="col-md-4">
                     <label for="trec_date_recette">Date prévisionnelle de fin recette <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control" type="date" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_ret_prevue : "")?>">
+                    <input readonly class="form-control" type="text" id="trec_date_recette" name="trec_date_recette" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_ret_prevue : "")?>" placeholder="Recette non plannifiée">
                 </div>
                 <div class="col-md-4">
                     <label for="trec_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -73,7 +73,7 @@
                 <div class="col-md-3">
                     <label for="trec_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control" id="trec_id_entreprise" name="trec_id_entreprise">
-                        <option value="" selected="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Non Attribué</option>
                         <?php
                         $results = EntrepriseSTT::all();
                         foreach($results as $result) {
@@ -116,7 +116,19 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="trec_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="trec_date_transmission_plans" name="trec_date_transmission_plans" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_transmission_plans : "")?>">
+                    <input readonly class="form-control " type="text" id="trec_date_transmission_plans" name="trec_date_transmission_plans" value="<?=($sousProjet->transportrecette !== NULL ? $sousProjet->transportrecette->date_transmission_plans : "")?>" placeholder="Plans non transmis">
+                </div>
+                <div class="col-md-3">
+                    <label for="trec_ok">Retours Prestataires Validés <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control" id="trec_ok" name="trec_ok">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectOk::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_ok\" ". ($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->ok==$result->id_ok ?"selected": "")." >$result->lib_ok</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
         </div>

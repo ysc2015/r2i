@@ -116,6 +116,11 @@ if(isset($dcc_date_transmission_ca)){
     $insert = true;
 }
 
+if(isset($dcc_date_depot_cmd)){
+    $stm->bindParam(':date_depot_cmd',$dcc_date_depot_cmd);
+    $insert = true;
+}
+
 if(isset($dcc_ref_commande_acces)){
     $stm->bindParam(':ref_commande_acces',$dcc_ref_commande_acces);
     $insert = true;

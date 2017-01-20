@@ -123,11 +123,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="dt_date_tirage">Date de début tirage <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_tirage : "")?>">
+                    <input readonly class="form-control " type="text" id="dt_date_tirage" name="dt_date_tirage" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_tirage : "")?>" placeholder="Tirage non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="dt_date_ret_prevue">Date prévisionnelle de fin tirage <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="dt_date_ret_prevue" name="dt_date_ret_prevue" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_ret_prevue : "")?>">
+                    <input readonly class="form-control " type="text" id="dt_date_ret_prevue" name="dt_date_ret_prevue" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_ret_prevue : "")?>" placeholder="Tirage non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="dt_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -140,7 +140,7 @@
                 <div class="col-md-3">
                     <label for="dt_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="dt_id_entreprise" name="dt_id_entreprise">
-                        <option value="" selected="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Non Attribué</option>
                         <?php
                         $results = EntrepriseSTT::all();
                         foreach($results as $result) {
@@ -183,7 +183,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="dt_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_transmission_plans : "")?>">
+                    <input readonly class="form-control " type="text" id="dt_date_transmission_plans" name="dt_date_transmission_plans" value="<?=($sousProjet->distributiontirage !== NULL ? $sousProjet->distributiontirage->date_transmission_plans : "")?>" placeholder="plans non transmis">
                 </div>
             </div>
         </div>
@@ -200,7 +200,7 @@
                     </div>
                 <?php } ?>
                 <div class="col-md-4">
-                    <label for="dt_ok">OK <!--<span class="text-danger">*</span>--></label>
+                    <label for="dt_ok">Retours Prestataire Validés <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dt_ok" name="dt_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

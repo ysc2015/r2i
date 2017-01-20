@@ -148,6 +148,11 @@ if(isset($trec_retour_presta)){
     $insert = true;
 }
 
+if(isset($trec_ok)){
+    $stm->bindParam(':ok',$trec_ok);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         

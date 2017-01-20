@@ -64,6 +64,10 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
+                    <label for="cctr_date_depot_cmd">Date de dépôt de la commande <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="cctr_date_depot_cmd" name="cctr_date_depot_cmd" value="<?=($sousProjet->transportcmcctr !== NULL ? $sousProjet->transportcmcctr->date_depot_cmd : "")?>">
+                </div>
+                <div class="col-md-3">
                     <label for="cctr_date_debut_travaux_ft">Date Début Travaux FT <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="cctr_date_debut_travaux_ft" name="cctr_date_debut_travaux_ft" value="<?=($sousProjet->transportcmcctr !== NULL ? $sousProjet->transportcmcctr->date_debut_travaux_ft : "")?>">
                 </div>
@@ -83,9 +87,13 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label for="cctr_ok">OK <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="cctr_ok" name="cctr_ok">
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label for="cctr_ok">Réalisation de l'ensemble des commandes Structurantes <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control" id="cctr_ok" name="cctr_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectOk::all();
