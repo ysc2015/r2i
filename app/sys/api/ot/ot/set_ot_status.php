@@ -224,8 +224,10 @@ if($err==0) {
                         $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt);
                         //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
 
+                        $mailaction_cc = return_list_mail_cc_notif($db,null,3,null);
+
                         if(count($mailaction_to)) {
-                            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),array())) {
+                            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                                 $message[] = "Mail envoyé !";
                             } else {
                                 $message[] = "Mail non envoyé !";
