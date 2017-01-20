@@ -436,8 +436,6 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
             $stop = microtime(true);
 
             if ($value=="DEF_BPE"){
-                $db->query("TRUNCATE testDEF_BPE_CABLE");
-                $db->query("TRUNCATE testDEF_BPE_CABLE2");
 
                 $row = 5;
 
