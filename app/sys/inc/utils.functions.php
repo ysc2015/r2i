@@ -490,7 +490,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                               $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
                               $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
                               $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                              echo $nom_feuille_pdb."<br />";
+                              //echo $nom_feuille_pdb."<br />";
 
                               if($sheet_pdb!=null){
                                   $row_pdb = 8;
@@ -524,7 +524,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                           $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
                           $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
                           $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                          echo $nom_feuille_pdb."<br />";
+                          //echo $nom_feuille_pdb."<br />";
 
                           if($sheet_pdb!=null){
                               $row_pdb = 8;
@@ -559,7 +559,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                           $nom_feuille_pdb = substr_replace($read[0],'_',16,-2);
                           $nom_feuille_pdb = str_replace('PEC','CTR',$nom_feuille_pdb);
                            $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                          echo $nom_feuille_pdb."<br />";
+                          //echo $nom_feuille_pdb."<br />";
 
                            if($sheet_pdb!=null){
                               $row_pdb = 8;
@@ -704,7 +704,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
              }
 
         }
-        echo " RFO_01_01 : ".$RFO_01_01."<br />";
+        /*echo " RFO_01_01 : ".$RFO_01_01."<br />";
         echo " RFO_01_03 : ".$RFO_01_03."<br />";
         echo " RFO_01_05 : ".$RFO_01_05."<br />";
         echo " RFO_01_07 : ". $RFO_01_07."<br />";
@@ -720,7 +720,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         echo " RFO_01_20 : ". $RFO_01_20_24."<br />";
 
         echo " RFO_01_21 : ".$RFO_01_21."<br />";
-        echo " RFO_01_23 : ".$RFO_01_23."<br />";
+        echo " RFO_01_23 : ".$RFO_01_23."<br />";*/
 
 
 
@@ -1379,7 +1379,7 @@ function return_list_mail_cc_notif($db,$etape,$type,$id_equipe_stt=null){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
     }
     if($type==3){
-        $mailaction_stm_stt = $db->prepare("SELECT mail FROM `equipe_stt`,`ordre_de_travail` where `ordre_de_travail`.`id_equipe_stt` = `equipe_stt`.`id_equipe_stt` and  `equipe_stt`.`id_equipe_stt` = $id_equipe_stt group by mail");
+        $mailaction_stm_stt = $db->prepare("SELECT mail FROM `equipe_stt`,`ordre_de_travail` where `ordre_de_travail`.`id_equipe_stt` = `equipe_stt`.`id_equipe_stt` and  `equipe_stt`.`id_equipe_stt` = $id_equipe_stt");
         $mailaction_stm_stt->execute();
         $mailactions_mail_cc = $mailaction_stm_stt->fetchAll();
         foreach($mailactions_mail_cc as $mailaction_mail_cc){
