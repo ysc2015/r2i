@@ -3,7 +3,7 @@
  * file: update_pb_files_list.php
  * User: rabii
  */
-
+//sleep(2);
 extract($_POST);
 
 $insert = false;
@@ -17,6 +17,25 @@ if(isset($idot) && !empty($idot)){
         if(isset($idf) && !empty($idf)) {
             $stm = $db->prepare("update ressource set id_ordre_de_travail=:id_ordre_de_travail where id_ressource = $idf");
             if($stm->execute(array(':id_ordre_de_travail' => $idot))) {
+
+                //traitement du devis pour l'enregistrement dans la base
+                $templateFile = __DIR__."/../../uploads/templates/Bordereaux de Prix FTTH_INT_HRZ_INDA.xlsx";
+
+                $stm = $db->prepare("SELECT * FROM ressource WHERE id_ressource=:id");
+                $stm->bindParam(':id',$idf);
+                $stm->execute();
+                $row = $stm->fetch(PDO::FETCH_OBJ);
+
+                $fileName = $row->nom_fichier;
+
+                if($row->type_objet == "transport_racoord_pboite") {
+                    loadExcelDEF_BPE_EBM_CTR($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
+                } else if($row->type_objet == "distribution_racoord_pboite") {
+                    loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
+                    loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
+                }
+
+                
                 $message[] = "Fichier Affecté !";
             } else {
                 $err++;
