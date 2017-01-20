@@ -11,3 +11,20 @@ ALTER TABLE `sous_projet_transport_commande_ctr` ADD `date_depot_cmd` DATE NULL 
 ALTER TABLE `sous_projet_distribution_recette` ADD `ok` INT NOT NULL AFTER `retour_presta`;
 
 ALTER TABLE `sous_projet_transport_recette` ADD `ok` INT NOT NULL AFTER `retour_presta`;
+
+UPDATE `r2i`.`select_go_ft` SET `lib_go_ft` = 'Commande Deposée' WHERE `select_go_ft`.`id_go_ft` = 2;
+
+UPDATE `r2i`.`select_go_ft` SET `lib_go_ft` = 'Commande Rejetée' WHERE `select_go_ft`.`id_go_ft` = 3;
+
+INSERT INTO  `r2i`.`select_go_ft` (
+`id_go_ft` ,
+`lib_go_ft`
+)
+VALUES (
+NULL ,  'Commande Annulée'
+), (
+NULL ,  'Commande Mise à dispo'
+);
+
+
+
