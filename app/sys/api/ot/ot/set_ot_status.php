@@ -27,6 +27,8 @@ $totallineaire = 0 ;
 
 $sql = "";
 
+$ot = NULL;
+
 if(isset($status) && !empty($status) && isset($idot) && !empty($idot)) {
     $stm = $db->prepare("update ordre_de_travail set id_etat_ot = $status where id_ordre_de_travail=$idot");
 } else {
@@ -224,7 +226,7 @@ if($err==0) {
                         $mailaction_to[]  = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt);
                         //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
 
-                        $mailaction_cc = return_list_mail_cc_notif($db,null,3,null);
+                        $mailaction_cc = return_list_mail_cc_notif($db,null,3,$ot->id_equipe_stt);
 
                         if(count($mailaction_to)) {
                             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
