@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="da_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="da_date_transmission_plans" name="da_date_transmission_plans" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_transmission_plans:"")?>">
+                    <input readonly class="form-control " type="text" id="da_date_transmission_plans" name="da_date_transmission_plans" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_transmission_plans:"")?>" placeholder="plans non transmis">
                 </div>
             </div>
         </div>
@@ -100,11 +100,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="da_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>">
+                    <input readonly class="form-control " type="text" id="da_date_aiguillage" name="da_date_aiguillage" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_aiguillage:"")?>" placeholder="Aiguillage non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="da_date_ret_prevue">Date prévisionnelle de fin d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="da_date_ret_prevue" name="da_date_ret_prevue" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_ret_prevue:"")?>">
+                    <input readonly class="form-control " type="text" id="da_date_ret_prevue" name="da_date_ret_prevue" value="<?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->date_ret_prevue:"")?>" placeholder="Aiguillage non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="da_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -117,7 +117,7 @@
                 <div class="col-md-3">
                     <label for="da_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="da_id_entreprise" name="da_id_entreprise">
-                        <option value="" selected="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Non Attribué</option>
                         <?php
                         $results = EntrepriseSTT::all();
                         foreach($results as $result) {
@@ -163,7 +163,7 @@
                     <textarea class="form-control" id="da_lien_plans" name="da_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lien_plans:"")?></textarea>
                 </div>
                 <div class="col-md-4">
-                    <label for="da_ok">OK <!--<span class="text-danger">*</span>--></label>
+                    <label for="da_ok">Retours Prestataires Validés <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_ok" name="da_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

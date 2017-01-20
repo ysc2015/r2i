@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="ta_date_transmission_plans">Date Transmission Plans <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="ta_date_transmission_plans" name="ta_date_transmission_plans" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_transmission_plans:"")?>">
+                    <input readonly class="form-control " type="text" id="ta_date_transmission_plans" name="ta_date_transmission_plans" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_transmission_plans:"")?>" placeholder="plans non transmis">
                 </div>
             </div>
         </div>
@@ -113,11 +113,11 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="ta_date_aiguillage">Date de début d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="ta_date_aiguillage" name="ta_date_aiguillage" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_aiguillage:"")?>">
+                    <input readonly class="form-control " type="text" id="ta_date_aiguillage" name="ta_date_aiguillage" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_aiguillage:"")?>" placeholder="Aiguillage non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="ta_date_ret_prevue">Date prévisionnelle de fin d’aiguillage <!--<span class="text-danger">*</span>--></label>
-                    <input readonly class="form-control " type="date" id="ta_date_ret_prevue" name="ta_date_ret_prevue" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_ret_prevue:"")?>">
+                    <input readonly class="form-control " type="text" id="ta_date_ret_prevue" name="ta_date_ret_prevue" value="<?=($sousProjet->transportaiguillage !== NULL?$sousProjet->transportaiguillage->date_ret_prevue:"")?>" placeholder="Aiguillage non plannifié">
                 </div>
                 <div class="col-md-4">
                     <label for="ta_duree">Durée(jours) <!--<span class="text-danger">*</span>--></label>
@@ -130,7 +130,7 @@
                 <div class="col-md-3">
                     <label for="ta_id_entreprise">Entreprise <!--<span class="text-danger">*</span>--></label>
                     <select disabled class="form-control " id="ta_id_entreprise" name="ta_id_entreprise">
-                        <option value="" selected="">Sélectionnez une entreprise</option>
+                        <option value="" selected="">Non Attribué</option>
                         <?php
                         $results = EntrepriseSTT::all();
                         foreach($results as $result) {
@@ -182,7 +182,7 @@
                     </div>
                 <?php } ?>
                 <div class="col-md-4">
-                    <label for="ta_ok">OK <!--<span class="text-danger">*</span>--></label>
+                    <label for="ta_ok">Retours Prestataires Validés <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="ta_ok" name="ta_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

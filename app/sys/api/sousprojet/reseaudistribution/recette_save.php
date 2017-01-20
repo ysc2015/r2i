@@ -144,6 +144,11 @@ if(isset($drec_retour_presta)){
     $insert = true;
 }
 
+if(isset($drec_ok)){
+    $stm->bindParam(':ok',$drec_ok);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
 

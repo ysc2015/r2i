@@ -64,6 +64,10 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
+                    <label for="dcc_date_depot_cmd">Date de dépôt de la commande <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control" type="date" id="dcc_date_depot_cmd" name="dcc_date_depot_cmd" value="<?=($sousProjet->distributioncmdcdi !==NULL ? $sousProjet->distributioncmdcdi->date_depot_cmd : "")?>">
+                </div>
+                <div class="col-md-3">
                     <label for="dcc_date_debut_travaux_ft">Date Début Travaux FT <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control" type="date" id="dcc_date_debut_travaux_ft" name="dcc_date_debut_travaux_ft" value="<?=($sousProjet->distributioncmdcdi !==NULL ? $sousProjet->distributioncmdcdi->date_debut_travaux_ft : "")?>">
                 </div>
@@ -83,8 +87,12 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label for="dcc_ok">OK <!--<span class="text-danger">*</span>--></label>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label for="dcc_ok">Réalisation de l'ensemble des commandes Structurantes <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="dcc_ok" name="dcc_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

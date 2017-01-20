@@ -67,7 +67,7 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="dd_ok">OK <!--<span class="text-danger">*</span>--></label>
+                    <label for="dd_ok">Etape design Terminé <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="dd_ok" name="dd_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
