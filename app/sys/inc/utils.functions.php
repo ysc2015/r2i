@@ -704,58 +704,79 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
              }
 
         }
-        /*echo " RFO_01_01 : ".$RFO_01_01."<br />";
-        echo " RFO_01_03 : ".$RFO_01_03."<br />";
-        echo " RFO_01_05 : ".$RFO_01_05."<br />";
-        echo " RFO_01_07 : ". $RFO_01_07."<br />";
-        echo " RFO_01_09 : ". $RFO_01_09."<br />";
-        echo " RFO_01_11 : ". $RFO_01_11."<br />";
-        echo " RFO_01_13 : ". $RFO_01_13."<br />";
 
-        echo " RFO_01_15 : ". $RFO_01_15_432."<br />";
-        echo " RFO_01_16 : ".$RFO_01_16_288."<br />";
-        echo " RFO_01_17 : ".$RFO_01_17_144."<br />";
-        echo " RFO_01_18 : ".$RFO_01_18_72."<br />";
-        echo " RFO_01_19 : ". $RFO_01_19_48."<br />";
-        echo " RFO_01_20 : ". $RFO_01_20_24."<br />";
-
-        echo " RFO_01_21 : ".$RFO_01_21."<br />";
-        echo " RFO_01_23 : ".$RFO_01_23."<br />";*/
-
-
-
-        $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
+        $stm_sel_idressource = $db->prepare("select * from `detaildevis` where id_ressource = :id_ressource");
+        $stm_sel_idressource->binValue(':id_ressource',$idressource);
+        $stm_sel_idressource->execute();
+       if($stm_sel_idressource->rowCount() > 0){
+           //update devis
+           $stm = $db->prepare("update `detaildevis` set RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
+RFO_01_09_qt= :RFO_01_09_qt, RFO_01_11_qt= :RFO_01_11_qt, RFO_01_13_qt= :RFO_01_13_qt, RFO_01_15_qt= :RFO_01_15_qt, RFO_01_16_qt= :RFO_01_16_qt, RFO_01_17_qt= :RFO_01_17_qt,
+RFO_01_18_qt= :RFO_01_18_qt, RFO_01_19_qt= :RFO_01_19_qt, RFO_01_20_qt= :RFO_01_20_qt,  RFO_01_21_qt= :RFO_01_21_qt, RFO_01_23_qt = :RFO_01_23_qt, RFO_01_01_PEC= :RFO_01_01_PEC,
+RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_qt= :RFO_01_07_qt, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
+RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert");
+           $dateaction = date('Y-m-d G:i:s');
+           $stm->bindValue(':id_ressource',$idressource);
+           $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
+           $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
+           $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
+           $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
+           $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
+           $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
+           $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
+           $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
+           $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
+           $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
+           $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
+           $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
+           $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
+           $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
+           $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
+           $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
+           $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
+           $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
+           $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
+           $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
+           $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
+           $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
+           $stm->bindValue(':dateaction',$dateaction);
+           $stm->execute();
+       }else{
+           //insert devis
+           $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
 `RFO_01_13_qt`, `RFO_01_15_qt`, `RFO_01_16_qt`, `RFO_01_17_qt`, `RFO_01_18_qt`, `RFO_01_19_qt`, `RFO_01_20_qt`,
  `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `dateinsert`) 
  VALUES (NULL,  :id_ressource,  :RFO_01_01_qt, :RFO_01_03_qt, :RFO_01_05_qt,  :RFO_01_07_qt, :RFO_01_09_qt, :RFO_01_11_qt,
    :RFO_01_13_qt, :RFO_01_15_qt,    :RFO_01_16_qt, :RFO_01_17_qt, :RFO_01_18_qt,   :RFO_01_19_qt, :RFO_01_20_qt,
    :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC ,:dateaction  )");
-        $dateaction = date('Y-m-d G:i:s');
-        $stm->bindValue(':id_ressource',$idressource);
-        $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
-        $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
-        $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
-        $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
-        $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
-        $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
-        $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
-        $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
-        $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
-        $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
-        $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
-        $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
-        $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
-        $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
-        $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
-        $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
-        $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
-        $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
-        $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
-        $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
-        $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
-        $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
-        $stm->bindValue(':dateaction',$dateaction);
-        $stm->execute();
+           $dateaction = date('Y-m-d G:i:s');
+           $stm->bindValue(':id_ressource',$idressource);
+           $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
+           $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
+           $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
+           $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
+           $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
+           $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
+           $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
+           $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
+           $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
+           $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
+           $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
+           $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
+           $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
+           $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
+           $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
+           $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
+           $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
+           $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
+           $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
+           $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
+           $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
+           $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
+           $stm->bindValue(':dateaction',$dateaction);
+           $stm->execute();
+
+       }
 
 
         return json_encode($tabreturn);
