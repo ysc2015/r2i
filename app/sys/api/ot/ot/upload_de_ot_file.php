@@ -5,7 +5,6 @@
  */
 
 ini_set("display_errors",'1');
-//sleep(2);
 
 $output_dir = __DIR__."/../../uploads/sousprojets/";
 extract($_POST);

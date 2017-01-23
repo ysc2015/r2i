@@ -104,7 +104,7 @@
         other_files_uploader_options = merge_options(defaultUploaderStrLocalisation,other_files_uploader_options);
         other_files_uploader_options.showDelete = true;
         other_files_uploader = $("#other_files_uploader").uploadFile(other_files_uploader_options);
-    });
+    });//
     $(document).ready(function() {
     } );
 </script>
