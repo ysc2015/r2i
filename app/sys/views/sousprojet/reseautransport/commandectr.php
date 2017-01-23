@@ -134,6 +134,10 @@
 </div>
 <script>
     var cmd_formdata = {};
+    $(function () {
+        // Init page plugins & helpers
+        jQuery('#cctr_ref_commande_acces').tagsinput({});
+    });
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_commande_ctr";
 
@@ -146,7 +150,7 @@
         $("#id_sous_projet_transport_commande_ctr_list_tache").click(function(){
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);
         })
-        jQuery('#cctr_ref_commande_acces').tagsinput({});
+
         $('#transport_cmdctr_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             cmd_formdata[$( this ).attr('name')] = $( this).val();
         });
@@ -167,6 +171,13 @@
                 $("#rtransport_block").removeClass('block-opt-refresh');
                 App.showMessage(msg, '#message_transport_commande_ctr');
             });
+        });
+
+        $("#cctr_ref_commande_acces").change(function(e) {
+            e.preventDefault();
+            console.log('cctr_ref_commande_acces chg');
+            console.log($( this).val());
+
         });
     } );
 </script>
