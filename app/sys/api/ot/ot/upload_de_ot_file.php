@@ -26,7 +26,8 @@ if(isset($idot) && !empty($idot)) {
 
             $stm->bindParam(':nom_fichier',$_FILES["myfile"]["name"]);
             $stm->bindParam(':nom_fichier_disque',$fileName);
-            $stm->bindParam(':date_creation',date('Y-m-d H:i:s'));
+            $dc = date('Y-m-d H:i:s');
+            $stm->bindParam(':date_creation',$dc);
 
             if($stm->execute()) {
                 $details = array();

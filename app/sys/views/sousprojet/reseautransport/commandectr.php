@@ -138,6 +138,8 @@
         // Init page plugins & helpers
         jQuery('#cctr_ref_commande_acces').tagsinput({});
     });
+
+
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_commande_ctr";
 
@@ -179,5 +181,11 @@
             console.log($( this).val());
 
         });
+        $('.tag label label-info').click(function(e) {
+            e.preventDefault();
+            console.log('span.label-info click');
+        });
+
+
     } );
 </script>
