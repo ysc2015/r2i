@@ -8,8 +8,6 @@
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
 
-set_time_limit(0);
-
 $output_dir = __DIR__."/../../uploads/plansboites/";
 extract($_POST);
 

@@ -5,6 +5,7 @@
  */
 
 ini_set('display_errors',1);
+set_time_limit(0);
 include __DIR__ . "/sys/inc/session.php";
 
 SessionManager::init();
