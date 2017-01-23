@@ -27,4 +27,4 @@ NULL ,  'Commande Mise à dispo'
 );
 
 
-
+ALTER TABLE `detaildevis` ADD UNIQUE(`id_ressource`);
