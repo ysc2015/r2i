@@ -188,3 +188,7 @@ function getRetourTerrain(idsp,idtot,selector) {
         }
     });
 }
+
+function getCommandeInfos(numcmd) {
+    console.log('getCommandeInfos');
+}
