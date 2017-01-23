@@ -1446,17 +1446,23 @@ function return_list_mail_vpi_par_nro($db,$idnro){
     }
     return $mailaction_cc;
 }
-function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt){
-    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
-
+function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt, $id_entreprise){
+    $mailaction_cc = [];
+    /*$sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
-    $mailaction_cc = [];
+
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
     foreach($mailactions_mail_cc as $mailaction_mail_cc){
         $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }*/
+    $sql_contact_entreprise = "SELECT contact_email FROM entreprises_stt where  `entreprises_stt`.`id_entreprise`  = $id_entreprise";
+    $stm_mail_entreprise = $db->prepare($sql_contact_entreprise);
+    $stm_mail_entreprise->execute();
+    $mail_entreprise = $stm_mail_entreprise->fetchAll();
+    foreach($mail_entreprise as $mail_entreprise_email){
+        $mailaction_cc[] = $mail_entreprise_email['contact_email'];
     }
-
     return $mailaction_cc;
 
 }
