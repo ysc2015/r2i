@@ -713,10 +713,10 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
            $stm = $db->prepare("update `detaildevis` set RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
 RFO_01_09_qt= :RFO_01_09_qt, RFO_01_11_qt= :RFO_01_11_qt, RFO_01_13_qt= :RFO_01_13_qt, RFO_01_15_qt= :RFO_01_15_qt, RFO_01_16_qt= :RFO_01_16_qt, RFO_01_17_qt= :RFO_01_17_qt,
 RFO_01_18_qt= :RFO_01_18_qt, RFO_01_19_qt= :RFO_01_19_qt, RFO_01_20_qt= :RFO_01_20_qt,  RFO_01_21_qt= :RFO_01_21_qt, RFO_01_23_qt = :RFO_01_23_qt, RFO_01_01_PEC= :RFO_01_01_PEC,
-RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_qt= :RFO_01_07_qt, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
+RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_PEC= :RFO_01_07_PEC, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
 RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert");
            $dateaction = date('Y-m-d G:i:s');
-           $stm->bindValue(':id_ressource',$idressource);
+
            $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
            $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
            $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
@@ -739,7 +739,7 @@ RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert");
            $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
            $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
            $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
-           $stm->bindValue(':dateaction',$dateaction);
+           $stm->bindValue(':dateinsert',$dateaction);
            $stm->execute();
        }else{
            //insert devis
