@@ -706,7 +706,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         }
 
         $stm_sel_idressource = $db->prepare("select * from `detaildevis` where id_ressource = :id_ressource");
-        $stm_sel_idressource->binValue(':id_ressource',$idressource);
+        $stm_sel_idressource->bindValue(':id_ressource',$idressource);
         $stm_sel_idressource->execute();
        if($stm_sel_idressource->rowCount() > 0){
            //update devis
