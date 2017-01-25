@@ -85,8 +85,8 @@ if($delete == true && $err == 0){
             }
 
             foreach($tentree as $key => $value) {
-                if($sousProjet->{$value[0]} == NULL) {
-                    switch($value[0]) {
+                if($sousProjet->{$value[0]} !== NULL) {
+                    /*switch($value[0]) {
                         case "transportaiguillage" :
                             $step = new SousProjetTransportAiguillage(array(
                                 'id_sous_projet' => $idsp));
@@ -128,19 +128,20 @@ if($delete == true && $err == 0){
                             $step->save();
                             break;
                         default : break;
-                    }
+                    }*/
+
+                    $sousProjet->{$value[0]}->controle_demarrage_effectif = NULL;
+                    $sousProjet->{$value[0]}->date_transmission_plans = NULL;
+                    $sousProjet->{$value[0]}->date_retour = NULL;
+                    //$sousProjet->{$value[0]}->lien_plans = NULL;
+                    $sousProjet->{$value[0]}->retour_presta = NULL;
+                    $sousProjet->{$value[0]}->id_entreprise	 = NULL;
+                    $sousProjet->{$value[0]}->{$value[1]} = NULL;
+                    $sousProjet->{$value[0]}->date_ret_prevue = NULL;
+                    $sousProjet->{$value[0]}->duree = NULL;
+                    $sousProjet->{$value[0]}->save();
                 }
 
-                $sousProjet->{$value[0]}->controle_demarrage_effectif = NULL;
-                $sousProjet->{$value[0]}->date_transmission_plans = NULL;
-                $sousProjet->{$value[0]}->date_retour = NULL;
-                $sousProjet->{$value[0]}->lien_plans = NULL;
-                $sousProjet->{$value[0]}->retour_presta = NULL;
-                $sousProjet->{$value[0]}->id_entreprise	 = NULL;
-                $sousProjet->{$value[0]}->{$value[1]} = NULL;
-                $sousProjet->{$value[0]}->date_ret_prevue = NULL;
-                $sousProjet->{$value[0]}->duree = NULL;
-                $sousProjet->{$value[0]}->save();
             }
         }
 
