@@ -228,10 +228,14 @@ if($err==0) {
 
                         $mailaction_cc[] = return_list_mail_cc_notif($db,null,3,$ot->id_equipe_stt);
                         $mailaction_cc[] = $connectedProfil->email_utilisateur;
-
+                        echo "to <br />";
+                        print_r($mailaction_to);
+                        echo "<br /> cc ";
+                        print_r($mailaction_cc);
 
                         if(count($mailaction_to)) {
-                            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                            //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                            if(true) {
                                 $message[] = "Mail envoyé !";
                             } else {
                                 $message[] = "Mail non envoyé !";
