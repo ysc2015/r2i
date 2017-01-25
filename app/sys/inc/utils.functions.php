@@ -429,7 +429,16 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         $NBSOUD = 0;
         $tab_pdb_E = [];
         $tab_pdb_E_pec = [];
-        foreach ($arr as $key => $value) {
+        $tab_cable_pdb_non=array();
+
+        $tab_cable_pdb_non[24]=[];
+        $tab_cable_pdb_non[48]=[];
+        $tab_cable_pdb_non[72]=[];
+        $tab_cable_pdb_non[144]=[];
+        $tab_cable_pdb_non[288]=[];
+        $tab_cable_pdb_non[432]=[];
+        $tab_cable_pdb_non[720]=[];
+         foreach ($arr as $key => $value) {
 
             $sheet = $excel->getSheetByName($value);
             $header = getHeader($sheet);
@@ -443,24 +452,27 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
                       if( strstr($read[0], "PDB") && $read[5]=="NON") {
                           //Boites en préparation
+                          $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
+                          $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
+
                           switch (intval($sheet->getCellByColumnAndRow(12,$row)->getValue()) ){
                               case 4:$capacite4++;
                                   break;
                               case 12:$capacite12++;
                                   break;
-                              case 24:$capacite24++;
+                              case 24:$capacite24++;$tab_cable_pdb_non[24][]=$nom_feuille_pdb;
                                   break;
-                              case 48:$capacite48++;
+                              case 48:$capacite48++;$tab_cable_pdb_non[48][]=$nom_feuille_pdb;
                                   break;
-                              case 72:$capacite72++;
+                              case 72:$capacite72++;$tab_cable_pdb_non[72][]=$nom_feuille_pdb;
                                   break;
-                              case 144:$capacite144++;
+                              case 144:$capacite144++;$tab_cable_pdb_non[144][]=$nom_feuille_pdb;
                                   break;
-                              case 288:$capacite288++;
+                              case 288:$capacite288++;$tab_cable_pdb_non[288][]=$nom_feuille_pdb;
                                   break;
-                              case 432:$capacite432++;
+                              case 432:$capacite432++;$tab_cable_pdb_non[432][]=$nom_feuille_pdb;
                                   break;
-                              case 720:$capacite720++;
+                              case 720:$capacite720++;$tab_cable_pdb_non[720][]=$nom_feuille_pdb;
                                   break;
 
                           }
@@ -518,7 +530,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
                           }
                       }
-                      $tmp = intval($sheet->getCellByColumnAndRow(8,$row)->getValue())  ;
+                      $tmp = intval($sheet->getCellByColumnAndRow(8,$row)->getValue());
                       if( strstr($read[0], "PDB") && $tmp > 0 ) {
 
                           $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
@@ -621,27 +633,30 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                     }
 
                 foreach ($tab_pdb_E_capacite as $key ){
-                    switch ($key[1]){
-                        case 4:$capacite4++;
-                            break;
-                        case 12:$capacite12++;
-                            break;
-                        case 24:$capacite24++;
-                            break;
-                        case 48:$capacite48++;
-                            break;
-                        case 72:$capacite72++;
-                            break;
-                        case 144:$capacite144++;
-                            break;
-                        case 288:$capacite288++;
-                            break;
-                        case 432:$capacite432++;
-                            break;
-                        case 720:$capacite720++;
-                            break;
+                    if((!(in_array($key[0],$tab_cable_pdb_non[24])) && !(in_array($key[0],$tab_cable_pdb_non[48])) && !(in_array($key[0],$tab_cable_pdb_non[72])) && !(in_array($key[0],$tab_cable_pdb_non[144])) && !(in_array($key[0],$tab_cable_pdb_non[288])) && !(in_array($key[0],$tab_cable_pdb_non[432])) && !(in_array($key[0],$tab_cable_pdb_non[720])))){
+                        switch ($key[1]){
+                            case 4:$capacite4++;
+                                break;
+                            case 12:$capacite12++;
+                                break;
+                            case 24:$capacite24++;
+                                break;
+                            case 48:$capacite48++;
+                                break;
+                            case 72:$capacite72++;
+                                break;
+                            case 144:$capacite144++;
+                                break;
+                            case 288:$capacite288++;
+                                break;
+                            case 432:$capacite432++;
+                                break;
+                            case 720:$capacite720++;
+                                break;
 
+                        }
                     }
+
                 }
                 foreach ($tab_pdb_E_pec_capacite as $key ){
                     switch ($key[1]){
@@ -673,6 +688,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                 $RFO_01_09 = $capacite72;
                 $RFO_01_11 = $capacite48;
                 $RFO_01_13 = $capacite24;
+
 
             }//Soudures
              elseif (strstr($value,"CDI")) {
@@ -714,9 +730,10 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 RFO_01_09_qt= :RFO_01_09_qt, RFO_01_11_qt= :RFO_01_11_qt, RFO_01_13_qt= :RFO_01_13_qt, RFO_01_15_qt= :RFO_01_15_qt, RFO_01_16_qt= :RFO_01_16_qt, RFO_01_17_qt= :RFO_01_17_qt,
 RFO_01_18_qt= :RFO_01_18_qt, RFO_01_19_qt= :RFO_01_19_qt, RFO_01_20_qt= :RFO_01_20_qt,  RFO_01_21_qt= :RFO_01_21_qt, RFO_01_23_qt = :RFO_01_23_qt, RFO_01_01_PEC= :RFO_01_01_PEC,
 RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_PEC= :RFO_01_07_PEC, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
-RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert");
+RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert where id_ressource =:id_ressource ");
            $dateaction = date('Y-m-d G:i:s');
 
+           $stm->bindValue(':id_ressource',$idressource);
            $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
            $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
            $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
@@ -1466,6 +1483,31 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt, $id_entrepri
     return $mailaction_cc;
 
 }
+function return_list_bei_du_nro($db,$idnro){
+    $mailaction_cc = [];
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
+    $mailaction_stm = $db->prepare($sql);
+    $mailaction_stm->execute();
+
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
+    return $mailaction_cc;
+}
+
+function return_list_vpi_pec_du_nro($db,$idnro){
+$mailaction_cc = [];
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
+    $mailaction_stm = $db->prepare($sql);
+    $mailaction_stm->execute();
+
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
+    return $mailaction_cc;
+}
 
 function get_email_by_id($db,$tabusers){
      $sql = "SELECT utilisateur.email_utilisateur FROM utilisateur where utilisateur.id_utilisateur IN (".implode(",",$tabusers).") ";
@@ -1491,7 +1533,7 @@ function get_email_by_id($db,$tabusers){
  * @param $type_mail
  * @return array
  */
-function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null){
+function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=null,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null){
     $sql = "SELECT * FROM `mail_notification_template` where type = :type";
     $sqlstatement = $db->prepare($sql);
     $sqlstatement->bindValue(':type',$type_mail);
