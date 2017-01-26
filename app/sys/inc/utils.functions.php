@@ -537,9 +537,10 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                                     break;
                                 }
                                 if($read_pdb==null) {
-                                    echo "nom feuille ".$val_E_P."#".$nom_feuille_pdb."#".$compteur."<br />";
+
                                     if(strstr($val_E_P,"P") && strstr($val_E_P,"E") ){
-                                        echo $val_E_P."**".$compteur."<br />";
+
+                                        echo $val_E_P."**".$nom_feuille_pdb."<br />";
                                         $nombre_E++;
                                     }
                                     $compteur=0;
