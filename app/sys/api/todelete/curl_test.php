@@ -4,24 +4,18 @@
  * User: rabii
  */
 
-// Get cURL resource
-$curl = curl_init();
-// Set some options - we are passing in a useragent too here
-curl_setopt_array($curl, array(
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'http://gbts.free-infra.vlq16.iliad.fr/curl_dedibox/get_fci_data.php',
-    //CURLOPT_USERAGENT => 'cURL Request',
-    CURLOPT_POST => 1,
-    CURLOPT_POSTFIELDS => array(
-        'num_commande_fci' => 'F99625190416'
-    ),
-    CURLOPT_SSL_VERIFYHOST => false,
-    CURLOPT_SSL_VERIFYPEER => false
-));
+extract($_POST);
 
-// Send the request & save response to $resp
-$resp = curl_exec($curl);
-// Close request to clear up some resources
-curl_close($curl);
+$data = array(
+    "num_commande_fci" => $num_commande_fci,
+    "etat_commande" => "etat.encours",
+    "date_emission" => "2016-08-09 16:20:05",
+    "date_ar" => "2016-08-10",
+    "type_commande" => "Génie Civil Boucle Locale Optique - Accès FTTx : Commande d'accès structurant FTTx",
+    "type_entite" => "Free Infra",
+    "date_deb_tvx" => "07/09/2016",
+    "date_fin_tvx" => "12/12/2016"
+);
 
-print_r($resp);
+
+echo json_encode(array("statut" => "OK","raison" => "Commande FCI ".$num_commande_fci." trouvée", "data" => $data));

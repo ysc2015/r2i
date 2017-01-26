@@ -4,6 +4,8 @@
  * User: rabii
  */
 
+//TODO rearrange values later
+
 $lang = array();
 
 //sous projets
@@ -78,5 +80,11 @@ $lang["commentaire"] = "Commentaire";
 $lang["date_rendu"] = "Date rendu";
 $lang["id_solution_traitement_pbt"] = "Solutions";
 $lang["id_entreprise"] = "Prestataire";
+
+
+$lang["transportcmcctr"] = "CMD Structurante CTR";
+$lang["transportcmdfintravaux"] = "Commandes Fin Travaux CTR";
+$lang["distributioncmdcdi"] = "CMD Structurante CDI";
+$lang["distributioncmdfintravaux"] = "Commandes Fin Travaux CDI";
 
 
