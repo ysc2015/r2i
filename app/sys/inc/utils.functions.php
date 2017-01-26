@@ -542,7 +542,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                                     continue;
                                 }
                                 $i = 0;
-                                if( $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue()==$nom_feuille_pdb && $read_pdb[7]=="E" && $nom_cable != $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue() ) {
+                                if( $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue()==$nom_feuille_pdb && ($read_pdb[7]=="E" || $read_pdb[7]=="P" ) && $nom_cable != $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue() && strstr($sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue(),"CDI") ) {
                                     $nombre_E++;
                                     $nom_cable = $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue();
                                 }
