@@ -522,7 +522,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                         $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
                         $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
                         $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-
+                        $compteur = 1;
                         $val_E_P="";
                         if($sheet_pdb!=null){
                             $row_pdb = 8;
@@ -537,12 +537,12 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                                     break;
                                 }
                                 if($read_pdb==null) {
-
+                                    echo "nom feuille ".$val_E_P."#".$nom_feuille_pdb."#".$compteur."<br />";
                                     if(strstr($val_E_P,"P") && strstr($val_E_P,"E") ){
-
+                                        echo $val_E_P."**".$compteur."<br />";
                                         $nombre_E++;
                                     }
-
+                                    $compteur=0;
                                     $val_E_P="";
 
                                     $row_pdb++;
@@ -553,11 +553,13 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
                                 if( $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue()==$nom_feuille_pdb && ($read_pdb[7]=="E" || $read_pdb[7]=="P" )   && strstr($sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue(),"CDI") ) {
                                     $val_E_P .= $read_pdb[7];
+                                    $compteur++;
+                                    echo "que cable CDI".$sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue()."<br />";
                                     $nom_cable = $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue();
                                 }
                                 $row_pdb++;
                             }
-
+                            echo $nombre_E;
                         }
 
 
