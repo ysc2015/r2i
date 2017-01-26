@@ -1555,6 +1555,8 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
     $statement[0][3]    = str_replace('@etape_sous_projet',$etape,$statement[0][3]);
     $statement[0][3]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][3] );
     $statement[0][3]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][3] );
+    $statement[0][3]    = str_replace('@nom_entreprise_stt',$nom_entreprise,$statement[0][3] );
+
 
 
 
