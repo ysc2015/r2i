@@ -410,390 +410,364 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
     $capacite288_pec = 0;
     $capacite432_pec = 0;
     $capacite720_pec = 0;
+    $RFO_01_23_pec = 0;
     $tab_pdb_E_pec_capacite = [];
 
     $tabreturn = [];
     try {
         $excel = openExcelFile($inputFileName);
-        $stop = microtime(true);
+
 
 
         $arr = $excel->getSheetNames();
 
 
 
-        $tab=array();
-        $i=0;$j=0;$valtrouve = 0;
-        $countcap = [];$cap = 0;
-        $countg1=0 ;
-        $NBSOUD = 0;
-        $tab_pdb_E = [];
-        $tab_pdb_E_pec = [];
-        $tab_cable_pdb_non=array();
 
-        $tab_cable_pdb_non[24]=[];
-        $tab_cable_pdb_non[48]=[];
-        $tab_cable_pdb_non[72]=[];
-        $tab_cable_pdb_non[144]=[];
-        $tab_cable_pdb_non[288]=[];
-        $tab_cable_pdb_non[432]=[];
-        $tab_cable_pdb_non[720]=[];
-         foreach ($arr as $key => $value) {
+        $i=0;
+
+        $tab_defcable_vol_extremites = array(0,0,0,0,0,0,0);
+        $tab_defcable_vol_extremites_passage = array(0,0,0,0,0,0,0);
+        $tab_defcable_vol_extremites_rac = array(0,0,0,0,0,0,0);
+        $nombre_E = 0;
+
+        foreach ($arr as $key => $value) {
 
             $sheet = $excel->getSheetByName($value);
             $header = getHeader($sheet);
-            $stop = microtime(true);
 
-            if ($value=="DEF_BPE"){
-
+            if ($value=="DEF_CABLE"){
                 $row = 5;
+                while($read = getLine($sheet,$row,20)) {
+                     if( strstr($sheet->getCellByColumnAndRow(0,$row)->getValue(), "CDI")  ) {
+                         switch (intval($sheet->getCellByColumnAndRow(1,$row)->getValue()) ){
+                            case 24:$tab_defcable_vol_extremites[0]=$tab_defcable_vol_extremites[0] + 2;
+                                break;
+                            case 48:$tab_defcable_vol_extremites[1] = $tab_defcable_vol_extremites[1] + 2;
+                                break;
+                            case 72:$tab_defcable_vol_extremites[2]= $tab_defcable_vol_extremites[2] + 2;
+                                break;
+                            case 144:$tab_defcable_vol_extremites[3]= $tab_defcable_vol_extremites[3] + 2;
+                                break;
+                            case 288:$tab_defcable_vol_extremites[4]= $tab_defcable_vol_extremites[4] + 2;
+                                break;
+                            case 432:$tab_defcable_vol_extremites[5]= $tab_defcable_vol_extremites[5] + 2;
+                                break;
+                            case 720:$tab_defcable_vol_extremites[6]= $tab_defcable_vol_extremites[6] + 2;
+                                break;
+                        }
 
-                  while($read = getLine($sheet,$row,20)) {
-
-                      if( strstr($read[0], "PDB") && $read[5]=="NON") {
-                          //Boites en préparation
-                          $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
-                          $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
-
-                          switch (intval($sheet->getCellByColumnAndRow(12,$row)->getValue()) ){
-                              case 4:$capacite4++;
-                                  break;
-                              case 12:$capacite12++;
-                                  break;
-                              case 24:$capacite24++;$tab_cable_pdb_non[24][]=$nom_feuille_pdb;
-                                  break;
-                              case 48:$capacite48++;$tab_cable_pdb_non[48][]=$nom_feuille_pdb;
-                                  break;
-                              case 72:$capacite72++;$tab_cable_pdb_non[72][]=$nom_feuille_pdb;
-                                  break;
-                              case 144:$capacite144++;$tab_cable_pdb_non[144][]=$nom_feuille_pdb;
-                                  break;
-                              case 288:$capacite288++;$tab_cable_pdb_non[288][]=$nom_feuille_pdb;
-                                  break;
-                              case 432:$capacite432++;$tab_cable_pdb_non[432][]=$nom_feuille_pdb;
-                                  break;
-                              case 720:$capacite720++;$tab_cable_pdb_non[720][]=$nom_feuille_pdb;
-                                  break;
-
-                          }
-                      }
-                      if( strstr($read[0], "PDB") && $read[5]=="OUI") {
-                          //Boites en passage
-                          switch (intval($sheet->getCellByColumnAndRow(12,$row)->getValue()) ){
-
-                              case 24:$RFO_01_20_24++;
-                                  break;
-                              case 48:$RFO_01_19_48++;
-                                  break;
-                              case 72:$RFO_01_18_72++;
-                                  break;
-                              case 144:$RFO_01_17_144++;
-                                  break;
-                              case 288:$RFO_01_16_288++;
-                                  break;
-                              case 432:$RFO_01_15_432++;
-                                  break;
-
-
-                          }
-                          if(intval($sheet->getCellByColumnAndRow(8,$row)->getValue()) > 0 ){
-
-
-                              $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
-                              $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
-                              $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                              //echo $nom_feuille_pdb."<br />";
-
-                              if($sheet_pdb!=null){
-                                  $row_pdb = 8;
-                                  $i=0;
-                                  $loop = true;
-
-                                  while($loop) {
-                                      $read_pdb = getLine($sheet_pdb,$row_pdb,20);
-                                      if ($i>5){
-                                          $loop = false;
-                                          break;
-                                      }
-                                      if($read_pdb==null) {
-                                          $row_pdb++;
-                                          $i++;
-                                          continue;
-                                      }
-                                      $i = 0;
-                                      if( $read_pdb[7]=="E" ) {
-                                          $RFO_01_21++;
-                                      }
-                                      $row_pdb++;
-                                  }
-                              }
-
-                          }
-                      }
-                      $tmp = intval($sheet->getCellByColumnAndRow(8,$row)->getValue());
-                      if( strstr($read[0], "PDB") && $tmp > 0 ) {
-
-                          $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
-                          $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
-                          $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                          //echo $nom_feuille_pdb."<br />";
-
-                          if($sheet_pdb!=null){
-                              $row_pdb = 8;
-                              $i=0;
-                              $loop = true;
-
-                              while($loop) {
-                                  $read_pdb = getLine($sheet_pdb,$row_pdb,20);
-                                  if ($i>5){
-                                      $loop = false;
-                                      break;
-                                  }
-                                  if($read_pdb==null) {
-                                      $row_pdb++;
-                                      $i++;
-                                      continue;
-                                  }
-                                  $i = 0;
-                                  if( $read_pdb[7]=="E" ) {
-                                      $tab_pdb_E[]= $sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue();
-                                  }
-                                  $row_pdb++;
-                              }
-                          }
-
-
-                          $i++;
-                      }
-                      // Identification des valeurs Racco Au PEC
-                      if( strstr($read[0], "PEC") ) {
-
-                          $nom_feuille_pdb = substr_replace($read[0],'_',16,-2);
-                          $nom_feuille_pdb = str_replace('PEC','CTR',$nom_feuille_pdb);
-                           $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                          //echo $nom_feuille_pdb."<br />";
-
-                           if($sheet_pdb!=null){
-                              $row_pdb = 8;
-                              $i=0;
-                              $loop = true;
-
-                              while($loop) {
-                                  $read_pdb = getLine($sheet_pdb,$row_pdb,20);
-                                  if ($i>5){
-                                      $loop = false;
-                                      break;
-                                  }
-                                  if($read_pdb==null) {
-                                      $row_pdb++;
-                                      $i++;
-                                      continue;
-                                  }
-                                  $i = 0;
-                                  if( $read_pdb[7]=="E" ) {
-                                      $tab_pdb_E_pec[]= $sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue();
-                                  }
-                                  $row_pdb++;
-                              }
-                          }
-
-
-                          $i++;
-                      }
+                    }
                     $row++;
                 }
+
+            }
+            if ($value=="DEF_BPE"){
+
+
                 $row = 5;
 
+                while($read = getLine($sheet,$row,20)) {
+                     if( strstr($sheet->getCellByColumnAndRow(0,$row)->getValue(), "PDB") && $sheet->getCellByColumnAndRow(5,$row)->getValue()=="OUI") {
+                         switch (intval($sheet->getCellByColumnAndRow(12,$row)->getValue()) ){
 
-                $tab_pdb_E = array_unique($tab_pdb_E);
-                $tab_pdb_E_pec = array_unique($tab_pdb_E_pec);
+                            case 24:$tab_defcable_vol_extremites_passage[0]++;
+                                break;
+                            case 48:$tab_defcable_vol_extremites_passage[1]++;
+                                break;
+                            case 72:$tab_defcable_vol_extremites_passage[2]++;
+                                break;
+                            case 144:$tab_defcable_vol_extremites_passage[3]++;
+                                break;
+                            case 288:$tab_defcable_vol_extremites_passage[4]++;
+                                break;
+                            case 432:$tab_defcable_vol_extremites_passage[5]++;
+                                break;
+                            case 720:$tab_defcable_vol_extremites_passage[6]++;
+                                break;
 
-                $row--;
-                $sheet_def_cable = $excel->getSheetByName("DEF_CABLE");
-                $tab_pdb_E_capacite = [];
-                $row_def_cable = 5;
 
-                    while ($read_def_cable = getLine($sheet_def_cable, $row_def_cable, 20)) {
-                        if( in_array($read_def_cable[0],$tab_pdb_E) ){
-                            foreach ($tab_pdb_E as $val) {
-                                if ($val == $read_def_cable[0]) {
-                                    $tab_pdb_E_capacite[] =array($sheet_def_cable->getCellByColumnAndRow(0,$row_def_cable)->getValue(), $sheet_def_cable->getCellByColumnAndRow(1,$row_def_cable)->getValue());
+                        }
+
+                    }
+
+                    if( strstr($sheet->getCellByColumnAndRow(0,$row)->getValue(), "PDB") && $sheet->getCellByColumnAndRow(5,$row)->getValue() =="NON") {
+
+                        switch (intval($sheet->getCellByColumnAndRow(12,$row)->getValue()) ){
+
+                            case 24:$tab_defcable_vol_extremites_rac[0]++;
+                                break;
+                            case 48:$tab_defcable_vol_extremites_rac[1]++;
+                                break;
+                            case 72:$tab_defcable_vol_extremites_rac[2]++;
+                                break;
+                            case 144:$tab_defcable_vol_extremites_rac[3]++;
+                                break;
+                            case 288:$tab_defcable_vol_extremites_rac[4]++;
+                                break;
+                            case 432:$tab_defcable_vol_extremites_rac[5]++;
+                                break;
+                            case 720:$tab_defcable_vol_extremites_rac[6]++;
+                                break;
+
+                        }
+                    }
+
+
+
+                    //$tmp = intval($sheet->getCellByColumnAndRow(8,$row)->getValue());
+                    //calcule RFO_01_21
+                    if( strstr($read[0], "PDB") && $read[5]=="OUI"  ) {
+
+                        $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
+                        $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
+                        $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
+
+                        if($sheet_pdb!=null){
+                            $row_pdb = 8;
+                            $i=0;
+                            $loop = true;
+
+                            while($loop) {
+
+                                $read_pdb = getLine($sheet_pdb,$row_pdb,20);
+                                $nom_cable = "";
+                                if ($i>5){
+                                    $loop = false;
+                                    break;
                                 }
+                                if($read_pdb==null) {
+                                    $row_pdb++;
+                                    $i++;
+                                    continue;
+                                }
+                                $i = 0;
+                                if( $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue()==$nom_feuille_pdb && $read_pdb[7]=="E" && $nom_cable != $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue() ) {
+                                    $nombre_E++;
+                                    $nom_cable = $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue();
+                                }
+                                $row_pdb++;
                             }
                         }
-                        if( in_array($read_def_cable[0],$tab_pdb_E_pec) ){
-                            foreach ($tab_pdb_E_pec as $val) {
-                                if ($val == $read_def_cable[0]) {
-                                    $tab_pdb_E_pec_capacite[] =array($sheet_def_cable->getCellByColumnAndRow(0,$row_def_cable)->getValue(), $sheet_def_cable->getCellByColumnAndRow(1,$row_def_cable)->getValue());
+
+
+                        $i++;
+                    }
+
+                    // Identification des valeurs Racco Au PEC
+                     if( strstr($read[0], "PEC") ) {
+
+                        $nom_feuille_pdb = substr_replace($read[0],'_',16,-2);
+                        $nom_feuille_pdb = str_replace('PEC','CTR',$nom_feuille_pdb);
+                        $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
+                        //echo $nom_feuille_pdb."<br />";
+
+                        if($sheet_pdb!=null){
+                            $row_pdb = 8;
+                            $i=0;
+                            $loop = true;
+
+                            while($loop) {
+                                $read_pdb = getLine($sheet_pdb,$row_pdb,20);
+                                if ($i>5){
+                                    $loop = false;
+                                    break;
                                 }
+                                if($read_pdb==null) {
+                                    $row_pdb++;
+                                    $i++;
+                                    continue;
+                                }
+                                $i = 0;
+                                if( $read_pdb[7]=="E" ) {
+                                    $tab_pdb_E_pec[]= $sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue();
+                                    if(strstr($sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue(), "CDI")){
+                                        $RFO_01_23_pec++;
+                                    }
+                                }
+                                $row_pdb++;
                             }
                         }
-
-                        $row_def_cable++;
+                        $i++;
                     }
-
-                foreach ($tab_pdb_E_capacite as $key ){
-                    if((!(in_array($key[0],$tab_cable_pdb_non[24])) && !(in_array($key[0],$tab_cable_pdb_non[48])) && !(in_array($key[0],$tab_cable_pdb_non[72])) && !(in_array($key[0],$tab_cable_pdb_non[144])) && !(in_array($key[0],$tab_cable_pdb_non[288])) && !(in_array($key[0],$tab_cable_pdb_non[432])) && !(in_array($key[0],$tab_cable_pdb_non[720])))){
-                        switch ($key[1]){
-                            case 4:$capacite4++;
-                                break;
-                            case 12:$capacite12++;
-                                break;
-                            case 24:$capacite24++;
-                                break;
-                            case 48:$capacite48++;
-                                break;
-                            case 72:$capacite72++;
-                                break;
-                            case 144:$capacite144++;
-                                break;
-                            case 288:$capacite288++;
-                                break;
-                            case 432:$capacite432++;
-                                break;
-                            case 720:$capacite720++;
-                                break;
-
-                        }
-                    }
-
+                    $row++;
                 }
-                foreach ($tab_pdb_E_pec_capacite as $key ){
-                    switch ($key[1]){
-                        case 4:$capacite4_pec++;
-                            break;
-                        case 12:$capacite12_pec++;
-                            break;
-                        case 24:$capacite24_pec++;
-                            break;
-                        case 48:$capacite48_pec++;
-                            break;
-                        case 72:$capacite72_pec++;
-                            break;
-                        case 144:$capacite144_pec++;
-                            break;
-                        case 288:$capacite288_pec++;
-                            break;
-                        case 432:$capacite432_pec++;
-                            break;
-                        case 720:$capacite720_pec++;
-                            break;
+            }
+            //Soudures
+            if (strstr($value,"CDI")) {
+
+                $row = 9;
+                $i=0;
+                $loop = true;
+
+                while($loop) {
+                    $read = getLine($sheet,$row,15);
+                    if ($i>5){
+                        $loop = false;
+                        break;
                     }
+                    if($read==null) {
+                        $row++;
+                        $i++;
+                        continue;
+                    }
+                    $i = 0;
+                    if( ( $read[7]== "E") && (strstr($read[13],"CDI"))) {
+                        $RFO_01_23++;
+                    }
+                    $row++;
                 }
 
-                $RFO_01_01 = $capacite720;
-                $RFO_01_03 = $capacite432;
-                $RFO_01_05 = $capacite288;
-                $RFO_01_07 = $capacite144;
-                $RFO_01_09 = $capacite72;
-                $RFO_01_11 = $capacite48;
-                $RFO_01_13 = $capacite24;
-
-
-            }//Soudures
-             elseif (strstr($value,"CDI")) {
-
-                 $row = 9;
-                 //$max = count($header);
-                 $i=0;
-                 $loop = true;
-
-                 while($loop) {
-                     $read = getLine($sheet,$row,15);
-                     if ($i>5){
-                         $loop = false;
-                         break;
-                     }
-                     if($read==null) {
-                         $row++;
-                         $i++;
-                         continue;
-                     }
-                     $i = 0;
-                     if( ( $read[7]== "E") && (strstr($read[13],"CDI"))) {
-                         $RFO_01_23++;
-                     }
-                     $row++;
-                 }
-
-
-             }
+            }
 
         }
 
+        $i=0;
+
+        foreach ($tab_defcable_vol_extremites as $val){
+        switch ($i){
+            case 0:$RFO_01_13 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);$RFO_01_20_24= $tab_defcable_vol_extremites_passage[$i];
+                break;
+            case 1:$RFO_01_11 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);$RFO_01_19_48= $tab_defcable_vol_extremites_passage[$i];
+                break;
+            case 2:$RFO_01_09 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);$RFO_01_18_72= $tab_defcable_vol_extremites_passage[$i];
+                break;
+            case 3:$RFO_01_07 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);$RFO_01_17_144 = $tab_defcable_vol_extremites_passage[$i];
+                break;
+            case 4:$RFO_01_05 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);$RFO_01_16_288 = $tab_defcable_vol_extremites_passage[$i];
+                break;
+            case 5:$RFO_01_03 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);$RFO_01_15_432 = $tab_defcable_vol_extremites_passage[$i];
+                break;
+            case 6:$RFO_01_01 = $val - ($tab_defcable_vol_extremites_passage[$i]*2);
+                break;
+
+        }
+            $i++;
+        }
+        echo "  tab_defcable_vol_extremites:  <br />";
+        print_r($tab_defcable_vol_extremites);
+        echo " <br /> tab_defcable_vol_extremites_passag:  <br />";
+        print_r($tab_defcable_vol_extremites_passage );
+        echo " <br /> tab_defcable_vol_extremites_racc:  <br />";
+        print_r($tab_defcable_vol_extremites_rac);
+
+        $RFO_01_21 = $nombre_E;
+
+        //traitement pec
+        $tab_pdb_E_pec = array_unique($tab_pdb_E_pec);
+        $sheet_def_cable = $excel->getSheetByName("DEF_CABLE");
+        $row_def_cable = 5;
+
+        while ($read_def_cable = getLine($sheet_def_cable, $row_def_cable, 20)) {
+            if( in_array($read_def_cable[0],$tab_pdb_E_pec) ){
+                foreach ($tab_pdb_E_pec as $val) {
+                    if ($val == $read_def_cable[0]) {
+                        $tab_pdb_E_pec_capacite[] =array($sheet_def_cable->getCellByColumnAndRow(0,$row_def_cable)->getValue(), $sheet_def_cable->getCellByColumnAndRow(1,$row_def_cable)->getValue());
+                    }
+                }
+            }
+            $row_def_cable++;
+        }
+
+        foreach ($tab_pdb_E_pec_capacite as $key ){
+            switch ($key[1]){
+                case 4:$capacite4_pec++;
+                    break;
+                case 12:$capacite12_pec++;
+                    break;
+                case 24:$capacite24_pec++;
+                    break;
+                case 48:$capacite48_pec++;
+                    break;
+                case 72:$capacite72_pec++;
+                    break;
+                case 144:$capacite144_pec++;
+                    break;
+                case 288:$capacite288_pec++;
+                    break;
+                case 432:$capacite432_pec++;
+                    break;
+                case 720:$capacite720_pec++;
+                    break;
+            }
+        }
+
+        //traitement d'enregistrement sur la base
         $stm_sel_idressource = $db->prepare("select * from `detaildevis` where id_ressource = :id_ressource");
         $stm_sel_idressource->bindValue(':id_ressource',$idressource);
         $stm_sel_idressource->execute();
-       if($stm_sel_idressource->rowCount() > 0){
-           //update devis
-           $stm = $db->prepare("update `detaildevis` set RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
+        if($stm_sel_idressource->rowCount() > 0){
+            //update devis
+            $stm = $db->prepare("update `detaildevis` set RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
 RFO_01_09_qt= :RFO_01_09_qt, RFO_01_11_qt= :RFO_01_11_qt, RFO_01_13_qt= :RFO_01_13_qt, RFO_01_15_qt= :RFO_01_15_qt, RFO_01_16_qt= :RFO_01_16_qt, RFO_01_17_qt= :RFO_01_17_qt,
 RFO_01_18_qt= :RFO_01_18_qt, RFO_01_19_qt= :RFO_01_19_qt, RFO_01_20_qt= :RFO_01_20_qt,  RFO_01_21_qt= :RFO_01_21_qt, RFO_01_23_qt = :RFO_01_23_qt, RFO_01_01_PEC= :RFO_01_01_PEC,
 RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_PEC= :RFO_01_07_PEC, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
-RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert where id_ressource =:id_ressource ");
-           $dateaction = date('Y-m-d G:i:s');
+RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :dateinsert where id_ressource =:id_ressource ");
+            $dateaction = date('Y-m-d G:i:s');
 
-           $stm->bindValue(':id_ressource',$idressource);
-           $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
-           $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
-           $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
-           $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
-           $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
-           $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
-           $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
-           $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
-           $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
-           $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
-           $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
-           $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
-           $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
-           $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
-           $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
-           $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
-           $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
-           $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
-           $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
-           $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
-           $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
-           $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
-           $stm->bindValue(':dateinsert',$dateaction);
-           $stm->execute();
-       }else{
-           //insert devis
-           $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
+            $stm->bindValue(':id_ressource',$idressource);
+            $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
+            $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
+            $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
+            $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
+            $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
+            $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
+            $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
+            $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
+            $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
+            $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
+            $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
+            $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
+            $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
+            $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
+            $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
+            $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
+            $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
+            $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
+            $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
+            $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
+            $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
+            $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
+            $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
+            $stm->bindValue(':dateinsert',$dateaction);
+            $stm->execute();
+        }else{
+            //insert devis
+            $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
 `RFO_01_13_qt`, `RFO_01_15_qt`, `RFO_01_16_qt`, `RFO_01_17_qt`, `RFO_01_18_qt`, `RFO_01_19_qt`, `RFO_01_20_qt`,
- `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `dateinsert`) 
+ `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `RFO_01_23_qt_PEC`, `dateinsert`) 
  VALUES (NULL,  :id_ressource,  :RFO_01_01_qt, :RFO_01_03_qt, :RFO_01_05_qt,  :RFO_01_07_qt, :RFO_01_09_qt, :RFO_01_11_qt,
    :RFO_01_13_qt, :RFO_01_15_qt,    :RFO_01_16_qt, :RFO_01_17_qt, :RFO_01_18_qt,   :RFO_01_19_qt, :RFO_01_20_qt,
-   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC ,:dateaction  )");
-           $dateaction = date('Y-m-d G:i:s');
-           $stm->bindValue(':id_ressource',$idressource);
-           $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
-           $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
-           $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
-           $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
-           $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
-           $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
-           $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
-           $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
-           $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
-           $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
-           $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
-           $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
-           $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
-           $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
-           $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
-           $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
-           $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
-           $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
-           $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
-           $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
-           $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
-           $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
-           $stm->bindValue(':dateaction',$dateaction);
-           $stm->execute();
+   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC,:RFO_01_23_qt_PEC,:dateaction  )");
+            $dateaction = date('Y-m-d G:i:s');
+            $stm->bindValue(':id_ressource',$idressource);
+            $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
+            $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
+            $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
+            $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
+            $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
+            $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
+            $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
+            $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
+            $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
+            $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
+            $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
+            $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
+            $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
+            $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
+            $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
+            $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
+            $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
+            $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
+            $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
+            $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
+            $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
+            $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
+            $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
+            $stm->bindValue(':dateaction',$dateaction);
+            $stm->execute();
 
-       }
+        }
 
 
         return json_encode($tabreturn);
@@ -803,6 +777,7 @@ RFO_01_13_PEC= :RFO_01_13_PEC, dateinsert= :dateinsert where id_ressource =:id_r
     }
     return -1;
 }
+
 
 function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
@@ -1485,7 +1460,7 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt, $id_entrepri
 }
 function return_list_bei_du_nro($db,$idnro){
     $mailaction_cc = [];
-    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` and `utilisateur`.`id_profil_utilisateur` = 4 ";
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
 
@@ -1496,9 +1471,9 @@ function return_list_bei_du_nro($db,$idnro){
     return $mailaction_cc;
 }
 
-function return_list_vpi_pec_du_nro($db,$idnro){
+function return_list_vpi_pci_du_nro($db,$idnro){
 $mailaction_cc = [];
-    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur";
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` and (`utilisateur`.`id_profil_utilisateur` = 8 || `utilisateur`.`id_profil_utilisateur` = 7)";
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
 
