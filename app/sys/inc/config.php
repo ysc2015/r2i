@@ -11,7 +11,7 @@ $password = ($_SERVER['SERVER_NAME'] == "localhost") ? "" : "r2i";
 
 define('OSA_SERVER',"http://sd-83414.dedibox.fr/");
 //https://gbts.free-infra.vlq16.iliad.fr/curl_dedibox/get_fci_data.php
-define('CMD_STRUC_URL',"http://localhost/r2i-v.0.2/app/sys/api/todelete/curl_test.php");
+define('CMD_STRUC_URL',"http://sd-83414.dedibox.fr/r2i/app/sys/api/todelete/curl_test.php");
 
 try {
     $db = new PDO("mysql:host=$server;dbname=$db_name", $user, $password,array( PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
