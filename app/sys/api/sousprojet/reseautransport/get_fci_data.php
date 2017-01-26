@@ -19,6 +19,8 @@ if(isset($num_commande_fci) && !empty($num_commande_fci)) {
         curl_setopt($ch, CURLOPT_URL, CMD_STRUC_URL);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, "rrahmouni:Keeshie7");
         curl_setopt($ch, CURLOPT_POSTFIELDS, "num_commande_fci=$num_commande_fci");
 
         $content = curl_exec($ch);
