@@ -1260,7 +1260,7 @@ switch ($page) {
             //commande structurante js
             $("#apply_fci_commande").click(function(e) {
                 e.preventDefault();
-                console.log('apply_fci_commande clk');
+                console.log('apply_fci_commande clk ' + tentree_cmd);
 
                 $.ajax({
                     url: "api/sousprojet/reseautransport/set_cmd_trv_from_ws.php",
@@ -1286,7 +1286,7 @@ switch ($page) {
                                 $('#cctr_go_ft').val(msg.rows.gf);
                                 break;
                             case 'transportcmdfintravaux' :
-                                $('#cftrvx_date_depot_cmd').val(msg.rows.de);
+                                //$('#cftrvx_date_depot_cmd').val(msg.rows.de);
                                 $('#cftrvx_date_debut_travaux_ft').val(msg.rows.dd);
                                 $('#cftrvx_date_fin_travaux_ft').val(msg.rows.df);
                                 $('#cftrvx_go_ft').val(msg.rows.gf);
@@ -1298,7 +1298,7 @@ switch ($page) {
                                 $('#dcc_go_ft').val(msg.rows.gf);
                                 break;
                             case 'distributioncmdfintravaux' :
-                                $('#dcftrvx_date_depot_cmd').val(msg.rows.de);
+                                //$('#dcftrvx_date_depot_cmd').val(msg.rows.de);
                                 $('#dcftrvx_date_debut_travaux_ft').val(msg.rows.dd);
                                 $('#dcftrvx_date_fin_travaux_ft').val(msg.rows.df);
                                 $('#dcftrvx_go_ft').val(msg.rows.gf);

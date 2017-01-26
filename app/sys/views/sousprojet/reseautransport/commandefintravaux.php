@@ -64,10 +64,6 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
-                    <label for="cftrvx_date_depot_cmd">Date de dépôt de la commande <!--<span class="text-danger">*</span>--></label>
-                    <input class="form-control " type="date" id="cftrvx_date_depot_cmd" name="cftrvx_date_depot_cmd" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_depot_cmd : "")?>">
-                </div>
-                <div class="col-md-3">
                     <label for="cftrvx_date_debut_travaux_ft">Date Début Travaux FT <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="cftrvx_date_debut_travaux_ft" name="cftrvx_date_debut_travaux_ft" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_debut_travaux_ft : "")?>">
                 </div>
