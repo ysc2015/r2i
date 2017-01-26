@@ -522,12 +522,12 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                         $nom_feuille_pdb = substr_replace($read[0],'_',16,0);
                         $nom_feuille_pdb = str_replace('PDB','CDI',$nom_feuille_pdb);
                         $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-
+                        $compteur = 0;
+                        $val_E_P="";
                         if($sheet_pdb!=null){
                             $row_pdb = 8;
                             $i=0;
                             $loop = true;
-
                             while($loop) {
 
                                 $read_pdb = getLine($sheet_pdb,$row_pdb,20);
@@ -537,17 +537,28 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                                     break;
                                 }
                                 if($read_pdb==null) {
+                                    if(strstr($val_E_P,"P") && strstr($val_E_P,"E") && $compteur==12){
+                                        echo $val_E_P."**".$compteur."<br />";
+                                        $nombre_E++;
+                                    }
+
+                                    $val_E_P="";
+
                                     $row_pdb++;
                                     $i++;
                                     continue;
                                 }
                                 $i = 0;
+
                                 if( $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue()==$nom_feuille_pdb && ($read_pdb[7]=="E" || $read_pdb[7]=="P" ) && $nom_cable != $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue() && strstr($sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue(),"CDI") ) {
-                                    $nombre_E++;
+                                    $val_E_P .= $read_pdb[7];
+                                    $compteur++;
+
                                     $nom_cable = $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue();
                                 }
                                 $row_pdb++;
                             }
+                            echo $nombre_E;
                         }
 
 
