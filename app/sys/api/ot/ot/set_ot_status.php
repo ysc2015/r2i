@@ -222,7 +222,6 @@ if($err==0) {
                         $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire);
                         $mailaction_object = $mailaction_html[1];
                         $mailaction_html =  $mailaction_html[0];
-
                         $mailaction_to = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt, $ot->id_entreprise);
                         //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
 
@@ -230,9 +229,8 @@ if($err==0) {
                         $mailaction_cc[] = $connectedProfil->email_utilisateur;
 
                         if(count($mailaction_to)) {
-                            //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
-                            if(true) {
-                                $message[] = "Mail envoyé !";
+                            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                             $message[] = "Mail envoyé !";
                             } else {
                                 $message[] = "Mail non envoyé !";
                                 $err++;
