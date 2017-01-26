@@ -64,6 +64,10 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-3">
+                    <label for="cftrvx_date_depot_cmd">Date de dépôt de la commande <!--<span class="text-danger">*</span>--></label>
+                    <input class="form-control " type="date" id="cftrvx_date_depot_cmd" name="cftrvx_date_depot_cmd" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_depot_cmd : "")?>">
+                </div>
+                <div class="col-md-3">
                     <label for="cftrvx_date_debut_travaux_ft">Date Début Travaux FT <!--<span class="text-danger">*</span>--></label>
                     <input class="form-control " type="date" id="cftrvx_date_debut_travaux_ft" name="cftrvx_date_debut_travaux_ft" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_debut_travaux_ft : "")?>">
                 </div>
@@ -72,19 +76,23 @@
                     <input class="form-control " type="date" id="cftrvx_date_fin_travaux_ft" name="cftrvx_date_fin_travaux_ft" value="<?=($sousProjet->transportcmdfintravaux !== NULL ? $sousProjet->transportcmdfintravaux->date_fin_travaux_ft : "")?>">
                 </div>
                 <div class="col-md-3">
-                    <label for="cftrvx_ok_ft">OK FT <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="cftrvx_ok_ft" name="cftrvx_ok_ft">
+                    <label for="cftrvx_go_ft">OK FT <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control " id="cftrvx_go_ft" name="cftrvx_go_ft">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectGoFt::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_go_ft\" ". ($sousProjet->transportcmdfintravaux!==NULL && $sousProjet->transportcmdfintravaux->ok_ft==$result->id_go_ft ?"selected": "")." >$result->lib_go_ft</option>";
+                            echo "<option value=\"$result->id_go_ft\" ". ($sousProjet->transportcmdfintravaux!==NULL && $sousProjet->transportcmdfintravaux->go_ft==$result->id_go_ft ?"selected": "")." >$result->lib_go_ft</option>";
                         }
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label for="cftrvx_ok">OK <!--<span class="text-danger">*</span>--></label>
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label for="cftrvx_ok">Réalisation de l'ensemble des commandes travaux <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="cftrvx_ok" name="cftrvx_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php

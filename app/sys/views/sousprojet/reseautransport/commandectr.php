@@ -177,13 +177,6 @@
 
         $("#cctr_ref_commande_acces").change(function(e) {
             e.preventDefault();
-            console.log('cctr_ref_commande_acces chg');
-            console.log($( this).val());
-
-        });
-        $('.tag label label-info').click(function(e) {
-            e.preventDefault();
-            console.log('span.label-info click');
         });
 
 

@@ -114,8 +114,8 @@ if(isset($dcftrvx_ref_commande_fin_travaux)){
     $insert = true;
 }
 
-if(isset($dcftrvx_ok_ft)){
-    $stm->bindParam(':ok_ft',$dcftrvx_ok_ft);
+if(isset($dcftrvx_go_ft)){
+    $stm->bindParam(':go_ft',$dcftrvx_go_ft);
     $insert = true;
 }
 

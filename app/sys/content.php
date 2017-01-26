@@ -613,6 +613,91 @@ switch ($page) {
         </div>
     </div>
     <!-- END voir question/correction Modal -->
+    <!-- ajouter sous projet Modal -->
+    <div class="modal fade" id="show-details-fci" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title" id="details-fci-title">Détails commande fci</h3>
+                    </div>
+                    <div class="block-content" id="show-details-fci-block">
+                        <div class="progress" id="fci-progress">
+                            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">récupération infos commande fci ...</div>
+                        </div>
+                        <form class="js-validation-bootstrap form-horizontal" id="details_fci_form" style="display: none;">
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_statut">Statut</label>
+                                    <input class="form-control" type="text" id="fci_statut" name="fci_statut" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_raison">Raison</label>
+                                    <input class="form-control" type="text" id="fci_raison" name="fci_raison" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_num_commande_fci">Num commande fci</label>
+                                    <input class="form-control" type="text" id="fci_num_commande_fci" name="fci_num_commande_fci" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_etat_commande">Etat commande fci</label>
+                                    <input class="form-control" type="text" id="fci_etat_commande" name="fci_etat_commande" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_date_emission">Date émission</label>
+                                    <input class="form-control" type="text" id="fci_date_emission" name="fci_date_emission" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_type_commande">Type commande</label>
+                                    <input class="form-control" type="text" id="fci_type_commande" name="fci_type_commande" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_type_entite">Type entité</label>
+                                    <input class="form-control" type="text" id="fci_type_entite" name="fci_type_entite" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_date_deb_tvx">Date début travaux</label>
+                                    <input class="form-control" type="text" id="fci_date_deb_tvx" name="fci_date_deb_tvx" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <label for="fci_date_fin_tvx">Date fin travaux</label>
+                                    <input class="form-control" type="text" id="fci_date_fin_tvx" name="fci_date_fin_tvx" disabled>
+                                </div>
+                            </div>
+                            <div class='alert alert-success' id='message_details_fci' role='alert' style="display: none;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary disabled" id="apply_fci_commande" type="button"><i class="fa fa-check"></i> Appliquer à l'étape</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END ajouter sous projet Modal -->
     <div id="delete-blq-dialog-confirm" title="Supprimer cet élément?">
         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
     </div>
@@ -1171,6 +1256,85 @@ switch ($page) {
                 e.preventDefault();
                 $("#unset-master-dialog-confirm").dialog("open");
             });
+
+            //commande structurante js
+            $("#apply_fci_commande").click(function(e) {
+                e.preventDefault();
+                console.log('apply_fci_commande clk');
+
+                $.ajax({
+                    url: "api/sousprojet/reseautransport/set_cmd_trv_from_ws.php",
+                    dataType: "json",
+                    method: "POST",
+                    data: {
+                        idsp : get('idsousprojet'),
+                        tentree : tentree_cmd,
+                        dd : $('#fci_date_deb_tvx').val(),
+                        df : $('#fci_date_fin_tvx').val(),
+                        de : $('#fci_date_emission').val(),
+                        gf : $('#fci_etat_commande').val()
+                    }
+                }).done(function (msg) {
+                    if(App.showMessage(msg,'#message_details_fci')) {
+
+                        switch(msg.rows.form) {
+
+                            case 'transportcmcctr' :
+                                $('#cctr_date_depot_cmd').val(msg.rows.de);
+                                $('#cctr_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#cctr_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#cctr_go_ft').val(msg.rows.gf);
+                                break;
+                            case 'transportcmdfintravaux' :
+                                $('#cftrvx_date_depot_cmd').val(msg.rows.de);
+                                $('#cftrvx_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#cftrvx_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#cftrvx_go_ft').val(msg.rows.gf);
+                                break;
+                            case 'distributioncmdcdi' :
+                                $('#dcc_date_depot_cmd').val(msg.rows.de);
+                                $('#dcc_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#dcc_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#dcc_go_ft').val(msg.rows.gf);
+                                break;
+                            case 'distributioncmdfintravaux' :
+                                $('#dcftrvx_date_depot_cmd').val(msg.rows.de);
+                                $('#dcftrvx_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#dcftrvx_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#dcftrvx_go_ft').val(msg.rows.gf);
+                                break;
+
+                            default : break;
+                        }
+                    }
+
+                });
+            });
+
+            $('#show-details-fci').on('shown.bs.modal', function () {
+                $('#details_fci_form').hide();
+                $('#apply_fci_commande').addClass('disabled');
+                getCommandeInfos(num_commande_fci);
+            });
+
+            $('#show-details-fci').on('hidden.bs.modal', function () {
+                $('#fci-progress').show();
+                $('#details_fci_form').hide();
+            });
+
+            $('body').on('click', 'span.label-info', function(e) {
+                e.preventDefault();
+
+                //console.log($(this).closest('.bootstrap-tagsinput').find('input').closest('form').attr('id'));
+
+                $('#details-fci-title').html('Détails commande fci : ' + $(this).text());
+
+                $('#show-details-fci').modal({backdrop: 'static', keyboard: false});
+
+                tentree_cmd = $(this).closest('.bootstrap-tagsinput').find('input').closest('form').attr('id');
+                num_commande_fci = $(this).text();
+            });
+
         } );
     </script>
 <?php } ?>

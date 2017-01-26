@@ -16948,3 +16948,7 @@ span.fc-title {
   text-overflow: ellipsis;
   white-space: pre-line;
 }
+
+span.label-info {
+  cursor: pointer;
+}

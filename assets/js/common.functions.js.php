@@ -189,6 +189,54 @@ function getRetourTerrain(idsp,idtot,selector) {
     });
 }
 
-function getCommandeInfos(numcmd) {
-    console.log('getCommandeInfos');
+var data_fci = {
+    statut : '',
+    raison : '',
+    num_commande_fci : '',
+    etat_commande : '',
+    date_emission : '',
+    date_ar : '',
+    type_commande : '',
+    type_entite : '',
+    date_deb_tvx : '',
+    date_fin_tvx : ''
+};
+
+var num_commande_fci;
+var tentree_cmd;
+
+    function getCommandeInfos(numcmd) {
+
+        $.ajax({
+            url: "api/sousprojet/reseautransport/get_fci_data.php",
+            dataType: "json",
+            method: "POST",
+            async : false,
+            data: {
+                num_commande_fci : numcmd
+            }
+        }).done(function (msg) {
+            //console.log(msg);
+
+            $('#fci_statut').val(data_fci.statut = msg.statut);
+            $('#fci_raison').val(data_fci.raison = msg.raison);
+            $('#fci_num_commande_fci').val(data_fci.num_commande_fci = msg.data.num_commande_fci);
+            $('#fci_etat_commande').val(data_fci.etat_commande = msg.data.etat_commande);
+            $('#fci_date_emission').val(data_fci.date_emission = msg.data.date_emission);
+            $('#fci_type_commande').val(data_fci.type_commande = msg.data.type_commande);
+            $('#fci_type_entite').val(data_fci.type_entite = msg.data.type_entite);
+            $('#fci_date_deb_tvx').val(data_fci.date_deb_tvx = msg.data.date_deb_tvx);
+            $('#fci_date_fin_tvx').val(data_fci.date_fin_tvx = msg.data.date_fin_tvx);
+
+            console.log('data_fci');
+            console.log(data_fci);
+
+            $('#fci-progress').hide();
+            $('#details_fci_form').show();
+
+            $('#apply_fci_commande').removeClass('disabled');
+
+        });
+
+
 }
