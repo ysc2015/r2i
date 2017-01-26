@@ -218,7 +218,7 @@ if(isset($idot) && !empty($idot)) {
                                 break;
                             default : break;
                         }
-                    }else
+                    }
 
                     $sousProjet->{$value[0]}->date_retour = date('Y-m-d');
                     $sousProjet->{$value[0]}->save();
