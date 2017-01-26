@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-sleep(2);//test loader only
+//sleep(2);
 
 extract($_POST);
 //extract($_GET);
@@ -25,8 +25,6 @@ if(isset($num_commande_fci) && !empty($num_commande_fci)) {
 
         if (FALSE === $content)
             throw new Exception(curl_error($ch), curl_errno($ch));
-
-        // ...process $content now
 
         echo $content;
     } catch(Exception $e) {

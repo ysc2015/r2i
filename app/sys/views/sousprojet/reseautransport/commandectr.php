@@ -175,9 +175,9 @@
             });
         });
 
-        $("#cctr_ref_commande_acces").change(function(e) {
+        /*$("#cctr_ref_commande_acces").change(function(e) {
             e.preventDefault();
-        });
+        });*/
 
 
     } );

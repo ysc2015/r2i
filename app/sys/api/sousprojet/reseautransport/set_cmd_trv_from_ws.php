@@ -84,7 +84,7 @@ if(isset($idsp) && !empty($idsp)) {
 
                     if($stm->execute()) {
 
-                        $affected_rows["de"] = $de;
+                        $affected_rows["de"] = explode(' ',$de)[0];
                         $affected_rows["dd"] = $dd;
                         $affected_rows["df"] = $df;
                         $affected_rows["gf"] = $fci_states_arr[$gf];
