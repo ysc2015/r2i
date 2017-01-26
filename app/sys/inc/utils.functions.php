@@ -540,7 +540,6 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
 
                                     if(strstr($val_E_P,"P") && strstr($val_E_P,"E") ){
 
-                                        echo $val_E_P."**".$nom_feuille_pdb."<br />";
                                         $nombre_E++;
                                     }
                                     $compteur=0;
@@ -560,7 +559,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                                 }
                                 $row_pdb++;
                             }
-                            echo $nombre_E;
+
                         }
 
 
@@ -573,7 +572,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                         $nom_feuille_pdb = substr_replace($read[0],'_',16,-2);
                         $nom_feuille_pdb = str_replace('PEC','CTR',$nom_feuille_pdb);
                         $sheet_pdb = $excel->getSheetByName($nom_feuille_pdb);
-                        //echo $nom_feuille_pdb."<br />";
+
 
                         if($sheet_pdb!=null){
                             $row_pdb = 8;
@@ -657,12 +656,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         }
             $i++;
         }
-        echo "  tab_defcable_vol_extremites:  <br />";
-        print_r($tab_defcable_vol_extremites);
-        echo " <br /> tab_defcable_vol_extremites_passag:  <br />";
-        print_r($tab_defcable_vol_extremites_passage );
-        echo " <br /> tab_defcable_vol_extremites_racc:  <br />";
-        print_r($tab_defcable_vol_extremites_rac);
+
 
         $RFO_01_21 = $nombre_E;
 
