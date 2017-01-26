@@ -554,7 +554,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
                                 if( $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue()==$nom_feuille_pdb && ($read_pdb[7]=="E" || $read_pdb[7]=="P" )   && strstr($sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue(),"CDI") ) {
                                     $val_E_P .= $read_pdb[7];
                                     $compteur++;
-                                    echo "que cable CDI".$sheet_pdb->getCellByColumnAndRow(13,$row_pdb)->getValue()."<br />";
+
                                     $nom_cable = $sheet_pdb->getCellByColumnAndRow(1,$row_pdb)->getValue();
                                 }
                                 $row_pdb++;
