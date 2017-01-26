@@ -223,7 +223,6 @@ if($err==0) {
                         $mailaction_object = $mailaction_html[1];
                         $mailaction_html =  $mailaction_html[0];
                         $mailaction_to = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt, $ot->id_entreprise);
-                        //print_r(return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro));
 
                         $mailaction_cc = return_list_mail_cc_notif($db,null,3,$ot->id_equipe_stt);
                         $mailaction_cc[] = $connectedProfil->email_utilisateur;
