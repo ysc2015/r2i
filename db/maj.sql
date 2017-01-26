@@ -31,3 +31,5 @@ ALTER TABLE `detaildevis` DROP `RFO_01_01_racc`, DROP `RFO_01_01_unit`, DROP `RF
 
 
 ALTER TABLE `detaildevis` ADD UNIQUE(`id_ressource`);
+
+ALTER TABLE `detaildevis` ADD `RFO_01_23_qt_PEC` INT NOT NULL AFTER `RFO_01_13_PEC`;
