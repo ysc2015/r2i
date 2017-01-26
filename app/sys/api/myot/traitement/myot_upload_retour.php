@@ -90,6 +90,8 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Aiguillage Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour aiguillage du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "transportaiguillage";
+                        $mailaction_phase = "CRT";
                         break;
                     case "2" :
                         $tentree[] = array("transporttirage","date_tirage");
@@ -97,6 +99,8 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Tirage Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour tirage du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "transporttirage";
+                        $mailaction_phase = "CRT";
                         break;
                     case "3" :
                         $tentree[] = array("transportraccordement","date_racco");
@@ -104,10 +108,14 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Raccordement Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour raccordement du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "transportraccordement";
+                        $mailaction_phase = "CRT";
                         break;
                     case "4" :
                         $tentree[] = array("transporttirage","date_tirage");
                         $tentree[] = array("transportraccordement","date_racco");
+                        $mailaction_etape = "transporttirageraccordement";
+                        $mailaction_phase = "CRT";
                         break;
                     case "5" :
                         $tentree[] = array("distributionaiguillage","date_aiguillage");
@@ -115,6 +123,9 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Aiguillage Réalisé par le STT  ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour aiguillage du CDI de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "distributionaiguillage";
+                        $mailaction_phase = "CDI";
+
                         break;
                     case "6" :
                         $tentree[] = array("distributiontirage","date_tirage");
@@ -122,6 +133,8 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Tirage Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour tirage du CDI de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "distributiontirage";
+                        $mailaction_phase = "CDI";
                         break;
                     case "7" :
                         $tentree[] = array("distributionraccordement","date_racco");
@@ -129,10 +142,14 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Raccordement Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour raccordement du CDI de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "distributionraccordement";
+                        $mailaction_phase = "CDI";
                         break;
                     case "8" :
                         $tentree[] = array("distributiontirage","date_tirage");
                         $tentree[] = array("distributionraccordement","date_racco");
+                        $mailaction_etape = "distributiontirageraccordement";
+                        $mailaction_phase = "CDI";
                         break;
                     case "9" :
                         $tentree[] = array("transportrecette","date_recette");
@@ -140,7 +157,8 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Recette Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour recette du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
-
+                        $mailaction_etape = "distributiontirageraccordement";
+                        $mailaction_phase = "CDI";
                         break;
                     case "10" :
                         $tentree[] = array("distributionrecette","date_recette");
@@ -148,6 +166,8 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_object = "[R2i] Retour OT Recette Réalisé par le STT ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone;
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour recette du CDI de  : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
+                        $mailaction_etape = "distributionrecette";
+                        $mailaction_phase = "CDI";
                         break;
                     default :
                         break;
@@ -160,61 +180,45 @@ if(isset($idot) && !empty($idot)) {
                                 $step = new SousProjetTransportAiguillage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "transportaiguillage";
-                                $mailaction_phase = "CRT";
                                 break;
                             case "transporttirage" :
                                 $step = new SousProjetTransportTirage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "transporttirage";
-                                $mailaction_phase = "CRT";
                                 break;
                             case "transportraccordement" :
                                 $step = new SousProjetTransportRaccordement(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "transportraccordement";
-                                $mailaction_phase = "CRT";
                                 break;
                             case "distributionaiguillage" :
                                 $step = new SousProjetDistributionAiguillage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "distributionaiguillage";
-                                $mailaction_phase = "CDI";
                                 break;
                             case "distributiontirage" :
                                 $step = new SousProjetDistributionTirage(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "distributiontirage";
-                                $mailaction_phase = "CDI";
                                 break;
                             case "distributionraccordement" :
                                 $step = new SousProjetDistributionRaccordement(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "distributionraccordement";
-                                $mailaction_phase = "CDI";
                                 break;
                             case "transportrecette" :
                                 $step = new SousProjetTransportRecette(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape= "transportrecette";
-                                $mailaction_phase = "CRT";
                                 break;
                             case "distributionrecette" :
                                 $step = new SousProjetDistributionRecette(array(
                                     'id_sous_projet' => $idsp));
                                 $step->save();
-                                $mailaction_etape = "distributionrecette";
-                                $mailaction_phase = "CDI";
                                 break;
                             default : break;
                         }
-                    }
+                    }else
 
                     $sousProjet->{$value[0]}->date_retour = date('Y-m-d');
                     $sousProjet->{$value[0]}->save();
@@ -227,13 +231,19 @@ if(isset($idot) && !empty($idot)) {
              */
 
              if($mailaction_new){
+
+                 $sql_statement_ot = $db->prepare("SELECT * FROM `ordre_de_travail` where id_ordre_de_travail = :id_ot");
+                 $sql_statement_ot->bindParam(':id_ot',$idot);
+                 $sql_statement_ot->execute();
+                 $statement_ot = $sql_statement_ot->fetch();
+                 $nom_ot = $statement_ot['type_ot'];
+
                  $mailaction_nom_entreprise = $connectedProfil->profil->entreprise->nom;
-                 $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,$mailaction_phase,$mailaction_etape,5,$mailaction_nom_entreprise);
+                 $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,$mailaction_phase,$mailaction_etape,5,$mailaction_nom_entreprise,$nom_ot);
                  $mailaction_object = $mailaction_html[1];
                  $mailaction_html =  $mailaction_html[0];
 
-
-                 $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",5);
+                  $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",5);
                  $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
                  if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                      $message[] = "Mail envoyé !";
