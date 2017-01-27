@@ -1145,6 +1145,84 @@ switch ($page) {
                 $('body').addClass('modal-open');
             });
 
+            //commande structurante js
+            $("#apply_fci_commande").click(function(e) {
+                e.preventDefault();
+                console.log('apply_fci_commande clk ' + tentree_cmd);
+
+                $.ajax({
+                    url: "api/sousprojet/reseautransport/set_cmd_trv_from_ws.php",
+                    dataType: "json",
+                    method: "POST",
+                    data: {
+                        idsp : get('idsousprojet'),
+                        tentree : tentree_cmd,
+                        dd : $('#fci_date_deb_tvx').val(),
+                        df : $('#fci_date_fin_tvx').val(),
+                        de : $('#fci_date_emission').val(),
+                        gf : $('#fci_etat_commande').val()
+                    }
+                }).done(function (msg) {
+                    if(App.showMessage(msg,'#message_details_fci')) {
+
+                        switch(msg.rows.form) {
+
+                            case 'transportcmcctr' :
+                                $('#cctr_date_depot_cmd').val(msg.rows.de);
+                                $('#cctr_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#cctr_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#cctr_go_ft').val(msg.rows.gf);
+                                break;
+                            case 'transportcmdfintravaux' :
+                                //$('#cftrvx_date_depot_cmd').val(msg.rows.de);
+                                $('#cftrvx_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#cftrvx_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#cftrvx_go_ft').val(msg.rows.gf);
+                                break;
+                            case 'distributioncmdcdi' :
+                                $('#dcc_date_depot_cmd').val(msg.rows.de);
+                                $('#dcc_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#dcc_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#dcc_go_ft').val(msg.rows.gf);
+                                break;
+                            case 'distributioncmdfintravaux' :
+                                //$('#dcftrvx_date_depot_cmd').val(msg.rows.de);
+                                $('#dcftrvx_date_debut_travaux_ft').val(msg.rows.dd);
+                                $('#dcftrvx_date_fin_travaux_ft').val(msg.rows.df);
+                                $('#dcftrvx_go_ft').val(msg.rows.gf);
+                                break;
+
+                            default : break;
+                        }
+                    }
+
+                });
+            });
+
+            $('#show-details-fci').on('shown.bs.modal', function () {
+                $('#details_fci_form').hide();
+                $('#apply_fci_commande').addClass('disabled');
+                getCommandeInfos(num_commande_fci);
+            });
+
+            $('#show-details-fci').on('hidden.bs.modal', function () {
+                $('#fci-progress').show();
+                $('#details_fci_form').hide();
+            });
+
+            $('body').on('click', 'span.label-info', function(e) {
+                e.preventDefault();
+
+                //console.log($(this).closest('.bootstrap-tagsinput').find('input').closest('form').attr('id'));
+
+                $('#details-fci-title').html('Détails commande fci : ' + $(this).text());
+
+                $('#show-details-fci').modal({backdrop: 'static', keyboard: false});
+
+                tentree_cmd = $(this).closest('.bootstrap-tagsinput').find('input').closest('form').attr('id');
+                num_commande_fci = $(this).text();
+            });
+
         } );
     </script>
 <?php } ?>
@@ -1255,84 +1333,6 @@ switch ($page) {
             $("#unset_master_ctr").click(function(e) {
                 e.preventDefault();
                 $("#unset-master-dialog-confirm").dialog("open");
-            });
-
-            //commande structurante js
-            $("#apply_fci_commande").click(function(e) {
-                e.preventDefault();
-                console.log('apply_fci_commande clk ' + tentree_cmd);
-
-                $.ajax({
-                    url: "api/sousprojet/reseautransport/set_cmd_trv_from_ws.php",
-                    dataType: "json",
-                    method: "POST",
-                    data: {
-                        idsp : get('idsousprojet'),
-                        tentree : tentree_cmd,
-                        dd : $('#fci_date_deb_tvx').val(),
-                        df : $('#fci_date_fin_tvx').val(),
-                        de : $('#fci_date_emission').val(),
-                        gf : $('#fci_etat_commande').val()
-                    }
-                }).done(function (msg) {
-                    if(App.showMessage(msg,'#message_details_fci')) {
-
-                        switch(msg.rows.form) {
-
-                            case 'transportcmcctr' :
-                                $('#cctr_date_depot_cmd').val(msg.rows.de);
-                                $('#cctr_date_debut_travaux_ft').val(msg.rows.dd);
-                                $('#cctr_date_fin_travaux_ft').val(msg.rows.df);
-                                $('#cctr_go_ft').val(msg.rows.gf);
-                                break;
-                            case 'transportcmdfintravaux' :
-                                //$('#cftrvx_date_depot_cmd').val(msg.rows.de);
-                                $('#cftrvx_date_debut_travaux_ft').val(msg.rows.dd);
-                                $('#cftrvx_date_fin_travaux_ft').val(msg.rows.df);
-                                $('#cftrvx_go_ft').val(msg.rows.gf);
-                                break;
-                            case 'distributioncmdcdi' :
-                                $('#dcc_date_depot_cmd').val(msg.rows.de);
-                                $('#dcc_date_debut_travaux_ft').val(msg.rows.dd);
-                                $('#dcc_date_fin_travaux_ft').val(msg.rows.df);
-                                $('#dcc_go_ft').val(msg.rows.gf);
-                                break;
-                            case 'distributioncmdfintravaux' :
-                                //$('#dcftrvx_date_depot_cmd').val(msg.rows.de);
-                                $('#dcftrvx_date_debut_travaux_ft').val(msg.rows.dd);
-                                $('#dcftrvx_date_fin_travaux_ft').val(msg.rows.df);
-                                $('#dcftrvx_go_ft').val(msg.rows.gf);
-                                break;
-
-                            default : break;
-                        }
-                    }
-
-                });
-            });
-
-            $('#show-details-fci').on('shown.bs.modal', function () {
-                $('#details_fci_form').hide();
-                $('#apply_fci_commande').addClass('disabled');
-                getCommandeInfos(num_commande_fci);
-            });
-
-            $('#show-details-fci').on('hidden.bs.modal', function () {
-                $('#fci-progress').show();
-                $('#details_fci_form').hide();
-            });
-
-            $('body').on('click', 'span.label-info', function(e) {
-                e.preventDefault();
-
-                //console.log($(this).closest('.bootstrap-tagsinput').find('input').closest('form').attr('id'));
-
-                $('#details-fci-title').html('Détails commande fci : ' + $(this).text());
-
-                $('#show-details-fci').modal({backdrop: 'static', keyboard: false});
-
-                tentree_cmd = $(this).closest('.bootstrap-tagsinput').find('input').closest('form').attr('id');
-                num_commande_fci = $(this).text();
             });
 
         } );
