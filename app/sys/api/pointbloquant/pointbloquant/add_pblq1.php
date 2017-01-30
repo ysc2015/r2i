@@ -74,6 +74,23 @@ if($err == 0){
         $stm3->execute();
 
         $message [] = "Infos point bloquant enregistré avec succès";
+        //send mail add point bloquant
+        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',8,'',$ot->type_ot,$ot->sousprojet->ville);
+        $message[] =  $mailaction_object = $mailaction_html[1];
+        $message[] =  $mailaction_html =  $mailaction_html[0];
+        $message[] =  $mailaction_cc =return_list_mail_cc_notif($db,"",8);
+        $message[] =  $mailaction_to =return_list_vpi_pci_du_nro($db,$sousProjet->projet->nro->id_nro);
+
+        if(count($mailaction_to)>0){
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+        }else{
+            $message[] = "Liste de destination vide Mail non envoyé !";
+        }
     } else {
         $message [] = $stm->errorInfo();
     }
