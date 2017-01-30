@@ -149,6 +149,11 @@ if(isset($drec_ok)){
     $insert = true;
 }
 
+if(isset($drec_controle_plans)){
+    $stm->bindParam(':controle_plans',$drec_controle_plans);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
 

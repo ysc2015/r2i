@@ -498,6 +498,14 @@ var App = function() {
                         break;
                     case 'refresh_toggle':
                         switch ($elBlock.attr('id')) {
+                            //dashboard
+                            case 'activitevpi_block' :
+                                getPlansOk();
+                                //TODO add further functions
+                                break;
+                            case 'gestplansot_block' :
+                                getPlansOk();
+                                break;
                             case 'infozone_block' :
                              console.log($('#infozone_block').find('.tab-pane.active').attr("id"));//ajax function on common.js file to add,$elBlock as parameter
                              switch ($('#infozone_block').find('.tab-pane.active').attr("id")) {

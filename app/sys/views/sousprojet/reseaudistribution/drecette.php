@@ -119,6 +119,18 @@
                     <input readonly class="form-control " type="text" id="drec_date_transmission_plans" name="drec_date_transmission_plans" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->date_transmission_plans : "")?>" placeholder="Plans non transmis">
                 </div>
                 <div class="col-md-3">
+                    <label for="drec_controle_plans">Contrôle des plans <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control " id="drec_controle_plans" name="drec_controle_plans">
+                        <option value="" selected="">Sélectionnez une valeur</option>
+                        <?php
+                        $results = SelectControlePlan::all();
+                        foreach($results as $result) {
+                            echo "<option value=\"$result->id_controle_plan\" ". ($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->controle_plans==$result->id_controle_plan ?"selected": "")." >$result->lib_controle_plan</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-md-3">
                     <label for="drec_ok">Retours Prestataires Validés <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control" id="drec_ok" name="drec_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>

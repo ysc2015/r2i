@@ -153,6 +153,11 @@ if(isset($trec_ok)){
     $insert = true;
 }
 
+if(isset($trec_controle_plans)){
+    $stm->bindParam(':controle_plans',$trec_controle_plans);
+    $insert = true;
+}
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         
