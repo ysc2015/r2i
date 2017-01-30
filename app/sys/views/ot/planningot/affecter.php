@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6">
-                                <label for="affecter_date_debut_cal">Date début <!--<span class="text-danger">*</span>--></label>
+                                <label for="affecter_date_debut_cal">Date début </label>
                                 <input readonly class="form-control " type="date" id="affecter_date_debut_cal" name="affecter_date_debut_cal" value="">
                             </div>
                         </div>

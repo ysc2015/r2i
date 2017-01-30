@@ -20,8 +20,6 @@ try {
 
     $sql .=  " and ot.id_sous_projet > 0";
 
-    //echo $sql;
-
     $stm = $db->prepare($sql);
     $stm->execute();
 
