@@ -8,6 +8,8 @@ sleep(1);
 
 $rows = array();
 
+$temp = "";
+
 $tbl_options_arr = array(
     //Sans OT
     "transportaiguillage1" => array(
@@ -133,6 +135,8 @@ foreach($tbl_options_arr as $k => $v) {
         default : break;
     }
 
+    if($k == "transportraccordement1") $temp = $sql;
+
     $stm = $db->prepare($sql);
     $stm->execute();
 
@@ -141,4 +145,4 @@ foreach($tbl_options_arr as $k => $v) {
     $rows[$k] = $result[0][0];
 }
 
-echo json_encode(array("rows" => $rows));
+echo json_encode(array("rows" => $rows,  "debug" => $temp));
