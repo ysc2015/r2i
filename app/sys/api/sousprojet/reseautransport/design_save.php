@@ -14,6 +14,8 @@ $stm = NULL;
 if(isset($ids) && !empty($ids)){
     $sousProjet = SousProjet::find($ids);
 }
+$mailaction_new = false;
+$mailaction_entite = NULL;
 
 $insert = false;
 $err = 0;
@@ -28,6 +30,7 @@ $fields = array();
 
 if($sousProjet !== NULL) {
     if($sousProjet->transportdesign !== NULL) {
+        $mailaction_entite = $sousProjet->transportdesign;
         foreach( $_POST as $key => $value ) {
 
             if(strpos($key,$suffix) !== false) {
@@ -43,6 +46,7 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
 
         $stm = $db->prepare("update sous_projet_transport_design set $fieldslist where id_sous_projet=:id_sous_projet");
+        $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
         foreach( $_POST as $key => $value ) {
@@ -62,6 +66,7 @@ if($sousProjet !== NULL) {
         $valueslist = rtrim($valueslist,",");
 
         $stm = $db->prepare("insert into sous_projet_transport_design ($fieldslist) values ($valueslist)");
+        $mailaction_new = true;
     }
 } else {
     $err++;
@@ -177,6 +182,37 @@ if($insert == true && $err == 0){
             }
         }
         $message [] = "Enregistrement fait avec succès";
+        //mail validation etape
+        if($mailaction_new
+            &&
+            (
+                (   $mailaction_entite==null
+                    && isset($td_ok)
+                    && $td_ok == 1
+                )
+                ||
+                ( $mailaction_entite!=null
+                    && isset($td_ok)
+                    && $td_ok == 1
+                    && $mailaction_entite->ok != $td_ok
+                )
+            )
+        ) {
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','design',7,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
+            $mailaction_cc =return_list_mail_cc_notif($db,"transportdesign",7);
+            $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+
+
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+        }
     } else {
         $message [] = $stm->errorInfo();
     }
