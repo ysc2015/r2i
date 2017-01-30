@@ -52,14 +52,6 @@
                 ?>
             </select>
             <div id="teams_list_cal" class="list-group" style="padding-top: 10px;">
-                <!--<a class="list-group-item active" href="javascript:void(0)"><span class="badge">3</span><i class="fa fa-fw fa-user push-5-r"></i> Equipes</a>
-                <a class="list-group-item" href="javascript:void(0)">
-                    Equipe1
-                </a>
-                <a class="list-group-item" href="javascript:void(0)">Equipe1</a>
-                <a class="list-group-item" href="javascript:void(0)">
-                    Equipe1
-                </a>-->
             </div>
         </div>
     </div>
