@@ -102,5 +102,9 @@ TOP;
     <?php include "app/sys/footer.php"; ?>
 </div>
 <!-- END Page Container -->
+
+<?php if(isset($page) && $page == "dashboard") {?>
+    <script src="assets/js/dashboard.js" ></script>
+<?php } ?>
 </body>
 </html>

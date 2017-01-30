@@ -16952,3 +16952,7 @@ span.fc-title {
 span.label-info {
   cursor: pointer;
 }
+
+span.clickable {
+  cursor: pointer;
+}
