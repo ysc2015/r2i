@@ -239,6 +239,38 @@ if($insert == true && $err == 0){
             }
 
         }
+        //mail validation etape
+        if($mailaction_new
+            &&
+            (
+                (   $mailaction_entite==null
+                    && isset($trec_ok)
+                    && $trec_ok == 1
+                )
+                ||
+                ( $mailaction_entite!=null
+                    && isset($trec_ok)
+                    && $trec_ok == 1
+                    && $mailaction_entite->ok != $trec_ok
+
+                )
+            )
+        ) {
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',7,'');
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
+            $mailaction_cc =return_list_mail_cc_notif($db,"transportrecette",7);
+            $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+
+
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+        }
         //setSousProjetUsers(SousProjet::find($ids));;
         $message [] = "Enregistrement fait avec succès";
     } else {
