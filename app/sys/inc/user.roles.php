@@ -148,8 +148,15 @@ class adm extends baseUser {
         Page::projet(
             array(
                 "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
-                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project"),
-                "details" => array("details_liste")
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+            )
+        );
+    }
+
+    function avancement() {
+        Page::avancement(
+            array(
+                "avancement" => array("avancement_liste")
             )
         );
     }
@@ -208,7 +215,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 
     //admin only menu
@@ -278,6 +285,14 @@ class dov extends baseUser {
         );
     }
 
+    function avancement() {
+        Page::avancement(
+            array(
+                "avancement" => array("avancement_liste")
+            )
+        );
+    }
+
     function planning() {
         Page::planning(
             array(
@@ -330,7 +345,7 @@ class dov extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 }
 class pov extends baseUser {
@@ -355,6 +370,14 @@ class pov extends baseUser {
         );
     }
 
+    function avancement() {
+        Page::avancement(
+            array(
+                "avancement" => array("avancement_liste")
+            )
+        );
+    }
+
     function planning() {
         Page::planning(
             array(
@@ -407,7 +430,7 @@ class pov extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
     }
 }
 class bei extends baseUser {
@@ -417,6 +440,14 @@ class bei extends baseUser {
             array(
                 "projet" => array("liste_project"),
                 "sousprojet" => array("liste_sub_project","open_sub_project")
+            )
+        );
+    }
+
+    function avancement() {
+        Page::avancement(
+            array(
+                "avancement" => array("avancement_liste")
             )
         );
     }
@@ -443,7 +474,7 @@ class bei extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("projet_titre","projet_liste","pointbloquant_liste");
+        Page::sidebar("projet_titre","projet_liste","avancements_liste","pointbloquant_liste");
     }
 }
 class cdp extends baseUser {
@@ -506,6 +537,14 @@ class vpi extends baseUser {
         );
     }
 
+    function avancement() {
+        Page::avancement(
+            array(
+                "avancement" => array("avancement_liste")
+            )
+        );
+    }
+
     function planning() {
         Page::planning(
             array(
@@ -551,7 +590,7 @@ class vpi extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view");
     }
 }
 class pci extends baseUser {

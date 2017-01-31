@@ -217,6 +217,10 @@ switch ($page) {
         $connectedProfil->planning();
         echo "<br><br>";
         break;
+    case "avancement":
+        $connectedProfil->avancement();
+        echo "<br><br>";
+        break;
     case "entreprise":
         $connectedProfil->entreprise();
         echo "<br><br>";

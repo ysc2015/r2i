@@ -142,6 +142,12 @@ ADM;
             "navigator"=>"<li>planning</li>")));
         break;
 
+    case "avancement":
+        return json_decode(json_encode(array("header"=>"Avancement",
+            "subheader"=>"Avancement général",
+            "navigator"=>"<li>Avancement</li>")));
+        break;
+
     case "myotplanning":
         return json_decode(json_encode(array("header"=>"Planning",
             "subheader"=>"(".strtoupper($connectedProfil->profil->entreprise->nom).")",

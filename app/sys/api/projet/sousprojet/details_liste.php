@@ -51,6 +51,36 @@ $columns = array(
 
 $condition = "t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
 
+switch($connectedProfil->profil->profil->shortlib) {
+
+    case "pci" :
+    case "bei" :
+        $arr = array(-1);
+        $stm_bei_pci = $db->prepare("select id_nro from nro_utilisateur where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+        $stm_bei_pci->execute();
+        $nros = $stm_bei_pci->fetchAll();
+        foreach($nros as $nro) {
+            $arr[] = $nro['id_nro'];
+        }
+
+        $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
+        break;
+
+    case "vpi" :
+        $arr = array(-1);
+        $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+        $stm->execute();
+        $nros = $stm->fetchAll();
+        foreach($nros as $nro) {
+            $arr[] = $nro['id_nro'];
+        }
+
+        $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
+        break;
+
+    default : break;
+}
+
 
 if(isset($idp) && !empty($idp)) {
 

@@ -39,6 +39,7 @@
 <link rel="stylesheet" href="assets/js/plugins/jquery-upload-file/css/uploadfile.css">
 <link rel="stylesheet" href="assets/js/plugins/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet" href="assets/js/plugins/datatables/jquery.dataTables.min.css">
+<link rel="stylesheet" href="assets/js/plugins/datatables/buttons.dataTables.min.css">
 <link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid.css">
 <link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap.css">
 <link rel="stylesheet" href="assets/js/plugins/jqGrid/css/ui.jqgrid-bootstrap-ui.css">
@@ -61,6 +62,9 @@
 <script src="assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/js/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="assets/js/plugins/datatables/buttons.flash.min.js"></script>
+<script src="assets/js/plugins/datatables/buttons.html5.min.js"></script>
 <script src="assets/js/plugins/datatables/dataTables-bootstrap.js"></script>
 <script src="assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="assets/js/plugins/jqGrid/js/jquery.jqGrid.min.js"></script>
