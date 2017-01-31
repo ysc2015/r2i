@@ -29,7 +29,9 @@
 							idp : id projet,
 							ide : id etape,
 							etape : nom de l'etape,
-							url: http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php
+							url: http://sd-83414.dedibox.fr/r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php,
+							// affectation
+							id_r2i_users : [ids...]
 						}
 						*/
 						if(typeof obj == "undefined") throw "RC2K/OSA: parametre doit être défini"
@@ -106,6 +108,19 @@
 				            data: {
 				                cloturer: true,
 				                id: idt
+				            }
+				        }).done(callback);
+					},
+					affecter : function(id_users, id_tache, callback){
+						$.ajax({
+				            method: 'POST',
+				            url: rc2k.osa.url + 'api/affectation.php',
+				            data: {
+				                add: true,
+				                users: id_users.join(';'),
+				                id_tache: id_tache,
+				                sites: [].join(';'),
+				                groups: [].join(';')
 				            }
 				        }).done(callback);
 					}
