@@ -1536,6 +1536,7 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
     $statement[0][1]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][1] );
     $statement[0][1]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][1] );
     $statement[0][1]    = str_replace('@nom_entreprise_stt',$nom_entreprise,$statement[0][1] );
+    $statement[0][1]    = str_replace('@nom_traiteur_action',$connectedProfil->profil->prenom_utilisateur." ".$connectedProfil->profil->nom_utilisateur,$statement[0][1] );
     if($boite!=null){
         $statement[0][1]    = str_replace('@b_720',$boite[0],$statement[0][1] );
         $statement[0][1]    = str_replace('@b_432',$boite[1],$statement[0][1] );
