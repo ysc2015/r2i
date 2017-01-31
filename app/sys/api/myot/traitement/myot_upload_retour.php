@@ -91,7 +91,7 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour aiguillage du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
                         $mailaction_etape = "transportaiguillage";
-                        $mailaction_phase = "CRT";
+                        $mailaction_phase = "CTR";
                         break;
                     case "2" :
                         $tentree[] = array("transporttirage","date_tirage");
@@ -100,7 +100,7 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour tirage du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
                         $mailaction_etape = "transporttirage";
-                        $mailaction_phase = "CRT";
+                        $mailaction_phase = "CTR";
                         break;
                     case "3" :
                         $tentree[] = array("transportraccordement","date_racco");
@@ -109,13 +109,13 @@ if(isset($idot) && !empty($idot)) {
                         $mailaction_html_message = "<p>Le STT « ". $connectedProfil->profil->entreprise->nom." » vient de réaliser le retour raccordement du CTR de : 
                         <h5> ".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone." </h5></p>";
                         $mailaction_etape = "transportraccordement";
-                        $mailaction_phase = "CRT";
+                        $mailaction_phase = "CTR";
                         break;
                     case "4" :
                         $tentree[] = array("transporttirage","date_tirage");
                         $tentree[] = array("transportraccordement","date_racco");
                         $mailaction_etape = "transporttirageraccordement";
-                        $mailaction_phase = "CRT";
+                        $mailaction_phase = "CTR";
                         break;
                     case "5" :
                         $tentree[] = array("distributionaiguillage","date_aiguillage");
