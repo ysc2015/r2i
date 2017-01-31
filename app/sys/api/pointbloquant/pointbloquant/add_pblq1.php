@@ -73,13 +73,17 @@ if($err == 0){
         $stm2->execute();
         $stm3->execute();
 
+        $stm_detail_point_bloc = $db->prepare("SELECT * FROM `point_bloquant`,sous_projet,projet,`nro`, `ordre_de_travail` where `ordre_de_travail`.`id_sous_projet`=sous_projet.id_sous_projet and `nro`.`id_nro` = projet.id_nro and projet.id_projet =sous_projet.id_projet and id_point_bloquant = :id_point_bloquant and sous_projet.id_sous_projet = point_bloquant.id_sous_projet group by point_bloquant.id_point_bloquant");
+        $stm_detail_point_bloc->bindValue(":id_point_bloquant",$lastInsertedId);
+        $stm_detail_point_bloc->execute();
+        $point_bloc_sous_proj = $stm_detail_point_bloc->fetch();
         $message [] = "Infos point bloquant enregistré avec succès";
-        //send mail add point bloquant
-        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',8,'',$ot->type_ot,$ot->sousprojet->ville);
+        //send mail add point bloquant $sousProjet->projet->nro->lib_nro."-".$sousProjet->zone
+        $mailaction_html = get_content_html_mail_by_type($db,$point_bloc_sous_proj['lib_nro']."-".$point_bloc_sous_proj['ville'],'','',8,'',$point_bloc_sous_proj['type_ot'],$point_bloc_sous_proj['ville']);
         $message[] =  $mailaction_object = $mailaction_html[1];
         $message[] =  $mailaction_html =  $mailaction_html[0];
         $message[] =  $mailaction_cc =return_list_mail_cc_notif($db,"",8);
-        $message[] =  $mailaction_to =return_list_vpi_pci_du_nro($db,$sousProjet->projet->nro->id_nro);
+        $message[] =  $mailaction_to =return_list_vpi_pci_du_nro($db,$point_bloc_sous_proj['id_nro']);
 
         if(count($mailaction_to)>0){
             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
