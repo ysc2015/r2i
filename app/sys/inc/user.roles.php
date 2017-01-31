@@ -138,7 +138,7 @@ class adm extends baseUser {
             array(
                 "dashboard1" => array("index"),
                 "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
+                "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
@@ -148,7 +148,8 @@ class adm extends baseUser {
         Page::projet(
             array(
                 "projet" => array("liste_project","add_project","add_sub_project","update_project","delete_project"),
-                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project")
+                "sousprojet" => array("liste_sub_project","open_sub_project","delete_sub_project"),
+                "details" => array("details_liste")
             )
         );
     }
@@ -496,16 +497,16 @@ class cdp extends baseUser {
 }
 class vpi extends baseUser {
 
-    function dashboard() {
+    /*function dashboard() {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
                 "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
-                "productiongenerale" => array("index"),*/
+                "activitebei" => array("index"),
+                "productiongenerale" => array("index"),
             )
         );
-    }
+    }*/
 
     function projet() {
         Page::projet(
@@ -561,7 +562,7 @@ class vpi extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view");
+        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view");
     }
 }
 class pci extends baseUser {
