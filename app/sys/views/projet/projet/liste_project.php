@@ -80,6 +80,10 @@
                 if(typeof sousprojet_dt !== 'undefined') {
                     sousprojet_dt.ajax.url( 'api/projet/sousprojet/sousprojet_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0) ).load();
                 }
+
+                if(typeof details_dt !== 'undefined') {
+                    details_dt.ajax.url( 'api/projet/sousprojet/details_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0) ).load();
+                }
             }
         } );
 
@@ -100,6 +104,10 @@
 
             if(typeof sousprojet_dt !== 'undefined') {
                 sousprojet_dt.ajax.url( 'api/projet/sousprojet/sousprojet_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0) ).load();
+            }
+
+            if(typeof details_dt !== 'undefined') {
+                details_dt.ajax.url( 'api/projet/sousprojet/details_liste.php?idp='+(projet_dt.row('.selected').data()!=undefined?projet_dt.row('.selected').data().id_projet:0) ).load();
             }
 
         } );
