@@ -412,17 +412,6 @@ class pov extends baseUser {
 }
 class bei extends baseUser {
 
-    function dashboard() {
-        Page::dashboard(
-            array(
-                "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
-                "productiongenerale" => array("index"),*/
-            )
-        );
-    }
-
     function projet() {
         Page::projet(
             array(
@@ -454,7 +443,7 @@ class bei extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste");
+        Page::sidebar("projet_titre","projet_liste","pointbloquant_liste");
     }
 }
 class cdp extends baseUser {
@@ -497,16 +486,16 @@ class cdp extends baseUser {
 }
 class vpi extends baseUser {
 
-    /*function dashboard() {
+    function dashboard() {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans"),
+                "activitevpi" => array("gestionplans")/*,
                 "activitebei" => array("index"),
-                "productiongenerale" => array("index"),
+                "productiongenerale" => array("index"),*/
             )
         );
-    }*/
+    }
 
     function projet() {
         Page::projet(
@@ -562,7 +551,7 @@ class vpi extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view");
+        Page::sidebar("dashboard","projet_titre","projet_liste","pointbloquant_liste","planning_titre","planning_view");
     }
 }
 class pci extends baseUser {
@@ -570,16 +559,16 @@ class pci extends baseUser {
         return "pcip";
     }
 
-    function dashboard() {
+    /*function dashboard() {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
                 "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
-                "productiongenerale" => array("index"),*/
+                "activitebei" => array("index"),
+                "productiongenerale" => array("index"),
             )
         );
-    }
+    }*/
 
     function pcip() {
         Page::pcip(
@@ -605,7 +594,7 @@ class pci extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","pci_titre","pci_liste","pointbloquant_liste");
+        Page::sidebar(/*"dashboard",*/"pci_titre","pci_liste","pointbloquant_liste");
     }
 }
 class stt extends baseUser {
