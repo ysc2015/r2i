@@ -28,6 +28,10 @@
                 <th>Désignation</th>
             </tr>
             <tr>
+                <td>@nom_traiteur_action</td>
+                <td>Le nom de l'executeur</td>
+            </tr>
+            <tr>
                 <td>@code_sous_projet</td>
                 <td>Code sours projet</td>
             </tr>
