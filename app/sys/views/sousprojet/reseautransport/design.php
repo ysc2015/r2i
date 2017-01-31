@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="td_ok">Etape design Terminé <!--<span class="text-danger">*</span>--></label>
-                    <select <?= (($sousProjet->transportdesign==NULL || ($sousProjet->transportdesign!==NULL && $connectedProfil->id_utilisateur !== $sousProjet->transportdesign->valideur_bei)) ? "disabled ":" ") ?>class="form-control " id="td_ok" name="td_ok">
+                    <select class="form-control " id="td_ok" name="td_ok">
                         <option value="" selected="">Sélectionnez une valeur</option>
                         <?php
                         $results = SelectOk::all();
