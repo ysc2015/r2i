@@ -107,7 +107,7 @@ $columns = array(
 if(isset($ide) && !empty($ide)) {
     $search = array("{table}","{in}","{where}");
 
-    $condition = "t1.id_sous_projet = t4.id_sous_projet AND t1.id_projet = t2.id_projet AND t2.id_nro = t3.id_nro AND t4.controle_plans = 2 AND t4.lien_plans <> '' AND t1.id_sous_projet {in} (SELECT id_sous_projet FROM ordre_de_travail WHERE {where})";
+    $condition = "t1.id_sous_projet = t4.id_sous_projet AND t1.id_projet = t2.id_projet AND t2.id_nro = t3.id_nro AND t4.controle_plans = 2 AND t4.lien_plans <> '' AND t1.id_sous_projet {in} (SELECT id_sous_projet FROM ordre_de_travail WHERE {where} AND id_sous_projet IS NOT NULL)";
 
     $condition = str_replace($search,$tbl_options_arr[explode("_",$ide)[0]],$condition);
 
