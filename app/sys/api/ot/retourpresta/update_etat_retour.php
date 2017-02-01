@@ -60,24 +60,27 @@ if($sousProjet !== NULL) {
     $err++;
     $message[] = "Erreur reférence sous projet";
 }
-
+$val_test = 2;
 if($err == 0) {
     foreach($tentree as $key => $value) {
         if($sousProjet->{$value} !== NULL) {
-            if($idtot == 9 || $idtot == 10)
+            if($idtot == 9 || $idtot == 10){
                 $sousProjet->{$value}->etat_recette = $val;//$val posted
-            else
+                $val_test = 3;
+            }else
                 $sousProjet->{$value}->etat_retour = $val;
-            if($val == 2 ){
+            echo "val test :". $val_test;
+            if($val == $val_test ){
                 //send mail
                 $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',6,'',$ot->type_ot,$ot->sousprojet->ville);
                 $message[] =  $mailaction_object = $mailaction_html[1];
                 $message[] =  $mailaction_html =  $mailaction_html[0];
                 $message[] =  $mailaction_cc =return_list_mail_cc_notif($db,"",6);
                 $message[] =  $mailaction_to =return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);//à voir avec rabii
-
+                print_r($message);
                 if(count($mailaction_to)>0){
-                    if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                    //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                    if(true) {
                         $message[] = "Mail envoyé !";
                     } else {
                         $message[] = "Mail non envoyé !";
