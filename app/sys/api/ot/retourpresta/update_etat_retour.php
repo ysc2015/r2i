@@ -69,31 +69,34 @@ if($err == 0) {
                 $val_test = 3;
             }else
                 $sousProjet->{$value}->etat_retour = $val;
-            echo "val test :". $val_test;
-            if($val == $val_test ){
 
-                //send mail
-                $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',6,'',$typeot,$sousProjet->ville);
-                $message[] =  $mailaction_object = $mailaction_html[1];
-                $message[] =  $mailaction_html =  $mailaction_html[0];
-                $message[] =  $mailaction_cc =return_list_mail_cc_notif($db,"",6);
-                $message[] =  $mailaction_to =return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);//à voir avec rabii
-                print_r($message);
-                if(count($mailaction_to)>0){
-                    //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
-                    if(true) {
-                        $message[] = "Mail envoyé !";
-                    } else {
-                        $message[] = "Mail non envoyé !";
-                        $err++;
-                    }
-                }else{
-                    $message[] = "Liste de destination vide Mail non envoyé !";
-                }
 
-            }
             $sousProjet->{$value}->save();
         }
+    }
+    if($val == $val_test ){
+
+        //send mail
+        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',6,'',$typeot,$sousProjet->ville);
+        $mailaction_object = $mailaction_html[1];
+        $mailaction_html =  $mailaction_html[0];
+        $mailaction_cc =return_list_mail_cc_notif($db,"",6);
+        $mailaction_to =return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);//à voir avec rabii
+
+
+        if(count($mailaction_to)>0){
+            //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+            if(true){
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+        }else{
+            $message[] = "Liste des BEI associés au NRO vide Mail non envoyé !";
+            $err++;
+        }
+
     }
 
     $message[] = "MAJ Réussite !";
