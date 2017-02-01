@@ -7,7 +7,7 @@ var idprojet = undefined;
 var nomprojet  = undefined;
 var tab_etape  = [];
 
-function appelscriptosa(typeetape, id_sous_projet,ide)
+function appelscriptosa(typeetape, id_sous_projet,ide,liste_intervenant)
 {
 
     rc2k.osa.ws.auth(window.token,function(response){
@@ -54,7 +54,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                                                 idp : areponse["extra"],
                                                 ide : idetape,
                                                 etape : typeetape,
-                                                url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+                                                url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php",
+                                                id_r2i_users:liste_intervenant
 
                                             });
                                         }
@@ -72,7 +73,8 @@ function appelscriptosa(typeetape, id_sous_projet,ide)
                             idp : id,
                             ide : idetape,
                             etape : typeetape,
-                            url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php"
+                            url : window.OSA_SERVER+"r2i/api/projet/api/projet/sousprojet/insert_tache_osa.php",
+                            id_r2i_users:liste_intervenant
                         });
                     }
                 }else{
