@@ -212,39 +212,43 @@ if($err==0) {
                     }
 
                     if($status == 3) {
-                        $boite = array($b720,$b432,$b288,$b144,$b48);
-                        $chambre = array($c720,$c432,$c288,$c144,$c48);
                         //svn
                         $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
                         //envoi de mail
                         $totallineaire = $c720 + $c432 + $c144 + $c48 ;
 
-                        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire);
-                        $mailaction_object = $mailaction_html[1];
-                        $mailaction_html =  $mailaction_html[0];
-                        $mailaction_to = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt, $ot->id_entreprise);
 
-                        $mailaction_cc = return_list_mail_cc_notif($db,null,3,$ot->id_equipe_stt);
-                        $mailaction_cc[] = $connectedProfil->email_utilisateur;
-                        $mailaction_cc = array_unique($mailaction_cc);
-                        $mailaction_to = array_unique($mailaction_to);
-                        if(count($mailaction_to)) {
-                            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
-                             $message[] = "Mail envoyé !";
-                            } else {
-                                $message[] = "Mail non envoyé !";
-                                $err++;
-                            }
-                        } else {
-                            $message[] = "Aucun VPI associé à ce sous projet (OT) !";
-                            $message[] = "Mail non envoyé !";
-                            $err++;
-                        }
                     } else {
                         $sousProjet->{$value[0]}->controle_demarrage_effectif = $status;
                     }
                     $sousProjet->{$value[0]}->save();
 
+                }
+                if($status == 3){
+                    $boite = array($b720,$b432,$b288,$b144,$b48);
+                    $chambre = array($c720,$c432,$c288,$c144,$c48);
+
+                    $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire);
+                    $mailaction_object = $mailaction_html[1];
+                    $mailaction_html =  $mailaction_html[0];
+                    $mailaction_to = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt, $ot->id_entreprise);
+
+                    $mailaction_cc = return_list_mail_cc_notif($db,null,3,$ot->id_equipe_stt);
+                    $mailaction_cc[] = $connectedProfil->email_utilisateur;
+                    $mailaction_cc = array_unique($mailaction_cc);
+                    $mailaction_to = array_unique($mailaction_to);
+                    if(count($mailaction_to)) {
+                        if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                            $message[] = "Mail envoyé !";
+                        } else {
+                            $message[] = "Mail non envoyé !";
+                            $err++;
+                        }
+                    } else {
+                        $message[] = "Aucun VPI associé à ce sous projet (OT) !";
+                        $message[] = "Mail non envoyé !";
+                        $err++;
+                    }
                 }
             }
 
