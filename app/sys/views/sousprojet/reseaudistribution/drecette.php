@@ -427,9 +427,10 @@
         var variable_etape = "distributionrecette";
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"drecette_href","Recette: ");
-
+        var liste_intervenant = [];
         $("#id_sous_projet_distribution_recette_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#drec_intervenant_be" ).val()!="") liste_intervenant.push( $( "#drec_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $("#id_sous_projet_distribution_recette_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide

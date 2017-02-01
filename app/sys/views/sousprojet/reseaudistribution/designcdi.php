@@ -99,9 +99,11 @@
         var variable_etape = "distributiondesign";
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"designcdi_href","Design CDI/CAD: ");
-
+        var liste_intervenant = [];
         $("#id_sous_projet_distribution_design_btn_osa").click(function () {
-           appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#dd_intervenant_be" ).val()!="") liste_intervenant.push( $( "#dd_intervenant_be" ).val());
+            if($( "#dd_intervenant_bex" ).val()!="") liste_intervenant.push( $( "#dd_intervenant_bex" ).val());
+           appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
 
         });
         $("#id_sous_projet_distribution_design_list_tache").click(function () {

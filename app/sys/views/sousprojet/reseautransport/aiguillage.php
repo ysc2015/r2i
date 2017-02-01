@@ -395,12 +395,12 @@
         var typeetape = "sous_projet_transport_aiguillage";
 
         var variable_etape = "transportaiguillage";
-        var liste_intervenant = [];
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"aiguillage_href","Aiguillage : ");
 
+        var liste_intervenant = [];
         $("#id_sous_projet_transport_aiguillage_btn_osa").click(function () {
-            liste_intervenant[0] = $( "#ta_intervenant_be" ).val();
-             appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
+           if($( "#ta_intervenant_be" ).val()!="") liste_intervenant.push($( "#ta_intervenant_be" ).val());
+             appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $('#id_sous_projet_transport_aiguillage_list_tache').click(function (){
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);

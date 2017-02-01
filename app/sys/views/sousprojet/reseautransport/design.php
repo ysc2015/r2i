@@ -96,16 +96,17 @@
         var typeetape = "sous_projet_transport_design";
 
         var variable_etape = "transportdesign";
-        //calcule les tache traité et non traités
+
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"design_href","Design: ");
 
         $('#transport_design_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             design_formdata[$( this ).attr('name')] = $( this).val();
         });
-
+        var liste_intervenant = [];
         $("#id_sous_projet_transport_design_btn_osa").click(function () {
-
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#td_intervenant_be" ).val()!="") liste_intervenant.push($( "#td_intervenant_be" ).val());
+            if($( "#td_valideur_bei" ).val()!="") liste_intervenant.push($( "#td_valideur_bei" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $('#id_sous_projet_transport_design_list_tache').click(function(){
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);

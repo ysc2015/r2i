@@ -447,8 +447,13 @@
         $("#id_sous_projet_transport_recette_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
         });
+        var liste_intervenant = [];
         $("#id_sous_projet_transport_recette_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#trec_intervenant_be" ).val()!="") liste_intervenant.push($( "#trec_intervenant_be" ).val());
+            if($( "#trec_doe" ).val()!="") liste_intervenant.push($( "#trec_doe" ).val());
+            if($( "#trec_netgeo" ).val()!="") liste_intervenant.push($( "#trec_netgeo" ).val());
+            if($( "#trec_intervenant_free" ).val()!="") liste_intervenant.push($( "#trec_intervenant_free" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
         });
 
         $('#transport_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){

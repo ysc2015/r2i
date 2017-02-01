@@ -445,8 +445,10 @@
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"raccordements_href","Raccordement: ");
 
+        var liste_intervenant = [];
         $("#id_sous_projet_transport_raccordemants_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#tr_intervenant_be" ).val()!="") liste_intervenant.push($( "#tr_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $('#transport_raccord_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             raccord_formdata[$( this ).attr('name')] = $( this).val();

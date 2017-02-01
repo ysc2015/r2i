@@ -399,9 +399,10 @@
         var variable_etape = "distributiontirage";
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"dtirage_href","Tirage: ");
-
+        var liste_intervenant = [];
         $("#id_sous_projet_distribution_tirage_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#dt_intervenant_be" ).val()!="") liste_intervenant.push( $( "#dt_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $("#id_sous_projet_distribution_tirage_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
