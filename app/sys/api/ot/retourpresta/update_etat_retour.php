@@ -71,8 +71,9 @@ if($err == 0) {
                 $sousProjet->{$value}->etat_retour = $val;
             echo "val test :". $val_test;
             if($val == $val_test ){
+
                 //send mail
-                $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',6,'',$ot->type_ot,$ot->sousprojet->ville);
+                $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',6,'',$typeot,$sousProjet->ville);
                 $message[] =  $mailaction_object = $mailaction_html[1];
                 $message[] =  $mailaction_html =  $mailaction_html[0];
                 $message[] =  $mailaction_cc =return_list_mail_cc_notif($db,"",6);
