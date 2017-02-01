@@ -146,8 +146,10 @@
         var variable_etape = "transportcmcctr";
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandectr_href","CMD Structurante CTR: ");
 
+        var liste_intervenant = [];
         $("#id_sous_projet_transport_commande_ctr_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#cctr_intervenant_be" ).val()!="") liste_intervenant.push($( "#cctr_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $("#id_sous_projet_transport_commande_ctr_list_tache").click(function(){
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);

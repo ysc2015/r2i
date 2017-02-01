@@ -421,9 +421,10 @@
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"tirage_href","Tirage: ");
 
-
+        var liste_intervenant = [];
         $("#id_sous_projet_transport_tirage_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#tt_intervenant_be" ).val()!="") liste_intervenant.push( $( "#tt_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
         });
         $("#id_sous_projet_transport_tirage_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide

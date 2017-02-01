@@ -124,9 +124,10 @@
         var variable_etape = "distributioncmdcdi";
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandecdi_href","CMD Structurante CDI: ");
-
+        var liste_intervenant = [];
         $("#id_sous_projet_distribution_commandecdi_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);
+            if($( "#dcc_intervenant_be" ).val()!="") liste_intervenant.push( $( "#dcc_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);
         });
         $("#id_sous_projet_distribution_commandecdi_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);

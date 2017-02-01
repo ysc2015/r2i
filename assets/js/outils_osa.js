@@ -9,7 +9,7 @@ var tab_etape  = [];
 
 function appelscriptosa(typeetape, id_sous_projet,ide,liste_intervenant)
 {
-
+console.log(liste_intervenant);
     rc2k.osa.ws.auth(window.token,function(response){
 
         var aresponse = JSON.parse(response);

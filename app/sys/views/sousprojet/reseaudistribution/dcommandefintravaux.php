@@ -122,8 +122,10 @@
 
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"dcommandefintravaux_href","Commandes Fin Travaux: ");
 
+        var liste_intervenant = [];
         $("#id_sous_projet_distribution_cmdfintravaux_btn_osa").click(function () {
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
+            if($( "#dcftrvx_intervenant_be" ).val()!="") liste_intervenant.push( $( "#dcftrvx_intervenant_be" ).val());
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
         });
         $("#id_sous_projet_distribution_cmdfintravaux_list_tache").click(function () {
             liste_tache_osa(typeetape,get("idsousprojet"),variable_etape);//1 = ide
