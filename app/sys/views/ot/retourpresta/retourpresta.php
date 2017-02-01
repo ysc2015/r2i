@@ -136,6 +136,7 @@
                 method: "POST",
                 data: {
                     idsp : get('idsousprojet'),
+                    typeot : ot_dt.row('.selected').data().type_ot,
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail,
                     val : etat_retour
                 }
