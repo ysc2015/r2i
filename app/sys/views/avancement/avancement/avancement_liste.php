@@ -107,6 +107,7 @@
                 "url": "assets/js/plugins/datatables/French.json"
             },
             "lengthMenu": [ [2, 4, 8, -1], [2, 4, 8, "All"] ],
+            "bLengthChange": false,
             "pageLength": 4,
             dom: 'Bfrtip',
             buttons: [
