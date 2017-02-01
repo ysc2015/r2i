@@ -128,7 +128,7 @@ if($delete == true && $err == 0){
                             $step->save();
                             break;
                         default : break;
-                    }*/
+                    }*///
 
                     $sousProjet->{$value[0]}->controle_demarrage_effectif = NULL;
                     $sousProjet->{$value[0]}->date_transmission_plans = NULL;
