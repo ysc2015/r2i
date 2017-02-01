@@ -103,6 +103,7 @@
     $(document).ready(function() {
 
         details_dt = $('#details_table').DataTable( {
+            "iDisplayLength":50,
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
             },
