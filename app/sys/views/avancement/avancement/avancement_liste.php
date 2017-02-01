@@ -106,7 +106,8 @@
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
             },
-            "iDisplayLength": 50,
+            "lengthMenu": [ [2, 4, 8, -1], [2, 4, 8, "All"] ],
+            "pageLength": 4,
             dom: 'Bfrtip',
             buttons: [
                 {
