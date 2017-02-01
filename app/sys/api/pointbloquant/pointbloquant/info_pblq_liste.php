@@ -14,6 +14,7 @@ $columns = array(
     array( "db" => "t1.ville", "dt" => 'ville' ),
     array( "db" => "t1.planches", "dt" => 'planches' ),
     array( "db" => "t1.chambre1", "dt" => 'chambre1' ),
+    array( "db" => "t1.chambre2", "dt" => 'chambre2' ),
     array( "db" => "t1.date_creation", "dt" => 'date_creation' ),
     array( "db" => "t1.id_pci_user", "dt" => 'id_pci_user' ),
     array( "db" => "t1.id_bei_user", "dt" => 'id_bei_user' ),
