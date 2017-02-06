@@ -224,7 +224,7 @@ if($err==0) {
                     $sousProjet->{$value[0]}->save();
 
                 }
-                if($status == 3 && strtotime($ot->date_fin) > strtotime(date('Y-m-d'))  ){
+                if($status == 3 && strtotime($ot->date_fin) > strtotime($ot->date_creation)  ){
                     $boite = array($b720,$b432,$b288,$b144,$b48);
                     $chambre = array($c720,$c432,$c288,$c144,$c48);
 
@@ -263,4 +263,3 @@ if($err==0) {
 }
 
 echo json_encode(array("error" => $err , "message" => $message ));
-
