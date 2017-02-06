@@ -101,7 +101,7 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
 
 
 
-} else {
+} else { die("dede");
     $message [] = $stm->errorInfo();
     $to [] = "fadelghani@rc2k.fr";
     @MailNotifier::sendMail("error mail cron pbd",$message,$to,array(),array()) ;
