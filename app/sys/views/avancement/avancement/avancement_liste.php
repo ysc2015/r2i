@@ -155,8 +155,6 @@
 
             ],
             "columnDefs": [
-                /*{ "targets": [ 0,1 ], "visible": false, "searchable": false },*/
-                /*{ "targets": [ 7 ], "visible": false, "searchable": true },*/
                 {
                     "targets": 0,
                     "render": function ( data, type, full, meta ) {
