@@ -6,11 +6,11 @@
 //include (__DIR__."/../../../inc/config.php");
 $sql = "";
 $stm = NULL;
-
+die("dede");
 $sql = "select * from blq_pbc where flag = 0";
 $stm = $db->prepare($sql);
 $chaine_pbc = "";
-$mailaction_html = "";die("dede");
+$mailaction_html = "";
 if($stm->execute()){
     $message [] = "cron existe";
     $pbc_bloc = $stm->fetchAll();
