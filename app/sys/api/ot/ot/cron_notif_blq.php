@@ -6,7 +6,7 @@
 //include (__DIR__."/../../../inc/config.php");
 $sql = "";
 $stm = NULL;
-die("dede");
+
 $sql = "select * from blq_pbc where flag = 0";
 $stm = $db->prepare($sql);
 $chaine_pbc = "";
@@ -109,4 +109,4 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
 }
 
 $err = 0;
-echo json_encode(array("error" => $err , "message" => $message));
+//echo json_encode(array("error" => $err , "message" => $message));
