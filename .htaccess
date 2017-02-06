@@ -61,6 +61,9 @@ RewriteRule  "api/nropci/nropci/(\w*\.php)"          "app/MY_ROUTER.php?script=n
 #typeot menu api
 RewriteRule  "api/typeot/typeot/(\w*\.php)"          "app/MY_ROUTER.php?script=typeot/typeot/$1"  [QSA,L]
 
+#cron
+RewriteRule  "api/ot/ot/cron_notif_blq.php"          "api/ot/ot/cron_notif_blq.php"  [QSA,L]
+
 #todelete menu api
 #RewriteRule  "api/todelete/(\w*\.php)"          "app/MY_ROUTER.php?script=todelete/$1"  [QSA,L]
 
