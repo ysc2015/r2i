@@ -19,10 +19,10 @@ $sql = "select * from blq_pbc where flag = 0";
 $stm = $db->prepare($sql);
 $chaine_pbc = "";
 $mailaction_html = "";
-if($stm->execute()){ echo "dede";
+if($stm->execute()){
     $message [] = "cron existe";
     $pbc_bloc = $stm->fetchAll();
-    print_r($pbc_bloc);
+
     foreach($pbc_bloc as $pbc) {
         if($pbc['id_ordre_de_travail']!=NULL){
             $sql_ot = "SELECT * FROM `blq_pbc` ,`ordre_de_travail`,`sous_projet` where ordre_de_travail.id_ordre_de_travail = blq_pbc.id_ordre_de_travail 
@@ -101,28 +101,28 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
     }
 
     if($mailaction_html!=""){
-       //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
-       if(true){
+        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
 
-           echo $mailaction_html.'<br />*****************<br />TO :';
+
+            echo $mailaction_html.'<br />*****************<br />TO :';
             print_r($mailaction_to) ;
             echo '<br />*****************<br />CC :';
             print_r($mailaction_cc) ;
             echo '<br />*****************<br />';
             $sql = "update blq_pbc set flag = 1";
             $stm_maj_pbc = $db->prepare($sql);
-            //$stm_maj_pbc->execute();
+            $stm_maj_pbc->execute();
         }
     }
 
 
 
-} else { echo "pas d'informations à envoye ";
+} else { echo "pas d'informations à envoyer ";
     $message [] = $stm->errorInfo();
-    $to [] = "fadelghani@rc2k.fr";
-    @MailNotifier::sendMail("error mail cron pbd",$message,$to,array(),array()) ;
+
+
 
 }
 
 $err = 0;
-//echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message));
