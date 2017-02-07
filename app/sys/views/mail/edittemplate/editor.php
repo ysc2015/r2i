@@ -56,11 +56,11 @@
                 <td>le Total lineaire en ml </td>
             </tr>
             <tr>
-                <td>@b_720 , @b_432 , @b_288 , @b_144 , @b_48</td>
+                <td>@b_720 , @b_432 , @b_288 , @b_144 , @b_72, @b_48</td>
                 <td>Nombre de boitier</td>
             </tr>
             <tr>
-                <td>@c_720 , @c_432 , @c_288 , @c_144 , @c_48</td>
+                <td>@c_720 , @c_432 , @c_288 , @c_144 , @c_72, @c_48</td>
                 <td>Linéaire de Câble en ml</td>
             </tr>
             <tr>
