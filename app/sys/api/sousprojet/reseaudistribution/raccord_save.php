@@ -210,8 +210,6 @@ if($insert == true && $err == 0){
                 ( $mailaction_entite==null
                 && isset($dr_controle_plans)
                 && $dr_controle_plans == 2
-                &&  isset($dr_etat_retour)
-                && $dr_etat_retour == 2
                 && isset($dr_lien_plans)
                 && $dr_lien_plans != ""
                 )
@@ -219,13 +217,10 @@ if($insert == true && $err == 0){
                 (   $mailaction_entite!=null
                     && isset($dr_controle_plans)
                     && $dr_controle_plans == 2
-                    &&  isset($dr_etat_retour)
-                    && $dr_etat_retour == 2
                     && isset($dr_lien_plans)
                     && $dr_lien_plans != ""
                     &&
                     ($mailaction_entite->controle_plans != $dr_controle_plans
-                        || $mailaction_entite->etat_retour != $dr_etat_retour
                         || $mailaction_entite->lien_plans != $dr_lien_plans)
 
                 )
