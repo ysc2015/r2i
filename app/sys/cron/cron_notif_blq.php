@@ -100,13 +100,14 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
     }
 
     if($mailaction_html!=""){
-       if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+       //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+       if(true){
 
-           // echo $mailaction_html.'<br />*****************<br />TO :';
-            //print_r($mailaction_to) ;
-           // echo '<br />*****************<br />CC :';
-            //print_r($mailaction_cc) ;
-            //echo '<br />*****************<br />';
+           echo $mailaction_html.'<br />*****************<br />TO :';
+            print_r($mailaction_to) ;
+            echo '<br />*****************<br />CC :';
+            print_r($mailaction_cc) ;
+            echo '<br />*****************<br />';
             $sql = "update blq_pbc set flag = 1";
             $stm_maj_pbc = $db->prepare($sql);
             $stm_maj_pbc->execute();
