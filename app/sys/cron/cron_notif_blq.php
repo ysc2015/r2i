@@ -19,7 +19,7 @@ $sql = "select * from blq_pbc where flag = 0";
 $stm = $db->prepare($sql);
 $chaine_pbc = "";
 $mailaction_html = "";
-if($stm->execute()){
+if($stm->execute()){ echo "dede";
     $message [] = "cron existe";
     $pbc_bloc = $stm->fetchAll();
     print_r($pbc_bloc);
