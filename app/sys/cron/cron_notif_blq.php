@@ -4,7 +4,6 @@
  * User: fadil
  */
 //include (__DIR__."/../../../inc/config.php");
-die("dede ".__DIR__ . "/../sys/inc/config.php");
 
 require_once __DIR__ . "/../sys/inc/config.php";
 require_once __DIR__ . "/../sys/inc/utils.functions.php";
