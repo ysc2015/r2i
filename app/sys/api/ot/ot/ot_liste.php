@@ -24,14 +24,22 @@ $columns = array(
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail";
 
-if(isset($idsp)) {
-    $condition .=" AND t1.id_sous_projet=$idsp";
+if(isset($tentree) && !empty($tentree)) {
+
+    $tbl = getTableNameForEntry($tentree,true);
+    $table[] = "$tbl as e";
+
+    $te = "";
+
+    if($tentree == "transportraccordement") $te = "transporttirage";
+    if($tentree == "distributionraccordement") $te = "distributiontirage";
+    $condition .=" AND t1.type_entree='".($te==""?$tentree:$te)."'";
+
+    $condition .=" AND t1.id_sous_projet = e.id_sous_projet AND (t1.id_type_ordre_travail > 10 OR (t1.id_type_ordre_travail <=10 AND e.ok <> 1))";
 }
 
-if(isset($tentree)) {
-    if($tentree == "transportraccordement") $tentree = "transporttirage";
-    if($tentree == "distributionraccordement") $tentree = "distributiontirage";
-    $condition .=" AND t1.type_entree='$tentree'";
+if(isset($idsp)) {
+    $condition .=" AND t1.id_sous_projet=$idsp";
 }
 
 if(!isset($tab_imei)) {
@@ -44,5 +52,8 @@ if(!isset($tab_imei)) {
     }
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,"left join etat_ot as etat on t1.id_etat_ot = etat.id_etat_ot"));
+
+$left = "LEFT join etat_ot as etat ON t1.id_etat_ot = etat.id_etat_ot";
+
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,$left));
 ?>

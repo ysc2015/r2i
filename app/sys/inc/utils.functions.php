@@ -33,13 +33,32 @@ function getObjectNameForEntry($entree) {
         case 'transportaiguillage' : $str='Aiguillage CTR';break;
         case 'transporttirage' : $str='Tirage CTR';break;
         case 'transportraccordement' : $str='Raccordement CTR';break;
+        case 'transportrecette' : $str='Recette CTR';break;
         case 'distributionaiguillage' : $str='Aiguillage CDI';break;
         case 'distributiontirage' : $str='Tirage CDI';break;
         case 'distributionraccordement' : $str='Raccordement CDI';break;
+        case 'distributionrecette' : $str='Recette CDI';break;
         default : break;
     }
 
     return $str;
+}
+
+function getTableNameForEntry($entree,$fake=false) {
+    $table = "";
+    switch ($entree) {
+        case 'transportaiguillage' : $table='sous_projet_transport_aiguillage';break;
+        case 'transporttirage' : $table='sous_projet_transport_tirage';break;
+        case 'transportraccordement' : $table=($fake?'sous_projet_transport_tirage':'sous_projet_transport_raccordements');break;
+        case 'transportrecette' : $table='sous_projet_transport_recette';break;
+        case 'distributionaiguillage' : $table='sous_projet_distribution_aiguillage';break;
+        case 'distributiontirage' : $table='sous_projet_distribution_tirage';break;
+        case 'distributionraccordement' : $table=($fake?'sous_projet_distribution_tirage':'sous_projet_distribution_raccordements');break;
+        case 'distributionrecette' : $table='sous_projet_distribution_recette';break;
+        default : break;
+    }
+
+    return $table;
 }
 
 function setSousProjetUsers($sousprojet) {
