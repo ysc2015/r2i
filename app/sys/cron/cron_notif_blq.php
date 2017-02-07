@@ -98,7 +98,7 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
         }
         $mailaction_html .="";
     }
-
+die("rdrd");
     if($mailaction_html!=""){
        //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
        if(true){
