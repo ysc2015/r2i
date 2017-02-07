@@ -293,20 +293,16 @@ if($insert == true && $err == 0){
             (   $mailaction_entite ==null
                 &&  isset($dt_controle_plans)
                 && $dt_controle_plans == 2
-                &&  isset($dt_etat_retour)
-                && $dt_etat_retour == 2
                 && isset($dt_lien_plans)
                 && $dt_lien_plans != "" )
             ||
             ($mailaction_entite !=null
                 &&  isset($dt_controle_plans)
                 && $dt_controle_plans == 2
-                &&  isset($dt_etat_retour)
-                && $dt_etat_retour == 2
                 && isset($dt_lien_plans)
                 && $dt_lien_plans != ""
             &&
-                ($mailaction_entite->controle_plans != $dt_controle_plans || $mailaction_entite->etat_retour != $dt_etat_retour || $mailaction_entite->lien_plans != $dt_lien_plans )
+                ($mailaction_entite->controle_plans != $dt_controle_plans || $mailaction_entite->lien_plans != $dt_lien_plans )
             )
             ) ) {
             //envoi de mail
