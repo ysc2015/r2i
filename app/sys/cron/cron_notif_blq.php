@@ -7,7 +7,7 @@
 require_once __DIR__ . "../sys/inc/config.php";
 require_once __DIR__ . "../sys/inc/utils.functions.php";
 require_once __DIR__."../sys/inc/mail.notifier.class.php";
-
+die("dede");
 $sql = "";
 $stm = NULL;
 
