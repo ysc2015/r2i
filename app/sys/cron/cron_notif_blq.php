@@ -5,6 +5,7 @@
  */
 //include (__DIR__."/../../../inc/config.php");
 
+require_once __DIR__.'/../../sys/libs/vendor/autoload.php';
 require_once __DIR__. "/../../sys/inc/config.php";
 require_once __DIR__. "/../../sys/inc/utils.functions.php";
 require_once __DIR__. "/../../sys/inc/mail.notifier.class.php";
@@ -39,10 +40,11 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                 );
                 $type = $pbc['type'];
                 if($type=="1"){
+                    $chaine_pbc .="<h2>Détail des questions</h2>";
                     $questionFieldName = "question";
                     $chaine_pbc .='<table>
                     <tr>
-                    <td>Type</td><td>'.$questionFieldName.'</td>
+                    <td>Type</td><td><strong>'.$questionFieldName.'</strong></td>
                     </tr><tr>
                     <td>Snake</td><td>'.$pbc['snake'].'</td>
                     </tr><tr>
@@ -66,9 +68,10 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                 }
                 elseif ($type=="2"){
                     $questionFieldName = "information";
+                    $chaine_pbc .="<h2>Détail des informations</h2>";
                     $chaine_pbc .='<table>
                     <tr>
-                    <td>Type</td><td>'.$questionFieldName.'</td>
+                    <td>Type</td><td><strong>'.$questionFieldName.'</strong></td>
                     </tr><tr>
                     <td>Snake</td><td>'.$pbc['snake'].'</td>
                     </tr><tr>
@@ -93,16 +96,20 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
 
             }
         }
-        $mailaction_html .="<br />******************<br />";
+        $mailaction_html .="";
     }
 
     if($mailaction_html!=""){
-        //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
-        if(true){
-            echo $mailaction_html.'<br />*****************<br />';
+       if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+
+           // echo $mailaction_html.'<br />*****************<br />TO :';
+            //print_r($mailaction_to) ;
+           // echo '<br />*****************<br />CC :';
+            //print_r($mailaction_cc) ;
+            //echo '<br />*****************<br />';
             $sql = "update blq_pbc set flag = 1";
             $stm_maj_pbc = $db->prepare($sql);
-            // $stm_maj_pbc->execute();
+            $stm_maj_pbc->execute();
         }
     }
 
