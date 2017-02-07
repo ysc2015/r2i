@@ -22,6 +22,7 @@ $mailaction_html = "";
 if($stm->execute()){
     $message [] = "cron existe";
     $pbc_bloc = $stm->fetchAll();
+    print_r($pbc_bloc);
     foreach($pbc_bloc as $pbc) {
         if($pbc['id_ordre_de_travail']!=NULL){
             $sql_ot = "SELECT * FROM `blq_pbc` ,`ordre_de_travail`,`sous_projet` where ordre_de_travail.id_ordre_de_travail = blq_pbc.id_ordre_de_travail 
@@ -98,7 +99,7 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
         }
         $mailaction_html .="";
     }
-die("rdrd");
+
     if($mailaction_html!=""){
        //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
        if(true){
