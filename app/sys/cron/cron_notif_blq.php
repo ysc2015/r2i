@@ -111,13 +111,13 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
             echo '<br />*****************<br />';
             $sql = "update blq_pbc set flag = 1";
             $stm_maj_pbc = $db->prepare($sql);
-            $stm_maj_pbc->execute();
+            //$stm_maj_pbc->execute();
         }
     }
 
 
 
-} else {
+} else { echo "pas d'informations à envoye ";
     $message [] = $stm->errorInfo();
     $to [] = "fadelghani@rc2k.fr";
     @MailNotifier::sendMail("error mail cron pbd",$message,$to,array(),array()) ;
