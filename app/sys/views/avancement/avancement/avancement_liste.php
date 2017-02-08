@@ -124,7 +124,7 @@
                 "url": 'api/projet/sousprojet/details_liste.php?idp='
             },
             "columns": [
-                { "data": "id_sous_projet" },
+                { "data": "lib_nro" },
                 { "data": "ville" },
                 { "data": "lr" },
                 { "data": "lr_sur_pm" },
@@ -151,16 +151,25 @@
                 { "data": "cdi_tirage_lib_etat_retour" },
                 { "data": "cdi_raccord_lib_controle_plan" },
                 { "data": "cdi_raccord_ordre_de_travail" },
-                { "data": "cdi_raccord_lib_etat_retour" }
+                { "data": "cdi_raccord_lib_etat_retour" },
+                { "data": "zone" }
 
             ],
             "columnDefs": [
                 {
                     "targets": 0,
+                    orderData: [ 0, 28 ],
+                    "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
-                        return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
+                        if(type == "display"){
+                            console.log('display');
+                            return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
+                        }
+
+                        return full.lib_nro + '-' + full.zone;
                     }
                 },
+                { "targets": [ 28 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
