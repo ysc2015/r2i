@@ -81,14 +81,15 @@ if($err == 0){
         //send mail add point bloquant $sousProjet->projet->nro->lib_nro."-".$sousProjet->zone
         $mailaction_html = get_content_html_mail_by_type($db,$point_bloc_sous_proj['lib_nro']."-".$point_bloc_sous_proj['ville'],'','',8,'',$point_bloc_sous_proj['type_ot'],$point_bloc_sous_proj['ville']);
 
-        print_r($mailaction_html);
+        echo "object : " .($mailaction_object);
+        echo "text : " .($mailaction_html);
         $mailaction_cc =return_list_mail_cc_notif($db,"",8);
 
         $mailaction_to =return_list_vpi_pci_du_nro($db,$point_bloc_sous_proj['id_nro']);
 
         if(count($mailaction_to)>0){
 
-            //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+            // if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
             if(true) {
                 $message[] = "Mail envoyé !";
             } else {
