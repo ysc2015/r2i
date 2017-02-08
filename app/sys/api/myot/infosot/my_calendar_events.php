@@ -19,7 +19,6 @@ try {
 
     $events = array();
 
-    // Fetch results
     while ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
 
 
