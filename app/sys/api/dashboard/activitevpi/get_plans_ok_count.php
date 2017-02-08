@@ -11,7 +11,11 @@ $rows = array();
 $temp = "";
 
 $tbl_options_arr = array(
+
     //Sans OT
+
+    //CTR
+
     "transportaiguillage1" => array(
         "table" => "sous_projet_transport_aiguillage",
         "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
@@ -36,55 +40,65 @@ $tbl_options_arr = array(
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail=9"
     ),
+
+    //CDI
+
     "distributionaiguillage1" => array(
         "table" => "sous_projet_distribution_aiguillage",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail=5"
     ),
     "distributiontirage1" => array(
         "table" => "sous_projet_distribution_tirage",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail IN (6,8)"
     ),
     "distributionraccordement1" => array(
         "table" => "sous_projet_distribution_raccordements",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail IN (7,8)"
     ),
     "distributionrecette1" => array(
         "table" => "sous_projet_distribution_recette",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail=10"
     ),
+
     //Avec OT sans affectation
+
+    //CTR
+
     "transportaiguillage2" => array(
         "table" => "sous_projet_transport_aiguillage",
-        "ctr_cnd" => "",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail=1 AND id_entreprise IS NULL"
     ),
     "transporttirage2" => array(
         "table" => "sous_projet_transport_tirage",
-        "ctr_cnd" => "",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail IN (2,4) AND id_entreprise IS NULL"
     ),
     "transportraccordement2" => array(
         "table" => "sous_projet_transport_raccordements",
-        "ctr_cnd" => "",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail IN (3,4) AND id_entreprise IS NULL"
     ),
     "transportrecette2" => array(
         "table" => "sous_projet_transport_recette",
-        "ctr_cnd" => "",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail=9 AND id_entreprise IS NULL"
     ),
+
+    //CDI
+
     "distributionaiguillage2" => array(
         "table" => "sous_projet_distribution_aiguillage",
         "ctr_cnd" => "",
