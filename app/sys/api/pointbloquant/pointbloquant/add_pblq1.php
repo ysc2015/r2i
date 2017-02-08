@@ -81,6 +81,9 @@ if($err == 0){
         //send mail add point bloquant $sousProjet->projet->nro->lib_nro."-".$sousProjet->zone
         $mailaction_html = get_content_html_mail_by_type($db,$point_bloc_sous_proj['lib_nro']."-".$point_bloc_sous_proj['ville'],'','',8,'',$point_bloc_sous_proj['type_ot'],$point_bloc_sous_proj['ville']);
 
+
+        $mailaction_object = $mailaction_html[1];
+        $mailaction_html =  $mailaction_html[0];
         echo "object : " .($mailaction_object);
         echo "text : " .($mailaction_html);
         $mailaction_cc =return_list_mail_cc_notif($db,"",8);
