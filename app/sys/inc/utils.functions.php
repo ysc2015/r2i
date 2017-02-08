@@ -1541,8 +1541,7 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
 
         $num_tel_chef_projet = $statement_utilisateur['telephone_utilisateur'];
     }
-    echo "statement : <br />" ;
-    print_r($statement);
+
     $statement[0][1]    = str_replace('@etape_sous_projet',$etape,$statement[0][1]);
     $statement[0][1]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][1] );
     $statement[0][1]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][1] );
