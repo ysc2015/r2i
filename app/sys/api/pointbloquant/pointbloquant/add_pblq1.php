@@ -84,17 +84,10 @@ if($err == 0){
         $mailaction_html =  $mailaction_html[0];
         $mailaction_cc =array_merge(return_list_mail_cc_notif($db,"",8),return_list_bei_du_nro($db,$point_bloc_sous_proj['id_nro']));
         $mailaction_to =return_list_vpi_pci_du_nro($db,$point_bloc_sous_proj['id_nro']);
-        echo "**********<br />";
-        print_r(return_list_mail_cc_notif($db,"",8));
-        echo "**********<br />";
-        print_r(return_list_bei_du_nro($db,$point_bloc_sous_proj['id_nro']));
-        echo "**********<br />";
-        print_r($mailaction_cc);
 
         if(count($mailaction_to)>0){
 
-             //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
-if(true){
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
