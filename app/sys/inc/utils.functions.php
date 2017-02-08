@@ -1455,7 +1455,7 @@ function return_list_mail_cc_notif_tache($db,$email_utilisateur_connecte,$type){
 
 }
 function return_list_mail_vpi_par_nro($db,$idnro){
-    $mailaction_stm = $db->prepare("SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur");
+    $mailaction_stm = $db->prepare("SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur and utilisateur.id_profil_utilisateur = 7");//7 = id vpi
     $mailaction_stm->execute();
     $mailaction_cc = [];
     $mailactions_mail_cc = $mailaction_stm->fetchAll();
@@ -1541,7 +1541,8 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
 
         $num_tel_chef_projet = $statement_utilisateur['telephone_utilisateur'];
     }
-
+    echo "statement : <br />" ;
+    print_r($statement);
     $statement[0][1]    = str_replace('@etape_sous_projet',$etape,$statement[0][1]);
     $statement[0][1]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][1] );
     $statement[0][1]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][1] );
@@ -1552,6 +1553,7 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
         $statement[0][1]    = str_replace('@b_432',$boite[1],$statement[0][1] );
         $statement[0][1]    = str_replace('@b_288',$boite[2],$statement[0][1] );
         $statement[0][1]    = str_replace('@b_144',$boite[3],$statement[0][1] );
+        $statement[0][1]    = str_replace('@b_72',$boite[4],$statement[0][1] );
         $statement[0][1]    = str_replace('@b_48',$boite[4],$statement[0][1] );
     }
     if($chambre!=null){
@@ -1559,6 +1561,7 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
         $statement[0][1]    = str_replace('@c_432',$chambre[1],$statement[0][1] );
         $statement[0][1]    = str_replace('@c_288',$chambre[2],$statement[0][1] );
         $statement[0][1]    = str_replace('@c_144',$chambre[3],$statement[0][1] );
+        $statement[0][1]    = str_replace('@c_72',$chambre[4],$statement[0][1] );
         $statement[0][1]    = str_replace('@c_48',$chambre[4],$statement[0][1] );
 
     }
