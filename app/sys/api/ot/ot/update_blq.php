@@ -52,6 +52,7 @@ if(isset($planche_a3) && !empty($planche_a3)){
     $stm->bindParam(':planche_a3',$planche_a3);
 } else {
     $err++;
+
     $message[] = "Le champs planche a3 est obligatoire !";
 }
 
