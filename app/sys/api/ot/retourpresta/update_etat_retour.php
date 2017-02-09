@@ -80,7 +80,8 @@ if($err == 0) {
         $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',6,'',$typeot,$sousProjet->ville);
         $mailaction_object = $mailaction_html[1];
         $mailaction_html =  $mailaction_html[0];
-        $mailaction_cc =return_list_mail_cc_notif($db,"",6);
+        $mailaction_cc = array_merge(return_list_mail_cc_notif($db,"",6),return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro));
+
         $mailaction_to =return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);//à voir avec rabii
 
 
