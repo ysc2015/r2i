@@ -20,7 +20,7 @@ if(!isset($type) || empty($type) || !in_array($type,array(1,2))) {
 } else {
     switch($type) {
         case 1 :
-            $sql = "update blq_pbc set snake=:snake,planche_a3=:planche_a3,chambre_amont=:chambre_amont,chambre_aval=:chambre_aval,question_information=:question_information where id_blq_pbc=:id_blq_pbc";
+            $sql = "update blq_pbc set snake=:snake,planche_a3=:planche_a3,chambre_amont=:chambre_amont,chambre_aval=:chambre_aval,question_information=:question_information, flag = :flag, date_action =:date_action, id_createur=:id_createur where id_blq_pbc=:id_blq_pbc";
             $questionFieldName = "question";
             break;
         case 2 :
@@ -35,6 +35,7 @@ if(!isset($type) || empty($type) || !in_array($type,array(1,2))) {
 
 if(isset($idblq) && !empty($idblq)){
     $stm->bindParam(':id_blq_pbc',$idblq);
+
 } else {
     $err++;
     $message[] = "Identifiant ".$questionFieldName." invalid !";
@@ -82,6 +83,12 @@ if(isset($type) && $type == 2) {
         $err++;
         $message[] = "Le champs ajustement est obligatoire !";
     }
+}
+if(isset($type) && $type == 1){
+    $stm->bindValue(':id_createur',$connectedProfil->profil->id_utilisateur);
+    $stm->bindValue(':flag',0);
+    $stm->bindValue(':date_action',date('Y-m-d H:i:s'));
+
 }
 
 if($err == 0){

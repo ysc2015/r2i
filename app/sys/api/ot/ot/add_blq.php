@@ -20,7 +20,7 @@ if(!isset($type) || empty($type) || !in_array($type,array(1,2))) {
 } else {
     switch($type) {
         case 1 :
-            $sql = "insert into blq_pbc (id_ordre_de_travail,type,snake,planche_a3,chambre_amont,chambre_aval,question_information) values (:id_ordre_de_travail,:type,:snake,:planche_a3,:chambre_amont,:chambre_aval,:question_information)";
+            $sql = "insert into blq_pbc (id_ordre_de_travail,type,snake,planche_a3,chambre_amont,chambre_aval,question_information,id_createur) values (:id_ordre_de_travail,:type,:snake,:planche_a3,:chambre_amont,:chambre_aval,:question_information,:id_createur)";
             $questionFieldName = "question";
             break;
         case 2 :
@@ -90,6 +90,11 @@ if(isset($type) && $type == 2) {
         $message[] = "Le champs ajustement est obligatoire !";
     }
 }
+if(isset($type) && $type == 1){
+    $stm->bindValue(':id_createur',$connectedProfil->profil->id_utilisateur);
+
+}
+
 
 if($err == 0){
     if($stm->execute()){
