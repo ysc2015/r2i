@@ -14,7 +14,7 @@ require_once __DIR__. "/../../sys/inc/ssp.class.php";
 
 $sql = "";
 $stm = NULL;
-
+$err =0;
 $sql = "select * from blq_pbc where flag = 0";
 $stm = $db->prepare($sql);
 $chaine_pbc = "";
@@ -24,6 +24,7 @@ if($stm->execute()){
     $pbc_bloc = $stm->fetchAll();
 
     foreach($pbc_bloc as $pbc) {
+        $chaine_pbc = "";
         if($pbc['id_ordre_de_travail']!=NULL){
             $sql_ot = "SELECT * FROM `blq_pbc` ,`ordre_de_travail`,`sous_projet` where ordre_de_travail.id_ordre_de_travail = blq_pbc.id_ordre_de_travail 
 and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_projet = sous_projet.id_sous_projet";
@@ -39,7 +40,7 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                         array("id_sous_projet = ?", $stm_ot['id_sous_projet'])
                     )
                 );
-                $type = $pbc['type'];
+                $type = $pbc['type_question'];
                 if($type=="1"){
                     $chaine_pbc .="<h2>Détail des questions</h2>";
                     $questionFieldName = "question";
@@ -63,12 +64,27 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                     $mailaction_object = $mailaction_html[1];
                     $mailaction_html =  $mailaction_html[0];
                     $mailaction_html .= $chaine_pbc;
-                    $mailaction_cc =return_list_mail_cc_notif($db,"",9);
-                    $mailaction_to =return_list_vpi_pci_du_nro($db,$sousProjet->projet->nro->id_nro);
-
+                    $mailaction_to =return_list_entreprise_stt($db,NULL,$pbc['id_ordre_de_travail']);
+                    $mailaction_cc =array_merge(return_list_mail_cc_notif($db,"",9),return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro),return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro)) ;
+                    if($mailaction_html!="" and count($mailaction_to)>0){
+                        //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+                        if(true){
+                            echo $mailaction_html.'<br />*****************<br />TO :';
+                            print_r($mailaction_to) ;
+                            echo '<br />*****************<br />CC :';
+                            print_r($mailaction_cc) ;
+                            echo '<br />*****************<br />';
+                            $sql = "update blq_pbc set flag = 1";
+                            $stm_maj_pbc = $db->prepare($sql);
+                            $stm_maj_pbc->execute();
+                        }
+                    }else{
+                        $message [] = "Liste mail entreprise est vide";
+                        $err++;
+                    }
                 }
                 elseif ($type=="2"){
-                    $questionFieldName = "information";
+                    $questionFieldName = "Réponse";
                     $chaine_pbc .="<h2>Détail des informations</h2>";
                     $chaine_pbc .='<table>
                     <tr>
@@ -90,30 +106,34 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                     $mailaction_object = $mailaction_html[1];
                     $mailaction_html =  $mailaction_html[0];
                     $mailaction_html .= $chaine_pbc;
-                    $mailaction_cc =return_list_mail_cc_notif($db,"",10);
-                    $mailaction_to =return_list_vpi_pci_du_nro($db,$sousProjet->projet->nro->id_nro);
+                    $mailaction_to = return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);
+                    $mailaction_cc = array_merge(return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro),return_list_pci_du_nro($db,$sousProjet->projet->nro->id_nro),return_list_entreprise_stt($db,NULL,$pbc['id_ordre_de_travail']),return_list_mail_cc_notif($db,"",10));
+                    if($mailaction_html!="" and count($mailaction_to)>0){
+                        //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+                        if(true){
 
+
+                            echo $mailaction_html.'<br />*****************<br />TO :';
+                            print_r($mailaction_to) ;
+                            echo '<br />*****************<br />CC :';
+                            print_r($mailaction_cc) ;
+                            echo '<br />*****************<br />';
+                            $sql = "update blq_pbc set flag = 1";
+                            $stm_maj_pbc = $db->prepare($sql);
+                            $stm_maj_pbc->execute();
+                        }
+                    }else{
+                        $message [] = "Liste BEI est vide";
+                        $err++;
+                    }
                 }
 
             }
         }
-        $mailaction_html .="";
+
     }
 
-    if($mailaction_html!=""){
-        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
 
-
-            echo $mailaction_html.'<br />*****************<br />TO :';
-            print_r($mailaction_to) ;
-            echo '<br />*****************<br />CC :';
-            print_r($mailaction_cc) ;
-            echo '<br />*****************<br />';
-            $sql = "update blq_pbc set flag = 1";
-            $stm_maj_pbc = $db->prepare($sql);
-            $stm_maj_pbc->execute();
-        }
-    }
 
 
 
@@ -124,5 +144,5 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
 
 }
 
-$err = 0;
+
 echo json_encode(array("error" => $err , "message" => $message));
