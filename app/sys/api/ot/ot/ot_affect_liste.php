@@ -17,6 +17,7 @@ $columns = array(
     array( "db" => "t1.date_fin", "dt" => 'date_fin' ),
     array( "db" => "t1.commentaire", "dt" => 'commentaire' ),
     array( "db" => "t1.id_type_ordre_travail", "dt" => 'id_type_ordre_travail' ),
+    array( "db" => "t1.backlog", "dt" => 'backlog' ),
     array( "db" => "t2.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
     array( "db" => "es.nom", "dt" => 'nom' ),
     array( "db" => "eq.prenom as eqprenom", "dt" => 'eqprenom' ),

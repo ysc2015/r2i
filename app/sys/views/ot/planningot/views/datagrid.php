@@ -19,6 +19,7 @@
                 <th>date fin</th>
                 <th>état</th>
                 <th>état</th>
+                <th>BackLog</th>
             </tr>
             </thead>
             <tbody>
@@ -36,6 +37,7 @@
                 <th>date fin</th>
                 <th>état</th>
                 <th>état</th>
+                <th>BackLog</th>
             </tr>
             </tfoot>
         </table>
@@ -46,6 +48,7 @@
 <button id="affecter_ot_show" class='btn btn-success btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Affecter ot</button>
 <button id="annuler_affecter" class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-remove'>&nbsp;</span> Annuler affectation</button>
 <button id="transmettre_ot" class='btn btn-info btn-sm'><span class='glyphicon glyphicon-remove'>&nbsp;</span> Transmettre OT</button>
+<button id="bklog_ot" class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-remove'>&nbsp;</span> BackLog OT</button>
 
 <!--<div class='alert alert-success' id='message_annuler_affecter_ot' role='alert' style="display: none;">-->
 

@@ -41,10 +41,12 @@ if(isset($tentree)) {
 switch($connectedProfil->profil->profil->shortlib) {
     case "stt" :
         $condition .=" AND t1.id_entreprise = ".$connectedProfil->profil->id_entreprise;
+        $condition .=" AND t1.backlog <> 1 ";
         break;
     case "pci" :
         $table[] = "nro_utilisateur as t6";
         $condition .=" AND t4.id_nro = t6.id_nro AND t6.id_utilisateur = ".$connectedProfil->profil->id_utilisateur;
+        $condition .=" AND t1.backlog <> 1 ";
         break;
 
     default : break;

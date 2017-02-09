@@ -26,7 +26,7 @@ $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail";
 
 if(isset($tentree) && !empty($tentree)) {
 
-    $tbl = getTableNameForEntry($tentree,true);
+    /*$tbl = getTableNameForEntry($tentree,true);
     $table[] = "$tbl as e";
 
     $te = "";
@@ -35,14 +35,18 @@ if(isset($tentree) && !empty($tentree)) {
     if($tentree == "distributionraccordement") $te = "distributiontirage";
     $condition .=" AND t1.type_entree='".($te==""?$tentree:$te)."'";
 
-    $condition .=" AND t1.id_sous_projet = e.id_sous_projet AND (t1.id_type_ordre_travail > 10 OR (t1.id_type_ordre_travail <=10 AND e.ok <> 1))";
+    $condition .=" AND t1.id_sous_projet = e.id_sous_projet AND (t1.id_type_ordre_travail > 10 OR (t1.id_type_ordre_travail <=10 AND e.ok <> 1))";*/
+
+    if($tentree == "transportraccordement") $te = "transporttirage";
+    if($tentree == "distributionraccordement") $te = "distributiontirage";
+    $condition .=" AND t1.type_entree='$tentree'";
 }
 
 if(isset($idsp)) {
     $condition .=" AND t1.id_sous_projet=$idsp";
 }
 
-if(!isset($tab_imei)) {
+/*if(!isset($tab_imei)) {
     switch($connectedProfil->profil->profil->shortlib) {
         case "stt" :
             $condition .=" AND t1.id_entreprise = ".$connectedProfil->profil->id_entreprise;
@@ -50,7 +54,7 @@ if(!isset($tab_imei)) {
 
         default : break;
     }
-}
+}*/
 
 
 $left = "LEFT join etat_ot as etat ON t1.id_etat_ot = etat.id_etat_ot";

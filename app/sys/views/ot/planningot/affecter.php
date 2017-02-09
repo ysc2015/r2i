@@ -195,7 +195,7 @@
     var old_tr = null;
     var old_tr_class = '';
     var ot_affect_dt;
-    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter","#transmettre_ot"];
+    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter","#transmettre_ot","#bklog_ot"];
     var planning = function() {
         var initContent = function(view) {
 
@@ -320,9 +320,17 @@
                             { "data": "date_debut" },
                             { "data": "date_fin" },
                             { "data": "id_type_ordre_travail" },
-                            { "data": "lib_etat_ot" }
+                            { "data": "lib_etat_ot" },
+                            { "data": "backlog" }
                         ],
                         "columnDefs": [
+                            {
+                                "targets": 11,
+                                "data": "backlog",
+                                "render": function ( data, type, full, meta ) {
+                                    return data==0?'NON':'OUI';
+                                }
+                            },
                             { "targets": [ 0,1,2,9 ], "visible": false, "searchable": false }
                         ],
                         "order": [[9, 'asc']]
@@ -500,6 +508,8 @@
                             if(ot_affect_dt.row('.selected').data().id_etat_ot == 2 || ot_affect_dt.row('.selected').data().id_etat_ot == 8) {
                                 $("#transmettre_ot").removeClass('disabled');
                             }
+
+                            $("#bklog_ot").removeClass('disabled');
                         }
 
                     } );
@@ -538,6 +548,25 @@
                             data: {
                                 status: 3,
                                 idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                ot_status_updated = true;
+                                ot_dt.draw(false);
+                            }
+                            App.showMessage(message,'#message_annuler_affecter_ot');
+                        });
+                    });
+                    $("#bklog_ot").click(function(e) {
+                        e.preventDefault();
+                        console.log('bklog_ot');
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/ot/set_ot_bklog.php",
+                            dataType: "json",
+                            data: {
+                                idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail,
+                                bklog: ot_affect_dt.row('.selected').data().backlog
                             }
                         }).done(function (message) {
                             if(message.error == 0) {
