@@ -1500,6 +1500,28 @@ $mailaction_cc = [];
     }
     return $mailaction_cc;
 }
+function return_list_pci_du_nro($db,$idnro){
+    $mailaction_cc = [];
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` and `utilisateur`.`id_profil_utilisateur` = 8 ";
+    $mailaction_stm = $db->prepare($sql);
+    $mailaction_stm->execute();
+
+    $mailactions_mail_cc = $mailaction_stm->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['email_utilisateur'];
+    }
+    return $mailaction_cc;
+}
+function return_list_entreprise_stt($db,$id_equipe_stt=null, $id_order_travail){
+    $mailaction_cc = [];
+    $mailaction_stm_stt = $db->prepare("SELECT mail FROM `equipe_stt`,`ordre_de_travail` where `ordre_de_travail`.`id_equipe_stt` = `equipe_stt`.`id_equipe_stt` and  `ordre_de_travail`.`id_ordre_de_travail` = $id_order_travail");
+    $mailaction_stm_stt->execute();
+    $mailactions_mail_cc = $mailaction_stm_stt->fetchAll();
+    foreach($mailactions_mail_cc as $mailaction_mail_cc){
+        $mailaction_cc[] = $mailaction_mail_cc['mail'];
+    }
+    return $mailaction_cc;
+}
 
 function get_email_by_id($db,$tabusers){
      $sql = "SELECT utilisateur.email_utilisateur FROM utilisateur where utilisateur.id_utilisateur IN (".implode(",",$tabusers).") ";
