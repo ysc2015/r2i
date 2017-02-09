@@ -9,12 +9,14 @@ extract($_POST);
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("update blq_pbc set reponse_ajustement=:reponse_ajustement, flag = :flag, date_action =:date_action where id_blq_pbc=:id_blq_pbc");
+$stm = $db->prepare("update blq_pbc set reponse_ajustement=:reponse_ajustement, flag = :flag, date_action =:date_action, type_question = :type_question where id_blq_pbc=:id_blq_pbc");
 
 if(isset($idblq) && !empty($idblq)){
     $stm->bindParam(':id_blq_pbc',$idblq);
     $stm->bindValue(':flag',0);
     $stm->bindValue(':date_action',date('Y-m-d H:i:s'));
+    $stm->bindValue(':type_question',2);
+
 } else {
     $err++;
     $message[] = "Identifiant question invalid !";
