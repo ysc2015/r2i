@@ -89,6 +89,7 @@ if(isset($type) && $type == 1){
     $stm->bindValue(':flag',0);
     $stm->bindValue(':date_action',date('Y-m-d H:i:s'));
 
+
 }
 
 if($err == 0){
