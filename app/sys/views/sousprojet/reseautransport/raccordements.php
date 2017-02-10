@@ -465,7 +465,11 @@
                 raccord_formdata[key] = $('#'+key).val();
             }
             raccord_formdata['ids'] = get('idsousprojet');
-            //raccord_formdata['tr_duree'] = $("#tr_duree").val();
+
+            if($("#tr_ok").val() == 1) {
+                $("#tr_etat_retour").val(2);
+                raccord_formdata['tr_etat_retour'] = $("#tr_etat_retour").val();
+            }
 
             $.ajax({
                 method: "POST",

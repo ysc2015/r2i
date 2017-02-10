@@ -428,7 +428,11 @@
                 dtirage_formdata[key] = $('#'+key).val();
             }
             dtirage_formdata['ids'] = get('idsousprojet');
-            //dtirage_formdata['dt_duree'] = $("#dt_duree").val();
+
+            if($("#dt_ok").val() == 1) {
+                $("#dt_etat_retour").val(2);
+                dtirage_formdata['dt_etat_retour'] = $("#dt_etat_retour").val();
+            }
 
             $.ajax({
                 method: "POST",

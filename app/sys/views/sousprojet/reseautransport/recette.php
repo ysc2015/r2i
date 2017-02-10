@@ -39,13 +39,13 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="trec_intervenant_free">Intervenant FREE <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control" id="trec_intervenant_free" name="trec_intervenant_free">
-                        <option value="" selected="">Sélectionnez un utilisateur</option>
+                    <label for="trec_injection_netgeo">Injection netgeo <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control" id="trec_injection_netgeo" name="trec_injection_netgeo">
+                        <!--<option value="" selected="">Sélectionnez une valeur</option>-->
                         <?php
-                        $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                        $results = SelectInjectionNetgeo::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_utilisateur\" ". ($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->intervenant_free==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
+                            echo "<option value=\"$result->id_injection_netgeo\" ". ($sousProjet->transportrecette!==NULL && $sousProjet->transportrecette->injection_netgeo==$result->id_injection_netgeo ?"selected": "")." >$result->lib_injection_netgeo</option>";
                         }
                         ?>
                     </select>
@@ -452,7 +452,7 @@
             if($( "#trec_intervenant_be" ).val()!="") liste_intervenant.push($( "#trec_intervenant_be" ).val());
             if($( "#trec_doe" ).val()!="") liste_intervenant.push($( "#trec_doe" ).val());
             if($( "#trec_netgeo" ).val()!="") liste_intervenant.push($( "#trec_netgeo" ).val());
-            if($( "#trec_intervenant_free" ).val()!="") liste_intervenant.push($( "#trec_intervenant_free" ).val());
+            if($( "#trec_intervenant_be" ).val()!="") liste_intervenant.push($( "#trec_intervenant_be" ).val());
             appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
         });
 
@@ -468,6 +468,11 @@
                 recette_formdata[key] = $('#'+key).val();
             }
             recette_formdata['ids'] = get('idsousprojet');
+
+            if($("#trec_ok").val() == 1) {
+                $("#trec_etat_recette").val(3);
+                recette_formdata['trec_etat_recette'] = $("#trec_etat_recette").val();
+            }
 
             $.ajax({
                 method: "POST",

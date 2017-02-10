@@ -7,9 +7,9 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR-->
-                <th class="bg bg-success-light" colspan="12" style="text-align: center;">CTR</th>
+                <th class="bg bg-success-light" colspan="13" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="12" style="text-align: center;">CDI</th>
+                <th class="bg bg-warning-light" colspan="13" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
@@ -18,11 +18,13 @@
                 <th colspan="2" style="text-align: center;">CMD Structurante</th>
                 <th colspan="3" style="text-align: center;">Tirage</th>
                 <th colspan="3" style="text-align: center;">Raccordement</th>
+                <th colspan="1" style="text-align: center;">Recette</th>
                 <!--CDI-->
                 <th colspan="4" style="text-align: center;">Aiguillage</th>
                 <th colspan="2" style="text-align: center;">CMD Structurante</th>
                 <th colspan="3" style="text-align: center;">Tirage</th>
                 <th colspan="3" style="text-align: center;">Raccordement</th>
+                <th colspan="1" style="text-align: center;">Recette</th>
             </tr>
             <tr>
                 <th>Sous-projet</th>
@@ -42,6 +44,7 @@
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Traitement Retour</th>
+                <th>Injection NetGeo</th>
                 <!--CDI-->
                 <th>Design</th>
                 <th>Plans</th>
@@ -55,6 +58,7 @@
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Traitement Retour</th>
+                <th>Injection NetGeo</th>
             </tr>
             </thead>
             <tbody>
@@ -78,6 +82,7 @@
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Traitement Retour</th>
+                <th>Injection NetGeo</th>
                 <!--CDI-->
                 <th>Design</th>
                 <th>Plans</th>
@@ -91,6 +96,7 @@
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Traitement Retour</th>
+                <th>Injection NetGeo</th>
             </tr>
             </tfoot>
         </table>
@@ -140,6 +146,7 @@
                 { "data": "ctr_raccord_lib_controle_plan" },
                 { "data": "ctr_raccord_ordre_de_travail" },
                 { "data": "ctr_raccord_lib_etat_retour" },
+                { "data": "ctr_recette_etat_recette" },
                 { "data": "cdi_design_lib_ok" },
                 { "data": "cdi_aiguillage_lib_controle_plan" },
                 { "data": "cdi_aiguillage_ordre_de_travail" },
@@ -152,13 +159,14 @@
                 { "data": "cdi_raccord_lib_controle_plan" },
                 { "data": "cdi_raccord_ordre_de_travail" },
                 { "data": "cdi_raccord_lib_etat_retour" },
+                { "data": "cdi_recette_etat_recette" },
                 { "data": "zone" }
 
             ],
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 28 ],
+                    orderData: [ 0, 30 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -168,7 +176,7 @@
                         return full.lib_nro + '-' + full.zone;
                     }
                 },
-                { "targets": [ 28 ], "visible": false, "searchable": true }
+                { "targets": [ 30 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,

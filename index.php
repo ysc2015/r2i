@@ -83,7 +83,7 @@ TOP;
 
     'header-navbar-fixed'        Enables fixed header
 -->
-<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed sidebar-mini">
     <?php include "app/sys/views/document/side-overlay.php"; ?>
     <?php include "app/sys/views/document/sidebar.php"; ?>
     <?php include "app/sys/header.php"; ?>

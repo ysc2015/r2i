@@ -103,8 +103,8 @@ if(isset($trec_netgeo)){
     $insert = true;
 }
 
-if(isset($trec_intervenant_free)){
-    $stm->bindParam(':intervenant_free',$trec_intervenant_free);
+if(isset($trec_injection_netgeo)){
+    $stm->bindParam(':injection_netgeo',$trec_injection_netgeo);
     $insert = true;
 }
 
@@ -215,20 +215,20 @@ if($insert == true && $err == 0){
         if($mailaction_new
             &&
             (
-                ($mailaction_entite!=null && ($mailaction_entite->intervenant_be  != $trec_intervenant_be  ||  $mailaction_entite->intervenant_free  != $trec_intervenant_free))
+                ($mailaction_entite!=null && ($mailaction_entite->intervenant_be  != $trec_intervenant_be  ||  $mailaction_entite->injection_netgeo  != $trec_injection_netgeo))
                 ||
-                ($mailaction_entite==null && ( $trec_intervenant_be !=""  || $trec_intervenant_free!=""))
+                ($mailaction_entite==null && ( $trec_intervenant_be !=""  || $trec_injection_netgeo!=""))
             )
             ){
             if($trec_intervenant_be==null ) $trec_intervenant_be = 0;
-            if($trec_intervenant_free==null) $trec_intervenant_free = 0;
+            if($trec_injection_netgeo==null) $trec_injection_netgeo = 0;
             $mailaction_email_sender = [];
             //envoi de mail
             $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
             $mailaction_cc  =return_list_mail_cc_notif_tache($db,$connectedProfil->email_utilisateur,2);
-            $mailaction_to  =get_email_by_id($db,[$trec_intervenant_be,$trec_intervenant_free]);
+            $mailaction_to  =get_email_by_id($db,[$trec_intervenant_be,$trec_injection_netgeo]);
 
 
             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {

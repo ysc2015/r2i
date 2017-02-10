@@ -449,7 +449,11 @@
                 tirage_formdata[key] = $('#'+key).val();
             }
             tirage_formdata['ids'] = get('idsousprojet');
-            //tirage_formdata['tt_duree'] = $("#tt_duree").val();
+
+            if($("#tt_ok").val() == 1) {
+                $("#tt_etat_retour").val(2);
+                tirage_formdata['tt_etat_retour'] = $("#tt_etat_retour").val();
+            }
 
             $.ajax({
                 method: "POST",

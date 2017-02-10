@@ -39,13 +39,13 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="drec_intervenant_free">Intervenant FREE <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control " id="drec_intervenant_free" name="drec_intervenant_free">
-                        <option value="" selected="">Sélectionnez un utilisateur</option>
+                    <label for="drec_injection_netgeo">Injection netgeo <!--<span class="text-danger">*</span>--></label>
+                    <select class="form-control" id="drec_injection_netgeo" name="drec_injection_netgeo">
+                        <!--<option value="" selected="">Sélectionnez une valeur</option>-->
                         <?php
-                        $results = Utilisateur::all(array('conditions' => array("id_profil_utilisateur = ?", 4)));
+                        $results = SelectInjectionNetgeo::all();
                         foreach($results as $result) {
-                            echo "<option value=\"$result->id_utilisateur\" ". ($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->intervenant_free==$result->id_utilisateur ?"selected": "")." >$result->prenom_utilisateur $result->nom_utilisateur</option>";
+                            echo "<option value=\"$result->id_injection_netgeo\" ". ($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->injection_netgeo==$result->id_injection_netgeo ?"selected": "")." >$result->lib_injection_netgeo</option>";
                         }
                         ?>
                     </select>
@@ -447,6 +447,11 @@
                 drecette_formdata[key] = $('#'+key).val();
             }
             drecette_formdata['ids'] = get('idsousprojet');
+
+            if($("#drec_ok").val() == 1) {
+                $("#drec_etat_recette").val(3);
+                drecette_formdata['drec_etat_recette'] = $("#drec_etat_recette").val();
+            }
 
             $.ajax({
                 method: "POST",
