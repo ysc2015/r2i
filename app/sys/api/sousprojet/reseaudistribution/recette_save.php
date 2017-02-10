@@ -9,6 +9,8 @@ extract($_POST);
 $sousProjet = NULL;
 $stm = NULL;
 
+$drec_intervenant_free = "";
+
 if(isset($ids) && !empty($ids)){
     $sousProjet = SousProjet::find($ids);
 }
@@ -99,8 +101,8 @@ if(isset($drec_netgeo)){
     $insert = true;
 }
 
-if(isset($drec_intervenant_free)){
-    $stm->bindParam(':intervenant_free',$drec_intervenant_free);
+if(isset($drec_injection_netgeo)){
+    $stm->bindParam(':injection_netgeo',$drec_injection_netgeo);
     $insert = true;
 }
 
