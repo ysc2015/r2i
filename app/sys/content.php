@@ -247,6 +247,11 @@ switch ($page) {
 ?>
 
 <?php if(isset($page) && $page == "sousprojet") {?>
+    <style>
+        .reponse_pbc .ajax-upload-dragdrop {
+            display: none;
+        }
+    </style>
     <div class="modal fade" id="liste_tache_osa" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -408,6 +413,16 @@ switch ($page) {
                                         <button id="add_pbc_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter info</button>
                                         <button id="mod_pbc_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier info</button>
                                         <button id="delete_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer info</button>
+                                        <div id="sp_question_pbc_upload" class="row">
+                                            <div class="col-md-6">
+                                                <label for="question_pbc_uploader" style="margin-top: 20px;">Attachments Question</label>
+                                                <div id="question_pbc_uploader"></div>
+                                            </div>
+                                            <div class="col-md-6 reponse_pbc">
+                                                <label for="reponse_pbc_uploader" style="margin-top: 20px;">Attachments Réponse</label>
+                                                <div id="reponse_pbc_uploader"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="btabs-alt-static-justified-q2">
                                         <table id="blq_pbc_table2" class="table table-bordered table-striped js-dataTable-full" width="100%">
@@ -718,6 +733,130 @@ switch ($page) {
         var type_info = 0;
         var update_correction = false;
 
+        var question_pbc_uploader_options = {
+            url: "api/ot/ot/question_pbc_upload_retour.php",
+            multiple:false,
+            dragDrop:true,
+            fileName: "myfile",
+            autoSubmit: true,
+            showDelete:true,
+            showDownload:true,
+            allowedTypes: "pdf,xls,xlsx,jpeg",
+            onLoad:function(obj)
+            {
+                if(blq_pbc_dt != undefined && blq_pbc_dt.row('.selected').data() !== undefined) {
+                    $.ajax({
+                        cache: false,
+                        url: "api/ot/ot/load_question_pbc.php",
+                        method:"POST",
+                        data: {idpbc: blq_pbc_dt.row('.selected').data().id_blq_pbc},
+                        dataType: "json",
+                        success: function(data)
+                        {
+                            for(var i=0;i<data.length;i++)
+                            {
+                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                            }
+                        }
+                    });
+                }
+            },
+            dynamicFormData: function()
+            {
+                var data ={
+                    idpbc: blq_pbc_dt.row('.selected').data().id_blq_pbc
+                };
+                return data;
+            },
+            afterUploadAll:function(obj) {
+            },
+            downloadCallback:function(data,pd)
+            {
+                var obj;
+                var id;
+                try {
+                    obj = $.parseJSON(data);
+                    id = obj[0].id;
+                } catch (e) {
+                    var arr = (data + '').split("_");
+                    id = arr[0];
+                }
+
+                location.href="api/file/download.php?id="+id;
+            },
+            deleteCallback: function (data, pd) {
+                var obj;
+                var id;
+                try {
+                    obj = $.parseJSON(data);
+                    id = obj[0].id;
+                } catch (e) {
+                    var arr = (data + '').split("_");
+                    id = arr[0];
+                }
+
+                $.ajax({
+                    method: "POST",
+                    url: "api/file/delete.php",
+                    data: {
+                        id: id
+                    }
+                }).done(function (message) {
+                    console.log(message);
+                });
+
+            }
+        };
+        var reponse_pbc_uploader_options = {
+            multiple:false,
+            dragDrop:true,
+            fileName: "myfile",
+            autoSubmit: false,
+            showDelete:false,
+            showDownload:true,
+            onLoad:function(obj)
+            {
+                if(blq_pbc_dt != undefined && blq_pbc_dt.row('.selected').data() !== undefined) {
+                    $.ajax({
+                        cache: false,
+                        url: "api/ot/ot/load_reponse_pbc.php",
+                        method:"POST",
+                        data: {idpbc: blq_pbc_dt.row('.selected').data().id_blq_pbc},
+                        dataType: "json",
+                        success: function(data)
+                        {
+                            for(var i=0;i<data.length;i++)
+                            {
+                                obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                            }
+                        }
+                    });
+                }
+            },
+            downloadCallback:function(data,pd)
+            {
+                var obj;
+                var id;
+                try {
+                    obj = $.parseJSON(data);
+                    id = obj[0].id;
+                } catch (e) {
+                    var arr = (data + '').split("_");
+                    id = arr[0];
+                }
+
+                location.href="api/file/download.php?id="+id;
+            }
+        };
+        $(function () {
+            // Init page plugins & helpers
+            question_pbc_uploader_options = merge_options(defaultUploaderStrLocalisation,question_pbc_uploader_options);
+            question_pbc_uploader = $("#question_pbc_uploader").uploadFile(question_pbc_uploader_options);
+
+            reponse_pbc_uploader_options = merge_options(defaultUploaderStrLocalisation,reponse_pbc_uploader_options);
+            reponse_pbc_uploader = $("#reponse_pbc_uploader").uploadFile(reponse_pbc_uploader_options);
+        });
+
         $(document).ready(function() {
 
             $('#tache_table tbody').on( 'click', 'tr', function () {
@@ -885,6 +1024,8 @@ switch ($page) {
 
             } );
 
+            $('#sp_question_pbc_upload').hide();
+
             $('body').on('click',"#blq_pbc_table tbody tr",function (){
                 if(true) { //TODO check if dt is not empty
                     if ( $(this).hasClass('selected') ) {
@@ -893,6 +1034,8 @@ switch ($page) {
                         $(blq_pbc_btns.join(',')).addClass('disabled');
                         //$('.view-question').addClass('disabled');
                         $(this).find('.view-question').addClass('disabled');
+
+                        $('#sp_question_pbc_upload').hide();
                     }
                     else {
                         blq_pbc_dt.$('tr.selected').removeClass('selected');
@@ -902,6 +1045,14 @@ switch ($page) {
                         $(blq_pbc_btns.join(',')).removeClass('disabled');
                         //$('.view-question').removeClass('disabled');
                         $(this).find('.view-question').removeClass('disabled');
+
+                        question_pbc_uploader.reset();
+                        question_pbc_uploader = $("#question_pbc_uploader").uploadFile(question_pbc_uploader_options);
+
+                        reponse_pbc_uploader.reset();
+                        reponse_pbc_uploader = $("#reponse_pbc_uploader").uploadFile(reponse_pbc_uploader_options);
+
+                        $('#sp_question_pbc_upload').show();
                     }
                 }
             });
