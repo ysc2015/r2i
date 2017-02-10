@@ -423,7 +423,11 @@
                 draccord_formdata[key] = $('#'+key).val();
             }
             draccord_formdata['ids'] = get('idsousprojet');
-            //draccord_formdata['dr_duree'] = $("#dr_duree").val();
+
+            if($("#dr_ok").val() == 1) {
+                $("#dr_etat_retour").val(2);
+                draccord_formdata['dr_etat_retour'] = $("#dr_etat_retour").val();
+            }
 
             $.ajax({
                 method: "POST",

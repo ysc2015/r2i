@@ -45,6 +45,8 @@ $columns = array(
     array( "db" => "scp6.lib_controle_plan as cdi_raccord_lib_controle_plan", "dt" => 'cdi_raccord_lib_controle_plan' ),
     array( "db" => "ot6.type_ot as cdi_raccord_ordre_de_travail", "dt" => 'cdi_raccord_ordre_de_travail' ),
     array( "db" => "ser6.lib_etat_retour as cdi_raccord_lib_etat_retour", "dt" => 'cdi_raccord_lib_etat_retour' ),
+    array( "db" => "trec.lib_etat_recette as ctr_recette_etat_recette", "dt" => 'ctr_recette_etat_recette' ),
+    array( "db" => "drec.lib_etat_recette as cdi_recette_etat_recette", "dt" => 'cdi_recette_etat_recette' ),
 );
 
 $condition = "t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
@@ -107,6 +109,11 @@ $left .= " left join sous_projet_distribution_commande_cdi t12 left join select_
 $left .= " left join sous_projet_distribution_tirage t13 left join select_controle_plan scp5 on t13.controle_plans=scp5.id_controle_plan left join ordre_de_travail ot5 on t13.id_sous_projet=ot5.id_sous_projet and ot5.id_type_ordre_travail IN (6,8) left join select_etat_retour ser5 on t13.etat_retour=ser5.id_etat_retour on t1.id_sous_projet = t13.id_sous_projet";
 
 $left .= " left join sous_projet_distribution_raccordements t14 left join select_controle_plan scp6 on t14.controle_plans=scp6.id_controle_plan left join ordre_de_travail ot6 on t14.id_sous_projet=ot6.id_sous_projet and ot6.id_type_ordre_travail IN (7,8) left join select_etat_retour ser6 on t14.etat_retour=ser6.id_etat_retour on t1.id_sous_projet = t14.id_sous_projet";
+
+$left .= " left join sous_projet_transport_recette t15 left join select_etat_recette trec on t15.etat_recette=trec.id_etat_recette on t1.id_sous_projet = t15.id_sous_projet";
+
+$left .= " left join sous_projet_distribution_recette t16 left join select_etat_recette drec on t16.etat_recette=drec.id_etat_recette on t1.id_sous_projet = t16.id_sous_projet";
+
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>

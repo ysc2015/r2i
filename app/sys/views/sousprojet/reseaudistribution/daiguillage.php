@@ -404,7 +404,11 @@
                 daiguillage_formdata[key] = $('#'+key).val();
             }
             daiguillage_formdata['ids'] = get('idsousprojet');
-            //daiguillage_formdata['da_duree'] = $("#da_duree").val();
+
+            if($("#da_ok").val() == 1) {
+                $("#da_etat_retour").val(2);
+                daiguillage_formdata['da_etat_retour'] = $("#da_etat_retour").val();
+            }
 
             $.ajax({
                 method: "POST",
