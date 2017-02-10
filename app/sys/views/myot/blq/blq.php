@@ -255,7 +255,7 @@
 
     $(document).ready(function() {
 
-        //traitement blq rabii
+        //traitement blq rr
         $(blq_pbc_btns.join(',')).addClass('disabled');
         $(blq_pbc_btns2.join(',')).addClass('disabled');
         
