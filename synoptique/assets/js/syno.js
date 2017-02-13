@@ -16,6 +16,15 @@ const RECT_STROKE = 'rgb(0,0,0)';
 const RECT_OFFSET = 80;
 var mainSVG = null;
 
+function getTypeChambreLib(id) {
+    for(var i = 0 ; i < type_chambre_options.length ; i++) {
+        if(type_chambre_options[i].id_type_chambre == id) {
+            return type_chambre_options[i].lib_type_chambre;
+        }
+    }
+    return id;
+}
+
 function addElementToMainSvg(element) {
     if (mainSVG == null) {
         mainSVG = document.getElementById('mainSVG');
@@ -76,7 +85,7 @@ function createRect(y, refText, typeText) {
 
     calculated_x += TEXT_X_OFFSET;
 
-    var typeValue = getText(calculated_x, calculated_y, typeText);
+    var typeValue = getText(calculated_x, calculated_y, getTypeChambreLib(typeText));
 
     addElementToMainSvg(rect);
     addElementToMainSvg(ref);
