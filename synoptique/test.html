@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="assets/plugins/jQuery-2.1.4.min.js" type="application/javascript"></script>
+    <script src="assets/plugins/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="application/javascript"></script>
+    <link href="assets/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        var i = 1;
+        function addTabContent(elementID, content) {
+            var contentElement = '<div role="tabpanel" class="tab-pane"  id="' + elementID + '">';
+            contentElement += content;
+            contentElement += '</div>';
+            $(contentElement).appendTo('#tabContent');
+        }
+
+        function addTabsTitleElement(elementID, title) {
+            var navElement = '<li role="presentation">';
+            navElement += '<a href="#' + elementID + '" aria-controls="' + elementID + '" id="' + elementID + '-tab" role="tab" data-toggle="tab">' + title + '</a>';
+            navElement += '</li>';
+            $(navElement).appendTo('#tabMenu');
+        }
+
+        function activaTab(tab) {
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+        }
+
+        function addTab() {
+            addTabsTitleElement('tab_' + i,'Title ' + i);
+            addTabContent('tab_' + i,'Content ' + i);
+            activaTab('tab_' + i);
+            i++;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <button class="btn btn-primary" onclick="addTab()">AddTab</button>
+</div>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" id="tabMenu">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="tabContent">
+        <div role="tabpanel" class="tab-pane active" id="home">001</div>
+        <div role="tabpanel" class="tab-pane" id="profile">002</div>
+        <div role="tabpanel" class="tab-pane" id="messages">003</div>
+        <div role="tabpanel" class="tab-pane" id="settings">004</div>
+    </div>
+
+</div>
+</body>
+</html>
