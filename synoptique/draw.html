@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="assets/plugins/konva.min.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script>
+
+    function getRect(x, y, h) {
+        var rect = new Konva.Rect({
+            x: x,
+            y: y,
+            fill: '#ddd',
+            width: 300,
+            height: h,
+            shadowColor: 'black',
+            shadowBlur: 10,
+            shadowOffset: [10, 10],
+            shadowOpacity: 0.2,
+            cornerRadius: 10,
+            draggable: false,
+        });
+        return rect;
+    }
+
+    function getText(x, y, text) {
+        var complexText = new Konva.Text({
+            x: x,
+            y: y,
+            text: text,
+            fontSize: 18,
+            fontFamily: 'Calibri',
+            fill: '#555',
+            width: 300,
+            padding: 10,
+            align: 'left',
+            draggable: false
+        });
+        return complexText;
+    }
+
+    function drawRectText(x, y, text, layer) {
+
+        var txtObj = getText(x, y, text);
+        var rect = getRect(x, y, txtObj.getHeight());
+
+        layer.add(rect);
+        layer.add(txtObj);
+
+        return [rect,txtObj];
+    }
+
+    // first we need to create a stage
+    var stage = new Konva.Stage({
+        container: 'container',   // id of container <div>
+        width: 500,
+        height: 500
+    });
+
+    // then create layer
+    var layer = new Konva.Layer();
+
+    var r1 = drawRectText(20,60,'Ref : XXXXXXX\nChambre Type: YYYYYYY',layer);
+    var r2 = drawRectText(20,150,'Ref : XXXXXXX\nChambre Type: YYYYYYY',layer);
+
+    var link = linkRect(r1[0],r2[0]);
+    link.on('click', function (){
+        this.stroke('green');
+        this.draw();
+    });
+
+    function linkRect(r_source,r_destination) {
+        return createHorizontalLink(r_source.getAttrs().x, r_source.getAttrs().y, r_destination.getAttrs().x, r_destination.getAttrs().y,r_source.getAttrs().width,r_source.getAttrs().height);
+    }
+
+    function createHorizontalLink(startX,startY,endX,endY,w,h) {
+        return createLinkShape(startX + w/2, startY + h, startX + w/2, endY);
+    }
+
+    function createLinkShape(startX, startY, endX, endY) {
+        var link = new Konva.Shape({
+            sceneFunc: function(context) {
+                context.beginPath();
+                context.moveTo(startX, startY);
+                context.lineTo(endX, endY);
+                context.closePath();
+
+                context.fillStrokeShape(this);
+            },
+            fill: '#00D2FF',
+            stroke: 'black',
+            strokeWidth: 6,
+            draggable: true
+        });
+        return link;
+    }
+
+
+
+    layer.add(link);
+    // add the layer to the stage
+    stage.add(layer);
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script src="jsPlumb-master/dist/js/jsPlumb-2.2.3-min.js"></script>
+    <link href="jsPlumb-master/dist/css/jsPlumbToolkit-defaults.css">
+    <link href="jsPlumb-master/dist/css/main.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div id="container"></div>
+
+<div class="table node jtk-node jsplumb-draggable" id="e1" style="top: 43px; left: 299px; width: 50px; height: 50px; position: relative; transform: scale(0.532208); transform-origin: 0% 0% 0px;">001</div>
+<div class="table node jtk-node jsplumb-draggable" id="e2" style="top: 43px; left: 299px; width: 50px; height: 50px; position: relative; transform: scale(0.532208); transform-origin: 0% 0% 0px;">002</div>
+
+<script>
+
+    jsPlumb.ready(function() {
+        jsPlumb.setContainer($("body"));
+        var firstInstance = jsPlumb.getInstance();
+
+        firstInstance.importDefaults({
+            Connector : [ "Bezier", { curviness: 150 } ],
+            Anchors : [ "TopCenter", "BottomCenter" ]
+        });
+
+        firstInstance.connect({
+            source:"e1",
+            target:"e2",
+            scope:"someScope"
+        });
+    });
+</script>
+</body>
+</html>
