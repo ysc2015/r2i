@@ -1,4 +1,10 @@
-function showNotification(message, type = 'info', title = '') {
+function showNotification(message, type, title) {
+    if(type == undefined || type == null || type == '') {
+        type = 'info';
+    }
+    if(title == undefined || title == null || title == '') {
+        title = '';
+    }
     $.notify({
         // options
         message: message,
