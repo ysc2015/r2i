@@ -25,6 +25,27 @@ function getTypeChambreLib(id) {
     return id;
 }
 
+function startDrawing() {
+    $.ajax({
+        url: 'api/syno.php',
+        method: 'POST',
+        data: {
+            chambre_src: $('#chambre_src').val(),
+            chambre_dst: $('#chambre_dst').val()
+        },
+        success: function (data) {
+            $('#mainSVG').html('');
+            x = 10;
+            y = 10;
+            first = true;
+            var linkID = (data.link != null ? data.link[0] : null);
+            drawGraph(data, linkID);
+        },
+        beforeSend: function () {
+            console.log('before send');
+        }
+    });
+}
 function addElementToMainSvg(element) {
     if (mainSVG == null) {
         mainSVG = document.getElementById('mainSVG');
@@ -93,6 +114,7 @@ function createRect(y, refText, typeText) {
     addElementToMainSvg(typeValue);
     addElementToMainSvg(typeLib);
 }
+
 
 var x = 10;
 var y = 10;

@@ -112,27 +112,7 @@
                 }
             });
 
-            $('#btn_get_path').click(function () {
-                $.ajax({
-                    url: 'api/syno.php',
-                    method: 'POST',
-                    data: {
-                        chambre_src: $('#chambre_src').val(),
-                        chambre_dst: $('#chambre_dst').val()
-                    },
-                    success: function (data) {
-                        $('#mainSVG').html('');
-                        x = 10;
-                        y = 10;
-                        first = true;
-                        var linkID = (data.link != null ? data.link[0] : null);
-                        drawGraph(data, linkID);
-                    },
-                    beforeSend: function () {
-                        console.log('before send');
-                    }
-                });
-            });
+            $('#btn_get_path').click(startDrawing);
         });
     </script>
 

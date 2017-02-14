@@ -88,7 +88,14 @@ function updateChambreOnChange(chambreId, obj, select) {
     } else {
         value = obj.value;
     }
-    sendToApi('chambre', 'update_on_change', {f: select, v: value, id: chambreId});
+
+    if(select == 'type_chambre') {
+        console.log('TYPE CHAMBRE');
+        sendToApi('chambre', 'update_on_change', {f: select, v: value, id: chambreId},startDrawing);
+    } else {
+        console.log('NOT TYPE CHAMBRE');
+        sendToApi('chambre', 'update_on_change', {f: select, v: value, id: chambreId});
+    }
 }
 
 function updateTronconOnChange(tronconID, obj, select) {

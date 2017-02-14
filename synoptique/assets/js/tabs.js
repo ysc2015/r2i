@@ -7,10 +7,21 @@ function addTabContent(elementID, content) {
     $(contentElement).appendTo('#myTabContent');
 }
 
+function removeTab(tabId) {
+    tabId = tabId.replace('tab_id_','');
+
+    var indexOf = openedTab.indexOf(tabId);
+    if (indexOf != -1) {
+        openedTab.splice(indexOf, 1);
+        $('#tab_id_' + tabId).remove();
+        $('#tab_title_tab_id_' + tabId).remove();
+    }
+}
+
 function addTabsTitleElement(elementID, title) {
-    var navElement = '<li role="presentation">';
+    var navElement = '<li role="presentation" id="tab_title_' + elementID + '">';
     navElement += '<a href="#' + elementID + '" aria-controls="' + elementID + '" id="' + elementID + '-tab" role="tab" data-toggle="tab">' + title + '</a>';
-    navElement += '<button class="close" style="left: -5px;top: -43px;position: relative;"><span aria-hidden="true">×</span></button>';
+    navElement += '<button onclick="removeTab(\'' + elementID + '\')" class="close" style="left: -5px;top: -43px;position: relative;"><span aria-hidden="true">×</span></button>';
     navElement += '</li>';
     $(navElement).appendTo('#myTabs');
 }
