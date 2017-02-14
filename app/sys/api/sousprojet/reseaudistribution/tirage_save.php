@@ -13,6 +13,8 @@ $stm = NULL;
 
 $new = false;
 
+$pos = "";
+
 if(isset($ids) && !empty($ids)){
     $sousProjet = SousProjet::find($ids);
 }
@@ -48,7 +50,41 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
 
-        $stm = $db->prepare("update sous_projet_distribution_tirage set $fieldslist where id_sous_projet=:id_sous_projet");
+        if(!(/*$sousProjet->distributiontirage->plans == 3 &&*/ $sousProjet->distributiontirage->controle_plans == 2 && $sousProjet->distributiontirage->lien_plans != "")) {
+            if(/*isset($dt_plans) && */ isset($dt_controle_plans) && isset($dt_lien_plans) /*&& $dt_plans == 3*/ && $dt_controle_plans == 2 && $dt_lien_plans != "") {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_tirage set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = date('Y-m-d');
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "1";
+            } else {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_tirage set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = NULL;
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "2";
+            }
+        } else {
+            if(!(/*isset($dt_plans) && */ isset($dt_controle_plans) && isset($dt_lien_plans) /*&& $dt_plans == 3*/ && $dt_controle_plans == 2 && $dt_lien_plans != "")) {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_tirage set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = NULL;
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "3";
+            } else {
+                if($sousProjet->distributiontirage->date_controle_ok != NULL) {
+                    $stm = $db->prepare("update sous_projet_distribution_tirage set $fieldslist where id_sous_projet=:id_sous_projet");
+                    $pos = "4";
+                }
+                else {
+                    $fieldslist .=",date_controle_ok=:date_controle_ok";
+                    $stm = $db->prepare("update sous_projet_distribution_tirage set $fieldslist where id_sous_projet=:id_sous_projet");
+                    $dt = date('Y-m-d');
+                    $stm->bindParam(':date_controle_ok',$dt);
+                    $pos = "5";
+                }
+            }
+        }
         $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
@@ -68,7 +104,15 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
 
-        $stm = $db->prepare("insert into sous_projet_distribution_tirage ($fieldslist) values ($valueslist)");
+        if(/*isset($dt_plans) && */ isset($dt_controle_plans) && isset($dt_lien_plans)/* && $dt_plans == 3*/ && $dt_controle_plans == 2 && $dt_lien_plans != "") {
+            $fieldslist .=",date_controle_ok";
+            $valueslist .=",:date_controle_ok";
+            $stm = $db->prepare("insert into sous_projet_distribution_tirage ($fieldslist) values ($valueslist)");
+            $dt = date('Y-m-d');
+            $stm->bindParam(':date_controle_ok',$dt);
+        } else {
+            $stm = $db->prepare("insert into sous_projet_distribution_tirage ($fieldslist) values ($valueslist)");
+        }
         $new = true;
         $mailaction_new = true;
     }
@@ -384,5 +428,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message , "duree" => $duree));
+echo json_encode(array("error" => $err , "message" => $message , "pos" => $pos));
 ?>

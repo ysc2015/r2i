@@ -28,6 +28,8 @@ $paramcount = 0;
 
 $fields = array();
 
+$pos = "";
+
 if($sousProjet !== NULL) {
     if($sousProjet->distributionaiguillage !== NULL) {
         $mailaction_entite = $sousProjet->distributionaiguillage;
@@ -46,7 +48,43 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
 
-        $stm = $db->prepare("update sous_projet_distribution_aiguillage set $fieldslist where id_sous_projet=:id_sous_projet");
+        if(!(/*$sousProjet->distributionaiguillage->plans == 3 &&*/ $sousProjet->distributionaiguillage->controle_plans == 2 && $sousProjet->distributionaiguillage->lien_plans != "")) {
+            if(/*isset($da_plans) &&  */isset($da_controle_plans) && isset($da_lien_plans) && $da_plans == 3 && $da_controle_plans == 2 && $da_lien_plans != "") {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_aiguillage set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = date('Y-m-d');
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "1";
+            } else {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_aiguillage set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = NULL;
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "2";
+            }
+        } else {
+            if(!(/*isset($da_plans) &&*/  isset($da_controle_plans) && isset($da_lien_plans) /*&& $da_plans == 3*/ && $da_controle_plans == 2 && $da_lien_plans != "")) {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_aiguillage set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = NULL;
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "3";
+            } else {
+                if($sousProjet->distributionaiguillage->date_controle_ok != NULL) {
+                    $stm = $db->prepare("update sous_projet_distribution_aiguillage set $fieldslist where id_sous_projet=:id_sous_projet");
+                    $pos = "4";
+                }
+                else {
+                    $fieldslist .=",date_controle_ok=:date_controle_ok";
+                    $stm = $db->prepare("update sous_projet_distribution_aiguillage set $fieldslist where id_sous_projet=:id_sous_projet");
+                    $dt = date('Y-m-d');
+                    $stm->bindParam(':date_controle_ok',$dt);
+                    $pos = "5";
+                }
+            }
+        }
+
+
         $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
@@ -66,7 +104,15 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
 
-        $stm = $db->prepare("insert into sous_projet_distribution_aiguillage ($fieldslist) values ($valueslist)");
+        if(/*isset($da_plans) &&  */isset($da_controle_plans) && isset($da_lien_plans) /*&& $da_plans == 3*/ && $da_controle_plans == 2 && $da_lien_plans != "") {
+            $fieldslist .=",date_controle_ok";
+            $valueslist .=",:date_controle_ok";
+            $stm = $db->prepare("insert into sous_projet_distribution_aiguillage ($fieldslist) values ($valueslist)");
+            $dt = date('Y-m-d');
+            $stm->bindParam(':date_controle_ok',$dt);
+        } else {
+            $stm = $db->prepare("insert into sous_projet_distribution_aiguillage ($fieldslist) values ($valueslist)");
+        }
         $mailaction_new = true;
     }
 } else {
@@ -292,6 +338,8 @@ if($insert == true && $err == 0){
                 )
             )
           ) {
+            //save date controle ok
+
             //envoi de maile
 
             $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','aiguillage',4,'');
@@ -369,5 +417,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message , "duree" => $duree));
+echo json_encode(array("error" => $err , "message" => $message , "pos" => $pos));
 ?>
