@@ -29,6 +29,8 @@ $paramcount = 0;
 
 $fields = array();
 
+$pos = "";
+
 if($sousProjet !== NULL) {
     if($sousProjet->distributionraccordement !== NULL) {
         $mailaction_entite = $sousProjet->distributionraccordement;
@@ -46,7 +48,41 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
 
-        $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+        if(!(/*$sousProjet->distributionraccordement->plans == 3 &&*/ $sousProjet->distributionraccordement->controle_plans == 2 && $sousProjet->distributionraccordement->lien_plans != "")) {
+            if(/*isset($dr_plans) && */ isset($dr_controle_plans) && isset($dr_lien_plans) /*&& $dr_plans == 3*/ && $dr_controle_plans == 2 && $dr_lien_plans != "") {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = date('Y-m-d');
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "1";
+            } else {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = NULL;
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "2";
+            }
+        } else {
+            if(!(/*isset($dr_plans) && */ isset($dr_controle_plans) && isset($dr_lien_plans) /*&& $dr_plans == 3*/ && $dr_controle_plans == 2 && $dr_lien_plans != "")) {
+                $fieldslist .=",date_controle_ok=:date_controle_ok";
+                $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+                $dt = NULL;
+                $stm->bindParam(':date_controle_ok',$dt);
+                $pos = "3";
+            } else {
+                if($sousProjet->distributionraccordement->date_controle_ok != NULL) {
+                    $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+                    $pos = "4";
+                }
+                else {
+                    $fieldslist .=",date_controle_ok=:date_controle_ok";
+                    $stm = $db->prepare("update sous_projet_distribution_raccordements set $fieldslist where id_sous_projet=:id_sous_projet");
+                    $dt = date('Y-m-d');
+                    $stm->bindParam(':date_controle_ok',$dt);
+                    $pos = "5";
+                }
+            }
+        }
         $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
@@ -66,7 +102,15 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
 
-        $stm = $db->prepare("insert into sous_projet_distribution_raccordements ($fieldslist) values ($valueslist)");
+        if(/*isset($dr_plans) && */ isset($dr_controle_plans) && isset($dr_lien_plans)/* && $dr_plans == 3*/ && $dr_controle_plans == 2 && $dr_lien_plans != "") {
+            $fieldslist .=",date_controle_ok";
+            $valueslist .=",:date_controle_ok";
+            $stm = $db->prepare("insert into sous_projet_distribution_raccordements ($fieldslist) values ($valueslist)");
+            $dt = date('Y-m-d');
+            $stm->bindParam(':date_controle_ok',$dt);
+        } else {
+            $stm = $db->prepare("insert into sous_projet_distribution_raccordements ($fieldslist) values ($valueslist)");
+        }
         $mailaction_new = true;
     }
 } else {
@@ -300,5 +344,5 @@ if($insert == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message , "duree" => $duree));
+echo json_encode(array("error" => $err , "message" => $message , "pos" => $pos));
 ?>
