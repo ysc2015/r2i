@@ -73,5 +73,5 @@ switch($connectedProfil->profil->profil->shortlib) {
 
 //$left = "left join select_go_ft sgf on t7.go_ft = sgf.id_go_ft";
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,""));
 ?>
