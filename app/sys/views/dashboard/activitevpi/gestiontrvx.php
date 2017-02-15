@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="row">
+            <div class="row">
                 <div class="block">
                     <div class="block-header">
                         <h3 class="block-title">Chantiers non démarrés</h3>
@@ -110,6 +110,7 @@
                             <thead>
                             <tr>
                                 <th>Nom de L’OT</th>
+                                <th>Statut de L’OT</th>
                                 <th>Code NRO</th>
                                 <th>Etape</th>
                                 <th>PCI en charge</th>
@@ -123,6 +124,7 @@
                             <tfoot>
                             <tr>
                                 <th>Nom de L’OT</th>
+                                <th>Statut de L’OT</th>
                                 <th>Code NRO</th>
                                 <th>Etape</th>
                                 <th>PCI en charge</th>
@@ -135,16 +137,17 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!--<div class="row">
                 <div class="block">
                     <div class="block-header">
                         <h3 class="block-title">Chantiers en cours</h3>
                     </div>
                     <div class="block-content bg-info-light">
-                        <table id="gestiontrvx_table3" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                        <table id="gestiontrvx_table4" class="table table-bordered table-striped js-dataTable-full" width="100%">
                             <thead>
                             <tr>
                                 <th>Nom de L’OT</th>
+                                <th>Statut de L’OT</th>
                                 <th>Code NRO</th>
                                 <th>Etape</th>
                                 <th>PCI en charge</th>
@@ -158,6 +161,7 @@
                             <tfoot>
                             <tr>
                                 <th>Nom de L’OT</th>
+                                <th>Statut de L’OT</th>
                                 <th>Code NRO</th>
                                 <th>Etape</th>
                                 <th>PCI en charge</th>
@@ -177,6 +181,8 @@
 <script>
     var gestion_travaux_ctr_dt;
     var gestion_travaux_cdi_dt;
+    var gestion_travaux_ch1;
+    var gestion_travaux_ch2;
     $(function () {
         // Init page plugins & helpers
     });
@@ -268,6 +274,57 @@
                         }
 
                         return full.lib_nro + '-' + full.zone;
+                    }
+                },
+            ],
+            "order": [[0, 'desc']]
+            ,
+            "drawCallback": function( settings ) {
+                $('#gestiontrvx_block').removeClass('block-opt-refresh');
+            }
+        } );
+
+        gestion_travaux_ch1 = $('#gestiontrvx_table3').on('preXhr.dt', function ( e, settings, data ) {
+            $('#gestiontrvx_block').addClass('block-opt-refresh');
+        }).DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'api/dashboard/activitevpi/gestion_travaux_ch1.php'
+            },
+            "columns": [
+                { "data": "type_ot" },
+                { "data": "lib_etat_ot" },
+                { "data": "lib_nro" },
+                { "data": "lib_type_ordre_travail" },
+                { "data": "prenom_utilisateur" },
+                { "data": "nom" },
+                { "data": "date_debut" },
+                { "data": "date_fin" },
+            ],
+            "columnDefs": [
+                {
+                    "targets": 4,
+                    orderData: [ 4 ],
+                    "data": "prenom_utilisateur",
+                    "render": function ( data, type, full, meta ) {
+                        return  full.prenom_utilisateur + ' ' + full.nom_utilisateur;
+                    }
+                },
+                {
+                    "targets": 0,
+                    orderData: [ 0 ],
+                    "data": "type_ot",
+                    "render": function ( data, type, full, meta ) {
+                        if(type == "display"){
+                            return  '<a href="?page=ot&idsousprojet='+full.id_sous_projet+'&tentree='+full.type_entree+'">'+data+'</a>';
+                        }
+
+                        return data;
                     }
                 },
             ],
