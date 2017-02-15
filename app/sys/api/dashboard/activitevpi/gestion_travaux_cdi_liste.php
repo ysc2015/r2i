@@ -32,7 +32,7 @@ $condition .= " AND t1.id_sous_projet=t5.id_sous_projet AND t1.id_sous_projet=t6
 
 $condition .= " AND tcc.ref_commande_acces <> '' ";
 
-$condition .=" AND (t5.etat_retour <> 2 OR t6.etat_retour <> 2)";
+//$condition .=" AND (t5.etat_retour <> 2 OR t6.etat_retour <> 2)";
 
 //$condition .=" AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))";
 
