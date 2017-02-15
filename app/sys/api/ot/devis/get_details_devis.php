@@ -97,6 +97,31 @@ $table_unite['RFO_01_21_unit'] = "Forfait";
 $table_unite['RFO_01_22_unit'] = "Unité";
 $table_unite['RFO_01_23_unit'] = "Soudure";
 $table_unite['RFO_01_24_unit'] = "Soudure";
+$table_int = array();
+$table_int['RFO_01_01_int'] = "408";
+$table_int['RFO_01_02_int'] = "4120";
+$table_int['RFO_01_03_int'] = "244";
+$table_int['RFO_01_04_int'] = "2356";
+$table_int['RFO_01_05_int'] = "203";
+$table_int['RFO_01_06_int'] = "1597";
+$table_int['RFO_01_07_int'] = "162";
+$table_int['RFO_01_08_int'] = "879";
+$table_int['RFO_01_09_int'] = "141";
+$table_int['RFO_01_10_int'] = "572";
+$table_int['RFO_01_11_int'] = "107";
+$table_int['RFO_01_12_int'] = "442";
+$table_int['RFO_01_13_int'] = "100";
+$table_int['RFO_01_14_int'] = "268";
+$table_int['RFO_01_15_int'] = "210";
+$table_int['RFO_01_16_int'] = "190";
+$table_int['RFO_01_17_int'] = "140";
+$table_int['RFO_01_18_int'] = "120";
+$table_int['RFO_01_19_int'] = "110";
+$table_int['RFO_01_20_int'] = "105";
+$table_int['RFO_01_21_int'] = "10";
+$table_int['RFO_01_22_int'] = "950";
+$table_int['RFO_01_23_int'] = "4.5";
+$table_int['RFO_01_24_int'] = "6";
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -104,24 +129,22 @@ if($stm->execute()) {
         for($i= 1 ; $i <= 24 ; $i++){
             if($i < 10)
                 $data[] = array(
-                    "RFO_01" => $row['RFO_01_0'.$i],
+                    "RFO_01" => 'RFO_01_0'.$i,
                     "racc" => $table_raccordement['RFO_01_0'.$i.'_racc'],
                     "qt" => $row['RFO_01_0'.$i.'_qt'],
                     "unit" => $table_unite['RFO_01_0'.$i.'_unit'],
-                    "int" => $row['RFO_01_0'.$i.'_int'],
-                    "total" => $row['RFO_01_0'.$i.'_total']
+                    "int" => $table_int['RFO_01_0'.$i.'_int'],
+                    "total" => $table_int['RFO_01_0'.$i.'_int']*$row['RFO_01_0'.$i.'_qt']
                 );
             if($i >= 10  )
                 $data[] = array(
-                    "RFO_01" => $row['RFO_01_'.$i],
+                    "RFO_01" => 'RFO_01_'.$i,
                     "racc" => $table_raccordement['RFO_01_'.$i.'_racc'],
                     "qt" => $row['RFO_01_'.$i.'_qt'],
                     "unit" => $table_unite['RFO_01_'.$i.'_unit'],
-                    "int" => $row['RFO_01_'.$i.'_int'],
-                    "total" => $row['RFO_01_'.$i.'_total']
+                    "int" => $table_int['RFO_01_'.$i.'_int'],
+                    "total" => $row['RFO_01_'.$i.'_qt']*$table_int['RFO_01_'.$i.'_int']
                 );
-
-
         }
 
 

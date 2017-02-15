@@ -15,7 +15,7 @@
 <br>
 <form class="form-horizontal push-10-t push-10" id="devis_detail_form" name="devis_detail_form">
     <div id="wrap"  class="modal fade" role="dialog" aria-hidden="false" tabindex="-1"  >
-<div class="modal-dialog">
+<div class="modal-dialog" style="width: 900px">
     <div class="modal-content">
         <div class="block block-themed block-transparent remove-margin-b">
             <div class="block-header bg-primary">
@@ -24,12 +24,43 @@
                         <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                     </li>
                 </ul>
-                <h3 class="block-title">modifier ordre de travail</h3>
+                <h3 class="block-title">Edition Devis ID ()</h3>
             </div>
             <div class="block-content">
+                <div class="block">
+                    <ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">
+                        <li class="">
+                            <a href="#devis_tab" data-toggle="tab" aria-expanded="false">Devis</a>
+                        </li>
+                        <li class="active">
+                            <a href="#LOT7_FO" data-toggle="tab" aria-expanded="true">LOT7_FO</a>
+                        </li>
+                        <li>
+                            <a href="#LOT2_GC" data-toggle="tab">LOT2_GC</a>
+                        </li>
+                    </ul>
+                    <div class="block-content tab-content">
+                        <div class="tab-pane" id="devis_tab">
+
+                        </div>
+                        <div class="tab-pane active" id="LOT7_FO">
+                            <h3 class="block-title block-title-edition-devis">Etudes</h3>
+                            <div id="tablecontentetude"></div>
+                            <h3 class="block-title block-title-edition-devis">Travaux en Réseau enterrés</h3>
+                            <div id="tablecontentTRE"></div>
+                            <h3 class="block-title block-title-edition-devis">Travaux de raccordement optique et mesures</h3>
+                            <div id="tablecontent"></div>
+                            <h3 class="block-titleblock-title-edition-devis ">Travaux en En Site Technique</h3>
+                            <div id="tablecontenttst"></div>
+                        </div>
+                        <div class="tab-pane" id="LOT2_GC">
+
+                        </div>
+                    </div>
+                </div>
                 <div id="message"></div>
 
-                <div id="tablecontent"></div>
+
             </div>
             <div class="modal-footer">
                 <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
@@ -221,8 +252,23 @@
     $(document).ready(function() {
         id_devis_edit_btn
         $("#id_devis_edit_btn").click(function() {
+            $.ajax({
+                cache: false,
+                url: "api/ot/devis/get_details_devis_info.php",
+                method:"GET",
+                data: {iddevis:id_devis},
+                dataType: "json",
+                success: function(data)
+                {
+                    $('#devis_tab').html(data);
+
+                }
+            });
             console.log(id_devis);
-            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis="+id_devis);
+            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis="+id_devis,"tablecontent","testgrid","tableid");
+            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis="+id_devis,"tablecontentTRE","testgrid","tableidTRE");
+            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis="+id_devis,"tablecontentetude","testgrid","tableidetude");
+            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis="+id_devis,"tablecontenttst","testgrid","tableidtst");
         });
         $("#download_devis").click(function() {
             if(ot_dt.row('.selected').data()!== undefined) {
