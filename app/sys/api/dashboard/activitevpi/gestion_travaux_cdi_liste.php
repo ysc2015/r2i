@@ -6,7 +6,7 @@
 
 extract($_POST);
 
-$table = array("sous_projet as t1","projet as t2","nro as t3","ordre_de_travail as t4","sous_projet_distribution_tirage as t5","sous_projet_distribution_raccordements as t6");
+$table = array("sous_projet as t1","projet as t2","nro as t3","ordre_de_travail as t4","sous_projet_distribution_tirage as t5","sous_projet_distribution_raccordements as t6","sous_projet_distribution_commande_cdi as t7");
 $columns = array(
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
@@ -16,23 +16,23 @@ $columns = array(
     array( "db" => "t1.plaque", "dt" => 'plaque' ),
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
-    array( "db" => "tcc.ref_commande_acces", "dt" => 'ref_commande_acces' ),
+    array( "db" => "t7.ref_commande_acces", "dt" => 'ref_commande_acces' ),
     array( "db" => "sgf.lib_go_ft", "dt" => 'lib_go_ft' ),
-    array( "db" => "t4.type_ot", "dt" => 'date_debut_travaux_ft' ),
-    array( "db" => "t4.type_ot", "dt" => 'date_fin_travaux_ft' ),
-    array( "db" => "t4.type_ot", "dt" => 'date_depot_cmd' ),
+    array( "db" => "t7.date_debut_travaux_ft", "dt" => 'date_debut_travaux_ft' ),
+    array( "db" => "t7.date_fin_travaux_ft", "dt" => 'date_fin_travaux_ft' ),
+    array( "db" => "t7.date_depot_cmd", "dt" => 'date_depot_cmd' ),
     array( "db" => "t4.type_ot", "dt" => 'type_ot' ),
     array( "db" => "t4.date_debut", "dt" => 'date_debut' ),
     array( "db" => "t4.date_fin", "dt" => 'date_fin' ),
 );
 
 $condition = "t1.id_sous_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
-/*$condition .= " AND (t1.id_sous_projet=t4.id_sous_projet AND t4.id_type_ordre_travail IN (6,7,8))";
-$condition .= " AND t1.id_sous_projet=t5.id_sous_projet AND t1.id_sous_projet=t6.id_sous_projet";
+$condition .= " AND (t1.id_sous_projet=t4.id_sous_projet AND t4.id_type_ordre_travail IN (6,7,8))";
+$condition .= " AND t1.id_sous_projet=t5.id_sous_projet AND t1.id_sous_projet=t6.id_sous_projet AND t1.id_sous_projet=t7.id_sous_projet";
 
-$condition .= " AND tcc.ref_commande_acces <> '' ";*/
+$condition .= " AND t7.ref_commande_acces <> '' ";
 
-//$condition .=" AND (t5.etat_retour <> 2 OR t6.etat_retour <> 2)";
+$condition .=" AND (t5.etat_retour <> 2 OR t6.etat_retour <> 2)";
 
 //$condition .=" AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))";
 
@@ -71,7 +71,7 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-//$left = "inner join (sous_projet_distribution_commande_cdi tcc left join select_go_ft sgf on tcc.go_ft = sgf.id_go_ft) on t1.id_sous_projet = tcc.id_sous_projet";
+$left = "left join select_go_ft sgf on t7.go_ft = sgf.id_go_ft";
 
-echo json_encode(@SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
+echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
