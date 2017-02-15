@@ -336,7 +336,12 @@ class SSP {
                 0,
             "recordsTotal"    => intval( $recordsTotal ),
             "recordsFiltered" => intval( $recordsFiltered ),
-            "data"            => self::data_output( $columns, $data )
+            "data"            => self::data_output( $columns, $data ),
+            "sql"             => "SELECT SQL_CALC_FOUND_ROWS ".implode(", ", $pluck)."
+			 FROM $fromTables $leftJoint
+			 $where
+			 $order
+			 $limit"
         );
     }
 
