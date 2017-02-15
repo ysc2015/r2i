@@ -25,3 +25,10 @@ function getPlansOk() {
         $('#gestplansot_block').removeClass('block-opt-refresh');
     });
 }
+
+function getPlannifOT() {
+
+    gestion_travaux_ctr_dt.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_ctr_liste.php' ).load();
+    gestion_travaux_cdi_dt.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_cdi_liste.php' ).load();
+
+}

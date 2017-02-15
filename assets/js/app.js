@@ -501,10 +501,14 @@ var App = function() {
                             //dashboard
                             case 'activitevpi_block' :
                                 getPlansOk();
+                                getPlannifOT();
                                 //TODO add further functions
                                 break;
                             case 'gestplansot_block' :
                                 getPlansOk();
+                                break;
+                            case 'gestiontrvx_block' :
+                                getPlannifOT();
                                 break;
                             case 'infozone_block' :
                              console.log($('#infozone_block').find('.tab-pane.active').attr("id"));//ajax function on common.js file to add,$elBlock as parameter

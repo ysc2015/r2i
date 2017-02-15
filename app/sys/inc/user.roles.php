@@ -137,7 +137,7 @@ class adm extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans"),
+                "activitevpi" => array("gestionplans","gestiontrvx"),
                 "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
@@ -269,8 +269,8 @@ class dov extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
+                "activitevpi" => array("gestionplans","gestiontrvx"),
+                "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
@@ -354,8 +354,8 @@ class pov extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
+                "activitevpi" => array("gestionplans","gestiontrvx"),
+                "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
@@ -521,8 +521,8 @@ class vpi extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans")/*,
-                "activitebei" => array("index"),
+                "activitevpi" => array("gestionplans","gestiontrvx"),
+                "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
