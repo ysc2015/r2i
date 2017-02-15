@@ -27,12 +27,12 @@ $columns = array(
 );
 
 $condition = "t1.id_sous_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
-$condition .= " AND (t1.id_sous_projet=t4.id_sous_projet AND t4.id_type_ordre_travail IN (6,7,8))";
+/*$condition .= " AND (t1.id_sous_projet=t4.id_sous_projet AND t4.id_type_ordre_travail IN (6,7,8))";
 $condition .= " AND t1.id_sous_projet=t5.id_sous_projet AND t1.id_sous_projet=t6.id_sous_projet AND t1.id_sous_projet=t7.id_sous_projet";
 
 $condition .= " AND t7.ref_commande_acces <> '' ";
 
-$condition .=" AND (t5.etat_retour <> 2 OR t6.etat_retour <> 2)";
+$condition .=" AND (t5.etat_retour <> 2 OR t6.etat_retour <> 2)";*/
 
 //$condition .=" AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))";
 
