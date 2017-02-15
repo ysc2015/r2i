@@ -37,8 +37,8 @@ if(isset($tentree) && !empty($tentree)) {
 
     $condition .=" AND t1.id_sous_projet = e.id_sous_projet AND (t1.id_type_ordre_travail > 10 OR (t1.id_type_ordre_travail <=10 AND e.ok <> 1))";*/
 
-    if($tentree == "transportraccordement") $te = "transporttirage";
-    if($tentree == "distributionraccordement") $te = "distributiontirage";
+    if($tentree == "transportraccordement") $tentree = "transporttirage";
+    if($tentree == "distributionraccordement") $tentree = "distributiontirage";
     $condition .=" AND t1.type_entree='$tentree'";
 }
 
