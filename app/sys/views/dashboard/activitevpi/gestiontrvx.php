@@ -248,7 +248,7 @@
                 { "data": "zone" },
                 { "data": "id_sous_projet" },
                 { "data": "ref_commande_acces" },
-                { "data": "id_sous_projet" },//lib_go_ft
+                { "data": "lib_go_ft" },//lib_go_ft
                 { "data": "date_debut_travaux_ft" },
                 { "data": "date_fin_travaux_ft" },
                 { "data": "date_depot_cmd" },
