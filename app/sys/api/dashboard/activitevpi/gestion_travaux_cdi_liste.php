@@ -28,7 +28,7 @@ $columns = array(
 
 $condition = "t1.id_sous_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
 //$condition .= " AND (t1.id_sous_projet=t4.id_sous_projet AND t4.id_type_ordre_travail IN (6,7,8))";
-$condition .= " AND t1.id_sous_projet=t5.id_sous_projet AND t1.id_sous_projet=t6.id_sous_projet AND t1.id_sous_projet=t7.id_sous_projet";
+//$condition .= " AND t1.id_sous_projet=t5.id_sous_projet AND t1.id_sous_projet=t6.id_sous_projet AND t1.id_sous_projet=t7.id_sous_projet";
 
 $condition .= " AND t7.ref_commande_acces <> '' ";
 
