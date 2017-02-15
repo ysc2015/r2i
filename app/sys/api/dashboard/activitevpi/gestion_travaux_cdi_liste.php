@@ -17,7 +17,7 @@ $columns = array(
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t7.ref_commande_acces", "dt" => 'ref_commande_acces' ),
-    array( "db" => "sgf.lib_go_ft", "dt" => 'lib_go_ft' ),
+    array( "db" => "t1.id_sous_projet", "dt" => 'lib_go_ft' ),
     array( "db" => "t7.date_debut_travaux_ft", "dt" => 'date_debut_travaux_ft' ),
     array( "db" => "t7.date_fin_travaux_ft", "dt" => 'date_fin_travaux_ft' ),
     array( "db" => "t7.date_depot_cmd", "dt" => 'date_depot_cmd' ),
@@ -71,7 +71,7 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-$left = "left join select_go_ft sgf on t7.go_ft = sgf.id_go_ft";
+//$left = "left join select_go_ft sgf on t7.go_ft = sgf.id_go_ft";
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
