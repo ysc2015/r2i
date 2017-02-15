@@ -18,9 +18,9 @@ $columns = array(
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "tcc.ref_commande_acces", "dt" => 'ref_commande_acces' ),
     array( "db" => "sgf.lib_go_ft", "dt" => 'lib_go_ft' ),
-    array( "db" => "tcc.date_debut_travaux_ft", "dt" => 'date_debut_travaux_ft' ),
-    array( "db" => "tcc.date_fin_travaux_ft", "dt" => 'date_fin_travaux_ft' ),
-    array( "db" => "tcc.date_depot_cmd", "dt" => 'date_depot_cmd' ),
+    array( "db" => "t4.type_ot", "dt" => 'date_debut_travaux_ft' ),
+    array( "db" => "t4.type_ot", "dt" => 'date_fin_travaux_ft' ),
+    array( "db" => "t4.type_ot", "dt" => 'date_depot_cmd' ),
     array( "db" => "t4.type_ot", "dt" => 'type_ot' ),
     array( "db" => "t4.date_debut", "dt" => 'date_debut' ),
     array( "db" => "t4.date_fin", "dt" => 'date_fin' ),
@@ -71,7 +71,7 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-$left = "inner join (sous_projet_distribution_commande_cdi tcc left join select_go_ft sgf on tcc.go_ft = sgf.id_go_ft) on t1.id_sous_projet = tcc.id_sous_projet";
+//$left = "inner join (sous_projet_distribution_commande_cdi tcc left join select_go_ft sgf on tcc.go_ft = sgf.id_go_ft) on t1.id_sous_projet = tcc.id_sous_projet";
 
 echo json_encode(@SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
