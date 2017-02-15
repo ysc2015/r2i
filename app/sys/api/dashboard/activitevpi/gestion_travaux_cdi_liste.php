@@ -17,7 +17,7 @@ $columns = array(
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t7.ref_commande_acces", "dt" => 'ref_commande_acces' ),
-    array( "db" => "t1.id_sous_projet", "dt" => 'lib_go_ft' ),
+    array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t7.date_debut_travaux_ft", "dt" => 'date_debut_travaux_ft' ),
     array( "db" => "t7.date_fin_travaux_ft", "dt" => 'date_fin_travaux_ft' ),
     array( "db" => "t7.date_depot_cmd", "dt" => 'date_depot_cmd' ),
