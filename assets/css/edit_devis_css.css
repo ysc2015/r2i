@@ -59,4 +59,11 @@ table.testgrid td {
 	background-color: #fff;
 	width: 950px;
 }
- 
+.block-title-edition-devis{
+	margin: 10px;
+	color: #44b4a6;
+}
+.td-total{
+	font-weight: bold;
+}
+

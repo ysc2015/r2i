@@ -809,16 +809,16 @@ function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
 
-    $d33 = "";
-    $d36 = "";
-    $d43 = "";
-    $d44 = "";
-    $d46 = "";
-    $d47 = "";
-    $d48 = "";
-    $d53 = "";
-    $d54 = "";
-    $d56 = "";
+    $EFO_06_03_qt = "";
+    $EFO_06_06_qt = "";
+    $TFO_01_01_qt = "";
+    $TFO_01_02_qt = "";
+    $TFO_02_01_qt = "";
+    $TFO_02_02_qt = "";
+    $TFO_02_03_qt = "";
+    $TFO_03_01_qt = "";
+    $TFO_03_02_qt = "";
+    $TFO_04_01_qt = "";
 
     if(isset($_GET['idsp']) && !empty($_GET['idsp'])){
         $sousProjet = SousProjet::find($_GET['idsp']);
@@ -862,38 +862,38 @@ function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
             switch($tentree) {
                 case "transportaiguillage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $d33 = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
-                        $d43 = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                        $d44 = "";//nbr chambre
+                        $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                        $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                        $TFO_01_02_qt = "";//nbr chambre
                     }
                     break;
                 case "distributionaiguillage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $d33 = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
-                        $d43 = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                        $d44 = "";//nbr chambre
+                        $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                        $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                        $TFO_01_02_qt = "";//nbr chambre
                     }
                     break;
 
                 case "transporttirage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $d36 = $sousProjet->{$tentree}->lineaire12 / 2;
-                        $d46 = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
-                        $d48 = $sousProjet->{$tentree}->lineaire12;
-                        $d53 = $sousProjet->{$tentree}->lineaire4;//cables
-                        $d54 = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
-                        $d56 = "";//nbrchambre * 3
+                        $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
+                        $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
+                        $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
+                        $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire4;//cables
+                        $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
+                        $TFO_04_01_qt = "";//nbrchambre * 3
                     }
                     break;
                 case "distributiontirage" :
                     if($sousProjet->{$tentree} !== NULL) {
-                        $d36 = $sousProjet->{$tentree}->lineaire12 / 2;
-                        $d46 = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
-                        $d47 = $sousProjet->{$tentree}->lineaire11;
-                        $d48 = $sousProjet->{$tentree}->lineaire12;
-                        $d53 = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                        $d54 = $sousProjet->{$tentree}->lineaire1;
-                        $d56 = "";//nbr chambre * 2
+                        $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
+                        $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
+                        $TFO_02_02_qt = $sousProjet->{$tentree}->lineaire11;
+                        $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
+                        $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                        $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1;
+                        $TFO_04_01_qt = "";//nbr chambre * 2
                     }
                     break;
                 default :
@@ -901,18 +901,18 @@ function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
             }
         }
 
-        $update_statment = $db->prepare("UPDATE detaildevis SET D33=:D33,D36=:D36,D43=:D43,D44=:D44,D46=:D46,D47=:D47,D48=:D48,D53=:D53,D54=:D54,D56=:D56 WHERE iddevis=:id");
+        $update_statment = $db->prepare("UPDATE detaildevis SET EFO_06_03_qt=:EFO_06_03_qt,EFO_06_06_qt=:EFO_06_06_qt,TFO_01_01_qt=:TFO_01_01_qt,TFO_01_02_qt=:TFO_01_02_qt,TFO_02_01_qt=:TFO_02_01_qt,TFO_02_02_qt=:TFO_02_02_qt,TFO_02_03_qt=:TFO_02_03_qt,TFO_03_01_qt=:TFO_03_01_qt,TFO_03_02_qt=:TFO_03_02_qt,TFO_04_01_qt=:TFO_04_01_qt WHERE iddevis=:id");
 
-        $update_statment->bindParam(':D33',$d33);
-        $update_statment->bindParam(':D36',$d36);
-        $update_statment->bindParam(':D43',$d43);
-        $update_statment->bindParam(':D44',$d44);
-        $update_statment->bindParam(':D46',$d46);
-        $update_statment->bindParam(':D47',$d47);
-        $update_statment->bindParam(':D48',$d48);
-        $update_statment->bindParam(':D53',$d53);
-        $update_statment->bindParam(':D54',$d54);
-        $update_statment->bindParam(':D56',$d56);
+        $update_statment->bindParam(':EFO_06_03_qt',$EFO_06_03_qt);
+        $update_statment->bindParam(':EFO_06_06_qt',$EFO_06_06_qt);
+        $update_statment->bindParam(':TFO_01_01_qt',$TFO_01_01_qt);
+        $update_statment->bindParam(':TFO_01_02_qt',$TFO_01_02_qt);
+        $update_statment->bindParam(':TFO_02_01_qt',$TFO_02_01_qt);
+        $update_statment->bindParam(':TFO_02_02_qt',$TFO_02_02_qt);
+        $update_statment->bindParam(':TFO_02_03_qt',$TFO_02_03_qt);
+        $update_statment->bindParam(':TFO_03_01_qt',$TFO_03_01_qt);
+        $update_statment->bindParam(':TFO_03_02_qt',$TFO_03_02_qt);
+        $update_statment->bindParam(':TFO_04_01_qt',$TFO_04_01_qt);
 
         $update_statment->bindParam(':id',$id);
 
@@ -951,16 +951,16 @@ function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
             $sheetbordereaux->getCell("D86")->setValue($row->RFO_01_23_qt);
         }
 
-        $sheetbordereaux->getCell("D33")->setValue($row->D33);
-        $sheetbordereaux->getCell("D36")->setValue($row->D36);
-        $sheetbordereaux->getCell("D43")->setValue($row->D43);
-        $sheetbordereaux->getCell("D44")->setValue($row->D44);
-        $sheetbordereaux->getCell("D46")->setValue($row->D46);
-        $sheetbordereaux->getCell("D47")->setValue($row->D47);
-        $sheetbordereaux->getCell("D48")->setValue($row->D48);
-        $sheetbordereaux->getCell("D53")->setValue($row->D53);
-        $sheetbordereaux->getCell("D54")->setValue($row->D54);
-        $sheetbordereaux->getCell("D56")->setValue($row->D56);
+        $sheetbordereaux->getCell("EFO_06_03_qt")->setValue($row->EFO_06_03_qt);
+        $sheetbordereaux->getCell("EFO_06_06_qt")->setValue($row->EFO_06_06_qt);
+        $sheetbordereaux->getCell("TFO_01_01_qt")->setValue($row->TFO_01_01_qt);
+        $sheetbordereaux->getCell("TFO_01_02_qt")->setValue($row->TFO_01_02_qt);
+        $sheetbordereaux->getCell("TFO_02_01_qt")->setValue($row->TFO_02_01_qt);
+        $sheetbordereaux->getCell("TFO_02_02_qt")->setValue($row->TFO_02_02_qt);
+        $sheetbordereaux->getCell("TFO_02_03_qt")->setValue($row->TFO_02_03_qt);
+        $sheetbordereaux->getCell("TFO_03_01_qt")->setValue($row->TFO_03_01_qt);
+        $sheetbordereaux->getCell("TFO_03_02_qt")->setValue($row->TFO_03_02_qt);
+        $sheetbordereaux->getCell("TFO_04_01_qt")->setValue($row->TFO_04_01_qt);
 
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
