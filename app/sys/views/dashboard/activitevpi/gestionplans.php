@@ -2,7 +2,7 @@
     <div class="block-header bg-primary-light">
         <ul class="block-options">
             <li>
-                <button id="activitevpi_block_refresh" type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                <button id="activitevpi_gestplansot_block_refresh" type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
             </li>
         </ul>
         <h3 class="block-title">Gestion des Plans – Réalisation des OT</h3>
