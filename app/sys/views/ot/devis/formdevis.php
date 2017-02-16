@@ -283,7 +283,22 @@
                 location.href="api/file/parserfile.php?id="+id_devis+"&idsp="+ot_dt.row('.selected').data().id_sous_projet+"&idtot="+ot_dt.row('.selected').data().id_type_ordre_travail;
             }
         });
+        var dcmd_formdata = {};
+        dcmd_formdata['tablename']="detail_info";
+        $("#save_info_devis").click(function(e){
+            $('#detail_info_devis *').filter('.form-control:enabled:not([readonly])').each(function(){
+                dcmd_formdata[$( this ).attr('name')] = $( this).val();
+            });
+            $.ajax({
+                method: "POST",
+                url: "api/ot/devis/save_details_devis.php",
+                data: dcmd_formdata
+            }).done(function (msg) {
 
+                App.showMessage(msg, '#message_devis');
+            });
 
+        });
     } );
+
 </script>

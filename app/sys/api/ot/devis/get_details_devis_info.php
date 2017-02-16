@@ -29,7 +29,10 @@ $select_entreprise = '<select class="form-control" id="ot_entreprise" name="ot_e
                                             }
 
 $select_entreprise .=' </select>';
-$html .="<table width='100%'>
+$html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <table width='100%'>
+<tr>
+<td colspan='3' ><div id='message_devis'></div></td>
+</tr>
 <tr>
 <td width='30%'>Coordonnées Entreprise:</td>
 <td colspan='2'>".$select_entreprise."</td>
@@ -48,14 +51,14 @@ $html .="<table width='100%'>
 </tr>
 <tr>
 <td>Date Devis :</td>
-<td><input class='form-control' type='date' id='datedevis' name='datedevis'></td>
+<td><input class='form-control' type='date' id='datedevis' name='datedevis' /></td>
 </tr>
 <tr>
 <td>Date Livraison :</td>
-<td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis' /></td>
+<td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis'  /></td>
 </tr>
 <tr>
-<td colspan='2' align='center'>Synthèse Devis</td>
+<td colspan='2' align='center' >Synthèse Devis </td>
  <td></td>
 </tr>
 <tr>
@@ -63,7 +66,7 @@ $html .="<table width='100%'>
 </tr>
 <tr>
  <td colspan='3'>
- <table border='1' width='100%'>
+ <table border='1' class='table  table-bordered  ' width='100%'>
  <tr>
 <td colspan='3' align='center' bgcolor='red'>Lot 7- Etudes et Travaux FO</td>
 </tr>
@@ -101,7 +104,7 @@ $html .="<table width='100%'>
 </tr>
 <tr>
  <td colspan='3'>
- <table border='1' width='100%'>
+ <table border='1' class='table  table-bordered  ' width='100%'>
  <tr>
 <td colspan='3' align='center' bgcolor='aqua'>Lot 2 - Travaux GC</td>
  <td></td>
@@ -130,8 +133,12 @@ $html .="<table width='100%'>
  
 </td>
 </tr>
-
+<tr>
+<td></td>
+<td></td>
+<td><input type='button' name='save_info_devis' id='save_info_devis' class='btn btn-success btn-sm' value='Enregistrer' /> </td>
+</tr>
  
-</table>";
+</table></form>";
 
 echo json_encode($html);
