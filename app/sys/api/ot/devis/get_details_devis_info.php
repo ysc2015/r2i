@@ -10,45 +10,49 @@ extract($_GET);
 
 
 $stm = $db->prepare("select * from detaildevis where detaildevis.iddevis =$iddevis LIMIT 1");
+$stm->execute();
+$row = $stm->fetch(PDO::FETCH_ASSOC);
 $i = 0;
 $html = "";
+$ot = OrdreDeTravail::first(
+    array('conditions' =>
+        array("id_ordre_de_travail = ?", $row['id_ordre_de_travail'])
+    )
+);
+$select_entreprise = '<select class="form-control" id="ot_entreprise" name="ot_entreprise" style="width: 100%;">
+                                            <option value="0" selected="">Tous</option>';
 
+                                            $results = EntrepriseSTT::all();
+                                            foreach($results as $result) {
+                                                $select_entreprise .=  '<option value="$result->id_entreprise" '.
+  ($ot->id_entreprise==$result->id_entreprise ?"selected": "").'>'.$result->nom.'</option>';
+                                            }
+
+$select_entreprise .=' </select>';
 $html .="<table width='100%'>
 <tr>
-<td>Coordonnées Entreprise:</td>
-<td></td>
-<td></td>
+<td width='30%'>Coordonnées Entreprise:</td>
+<td colspan='2'>".$select_entreprise."</td>
 </tr>
-<tr>
-<td></td>
-<td></td>
-<td>Société :</td>
-</tr>
-
-<tr>
+ <tr>
 <td>Contact :</td>
-<td></td>
-<td></td>
+<td><input  class='form-control' type='text' name='contactdevis' /></td>
 </tr>
 <tr>
 <td>Code Site :</td>
-<td></td>
-<td></td>
+<td><input  class='form-control' type='text' name='codesitedevis' id='codesitedevis' /></td>
 </tr>
 <tr>
 <td>Ref Devis :</td>
-<td></td>
-<td></td>
+<td><input  class='form-control' type='text' name='refdevis' id='refdevis' /></td>
 </tr>
 <tr>
 <td>Date Devis :</td>
-<td></td>
-<td></td>
+<td><input class='form-control' type='date' id='datedevis' name='datedevis'></td>
 </tr>
 <tr>
 <td>Date Livraison :</td>
-<td></td>
-<td></td>
+<td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis' /></td>
 </tr>
 <tr>
 <td colspan='2' align='center'>Synthèse Devis</td>
