@@ -26,6 +26,26 @@ var editableGrid_tst = new EditableGrid("travauxsitetechnique", {
 	maxBars: 10
 });
 
+var editableGrid_tranche = new EditableGrid("tranche", {
+	enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+	editmode: "absolute", // change this to "fixed" to test out editorzone, and to "static" to get the old-school mode
+	editorzoneid: "edition", // will be used only if editmode is set to "fixed"
+	maxBars: 10
+});
+
+var editableGrid_chambre = new EditableGrid("chambre", {
+	enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+	editmode: "absolute", // change this to "fixed" to test out editorzone, and to "static" to get the old-school mode
+	editorzoneid: "edition", // will be used only if editmode is set to "fixed"
+	maxBars: 10
+});
+var editableGrid_tdgc = new EditableGrid("travauxdiversgc", {
+	enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+	editmode: "absolute", // change this to "fixed" to test out editorzone, and to "static" to get the old-school mode
+	editorzoneid: "edition", // will be used only if editmode is set to "fixed"
+	maxBars: 10
+});
+
 //helper function to display a message
 function displayMessage(text, style) { 
 	_$("message").innerHTML = "<p class='" + (style || "ok") + "'>" + text + "</p>"; 
@@ -38,11 +58,11 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 
 		modelChanged = function(rowIndex, columnIndex, oldValue, newValue, row) {
 			if(this.name=="TravauxRaccordementOptiqueMesure"){
-				if (this.getColumnName(columnIndex) == "continent") this.setValueAt(rowIndex, this.getColumnIndex("country"), ""); // if we changed the continent, reset the country
+
 
 				var rowid = this.getRowId(rowIndex)
 				var columnname = this.getColumnName(columnIndex);
-				console.log("tata "+rowid);
+
 				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
 				if((columnname=="int") || (columnname=="qt"))
 					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
@@ -63,12 +83,12 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 					}
 				});
 			}else if(this.name=="travauxReseauEntere"){
-				if (this.getColumnName(columnIndex) == "continent") this.setValueAt(rowIndex, this.getColumnIndex("country"), ""); // if we changed the continent, reset the country
+
 
 				var rowid = this.getRowId(rowIndex)
 				var columnname = this.getColumnName(columnIndex);
 				var titrecolumn = this.getValueAt(rowIndex, this.getColumnIndex("TFO_0"));
-				console.log("tata "+rowid);
+
 				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
 				if((columnname=="int") || (columnname=="qt"))
 					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
@@ -89,7 +109,6 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 					}
 				});
 			}else if(this.name=="etude"){
-				if (this.getColumnName(columnIndex) == "continent") this.setValueAt(rowIndex, this.getColumnIndex("country"), ""); // if we changed the continent, reset the country
 
 				var rowid = this.getRowId(rowIndex)
 				var columnname = this.getColumnName(columnIndex);
@@ -115,12 +134,10 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 					}
 				});
 			}else if(this.name=="travauxsitetechnique"){
-				if (this.getColumnName(columnIndex) == "continent") this.setValueAt(rowIndex, this.getColumnIndex("country"), ""); // if we changed the continent, reset the country
 
 				var rowid = this.getRowId(rowIndex)
 				var columnname = this.getColumnName(columnIndex);
 				var titrecolumn = this.getValueAt(rowIndex, this.getColumnIndex("ITF_0"));
-				console.log("tata "+rowid);
 				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
 				if((columnname=="int") || (columnname=="qt"))
 					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
@@ -133,6 +150,81 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 						champ: columnname,
 						total: total,
 						tablename :"travauxsitetechnique",
+						titrecolumn :titrecolumn,
+						val: newValue
+					},
+					success : function(response){
+						//console.log(response);
+					}
+				});
+			}else if(this.name=="tranche"){
+				var rowid = this.getRowId(rowIndex)
+				var columnname = this.getColumnName(columnIndex);
+				var titrecolumn = this.getValueAt(rowIndex, this.getColumnIndex("EGC_0"));
+
+				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
+
+				if((columnname=="int") || (columnname=="qt"))
+					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
+				$.ajax({
+					type: "POST",
+					url: "app/sys/api/ot/devis/save_details_devis.php",
+					data: {
+						iddevis: id_devis,
+						ligne: rowid,
+						champ: columnname,
+						total: total,
+						tablename :"tranche",
+						titrecolumn :titrecolumn,
+						val: newValue
+					},
+					success : function(response){
+						//console.log(response);
+					}
+				});
+			}else if(this.name=="chambre"){
+
+				var rowid = this.getRowId(rowIndex)
+				var columnname = this.getColumnName(columnIndex);
+				var titrecolumn = this.getValueAt(rowIndex, this.getColumnIndex("CGC_0"));
+
+				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
+				if((columnname=="int") || (columnname=="qt"))
+					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
+				$.ajax({
+					type: "POST",
+					url: "app/sys/api/ot/devis/save_details_devis.php",
+					data: {
+						iddevis: id_devis,
+						ligne: rowid,
+						champ: columnname,
+						total: total,
+						tablename :"chambre",
+						titrecolumn :titrecolumn,
+						val: newValue
+					},
+					success : function(response){
+						//console.log(response);
+					}
+				});
+			}else if(this.name=="travauxdiversgc"){
+
+				var rowid = this.getRowId(rowIndex)
+				var columnname = this.getColumnName(columnIndex);
+				var titrecolumn = this.getValueAt(rowIndex, this.getColumnIndex("TGC_0"));
+
+				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
+				if((columnname=="int") || (columnname=="qt"))
+					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
+				$.ajax({
+					type: "POST",
+					url: "app/sys/api/ot/devis/save_details_devis.php",
+					data: {
+						iddevis: id_devis,
+						ligne: rowid,
+						champ: columnname,
+						total: total,
+						tablename :"travauxdiversgc",
 						titrecolumn :titrecolumn,
 						val: newValue
 					},

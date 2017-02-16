@@ -50,12 +50,17 @@
                             <div id="tablecontentTRE"></div>
                             <h3 class="block-title block-title-edition-devis">Travaux de raccordement optique et mesures</h3>
                             <div id="tablecontent"></div>
-                            <h3 class="block-titleblock-title-edition-devis ">Travaux en En Site Technique</h3>
+                            <h3 class="block-title block-title-edition-devis ">Travaux en En Site Technique</h3>
                             <div id="tablecontenttst"></div>
                         </div>
                         <div class="tab-pane" id="LOT2_GC">
-
-                        </div>
+                            <h3 class="block-title block-title-edition-devis">Tranchées</h3>
+                            <div id="tablecontenttranche"></div>
+                            <h3 class="block-title block-title-edition-devis">Chambres</h3>
+                            <div id="tablecontentchambre"></div>
+                            <h3 class="block-title block-title-edition-devis">Travaux Divers GC</h3>
+                            <div id="tablecontenttdgc"></div>
+                         </div>
                     </div>
                 </div>
                 <div id="message"></div>
@@ -269,6 +274,9 @@
             editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis="+id_devis,"tablecontentTRE","testgrid","tableidTRE");
             editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis="+id_devis,"tablecontentetude","testgrid","tableidetude");
             editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis="+id_devis,"tablecontenttst","testgrid","tableidtst");
+            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis="+id_devis,"tablecontentchambre","testgrid","tableidchambre");
+            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis="+id_devis,"tablecontenttranche","testgrid","tableidtranche");
+            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis="+id_devis,"tablecontenttdgc","testgrid","tableidtdgc");
         });
         $("#download_devis").click(function() {
             if(ot_dt.row('.selected').data()!== undefined) {

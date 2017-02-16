@@ -431,6 +431,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
     $capacite720_pec = 0;
     $RFO_01_23_pec = 0;
     $tab_pdb_E_pec_capacite = [];
+    $tab_pdb_E_pec=[];
 
     $tabreturn = [];
     try {
@@ -722,6 +723,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         $stm_sel_idressource = $db->prepare("select * from `detaildevis` where id_ressource = :id_ressource");
         $stm_sel_idressource->bindValue(':id_ressource',$idressource);
         $stm_sel_idressource->execute();
+        $detail_object = $stm_sel_idressource->fetch(PDO::FETCH_OBJ);
         if($stm_sel_idressource->rowCount() > 0){
             //update devis
             $stm = $db->prepare("update `detaildevis` set RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
@@ -757,6 +759,105 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
             $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
             $stm->bindValue(':dateinsert',$dateaction);
             $stm->execute();
+            $id = $detail_object->iddevis;
+            if(isset($_POST['idsp']) && !empty($_POST['idsp'])){
+                $sousProjet = SousProjet::find($_POST['idsp']);
+            }
+
+            $tentree = "";
+
+            if($sousProjet !== NULL) {
+                switch($_POST['idtot']) {
+                    case "1" :
+                        $tentree = "transportaiguillage";
+                        break;
+                    case "2" :
+                        $tentree = "transporttirage";
+                        break;
+                    case "3" :
+                        $tentree = "transportraccordement";
+                        break;
+                    case "4" :
+                        $tentree = "transporttirage";
+                        //$tentree = "transportraccordement";
+                        break;
+                    case "5" :
+                        $tentree = "distributionaiguillage";
+                        break;
+                    case "6" :
+                        $tentree = "distributiontirage";
+                        break;
+                    case "7" :
+                        $tentree = "distributionraccordement";
+                        break;
+                    case "8" :
+                        $tentree = "distributiontirage";
+                        //$tentree = "distributionraccordement";
+                        break;
+                    default :
+                        break;
+                }
+
+                if($tentree !== "" ) {
+                    switch($tentree) {
+                        case "transportaiguillage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                                $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                                $TFO_01_02_qt = "";//nbr chambre
+                            }
+                            break;
+                        case "distributionaiguillage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                                $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                                $TFO_01_02_qt = "";//nbr chambre
+                            }
+                            break;
+
+                        case "transporttirage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
+                                $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
+                                $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
+                                $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire4;//cables
+                                $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
+                                $TFO_04_01_qt = "";//nbrchambre * 3
+                            }
+                            break;
+                        case "distributiontirage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
+                                $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
+                                $TFO_02_02_qt = $sousProjet->{$tentree}->lineaire11;
+                                $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
+                                $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                                $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1;
+                                $TFO_04_01_qt = "";//nbr chambre * 2
+                            }
+                            break;
+                        default :
+                            break;
+                    }
+                }
+
+                $update_statment = $db->prepare("UPDATE detaildevis SET EFO_06_03_qt=:EFO_06_03_qt,EFO_06_06_qt=:EFO_06_06_qt,TFO_01_01_qt=:TFO_01_01_qt,TFO_01_02_qt=:TFO_01_02_qt,TFO_02_01_qt=:TFO_02_01_qt,TFO_02_02_qt=:TFO_02_02_qt,TFO_02_03_qt=:TFO_02_03_qt,TFO_03_01_qt=:TFO_03_01_qt,TFO_03_02_qt=:TFO_03_02_qt,TFO_04_01_qt=:TFO_04_01_qt WHERE iddevis=:id");
+
+                $update_statment->bindParam(':EFO_06_03_qt',$EFO_06_03_qt);
+                $update_statment->bindParam(':EFO_06_06_qt',$EFO_06_06_qt);
+                $update_statment->bindParam(':TFO_01_01_qt',$TFO_01_01_qt);
+                $update_statment->bindParam(':TFO_01_02_qt',$TFO_01_02_qt);
+                $update_statment->bindParam(':TFO_02_01_qt',$TFO_02_01_qt);
+                $update_statment->bindParam(':TFO_02_02_qt',$TFO_02_02_qt);
+                $update_statment->bindParam(':TFO_02_03_qt',$TFO_02_03_qt);
+                $update_statment->bindParam(':TFO_03_01_qt',$TFO_03_01_qt);
+                $update_statment->bindParam(':TFO_03_02_qt',$TFO_03_02_qt);
+                $update_statment->bindParam(':TFO_04_01_qt',$TFO_04_01_qt);
+
+                $update_statment->bindParam(':id',$id);
+
+                $update_statment->execute();
+            }
         }else{
             //insert devis
             $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
@@ -792,7 +893,105 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
             $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
             $stm->bindValue(':dateaction',$dateaction);
             $stm->execute();
+            $id = $db->lastInsertId();
+            if(isset($_POST['idsp']) && !empty($_POST['idsp'])){
+                $sousProjet = SousProjet::find($_POST['idsp']);
+            }
 
+            $tentree = "";
+
+            if($sousProjet !== NULL) {
+                switch($_POST['idtot']) {
+                    case "1" :
+                        $tentree = "transportaiguillage";
+                        break;
+                    case "2" :
+                        $tentree = "transporttirage";
+                        break;
+                    case "3" :
+                        $tentree = "transportraccordement";
+                        break;
+                    case "4" :
+                        $tentree = "transporttirage";
+                        //$tentree = "transportraccordement";
+                        break;
+                    case "5" :
+                        $tentree = "distributionaiguillage";
+                        break;
+                    case "6" :
+                        $tentree = "distributiontirage";
+                        break;
+                    case "7" :
+                        $tentree = "distributionraccordement";
+                        break;
+                    case "8" :
+                        $tentree = "distributiontirage";
+                        //$tentree = "distributionraccordement";
+                        break;
+                    default :
+                        break;
+                }
+
+                if($tentree !== "" ) {
+                    switch($tentree) {
+                        case "transportaiguillage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                                $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                                $TFO_01_02_qt = "";//nbr chambre
+                            }
+                            break;
+                        case "distributionaiguillage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
+                                $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                                $TFO_01_02_qt = "";//nbr chambre
+                            }
+                            break;
+
+                        case "transporttirage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
+                                $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
+                                $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
+                                $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire4;//cables
+                                $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
+                                $TFO_04_01_qt = "";//nbrchambre * 3
+                            }
+                            break;
+                        case "distributiontirage" :
+                            if($sousProjet->{$tentree} !== NULL) {
+                                $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
+                                $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
+                                $TFO_02_02_qt = $sousProjet->{$tentree}->lineaire11;
+                                $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
+                                $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
+                                $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1;
+                                $TFO_04_01_qt = "";//nbr chambre * 2
+                            }
+                            break;
+                        default :
+                            break;
+                    }
+                }
+
+                $update_statment = $db->prepare("UPDATE detaildevis SET EFO_06_03_qt=:EFO_06_03_qt,EFO_06_06_qt=:EFO_06_06_qt,TFO_01_01_qt=:TFO_01_01_qt,TFO_01_02_qt=:TFO_01_02_qt,TFO_02_01_qt=:TFO_02_01_qt,TFO_02_02_qt=:TFO_02_02_qt,TFO_02_03_qt=:TFO_02_03_qt,TFO_03_01_qt=:TFO_03_01_qt,TFO_03_02_qt=:TFO_03_02_qt,TFO_04_01_qt=:TFO_04_01_qt WHERE iddevis=:id");
+
+                $update_statment->bindParam(':EFO_06_03_qt',$EFO_06_03_qt);
+                $update_statment->bindParam(':EFO_06_06_qt',$EFO_06_06_qt);
+                $update_statment->bindParam(':TFO_01_01_qt',$TFO_01_01_qt);
+                $update_statment->bindParam(':TFO_01_02_qt',$TFO_01_02_qt);
+                $update_statment->bindParam(':TFO_02_01_qt',$TFO_02_01_qt);
+                $update_statment->bindParam(':TFO_02_02_qt',$TFO_02_02_qt);
+                $update_statment->bindParam(':TFO_02_03_qt',$TFO_02_03_qt);
+                $update_statment->bindParam(':TFO_03_01_qt',$TFO_03_01_qt);
+                $update_statment->bindParam(':TFO_03_02_qt',$TFO_03_02_qt);
+                $update_statment->bindParam(':TFO_04_01_qt',$TFO_04_01_qt);
+
+                $update_statment->bindParam(':id',$id);
+
+                $update_statment->execute();
+            }
         }
 
 
@@ -808,116 +1007,6 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
 function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
-
-    $EFO_06_03_qt = "";
-    $EFO_06_06_qt = "";
-    $TFO_01_01_qt = "";
-    $TFO_01_02_qt = "";
-    $TFO_02_01_qt = "";
-    $TFO_02_02_qt = "";
-    $TFO_02_03_qt = "";
-    $TFO_03_01_qt = "";
-    $TFO_03_02_qt = "";
-    $TFO_04_01_qt = "";
-
-    if(isset($_GET['idsp']) && !empty($_GET['idsp'])){
-        $sousProjet = SousProjet::find($_GET['idsp']);
-    }
-
-    $tentree = "";
-
-    if($sousProjet !== NULL) {
-        switch($_GET['idtot']) {
-            case "1" :
-                $tentree = "transportaiguillage";
-                break;
-            case "2" :
-                $tentree = "transporttirage";
-                break;
-            case "3" :
-                $tentree = "transportraccordement";
-                break;
-            case "4" :
-                $tentree = "transporttirage";
-                //$tentree = "transportraccordement";
-                break;
-            case "5" :
-                $tentree = "distributionaiguillage";
-                break;
-            case "6" :
-                $tentree = "distributiontirage";
-                break;
-            case "7" :
-                $tentree = "distributionraccordement";
-                break;
-            case "8" :
-                $tentree = "distributiontirage";
-                //$tentree = "distributionraccordement";
-                break;
-            default :
-                break;
-        }
-
-        if($tentree !== "" ) {
-            switch($tentree) {
-                case "transportaiguillage" :
-                    if($sousProjet->{$tentree} !== NULL) {
-                        $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
-                        $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                        $TFO_01_02_qt = "";//nbr chambre
-                    }
-                    break;
-                case "distributionaiguillage" :
-                    if($sousProjet->{$tentree} !== NULL) {
-                        $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
-                        $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                        $TFO_01_02_qt = "";//nbr chambre
-                    }
-                    break;
-
-                case "transporttirage" :
-                    if($sousProjet->{$tentree} !== NULL) {
-                        $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
-                        $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
-                        $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
-                        $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire4;//cables
-                        $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
-                        $TFO_04_01_qt = "";//nbrchambre * 3
-                    }
-                    break;
-                case "distributiontirage" :
-                    if($sousProjet->{$tentree} !== NULL) {
-                        $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
-                        $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
-                        $TFO_02_02_qt = $sousProjet->{$tentree}->lineaire11;
-                        $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
-                        $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                        $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1;
-                        $TFO_04_01_qt = "";//nbr chambre * 2
-                    }
-                    break;
-                default :
-                    break;
-            }
-        }
-
-        $update_statment = $db->prepare("UPDATE detaildevis SET EFO_06_03_qt=:EFO_06_03_qt,EFO_06_06_qt=:EFO_06_06_qt,TFO_01_01_qt=:TFO_01_01_qt,TFO_01_02_qt=:TFO_01_02_qt,TFO_02_01_qt=:TFO_02_01_qt,TFO_02_02_qt=:TFO_02_02_qt,TFO_02_03_qt=:TFO_02_03_qt,TFO_03_01_qt=:TFO_03_01_qt,TFO_03_02_qt=:TFO_03_02_qt,TFO_04_01_qt=:TFO_04_01_qt WHERE iddevis=:id");
-
-        $update_statment->bindParam(':EFO_06_03_qt',$EFO_06_03_qt);
-        $update_statment->bindParam(':EFO_06_06_qt',$EFO_06_06_qt);
-        $update_statment->bindParam(':TFO_01_01_qt',$TFO_01_01_qt);
-        $update_statment->bindParam(':TFO_01_02_qt',$TFO_01_02_qt);
-        $update_statment->bindParam(':TFO_02_01_qt',$TFO_02_01_qt);
-        $update_statment->bindParam(':TFO_02_02_qt',$TFO_02_02_qt);
-        $update_statment->bindParam(':TFO_02_03_qt',$TFO_02_03_qt);
-        $update_statment->bindParam(':TFO_03_01_qt',$TFO_03_01_qt);
-        $update_statment->bindParam(':TFO_03_02_qt',$TFO_03_02_qt);
-        $update_statment->bindParam(':TFO_04_01_qt',$TFO_04_01_qt);
-
-        $update_statment->bindParam(':id',$id);
-
-        $update_statment->execute();
-    }
 
     $tabreturn = [];
     try {
@@ -946,22 +1035,88 @@ function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
             $sheetbordereaux->getCell("D79")->setValue($row->RFO_01_16_qt);
             $sheetbordereaux->getCell("D78")->setValue($row->RFO_01_15_qt);
 
-
             $sheetbordereaux->getCell("D84")->setValue($row->RFO_01_21_qt);
             $sheetbordereaux->getCell("D86")->setValue($row->RFO_01_23_qt);
         }
+        $sheetbordereaux->getCell("D33")->setValue($row->EFO_06_03_qt);
+        $sheetbordereaux->getCell("D36")->setValue($row->EFO_06_06_qt);
+        $sheetbordereaux->getCell("D43")->setValue($row->TFO_01_01_qt);
+        $sheetbordereaux->getCell("D44")->setValue($row->TFO_01_02_qt);
+        $sheetbordereaux->getCell("D46")->setValue($row->TFO_02_01_qt);
+        $sheetbordereaux->getCell("D47")->setValue($row->TFO_02_02_qt);
+        $sheetbordereaux->getCell("D48")->setValue($row->TFO_02_03_qt);
+        $sheetbordereaux->getCell("D53")->setValue($row->TFO_03_01_qt);
+        $sheetbordereaux->getCell("D54")->setValue($row->TFO_03_02_qt);
+        $sheetbordereaux->getCell("D56")->setValue($row->TFO_04_01_qt);
 
-        $sheetbordereaux->getCell("EFO_06_03_qt")->setValue($row->EFO_06_03_qt);
-        $sheetbordereaux->getCell("EFO_06_06_qt")->setValue($row->EFO_06_06_qt);
-        $sheetbordereaux->getCell("TFO_01_01_qt")->setValue($row->TFO_01_01_qt);
-        $sheetbordereaux->getCell("TFO_01_02_qt")->setValue($row->TFO_01_02_qt);
-        $sheetbordereaux->getCell("TFO_02_01_qt")->setValue($row->TFO_02_01_qt);
-        $sheetbordereaux->getCell("TFO_02_02_qt")->setValue($row->TFO_02_02_qt);
-        $sheetbordereaux->getCell("TFO_02_03_qt")->setValue($row->TFO_02_03_qt);
-        $sheetbordereaux->getCell("TFO_03_01_qt")->setValue($row->TFO_03_01_qt);
-        $sheetbordereaux->getCell("TFO_03_02_qt")->setValue($row->TFO_03_02_qt);
-        $sheetbordereaux->getCell("TFO_04_01_qt")->setValue($row->TFO_04_01_qt);
+        //Travaux en En Site Technique
+        $sheetbordereaux->getCell("D102")->setValue($row->ITF_01_01_qt);
+        $sheetbordereaux->getCell("D103")->setValue($row->ITF_01_02_qt);
+        $sheetbordereaux->getCell("D105")->setValue($row->ITF_02_01_qt);
+        $sheetbordereaux->getCell("D106")->setValue($row->ITF_02_02_qt);
+        $sheetbordereaux->getCell("D107")->setValue($row->ITF_02_03_qt);
+        $sheetbordereaux->getCell("D108")->setValue($row->ITF_02_04_qt);
+        $sheetbordereaux->getCell("D109")->setValue($row->ITF_02_05_qt);
+        $sheetbordereaux->getCell("D110")->setValue($row->ITF_02_06_qt);
 
+        $sheet_LOT2_GC = $Bordereaux->getSheetByName("LOT2_GC");
+        //Tranchées
+        $sheet_LOT2_GC->getCell("D5")->setValue($row->EGC_01_01_qt);
+        $sheet_LOT2_GC->getCell("D6")->setValue($row->EGC_01_02_qt);
+        $sheet_LOT2_GC->getCell("D7")->setValue($row->EGC_01_03_qt);
+        $sheet_LOT2_GC->getCell("D9")->setValue($row->EGC_02_01_qt);
+        $sheet_LOT2_GC->getCell("D10")->setValue($row->EGC_02_02_qt);
+        $sheet_LOT2_GC->getCell("D11")->setValue($row->EGC_02_03_qt);
+        $sheet_LOT2_GC->getCell("D12")->setValue($row->EGC_02_04_qt);
+        $sheet_LOT2_GC->getCell("D13")->setValue($row->EGC_02_05_qt);
+        $sheet_LOT2_GC->getCell("D14")->setValue($row->EGC_02_06_qt);
+        $sheet_LOT2_GC->getCell("D15")->setValue($row->EGC_02_07_qt);
+        $sheet_LOT2_GC->getCell("D16")->setValue($row->EGC_02_08_qt);
+        $sheet_LOT2_GC->getCell("D17")->setValue($row->EGC_02_09_qt);
+        $sheet_LOT2_GC->getCell("D18")->setValue($row->EGC_02_10_qt);
+        $sheet_LOT2_GC->getCell("D19")->setValue($row->EGC_02_11_qt);
+        $sheet_LOT2_GC->getCell("D20")->setValue($row->EGC_02_12_qt);
+        $sheet_LOT2_GC->getCell("D21")->setValue($row->EGC_02_13_qt);
+        $sheet_LOT2_GC->getCell("D22")->setValue($row->EGC_02_14_qt);
+        $sheet_LOT2_GC->getCell("D23")->setValue($row->EGC_02_15_qt);
+        $sheet_LOT2_GC->getCell("D24")->setValue($row->EGC_02_16_qt);
+        //Chambres
+        $sheet_LOT2_GC->getCell("D30")->setValue($row->CGC_01_01_qt);
+        $sheet_LOT2_GC->getCell("D31")->setValue($row->CGC_01_02_qt);
+        $sheet_LOT2_GC->getCell("D33")->setValue($row->CGC_02_01_qt);
+        $sheet_LOT2_GC->getCell("D34")->setValue($row->CGC_02_02_qt);
+        $sheet_LOT2_GC->getCell("D35")->setValue($row->CGC_02_03_qt);
+        $sheet_LOT2_GC->getCell("D36")->setValue($row->CGC_02_04_qt);
+        $sheet_LOT2_GC->getCell("D37")->setValue($row->CGC_02_05_qt);
+        $sheet_LOT2_GC->getCell("D38")->setValue($row->CGC_02_06_qt);
+        $sheet_LOT2_GC->getCell("D39")->setValue($row->CGC_02_07_qt);
+        $sheet_LOT2_GC->getCell("D40")->setValue($row->CGC_02_08_qt);
+        $sheet_LOT2_GC->getCell("D42")->setValue($row->CGC_03_01_qt);
+        $sheet_LOT2_GC->getCell("D43")->setValue($row->CGC_03_02_qt);
+        $sheet_LOT2_GC->getCell("D44")->setValue($row->CGC_03_03_qt);
+        $sheet_LOT2_GC->getCell("D45")->setValue($row->CGC_03_04_qt);
+        $sheet_LOT2_GC->getCell("D46")->setValue($row->CGC_03_05_qt);
+        $sheet_LOT2_GC->getCell("D48")->setValue($row->CGC_04_01_qt);
+        $sheet_LOT2_GC->getCell("D49")->setValue($row->CGC_04_02_qt);
+        //Travaux Divers GC
+        $sheet_LOT2_GC->getCell("D55")->setValue($row->TGC_01_01_qt);
+        $sheet_LOT2_GC->getCell("D57")->setValue($row->TGC_02_01_qt);
+        $sheet_LOT2_GC->getCell("D58")->setValue($row->TGC_02_02_qt);
+        $sheet_LOT2_GC->getCell("D59")->setValue($row->TGC_02_03_qt);
+        $sheet_LOT2_GC->getCell("D60")->setValue($row->TGC_02_04_qt);
+        $sheet_LOT2_GC->getCell("D61")->setValue($row->TGC_02_05_qt);
+        $sheet_LOT2_GC->getCell("D62")->setValue($row->TGC_02_06_qt);
+        $sheet_LOT2_GC->getCell("D64")->setValue($row->TGC_03_01_qt);
+        $sheet_LOT2_GC->getCell("D65")->setValue($row->TGC_03_02_qt);
+        $sheet_LOT2_GC->getCell("D66")->setValue($row->TGC_03_03_qt);
+        $sheet_LOT2_GC->getCell("D67")->setValue($row->TGC_03_04_qt);
+        $sheet_LOT2_GC->getCell("D68")->setValue($row->TGC_03_05_qt);
+        $sheet_LOT2_GC->getCell("D70")->setValue($row->TGC_04_01_qt);
+        $sheet_LOT2_GC->getCell("D71")->setValue($row->TGC_04_02_qt);
+        $sheet_LOT2_GC->getCell("D73")->setValue($row->TGC_05_01_qt);
+        $sheet_LOT2_GC->getCell("D74")->setValue($row->TGC_05_02_qt);
+        $sheet_LOT2_GC->getCell("D75")->setValue($row->TGC_05_03_qt);
+        $sheet_LOT2_GC->getCell("D76")->setValue($row->TGC_05_04_qt);
 
         $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
         $cacheSettings = array( ' memoryCacheSize ' => '16MB');
