@@ -77,6 +77,57 @@ if ($tablename=="TravauxRaccordementOptiqueMesure"){
 
 
     }
+}elseif($tablename=="tranche"){
+    if($iddevis!=""){
+
+        if($titrecolumn!=""){
+            $sql  = "update detaildevis set ".$titrecolumn."_qt = '".$val."'  where iddevis=$iddevis";
+            $stm = $db->prepare($sql);
+        }
+
+        if($stm->execute()){
+            $message [] = "Enregistrement fait avec succès";
+        } else {
+            $message [] = $stm->errorInfo();
+        }
+
+
+
+    }
+}elseif($tablename=="chambre"){
+    if($iddevis!=""){
+
+        if($titrecolumn!=""){
+            $sql  = "update detaildevis set ".$titrecolumn."_qt = '".$val."'  where iddevis=$iddevis";
+            $stm = $db->prepare($sql);
+        }
+
+        if($stm->execute()){
+            $message [] = "Enregistrement fait avec succès";
+        } else {
+            $message [] = $stm->errorInfo();
+        }
+
+
+
+    }
+}elseif($tablename=="travauxdiversgc"){
+    if($iddevis!=""){
+
+        if($titrecolumn!=""){
+            $sql  = "update detaildevis set ".$titrecolumn."_qt = '".$val."'  where iddevis=$iddevis";
+            $stm = $db->prepare($sql);
+        }
+
+        if($stm->execute()){
+            $message [] = "Enregistrement fait avec succès";
+        } else {
+            $message [] = $stm->errorInfo();
+        }
+
+
+
+    }
 }
 
 
