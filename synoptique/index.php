@@ -142,8 +142,8 @@
         </div>
     </div>
     <div class="row">
-        <button class="btn btn-primary" value="Get Path" id="btn_get_path">Get Path</button>
-        <button class="btn btn-primary" value="Get Path" id="" onclick="imageUploader()">Show Modal</button>
+        <button class="btn btn-primary" value="Get Path" id="btn_get_path">Générer le Synoptique</button>
+        <!-- <button class="btn btn-primary" value="Get Path" id="" onclick="imageUploader()">Show Modal</button> -->
     </div>
     <div class="row">
 
@@ -182,7 +182,7 @@
             </div>
             <div class="modal-body">
 
-                <input id="chambre_id_for_image_upload" value=""/>
+                <input id="chambre_id_for_image_upload" type="hidden" value=""/>
                 <div class="row" id="photos_area">
 
                 </div>
