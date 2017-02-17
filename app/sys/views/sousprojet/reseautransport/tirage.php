@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-md-3">
                         <!--<label for="tt_lineaire_reseau"><span class="label label-success">144FO </span></label>-->
-                        <label for="tt_lineaire_reseau">Kits MCR <!--<span class="text-danger">*</span>--></label>
+                        <label for="tt_lineaire_reseau">Trançons à tuber <!--<span class="text-danger">*</span>--></label>
                         <input class="form-control  lineareInput2" type="number" id="tt_lineaire12" name="tt_lineaire12" value="<?=($sousProjet->transporttirage !== NULL?$sousProjet->transporttirage->lineaire12:"")?>">
                     </div>
                 </div>
