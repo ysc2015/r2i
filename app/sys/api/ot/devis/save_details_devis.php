@@ -9,6 +9,7 @@
 extract($_POST);
 $sql = "";
 $sql2 = "";
+$message =[];
 if ($tablename=="TravauxRaccordementOptiqueMesure"){
     if($iddevis!=""){
         if($ligne < 10){
@@ -131,23 +132,24 @@ if ($tablename=="TravauxRaccordementOptiqueMesure"){
 }elseif($tablename=="detail_info"){
     if($iddevis!=""){
 
-        if($titrecolumn!=""){
-            $sql  = "update detaildevis set ".$titrecolumn."_qt = '".$val."'  where iddevis=$iddevis";
+
+            $sql  = "update detaildevis set ref_devis = :ref_devis,date_devis=:date_devis, date_livraison=:date_livraison  where iddevis=:iddevis";
             $stm = $db->prepare($sql);
-        }
 
-        if($stm->execute()){
-            $message [] = "Enregistrement fait avec succès";
-        } else {
-            $message [] = $stm->errorInfo();
-        }
+            $stm->bindParam(':iddevis',$iddevis);
+            $stm->bindParam(':ref_devis',$ref_devis);
+            $stm->bindParam(':date_devis',$date_devis);
+            $stm->bindParam(':date_livraison',$date_livraison);
 
+                if($stm->execute()){
+                    $message [] = "Enregistrement fait avec succès";
+                } else {
+                    $message [] = $stm->errorInfo();
+                }
 
 
     }
 }
 
-
-echo $sql;
 
 return $message;
