@@ -19,46 +19,56 @@ $ot = OrdreDeTravail::first(
         array("id_ordre_de_travail = ?", $row['id_ordre_de_travail'])
     )
 );
-$select_entreprise = '<select class="form-control" id="ot_entreprise" name="ot_entreprise" style="width: 100%;">
-                                            <option value="0" selected="">Tous</option>';
+$sousProjet = NULL;
+$stm = NULL;
+
+if(isset($ot) && !empty($ot)){
+    $sousProjet = SousProjet::find($ot->id_sous_projet);
+}
+
+$contact_entreprise = "";
+$select_entreprise = "";
 
                                             $results = EntrepriseSTT::all();
                                             foreach($results as $result) {
-                                                $select_entreprise .=  '<option value="$result->id_entreprise" '.
-  ($ot->id_entreprise==$result->id_entreprise ?"selected": "").'>'.$result->nom.'</option>';
+                                                if($ot->id_entreprise==$result->id_entreprise )$contact_entreprise = $result->contact_nom.' '.$result->contact_prenom;
+                                                $select_entreprise =  $result->nom;
                                             }
 
-$select_entreprise .=' </select>';
 $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <table width='100%'>
 <tr>
 <td colspan='3' ><div id='message_devis'></div></td>
 </tr>
 <tr>
 <td width='30%'>Coordonnées Entreprise:</td>
-<td colspan='2'>".$select_entreprise."</td>
+<td  align='center'><h4>".$select_entreprise."</h4></td>
 </tr>
  <tr>
 <td>Contact :</td>
-<td><input  class='form-control' type='text' name='contactdevis' /></td>
+<td><input  class='form-control' readonly  type='text' name='contactdevis' value='".$contact_entreprise."' /></td>
 </tr>
 <tr>
 <td>Code Site :</td>
-<td><input  class='form-control' type='text' name='codesitedevis' id='codesitedevis' /></td>
+<td><input  class='form-control' readonly type='text' name='codesitedevis' id='codesitedevis' value='".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone."' /></td>
 </tr>
 <tr>
 <td>Ref Devis :</td>
-<td><input  class='form-control' type='text' name='refdevis' id='refdevis' /></td>
+<td><input  class='form-control' type='text' name='refdevis' id='refdevis' value='".$row->ref_devis."' /></td>
 </tr>
 <tr>
 <td>Date Devis :</td>
-<td><input class='form-control' type='date' id='datedevis' name='datedevis' /></td>
+<td><input class='form-control' type='date' id='datedevis' name='datedevis' value='".$row->date_devis."' /></td>
 </tr>
 <tr>
 <td>Date Livraison :</td>
-<td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis'  /></td>
+<td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis' value='".$row->date_livraison."'  /></td>
 </tr>
 <tr>
-<td colspan='2' align='center' >Synthèse Devis </td>
+<td colspan='2' align='center' >&nbsp; </td>
+ <td></td>
+</tr>
+<tr>
+<td colspan='2' align='center' ><h3>Synthèse Devis</h3> </td>
  <td></td>
 </tr>
 <tr>

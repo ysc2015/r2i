@@ -266,10 +266,27 @@
                 success: function(data)
                 {
                     $('#devis_tab').html(data);
+                    var dcmd_formdata = {};
+                    $("#save_info_devis").click(function() {
+                        dcmd_formdata['tablename']="detail_info";
+                        dcmd_formdata['iddevis']=id_devis;
+                        dcmd_formdata['ref_devis']=$('#refdevis').val();
+                        dcmd_formdata['date_devis']=$('#datedevis').val();
+                        dcmd_formdata['date_livraison']=$('#datelivraisondevis').val();
 
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/devis/save_details_devis.php",
+                            data: dcmd_formdata
+                        }).done(function (msg) {
+
+                            App.showMessage(msg, '#message_devis');
+                        });
+
+                    });
                 }
             });
-            console.log(id_devis);
+
             editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis="+id_devis,"tablecontent","testgrid","tableid");
             editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis="+id_devis,"tablecontentTRE","testgrid","tableidTRE");
             editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis="+id_devis,"tablecontentetude","testgrid","tableidetude");
@@ -277,28 +294,16 @@
             editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis="+id_devis,"tablecontentchambre","testgrid","tableidchambre");
             editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis="+id_devis,"tablecontenttranche","testgrid","tableidtranche");
             editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis="+id_devis,"tablecontenttdgc","testgrid","tableidtdgc");
+
         });
         $("#download_devis").click(function() {
             if(ot_dt.row('.selected').data()!== undefined) {
                 location.href="api/file/parserfile.php?id="+id_devis+"&idsp="+ot_dt.row('.selected').data().id_sous_projet+"&idtot="+ot_dt.row('.selected').data().id_type_ordre_travail;
             }
         });
-        var dcmd_formdata = {};
-        dcmd_formdata['tablename']="detail_info";
-        $("#save_info_devis").click(function(e){
-            $('#detail_info_devis *').filter('.form-control:enabled:not([readonly])').each(function(){
-                dcmd_formdata[$( this ).attr('name')] = $( this).val();
-            });
-            $.ajax({
-                method: "POST",
-                url: "api/ot/devis/save_details_devis.php",
-                data: dcmd_formdata
-            }).done(function (msg) {
 
-                App.showMessage(msg, '#message_devis');
-            });
 
-        });
+
     } );
 
 </script>
