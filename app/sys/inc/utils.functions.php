@@ -392,7 +392,7 @@ function getLine(PHPExcel_Worksheet $sheet,$line,$max_column) {
     return $cells;
 }
 
-function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
+function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail,$connectedProfil) {
     $RFO_01_01 = 0;
     $RFO_01_03 = 0;
     $RFO_01_05 = 0;
@@ -719,6 +719,24 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
             }
         }
 
+        $ot=NULL;
+        if($id_ordre_de_travail!=NULL){
+            $ot = OrdreDeTravail::first(
+                array('conditions' =>
+                    array("id_ordre_de_travail = ?", $id_ordre_de_travail)
+                )
+            );
+        }
+
+        $sousProjet = NULL;
+        if(isset($ot) && !empty($ot)){
+            $sousProjet = SousProjet::find($ot->id_sous_projet);
+        }
+        $chaine = "";
+        if($connectedProfil){
+            $chaine = strtoupper(substr($connectedProfil->profil->nom_utilisateur,0,1).substr($connectedProfil->profil->prenom_utilisateur,0,2));
+        }
+        $ref_devis ="DEV_".strtoupper(substr($ot->type_ot,0,3))."_". $sousProjet->projet->nro->lib_nro."-".$sousProjet->zone."_".$chaine ."_01";
         //traitement d'enregistrement sur la base
         $stm_sel_idressource = $db->prepare("select * from `detaildevis` where id_ressource = :id_ressource");
         $stm_sel_idressource->bindValue(':id_ressource',$idressource);
@@ -726,14 +744,15 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource) {
         $detail_object = $stm_sel_idressource->fetch(PDO::FETCH_OBJ);
         if($stm_sel_idressource->rowCount() > 0){
             //update devis
-            $stm = $db->prepare("update `detaildevis` set RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
+            $stm = $db->prepare("update `detaildevis` set id_ordre_de_travail = :id_ordre_de_travail, RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
 RFO_01_09_qt= :RFO_01_09_qt, RFO_01_11_qt= :RFO_01_11_qt, RFO_01_13_qt= :RFO_01_13_qt, RFO_01_15_qt= :RFO_01_15_qt, RFO_01_16_qt= :RFO_01_16_qt, RFO_01_17_qt= :RFO_01_17_qt,
 RFO_01_18_qt= :RFO_01_18_qt, RFO_01_19_qt= :RFO_01_19_qt, RFO_01_20_qt= :RFO_01_20_qt,  RFO_01_21_qt= :RFO_01_21_qt, RFO_01_23_qt = :RFO_01_23_qt, RFO_01_01_PEC= :RFO_01_01_PEC,
 RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_PEC= :RFO_01_07_PEC, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
-RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :dateinsert where id_ressource =:id_ressource ");
+RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :dateinsert , ref_devis= :ref_devis where id_ressource =:id_ressource ");
             $dateaction = date('Y-m-d G:i:s');
 
             $stm->bindValue(':id_ressource',$idressource);
+            $stm->bindValue(':id_ordre_de_travail',$id_ordre_de_travail);
             $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
             $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
             $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
@@ -758,6 +777,7 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
             $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
             $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
             $stm->bindValue(':dateinsert',$dateaction);
+            $stm->bindValue(':ref_devis',$ref_devis);
             $stm->execute();
             $id = $detail_object->iddevis;
             if(isset($_POST['idsp']) && !empty($_POST['idsp'])){
@@ -860,14 +880,15 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
             }
         }else{
             //insert devis
-            $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
+            $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource,id_ordre_de_travail, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
 `RFO_01_13_qt`, `RFO_01_15_qt`, `RFO_01_16_qt`, `RFO_01_17_qt`, `RFO_01_18_qt`, `RFO_01_19_qt`, `RFO_01_20_qt`,
- `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `RFO_01_23_qt_PEC`, `dateinsert`) 
- VALUES (NULL,  :id_ressource,  :RFO_01_01_qt, :RFO_01_03_qt, :RFO_01_05_qt,  :RFO_01_07_qt, :RFO_01_09_qt, :RFO_01_11_qt,
+ `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `RFO_01_23_qt_PEC`, `dateinsert`,`ref_devis`) 
+ VALUES (NULL, :id_ressource, :id_ordre_de_travail,  :RFO_01_01_qt, :RFO_01_03_qt, :RFO_01_05_qt,  :RFO_01_07_qt, :RFO_01_09_qt, :RFO_01_11_qt,
    :RFO_01_13_qt, :RFO_01_15_qt,    :RFO_01_16_qt, :RFO_01_17_qt, :RFO_01_18_qt,   :RFO_01_19_qt, :RFO_01_20_qt,
-   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC,:RFO_01_23_qt_PEC,:dateaction  )");
+   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC,:RFO_01_23_qt_PEC,:dateaction,:ref_devis  )");
             $dateaction = date('Y-m-d G:i:s');
             $stm->bindValue(':id_ressource',$idressource);
+            $stm->bindValue(':id_ordre_de_travail',$id_ordre_de_travail);
             $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
             $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
             $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
@@ -892,6 +913,7 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
             $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
             $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
             $stm->bindValue(':dateaction',$dateaction);
+            $stm->bindValue(':ref_devis',$ref_devis);
             $stm->execute();
             $id = $db->lastInsertId();
             if(isset($_POST['idsp']) && !empty($_POST['idsp'])){

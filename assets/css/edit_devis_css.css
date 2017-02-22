@@ -44,6 +44,28 @@ table.testgrid th {
 	white-space: nowrap; 
 }
 
+table.tre th{
+	background-color: #ff0000;
+}
+table.etude th{
+	background-color: #0000cc;
+}
+table.trom th{
+	background-color: #00f957;
+}
+table.tst th{
+	background-color: #fe9401;
+}
+table.chambre th{
+	background-color: #ff0000;
+}
+table.tranche th{
+	background-color: #0000cc;
+}
+table.tdgc th{
+	background-color: #78d07d;
+}
+
 table.testgrid td {
 	padding: 5px;
 	border: 1px solid #E0E0E0;

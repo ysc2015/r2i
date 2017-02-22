@@ -33,6 +33,7 @@
     var ot_dt;
     var id_devis = 0;
     var id_ebm = 0;
+    var devis_dt = $('#devis_table').DataTable();
     var id_res = 0;
     var etat_retour = 0;
     var ot_btns = ["#update_ot_show",
@@ -51,8 +52,35 @@
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail
                 }
             }).done(function (msg) {
-                console.log(msg);
+
                 if(msg.iddevis > 0) {
+
+                    devis_dt = $('#devis_table').DataTable( {
+                        "language": {
+                            "url": "assets/js/plugins/datatables/French.json"
+                        },
+                        "autoWidth": false,
+                        "processing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            "url": 'api/ot/devis/devis_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree')
+                        },
+                        "columns": [
+                            { "data": "iddevis" },
+                            { "data": "id_ressource" },
+                            { "data": "id_ordre_de_travail" },
+                            { "data": "ref_devis" },
+                            { "data": "lib_etat_devis" }
+                        ],
+                        "columnDefs": [
+                            { "targets": [ 0,1 ], "visible": false, "searchable": false }
+                        ],
+                        "order": [[0, 'asc']]
+                        ,
+                        "drawCallback": function( /*settings*/ ) {
+
+                        }
+                    } );
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
                     $('#download_devis').removeClass('disabled');
@@ -74,6 +102,7 @@
         } else {
             id_devis = 0;
             id_res = 0;
+            devis_dt.clear().draw();
             $('#download_devis').addClass('disabled');
             $('#id_devis_edit_btn').addClass('disabled');
             //$("#devis_uploads").hide();
@@ -199,7 +228,7 @@
                 other_files_uploader.reset();
                 other_files_uploader = $("#other_files_uploader").uploadFile(other_files_uploader_options);
 
-                //console.log('iddevis' + ot_dt.row('.selected').data().iddevis);
+
 
                 $(ot_btns.join(',')).removeClass("disabled");
                 $('#linked-ch-wrapper').show();
@@ -287,6 +316,14 @@
             displayEBM();
 
         } );
-
+        $('#devis_table tbody').on('click','tr', function(){
+           if($(this).hasClass('selected')){
+               $(this).removeClass('selected');
+           } else{
+               devis_dt.$('tr.selected').removeClass('selected');
+               $(this).addClass('selected');
+               id_devis = devis_dt.row('.selected').data().iddevis;
+           }
+        });
     } );
 </script>

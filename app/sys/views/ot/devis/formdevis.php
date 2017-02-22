@@ -77,6 +77,35 @@
 
     </div>
 <div class="row items-push">
+    <!-- Table liste devis -->
+    <div class="block">
+        <div class="block-content table-responsive">
+            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+            <table id="devis_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                <thead>
+                <tr>
+                    <th>iddevis</th>
+                    <th>id_ressource</th>
+                    <th>id_ordre_de_travail</th>
+                    <th>ref_devis</th>
+                    <th>etat_devis</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>iddevis</th>
+                    <th>id_ressource</th>
+                    <th>id_ordre_de_travail</th>
+                    <th>ref_devis</th>
+                    <th>etat_devis</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!-- END Table devis -->
     <div class="col-md-12">
         <button id="id_devis_edit_btn" class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target="#wrap" data-backdrop="static" data-keyboard="false"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Editer devis</button>
      </div>
@@ -254,8 +283,11 @@
         uploader2_options = merge_options(defaultUploaderStrLocalisation,uploader2_options);
         uploader2 = $("#devis_autre_uploader").uploadFile(uploader2_options);
     });
+
     $(document).ready(function() {
-        id_devis_edit_btn
+
+
+
         $("#id_devis_edit_btn").click(function() {
             $.ajax({
                 cache: false,
@@ -273,6 +305,7 @@
                         dcmd_formdata['ref_devis']=$('#refdevis').val();
                         dcmd_formdata['date_devis']=$('#datedevis').val();
                         dcmd_formdata['date_livraison']=$('#datelivraisondevis').val();
+                        dcmd_formdata['etat_devis']=$('#etat_devis').val();
 
                         $.ajax({
                             method: "POST",
@@ -287,13 +320,13 @@
                 }
             });
 
-            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis="+id_devis,"tablecontent","testgrid","tableid");
-            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis="+id_devis,"tablecontentTRE","testgrid","tableidTRE");
-            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis="+id_devis,"tablecontentetude","testgrid","tableidetude");
-            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis="+id_devis,"tablecontenttst","testgrid","tableidtst");
-            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis="+id_devis,"tablecontentchambre","testgrid","tableidchambre");
-            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis="+id_devis,"tablecontenttranche","testgrid","tableidtranche");
-            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis="+id_devis,"tablecontenttdgc","testgrid","tableidtdgc");
+            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis="+id_devis,"tablecontent","testgrid trom","tableid");
+            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis="+id_devis,"tablecontentTRE","testgrid tre","tableidTRE");
+            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis="+id_devis,"tablecontentetude","testgrid etude","tableidetude");
+            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis="+id_devis,"tablecontenttst","testgrid tst","tableidtst");
+            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis="+id_devis,"tablecontentchambre","testgrid chambre","tableidchambre");
+            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis="+id_devis,"tablecontenttranche","testgrid tranche","tableidtranche");
+            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis="+id_devis,"tablecontenttdgc","testgrid tdgc","tableidtdgc");
 
         });
         $("#download_devis").click(function() {

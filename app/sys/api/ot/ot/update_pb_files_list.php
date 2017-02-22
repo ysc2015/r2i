@@ -31,7 +31,7 @@ if(isset($idot) && !empty($idot)){
                 if($row->type_objet == "transport_racoord_pboite") {
                     loadExcelDEF_BPE_EBM_CTR($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 } else if($row->type_objet == "distribution_racoord_pboite") {
-                    loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
+                    loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf,$idot,$connectedProfil);
                     loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 }
 
