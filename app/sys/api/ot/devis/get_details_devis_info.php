@@ -11,12 +11,12 @@ extract($_GET);
 
 $stm = $db->prepare("select * from detaildevis where detaildevis.iddevis =$iddevis LIMIT 1");
 $stm->execute();
-$row = $stm->fetch(PDO::FETCH_ASSOC);
+$row = $stm->fetch(PDO::FETCH_OBJ);
 $i = 0;
 $html = "";
 $ot = OrdreDeTravail::first(
     array('conditions' =>
-        array("id_ordre_de_travail = ?", $row['id_ordre_de_travail'])
+        array("id_ordre_de_travail = ?", $row->id_ordre_de_travail)
     )
 );
 $sousProjet = NULL;
@@ -26,6 +26,8 @@ if(isset($ot) && !empty($ot)){
     $sousProjet = SousProjet::find($ot->id_sous_projet);
 }
 
+$etat_devis = EtatDevis::all();
+
 $contact_entreprise = "";
 $select_entreprise = "";
 
@@ -34,7 +36,16 @@ $select_entreprise = "";
                                                 if($ot->id_entreprise==$result->id_entreprise )$contact_entreprise = $result->contact_nom.' '.$result->contact_prenom;
                                                 $select_entreprise =  $result->nom;
                                             }
+$sel_etat_devis_html ="<select name='etat_devis' id='etat_devis'  class='form-control' >";
 
+$selected = "";
+foreach($etat_devis as $etat_devi) {
+    if($row->etat_devis==$etat_devi->id_etat_devis ) $selected = " selected ";else $selected = "";
+    $sel_etat_devis_html .="<option value='".$etat_devi->id_etat_devis."' ".$selected.">".$etat_devi->lib_etat_devis."</option>";
+
+
+}
+$sel_etat_devis_html .="</select>";
 $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <table width='100%'>
 <tr>
 <td colspan='3' ><div id='message_devis'></div></td>
@@ -64,6 +75,11 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
 <td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis' value='".$row->date_livraison."'  /></td>
 </tr>
 <tr>
+<td>Etat :</td>
+<td>".$sel_etat_devis_html."
+</td>
+</tr>
+<tr>
 <td colspan='2' align='center' >&nbsp; </td>
  <td></td>
 </tr>
@@ -78,7 +94,7 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
  <td colspan='3'>
  <table border='1' class='table  table-bordered  ' width='100%'>
  <tr>
-<td colspan='3' align='center' bgcolor='red'>Lot 7- Etudes et Travaux FO</td>
+<td colspan='3' align='center' bgcolor='#f45f42'>Lot 7- Etudes et Travaux FO</td>
 </tr>
 <tr>
  <td width='30%'>&nbsp;</td>
@@ -117,7 +133,6 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
  <table border='1' class='table  table-bordered  ' width='100%'>
  <tr>
 <td colspan='3' align='center' bgcolor='aqua'>Lot 2 - Travaux GC</td>
- <td></td>
 </tr>
 <tr>
  <td width='30%'>&nbsp;</td>

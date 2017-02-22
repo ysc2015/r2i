@@ -133,13 +133,14 @@ if ($tablename=="TravauxRaccordementOptiqueMesure"){
     if($iddevis!=""){
 
 
-            $sql  = "update detaildevis set ref_devis = :ref_devis,date_devis=:date_devis, date_livraison=:date_livraison  where iddevis=:iddevis";
+            $sql  = "update detaildevis set ref_devis = :ref_devis, etat_devis =:etat_devis, date_devis=:date_devis, date_livraison=:date_livraison  where iddevis=:iddevis";
             $stm = $db->prepare($sql);
 
             $stm->bindParam(':iddevis',$iddevis);
             $stm->bindParam(':ref_devis',$ref_devis);
             $stm->bindParam(':date_devis',$date_devis);
             $stm->bindParam(':date_livraison',$date_livraison);
+            $stm->bindParam(':etat_devis',$etat_devis);
 
                 if($stm->execute()){
                     $message [] = "Enregistrement fait avec succès";
