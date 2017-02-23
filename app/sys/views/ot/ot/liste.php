@@ -36,6 +36,7 @@
     var devis_dt = $('#devis_table').DataTable();
     var id_res = 0;
     var etat_retour = 0;
+    var devis_btns = [];
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
         "#delete_ot","#open_pblq",
@@ -83,8 +84,7 @@
                     } );
                     id_devis = msg.iddevis;
                     id_res = msg.idres;
-                    $('#download_devis').removeClass('disabled');
-                    $('#id_devis_edit_btn').removeClass('disabled');
+
                     //$("#devis_uploads").show();
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
@@ -96,15 +96,22 @@
                     id_res = 0;
                     $('#download_devis').addClass('disabled');
                     $('#id_devis_edit_btn').addClass('disabled');
+                    $('#devis_consult_btn').addClass('disabled');
+                    $('#devis_supprime_btn').addClass('disabled');
+                    $('#devis_restaure_btn').addClass('disabled');
                     //$("#devis_uploads").hide();
                 }
             });
         } else {
             id_devis = 0;
             id_res = 0;
-            devis_dt.clear().draw();
             $('#download_devis').addClass('disabled');
             $('#id_devis_edit_btn').addClass('disabled');
+            $('#devis_consult_btn').addClass('disabled');
+            $('#devis_supprime_btn').addClass('disabled');
+            $('#devis_restaure_btn').addClass('disabled');
+            devis_dt.clear().draw();
+
             //$("#devis_uploads").hide();
         }
     }
@@ -319,10 +326,20 @@
         $('#devis_table tbody').on('click','tr', function(){
            if($(this).hasClass('selected')){
                $(this).removeClass('selected');
+               $('#download_devis').addClass('disabled');
+               $('#id_devis_edit_btn').addClass('disabled');
+               $('#devis_consult_btn').addClass('disabled');
+               $('#devis_supprime_btn').addClass('disabled');
+               $('#devis_restaure_btn').addClass('disabled');
            } else{
                devis_dt.$('tr.selected').removeClass('selected');
                $(this).addClass('selected');
                id_devis = devis_dt.row('.selected').data().iddevis;
+               $('#download_devis').removeClass('disabled');
+               $('#id_devis_edit_btn').removeClass('disabled');
+               $('#devis_consult_btn').removeClass('disabled');
+               $('#devis_supprime_btn').removeClass('disabled');
+               $('#devis_restaure_btn').removeClass('disabled');
            }
         });
     } );
