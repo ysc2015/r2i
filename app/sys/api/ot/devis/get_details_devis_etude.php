@@ -9,18 +9,24 @@
 
 // create grid and declare its columns
 $grid = new EditableGrid();
+extract($_GET);
+$editable_chaine = FALSE;
 
-// add two "string" columns
-// if you wish you can specify the desired length of the text edition field like this: string(24)
+if(isset($editable) && $editable == 1){
+    $editable_chaine = FALSE;
+}else{
+    $editable_chaine = TRUE;
+}
+
 $grid->addColumn("EFO_0", "EFO_0", "string",NULL,  false);
 $grid->addColumn("titre", "Titre", "html",NULL,  false);
-$grid->addColumn("qt", "Quantite", "integer");
+$grid->addColumn("qt", "Quantite", "integer",NULL,$editable_chaine);
 $grid->addColumn("unit", "Unité", "string",NULL,  false);
 $grid->addColumn("int", "INT", "double(€,2)",NULL,  false);
 $grid->addColumn("total", "Total", "double(€,2)",NULL,  false);
 
 
-extract($_GET);
+
 $detailsDevis = array();
 
 $stm = $db->prepare("select * from detaildevis where detaildevis.iddevis =$iddevis LIMIT 1");
