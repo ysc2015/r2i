@@ -64,3 +64,6 @@ RewriteRule  "api/typeot/typeot/(\w*\.php)"          "app/MY_ROUTER.php?script=t
 #todelete menu api
 #RewriteRule  "api/todelete/(\w*\.php)"          "app/MY_ROUTER.php?script=todelete/$1"  [QSA,L]
 
+#wiki api
+RewriteRule  "api/wiki/(\w*\.php)"          "app/sys/api/wiki/$1"  [QSA,L]
+

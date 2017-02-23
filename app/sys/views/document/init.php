@@ -51,3 +51,4 @@ SessionManager::check(function($logged, $data) {
 
 $connectedProfil = new $connectedProfil->profil->shortlib($connectedProfil);
 
+
