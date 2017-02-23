@@ -137,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="row">
+            <div class="row">
                 <div class="block">
                     <div class="block-header">
                         <h3 class="block-title">Chantiers en cours</h3>
@@ -152,8 +152,8 @@
                                 <th>Etape</th>
                                 <th>PCI en charge</th>
                                 <th>STT</th>
-                                <th>Date début de l’OT</th>
                                 <th>Date fin de l’OT</th>
+                                <th>Date fin de Travaux FT</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -166,14 +166,14 @@
                                 <th>Etape</th>
                                 <th>PCI en charge</th>
                                 <th>STT</th>
-                                <th>Date début de l’OT</th>
                                 <th>Date fin de l’OT</th>
+                                <th>Date fin de Travaux FT</th>
                             </tr>
                             </tfoot>
                         </table>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
         <!-- END Page Content -->
     </div>
@@ -183,6 +183,7 @@
     var gestion_travaux_cdi_dt;
     var gestion_travaux_ch1;
     var gestion_travaux_ch2;
+    var gestion_travaux_ch3;
     $(function () {
         // Init page plugins & helpers
     });
@@ -305,6 +306,57 @@
                 { "data": "nom" },
                 { "data": "date_debut" },
                 { "data": "date_fin" },
+            ],
+            "columnDefs": [
+                {
+                    "targets": 4,
+                    orderData: [ 4 ],
+                    "data": "prenom_utilisateur",
+                    "render": function ( data, type, full, meta ) {
+                        return  full.prenom_utilisateur + ' ' + full.nom_utilisateur;
+                    }
+                },
+                {
+                    "targets": 0,
+                    orderData: [ 0 ],
+                    "data": "type_ot",
+                    "render": function ( data, type, full, meta ) {
+                        if(type == "display"){
+                            return  '<a href="?page=ot&idsousprojet='+full.id_sous_projet+'&tentree='+full.type_entree+'">'+data+'</a>';
+                        }
+
+                        return data;
+                    }
+                },
+            ],
+            "order": [[0, 'desc']]
+            ,
+            "drawCallback": function( settings ) {
+                $('#gestiontrvx_block').removeClass('block-opt-refresh');
+            }
+        } );
+
+        gestion_travaux_ch2 = $('#gestiontrvx_table4').on('preXhr.dt', function ( e, settings, data ) {
+            $('#gestiontrvx_block').addClass('block-opt-refresh');
+        }).DataTable( {
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'api/dashboard/activitevpi/gestion_travaux_ch2.php'
+            },
+            "columns": [
+                { "data": "type_ot" },
+                { "data": "lib_etat_ot" },
+                { "data": "lib_nro" },
+                { "data": "lib_type_ordre_travail" },
+                { "data": "prenom_utilisateur" },
+                { "data": "nom" },
+                { "data": "date_fin" },
+                { "data": "date_fin_travaux_ft" },
             ],
             "columnDefs": [
                 {
