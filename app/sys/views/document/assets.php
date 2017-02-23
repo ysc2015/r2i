@@ -88,4 +88,5 @@
 <script src="assets/js/rc2k.osa.js" ></script>
 <script src="assets/js/outils_osa.js" ></script>
 
+<script src="assets/js/ajaxupload.3.5.js" ></script>
 

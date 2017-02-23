@@ -184,6 +184,11 @@ ADM;
             "navigator"=>"<li>liste</li>")));
         break;
 
+    case "wiki":
+        return json_decode(json_encode(array("header"=>"Wiki",
+        	"subheader"=>"Liste des sujets",
+        	"navigator"=>"<li>liste</li>")));
+        break;
 
     default:
         return json_decode(json_encode(array("header"=>"header",
