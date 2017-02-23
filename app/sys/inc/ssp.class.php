@@ -129,6 +129,30 @@ class SSP {
         }
         return $order;
     }
+    static function orderForUnion ( $request, $columns )
+    {
+        $order = '';
+        if ( isset($request['order']) && count($request['order']) ) {
+            $orderBy = array();
+            $dtColumns = self::pluck( $columns, 'dt' );
+            for ( $i=0, $ien=count($request['order']) ; $i<$ien ; $i++ ) {
+                // Convert the column index into the column data property
+                $columnIdx = intval($request['order'][$i]['column']);
+                $requestColumn = $request['columns'][$columnIdx];
+                $columnIdx = array_search( $requestColumn['data'], $dtColumns );
+                $column = $columns[ $columnIdx ];
+                if ( $requestColumn['orderable'] == 'true' ) {
+                    $dir = $request['order'][$i]['dir'] === 'asc' ?
+                        'ASC' :
+                        'DESC';
+                    $orderBy[] = 'a.'.explode('.',$column['db'])[1].' '.$dir;
+                    //var_dump('a.'.explode('.',$column['db'])[1]);
+                }
+            }
+            $order = 'ORDER BY '.implode(', ', $orderBy);
+        }
+        return $order;
+    }
     /**
      * Searching / Filtering
      *
@@ -342,6 +366,108 @@ class SSP {
 			 $where
 			 $order
 			 $limit"
+        );
+    }
+    static function simpleJoinUnion ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "", $extra = array() )
+    {
+        $bindings = array();
+        $db = self::db( $conn );
+        // Build the SQL query string from the request
+        $limit = self::limit( $request/*, $columns*/ );
+        $order = self::orderForUnion( $request, $columns );//orderForUnion
+        //var_dump($order);
+
+        $where = self::filter( $request, $columns, $bindings );
+
+        if(empty($where))
+        {
+            if(!empty($join))
+            {
+                $where = " WHERE " . $join;
+            }
+        }
+        else if(!empty($join))
+        {
+            $where .= " AND " . $join;
+        }
+
+        $itable = $table;
+        $ileftJoin = $leftJoint;
+        $icolumns = $columns;
+        $iwhere = $where;
+
+        $from = "from (";
+
+        foreach($extra as $k =>  $v) {
+
+            $table = $itable;
+            $leftJoint = $ileftJoin;
+            $columns = $icolumns;
+            $where = $iwhere;
+
+            foreach($v["tables"] as $vt) $table[] = $vt;
+            $where .= $v["condition"];
+            $leftJoint .= $v["left"];
+
+            $fromTables = implode(" JOIN ",$table);
+            // Main query to actually get the data
+            $pluck = self::pluck($columns, 'db');
+            // var_dump($pluck);
+            foreach($pluck as $key => $value)
+            {
+                if(preg_match("|.* as .*|",$pluck[$key])){
+                    $pluck[$key] = "`" . str_replace(".",'`.`',$value);
+                    $pluck[$key] = str_replace(" as ",'` as ',$pluck[$key]);
+
+                } else if(preg_match("/concat\(.*/", $value)) {
+                    $str = str_replace('concat(', '', $value);
+                    $value = str_replace(')', '', $str);
+                    $elts = explode(',', $value);
+                    $pluck[$key] = "concat(".implode(',',array_map(function($a){ return preg_match("/\w+/", $a) ? "`" . str_replace(".",'`.`',trim($a)) . "`" : $a;}, $elts)).")";
+                } else {
+                    $pluck[$key] = "`" . str_replace(".",'`.`',$value) . "`";
+                }
+            }
+
+            foreach($columns as $key => $value)
+            {
+                $tmp = explode('.', $value['db']);
+                $columns[$key]['db'] = isset($tmp[1]) ? $tmp[1] : $tmp[0];
+            }
+
+            $from .= $k == 10 ? " SELECT  ".implode(", ", $pluck)."FROM $fromTables $leftJoint $where" : " SELECT  ".implode(", ", $pluck)."FROM $fromTables $leftJoint $where UNION ALL ";
+
+        }
+
+        $from .= ") a";
+
+        $data = self::sql_exec( $db, $bindings,
+            "select SQL_CALC_FOUND_ROWS * $from $order $limit"
+        );
+
+
+        // Data set length after filtering
+        $resFilterLength = self::sql_exec( $db,
+            "SELECT FOUND_ROWS()"
+        );
+        $recordsFiltered = $resFilterLength[0][0];
+
+        // Total data set length
+        $resTotalLength = self::sql_exec( $db,
+            "SELECT COUNT(*) $from"
+        );
+        $recordsTotal = $resTotalLength[0][0];
+        /*
+         * Output
+         */
+        return array(
+            "draw"            => isset ( $request['draw'] ) ?
+                intval( $request['draw'] ) :
+                0,
+            "recordsTotal"    => intval( $recordsTotal ),
+            "recordsFiltered" => intval( $recordsFiltered ),
+            "data"            => self::data_output( $columns, $data ),
+            "sql" => "select SQL_CALC_FOUND_ROWS * $from $order $limit"
         );
     }
 

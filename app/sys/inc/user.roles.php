@@ -483,8 +483,8 @@ class cdp extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans"),
-                /*"activitebei" => array("index"),
+                "activitevpi" => array("gestionplans","gestiontrvx"),
+                "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
