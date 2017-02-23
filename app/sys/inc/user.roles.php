@@ -195,7 +195,7 @@ class adm extends baseUser {
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
                 "deot" => array("deot"),
-                "devis" => array("formdevis"),
+                "devis" => array("formdevis","delete"),
                 "ebm" => array("formebm"),
                 "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),

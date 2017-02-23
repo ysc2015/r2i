@@ -7,12 +7,6 @@
 <script src="../../r2i/assets/js/edit_devis_js.js" ></script>
 <link rel="stylesheet" type="text/css" href="../../r2i/assets/css/edit_devis_css.css" media="screen"/>
 
-<div class="row">
-    <div class="col-md-12">
-        <button id="download_devis" class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-download'>&nbsp;</span> Télécharger devis</button>
-    </div>
-</div>
-<br>
 <form class="form-horizontal push-10-t push-10" id="devis_detail_form" name="devis_detail_form">
     <div id="wrap"  class="modal fade" role="dialog" aria-hidden="false" tabindex="-1"  >
 <div class="modal-dialog" style="width: 900px">
@@ -107,8 +101,12 @@
     </div>
     <!-- END Table devis -->
     <div class="col-md-12">
-        <button id="id_devis_edit_btn" class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target="#wrap" data-backdrop="static" data-keyboard="false"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Editer devis</button>
-     </div>
+        <button id="download_devis" class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-download'>&nbsp;</span> Télécharger devis</button>
+        <button id="id_devis_edit_btn" class="btn btn-warning btn-sm" type="button"  data-toggle="modal" data-target="#wrap" data-backdrop="static" data-keyboard="false"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Editer devis</button>
+        <button id="devis_consult_btn" class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target="#wrap" data-backdrop="static" data-keyboard="false"><i id="hdf0454ff" class="fa fa-plus push-5-r"></i> Consulter devis</button>
+        <button id="devis_supprime_btn" class="btn btn-danger btn-sm " type="button" ><i id="hdf0454ff" class="glyphicon glyphicon-remove"></i> Supprimer devis</button>
+        <button id="devis_restaure_btn" class="btn btn-success btn-sm  " type="button"  data-toggle="modal" data-target="#wrap" data-backdrop="static" data-keyboard="false"><i id="hdf0454ff" class="glyphicon glyphicon-check"></i> Afficher devis supprimés</button>
+    </div>
 
 </div>
     </form>
@@ -329,11 +327,54 @@
             editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis="+id_devis,"tablecontenttdgc","testgrid tdgc","tableidtdgc");
 
         });
+        $("#devis_consult_btn").click(function() {
+            $.ajax({
+                cache: false,
+                url: "api/ot/devis/get_details_devis_info.php",
+                method:"GET",
+                data: {iddevis:id_devis},
+                dataType: "json",
+                success: function(data)
+                {
+                    $('#devis_tab').html(data);
+                    var dcmd_formdata = {};
+                    $("#save_info_devis").click(function() {
+                        dcmd_formdata['tablename']="detail_info";
+                        dcmd_formdata['iddevis']=id_devis;
+                        dcmd_formdata['ref_devis']=$('#refdevis').val();
+                        dcmd_formdata['date_devis']=$('#datedevis').val();
+                        dcmd_formdata['date_livraison']=$('#datelivraisondevis').val();
+                        dcmd_formdata['etat_devis']=$('#etat_devis').val();
+                        dcmd_formdata['editable']=1;
+
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/devis/save_details_devis.php",
+                            data: dcmd_formdata
+                        }).done(function (msg) {
+
+                            App.showMessage(msg, '#message_devis');
+                        });
+
+                    });
+                }
+            });
+
+            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis="+id_devis+"&editable=1","tablecontent","testgrid trom","tableid");
+            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis="+id_devis+"&editable=1","tablecontentTRE","testgrid tre","tableidTRE");
+            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis="+id_devis+"&editable=1","tablecontentetude","testgrid etude","tableidetude");
+            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis="+id_devis+"&editable=1","tablecontenttst","testgrid tst","tableidtst");
+            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis="+id_devis+"&editable=1","tablecontentchambre","testgrid chambre","tableidchambre");
+            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis="+id_devis+"&editable=1","tablecontenttranche","testgrid tranche","tableidtranche");
+            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis="+id_devis+"&editable=1","tablecontenttdgc","testgrid tdgc","tableidtdgc");
+
+        });
         $("#download_devis").click(function() {
             if(ot_dt.row('.selected').data()!== undefined) {
                 location.href="api/file/parserfile.php?id="+id_devis+"&idsp="+ot_dt.row('.selected').data().id_sous_projet+"&idtot="+ot_dt.row('.selected').data().id_type_ordre_travail;
             }
         });
+
 
 
 
