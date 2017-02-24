@@ -133,20 +133,38 @@ if ($tablename=="TravauxRaccordementOptiqueMesure"){
     if($iddevis!=""){
 
 
-            $sql  = "update detaildevis set ref_devis = :ref_devis, etat_devis =:etat_devis, date_devis=:date_devis, date_livraison=:date_livraison  where iddevis=:iddevis";
-            $stm = $db->prepare($sql);
+        $sql  = "update detaildevis set ref_devis = :ref_devis, etat_devis =:etat_devis, date_devis=:date_devis, date_livraison=:date_livraison  where iddevis=:iddevis";
+        $stm = $db->prepare($sql);
 
-            $stm->bindParam(':iddevis',$iddevis);
-            $stm->bindParam(':ref_devis',$ref_devis);
-            $stm->bindParam(':date_devis',$date_devis);
-            $stm->bindParam(':date_livraison',$date_livraison);
-            $stm->bindParam(':etat_devis',$etat_devis);
+        $stm->bindParam(':iddevis',$iddevis);
+        $stm->bindParam(':ref_devis',$ref_devis);
+        $stm->bindParam(':date_devis',$date_devis);
+        $stm->bindParam(':date_livraison',$date_livraison);
+        $stm->bindParam(':etat_devis',$etat_devis);
 
-                if($stm->execute()){
-                    $message [] = "Enregistrement fait avec succès";
-                } else {
-                    $message [] = $stm->errorInfo();
-                }
+        if($stm->execute()){
+            $message [] = "Enregistrement fait avec succès";
+        } else {
+            $message [] = $stm->errorInfo();
+        }
+
+
+    }
+}elseif($tablename=="restaure_devis"){
+    if($iddevis!=""){
+
+
+        $sql  = "update detaildevis set  etat_devis =:etat_devis  where iddevis=:iddevis";
+        $stm = $db->prepare($sql);
+
+        $stm->bindParam(':iddevis',$iddevis);
+        $stm->bindValue(':etat_devis','1');
+
+        if($stm->execute()){
+            $message [] = "Enregistrement fait avec succès";
+        } else {
+            $message [] = $stm->errorInfo();
+        }
 
 
     }
