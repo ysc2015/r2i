@@ -20,17 +20,22 @@ if(!isset($type) || empty($type) || !in_array($type,array(1,2))) {
 } else {
     switch($type) {
         case 1 :
-            $sql = "insert into blq_pbc (id_ordre_de_travail,type,snake,planche_a3,chambre_amont,chambre_aval,question_information,id_createur) values (:id_ordre_de_travail,:type,:snake,:planche_a3,:chambre_amont,:chambre_aval,:question_information,:id_createur)";
+            $sql = "insert into blq_pbc (id_ordre_de_travail,type,snake,planche_a3,chambre_amont,chambre_aval,question_information,id_createur,date_insertion) values (:id_ordre_de_travail,:type,:snake,:planche_a3,:chambre_amont,:chambre_aval,:question_information,:id_createur,:date_insertion)";
             $questionFieldName = "question";
             break;
         case 2 :
-            $sql = "insert into blq_pbc (id_ordre_de_travail,type,snake,planche_a3,chambre_amont,chambre_aval,question_information,reponse_ajustement) values (:id_ordre_de_travail,:type,:snake,:planche_a3,:chambre_amont,:chambre_aval,:question_information,:reponse_ajustement)";
+            $sql = "insert into blq_pbc (id_ordre_de_travail,type,snake,planche_a3,chambre_amont,chambre_aval,question_information,reponse_ajustement,date_insertion) values (:id_ordre_de_travail,:type,:snake,:planche_a3,:chambre_amont,:chambre_aval,:question_information,:reponse_ajustement,:date_insertion)";
             $questionFieldName = "information";
             break;
         default : break;
     }
 
     $stm = $db->prepare($sql);
+
+    //TODO Set Same Time Zone in PHP & MySQL in config file
+
+    $dt = date('Y-m-d H:i:s');
+    $stm->bindParam(':date_insertion',$dt);
 }
 
 if(isset($idot) && !empty($idot)){
