@@ -34,9 +34,10 @@
     var id_devis = 0;
     var id_ebm = 0;
     var devis_dt = $('#devis_table').DataTable();
+    var devis_supprime_dt = $('#devis_supprime_table').DataTable();
     var id_res = 0;
     var etat_retour = 0;
-    var devis_btns = [];
+    var devis_btns = ["#download_devis","#id_devis_edit_btn","#devis_consult_btn","#devis_supprime_btn"];
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
         "#delete_ot","#open_pblq",
@@ -64,7 +65,8 @@
                         "processing": true,
                         "serverSide": true,
                         "ajax": {
-                            "url": 'api/ot/devis/devis_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree')
+                            "url": 'api/ot/devis/devis_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree'),
+                            "cache": false
                         },
                         "columns": [
                             { "data": "iddevis" },
@@ -314,6 +316,7 @@
                     } else {
                         $('#linked-pb-wrapper').hide();
                     }
+                    $('#devis_restaure_btn').removeClass('disabled');
                 } else {
                     $('#linked-pb-wrapper').hide();
                 }
@@ -330,7 +333,7 @@
                $('#id_devis_edit_btn').addClass('disabled');
                $('#devis_consult_btn').addClass('disabled');
                $('#devis_supprime_btn').addClass('disabled');
-               $('#devis_restaure_btn').addClass('disabled');
+
            } else{
                devis_dt.$('tr.selected').removeClass('selected');
                $(this).addClass('selected');
@@ -339,7 +342,7 @@
                $('#id_devis_edit_btn').removeClass('disabled');
                $('#devis_consult_btn').removeClass('disabled');
                $('#devis_supprime_btn').removeClass('disabled');
-               $('#devis_restaure_btn').removeClass('disabled');
+
            }
         });
     } );
