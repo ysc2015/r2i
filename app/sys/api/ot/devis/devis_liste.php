@@ -21,6 +21,7 @@ $columns = array(
 
 $condition = "dd.id_ordre_de_travail=t1.id_ordre_de_travail";
 $condition .=" AND ed.id_etat_devis=dd.etat_devis ";
+$condition .=" AND dd.id_ordre_de_travail= ".$idot;
 
 if(isset($supprime) && $supprime == 1 ){
     $condition .=" AND dd.etat_devis=10 ";

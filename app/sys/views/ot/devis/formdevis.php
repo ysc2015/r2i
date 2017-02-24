@@ -198,6 +198,7 @@
     </div>
 </div>
 <script>
+
     var devis_formdata = {};
     var uploader1_options = {
         url: "api/ot/devis/upload_devis_bon_cmd.php",
@@ -437,32 +438,39 @@
             }
         });
         $('#devis_restaure_btn').click(function(){
-            devis_supprime_dt = $('#devis_supprime_table').DataTable( {
-                "language": {
-                    "url": "assets/js/plugins/datatables/French.json"
-                },
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": 'api/ot/devis/devis_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree')+'&supprime=1'
-                },
-                "columns": [
-                    { "data": "iddevis" },
-                    { "data": "id_ressource" },
-                    { "data": "id_ordre_de_travail" },
-                    { "data": "ref_devis" },
-                    { "data": "lib_etat_devis" }
-                ],
-                "columnDefs": [
-                    { "targets": [ 0,1 ], "visible": false, "searchable": false }
-                ],
-                "order": [[0, 'asc']]
-                ,
-                "drawCallback": function( /*settings*/ ) {
+            console.log('id_ot :: '+id_ot);
+            if ( ! $.fn.DataTable.isDataTable( '#devis_supprime_table' ) ) {
+                devis_supprime_dt = $('#devis_supprime_table').DataTable( {
+                    "language": {
+                        "url": "assets/js/plugins/datatables/French.json"
+                    },
+                    "autoWidth": false,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": 'api/ot/devis/devis_liste.php?idot='+id_ot+'&supprime=1',
+                        "cache":false
+                    },
+                    "columns": [
+                        { "data": "iddevis" },
+                        { "data": "id_ressource" },
+                        { "data": "id_ordre_de_travail" },
+                        { "data": "ref_devis" },
+                        { "data": "lib_etat_devis" }
+                    ],
+                    "columnDefs": [
+                        { "targets": [ 0,1 ], "visible": false, "searchable": false }
+                    ],
+                    "order": [[0, 'asc']]
+                    ,
+                    "drawCallback": function( /*settings*/ ) {
 
-                }
-            } );
+                    }
+                } );
+            }else{
+                devis_supprime_dt.ajax.url('api/ot/devis/devis_liste.php?idot='+id_ot+'&supprime=1').load();
+            }
+
             $('#devis_supprime_table tbody').on('click','tr', function(){
                 if($(this).hasClass('selected')){
                     $(this).removeClass('selected');
@@ -483,7 +491,9 @@
                     method: "POST",
                     data: {iddevis: id_devis,tablename:'restaure_devis'},
                     success: function (data) {
-                        devis_dt.draw((false));
+                         console.log("id_ot :::"+id_ot);
+                        devis_dt.ajax.url('api/ot/devis/devis_liste.php?idot='+id_ot).load();
+                        devis_supprime_dt.ajax.url('api/ot/devis/devis_liste.php?idot=0&supprime=1').load();
                         $(devis_btns.join(',')).addClass("disabled");
                     },
                     error:function(d){

@@ -736,149 +736,15 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
         if($connectedProfil){
             $chaine = strtoupper(substr($connectedProfil->profil->nom_utilisateur,0,1).substr($connectedProfil->profil->prenom_utilisateur,0,2));
         }
-        $ref_devis ="DEV_".strtoupper(substr($ot->type_ot,0,3))."_". $sousProjet->projet->nro->lib_nro."-".$sousProjet->zone."_".$chaine ."_01";
         //traitement d'enregistrement sur la base
-        $stm_sel_idressource = $db->prepare("select * from `detaildevis` where id_ressource = :id_ressource");
+        $stm_sel_idressource = $db->prepare("select * from `detaildevis` order by dateinsert desc LIMIT 1");
         $stm_sel_idressource->bindValue(':id_ressource',$idressource);
         $stm_sel_idressource->execute();
         $detail_object = $stm_sel_idressource->fetch(PDO::FETCH_OBJ);
-        if($stm_sel_idressource->rowCount() > 0){
-            //update devis
-            $stm = $db->prepare("update `detaildevis` set id_ordre_de_travail = :id_ordre_de_travail, RFO_01_01_qt = :RFO_01_01_qt,RFO_01_03_qt = :RFO_01_03_qt, RFO_01_05_qt = :RFO_01_05_qt, RFO_01_07_qt=:RFO_01_07_qt,
-RFO_01_09_qt= :RFO_01_09_qt, RFO_01_11_qt= :RFO_01_11_qt, RFO_01_13_qt= :RFO_01_13_qt, RFO_01_15_qt= :RFO_01_15_qt, RFO_01_16_qt= :RFO_01_16_qt, RFO_01_17_qt= :RFO_01_17_qt,
-RFO_01_18_qt= :RFO_01_18_qt, RFO_01_19_qt= :RFO_01_19_qt, RFO_01_20_qt= :RFO_01_20_qt,  RFO_01_21_qt= :RFO_01_21_qt, RFO_01_23_qt = :RFO_01_23_qt, RFO_01_01_PEC= :RFO_01_01_PEC,
-RFO_01_03_PEC= :RFO_01_03_PEC, RFO_01_05_PEC= :RFO_01_05_PEC, RFO_01_07_PEC= :RFO_01_07_PEC, RFO_01_09_PEC= :RFO_01_09_PEC, RFO_01_11_PEC= :RFO_01_11_PEC,
-RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :dateinsert , ref_devis= :ref_devis where id_ressource =:id_ressource ");
-            $dateaction = date('Y-m-d G:i:s');
+        $num_increment = intval(substr($detail_object->ref_devis,-2)) +1 ;
+        if($num_increment < 10) $num_increment = '0'.$num_increment;
+        $ref_devis ="DEV_".strtoupper(substr($ot->type_ot,0,3))."_". $sousProjet->projet->nro->lib_nro."-".$sousProjet->zone."_".$chaine ."_".$num_increment;
 
-            $stm->bindValue(':id_ressource',$idressource);
-            $stm->bindValue(':id_ordre_de_travail',$id_ordre_de_travail);
-            $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
-            $stm->bindValue(':RFO_01_03_qt',$RFO_01_03);
-            $stm->bindValue(':RFO_01_05_qt',$RFO_01_05);
-            $stm->bindValue(':RFO_01_07_qt',$RFO_01_07);
-            $stm->bindValue(':RFO_01_09_qt',$RFO_01_09);
-            $stm->bindValue(':RFO_01_11_qt',$RFO_01_11);
-            $stm->bindValue(':RFO_01_13_qt',$RFO_01_13);
-            $stm->bindValue(':RFO_01_15_qt',$RFO_01_15_432);
-            $stm->bindValue(':RFO_01_16_qt',$RFO_01_16_288);
-            $stm->bindValue(':RFO_01_17_qt',$RFO_01_17_144);
-            $stm->bindValue(':RFO_01_18_qt',$RFO_01_18_72);
-            $stm->bindValue(':RFO_01_19_qt',$RFO_01_19_48);
-            $stm->bindValue(':RFO_01_20_qt',$RFO_01_20_24);
-            $stm->bindValue(':RFO_01_21_qt',$RFO_01_21);
-            $stm->bindValue(':RFO_01_23_qt',$RFO_01_23);
-            $stm->bindValue(':RFO_01_01_PEC',$capacite720_pec);
-            $stm->bindValue(':RFO_01_03_PEC',$capacite432_pec);
-            $stm->bindValue(':RFO_01_05_PEC',$capacite288_pec);
-            $stm->bindValue(':RFO_01_07_PEC',$capacite144_pec);
-            $stm->bindValue(':RFO_01_09_PEC',$capacite72_pec);
-            $stm->bindValue(':RFO_01_11_PEC',$capacite48_pec);
-            $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
-            $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
-            $stm->bindValue(':dateinsert',$dateaction);
-            $stm->bindValue(':ref_devis',$ref_devis);
-            $stm->execute();
-            $id = $detail_object->iddevis;
-            if(isset($_POST['idsp']) && !empty($_POST['idsp'])){
-                $sousProjet = SousProjet::find($_POST['idsp']);
-            }
-
-            $tentree = "";
-
-            if($sousProjet !== NULL) {
-                switch($_POST['idtot']) {
-                    case "1" :
-                        $tentree = "transportaiguillage";
-                        break;
-                    case "2" :
-                        $tentree = "transporttirage";
-                        break;
-                    case "3" :
-                        $tentree = "transportraccordement";
-                        break;
-                    case "4" :
-                        $tentree = "transporttirage";
-                        //$tentree = "transportraccordement";
-                        break;
-                    case "5" :
-                        $tentree = "distributionaiguillage";
-                        break;
-                    case "6" :
-                        $tentree = "distributiontirage";
-                        break;
-                    case "7" :
-                        $tentree = "distributionraccordement";
-                        break;
-                    case "8" :
-                        $tentree = "distributiontirage";
-                        //$tentree = "distributionraccordement";
-                        break;
-                    default :
-                        break;
-                }
-
-                if($tentree !== "" ) {
-                    switch($tentree) {
-                        case "transportaiguillage" :
-                            if($sousProjet->{$tentree} !== NULL) {
-                                $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
-                                $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                                $TFO_01_02_qt = "";//nbr chambre
-                            }
-                            break;
-                        case "distributionaiguillage" :
-                            if($sousProjet->{$tentree} !== NULL) {
-                                $EFO_06_03_qt = $sousProjet->{$tentree}->lineaire5 + $sousProjet->{$tentree}->lineaire6 + $sousProjet->{$tentree}->lineaire7 + $sousProjet->{$tentree}->lineaire8;
-                                $TFO_01_01_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                                $TFO_01_02_qt = "";//nbr chambre
-                            }
-                            break;
-
-                        case "transporttirage" :
-                            if($sousProjet->{$tentree} !== NULL) {
-                                $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
-                                $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10 + $sousProjet->{$tentree}->lineaire11;
-                                $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
-                                $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire4;//cables
-                                $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1 + $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3;
-                                $TFO_04_01_qt = "";//nbrchambre * 3
-                            }
-                            break;
-                        case "distributiontirage" :
-                            if($sousProjet->{$tentree} !== NULL) {
-                                $EFO_06_06_qt = $sousProjet->{$tentree}->lineaire12 / 2;
-                                $TFO_02_01_qt = $sousProjet->{$tentree}->lineaire9 + $sousProjet->{$tentree}->lineaire10;
-                                $TFO_02_02_qt = $sousProjet->{$tentree}->lineaire11;
-                                $TFO_02_03_qt = $sousProjet->{$tentree}->lineaire12;
-                                $TFO_03_01_qt = $sousProjet->{$tentree}->lineaire2 + $sousProjet->{$tentree}->lineaire3 + $sousProjet->{$tentree}->lineaire4;
-                                $TFO_03_02_qt = $sousProjet->{$tentree}->lineaire1;
-                                $TFO_04_01_qt = "";//nbr chambre * 2
-                            }
-                            break;
-                        default :
-                            break;
-                    }
-                }
-
-                $update_statment = $db->prepare("UPDATE detaildevis SET EFO_06_03_qt=:EFO_06_03_qt,EFO_06_06_qt=:EFO_06_06_qt,TFO_01_01_qt=:TFO_01_01_qt,TFO_01_02_qt=:TFO_01_02_qt,TFO_02_01_qt=:TFO_02_01_qt,TFO_02_02_qt=:TFO_02_02_qt,TFO_02_03_qt=:TFO_02_03_qt,TFO_03_01_qt=:TFO_03_01_qt,TFO_03_02_qt=:TFO_03_02_qt,TFO_04_01_qt=:TFO_04_01_qt WHERE iddevis=:id");
-
-                $update_statment->bindParam(':EFO_06_03_qt',$EFO_06_03_qt);
-                $update_statment->bindParam(':EFO_06_06_qt',$EFO_06_06_qt);
-                $update_statment->bindParam(':TFO_01_01_qt',$TFO_01_01_qt);
-                $update_statment->bindParam(':TFO_01_02_qt',$TFO_01_02_qt);
-                $update_statment->bindParam(':TFO_02_01_qt',$TFO_02_01_qt);
-                $update_statment->bindParam(':TFO_02_02_qt',$TFO_02_02_qt);
-                $update_statment->bindParam(':TFO_02_03_qt',$TFO_02_03_qt);
-                $update_statment->bindParam(':TFO_03_01_qt',$TFO_03_01_qt);
-                $update_statment->bindParam(':TFO_03_02_qt',$TFO_03_02_qt);
-                $update_statment->bindParam(':TFO_04_01_qt',$TFO_04_01_qt);
-
-                $update_statment->bindParam(':id',$id);
-
-                $update_statment->execute();
-            }
-        }else{
             //insert devis
             $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource,id_ordre_de_travail, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
 `RFO_01_13_qt`, `RFO_01_15_qt`, `RFO_01_16_qt`, `RFO_01_17_qt`, `RFO_01_18_qt`, `RFO_01_19_qt`, `RFO_01_20_qt`,
@@ -1014,7 +880,7 @@ RFO_01_13_PEC= :RFO_01_13_PEC,RFO_01_23_qt_PEC= :RFO_01_23_qt_PEC, dateinsert= :
 
                 $update_statment->execute();
             }
-        }
+
 
 
         return json_encode($tabreturn);
