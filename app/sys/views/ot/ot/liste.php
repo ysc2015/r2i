@@ -32,6 +32,7 @@
 <script>
     var ot_dt;
     var id_devis = 0;
+    var id_ot = 0;
     var id_ebm = 0;
     var devis_dt = $('#devis_table').DataTable();
     var devis_supprime_dt = $('#devis_supprime_table').DataTable();
@@ -44,9 +45,14 @@
         "#linked-ch",
         "#link_ot","#linked-pb","#link_pb"];
     function displayDevis() {
+        console.log("displayDevis");
         if(ot_dt.row('.selected').data()!== undefined) {
+
+            id_ot = ot_dt.row('.selected').data().id_ordre_de_travail;
+
             $.ajax({
                 method: "POST",
+                async:false,
                 url: "api/ot/devis/get_devis_id.php",
                 dataType: "json",
                 data: {
@@ -56,38 +62,40 @@
             }).done(function (msg) {
 
                 if(msg.iddevis > 0) {
+                    if ( ! $.fn.DataTable.isDataTable( '#devis_table' ) ) {
+                        devis_dt = $('#devis_table').DataTable( {
+                            "language": {
+                                "url": "assets/js/plugins/datatables/French.json"
+                            },
+                            "autoWidth": false,
+                            "processing": true,
+                            "serverSide": true,
+                            "ajax": {
+                                "url": 'api/ot/devis/devis_liste.php?idot='+id_ot,
+                                "cache": false
+                            },
+                            "columns": [
+                                { "data": "iddevis" },
+                                { "data": "id_ressource" },
+                                { "data": "id_ordre_de_travail" },
+                                { "data": "ref_devis" },
+                                { "data": "lib_etat_devis" }
+                            ],
+                            "columnDefs": [
+                                { "targets": [ 0,1 ], "visible": false, "searchable": false }
+                            ],
+                            "order": [[0, 'asc']]
+                            ,
+                            "drawCallback": function( /*settings*/ ) {
 
-                    devis_dt = $('#devis_table').DataTable( {
-                        "language": {
-                            "url": "assets/js/plugins/datatables/French.json"
-                        },
-                        "autoWidth": false,
-                        "processing": true,
-                        "serverSide": true,
-                        "ajax": {
-                            "url": 'api/ot/devis/devis_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree'),
-                            "cache": false
-                        },
-                        "columns": [
-                            { "data": "iddevis" },
-                            { "data": "id_ressource" },
-                            { "data": "id_ordre_de_travail" },
-                            { "data": "ref_devis" },
-                            { "data": "lib_etat_devis" }
-                        ],
-                        "columnDefs": [
-                            { "targets": [ 0,1 ], "visible": false, "searchable": false }
-                        ],
-                        "order": [[0, 'asc']]
-                        ,
-                        "drawCallback": function( /*settings*/ ) {
+                            }
+                        } );
+                    }else{
+                        devis_dt.ajax.url('api/ot/devis/devis_liste.php?idot='+id_ot).load();
+                    }
 
-                        }
-                    } );
-                    id_devis = msg.iddevis;
-                    id_res = msg.idres;
 
-                    //$("#devis_uploads").show();
+
                     uploader1.reset();
                     uploader1 = $("#devis_bon_cmd_uploader").uploadFile(uploader1_options);
 
@@ -107,14 +115,16 @@
         } else {
             id_devis = 0;
             id_res = 0;
+            id_ot = 0;
             $('#download_devis').addClass('disabled');
             $('#id_devis_edit_btn').addClass('disabled');
             $('#devis_consult_btn').addClass('disabled');
             $('#devis_supprime_btn').addClass('disabled');
             $('#devis_restaure_btn').addClass('disabled');
-            devis_dt.clear().draw();
+            devis_dt.ajax.url('api/ot/devis/devis_liste.php?idot=-1').load();
 
-            //$("#devis_uploads").hide();
+
+
         }
     }
     function displayEBM() {
@@ -185,6 +195,7 @@
             "order": [[6, 'asc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+
                 $('#other_files_uploader_wrapper').hide();
                 $("#devis_uploads").hide();
                 displayDevis();
@@ -194,6 +205,7 @@
                 $('#linked-ch').html('<option value="">&nbsp;</option>');
                 $('#linked-pb').html('<option value="">&nbsp;</option>');
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
+                devis_dt.ajax.url('api/ot/devis/devis_liste.php?idot=-1').load();
                 ot_affect_dt.draw(false);
             }
         } );
@@ -321,6 +333,7 @@
                     $('#linked-pb-wrapper').hide();
                 }
             }
+
 
             displayDevis();
             displayEBM();
