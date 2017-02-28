@@ -165,7 +165,7 @@ foreach($tbl_options_arr as $k => $v) {
         default : break;
     }
 
-    if($k == "transportaiguillage1") $temp = $sql;
+    if($k == "distributiontirage1") $temp = $sql;
 
     $stm = $db->prepare($sql);
     $stm->execute();
