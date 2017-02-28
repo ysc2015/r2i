@@ -109,7 +109,7 @@
                     $('#devis_consult_btn').addClass('disabled');
                     $('#devis_supprime_btn').addClass('disabled');
                     $('#devis_restaure_btn').addClass('disabled');
-                    //$("#devis_uploads").hide();
+
                 }
             });
         } else {
@@ -254,7 +254,23 @@
                 $(ot_btns.join(',')).removeClass("disabled");
                 $('#linked-ch-wrapper').show();
                 $("#devis_uploads").show();
+                $.ajax({
+                    method: "POST",
+                    url: "api/ot/devis/get_devis_ot_able_to_restaure.php",
+                    dataType: "json",
+                    data: {
+                        iddevis : id_devis,
+                        id_ordre_de_travail : ot_dt.row('.selected').data().id_ordre_de_travail
+                    }
+                }).done(function (msg) {
+                    console.log(msg);
+                    if(msg.restaure == 1){
+                        $('#devis_restaure_btn').removeClass('disabled');
+                    }else{
+                        $('#devis_restaure_btn').addClass('disabled');
+                    }
 
+                });
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=10) {
                     uploader3.reset();
                     uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
@@ -328,7 +344,7 @@
                     } else {
                         $('#linked-pb-wrapper').hide();
                     }
-                    $('#devis_restaure_btn').removeClass('disabled');
+
                 } else {
                     $('#linked-pb-wrapper').hide();
                 }
@@ -354,8 +370,22 @@
                $('#download_devis').removeClass('disabled');
                $('#id_devis_edit_btn').removeClass('disabled');
                $('#devis_consult_btn').removeClass('disabled');
-               $('#devis_supprime_btn').removeClass('disabled');
 
+               $.ajax({
+                   method: "POST",
+                   url: "api/ot/devis/get_ids_to_supprime.php",
+                   dataType: "json",
+                   data: {
+                       iddevis : id_devis
+                   }
+               }).done(function (msg) {
+               if(msg.supprime == 1){
+                   $('#devis_supprime_btn').removeClass('disabled');
+               }else{
+                   $('#devis_supprime_btn').addClass('disabled');
+               }
+
+               });
            }
         });
     } );
