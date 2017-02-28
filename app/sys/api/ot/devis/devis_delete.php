@@ -11,7 +11,7 @@ $err = 0;
 $message = array();
 
 
-$stm = $db->prepare("update detaildevis set etat_devis = 10 where iddevis = :iddevis");
+$stm = $db->prepare("update detaildevis set etat_devis = 10 where iddevis = :iddevis and etat_devis = 1");
 
 if(isset($iddevis) && !empty($iddevis)){
     $stm->bindParam(':iddevis',$iddevis);
