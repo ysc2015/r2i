@@ -125,7 +125,7 @@ $tbl_options_arr = array(
     )
 );
 
-$search = array("{table}","{ctr_cnd}","{in}","{where}");
+$search = array("{table}","{ctr_cnd}","{in}","{where}");//
 
 foreach($tbl_options_arr as $k => $v) {
     $sql = "SELECT count(*) FROM sous_projet sp,{table} et,projet pj,nro nr WHERE sp.id_sous_projet = et.id_sous_projet AND sp.id_projet = pj.id_projet AND pj.id_nro = nr.id_nro AND et.controle_plans = 2 AND et.lien_plans <> '' {ctr_cnd} AND sp.id_sous_projet {in} (SELECT id_sous_projet FROM ordre_de_travail WHERE {where} AND id_sous_projet IS NOT NULL)";
