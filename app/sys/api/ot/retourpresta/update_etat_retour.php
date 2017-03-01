@@ -86,6 +86,10 @@ if($err == 0) {
 
 
         if(count($mailaction_to)>0){
+            print_r($mailaction_to);
+            print_r($mailaction_cc);
+            print_r($mailaction_html);
+            print_r($mailaction_object);
             //if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
             if(true){
                 $message[] = "Mail envoyé !";
