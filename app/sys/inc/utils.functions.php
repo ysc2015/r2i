@@ -1525,8 +1525,8 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt, $id_entrepri
 }
 function return_list_bei_du_nro($db,$idnro){
     $mailaction_cc = [];
-    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro 
-and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` 
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro_utilisateur`,utilisateur,profil_utilisateur where  nro_utilisateur.id_nro =  $idnro 
+and utilisateur.id_utilisateur = nro_utilisateur.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` 
 and `utilisateur`.`id_profil_utilisateur` = 4 ";
     echo $sql;
     $mailaction_stm = $db->prepare($sql);
