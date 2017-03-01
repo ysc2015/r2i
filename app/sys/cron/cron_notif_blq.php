@@ -4,7 +4,7 @@
  * User: fadil
  */
 //include (__DIR__."/../../../inc/config.php");
-
+ini_set('display_errors',1);
 require_once __DIR__.'/../../sys/libs/vendor/autoload.php';
 require_once __DIR__. "/../../sys/inc/config.php";
 require_once __DIR__. "/../../sys/inc/utils.functions.php";
@@ -67,8 +67,8 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                     $mailaction_to =return_list_entreprise_stt($db,NULL,$pbc['id_ordre_de_travail']);
                     $mailaction_cc =array_merge(return_list_mail_cc_notif($db,"",9),return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro),return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro)) ;
                     if($mailaction_html!="" and count($mailaction_to)>0){
-                        //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
-                        if(true){
+                        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+                        //if(true){
                             echo $mailaction_html.'<br />*****************<br />TO :';
                             print_r($mailaction_to) ;
                             echo '<br />*****************<br />CC :';
@@ -109,8 +109,8 @@ and blq_pbc.id_ordre_de_travail =:id_ordre_travail and ordre_de_travail.id_sous_
                     $mailaction_to = return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);
                     $mailaction_cc = array_merge(return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro),return_list_pci_du_nro($db,$sousProjet->projet->nro->id_nro),return_list_entreprise_stt($db,NULL,$pbc['id_ordre_de_travail']),return_list_mail_cc_notif($db,"",10));
                     if($mailaction_html!="" and count($mailaction_to)>0){
-                        //if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
-                        if(true){
+                        if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)){
+                        //if(true){
 
 
                             echo $mailaction_html.'<br />*****************<br />TO :';
