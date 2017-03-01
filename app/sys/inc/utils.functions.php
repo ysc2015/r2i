@@ -1528,7 +1528,7 @@ function return_list_bei_du_nro($db,$idnro){
     $sql = "SELECT utilisateur.email_utilisateur FROM `nro_utilisateur`,utilisateur,profil_utilisateur where  nro_utilisateur.id_nro =  $idnro 
 and utilisateur.id_utilisateur = nro_utilisateur.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` 
 and `utilisateur`.`id_profil_utilisateur` = 4 ";
-    echo $sql;
+
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
 
