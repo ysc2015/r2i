@@ -748,11 +748,14 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
             //insert devis
             $stm = $db->prepare("INSERT INTO `detaildevis` (`iddevis`,id_ressource,id_ordre_de_travail, `RFO_01_01_qt`, `RFO_01_03_qt`, `RFO_01_05_qt`, `RFO_01_07_qt`, `RFO_01_09_qt`, `RFO_01_11_qt`,
 `RFO_01_13_qt`, `RFO_01_15_qt`, `RFO_01_16_qt`, `RFO_01_17_qt`, `RFO_01_18_qt`, `RFO_01_19_qt`, `RFO_01_20_qt`,
- `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `RFO_01_23_qt_PEC`, `dateinsert`,`ref_devis`) 
+ `RFO_01_21_qt`, `RFO_01_23_qt`, `RFO_01_01_PEC`, `RFO_01_03_PEC`,  `RFO_01_05_PEC`, `RFO_01_07_PEC`,`RFO_01_09_PEC`, `RFO_01_11_PEC`, `RFO_01_13_PEC`, `RFO_01_23_qt_PEC`, `dateinsert`,`ref_devis`,`date_devis`,`date_livraison`) 
  VALUES (NULL, :id_ressource, :id_ordre_de_travail,  :RFO_01_01_qt, :RFO_01_03_qt, :RFO_01_05_qt,  :RFO_01_07_qt, :RFO_01_09_qt, :RFO_01_11_qt,
    :RFO_01_13_qt, :RFO_01_15_qt,    :RFO_01_16_qt, :RFO_01_17_qt, :RFO_01_18_qt,   :RFO_01_19_qt, :RFO_01_20_qt,
-   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC,:RFO_01_23_qt_PEC,:dateaction,:ref_devis  )");
+   :RFO_01_21_qt, :RFO_01_23_qt,    :RFO_01_01_PEC, :RFO_01_03_PEC,  :RFO_01_05_PEC,   :RFO_01_07_PEC, :RFO_01_09_PEC, :RFO_01_11_PEC,:RFO_01_13_PEC,:RFO_01_23_qt_PEC,:dateaction,:ref_devis,:date_devis,:date_livraison  )");
             $dateaction = date('Y-m-d G:i:s');
+            $date_devis = date('Y-m-d');
+
+            $date_livraison = date("Y-m-d", strtotime($ot->date_fin . " +10 day"));
             $stm->bindValue(':id_ressource',$idressource);
             $stm->bindValue(':id_ordre_de_travail',$id_ordre_de_travail);
             $stm->bindValue(':RFO_01_01_qt',$RFO_01_01);
@@ -779,6 +782,8 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
             $stm->bindValue(':RFO_01_13_PEC',$capacite24_pec);
             $stm->bindValue(':RFO_01_23_qt_PEC',$RFO_01_23_pec);
             $stm->bindValue(':dateaction',$dateaction);
+            $stm->bindValue(':date_devis',$date_devis);
+            $stm->bindValue(':date_livraison',$date_livraison);
             $stm->bindValue(':ref_devis',$ref_devis);
             $stm->execute();
             $id = $db->lastInsertId();
@@ -1520,7 +1525,10 @@ function return_list_mail_vpi_par_nro_ot($db,$idnro,$id_equipe_stt, $id_entrepri
 }
 function return_list_bei_du_nro($db,$idnro){
     $mailaction_cc = [];
-    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` and `utilisateur`.`id_profil_utilisateur` = 4 ";
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro 
+and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` 
+and `utilisateur`.`id_profil_utilisateur` = 4 ";
+    echo $sql;
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
 
