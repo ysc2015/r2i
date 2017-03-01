@@ -36,16 +36,16 @@ $select_entreprise = "";
                                                 if($ot->id_entreprise==$result->id_entreprise )$contact_entreprise = $result->contact_nom.' '.$result->contact_prenom;
                                                 $select_entreprise =  $result->nom;
                                             }
-$sel_etat_devis_html ="<select name='etat_devis' id='etat_devis'  class='form-control' >";
 
-$selected = "";
+$sel_etat_devis_html = "";
+
 foreach($etat_devis as $etat_devi) {
-    if($row->etat_devis==$etat_devi->id_etat_devis ) $selected = " selected ";else $selected = "";
-    $sel_etat_devis_html .="<option value='".$etat_devi->id_etat_devis."' ".$selected.">".$etat_devi->lib_etat_devis."</option>";
+    if($row->etat_devis==$etat_devi->id_etat_devis )
+    $sel_etat_devis_html .=  $etat_devi->lib_etat_devis ;
 
 
 }
-$sel_etat_devis_html .="</select>";
+
 $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <table width='100%'>
 <tr>
 <td colspan='3' ><div id='message_devis'></div></td>
@@ -56,27 +56,27 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
 </tr>
  <tr>
 <td>Contact :</td>
-<td><input  class='form-control' readonly  type='text' name='contactdevis' value='".$contact_entreprise."' /></td>
+<td><input  class='form-control' disabled  type='text' name='contactdevis' value='".$contact_entreprise."' /></td>
 </tr>
 <tr>
 <td>Code Site :</td>
-<td><input  class='form-control' readonly type='text' name='codesitedevis' id='codesitedevis' value='".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone."' /></td>
+<td><input  class='form-control' disabled type='text' name='codesitedevis' id='codesitedevis' value='".$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone."' /></td>
 </tr>
 <tr>
 <td>Ref Devis :</td>
-<td><input  class='form-control' type='text' name='refdevis' id='refdevis' value='".$row->ref_devis."' /></td>
+<td><input  class='form-control' type='text' disabled name='refdevis' id='refdevis' value='".$row->ref_devis."' /></td>
 </tr>
 <tr>
 <td>Date Devis :</td>
-<td><input class='form-control' type='date' id='datedevis' name='datedevis' value='".$row->date_devis."' /></td>
+<td><input class='form-control' type='date' disabled id='datedevis' name='datedevis' value='".$row->date_devis."' /></td>
 </tr>
 <tr>
 <td>Date Livraison :</td>
-<td><input  class='form-control' type='date' name='datelivraisondevis' id='datelivraisondevis' value='".$row->date_livraison."'  /></td>
+<td><input  class='form-control' type='date' disabled name='datelivraisondevis' id='datelivraisondevis' value='".$row->date_livraison."'  /></td>
 </tr>
 <tr>
 <td>Etat :</td>
-<td>".$sel_etat_devis_html."
+<td><strong>".$sel_etat_devis_html."</strong>
 </td>
 </tr>
 <tr>
