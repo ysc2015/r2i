@@ -14,25 +14,25 @@ $tbl_options_arr = array(
 
     "transportaiguillage1" => array(
         "table" => "sous_projet_transport_aiguillage",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail=1"
     ),
     "transporttirage1" => array(
         "table" => "sous_projet_transport_tirage",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail IN (2,4)"
     ),
     "transportraccordement1" => array(
         "table" => "sous_projet_transport_raccordements",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail IN (3,4)"
     ),
     "transportrecette1" => array(
         "table" => "sous_projet_transport_recette",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "NOT IN",
         "where" => "id_type_ordre_travail=9"
     ),
@@ -70,25 +70,25 @@ $tbl_options_arr = array(
 
     "transportaiguillage2" => array(
         "table" => "sous_projet_transport_aiguillage",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail=1 AND id_entreprise IS NULL"
     ),
     "transporttirage2" => array(
         "table" => "sous_projet_transport_tirage",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail IN (2,4) AND id_entreprise IS NULL"
     ),
     "transportraccordement2" => array(
         "table" => "sous_projet_transport_raccordements",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail IN (3,4) AND id_entreprise IS NULL"
     ),
     "transportrecette2" => array(
         "table" => "sous_projet_transport_recette",
-        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = sp.id_projet) = 0 OR (sp.is_master = 1))",
+        "ctr_cnd" => "AND ((select count(*) from sous_projet where sous_projet.is_master = 1 AND sous_projet.id_projet = t1.id_projet) = 0 OR (t1.is_master = 1))",
         "in" => "IN",
         "where" => "id_type_ordre_travail=9 AND id_entreprise IS NULL"
     ),
