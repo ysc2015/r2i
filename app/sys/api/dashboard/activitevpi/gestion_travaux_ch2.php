@@ -59,15 +59,16 @@ $tpl_extra_ssp_array = array(
     )
 );
 
-$table = array("ordre_de_travail as t1","sous_projet as t2","projet as t3","nro as t4","etat_ot as t5","select_type_ordre_travail as t6","entreprises_stt as t7");
+$table = array("ordre_de_travail as t1","sous_projet as t2","projet as t3","nro as t4","etat_ot as t5","select_type_ordre_travail as t6","entreprises_stt as t7","pci_in_nro as pci");
 $columns = array(
     array( "db" => "t1.id_ordre_de_travail", "dt" => 'id_ordre_de_travail' ),
     array( "db" => "t1.type_ot", "dt" => 'type_ot' ),
     array( "db" => "t5.lib_etat_ot", "dt" => 'lib_etat_ot' ),
     array( "db" => "t4.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t6.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
-    array( "db" => "u.prenom_utilisateur", "dt" => 'prenom_utilisateur' ),
-    array( "db" => "u.nom_utilisateur", "dt" => 'nom_utilisateur' ),
+    //array( "db" => "u.prenom_utilisateur", "dt" => 'prenom_utilisateur' ),
+    //array( "db" => "u.nom_utilisateur", "dt" => 'nom_utilisateur' ),
+    array( "db" => "pci.pci", "dt" => 'pci' ),
     array( "db" => "t7.nom", "dt" => 'nom' ),
     array( "db" => "t1.date_fin", "dt" => 'date_fin' ),
     array( "db" => "t8.date_fin_travaux_ft", "dt" => 'date_fin_travaux_ft' ),
@@ -75,16 +76,17 @@ $columns = array(
     array( "db" => "t2.id_sous_projet", "dt" => 'id_sous_projet' ),
 );
 
-$condition = "t1.id_sous_projet = t2.id_sous_projet AND t1.id_sous_projet = t8.id_sous_projet AND t1.id_entreprise = t7.id_entreprise AND t1.id_etat_ot = t5.id_etat_ot AND t1.id_type_ordre_travail = t6.id_type_ordre_travail AND t2.id_projet = t3.id_projet AND t3.id_nro = t4.id_nro";
+$condition = "t1.id_sous_projet = t2.id_sous_projet AND t1.id_sous_projet = t8.id_sous_projet AND t1.id_entreprise = t7.id_entreprise AND t1.id_etat_ot = t5.id_etat_ot AND t1.id_type_ordre_travail = t6.id_type_ordre_travail AND t2.id_projet = t3.id_projet AND t3.id_nro = t4.id_nro AND t4.id_nro = pci.id_nro";
 
 $condition .= " AND t1.date_debut IS NOT NULL";
 $condition .= " AND t1.date_fin IS NOT NULL";
+$condition .= " AND t1.backlog <> 1";
 
 $condition .= " AND t6.system = 1";
 
 $condition .= " AND t8.date_fin_travaux_ft BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 6 DAY)";
 
-$condition .= " AND pu.id_profil_utilisateur = 8";
+//$condition .= " AND pu.id_profil_utilisateur = 8";
 
 $condition .= " AND res.id_ordre_de_travail IS NULL";
 
@@ -123,7 +125,7 @@ switch($connectedProfil->profil->profil->shortlib) {
 }
 
 
-$left = "left join nro_utilisateur nu left join utilisateur u left join profil_utilisateur pu on u.id_profil_utilisateur = pu.id_profil_utilisateur on nu.id_utilisateur = u.id_utilisateur on t4.id_nro = nu.id_nro";
+//$left = "left join nro_utilisateur nu left join utilisateur u left join profil_utilisateur pu on u.id_profil_utilisateur = pu.id_profil_utilisateur on nu.id_utilisateur = u.id_utilisateur on t4.id_nro = nu.id_nro";
 
-echo json_encode(@SSP::simpleJoinUnion($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,$left,$tpl_extra_ssp_array));
+echo json_encode(SSP::simpleJoinUnion($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,"",$tpl_extra_ssp_array));
 ?>

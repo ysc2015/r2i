@@ -32,6 +32,6 @@ function getPlannifOT() {
     gestion_travaux_cdi_dt.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_cdi_liste.php' ).load();
     gestion_travaux_ch1.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_ch1.php' ).load();
     gestion_travaux_ch2.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_ch2.php' ).load();
-    gestion_travaux_ch3.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_ch3.php' ).load();
+    //gestion_travaux_ch3.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_ch3.php' ).load();
 
 }
