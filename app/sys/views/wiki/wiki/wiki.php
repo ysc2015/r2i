@@ -1,4 +1,17 @@
-	
+<<style>
+<!--
+#status{
+	font-family:Arial; padding:5px;
+}
+ul#files{ list-style:none; padding:0; margin:0; }
+ul#files li{ padding:10px; margin-bottom:2px; width:200px; float:left; margin-right:10px; -moz-border-radius:5px; -webkit-border-radius:5px; text-align: center;}
+ul#files li img{ max-width:180px; max-height:150px; }
+.success{ background:#99f099; border:1px solid #339933; }
+.error{ background:#f0c6c3; border:1px solid #cc6622; }
+
+-->
+</style>	
+
 <?php if (! isset ( $_GET ['action'])) {
 	?>
 
