@@ -14,7 +14,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update wiki_sujet set titre=:titre,contenu=:contenu,id_categorie=:id_categorie where id=:id");
+$stm = $db->prepare("update wiki_sujet set titre=:titre,contenu=:contenu,id_categorie=:id_categorie,date_dernier_mod='".date("Y-m-d H:i:s")."' where id=:id");
 
 if(isset($id) && !empty($id)){
     $stm->bindParam(':id',$id);
