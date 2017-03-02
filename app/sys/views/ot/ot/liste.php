@@ -38,6 +38,7 @@
     var devis_supprime_dt = $('#devis_supprime_table').DataTable();
     var id_res = 0;
     var etat_retour = 0;
+    var etat_devis = 0;
     var devis_btns = ["#download_devis","#id_devis_edit_btn","#devis_consult_btn","#devis_supprime_btn"];
     var ot_btns = ["#update_ot_show",
         "#link_ot_show",
@@ -367,9 +368,7 @@
                devis_dt.$('tr.selected').removeClass('selected');
                $(this).addClass('selected');
                id_devis = devis_dt.row('.selected').data().iddevis;
-               $('#download_devis').removeClass('disabled');
-               $('#id_devis_edit_btn').removeClass('disabled');
-               $('#devis_consult_btn').removeClass('disabled');
+
 
                $.ajax({
                    method: "POST",
@@ -379,12 +378,19 @@
                        iddevis : id_devis
                    }
                }).done(function (msg) {
-               if(msg.supprime == 1){
+                   etat_devis = msg.etat_devis;
+               if(etat_devis == 1){
                    $('#devis_supprime_btn').removeClass('disabled');
+                   $('#id_devis_edit_btn').removeClass('disabled');
+                   $('#devis_convert_bdc_btn').removeClass('disabled');
                }else{
                    $('#devis_supprime_btn').addClass('disabled');
+                   $('#id_devis_edit_btn').addClass('disabled');
+                   $('#devis_convert_bdc_btn').addClass('disabled');
                }
 
+               $('#devis_consult_btn').removeClass('disabled');
+               $('#download_devis').removeClass('disabled');
                });
            }
         });
