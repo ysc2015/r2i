@@ -177,8 +177,13 @@
         </button>
         <button id="devis_restaure_btn" class="btn btn-success btn-sm  " type="button" data-toggle="modal"
                 data-target="#modale_liste_devis_supprime" data-backdrop="static" data-keyboard="false" ><i id="hdf0454ff"
-                                                                                                    class="glyphicon glyphicon-check"></i>
+                                                                                                            class="glyphicon glyphicon-check"></i>
             Afficher devis supprimés
+        </button>
+        <button id="devis_convert_bdc_btn" class="btn btn-success btn-sm  " type="button"
+             ><i id="hdf0454ff"
+                                                                                                            class="glyphicon glyphicon-check"></i>
+            Convertir en BDC
         </button>
     </div>
 

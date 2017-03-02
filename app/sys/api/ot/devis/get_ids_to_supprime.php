@@ -39,5 +39,5 @@ if($delete == true && $err == 0){
     }
 }
 
-echo json_encode(array("error" => $err , "message" => $message,"supprime" => $supprime));
+echo json_encode(array("error" => $err , "message" => $message,"supprime" => $supprime,"etat_devis"=> $detail_devis['etat_devis']));
 ?>
