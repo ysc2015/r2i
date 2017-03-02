@@ -302,20 +302,20 @@
                 { "data": "lib_etat_ot" },
                 { "data": "lib_nro" },
                 { "data": "lib_type_ordre_travail" },
-                { "data": "prenom_utilisateur" },
+                { "data": "pci" },//prenom_utilisateur
                 { "data": "nom" },
                 { "data": "date_debut" },
                 { "data": "date_fin" },
             ],
             "columnDefs": [
-                {
+                /*{
                     "targets": 4,
                     orderData: [ 4 ],
                     "data": "prenom_utilisateur",
                     "render": function ( data, type, full, meta ) {
                         return  full.prenom_utilisateur + ' ' + full.nom_utilisateur;
                     }
-                },
+                },*/
                 {
                     "targets": 0,
                     orderData: [ 0 ],
@@ -353,20 +353,20 @@
                 { "data": "lib_etat_ot" },
                 { "data": "lib_nro" },
                 { "data": "lib_type_ordre_travail" },
-                { "data": "prenom_utilisateur" },
+                { "data": "pci" },//prenom_utilisateur
                 { "data": "nom" },
                 { "data": "date_fin" },
                 { "data": "date_fin_travaux_ft" },
             ],
             "columnDefs": [
-                {
+                /*{
                     "targets": 4,
                     orderData: [ 4 ],
                     "data": "prenom_utilisateur",
                     "render": function ( data, type, full, meta ) {
                         return  full.prenom_utilisateur + ' ' + full.nom_utilisateur;
                     }
-                },
+                },*/
                 {
                     "targets": 0,
                     orderData: [ 0 ],
