@@ -29,7 +29,12 @@ foreach($piecesjointe as $pj)
 $str_pj.=$pj->url.';';
 }
 
-$datec = date_create($sujet->date_creation);
-$datem = date_create($sujet->date_dernier_mod);
-echo json_encode(array("id" => $sujet->id,"titre" => $sujet->titre,"contenu" => $sujet->contenu,"date_creation" => date_format($sujet->date_creation,'Y-m-d H:i:s'),"date_dernier_modification" => date_format($datem,'Y-m-d H:i:s'),"piecesjointe" => $str_pj,"id_categorie" => $sujet->id_categorie));
+$user = Utilisateur::first(
+			array('conditions' =>
+					array("id = ?", $sujet->id_utilisateur)
+			)
+			);
+
+
+echo json_encode(array("id" => $sujet->id,"titre" => $sujet->titre,"contenu" => $sujet->contenu,"date_creation" => date_format($sujet->date_creation,'Y-m-d H:i:s'),"date_dernier_modification" => date_format($sujet->date_dernier_mod,'Y-m-d H:i:s'),"piecesjointe" => $str_pj,"id_categorie" => $sujet->id_categorie, "auteur" => $user->nom_utilisateur." ".$user->prenom_utilisateur));
 ?>
