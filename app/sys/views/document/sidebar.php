@@ -68,12 +68,6 @@
                         $connectedProfil->sidebar();
                         //if($connectedProfil->id_utilisateur == 1 or $connectedProfil->id_utilisateur == 2)  $connectedProfil->sidebar_test();
                     ?>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Wiki</span></li>
-                    <li class="">
-                    	<a class="nav-submenu" data-toggle="nav-submenu"><i class="si si-puzzle"></i><span class="sidebar-mini-hide"  id="idcat0">Catégories</span></a>
-                        <ul id="menu_categorie">
-                        </ul>
-                    </li>
                 </ul>
             </div>
             <!-- END Side Content -->
@@ -83,59 +77,3 @@
     <!-- END Sidebar Scroll Container -->
 </nav>
 <!-- END Sidebar -->
-
-
-<script>
-$(document).ready(function() {
-
-var pressTimer;
-$('span[id^=\'idcat\']').on('click',function(){
-  var temp=$(this).attr('id');
-  if(temp!='' && temp.length>=6 && temp.substring(0,5)=='idcat' && temp.replace('idcat','')!='')
-  {
-	get_liste_sujets(temp.replace('idcat',''));
-  }
-});
-
-});
-
-
-//DEBUT fonction d'initialisation du menu des Catégories
-var str_pcats='';
-function get_categorie_menu(id_cat) {
-	var pcats,url="api/wiki/get_parent_categorie.php",idc='';
-	if(id_cat!==undefined) {url="api/wiki/get_categorie_by_parent.php"; idc=id_cat;}
-	console.log(url);
-	$.ajax({
-	  url: url,
-	  data: {id: idc},
-	  async: false
-	})
-		.done(function( data ) {
-	    if ( console && console.log ) {
-	      console.log( "Sample of data:", data );
-	      pcats = jQuery.parseJSON( data );
-	    }
-		});
-	console.log(pcats.length);
-	var i=0;
-	 for(;i<pcats.length;i++){
-		console.log(url+'  '+pcats[i].id);
-		str_pcats+='<li class=""><a class="nav-submenu" data-toggle="nav-submenu"><span class="sidebar-mini-hide" id="idcat'+pcats[i].id+'">'+pcats[i].nom+'</span></a><ul>';
-		get_categorie_menu(pcats[i].id);
-		str_pcats+='</ul></li>';
-	}
-}
-//FIN fonction d'initialisation du menu des Catégories
-
-//DEBUT d'initialisation du menu des Catégories
-<?php //if(!isset($_GET['clickMenu'])) { ?>
-get_categorie_menu(undefined);
-console.log(str_pcats);
-str_pcats+='<li class=""><a href="" id="ajouter_categorie" data-toggle="modal" data-target="#modal-fromleft"><i class="fa fa-plus"></i> Ajouter</a></li>';
-$('#menu_categorie').html(str_pcats);
-//alert('test');
-<?php //} ?>
-//FIN d'initialisation du menu des Catégories
-
-</script>

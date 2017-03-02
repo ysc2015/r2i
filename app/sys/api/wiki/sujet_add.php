@@ -4,11 +4,11 @@
  * User: rabii
  */
 
-require_once '../../../sys/libs/vendor/autoload.php';
+/*require_once '../../../sys/libs/vendor/autoload.php';
 require_once '../../../sys/inc/config.php';
 require_once '../../../sys/language/fr/default.php';
 require_once "../../../sys/inc/ssp.class.php";
-require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";
+require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";*/
 
 extract($_POST);
 
@@ -16,7 +16,7 @@ $insert = false;
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("insert into wiki_sujet (titre,contenu,id_categorie,date_creation,date_dernier_mod) values (:titre,:contenu,:id_categorie,'".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."')");
+$stm = $db->prepare("insert into wiki_sujet (titre,contenu,id_categorie,date_creation,date_dernier_mod,id_utilisateur) values (:titre,:contenu,:id_categorie,'".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."',:id_user)");
 
 if(isset($titre) && !empty($titre)){
     $stm->bindParam(':titre',$titre);
@@ -41,6 +41,8 @@ if(isset($categorie) && !empty($categorie) && $categorie!='0'){
     $message[] = "Catégorie du sujet invalide !";
 }
 
+$stm->bindParam(':id_user',$connectedProfil->profil->id_utilisateur);
+
 if($insert == true && $err == 0){
     if($stm->execute()){
         $message [] = "Enregistrement ajouté avec succès";
@@ -62,11 +64,6 @@ if(isset($files) && !empty($files)){
 	$stm = $db->prepare($temp);
 	$stm->execute();
 }
-else {
-        $err++;
-        $message [] = $stm->errorInfo();
-    }
-
 
 echo json_encode(array("error" => $err , "message" => $message, "id" => $sujet->id ));
 ?>
