@@ -521,9 +521,13 @@ ul#files li img{ max-width:180px; max-height:150px; }
 						<h3 class="panel-title">
 							<span id="date_creation_sujet" style="font-size: 70% !important;"></span>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<span id="date_dernier_modification_sujet"
 								style="font-size: 70% !important;"></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span id="auteur_sujet"
+								style="font-size: 70% !important;"></span>
+								
 						</h3>
 					</div>
 					<div id="faq1_q1" class="panel-collapse collapse in">
@@ -567,6 +571,7 @@ $.ajax({
 	
 	$('#date_creation_sujet').html('<i class="fa fa-calendar"></i>&nbsp;&nbsp;Date Création&nbsp;:&nbsp;'+obj.date_creation);
 	$('#date_dernier_modification_sujet').html('<i class="fa fa-calendar"></i>&nbsp;&nbsp;Date Dernier Modification&nbsp;:&nbsp;'+obj.date_dernier_modification);
+	$('#auteur_sujet').html('<i class="fa fa-user"></i>&nbsp;&nbsp;Auteur&nbsp;:&nbsp;'+obj.auteur);
 	var str_files = obj.piecesjointe.split(';'),files='<label class="col-xs-12" for="pieces_joint_sujet">Piéces joint :</label><ul id="files">';
         for (var i=0; i < str_files.length; i++)
         if(str_files[i]!=='') { 
