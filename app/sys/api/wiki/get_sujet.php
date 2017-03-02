@@ -32,4 +32,6 @@ $str_pj.=$pj->url.';';
 $datec = date_create($sujet->date_creation);
 $datem = date_create($sujet->date_dernier_mod);
 echo json_encode(array("id" => $sujet->id,"titre" => $sujet->titre,"contenu" => $sujet->contenu,"date_creation" => date_format($datec,'Y-m-d H:i:s'),"date_dernier_modification" => date_format($datem,'Y-m-d H:i:s'),"piecesjointe" => $str_pj,"id_categorie" => $sujet->id_categorie));
+echo $sujet->date_creation;
+echo $sujet->date_dernier_mod;
 ?>
