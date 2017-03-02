@@ -265,11 +265,21 @@
                     }
                 }).done(function (msg) {
                     console.log(msg);
+
                     if(msg.restaure == 1){
                         $('#devis_restaure_btn').removeClass('disabled');
                     }else{
                         $('#devis_restaure_btn').addClass('disabled');
                     }
+                    console.log(" msg.add_new_devis :"+msg.add_new_devis);
+                    if(msg.add_new_devis == 1){
+
+                        $("#linked-pb-wrapper").show();
+                    }else{
+                        $("#linked-pb-wrapper").hide();
+                    }
+
+
 
                 });
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=10) {
