@@ -6,7 +6,7 @@ require_once '../../../sys/language/fr/default.php';
 require_once "../../../sys/inc/ssp.class.php";
 require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";*/
 
-$output_dir = "../uploads/wiki/";
+$output_dir = __DIR__ . "/../uploads/wiki/";
 if(isset($_REQUEST["op"]) && $_REQUEST["op"] == "delete" && isset($_REQUEST['name']))
 {
 	$fileName =$_REQUEST['name'];

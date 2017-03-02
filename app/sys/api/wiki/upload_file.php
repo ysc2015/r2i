@@ -7,7 +7,7 @@ require_once "../../../sys/inc/ssp.class.php";
 require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";*/
 
 
-$output_dir = "../uploads/wiki/";
+$output_dir = __DIR__ . "/../uploads/wiki/";
 extract($_REQUEST);
 if(isset($_FILES["myfile"]))
 {
