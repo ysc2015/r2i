@@ -3,11 +3,11 @@
  * file: ot_update.php
  * User: rabii
  */
-require_once '../../../sys/libs/vendor/autoload.php';
+/*require_once '../../../sys/libs/vendor/autoload.php';
 require_once '../../../sys/inc/config.php';
 require_once '../../../sys/language/fr/default.php';
 require_once "../../../sys/inc/ssp.class.php";
-require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";
+require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";*/
 
 extract($_POST);
 
@@ -78,5 +78,5 @@ else {
     }
 
 } 
-echo json_encode(array("error" => $err , "message" => $message));
+echo json_encode(array("error" => $err , "message" => $message, "id" => $id));
 ?>
