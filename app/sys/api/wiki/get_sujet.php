@@ -31,7 +31,7 @@ $str_pj.=$pj->url.';';
 
 $user = Utilisateur::first(
 			array('conditions' =>
-					array("id = ?", $sujet->id_utilisateur)
+					array("id_utilisateur = ?", $sujet->id_utilisateur)
 			)
 			);
 
