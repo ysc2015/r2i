@@ -453,7 +453,7 @@ ul#files li img{ max-width:180px; max-height:150px; }
 	//DEBUT de la fonction de téléchargement d'un fichier
 	function downloadfile(file)
 	{	
-	  window.open("api/uploads/wiki/"+file);
+	  window.open("app/sys/api/uploads/wiki/"+file);
 	}
 	//FIN de la fonction de téléchargement d'un fichier
 
@@ -614,7 +614,7 @@ function deletefile(file)
 function downloadfile(file)
 {
 	
-  window.open("api/uploads/wiki/"+file);
+  window.open("app/sys/api/uploads/wiki/"+file);
  
 }
 
