@@ -1553,7 +1553,10 @@ $mailaction_cc = [];
 }
 function return_list_pci_du_nro($db,$idnro){
     $mailaction_cc = [];
-    $sql = "SELECT utilisateur.email_utilisateur FROM `nro`,utilisateur,profil_utilisateur where  nro.id_nro =  $idnro and utilisateur.id_utilisateur = nro.id_utilisateur and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` and `utilisateur`.`id_profil_utilisateur` = 8 ";
+    $sql = "SELECT utilisateur.email_utilisateur FROM `nro_utilisateur`,utilisateur,profil_utilisateur
+ where  nro_utilisateur.id_nro =  $idnro and utilisateur.id_utilisateur = nro_utilisateur.id_utilisateur
+ and `profil_utilisateur`.`id_profil_utilisateur`= `utilisateur`.`id_profil_utilisateur` 
+ and `utilisateur`.`id_profil_utilisateur` = 8 ";
     $mailaction_stm = $db->prepare($sql);
     $mailaction_stm->execute();
 
