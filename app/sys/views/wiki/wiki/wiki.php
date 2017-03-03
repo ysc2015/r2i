@@ -663,8 +663,8 @@ function downloadfile(file)
                 	<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
-								<input class="form-control" id="nom_categorie" name="nom_categorie" type="text" style="text-align: center" required>
-								<label for="nom_categorie">Nom <span class="text-danger">*</span></label>
+								<input class="form-control" id="nom_categorie" name="nom_categorie" type="text" style="text-align: center">
+								<label for="nom_categorie">Nom</label>
 							</div>
 						</div>
 					</div>
@@ -672,9 +672,9 @@ function downloadfile(file)
 					<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
-								<select class="form-control" id="categorie_parent" name="categorie_parent" size="1" required>
+								<select class="form-control" id="categorie_parent" name="categorie_parent" size="1">
 				                </select> 
-								<label for="categorie_sujet">Séléctionner une catégorie <span class="text-danger">*</span></label>
+								<label for="categorie_sujet">Séléctionner une catégorie</label>
 							</div>
 						</div>
 					</div>
