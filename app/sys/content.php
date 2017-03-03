@@ -1502,6 +1502,9 @@ switch ($page) {
 <div class="modal fade" id="modal-fromleft" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-fromleft">
     	<div class="modal-content">
+    	<form class="form-horizontal push-10-t" 
+			action="base_forms_elements_modern.html" method="post"
+			onsubmit="return false;" id="myModalForm">
         	<div class="block block-themed block-transparent remove-margin-b">
             	<div class="block-header bg-primary-dark">
                 	<ul class="block-options">
@@ -1515,8 +1518,8 @@ switch ($page) {
                 	<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
-								<input class="form-control" id="nom_categorie" name="nom_categorie" type="text" style="text-align: center">
-								<label for="nom_categorie">Nom</label>
+								<input class="form-control" id="nom_categorie" name="nom_categorie" type="text" style="text-align: center" required>
+								<label for="nom_categorie">Nom <span class="text-danger">*</span></label>
 							</div>
 						</div>
 					</div>
@@ -1524,9 +1527,9 @@ switch ($page) {
 					<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
-								<select class="form-control" id="categorie_parent" name="categorie_parent" size="1">
+								<select class="form-control" id="categorie_parent" name="categorie_parent" size="1" required>
 				                </select> 
-								<label for="categorie_sujet">Séléctionner une catégorie</label>
+								<label for="categorie_sujet">Séléctionner une catégorie <span class="text-danger">*</span></label>
 							</div>
 						</div>
 					</div>
@@ -1547,6 +1550,7 @@ switch ($page) {
                         <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Annuler</button>
                         <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal" onclick="envoyerCat()"><i class="fa fa-check"></i> Enregistrer</button>
                     </div>
+ 		</form>
  		</div>
                 
             </div>
