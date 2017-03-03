@@ -1,7 +1,7 @@
 <li class="nav-main-heading"><span class="sidebar-mini-hide">Wiki</span></li>
 <li class="">
 	<a class="nav-submenu" data-toggle="nav-submenu">
-		<i class="fa fa-forumbee"></i>
+		<i class="si si-puzzle"></i>
 		<span class="sidebar-mini-hide"  id="idcat0">Catégories</span>
 	</a>
 	<ul id="menu_categorie"></ul>
@@ -57,11 +57,13 @@ function get_categorie_menu(id_cat) {
 //FIN fonction d'initialisation du menu des Catégories
 
 //DEBUT d'initialisation du menu des Catégories
+<?php //if(!isset($_GET['clickMenu'])) { ?>
 get_categorie_menu(undefined);
 console.log(str_pcats);
 str_pcats+='<li class=""><a href="" id="ajouter_categorie" data-toggle="modal" data-target="#modal-fromleft"><i class="fa fa-plus"></i> Ajouter</a></li>';
 $('#menu_categorie').html(str_pcats);
 //alert('test');
+<?php //} ?>
 //FIN d'initialisation du menu des Catégories
 
 </script>
