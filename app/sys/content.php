@@ -1523,7 +1523,7 @@ switch ($page) {
 							</div>
 						</div>
 					</div>
-					<br/>
+					
 					<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
@@ -1533,7 +1533,7 @@ switch ($page) {
 							</div>
 						</div>
 					</div>
-					<br/>
+					
 					<div class="form-group">
                     	<div class="col-sm-9">
                         	<div class="form-material floating">
@@ -1542,13 +1542,13 @@ switch ($page) {
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    
             	</div>
 	      	</div>
-	      	<br/><br/><br/><br/><br/><br/>
+	      	<br/><br/>
 	      	<div class="modal-footer">
                         <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Annuler</button>
-                        <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal" onclick="envoyerCat()"><i class="fa fa-check"></i> Enregistrer</button>
+                        <button class="btn btn-sm btn-primary" type="button" onclick="envoyerCat()"><i class="fa fa-check"></i> Enregistrer</button>
                     </div>
  		</form>
  		</div>
