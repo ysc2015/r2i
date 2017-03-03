@@ -147,7 +147,7 @@ ul#files li img{ max-width:180px; max-height:150px; }
 				<div class="col-sm-9">
 					<div class="form-material floating">
 						<input class="form-control" id="titre_sujet" name="titre_sujet"
-							type="text" style="text-align: center" minlength="4" required> <label for="titre_sujet">Titre</label>
+							type="text" style="text-align: center" minlength="4" required> <label for="titre_sujet">Titre <span class="text-danger">*</span></label>
 					</div>
 				</div>
 			</div>
@@ -158,18 +158,18 @@ ul#files li img{ max-width:180px; max-height:150px; }
 						<select class="form-control" id="categorie_sujet"
 							name="categorie_sujet" size="1" required>
 
-						</select> <label for="categorie_sujet">Séléctionner une catégorie</label>
+						</select> <label for="categorie_sujet">Séléctionner une catégorie <span class="text-danger">*</span></label>
 					</div>
 				</div>
 			</div>
 			<!-- Start Edit text -->
 			<div class="form-group">
-				<label class="col-xs-12" for="js-ckeditor">Contenu :</label>
+				<label class="col-xs-12" for="js-ckeditor">Contenu : <span class="text-danger">*</span></label>
 				<div class="col-xs-12">
 					<!-- CKEditor (.js-ckeditor-inline + .js-ckeditor classes are initialized in App() -> uiHelperCkeditor()) -->
                     <!-- For more info and examples you can check out http://ckeditor.com -->
                     <div id="js-ckeditor-inline" contenteditable="true" style="visibility: hidden;width: 0px; height: 0px"></div>
-                    <textarea id="js-ckeditor" name="ckeditor"></textarea>
+                    <textarea id="js-ckeditor" name="ckeditor" required></textarea>
                                     
                     <!-- END CKEditor -->
 				</div>
@@ -663,8 +663,8 @@ function downloadfile(file)
                 	<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
-								<input class="form-control" id="nom_categorie" name="nom_categorie" type="text" style="text-align: center">
-								<label for="nom_categorie">Nom</label>
+								<input class="form-control" id="nom_categorie" name="nom_categorie" type="text" style="text-align: center" required>
+								<label for="nom_categorie">Nom <span class="text-danger">*</span></label>
 							</div>
 						</div>
 					</div>
@@ -672,9 +672,9 @@ function downloadfile(file)
 					<div class="form-group">
 						<div class="col-sm-9">
 							<div class="form-material floating">
-								<select class="form-control" id="categorie_parent" name="categorie_parent" size="1">
+								<select class="form-control" id="categorie_parent" name="categorie_parent" size="1" required>
 				                </select> 
-								<label for="categorie_sujet">Séléctionner une catégorie</label>
+								<label for="categorie_sujet">Séléctionner une catégorie <span class="text-danger">*</span></label>
 							</div>
 						</div>
 					</div>
