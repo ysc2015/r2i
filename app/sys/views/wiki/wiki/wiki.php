@@ -650,9 +650,6 @@ function downloadfile(file)
 <div class="modal fade" id="modal-fromleft" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-fromleft">
     	<div class="modal-content">
-    	<form class="form-horizontal push-10-t" 
-			action="base_forms_elements_modern.html" method="post"
-			onsubmit="return false;" id="myForm1">
         	<div class="block block-themed block-transparent remove-margin-b">
             	<div class="block-header bg-primary-dark">
                 	<ul class="block-options">
@@ -698,7 +695,6 @@ function downloadfile(file)
                         <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Annuler</button>
                         <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal" onclick="envoyerCat()"><i class="fa fa-check"></i> Enregistrer</button>
                     </div>
-                    </form>
  		</div>
                 
             </div>
