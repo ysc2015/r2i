@@ -426,6 +426,9 @@ function call_back(){
             editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis=" + id_devis + "&editable=1", "tablecontentchambre", "testgrid chambre", "tableidchambre",call_back);
             editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis + "&editable=1", "tablecontenttranche", "testgrid tranche", "tableidtranche",call_back);
             editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis + "&editable=1", "tablecontenttdgc", "testgrid tdgc", "tableidtdgc",call_back);
+            compteur++;
+            setTimeout(function() { call_back() }, 1000);
+
 
         });
         $("#download_devis").click(function () {
