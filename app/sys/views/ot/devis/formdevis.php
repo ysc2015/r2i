@@ -366,6 +366,7 @@ function call_back(){
 
 
     if(compteur==7){
+        console.log("a_totaux");
         console.log(a_totaux);
         $.ajax({
             cache: false,
