@@ -425,8 +425,8 @@ function call_back(){
 
 
         });
-     /*   $("#devis_consult_btn").click(function () {
-            $.ajax({
+        $("#devis_consult_btn").click(function () {
+           /* $.ajax({
                 cache: false,
                 url: "api/ot/devis/get_details_devis_info.php",
                 method: "GET",
@@ -455,8 +455,8 @@ function call_back(){
 
                     });
                 }
-            });
-*/
+            });*/
+
             editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis + "&editable=1", "tablecontent", "testgrid trom", "tableid",call_back);
             editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis + "&editable=1", "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
             editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis + "&editable=1", "tablecontentetude", "testgrid etude", "tableidetude",call_back);
