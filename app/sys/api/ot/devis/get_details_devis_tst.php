@@ -67,7 +67,7 @@ $table_int['ITF_02_03_int'] = "25";
 $table_int['ITF_02_04_int'] = "40";
 $table_int['ITF_02_05_int'] = "3.7";
 $table_int['ITF_02_06_int'] = "3.7";
-
+$total_ITF = 0;
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -81,6 +81,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_01_01_int'],
             "total" => $table_int['ITF_01_01_int'] * $row['ITF_01_01_qt']
         );
+        $total_ITF +=$table_int['ITF_01_01_int'] * $row['ITF_01_01_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_01_02',
             "titre" => $table_titre['ITF_01_02_titre'],
@@ -89,7 +90,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_01_02_int'],
             "total" => $table_int['ITF_01_02_int'] * $row['ITF_01_02_qt']
         );
-
+        $total_ITF +=$table_int['ITF_01_02_int'] * $row['ITF_01_02_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_02_01',
             "titre" => $table_titre['ITF_02_01_titre'],
@@ -98,6 +99,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_02_01_int'],
             "total" => $table_int['ITF_02_01_int'] * $row['ITF_02_01_qt']
         );
+        $total_ITF +=$table_int['ITF_02_01_int'] * $row['ITF_02_01_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_02_02',
             "titre" => $table_titre['ITF_02_02_titre'],
@@ -106,6 +108,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_02_02_int'],
             "total" => $table_int['ITF_02_02_int'] * $row['ITF_02_02_qt']
         );
+        $total_ITF +=$table_int['ITF_02_02_int'] * $row['ITF_02_02_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_02_03',
             "titre" => $table_titre['ITF_02_03_titre'],
@@ -114,6 +117,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_02_03_int'],
             "total" => $table_int['ITF_02_03_int'] * $row['ITF_02_03_qt']
         );
+        $total_ITF +=$table_int['ITF_02_03_int'] * $row['ITF_02_03_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_02_04',
             "titre" => $table_titre['ITF_02_04_titre'],
@@ -122,6 +126,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_02_04_int'],
             "total" => $table_int['ITF_02_04_int'] * $row['ITF_02_04_qt']
         );
+        $total_ITF +=$table_int['ITF_02_04_int'] * $row['ITF_02_04_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_02_05',
             "titre" => $table_titre['ITF_02_05_titre'],
@@ -130,6 +135,7 @@ if($stm->execute()) {
             "int" => $table_int['ITF_02_05_int'],
             "total" => $table_int['ITF_02_05_int'] * $row['ITF_02_05_qt']
         );
+        $total_ITF +=$table_int['ITF_02_05_int'] * $row['ITF_02_05_qt'];
         $data[] = array(
             "ITF_0" => 'ITF_02_06',
             "titre" => $table_titre['ITF_02_06_titre'],
@@ -138,8 +144,15 @@ if($stm->execute()) {
             "int" => $table_int['ITF_02_06_int'],
             "total" => $table_int['ITF_02_06_int'] * $row['ITF_02_06_qt']
         );
-
-
+        $total_ITF +=$table_int['ITF_02_06_int'] * $row['ITF_02_06_qt'];
+        $data[] = array(
+            "ITF_0" => '',
+            "titre" => 'Total',
+            "qt" => '',
+            "unit" => '',
+            "int" => '',
+            "total" => $total_ITF
+        );
     }
 }
 

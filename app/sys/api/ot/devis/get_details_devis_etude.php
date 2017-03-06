@@ -136,6 +136,7 @@ $table_int['EFO_06_04_int'] = "50";
 $table_int['EFO_06_05_int'] = "";
 $table_int['EFO_06_06_int'] = "47";
 $table_int['EFO_06_07_int'] = "104";
+$total_EFO=0;
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -149,6 +150,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_01_01_int'],
             "total" => $table_int['EFO_01_01_int'] * $row['EFO_01_01_qt']
         );
+        $total_EFO +=$table_int['EFO_01_01_int'] * $row['EFO_01_01_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_01_02',
             "titre" => $table_titre['EFO_01_02_titre'],
@@ -157,6 +159,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_01_02_int'],
             "total" => $table_int['EFO_01_02_int'] * $row['EFO_01_02_qt']
         );
+        $total_EFO +=$table_int['EFO_01_02_int'] * $row['EFO_01_02_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_01_03',
             "titre" => $table_titre['EFO_01_03_titre'],
@@ -165,6 +168,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_01_03_int'],
             "total" => $table_int['EFO_01_03_int'] * $row['EFO_01_03_qt']
         );
+        $total_EFO +=$table_int['EFO_01_03_int'] * $row['EFO_01_03_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_01_04',
             "titre" => $table_titre['EFO_01_04_titre'],
@@ -173,6 +177,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_01_04_int'],
             "total" => $table_int['EFO_01_04_int'] * $row['EFO_01_04_qt']
         );
+        $total_EFO +=$table_int['EFO_01_04_int'] * $row['EFO_01_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_02_01',
             "titre" => $table_titre['EFO_02_01_titre'],
@@ -181,6 +186,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_02_01_int'],
             "total" => $table_int['EFO_02_01_int'] * $row['EFO_02_01_qt']
         );
+        $total_EFO +=$table_int['EFO_02_01_int'] * $row['EFO_02_01_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_02_02',
             "titre" => $table_titre['EFO_02_02_titre'],
@@ -189,6 +195,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_02_02_int'],
             "total" => $table_int['EFO_02_02_int'] * $row['EFO_02_02_qt']
         );
+        $total_EFO +=$table_int['EFO_02_02_int'] * $row['EFO_02_02_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_02_03',
             "titre" => $table_titre['EFO_02_03_titre'],
@@ -197,6 +204,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_02_03_int'],
             "total" => $table_int['EFO_02_03_int'] * $row['EFO_02_03_qt']
         );
+        $total_EFO +=$table_int['EFO_02_03_int'] * $row['EFO_02_03_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_02_04',
             "titre" => $table_titre['EFO_02_04_titre'],
@@ -205,6 +213,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_02_04_int'],
             "total" => $table_int['EFO_02_04_int'] * $row['EFO_02_04_qt']
         );
+        $total_EFO +=$table_int['EFO_02_04_int'] * $row['EFO_02_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_02_05',
             "titre" => $table_titre['EFO_02_05_titre'],
@@ -213,6 +222,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_02_05_int'],
             "total" => $table_int['EFO_02_05_int'] * $row['EFO_02_05_qt']
         );
+        $total_EFO +=$table_int['EFO_02_04_int'] * $row['EFO_02_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_02_06',
             "titre" => $table_titre['EFO_02_06_titre'],
@@ -221,6 +231,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_02_06_int'],
             "total" => $table_int['EFO_02_06_int'] * $row['EFO_02_06_qt']
         );
+        $total_EFO +=$table_int['EFO_02_06_int'] * $row['EFO_02_06_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_03_01',
             "titre" => $table_titre['EFO_03_01_titre'],
@@ -229,6 +240,7 @@ if($stm->execute()) {
             "int" =>  $table_int['EFO_03_01_int'],
             "total" => $table_int['EFO_03_01_int'] * $row['EFO_03_01_qt']
         );
+        $total_EFO +=$table_int['EFO_03_01_int'] * $row['EFO_03_01_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_03_02',
             "titre" => $table_titre['EFO_03_02_titre'],
@@ -237,6 +249,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_03_02_int'],
             "total" => $table_int['EFO_03_02_int'] * $row['EFO_03_02_qt']
         );
+        $total_EFO +=$table_int['EFO_03_02_int'] * $row['EFO_03_02_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_03_04',
             "titre" => $table_titre['EFO_03_04_titre'],
@@ -245,6 +258,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_03_04_int'],
             "total" => $table_int['EFO_03_04_int'] * $row['EFO_03_04_qt']
         );
+        $total_EFO +=$table_int['EFO_03_04_int'] * $row['EFO_03_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_04_01',
             "titre" => $table_titre['EFO_04_01_titre'],
@@ -253,6 +267,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_04_01_int'],
             "total" => $table_int['EFO_04_01_int'] * $row['EFO_04_01_qt']
         );
+        $total_EFO +=$table_int['EFO_04_01_int'] * $row['EFO_04_01_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_04_02',
             "titre" => $table_titre['EFO_04_02_titre'],
@@ -261,6 +276,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_04_02_int'],
             "total" => $table_int['EFO_04_02_int'] * $row['EFO_04_02_qt']
         );
+        $total_EFO +=$table_int['EFO_04_02_int'] * $row['EFO_04_02_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_04_03',
             "titre" => $table_titre['EFO_04_03_titre'],
@@ -269,6 +285,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_04_03_int'],
             "total" => $table_int['EFO_04_03_int'] * $row['EFO_04_03_qt']
         );
+        $total_EFO +=$table_int['EFO_04_03_int'] * $row['EFO_04_03_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_04_04',
             "titre" => $table_titre['EFO_04_04_titre'],
@@ -277,6 +294,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_04_04_int'],
             "total" => $table_int['EFO_04_04_int'] * $row['EFO_04_04_qt']
         );
+        $total_EFO +=$table_int['EFO_04_04_int'] * $row['EFO_04_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_05_01',
             "titre" => $table_titre['EFO_05_01_titre'],
@@ -285,6 +303,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_05_01_int'],
             "total" => $table_int['EFO_05_01_int'] * $row['EFO_05_01_qt']
         );
+        $total_EFO +=$table_int['EFO_05_01_int'] * $row['EFO_05_01_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_05_02',
             "titre" => $table_titre['EFO_05_02_titre'],
@@ -293,6 +312,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_05_02_int'],
             "total" => $table_int['EFO_05_02_int'] * $row['EFO_05_02_qt']
         );
+        $total_EFO +=$table_int['EFO_05_02_int'] * $row['EFO_05_02_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_05_03',
             "titre" => $table_titre['EFO_05_03_titre'],
@@ -301,6 +321,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_05_03_int'],
             "total" => $table_int['EFO_05_03_int'] * $row['EFO_05_03_qt']
         );
+        $total_EFO +=$table_int['EFO_05_03_int'] * $row['EFO_05_03_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_05_04',
             "titre" => $table_titre['EFO_05_04_titre'],
@@ -309,6 +330,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_05_04_int'],
             "total" => $table_int['EFO_05_04_int'] * $row['EFO_05_04_qt']
         );
+        $total_EFO +=$table_int['EFO_05_04_int'] * $row['EFO_05_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_01',
             "titre" => $table_titre['EFO_06_01_titre'],
@@ -317,6 +339,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_01_int'],
             "total" => $table_int['EFO_06_01_int'] * $row['EFO_06_01_qt']
         );
+        $total_EFO +=$table_int['EFO_06_01_int'] * $row['EFO_06_01_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_02',
             "titre" => $table_titre['EFO_06_02_titre'],
@@ -325,6 +348,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_02_int'],
             "total" => $table_int['EFO_06_02_int'] * $row['EFO_06_02_qt']
         );
+        $total_EFO +=$table_int['EFO_06_02_int'] * $row['EFO_06_02_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_03',
             "titre" => $table_titre['EFO_06_03_titre'],
@@ -333,6 +357,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_03_int'],
             "total" => $table_int['EFO_06_03_int']*$row['EFO_06_03_qt']
         );
+        $total_EFO +=$table_int['EFO_06_03_int']*$row['EFO_06_03_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_04',
             "titre" => $table_titre['EFO_06_04_titre'],
@@ -341,6 +366,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_04_int'],
             "total" => $table_int['EFO_06_04_int'] * $row['EFO_06_04_qt']
         );
+        $total_EFO +=$table_int['EFO_06_04_int'] * $row['EFO_06_04_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_05',
             "titre" => $table_titre['EFO_06_05_titre'],
@@ -349,6 +375,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_05_int'],
             "total" => $table_int['EFO_06_05_int'] * $row['EFO_06_05_qt']
         );
+        $total_EFO += $table_int['EFO_06_05_int'] * $row['EFO_06_05_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_06',
             "titre" => $table_titre['EFO_06_06_titre'],
@@ -357,6 +384,7 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_06_int'],
             "total" => $table_int['EFO_06_06_int'] * $row['EFO_06_06_qt']
         );
+        $total_EFO +=$table_int['EFO_06_06_int'] * $row['EFO_06_06_qt'];
         $data[] = array(
             "EFO_0" => 'EFO_06_07',
             "titre" => $table_titre['EFO_06_07_titre'],
@@ -365,8 +393,15 @@ if($stm->execute()) {
             "int" => $table_int['EFO_06_07_int'],
             "total" => $table_int['EFO_06_07_int'] * $row['EFO_06_07_qt']
         );
-
-
+        $total_EFO += $table_int['EFO_06_07_int'] * $row['EFO_06_07_qt'];
+        $data[] = array(
+            "EFO_0" => '',
+            "titre" => 'Total',
+            "qt" => '',
+            "unit" => '',
+            "int" => '',
+            "total" => $total_EFO
+        );
     }
 }
 

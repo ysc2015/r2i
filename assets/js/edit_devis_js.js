@@ -54,7 +54,7 @@ function displayMessage(text, style) {
 EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 {
 	with (this) {
-		console.log(id);
+
 
 		modelChanged = function(rowIndex, columnIndex, oldValue, newValue, row) {
 			if(this.name=="TravauxRaccordementOptiqueMesure"){
@@ -236,19 +236,19 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 
 
 		};
-		console.log("passed modelChanged : "+id);
+
 
 		renderGrid(id, param2, param3);
  	}
 };
-EditableGrid.prototype.onloadJSON = function(url,id, param2, param3)
+EditableGrid.prototype.onloadJSON = function(url,id, param2, param3,callback)
 {
 	// register the function that will be called when the XML has been fully loaded
 	this.tableLoaded = function() { 
 		//displayMessage("Grid loaded from JSON: " + this.getRowCount() + " row(s)");
 		this.initializeGrid(id, param2, param3);
 	};
-	this.loadJSON(url);
+	this.loadJSON(url,callback);
 };
 
 

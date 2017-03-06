@@ -445,19 +445,26 @@ EditableGrid.prototype.loadJSON = function(url, callback, dataOnly)
 {
 	this.lastURL = url; 
 	var self = this;
-
+	var id_operation='';
 	// should never happen
 	if (!window.XMLHttpRequest) {
 		alert("Cannot load a JSON url with this browser!"); 
 		return false;
 	}
-
 	var ajaxRequest = new XMLHttpRequest();
 	ajaxRequest.onreadystatechange = function () {
 		if (this.readyState == 4) {
-			if (!this.responseText) { console.error("Could not load JSON from url '" + url + "'"); return false; }
-			if (!self.processJSON(this.responseText)) { console.error("Invalid JSON data obtained from url '" + url + "'"); return false; }
+			if (!this.responseText) { console.log("Could not load JSON from url '" + url + "'"); return false; }
+			if (!self.processJSON(this.responseText)) { console.log ("Invalid JSON data obtained from url '" + url + "'"); return false; }
 			self._callback('json', callback);
+			id_operation = JSON.parse(this.responseText).metadata[0].label.substr(0,3);
+			console.log(id_operation);
+			console.log(JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5]);
+
+			//a_totaux [id_operation]=JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5];
+
+			a_totaux[id_operation] = JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5];
+
 		}
 	};
 
@@ -486,6 +493,7 @@ EditableGrid.prototype._addUrlParameters = function(baseUrl, dataOnly)
 
 EditableGrid.prototype._callback = function(type, callback)
 {
+	console.log("EditableGrid.prototype._callback");
 	if (callback) callback.call(this); 
 	else {
 
@@ -494,13 +502,15 @@ EditableGrid.prototype._callback = function(type, callback)
 			// deferred refreshGrid: first load the updated data from the server then call the original refreshGrid
 			this.refreshGrid = function(baseUrl) {
 				var callback = function() { EditableGrid.prototype.refreshGrid.call(this); };
-				var load = type == 'xml' ? this.loadXML : this.loadJSON;
+				//var load = type == 'xml' ? this.loadXML : this.loadJSON;
 				load.call(this, baseUrl || this.lastURL, callback, true);
 			};
+
 		}
 
-		this.tableLoaded();
+
 	}
+	this.tableLoaded();
 };
 
 /**

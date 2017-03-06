@@ -109,7 +109,7 @@ $table_int['EGC_02_13_int'] = "10";
 $table_int['EGC_02_14_int'] = "43";
 $table_int['EGC_02_15_int'] = "50";
 $table_int['EGC_02_16_int'] = "0.50";
-
+$total_EGC =0;
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -123,6 +123,7 @@ if($stm->execute()) {
             "int" => $table_int['EGC_01_01_int'],
             "total" => $table_int['EGC_01_01_int'] * $row['EGC_01_01_qt']
         );
+        $total_EGC +=$table_int['EGC_01_01_int'] * $row['EGC_01_01_qt'];
         $data[] = array(
             "EGC_0" => 'EGC_01_02',
             "titre" => $table_titre['EGC_01_02_titre'],
@@ -131,6 +132,7 @@ if($stm->execute()) {
             "int" => $table_int['EGC_01_02_int'],
             "total" => $table_int['EGC_01_02_int'] * $row['EGC_01_02_qt']
         );
+        $total_EGC +=$table_int['EGC_01_02_int'] * $row['EGC_01_02_qt'];
         $data[] = array(
             "EGC_0" => 'EGC_01_03',
             "titre" => $table_titre['EGC_01_03_titre'],
@@ -139,9 +141,9 @@ if($stm->execute()) {
             "int" => $table_int['EGC_01_03_int'],
             "total" => $table_int['EGC_01_03_int'] * $row['EGC_01_03_qt']
         );
-
+        $total_EGC +=$table_int['EGC_01_03_int'] * $row['EGC_01_03_qt'];
          for($i= 1 ; $i <= 16 ; $i++){
-            if($i < 10)
+            if($i < 10){
                 $data[] = array(
                     "EGC_0" => 'EGC_02_0'.$i,
                     "titre" => $table_titre['EGC_02_0'.$i.'_titre'],
@@ -150,7 +152,10 @@ if($stm->execute()) {
                     "int" => $table_int['EGC_02_0'.$i.'_int'],
                     "total" => $table_int['EGC_02_0'.$i.'_int']*$row['EGC_02_0'.$i.'_qt']
                 );
-            if($i >= 10  )
+                $total_EGC +=$table_int['EGC_02_0'.$i.'_int']*$row['EGC_02_0'.$i.'_qt'];
+            }
+
+            if($i >= 10  ){
                 $data[] = array(
                     "EGC_0" => 'EGC_02_'.$i,
                     "titre" => $table_titre['EGC_02_'.$i.'_titre'],
@@ -159,8 +164,18 @@ if($stm->execute()) {
                     "int" => $table_int['EGC_02_'.$i.'_int'],
                     "total" => $row['EGC_02_'.$i.'_qt']*$table_int['EGC_02_'.$i.'_int']
                 );
-        }
+                $total_EGC +=$row['EGC_02_'.$i.'_qt']*$table_int['EGC_02_'.$i.'_int'];
+            }
 
+        }
+        $data[] = array(
+            "EGC_0" => '',
+            "titre" => 'Total',
+            "qt" => '',
+            "unit" => '',
+            "int" => '',
+            "total" => $total_EGC
+        );
     }
 }
 
