@@ -425,7 +425,7 @@ function call_back(){
 
 
         });
-        $("#devis_consult_btn").click(function () {
+     /*   $("#devis_consult_btn").click(function () {
             $.ajax({
                 cache: false,
                 url: "api/ot/devis/get_details_devis_info.php",
@@ -456,14 +456,14 @@ function call_back(){
                     });
                 }
             });
-
-            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis + "&editable=1", "tablecontent", "testgrid trom", "tableid");
-            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis + "&editable=1", "tablecontentTRE", "testgrid tre", "tableidTRE");
-            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis + "&editable=1", "tablecontentetude", "testgrid etude", "tableidetude");
-            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis=" + id_devis + "&editable=1", "tablecontenttst", "testgrid tst", "tableidtst");
-            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis=" + id_devis + "&editable=1", "tablecontentchambre", "testgrid chambre", "tableidchambre");
-            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis + "&editable=1", "tablecontenttranche", "testgrid tranche", "tableidtranche");
-            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis + "&editable=1", "tablecontenttdgc", "testgrid tdgc", "tableidtdgc");
+*/
+            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis + "&editable=1", "tablecontent", "testgrid trom", "tableid",call_back);
+            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis + "&editable=1", "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
+            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis + "&editable=1", "tablecontentetude", "testgrid etude", "tableidetude",call_back);
+            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis=" + id_devis + "&editable=1", "tablecontenttst", "testgrid tst", "tableidtst",call_back);
+            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis=" + id_devis + "&editable=1", "tablecontentchambre", "testgrid chambre", "tableidchambre",call_back);
+            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis + "&editable=1", "tablecontenttranche", "testgrid tranche", "tableidtranche",call_back);
+            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis + "&editable=1", "tablecontenttdgc", "testgrid tdgc", "tableidtdgc",call_back);
 
         });
         $("#download_devis").click(function () {
