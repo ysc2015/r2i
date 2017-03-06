@@ -510,6 +510,9 @@ var App = function() {
                             case 'gestiontrvx_block' :
                                 getPlannifOT();
                                 break;
+                            case 'gestionpbcpbt_block' :
+                                getPBC_PBT();
+                                break;
                             case 'infozone_block' :
                              console.log($('#infozone_block').find('.tab-pane.active').attr("id"));//ajax function on common.js file to add,$elBlock as parameter
                              switch ($('#infozone_block').find('.tab-pane.active').attr("id")) {

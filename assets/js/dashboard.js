@@ -35,3 +35,8 @@ function getPlannifOT() {
     //gestion_travaux_ch3.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_ch3.php' ).load();
 
 }
+
+function getPBC_PBT() {
+
+    gestion_travaux_pbc.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_pbc.php' ).load();
+}
