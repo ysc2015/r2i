@@ -203,6 +203,14 @@
     </div>
 </div>
 <script>
+    var total_EFO = 0;
+    var total_TFO = 0;
+    var total_RFO = 0;
+    var total_ITF = 0;
+    var total_EGC = 0;
+    var total_CGC = 0;
+    var total_TGC = 0;
+     var a_totaux =  {EFO:0,TFO:0,RFO:0,ITF:0,EGC:0,CGC:0,TGC:0};
 
     var devis_formdata = {};
     var uploader1_options = {
@@ -343,6 +351,7 @@
 
         }
     }
+
     $(function () {
         // Init page plugins & helpers
         uploader1_options = merge_options(defaultUploaderStrLocalisation, uploader1_options);
@@ -351,48 +360,69 @@
         uploader2_options = merge_options(defaultUploaderStrLocalisation, uploader2_options);
         uploader2 = $("#devis_autre_uploader").uploadFile(uploader2_options);
     });
+    var compteur = 0;
+function call_back(){
+    compteur++;
 
+
+    if(compteur==7){
+
+        $.ajax({
+            cache: false,
+            url: "api/ot/devis/get_details_devis_info.php",
+            method: "GET",
+            data: {iddevis: id_devis,"data": a_totaux},
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $('#devis_tab').html(data);
+                var dcmd_formdata = {};
+                $("#save_info_devis").click(function () {
+                    dcmd_formdata['tablename'] = "detail_info";
+                    dcmd_formdata['iddevis'] = id_devis;
+                    dcmd_formdata['ref_devis'] = $('#refdevis').val();
+                    dcmd_formdata['date_devis'] = $('#datedevis').val();
+                    dcmd_formdata['date_livraison'] = $('#datelivraisondevis').val();
+                    dcmd_formdata['etat_devis'] = $('#etat_devis').val();
+
+                    $.ajax({
+                        method: "POST",
+                        url: "api/ot/devis/save_details_devis.php",
+                        data: dcmd_formdata
+                    }).done(function (msg) {
+
+                        App.showMessage(msg, '#message_devis');
+                    });
+
+                });
+            }
+        });
+        return true;
+    }
+    return true;
+}
     $(document).ready(function () {
 
 
         $("#id_devis_edit_btn").click(function () {
             $.ajax({
-                cache: false,
-                url: "api/ot/devis/get_details_devis_info.php",
+                url: "api/ot/devis/get_devis_id.php",
                 method: "GET",
-                data: {iddevis: id_devis},
-                dataType: "json",
-                success: function (data) {
-                    $('#devis_tab').html(data);
-                    var dcmd_formdata = {};
-                    $("#save_info_devis").click(function () {
-                        dcmd_formdata['tablename'] = "detail_info";
-                        dcmd_formdata['iddevis'] = id_devis;
-                        dcmd_formdata['ref_devis'] = $('#refdevis').val();
-                        dcmd_formdata['date_devis'] = $('#datedevis').val();
-                        dcmd_formdata['date_livraison'] = $('#datelivraisondevis').val();
-                        dcmd_formdata['etat_devis'] = $('#etat_devis').val();
+                async: false,
+                success: function () {
+                    console.log("hahowa lhihe");
+                    editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis, "tablecontent", "testgrid trom", "tableid",call_back);
+                    editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis, "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
+                    editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis, "tablecontentetude", "testgrid etude", "tableidetude",call_back);
+                    editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis=" + id_devis, "tablecontenttst", "testgrid tst", "tableidtst",call_back);
+                    editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis=" + id_devis, "tablecontentchambre", "testgrid chambre", "tableidchambre",call_back);
+                    editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis, "tablecontenttranche", "testgrid tranche", "tableidtranche",call_back);
+                    editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis, "tablecontenttdgc", "testgrid tdgc", "tableidtdgc",call_back);
 
-                        $.ajax({
-                            method: "POST",
-                            url: "api/ot/devis/save_details_devis.php",
-                            data: dcmd_formdata
-                        }).done(function (msg) {
-
-                            App.showMessage(msg, '#message_devis');
-                        });
-
-                    });
                 }
             });
 
-            editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis, "tablecontent", "testgrid trom", "tableid");
-            editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis, "tablecontentTRE", "testgrid tre", "tableidTRE");
-            editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis, "tablecontentetude", "testgrid etude", "tableidetude");
-            editableGrid_tst.onloadJSON("api/ot/devis/get_details_devis_tst.php?iddevis=" + id_devis, "tablecontenttst", "testgrid tst", "tableidtst");
-            editableGrid_chambre.onloadJSON("api/ot/devis/get_details_devis_chambre.php?iddevis=" + id_devis, "tablecontentchambre", "testgrid chambre", "tableidchambre");
-            editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis, "tablecontenttranche", "testgrid tranche", "tableidtranche");
-            editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis, "tablecontenttdgc", "testgrid tdgc", "tableidtdgc");
+
 
         });
         $("#devis_consult_btn").click(function () {

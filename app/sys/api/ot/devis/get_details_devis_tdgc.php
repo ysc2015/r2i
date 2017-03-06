@@ -111,7 +111,7 @@ $table_int['TGC_05_01_int'] = "750";
 $table_int['TGC_05_02_int'] = "170";
 $table_int['TGC_05_03_int'] = "98";
 $table_int['TGC_05_04_int'] = "98";
-
+$total_TGC = 0;
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -126,7 +126,7 @@ if($stm->execute()) {
                 "int" => $table_int['TGC_01_0'.$i.'_int'],
                 "total" => $table_int['TGC_01_0'.$i.'_int']*$row['TGC_01_0'.$i.'_qt']
             );
-
+            $total_TGC +=$table_int['TGC_01_0'.$i.'_int']*$row['TGC_01_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 6 ; $i++){
             $data[] = array(
@@ -137,7 +137,7 @@ if($stm->execute()) {
                 "int" => $table_int['TGC_02_0'.$i.'_int'],
                 "total" => $table_int['TGC_02_0'.$i.'_int']*$row['TGC_02_0'.$i.'_qt']
             );
-
+            $total_TGC +=$table_int['TGC_02_0'.$i.'_int']*$row['TGC_02_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 5 ; $i++){
             $data[] = array(
@@ -148,7 +148,7 @@ if($stm->execute()) {
                 "int" => $table_int['TGC_03_0'.$i.'_int'],
                 "total" => $table_int['TGC_03_0'.$i.'_int']*$row['TGC_03_0'.$i.'_qt']
             );
-
+            $total_TGC +=$table_int['TGC_03_0'.$i.'_int']*$row['TGC_03_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 2 ; $i++){
             $data[] = array(
@@ -159,7 +159,7 @@ if($stm->execute()) {
                 "int" => $table_int['TGC_04_0'.$i.'_int'],
                 "total" => $table_int['TGC_04_0'.$i.'_int']*$row['TGC_04_0'.$i.'_qt']
             );
-
+            $total_TGC +=$table_int['TGC_04_0'.$i.'_int']*$row['TGC_04_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 4 ; $i++){
             $data[] = array(
@@ -170,9 +170,16 @@ if($stm->execute()) {
                 "int" => $table_int['TGC_05_0'.$i.'_int'],
                 "total" => $table_int['TGC_05_0'.$i.'_int']*$row['TGC_05_0'.$i.'_qt']
             );
-
+            $total_TGC +=$table_int['TGC_05_0'.$i.'_int']*$row['TGC_05_0'.$i.'_qt'];
         }
-
+        $data[] = array(
+            "TGC_0" => '',
+            "titre" => 'Total',
+            "qt" => '',
+            "unit" => '',
+            "int" => '',
+            "total" => $total_TGC
+        );
 
     }
 }

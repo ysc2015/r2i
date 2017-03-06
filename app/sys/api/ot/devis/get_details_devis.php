@@ -14,7 +14,7 @@ $grid = new EditableGrid();
 // if you wish you can specify the desired length of the text edition field like this: string(24)
 extract($_GET);
 $editable_chaine = FALSE;
-
+$total_RFO = 0;
 if(isset($editable) && $editable == 1){
     $editable_chaine = FALSE;
 }else{
@@ -136,7 +136,7 @@ if($stm->execute()) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
         $i =1;
         for($i= 1 ; $i <= 24 ; $i++){
-            if($i < 10)
+            if($i < 10){
                 $data[] = array(
                     "RFO_01" => 'RFO_01_0'.$i,
                     "racc" => $table_raccordement['RFO_01_0'.$i.'_racc'],
@@ -145,7 +145,10 @@ if($stm->execute()) {
                     "int" => $table_int['RFO_01_0'.$i.'_int'],
                     "total" => $table_int['RFO_01_0'.$i.'_int']*$row['RFO_01_0'.$i.'_qt']
                 );
-            if($i >= 10  )
+                $total_RFO += $table_int['RFO_01_0'.$i.'_int']*$row['RFO_01_0'.$i.'_qt'];
+            }
+
+            if($i >= 10  ){
                 $data[] = array(
                     "RFO_01" => 'RFO_01_'.$i,
                     "racc" => $table_raccordement['RFO_01_'.$i.'_racc'],
@@ -154,8 +157,18 @@ if($stm->execute()) {
                     "int" => $table_int['RFO_01_'.$i.'_int'],
                     "total" => $row['RFO_01_'.$i.'_qt']*$table_int['RFO_01_'.$i.'_int']
                 );
-        }
+                $total_RFO +=$row['RFO_01_'.$i.'_qt']*$table_int['RFO_01_'.$i.'_int'];
+            }
 
+        }
+        $data[] = array(
+            "RFO_01" => '',
+            "racc" => 'Total :',
+            "qt" => '',
+            "unit" => '',
+            "int" => '',
+            "total" => $total_RFO
+        );
 
     }
 }

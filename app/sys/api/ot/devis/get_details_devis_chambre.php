@@ -114,7 +114,7 @@ $table_int['CGC_03_04_int'] = "3150";
 $table_int['CGC_03_05_int'] = "4100";
 $table_int['CGC_04_01_int'] = "104";
 $table_int['CGC_04_02_int'] = "340";
-
+$total_CGC = 0;
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
@@ -128,8 +128,9 @@ if($stm->execute()) {
                 "unit" => $table_unite['CGC_01_0'.$i.'_unit'],
                 "int" => $table_int['CGC_01_0'.$i.'_int'],
                 "total" => $table_int['CGC_01_0'.$i.'_int']*$row['CGC_01_0'.$i.'_qt']
-            );
 
+            );
+            $total_CGC += $table_int['CGC_01_0'.$i.'_int']*$row['CGC_01_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 8 ; $i++){
             $data[] = array(
@@ -140,7 +141,7 @@ if($stm->execute()) {
                 "int" => $table_int['CGC_02_0'.$i.'_int'],
                 "total" => $table_int['CGC_02_0'.$i.'_int']*$row['CGC_02_0'.$i.'_qt']
             );
-
+            $total_CGC +=$table_int['CGC_02_0'.$i.'_int']*$row['CGC_02_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 5 ; $i++){
             $data[] = array(
@@ -151,7 +152,7 @@ if($stm->execute()) {
                 "int" => $table_int['CGC_03_0'.$i.'_int'],
                 "total" => $table_int['CGC_03_0'.$i.'_int']*$row['CGC_03_0'.$i.'_qt']
             );
-
+            $total_CGC +=$table_int['CGC_03_0'.$i.'_int']*$row['CGC_03_0'.$i.'_qt'];
         }
         for($i= 1 ; $i <= 2 ; $i++){
             $data[] = array(
@@ -162,10 +163,17 @@ if($stm->execute()) {
                 "int" => $table_int['CGC_04_0'.$i.'_int'],
                 "total" => $table_int['CGC_04_0'.$i.'_int']*$row['CGC_04_0'.$i.'_qt']
             );
-
+            $total_CGC +=$table_int['CGC_04_0'.$i.'_int']*$row['CGC_04_0'.$i.'_qt'];
         }
 
-
+        $data[] = array(
+            "CGC_0" => '',
+            "titre" => 'Total',
+            "qt" => '',
+            "unit" => '',
+            "int" => '',
+            "total" => $total_CGC
+        );
     }
 }
 
