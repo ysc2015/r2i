@@ -57,6 +57,7 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 
 
 		modelChanged = function(rowIndex, columnIndex, oldValue, newValue, row) {
+
 			if(this.name=="TravauxRaccordementOptiqueMesure"){
 
 
@@ -66,6 +67,7 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
 				if((columnname=="int") || (columnname=="qt"))
 					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
+
 				$.ajax({
 					type: "POST",
 					url: "app/sys/api/ot/devis/save_details_devis.php",
@@ -113,7 +115,7 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 				var rowid = this.getRowId(rowIndex)
 				var columnname = this.getColumnName(columnIndex);
 				var titrecolumn = this.getValueAt(rowIndex, this.getColumnIndex("EFO_0"));
-				console.log("tata "+rowid);
+
 				var total = this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt"));
 				if((columnname=="int") || (columnname=="qt"))
 					this.setValueAt(rowIndex, this.getColumnIndex("total"), this.getValueAt(rowIndex, this.getColumnIndex("int")) * this.getValueAt(rowIndex, this.getColumnIndex("qt")));
@@ -233,7 +235,23 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 					}
 				});
 			}
+			var name_div_to_change = '';
+			switch (this.name){
+				case 'TravauxRaccordementOptiqueMesure' : name_div_to_change ='div_RFO' ;break;
+				case 'travauxReseauEntere' : name_div_to_change ='div_TFO' ;break;
+				case 'etude' : name_div_to_change ='div_EFO' ;break;
+				case 'travauxsitetechnique' : name_div_to_change = 'div_ITF';break;
+				case 'tranche' : name_div_to_change ='div_EGC' ;break;
+				case 'chambre' : name_div_to_change = 'div_CGC';break;
+				case 'travauxdiversgc' : name_div_to_change = 'div_TGC';break;
+			}
+			var total_calume_lors_traitement = 0;
+			for (var i = 0; i < this.data.length-1; i++) {
+				total_calume_lors_traitement +=this.getValueAt(i, this.getColumnIndex("total"));
+			}
+			this.setValueAt((this.data.length-1), this.getColumnIndex("total"), total_calume_lors_traitement);
 
+			$('#'+name_div_to_change).html(total_calume_lors_traitement);
 
 		};
 

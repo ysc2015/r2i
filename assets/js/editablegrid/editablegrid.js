@@ -443,35 +443,38 @@ EditableGrid.prototype.processXML = function()
  */
 EditableGrid.prototype.loadJSON = function(url, callback, dataOnly)
 {
-	this.lastURL = url; 
-	var self = this;
-	var id_operation='';
-	// should never happen
-	if (!window.XMLHttpRequest) {
-		alert("Cannot load a JSON url with this browser!"); 
-		return false;
-	}
-	var ajaxRequest = new XMLHttpRequest();
-	ajaxRequest.onreadystatechange = function () {
-		if (this.readyState == 4) {
-			if (!this.responseText) { console.log("Could not load JSON from url '" + url + "'"); return false; }
-			if (!self.processJSON(this.responseText)) { console.log ("Invalid JSON data obtained from url '" + url + "'"); return false; }
-			self._callback('json', callback);
-			id_operation = JSON.parse(this.responseText).metadata[0].label.substr(0,3);
-			console.log(id_operation);
-			console.log(JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5]);
 
-			//a_totaux [id_operation]=JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5];
 
-			a_totaux[id_operation] = JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5];
+				this.lastURL = url;
+				var self = this;
+				var id_operation='';
+				// should never happen
+				if (!window.XMLHttpRequest) {
+					alert("Cannot load a JSON url with this browser!");
+					return false;
+				}
+				var ajaxRequest = new XMLHttpRequest();
+				ajaxRequest.onreadystatechange = function () {
+					if (this.readyState == 4) {
+						if (!this.responseText) { console.log("Could not load JSON from url '" + url + "'"); return false; }
+						if (!self.processJSON(this.responseText)) { console.log ("Invalid JSON data obtained from url '" + url + "'"); return false; }
+						self._callback('json', callback);
+						id_operation = JSON.parse(this.responseText).metadata[0].label.substr(0,3);
 
-		}
-	};
+						a_totaux[id_operation] = JSON.parse(this.responseText).data[JSON.parse(this.responseText).data.length-1].values[5];
 
-	ajaxRequest.open("GET", this._addUrlParameters(url, dataOnly), true);
-	ajaxRequest.send("");
+						compteur++;
+						console.log("compteur++ :"+compteur );
 
-	return true;
+					}
+				};
+
+				ajaxRequest.open("GET", this._addUrlParameters(url, dataOnly), true);
+				ajaxRequest.send("");
+				return true;
+
+
+
 };
 
 EditableGrid.prototype._addUrlParameters = function(baseUrl, dataOnly)

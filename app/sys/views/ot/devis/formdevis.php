@@ -203,13 +203,8 @@
     </div>
 </div>
 <script>
-    var total_EFO = 0;
-    var total_TFO = 0;
-    var total_RFO = 0;
-    var total_ITF = 0;
-    var total_EGC = 0;
-    var total_CGC = 0;
-    var total_TGC = 0;
+
+    var compteur = 1;
      var a_totaux =  {EFO:0,TFO:0,RFO:0,ITF:0,EGC:0,CGC:0,TGC:0};
 
     var devis_formdata = {};
@@ -360,14 +355,14 @@
         uploader2_options = merge_options(defaultUploaderStrLocalisation, uploader2_options);
         uploader2 = $("#devis_autre_uploader").uploadFile(uploader2_options);
     });
-    var compteur = 0;
+
 function call_back(){
-    compteur++;
 
 
-    if(compteur==7){
-        console.log("a_totaux : "+ id_devis);
-        console.log(a_totaux);
+    console.log("a_totaux id devis : "+ id_devis+", compteur : "+compteur);
+    console.log(a_totaux);
+    if(compteur==8  ){
+        console.log("gogogog");
         $.ajax({
             cache: false,
             url: "api/ot/devis/get_details_devis_info.php",
@@ -398,7 +393,7 @@ function call_back(){
                 });
             }
         });
-        return true;
+
     }
     return true;
 }
@@ -416,8 +411,8 @@ function call_back(){
                     editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis, "tablecontenttranche", "testgrid tranche", "tableidtranche",call_back);
                     editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis, "tablecontenttdgc", "testgrid tdgc", "tableidtdgc",call_back);
 
-
-
+            compteur++;
+            setTimeout(function() { call_back() }, 1000);
 
 
         });
