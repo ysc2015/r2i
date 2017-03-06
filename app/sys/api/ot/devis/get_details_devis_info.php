@@ -7,7 +7,6 @@
 
 
 extract($_GET);
-
 $stm = $db->prepare("select * from detaildevis where detaildevis.iddevis =$iddevis LIMIT 1");
 $stm->execute();
 $row = $stm->fetch(PDO::FETCH_OBJ);
@@ -98,22 +97,22 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
 <tr>
  <td width='30%'>&nbsp;</td>
  <td width='40%'>Etudes</td>
- <td width='30%'><b>".$data['EFO']."</b> </td>
+ <td width='30%'><b id='div_EFO'>".$data['EFO']."</b> </td>
 </tr>
 <tr>
  <td>&nbsp;</td>
  <td>Tirages</td>
- <td><b>".$data['TFO']."</b> </td>
+ <td><b id='div_TFO'>".$data['TFO']."</b> </td>
 </tr>
 <tr>
  <td>&nbsp;</td>
  <td>Raccordements</td>
- <td><b>".$data['RFO']."</b>  </td>
+ <td><b id='div_RFO'>".$data['RFO']."</b>  </td>
 </tr>
 <tr>
  <td>&nbsp;</td>
  <td>Travaux en immeuble</td>
- <td><b>".$data['ITF']."</b> </td>
+ <td><b id='div_ITF'>".$data['ITF']."</b> </td>
 </tr>
 <tr>
  <td>&nbsp;</td>
@@ -136,17 +135,17 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
 <tr>
  <td width='30%'>&nbsp;</td>
  <td width='40%'>Etudes et Réalisation Tranchées</td>
- <td width='30%'><b>".$data['EGC']."</b> </td>
+ <td width='30%'><b id='div_EGC'>".$data['EGC']."</b> </td>
 </tr>
 <tr>
  <td>&nbsp;</td>
  <td>Etudes et Travaux sur Chambres</td>
- <td><b>".$data['CGC']."</b> </td>
+ <td><b id='div_CGC'>".$data['CGC']."</b> </td>
 </tr>
 <tr>
  <td>&nbsp;</td>
  <td>Etudes et Travaux Divers GC</td>
- <td><b>".$data['TGC']."</b> </td>
+ <td><b id='div_TGC'>".$data['TGC']."</b> </td>
 </tr> 
 <tr>
  <td>&nbsp;</td>
