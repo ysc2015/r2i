@@ -426,36 +426,7 @@ function call_back(){
 
         });
         $("#devis_consult_btn").click(function () {
-           /* $.ajax({
-                cache: false,
-                url: "api/ot/devis/get_details_devis_info.php",
-                method: "GET",
-                data: {iddevis: id_devis},
-                dataType: "json",
-                success: function (data) {
-                    $('#devis_tab').html(data);
-                    var dcmd_formdata = {};
-                    $("#save_info_devis").click(function () {
-                        dcmd_formdata['tablename'] = "detail_info";
-                        dcmd_formdata['iddevis'] = id_devis;
-                        dcmd_formdata['ref_devis'] = $('#refdevis').val();
-                        dcmd_formdata['date_devis'] = $('#datedevis').val();
-                        dcmd_formdata['date_livraison'] = $('#datelivraisondevis').val();
-                        dcmd_formdata['etat_devis'] = $('#etat_devis').val();
-                        dcmd_formdata['editable'] = 1;
 
-                        $.ajax({
-                            method: "POST",
-                            url: "api/ot/devis/save_details_devis.php",
-                            data: dcmd_formdata
-                        }).done(function (msg) {
-
-                            App.showMessage(msg, '#message_devis');
-                        });
-
-                    });
-                }
-            });*/
 
             editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis + "&editable=1", "tablecontent", "testgrid trom", "tableid",call_back);
             editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis + "&editable=1", "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
