@@ -236,22 +236,27 @@ EditableGrid.prototype.initializeGrid = function(id, param2, param3)
 				});
 			}
 			var name_div_to_change = '';
+			var name_div_total_to_change = '';
 			switch (this.name){
-				case 'TravauxRaccordementOptiqueMesure' : name_div_to_change ='div_RFO' ;break;
-				case 'travauxReseauEntere' : name_div_to_change ='div_TFO' ;break;
-				case 'etude' : name_div_to_change ='div_EFO' ;break;
-				case 'travauxsitetechnique' : name_div_to_change = 'div_ITF';break;
-				case 'tranche' : name_div_to_change ='div_EGC' ;break;
-				case 'chambre' : name_div_to_change = 'div_CGC';break;
-				case 'travauxdiversgc' : name_div_to_change = 'div_TGC';break;
+				case 'TravauxRaccordementOptiqueMesure' : name_div_to_change ='div_RFO';name_div_total_to_change='div_total_tfo' ;break;
+				case 'travauxReseauEntere' : name_div_to_change ='div_TFO';name_div_total_to_change='div_total_tfo' ;break;
+				case 'etude' : name_div_to_change ='div_EFO';name_div_total_to_change='div_total_tfo' ;break;
+				case 'travauxsitetechnique' : name_div_to_change = 'div_ITF';name_div_total_to_change='div_total_tfo';break;
+				case 'tranche' : name_div_to_change ='div_EGC';name_div_total_to_change='div_total_tgc' ;break;
+				case 'chambre' : name_div_to_change = 'div_CGC';name_div_total_to_change='div_total_tgc';break;
+				case 'travauxdiversgc' : name_div_to_change = 'div_TGC';name_div_total_to_change='div_total_tgc';break;
 			}
-			var total_calume_lors_traitement = 0;
+			var total_calcule_lors_traitement = 0;
 			for (var i = 0; i < this.data.length-1; i++) {
-				total_calume_lors_traitement +=this.getValueAt(i, this.getColumnIndex("total"));
+				total_calcule_lors_traitement +=this.getValueAt(i, this.getColumnIndex("total"));
 			}
-			this.setValueAt((this.data.length-1), this.getColumnIndex("total"), total_calume_lors_traitement);
+			this.setValueAt((this.data.length-1), this.getColumnIndex("total"), total_calcule_lors_traitement);
 
-			$('#'+name_div_to_change).html(total_calume_lors_traitement);
+			$('#'+name_div_to_change).html(total_calcule_lors_traitement);
+			 if(name_div_total_to_change=="div_total_tfo")
+ 			$('#'+name_div_total_to_change).html(parseFloat($('#div_RFO').html())+parseFloat($('#div_TFO').html())+parseFloat($('#div_EFO').html())+parseFloat($('#div_ITF').html()));
+			else
+			$('#'+name_div_total_to_change).html(parseFloat($('#div_EGC').html())+parseFloat($('#div_CGC').html())+parseFloat($('#div_TGC').html()));
 
 		};
 

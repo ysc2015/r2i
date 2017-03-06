@@ -117,7 +117,7 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
 <tr>
  <td>&nbsp;</td>
  <td class='td-total'>Total</td>
- <td><b>". ($data['EFO'] + $data['TFO'] + $data['RFO'] + $data['ITF']) ."</b> </td>
+ <td><b id='div_total_tfo'>". ($data['EFO'] + $data['TFO'] + $data['RFO'] + $data['ITF']) ."</b> </td>
 </tr>
 </table>
  
@@ -150,7 +150,7 @@ $html .="<form action='#' name='detail_info_devis' id='detail_info_devis'> <tabl
 <tr>
  <td>&nbsp;</td>
  <td class='td-total'>Total</td>
- <td><b>". ($data['TGC'] + $data['CGC'] + $data['EGC']) ."</b></td>
+ <td><b id='div_total_tgc'>". ($data['TGC'] + $data['CGC'] + $data['EGC']) ."</b></td>
 </tr>
 </table>
  
