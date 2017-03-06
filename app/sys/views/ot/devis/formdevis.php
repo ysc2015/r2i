@@ -410,7 +410,7 @@ function call_back(){
                 method: "GET",
                 async: false,
                 success: function () {
-                    console.log("hahowa lhihe");
+
                     editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis, "tablecontent", "testgrid trom", "tableid",call_back);
                     editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis, "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
                     editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis, "tablecontentetude", "testgrid etude", "tableidetude",call_back);

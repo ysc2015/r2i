@@ -7,7 +7,7 @@
 
 
 extract($_GET);
-print_r($data);
+
 $stm = $db->prepare("select * from detaildevis where detaildevis.iddevis =$iddevis LIMIT 1");
 $stm->execute();
 $row = $stm->fetch(PDO::FETCH_OBJ);
