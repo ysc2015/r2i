@@ -366,7 +366,7 @@ function call_back(){
 
 
     if(compteur==7){
-
+        console.log(a_totaux);
         $.ajax({
             cache: false,
             url: "api/ot/devis/get_details_devis_info.php",
