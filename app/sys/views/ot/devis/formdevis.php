@@ -366,7 +366,7 @@ function call_back(){
 
 
     if(compteur==7){
-        console.log("a_totaux");
+        console.log("a_totaux : "+ id_devis);
         console.log(a_totaux);
         $.ajax({
             cache: false,
@@ -406,11 +406,7 @@ function call_back(){
 
 
         $("#id_devis_edit_btn").click(function () {
-            $.ajax({
-                url: "api/ot/devis/get_devis_id.php",
-                method: "GET",
-                async: false,
-                success: function () {
+            compteur = 0;
 
                     editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis, "tablecontent", "testgrid trom", "tableid",call_back);
                     editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis, "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
@@ -420,15 +416,14 @@ function call_back(){
                     editableGrid_tranche.onloadJSON("api/ot/devis/get_details_devis_tranche.php?iddevis=" + id_devis, "tablecontenttranche", "testgrid tranche", "tableidtranche",call_back);
                     editableGrid_tdgc.onloadJSON("api/ot/devis/get_details_devis_tdgc.php?iddevis=" + id_devis, "tablecontenttdgc", "testgrid tdgc", "tableidtdgc",call_back);
 
-                }
-            });
+
 
 
 
         });
         $("#devis_consult_btn").click(function () {
 
-
+            compteur = 0;
             editableGrid.onloadJSON("api/ot/devis/get_details_devis.php?iddevis=" + id_devis + "&editable=1", "tablecontent", "testgrid trom", "tableid",call_back);
             editableGrid_travaux_reseau_entere.onloadJSON("api/ot/devis/get_details_devis_TRE.php?iddevis=" + id_devis + "&editable=1", "tablecontentTRE", "testgrid tre", "tableidTRE",call_back);
             editableGrid_etude.onloadJSON("api/ot/devis/get_details_devis_etude.php?iddevis=" + id_devis + "&editable=1", "tablecontentetude", "testgrid etude", "tableidetude",call_back);
