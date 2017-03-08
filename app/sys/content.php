@@ -241,6 +241,10 @@ switch ($page) {
         $connectedProfil->typeot();
         echo "<br><br>";
         break;
+    case "typeequipe":
+        $connectedProfil->typeequipe();
+        echo "<br><br>";
+        break;
     case "wiki":
         $connectedProfil->wiki();
         echo "<br><br>";

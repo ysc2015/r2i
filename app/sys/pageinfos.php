@@ -39,6 +39,12 @@ switch($page)
             "navigator"=>"<li>entreprises STT</li>")));
         break;
 
+    case "typeequipe":
+        return json_decode(json_encode(array("header"=>"Types Equipes STT",
+            "subheader"=>"Liste des types equipes STT",
+            "navigator"=>"<li>Types</li>")));
+        break;
+
     case "sousprojet":
         $nro = "";
         $btn = "";

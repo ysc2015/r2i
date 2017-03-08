@@ -61,9 +61,16 @@ RewriteRule  "api/nropci/nropci/(\w*\.php)"          "app/MY_ROUTER.php?script=n
 #typeot menu api
 RewriteRule  "api/typeot/typeot/(\w*\.php)"          "app/MY_ROUTER.php?script=typeot/typeot/$1"  [QSA,L]
 
+#typeequipe menu api
+RewriteRule  "api/typeequipe/typeequipe/(\w*\.php)"          "app/MY_ROUTER.php?script=typeequipe/typeequipe/$1"  [QSA,L]
+
 #todelete menu api
 #RewriteRule  "api/todelete/(\w*\.php)"          "app/MY_ROUTER.php?script=todelete/$1"  [QSA,L]
 
 #wiki api
 RewriteRule  "api/wiki/(\w*\.php)"          "app/MY_ROUTER.php?script=wiki/$1"  [QSA,L]
+
+#ext api
+RewriteRule  "api/ext/entreprise/(\w*\.php)"          "app/MY_ROUTER_EXT.php?script=ext/entreprise/$1"  [QSA,L]
+RewriteRule  "api/ext/equipe/(\w*\.php)"          "app/MY_ROUTER_EXT.php?script=ext/equipe/$1"  [QSA,L]
 

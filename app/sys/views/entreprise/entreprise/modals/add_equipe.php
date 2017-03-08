@@ -13,7 +13,8 @@
                     nom: $('#equipe_nom').val(),
                     prenom: $('#equipe_prenom').val(),
                     tel: $('#equipe_tel').val(),
-                    mail: $('#equipe_mail').val()
+                    mail: $('#equipe_mail').val(),
+                    type_equipe: $('#type_equipe').val()
 
 
                 }
@@ -69,6 +70,20 @@
                             <div class="col-md-6">
                                 <label for="equipe_mail">Email <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" id="equipe_mail" name="equipe_mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="type_equipe">Type équipe <!--<span class="text-danger">*</span>--></label>
+                                <select class="form-control " id="type_equipe" name="type_equipe">
+                                    <option value="" selected="">Sélectionnez un type</option>
+                                    <?php
+                                    $results = TypeEquipeSTT::all();
+                                    foreach($results as $result) {
+                                        echo "<option value=\"$result->id_equipe_types\" >$result->lib_type</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class='alert alert-success' id='message_equipe_add' role='alert'>

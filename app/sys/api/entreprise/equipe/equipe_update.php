@@ -9,7 +9,7 @@ extract($_POST);
 $insert = false;
 $err = 0;
 $message = array();
-$stm = $db->prepare("update equipe_stt set imei=:imei,nom=:nom,prenom=:prenom,tel=:tel,mail=:mail where id_equipe_stt=:id_equipe_stt");
+$stm = $db->prepare("update equipe_stt set imei=:imei,nom=:nom,prenom=:prenom,tel=:tel,mail=:mail,id_equipe_types=:id_equipe_types where id_equipe_stt=:id_equipe_stt");
 
 if(isset($ide) && !empty($ide)){
     $stm->bindParam(':id_equipe_stt',$ide);
@@ -62,6 +62,12 @@ if(isset($mail) && !empty($mail)){
 } else {
     $err++;
     $message[] = "Le champs email est obligatoire !";
+}
+
+if(isset($type_equipe)){
+    if(empty($type_equipe)) $type_equipe = NULL;
+    $stm->bindParam(':id_equipe_types',$type_equipe);
+    $insert = true;
 }
 
 
