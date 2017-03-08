@@ -52,6 +52,9 @@
                             <a class="list-group-item" href="?page=mailcreation">
                                 <i class="fa fa-fw fa-list-alt push-5-r"></i> Mails lists (cc)
                             </a>
+                            <a class="list-group-item" href="?page=typeequipe">
+                                <i class="fa fa-fw fa-user-md push-5-r"></i> Types équipe STT
+                            </a>
                         </div>
                         <!-- END gestion List -->
                     </div>

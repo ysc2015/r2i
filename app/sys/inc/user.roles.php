@@ -261,6 +261,14 @@ class adm extends baseUser {
             )
         );
     }
+
+    function typeequipe() {
+        Page::typeequipe(
+            array(
+                "typeequipe" => array("liste","add","update","delete")
+            )
+        );
+    }
     
     function wiki() {
     	Page::wiki(

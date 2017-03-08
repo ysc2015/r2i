@@ -11,6 +11,7 @@
             $("#equipe_update_prenom").val(equipe_dt.row('.selected').data().prenom);
             $("#equipe_update_tel").val(equipe_dt.row('.selected').data().tel);
             $("#equipe_update_mail").val(equipe_dt.row('.selected').data().mail);
+            $("#equipe_type_equipe").val(equipe_dt.row('.selected').data().id_equipe_types);
         });
     } );
 </script>

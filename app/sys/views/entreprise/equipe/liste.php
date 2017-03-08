@@ -12,6 +12,7 @@
                 <th>prénom</th>
                 <th>tel</th>
                 <th>mail</th>
+                <th>type équipe</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                 <th>prénom</th>
                 <th>tel</th>
                 <th>mail</th>
+                <th>type équipe</th>
             </tr>
             </tfoot>
         </table>
@@ -55,7 +57,8 @@
                 { "data": "nom" },
                 { "data": "prenom" },
                 { "data": "tel" },
-                { "data": "mail" }
+                { "data": "mail" },
+                { "data": "lib_type" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1 ], "visible": false, "searchable": false }
