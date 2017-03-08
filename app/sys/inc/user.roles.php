@@ -335,7 +335,7 @@ class dov extends baseUser {
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
                 "deot" => array("deot"),
-                "devis" => array("formdevis"),
+                "devis" => array("formdevis","delete","convert_bdc"),
                 "ebm" => array("formebm"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
@@ -420,7 +420,7 @@ class pov extends baseUser {
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
                 "deot" => array("deot"),
-                "devis" => array("formdevis"),
+                "devis" => array("formdevis","delete","convert_bdc"),
                 "ebm" => array("formebm"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
@@ -587,7 +587,7 @@ class vpi extends baseUser {
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
                 "deot" => array("deot"),
-                "devis" => array("formdevis"),
+                "devis" => array("formdevis","delete","convert_bdc"),
                 "ebm" => array("formebm"),
                 "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),
