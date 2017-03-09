@@ -29,6 +29,7 @@ $condition .= " AND t1.id_etat_ot <> 5";
 $condition .= " AND t1.date_debut IS NOT NULL";
 $condition .= " AND t1.date_fin IS NOT NULL";
 $condition .= " AND t1.date_fin < DATE_SUB(NOW(), INTERVAL 3 DAY)";
+$condition .= " AND t1.backlog <> 1";
 
 $condition .= " AND t6.system = 1";
 
