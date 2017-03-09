@@ -33,7 +33,6 @@
             }
         });
         $("#devis_convert_bdc_btn").click(function(e) {
-            alert();
             e.preventDefault();
             $("#convert_bdc-devis-dialog-confirm").dialog("open");
         });
