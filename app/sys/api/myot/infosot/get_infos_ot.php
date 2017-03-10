@@ -26,22 +26,16 @@ if($row !== NULL) {
     );
 
     if($sousProjet !== NULL) {
-        if($sousProjet->{$row->type_entree} !== NULL) {
-            $link = $sousProjet->{$row->type_entree}->lien_plans;
-        }
 
-        if($sousProjet->projet->nro !== NULL) {
-            $userPci = Utilisateur::first(
-                array('conditions' =>
-                    array("id_utilisateur = ?", $sousProjet->projet->nro->id_utilisateur2)
-                )
-            );
+        $stmpci = $db->prepare("SELECT * FROM `pci_in_nro` WHERE id_nro = ".$sousProjet->projet->nro->id_nro);
 
-            //var_dump($userPci);
+        $stmpci->execute();
 
-            if($userPci !== NULL) {
-                $pci = $userPci->prenom_utilisateur." ".$userPci->nom_utilisateur;
-            }
+        $pcis = $stmpci->fetchAll(PDO::FETCH_ASSOC);
+
+        if($stmpci->rowCount() > 0) {
+
+            $pci = $pcis[0]["pci"];
         }
 
     }
