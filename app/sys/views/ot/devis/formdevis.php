@@ -1,16 +1,3 @@
-<script src="../../r2i/assets/js/editablegrid/editablegrid.js"></script>
-<!-- [DO NOT DEPLOY] -->
-<script src="../../r2i/assets/js/editablegrid/editablegrid_renderers.js"></script>
-<!-- [DO NOT DEPLOY] -->
-<script src="../../r2i/assets/js/editablegrid/editablegrid_editors.js"></script>
-<!-- [DO NOT DEPLOY] -->
-<script src="../../r2i/assets/js/editablegrid/editablegrid_validators.js"></script>
-<!-- [DO NOT DEPLOY] -->
-<script src="../../r2i/assets/js/editablegrid/editablegrid_utils.js"></script>
-
-<script src="../../r2i/assets/js/edit_devis_js.js"></script>
-<link rel="stylesheet" type="text/css" href="../../r2i/assets/css/edit_devis_css.css" media="screen"/>
-
 <form class="form-horizontal push-10-t push-10" id="devis_detail_form" name="devis_detail_form">
     <div id="wrap" class="modal fade" role="dialog" aria-hidden="false" tabindex="-1">
         <div class="modal-dialog" style="width: 900px">
