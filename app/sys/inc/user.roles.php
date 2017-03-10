@@ -600,7 +600,8 @@ class vpi extends baseUser {
                 "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
-                "synoptique" => array("synoptique")
+                "synoptique" => array("synoptique"),
+                "blq" => array("blq")
             )
         );
     }
