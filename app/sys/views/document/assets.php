@@ -89,4 +89,11 @@
 <script src="assets/js/outils_osa.js" ></script>
 
 <script src="assets/js/ajaxupload.3.5.js" ></script>
-
+<!--file formdevis.php-->
+<script src="assets/js/editablegrid/editablegrid.js"></script>
+<script src="assets/js/editablegrid/editablegrid_renderers.js"></script>
+<script src="assets/js/editablegrid/editablegrid_editors.js"></script>
+<script src="assets/js/editablegrid/editablegrid_validators.js"></script>
+<script src="assets/js/editablegrid/editablegrid_utils.js"></script>
+<script src="assets/js/edit_devis_js.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/edit_devis_css.css" media="screen"/>
