@@ -345,11 +345,7 @@
 
 function call_back(){
 
-
-    console.log("a_totaux id devis : "+ id_devis+", compteur : "+compteur);
-    console.log(a_totaux);
     if(compteur==8  ){
-        console.log("gogogog");
         $.ajax({
             cache: false,
             url: "api/ot/devis/get_details_devis_info.php",
@@ -419,13 +415,11 @@ function call_back(){
 
         });
         $("#download_devis").click(function () {
-            console.log("im in");
             if (devis_dt.row('.selected').data() !== undefined) {
                 location.href = "api/file/parserfile.php?id=" + id_devis + "&idsp=" + ot_dt.row('.selected').data().id_sous_projet + "&idtot=" + ot_dt.row('.selected').data().id_type_ordre_travail;
             }
         });
         $('#devis_restaure_btn').click(function(){
-            console.log('id_ot :: '+id_ot);
             if ( ! $.fn.DataTable.isDataTable( '#devis_supprime_table' ) ) {
                 devis_supprime_dt = $('#devis_supprime_table').DataTable( {
                     "language": {
@@ -478,7 +472,6 @@ function call_back(){
                     method: "POST",
                     data: {iddevis: id_devis,tablename:'restaure_devis'},
                     success: function (data) {
-                         console.log("id_ot :::"+id_ot);
                         devis_dt.ajax.url('api/ot/devis/devis_liste.php?idot='+id_ot).load();
                         devis_supprime_dt.ajax.url('api/ot/devis/devis_liste.php?idot=0&supprime=1').load();
                         $(devis_btns.join(',')).addClass("disabled");
