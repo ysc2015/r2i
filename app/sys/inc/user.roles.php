@@ -200,7 +200,7 @@ class adm extends baseUser {
                 "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
-                "synoptique" => array("synoptique"),
+                /*"synoptique" => array("synoptique"),*/
                 "blq" => array("blq")
             )
         );
@@ -348,7 +348,7 @@ class dov extends baseUser {
                 "ebm" => array("formebm"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
-                "synoptique" => array("synoptique"),
+                /*"synoptique" => array("synoptique"),*/
                 "blq" => array("blq")
             )
         );
@@ -434,7 +434,7 @@ class pov extends baseUser {
                 "ebm" => array("formebm"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
-                "synoptique" => array("synoptique"),
+                /*"synoptique" => array("synoptique"),*/
                 "blq" => array("blq")
             )
         );
@@ -603,7 +603,7 @@ class vpi extends baseUser {
                 "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),
                 "planningot" => array("affecter"),
-                "synoptique" => array("synoptique"),
+                /*"synoptique" => array("synoptique"),*/
                 "blq" => array("blq")
             )
         );
@@ -637,7 +637,7 @@ class pci extends baseUser {
                 "deot" => array("deot"),
                 "infosot" => array("calendar"),
                 "chambreot" => array("liste","update","pointbloquant"),
-                "synoptique" => array("synoptique"),
+                /*"synoptique" => array("synoptique"),*/
                 "traitementot" => array("traitement")
             )
         );
@@ -668,7 +668,7 @@ class stt extends baseUser {
                 "deot" => array("deot"),
                 "infosot" => array("calendar"),
                 "chambreot" => array("liste","update","pointbloquant"),
-                "synoptique" => array("synoptique"),
+                /*"synoptique" => array("synoptique"),*/
                 "devis" => array("formdevis"),
                 "traitementot" => array("traitement"),
                 "blq" => array("blq")
