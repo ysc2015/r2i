@@ -5,6 +5,7 @@
  */
 
 extract($_GET);
+extract($_POST);
 
 $table = array(
     "sous_projet as t1",
