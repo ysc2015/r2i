@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-//extract($_GET);
+extract($_GET);
 
 $table = array(
     "sous_projet as t1",
