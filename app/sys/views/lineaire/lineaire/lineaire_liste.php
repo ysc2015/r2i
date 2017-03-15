@@ -14,11 +14,11 @@
             <tr>
                 <th colspan="4" rowspan="2" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR-->
-                <th colspan="10" style="text-align: center;">Aiguillage</th>
-                <th colspan="14" style="text-align: center;">Tirage</th>
+                <th colspan="10" style="text-align: center;background-color: #7E8CC4;">Aiguillage</th>
+                <th colspan="14" style="text-align: center;background-color: #A4A8BA;">Tirage</th>
                 <!--CDI-->
-                <th colspan="8" style="text-align: center;">Aiguillage</th>
-                <th colspan="12" style="text-align: center;">Tirage</th>
+                <th colspan="8" style="text-align: center;background-color: #7E8CC4;">Aiguillage</th>
+                <th colspan="12" style="text-align: center;background-color: #A4A8BA;">Tirage</th>
             </tr>
             <tr>
                 <!--CTR-->
