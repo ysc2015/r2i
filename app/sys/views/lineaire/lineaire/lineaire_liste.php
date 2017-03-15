@@ -191,7 +191,7 @@
     $(document).ready(function() {
 
         linears_dt = $('#lineaires_table').DataTable( {
-            /*"iDisplayLength":500,*/
+            "iDisplayLength":500,
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
             },
