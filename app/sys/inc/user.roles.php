@@ -161,6 +161,14 @@ class adm extends baseUser {
         );
     }
 
+    function lineaire() {
+        Page::lineaire(
+            array(
+                "lineaire" => array("lineaire_liste")
+            )
+        );
+    }
+
     function planning() {
         Page::planning(
             array(
