@@ -23,22 +23,22 @@
             <tr>
                 <!--CTR-->
                 <!--Aiguillage-->
-                <th colspan="4" style="text-align: center;">Câbles</th>
-                <th colspan="4" style="text-align: center;">Boites</th>
-                <th colspan="2" style="text-align: center;">NRO</th>
+                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
+                <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
+                <th colspan="2" style="text-align: center;background-color: #44b4a6;">NRO</th>
                 <!--Tirage-->
-                <th colspan="4" style="text-align: center;">Câbles</th>
-                <th colspan="4" style="text-align: center;">Tubage</th>
-                <th colspan="4" style="text-align: center;">Boites</th>
-                <th colspan="2" style="text-align: center;">NRO</th>
+                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
+                <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
+                <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
+                <th colspan="2" style="text-align: center;background-color: #44b4a6;">NRO</th>
                 <!--CDI-->
                 <!--Aiguillage-->
-                <th colspan="4" style="text-align: center;">Câbles</th>
-                <th colspan="4" style="text-align: center;">Boites</th>
+                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
+                <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
                 <!--Tirage-->
-                <th colspan="4" style="text-align: center;">Câbles</th>
-                <th colspan="4" style="text-align: center;">Tubage</th>
-                <th colspan="4" style="text-align: center;">Boites</th>
+                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
+                <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
+                <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
             </tr>
             <tr>
                 <th>Sous-projet</th>
