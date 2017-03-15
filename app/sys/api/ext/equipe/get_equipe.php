@@ -17,18 +17,17 @@ $columns = array(
     array( "db" => "t1.prenom", "dt" => 'prenom' ),
     array( "db" => "t1.tel", "dt" => 'tel' ),
     array( "db" => "t1.mail", "dt" => 'mail' ),
-
-    array( "db" => "t2.id_entreprise  as ent_id_entreprise", "dt" => 'ent_id_entreprise' ),
-    array( "db" => "t2.nom  as ent_nom", "dt" => 'ent_nom' ),
-    array( "db" => "t2.code_entreprise  as ent_code_entreprise", "dt" => 'ent_code_entreprise' ),
-    array( "db" => "t2.adresse_siege  as ent_adresse_siege", "dt" => 'ent_adresse_siege' ),
-    array( "db" => "t2.adresse_livraison  as ent_adresse_livraison", "dt" => 'ent_adresse_livraison' ),
-    array( "db" => "t2.gerant_entreprise  as ent_gerant_entreprise", "dt" => 'ent_gerant_entreprise' ),
-    array( "db" => "t2.contact_nom  as ent_contact_nom", "dt" => 'ent_contact_nom' ),
-    array( "db" => "t2.contact_prenom  as ent_contact_prenom", "dt" => 'ent_contact_prenom' ),
-    array( "db" => "t2.contact_tel_mobile  as ent_contact_tel_mobile", "dt" => 'ent_contact_tel_mobile' ),
-    array( "db" => "t2.contact_tel_fixe  as ent_contact_tel_fixe", "dt" => 'ent_contact_tel_fixe' ),
-    array( "db" => "t2.contact_email  as ent_contact_email", "dt" => 'ent_contact_email' ),
+    array( "db" => "t2.id_entreprise as id_entreprise_ent", "dt" => 'id_entreprise_ent' ),
+    array( "db" => "t2.nom as nom_ent", "dt" => 'nom_ent' ),
+    array( "db" => "t2.code_entreprise", "dt" => 'code_entreprise' ),
+    array( "db" => "t2.adresse_siege", "dt" => 'adresse_siege' ),
+    array( "db" => "t2.adresse_livraison", "dt" => 'adresse_livraison' ),
+    array( "db" => "t2.gerant_entreprise", "dt" => 'gerant_entreprise' ),
+    array( "db" => "t2.contact_nom", "dt" => 'contact_nom' ),
+    array( "db" => "t2.contact_prenom", "dt" => 'contact_prenom' ),
+    array( "db" => "t2.contact_tel_mobile", "dt" => 'contact_tel_mobile' ),
+    array( "db" => "t2.contact_tel_fixe", "dt" => 'contact_tel_fixe' ),
+    array( "db" => "t2.contact_email", "dt" => 'contact_email' )
 );
 
 if(!isset($ide) || empty($ide)) {
