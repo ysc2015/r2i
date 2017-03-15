@@ -146,7 +146,7 @@
                 <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
-                <th>Design</th>
+                <th>Design7</th>
             </tr>
             </tfoot>
         </table>
