@@ -7,28 +7,38 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR-->
-                <th class="bg bg-success-light" colspan="7" style="text-align: center;">CTR</th>
+                <th class="bg bg-success-light" colspan="24" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="7" style="text-align: center;">CDI</th>
+                <th class="bg bg-warning-light" colspan="20" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <th colspan="4" rowspan="2" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR-->
-                <th colspan="4" style="text-align: center;">Aiguillage</th>
-                <th colspan="3" style="text-align: center;">Tirage</th>
+                <th colspan="10" style="text-align: center;">Aiguillage</th>
+                <th colspan="14" style="text-align: center;">Tirage</th>
                 <!--CDI-->
-                <th colspan="4" style="text-align: center;">Aiguillage</th>
-                <th colspan="3" style="text-align: center;">Tirage</th>
+                <th colspan="8" style="text-align: center;">Aiguillage</th>
+                <th colspan="12" style="text-align: center;">Tirage</th>
             </tr>
             <tr>
                 <!--CTR-->
-                <th colspan="1" style="text-align: center;">Aiguillage1</th>
-                <th colspan="2" style="text-align: center;">Aiguillage1</th>
-                <th colspan="1" style="text-align: center;">Aiguillage2</th>
-                <th colspan="3" style="text-align: center;">Tirage</th>
+                <!--Aiguillage-->
+                <th colspan="4" style="text-align: center;">Câbles</th>
+                <th colspan="4" style="text-align: center;">Boites</th>
+                <th colspan="2" style="text-align: center;">NRO</th>
+                <!--Tirage-->
+                <th colspan="4" style="text-align: center;">Câbles</th>
+                <th colspan="4" style="text-align: center;">Tubage</th>
+                <th colspan="4" style="text-align: center;">Boites</th>
+                <th colspan="2" style="text-align: center;">NRO</th>
                 <!--CDI-->
-                <th colspan="4" style="text-align: center;">Aiguillage</th>
-                <th colspan="3" style="text-align: center;">Tirage</th>
+                <!--Aiguillage-->
+                <th colspan="4" style="text-align: center;">Câbles</th>
+                <th colspan="4" style="text-align: center;">Boites</th>
+                <!--Tirage-->
+                <th colspan="4" style="text-align: center;">Câbles</th>
+                <th colspan="4" style="text-align: center;">Tubage</th>
+                <th colspan="4" style="text-align: center;">Boites</th>
             </tr>
             <tr>
                 <th>Sous-projet</th>
@@ -43,7 +53,37 @@
                 <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
                 <!--CDI-->
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
@@ -69,7 +109,37 @@
                 <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
                 <!--CDI-->
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
                 <th>Design</th>
