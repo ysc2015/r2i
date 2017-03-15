@@ -30,12 +30,11 @@ $columns = array(
     array( "db" => "t2.mail as equipe_mail", "dt" => 'equipe_mail' )
 );
 
-if(!isset($ide) || empty($ide)) {
-    $ide = -1;
-}
-
 //$condition = "t1.id_entreprise IN (SELECT DISTINCT id_entreprise FROM equipe_stt et WHERE et.id_equipe_types IN (SELECT id_equipe_types FROM equipe_types WHERE a2t = 1 AND id_equipe_types IS NOT NULL) AND t1.id_entreprise IS NOT NULL)";
-$condition = "t1.id_entreprise = t2.id_entreprise AND t1.id_entreprise = $ide AND t2.id_equipe_types IN (SELECT id_equipe_types FROM equipe_types WHERE a2t = 1 AND id_equipe_types IS NOT NULL)";
+$condition = "t1.id_entreprise = t2.id_entreprise AND t2.id_equipe_types IN (SELECT id_equipe_types FROM equipe_types WHERE a2t = 1 AND id_equipe_types IS NOT NULL)";
 
+if(isset($ide) && !empty($ide)) {
+    $condition .=" AND t1.id_entreprise = $ide";
+}
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_entreprise",$columns,$condition,""));
