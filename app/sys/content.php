@@ -221,6 +221,10 @@ switch ($page) {
         $connectedProfil->avancement();
         echo "<br><br>";
         break;
+    case "lineaire":
+        $connectedProfil->lineaire();
+        echo "<br><br>";
+        break;
     case "entreprise":
         $connectedProfil->entreprise();
         echo "<br><br>";

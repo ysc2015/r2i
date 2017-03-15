@@ -1,0 +1,167 @@
+<!-- Table lineaires sous projets -->
+<div class="block">
+    <div class="block-content table-responsive" style="overflow-x: scroll;">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+        <table id="lineaires_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+            <thead>
+            <tr>
+                <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
+                <!--CTR-->
+                <th class="bg bg-success-light" colspan="7" style="text-align: center;">CTR</th>
+                <!--CDI-->
+                <th class="bg bg-warning-light" colspan="7" style="text-align: center;">CDI</th>
+            </tr>
+            <tr>
+                <th colspan="4" rowspan="2" style="text-align: center;">Infos Sous Projet</th>
+                <!--CTR-->
+                <th colspan="4" style="text-align: center;">Aiguillage</th>
+                <th colspan="3" style="text-align: center;">Tirage</th>
+                <!--CDI-->
+                <th colspan="4" style="text-align: center;">Aiguillage</th>
+                <th colspan="3" style="text-align: center;">Tirage</th>
+            </tr>
+            <tr>
+                <!--CTR-->
+                <th colspan="1" style="text-align: center;">Aiguillage1</th>
+                <th colspan="2" style="text-align: center;">Aiguillage1</th>
+                <th colspan="1" style="text-align: center;">Aiguillage2</th>
+                <th colspan="3" style="text-align: center;">Tirage</th>
+                <!--CDI-->
+                <th colspan="4" style="text-align: center;">Aiguillage</th>
+                <th colspan="3" style="text-align: center;">Tirage</th>
+            </tr>
+            <tr>
+                <th>Sous-projet</th>
+                <th>Ville</th>
+                <th>LR</th>
+                <th>LR sur PM Existant</th>
+                <!--CTR-->
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <!--CDI-->
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Sous-projet</th>
+                <th>Ville</th>
+                <th>LR</th>
+                <th>LR sur PM Existant</th>
+                <!--CTR-->
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <!--CDI-->
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+                <th>Design</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- END Table lineaires sous projets -->
+
+<script>
+    /*var details_dt;
+    $(document).ready(function() {
+
+        details_dt = $('#lineaires_table').DataTable( {
+            "iDisplayLength":500,
+            "language": {
+                "url": "assets/js/plugins/datatables/French.json"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: 'Excel',
+                    header : true,
+                    className : 'button button-primary',
+                    filename : 'avancement général'
+                }
+            ],
+            "autoWidth": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'api/projet/sousprojet/details_liste.php?idp='
+            },
+            "columns": [
+                { "data": "lib_nro" },
+                { "data": "ville" },
+                { "data": "lr" },
+                { "data": "lr_sur_pm" },
+                { "data": "ctr_design_lib_ok" },
+                { "data": "ctr_aiguillage_lib_controle_plan" },
+                { "data": "ctr_aiguillage_ordre_de_travail" },
+                { "data": "ctr_aiguillage_lib_etat_retour" },
+                { "data": "ctr_aiguillage_lib_commande_acces" },
+                { "data": "ctr_aiguillage_lib_go_ft" },
+                { "data": "ctr_tirage_lib_controle_plan" },
+                { "data": "ctr_tirage_ordre_de_travail" },
+                { "data": "ctr_tirage_lib_etat_retour" },
+                { "data": "ctr_raccord_lib_controle_plan" },
+                { "data": "ctr_raccord_ordre_de_travail" },
+                { "data": "ctr_raccord_lib_etat_retour" },
+                { "data": "ctr_recette_etat_recette" },
+                { "data": "cdi_design_lib_ok" },
+                { "data": "cdi_aiguillage_lib_controle_plan" },
+                { "data": "cdi_aiguillage_ordre_de_travail" },
+                { "data": "cdi_aiguillage_lib_etat_retour" },
+                { "data": "cdi_aiguillage_lib_commande_acces" },
+                { "data": "cdi_aiguillage_lib_go_ft" },
+                { "data": "cdi_tirage_lib_controle_plan" },
+                { "data": "cdi_tirage_ordre_de_travail" },
+                { "data": "cdi_tirage_lib_etat_retour" },
+                { "data": "cdi_raccord_lib_controle_plan" },
+                { "data": "cdi_raccord_ordre_de_travail" },
+                { "data": "cdi_raccord_lib_etat_retour" },
+                { "data": "cdi_recette_etat_recette" },
+                { "data": "zone" }
+
+            ],
+            "columnDefs": [
+                {
+                    "targets": 0,
+                    orderData: [ 0, 30 ],
+                    "data": "lib_nro",
+                    "render": function ( data, type, full, meta ) {
+                        if(type == "display"){
+                            return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
+                        }
+
+                        return full.lib_nro + '-' + full.zone;
+                    }
+                },
+                { "targets": [ 30 ], "visible": false, "searchable": true }
+            ],
+            "order": [[0, 'desc']]
+            ,
+            "drawCallback": function( settings ) {
+            }
+        } );
+    } );*/
+</script>
