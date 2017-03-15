@@ -20,7 +20,59 @@ $columns = array(
     array( "db" => "t2.id_nro", "dt" => 'id_nro' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t4.lr", "dt" => 'lr' ),
-    array( "db" => "t4.lr_sur_pm", "dt" => 'lr_sur_pm' )
+    array( "db" => "t4.lr_sur_pm", "dt" => 'lr_sur_pm' ),
+    //CTR
+    //Aiguillage
+    array( "db" => "t5.lineaire1 as t5_lineaire1", "dt" => 't5_lineaire1' ),
+    array( "db" => "t5.lineaire2 as t5_lineaire2", "dt" => 't5_lineaire2' ),
+    array( "db" => "t5.lineaire3 as t5_lineaire3", "dt" => 't5_lineaire3' ),
+    array( "db" => "t5.lineaire4 as t5_lineaire4", "dt" => 't5_lineaire4' ),
+    array( "db" => "t5.lineaire5 as t5_lineaire5", "dt" => 't5_lineaire5' ),
+    array( "db" => "t5.lineaire6 as t5_lineaire6", "dt" => 't5_lineaire6' ),
+    array( "db" => "t5.lineaire7 as t5_lineaire7", "dt" => 't5_lineaire7' ),
+    array( "db" => "t5.lineaire8 as t5_lineaire8", "dt" => 't5_lineaire8' ),
+    array( "db" => "t5.lineaire9 as t5_lineaire9", "dt" => 't5_lineaire9' ),
+    array( "db" => "t5.lineaire10 as t5_lineaire10", "dt" => 't5_lineaire10' ),
+    //Tirage
+    array( "db" => "t6.lineaire1 as t6_lineaire1", "dt" => 't6_lineaire1' ),
+    array( "db" => "t6.lineaire2 as t6_lineaire2", "dt" => 't6_lineaire2' ),
+    array( "db" => "t6.lineaire3 as t6_lineaire3", "dt" => 't6_lineaire3' ),
+    array( "db" => "t6.lineaire4 as t6_lineaire4", "dt" => 't6_lineaire4' ),
+    array( "db" => "t6.lineaire9 as t6_lineaire9", "dt" => 't6_lineaire9' ),
+    array( "db" => "t6.lineaire10 as t6_lineaire10", "dt" => 't6_lineaire10' ),
+    array( "db" => "t6.lineaire11 as t6_lineaire11", "dt" => 't6_lineaire11' ),
+    array( "db" => "t6.lineaire12 as t6_lineaire12", "dt" => 't6_lineaire12' ),
+    array( "db" => "t6.lineaire5 as t6_lineaire5", "dt" => 't6_lineaire5' ),
+    array( "db" => "t6.lineaire6 as t6_lineaire6", "dt" => 't6_lineaire6' ),
+    array( "db" => "t6.lineaire7 as t6_lineaire7", "dt" => 't6_lineaire7' ),
+    array( "db" => "t6.lineaire8 as t6_lineaire8", "dt" => 't6_lineaire8' ),
+    array( "db" => "t6.lineaire13 as t6_lineaire13", "dt" => 't6_lineaire13' ),
+    array( "db" => "t6.lineaire14 as t6_lineaire14", "dt" => 't6_lineaire14' ),
+    //CDI
+    //Aiguillage
+    array( "db" => "t7.lineaire1 as t7_lineaire", "dt" => 'lineaire1' ),
+    array( "db" => "t7.lineaire2 as t7_lineaire", "dt" => 'lineaire2' ),
+    array( "db" => "t7.lineaire3 as t7_lineaire", "dt" => 'lineaire3' ),
+    array( "db" => "t7.lineaire4 as t7_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t7.lineaire5 as t7_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t7.lineaire6 as t7_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t7.lineaire7 as t7_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t7.lineaire8 as t7_lineaire", "dt" => 'lineaire' ),
+    //Tirage
+    array( "db" => "t8.lineaire1 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire2 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire3 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire4 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire9 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire10 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire11 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire12 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire5 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire6 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire7 as t8_lineaire", "dt" => 'lineaire' ),
+    array( "db" => "t8.lineaire8 as t8_lineaire", "dt" => 'lineaire' )
+
+
 );
 
 $condition = "t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
@@ -56,7 +108,10 @@ switch($connectedProfil->profil->profil->shortlib) {
 }
 
 $left = "left join sous_projet_zone t4 on t1.id_sous_projet = t4.id_sous_projet";
-$left .= "";
+$left .= "left join sous_projet_transport_aiguillage t5 on t1.id_sous_projet = t5.id_sous_projet";
+$left .= "left join sous_projet_transport_tirage t6 on t1.id_sous_projet = t6.id_sous_projet";
+$left .= "left join sous_projet_distribution_aiguillage t7 on t1.id_sous_projet = t7.id_sous_projet";
+$left .= "left join sous_projet_distribution_tirage t8 on t1.id_sous_projet = t7.id_sous_projet";
 
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
