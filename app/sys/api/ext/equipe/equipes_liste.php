@@ -17,7 +17,7 @@ echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));*/
 
 $table = array("equipe_stt as t1");
 $columns = array(
-    array( "db" => "t1.id_equipe_stt", "dt" => 'id_entreprise' ),
+    array( "db" => "t1.id_equipe_stt", "dt" => 'id_equipe_stt' ),
     array( "db" => "t1.id_entreprise", "dt" => 'id_entreprise' ),
     array( "db" => "t1.id_equipe_types", "dt" => 'id_equipe_types' ),
     array( "db" => "t1.imei", "dt" => 'imei' ),
