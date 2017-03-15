@@ -12,6 +12,8 @@ $stm->execute();
 
 echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));*/
 
+echo "fdfd";
+
 
 $table = array("entreprises_stt as t1");
 $columns = array(
