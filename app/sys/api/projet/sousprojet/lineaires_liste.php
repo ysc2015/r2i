@@ -4,9 +4,6 @@
  * User: rabii
  */
 
-extract($_GET);
-extract($_POST);
-
 $table = array(
     "sous_projet as t1",
     "projet as t2",
@@ -115,5 +112,5 @@ $left .= " left join sous_projet_distribution_aiguillage t7 on t1.id_sous_projet
 $left .= " left join sous_projet_distribution_tirage t8 on t1.id_sous_projet = t7.id_sous_projet";
 
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
+echo json_encode(SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
