@@ -62,6 +62,8 @@
                 <th>432FO</th>
                 <th>288FO</th>
                 <th>144FO</th>
+                <th>72FO</th>
+                <th>48FO</th>
                 <!--tubage-->
                 <th>21/25</th>
                 <th>16/20</th>
