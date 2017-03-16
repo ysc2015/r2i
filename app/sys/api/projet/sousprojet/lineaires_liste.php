@@ -31,7 +31,7 @@ $columns = array(
     array( "db" => "t5.lineaire8 as t5_lineaire8", "dt" => 't5_lineaire8' ),
     array( "db" => "t5.lineaire9 as t5_lineaire9", "dt" => 't5_lineaire9' ),
     array( "db" => "t5.lineaire10 as t5_lineaire10", "dt" => 't5_lineaire10' ),
-    //Tirage
+    //Aiguillage & Tirage
     array( "db" => "if(t6.lineaire1>0,t6.lineaire1,t5.lineaire1) as t6_lineaire1", "dt" => 't6_lineaire1' ),
     array( "db" => "if(t6.lineaire2>0,t6.lineaire2,t5.lineaire2) as t6_lineaire2", "dt" => 't6_lineaire2' ),
     array( "db" => "if(t6.lineaire3>0,t6.lineaire3,t5.lineaire3) as t6_lineaire3", "dt" => 't6_lineaire3' ),
@@ -56,7 +56,7 @@ $columns = array(
     array( "db" => "t7.lineaire6 as t7_lineaire6", "dt" => 't7_lineaire6' ),
     array( "db" => "t7.lineaire7 as t7_lineaire7", "dt" => 't7_lineaire7' ),
     array( "db" => "t7.lineaire8 as t7_lineaire8", "dt" => 't7_lineaire8' ),
-    //Tirage
+    //Aiguillage & Tirage
     array( "db" => "if(t8.lineaire1>0,t8.lineaire1,t7.lineaire1) as t8_lineaire1", "dt" => 't8_lineaire1' ),
     array( "db" => "if(t8.lineaire2>0,t8.lineaire2,t7.lineaire2) as t8_lineaire2", "dt" => 't8_lineaire2' ),
     array( "db" => "if(t8.lineaire3>0,t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),
