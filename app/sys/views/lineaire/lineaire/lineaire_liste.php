@@ -141,7 +141,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 18 ],
+                    orderData: [ 0, 20 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -163,7 +163,7 @@
                         return (full.t6_lineaire1 !== '' && full.t6_lineaire1 > 0 ? full.t6_lineaire1 : (full.t5_lineaire1));
                     }
                 },*/
-                { "targets": [ 18 ], "visible": false, "searchable": true }
+                { "targets": [ 20 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
