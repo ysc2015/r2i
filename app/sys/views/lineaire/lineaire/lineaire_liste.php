@@ -7,35 +7,19 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR-->
-                <th class="bg bg-success-light" colspan="24" style="text-align: center;">CTR</th>
+                <th class="bg bg-success-light" colspan="14" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="20" style="text-align: center;">CDI</th>
-            </tr>
-            <tr>
-                <th colspan="4" rowspan="2" style="text-align: center;">Infos Sous Projet</th>
-                <!--CTR-->
-                <th colspan="10" style="text-align: center;background-color: #7E8CC4;">Aiguillage</th>
-                <th colspan="14" style="text-align: center;background-color: #A4A8BA;">Tirage</th>
-                <!--CDI-->
-                <th colspan="8" style="text-align: center;background-color: #7E8CC4;">Aiguillage</th>
-                <th colspan="12" style="text-align: center;background-color: #A4A8BA;">Tirage</th>
+                <th class="bg bg-warning-light" colspan="12" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <!--CTR-->
-                <!--Aiguillage-->
-                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
-                <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
-                <th colspan="2" style="text-align: center;background-color: #44b4a6;">NRO</th>
-                <!--Tirage-->
+                <!--Aiguillage et Tirage-->
                 <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
                 <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
                 <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
                 <th colspan="2" style="text-align: center;background-color: #44b4a6;">NRO</th>
                 <!--CDI-->
-                <!--Aiguillage-->
-                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
-                <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
-                <!--Tirage-->
+                <!--Aiguillage et Tirage-->
                 <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
                 <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
                 <th colspan="4" style="text-align: center;background-color: #f3b760;">Boites</th>
@@ -46,21 +30,7 @@
                 <th>LR</th>
                 <th>LR sur PM Existant</th>
                 <!--CTR-->
-                <!--Aiguillage-->
-                <!--câbles-->
-                <th>720FO</th>
-                <th>432FO</th>
-                <th>288FO</th>
-                <th>144FO</th>
-                <!--boites-->
-                <th>720FO</th>
-                <th>432FO</th>
-                <th>288FO</th>
-                <th>144FO</th>
-                <!--NRO-->
-                <th>CTR</th>
-                <th>TOR</th>
-                <!--Tirage-->
+                <!--Aiguillage et Tirage-->
                 <!--cables-->
                 <th>720FO</th>
                 <th>432FO</th>
@@ -76,22 +46,11 @@
                 <th>432FO</th>
                 <th>288FO</th>
                 <th>144FO</th>
-                <!--boites-->
+                <!--NRO-->
                 <th>CTR</th>
                 <th>TOR</th>
                 <!--CDI-->
-                <!--Aiguillage-->
-                <!--câbles-->
-                <th>288FO</th>
-                <th>144FO</th>
-                <th>72FO</th>
-                <th>48FO</th>
-                <!--boites-->
-                <th>288FO</th>
-                <th>144FO</th>
-                <th>72FO</th>
-                <th>48FO</th>
-                <!--Tirage-->
+                <!--Aiguillage et Tirage-->
                 <!--câbles-->
                 <th>288FO</th>
                 <th>144FO</th>
@@ -118,21 +77,7 @@
                 <th>LR</th>
                 <th>LR sur PM Existant</th>
                 <!--CTR-->
-                <!--Aiguillage-->
-                <!--câbles-->
-                <th>720FO</th>
-                <th>432FO</th>
-                <th>288FO</th>
-                <th>144FO</th>
-                <!--boites-->
-                <th>720FO</th>
-                <th>432FO</th>
-                <th>288FO</th>
-                <th>144FO</th>
-                <!--NRO-->
-                <th>CTR</th>
-                <th>TOR</th>
-                <!--Tirage-->
+                <!--Aiguillage et Tirage-->
                 <!--cables-->
                 <th>720FO</th>
                 <th>432FO</th>
@@ -148,22 +93,11 @@
                 <th>432FO</th>
                 <th>288FO</th>
                 <th>144FO</th>
-                <!--boites-->
+                <!--NRO-->
                 <th>CTR</th>
                 <th>TOR</th>
                 <!--CDI-->
-                <!--Aiguillage-->
-                <!--câbles-->
-                <th>288FO</th>
-                <th>144FO</th>
-                <th>72FO</th>
-                <th>48FO</th>
-                <!--boites-->
-                <th>288FO</th>
-                <th>144FO</th>
-                <th>72FO</th>
-                <th>48FO</th>
-                <!--Tirage-->
+                <!--Aiguillage et Tirage-->
                 <!--câbles-->
                 <th>288FO</th>
                 <th>144FO</th>
@@ -218,18 +152,7 @@
                 { "data": "lr" },
                 { "data": "lr_sur_pm" },
                 //CTR
-                //Aiguillage
-                { "data": "t5_lineaire1" },
-                { "data": "t5_lineaire2" },
-                { "data": "t5_lineaire3" },
-                { "data": "t5_lineaire4" },
-                { "data": "t5_lineaire5" },
-                { "data": "t5_lineaire6" },
-                { "data": "t5_lineaire7" },
-                { "data": "t5_lineaire8" },
-                { "data": "t5_lineaire9" },
-                { "data": "t5_lineaire10" },
-                //Tirage
+                //Aiguillage et Tirage
                 { "data": "t6_lineaire1" },
                 { "data": "t6_lineaire2" },
                 { "data": "t6_lineaire3" },
@@ -245,16 +168,7 @@
                 { "data": "t6_lineaire13" },
                 { "data": "t6_lineaire14" },
                 //CDI
-                //Aiguillage
-                { "data": "t7_lineaire1" },
-                { "data": "t7_lineaire2" },
-                { "data": "t7_lineaire3" },
-                { "data": "t7_lineaire4" },
-                { "data": "t7_lineaire5" },
-                { "data": "t7_lineaire6" },
-                { "data": "t7_lineaire7" },
-                { "data": "t7_lineaire8" },
-                //Tirage
+                //Aiguillage et Tirage
                 { "data": "t8_lineaire1" },
                 { "data": "t8_lineaire2" },
                 { "data": "t8_lineaire3" },
@@ -273,7 +187,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 48 ],
+                    orderData: [ 0, 30 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -283,7 +197,7 @@
                         return full.lib_nro + '-' + full.zone;
                     }
                 },
-                { "targets": [ 48 ], "visible": false, "searchable": true }
+                { "targets": [ 30 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
