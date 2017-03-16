@@ -111,6 +111,9 @@ $left .= " left join sous_projet_transport_tirage t6 on t1.id_sous_projet = t6.i
 $left .= " left join sous_projet_distribution_aiguillage t7 on t1.id_sous_projet = t7.id_sous_projet";
 $left .= " left join sous_projet_distribution_tirage t8 on t1.id_sous_projet = t7.id_sous_projet";
 
+//TODO
+//ORDER BY ser1.lib_etat_retour as ctr_aiguillage_lib_etat_retour ASC\n\t\t\t LIMIT 0
 
-echo json_encode(SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
+
+echo json_encode(@SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
