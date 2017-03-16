@@ -7,7 +7,7 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR/CDI-->
-                <th class="bg bg-success-light" colspan="16" style="text-align: center;">CTR/CDI</th>
+                <th class="bg bg-success-light" colspan="18" style="text-align: center;">CTR/CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
@@ -15,7 +15,7 @@
                 <!--Aiguillage et Tirage-->
                 <th colspan="6" style="text-align: center;background-color: #70b9eb;">Câbles</th>
                 <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
-                <th colspan="4" style="text-align: center;background-color: #f3b760;">Bpe</th>
+                <th colspan="6" style="text-align: center;background-color: #f3b760;">Bpe</th>
                 <th colspan="2" style="text-align: center;background-color: #44b4a6;">Tiroirs</th>
             </tr>
             <tr>
@@ -42,6 +42,8 @@
                 <th>432FO</th>
                 <th>288FO</th>
                 <th>144FO</th>
+                <th>72FO</th>
+                <th>48FO</th>
                 <!--NRO-->
                 <th>CTR</th>
                 <th>TOR</th>
@@ -74,6 +76,8 @@
                 <th>432FO</th>
                 <th>288FO</th>
                 <th>144FO</th>
+                <th>72FO</th>
+                <th>48FO</th>
                 <!--NRO-->
                 <th>CTR</th>
                 <th>TOR</th>
@@ -134,6 +138,8 @@
                 { "data": "t6_lineaire6" },
                 { "data": "t6_lineaire7" },
                 { "data": "t6_lineaire8" },
+                { "data": "t6_lineaire8" },//
+                { "data": "t6_lineaire8" },//
                 //NRO
                 { "data": "t6_lineaire13" },
                 { "data": "t6_lineaire14" },
@@ -143,7 +149,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 20 ],
+                    orderData: [ 0, 22 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -153,19 +159,7 @@
                         return full.lib_nro + '-' + full.zone;
                     }
                 },
-                /*{
-                    "targets": 0,
-                    orderData: [ 0, 30 ],
-                    "data": "lib_nro",
-                    "render": function ( data, type, full, meta ) {
-                        if(type == "display"){
-                            return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
-                        }
-
-                        return (full.t6_lineaire1 !== '' && full.t6_lineaire1 > 0 ? full.t6_lineaire1 : (full.t5_lineaire1));
-                    }
-                },*/
-                { "targets": [ 20 ], "visible": false, "searchable": true }
+                { "targets": [ 22 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
