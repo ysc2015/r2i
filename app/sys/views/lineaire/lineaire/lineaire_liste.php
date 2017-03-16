@@ -130,22 +130,22 @@
                 { "data": "t6_lineaire2" },
                 { "data": "t6_lineaire3" },
                 { "data": "t6_lineaire4" },
-                { "data": "t6_lineaire4" },//
-                { "data": "t6_lineaire4" },//
+                { "data": "t8_lineaire3" },//72FO
+                { "data": "t8_lineaire4" },//48FO
                 //Tubage
                 { "data": "t6_lineaire9" },
                 { "data": "t6_lineaire10" },
                 { "data": "t6_lineaire11" },
                 { "data": "t6_lineaire12" },
-                { "data": "t6_lineaire12" },//
-                { "data": "t6_lineaire12" },//
+                { "data": "t8_lineaire9" },//18/21
+                { "data": "t8_lineaire11" },//11/14
                 //Boites
                 { "data": "t6_lineaire5" },
                 { "data": "t6_lineaire6" },
                 { "data": "t6_lineaire7" },
                 { "data": "t6_lineaire8" },
-                { "data": "t6_lineaire8" },//
-                { "data": "t6_lineaire8" },//
+                { "data": "t8_lineaire7" },//72FO
+                { "data": "t8_lineaire8" },//48FO
                 //NRO
                 { "data": "t6_lineaire13" },
                 { "data": "t6_lineaire14" },
