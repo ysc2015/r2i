@@ -198,6 +198,18 @@
                         return full.lib_nro + '-' + full.zone;
                     }
                 },
+                /*{
+                    "targets": 0,
+                    orderData: [ 0, 30 ],
+                    "data": "lib_nro",
+                    "render": function ( data, type, full, meta ) {
+                        if(type == "display"){
+                            return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
+                        }
+
+                        return (full.t6_lineaire1 !== '' && full.t6_lineaire1 > 0 ? full.t6_lineaire1 : (full.t5_lineaire1));
+                    }
+                },*/
                 { "targets": [ 30 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]

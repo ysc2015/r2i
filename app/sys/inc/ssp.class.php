@@ -279,7 +279,7 @@ class SSP {
         );
     }
 
-    static function simpleJoin ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "" )
+    static function simpleJoin ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "",$ex=false )
     {
         $bindings = array();
         $db = self::db( $conn );
@@ -303,20 +303,22 @@ class SSP {
         $fromTables = implode(" JOIN ",$table);
         // Main query to actually get the data
         $pluck = self::pluck($columns, 'db');
+
+        $delimiter = ($ex ? "" : "`");
         // var_dump($pluck);
         foreach($pluck as $key => $value)
         {
             if(preg_match("|.* as .*|",$pluck[$key])){
-                $pluck[$key] = "`" . str_replace(".",'`.`',$value);
-                $pluck[$key] = str_replace(" as ",'` as ',$pluck[$key]);
+                $pluck[$key] = $delimiter . str_replace(".","$delimiter.$delimiter",$value);
+                $pluck[$key] = str_replace(" as ","$delimiter as ",$pluck[$key]);
 
             } else if(preg_match("/concat\(.*/", $value)) {
                 $str = str_replace('concat(', '', $value);
                 $value = str_replace(')', '', $str); 
                 $elts = explode(',', $value);
-                $pluck[$key] = "concat(".implode(',',array_map(function($a){ return preg_match("/\w+/", $a) ? "`" . str_replace(".",'`.`',trim($a)) . "`" : $a;}, $elts)).")"; 
+                $pluck[$key] = "concat(".implode(',',array_map(function($a){ return preg_match("/\w+/", $a) ? $delimiter . str_replace(".","$delimiter.$delimiter",trim($a)) . $delimiter : $a;}, $elts)).")";
             } else {
-                $pluck[$key] = "`" . str_replace(".",'`.`',$value) . "`";
+                $pluck[$key] = $delimiter . str_replace(".","$delimiter.$delimiter",$value) . $delimiter;
             }
         }
 
