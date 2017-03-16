@@ -7,13 +7,13 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR/CDI-->
-                <th class="bg bg-success-light" colspan="14" style="text-align: center;">CTR/CDI</th>
+                <th class="bg bg-success-light" colspan="16" style="text-align: center;">CTR/CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR/CDI-->
                 <!--Aiguillage et Tirage-->
-                <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
+                <th colspan="6" style="text-align: center;background-color: #70b9eb;">Câbles</th>
                 <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
                 <th colspan="4" style="text-align: center;background-color: #f3b760;">Bpe</th>
                 <th colspan="2" style="text-align: center;background-color: #44b4a6;">Tiroirs</th>
@@ -30,6 +30,8 @@
                 <th>432FO</th>
                 <th>288FO</th>
                 <th>144FO</th>
+                <th>72FO</th>
+                <th>48FO</th>
                 <!--tubage-->
                 <th>21/25</th>
                 <th>16/20</th>
@@ -113,18 +115,24 @@
                 { "data": "lr_sur_pm" },
                 //CTR&CDI
                 //Aiguillage et Tirage
+                //Cables
                 { "data": "t6_lineaire1" },
                 { "data": "t6_lineaire2" },
                 { "data": "t6_lineaire3" },
                 { "data": "t6_lineaire4" },
+                { "data": "t6_lineaire4" },//
+                { "data": "t6_lineaire4" },//
+                //Tubage
                 { "data": "t6_lineaire9" },
                 { "data": "t6_lineaire10" },
                 { "data": "t6_lineaire11" },
                 { "data": "t6_lineaire12" },
+                //Boites
                 { "data": "t6_lineaire5" },
                 { "data": "t6_lineaire6" },
                 { "data": "t6_lineaire7" },
                 { "data": "t6_lineaire8" },
+                //NRO
                 { "data": "t6_lineaire13" },
                 { "data": "t6_lineaire14" },
                 { "data": "zone" }
