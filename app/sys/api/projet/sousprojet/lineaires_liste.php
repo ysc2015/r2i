@@ -59,16 +59,16 @@ $columns = array(
     //Aiguillage & Tirage
     array( "db" => "if(t8.lineaire1>0,t8.lineaire1,t7.lineaire1) as t8_lineaire1", "dt" => 't8_lineaire1' ),
     array( "db" => "if(t8.lineaire2>0,t8.lineaire2,t7.lineaire2) as t8_lineaire2", "dt" => 't8_lineaire2' ),
-    array( "db" => "if(t8.lineaire3>0,t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),
-    array( "db" => "if(t8.lineaire4>0,t8.lineaire4,t7.lineaire4) as t8_lineaire4", "dt" => 't8_lineaire4' ),
-    array( "db" => "t8.lineaire9 as t8_lineaire9", "dt" => 't8_lineaire9' ),
+    array( "db" => "if(t8.lineaire3>0,t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),//72FO
+    array( "db" => "if(t8.lineaire4>0,t8.lineaire4,t7.lineaire4) as t8_lineaire4", "dt" => 't8_lineaire4' ),//48FO
+    array( "db" => "t8.lineaire9 as t8_lineaire9", "dt" => 't8_lineaire9' ),//18/21
     array( "db" => "t8.lineaire10 as t8_lineaire10", "dt" => 't8_lineaire10' ),
-    array( "db" => "t8.lineaire11 as t8_lineaire11", "dt" => 't8_lineaire11' ),
+    array( "db" => "t8.lineaire11 as t8_lineaire11", "dt" => 't8_lineaire11' ),//11/14
     array( "db" => "t8.lineaire12 as t8_lineaire12", "dt" => 't8_lineaire12' ),
     array( "db" => "if(t8.lineaire5>0,t8.lineaire5,t7.lineaire5) as t8_lineaire5", "dt" => 't8_lineaire5' ),
     array( "db" => "if(t8.lineaire6>0,t8.lineaire6,t7.lineaire6) as t8_lineaire6", "dt" => 't8_lineaire6' ),
-    array( "db" => "if(t8.lineaire7>0,t8.lineaire7,t7.lineaire7) as t8_lineaire7", "dt" => 't8_lineaire7' ),
-    array( "db" => "if(t8.lineaire8>0,t8.lineaire8,t7.lineaire8) as t8_lineaire8", "dt" => 't8_lineaire8' )
+    array( "db" => "if(t8.lineaire7>0,t8.lineaire7,t7.lineaire7) as t8_lineaire7", "dt" => 't8_lineaire7' ),//72FO
+    array( "db" => "if(t8.lineaire8>0,t8.lineaire8,t7.lineaire8) as t8_lineaire8", "dt" => 't8_lineaire8' )//48FO
 
 
 );
