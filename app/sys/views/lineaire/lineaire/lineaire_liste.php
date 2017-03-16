@@ -12,6 +12,7 @@
                 <th class="bg bg-warning-light" colspan="12" style="text-align: center;">CDI</th>
             </tr>
             <tr>
+                <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR-->
                 <!--Aiguillage et Tirage-->
                 <th colspan="4" style="text-align: center;background-color: #70b9eb;">Câbles</th>
