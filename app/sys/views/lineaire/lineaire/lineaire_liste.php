@@ -7,14 +7,14 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR/CDI-->
-                <th class="bg bg-success-light" colspan="18" style="text-align: center;">CTR/CDI</th>
+                <th class="bg bg-success-light" colspan="20" style="text-align: center;">CTR/CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR/CDI-->
                 <!--Aiguillage et Tirage-->
                 <th colspan="6" style="text-align: center;background-color: #70b9eb;">Câbles</th>
-                <th colspan="4" style="text-align: center;background-color: #46c37b;">Tubage</th>
+                <th colspan="6" style="text-align: center;background-color: #46c37b;">Tubage</th>
                 <th colspan="6" style="text-align: center;background-color: #f3b760;">Bpe</th>
                 <th colspan="2" style="text-align: center;background-color: #44b4a6;">Tiroirs</th>
             </tr>
@@ -36,6 +36,8 @@
                 <th>21/25</th>
                 <th>16/20</th>
                 <th>15/18</th>
+                <th>18/21</th>
+                <th>11/14</th>
                 <th>Trançons à tuber</th>
                 <!--boites-->
                 <th>720FO</th>
@@ -70,6 +72,8 @@
                 <th>21/25</th>
                 <th>16/20</th>
                 <th>15/18</th>
+                <th>18/21</th>
+                <th>11/14</th>
                 <th>Trançons à tuber</th>
                 <!--boites-->
                 <th>720FO</th>
@@ -133,6 +137,8 @@
                 { "data": "t6_lineaire10" },
                 { "data": "t6_lineaire11" },
                 { "data": "t6_lineaire12" },
+                { "data": "t6_lineaire12" },//
+                { "data": "t6_lineaire12" },//
                 //Boites
                 { "data": "t6_lineaire5" },
                 { "data": "t6_lineaire6" },
@@ -149,7 +155,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 22 ],
+                    orderData: [ 0, 24 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -159,7 +165,7 @@
                         return full.lib_nro + '-' + full.zone;
                     }
                 },
-                { "targets": [ 22 ], "visible": false, "searchable": true }
+                { "targets": [ 24 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
