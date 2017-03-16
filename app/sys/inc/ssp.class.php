@@ -122,7 +122,7 @@ class SSP {
                     $dir = $request['order'][$i]['dir'] === 'asc' ?
                         'ASC' :
                         'DESC';
-                    $orderBy[] = ''.$column['db'].' '.$dir;
+                    $orderBy[] = ''.explode(' ',$column['db'])[count(explode(' ',$column['db'])) - 1].' '.$dir;
                 }
             }
             $order = 'ORDER BY '.implode(', ', $orderBy);
