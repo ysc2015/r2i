@@ -36,9 +36,9 @@
                 <th>21/25</th>
                 <th>16/20</th>
                 <th>15/18</th>
+                <th>Trançons à tuber</th>
                 <th>18/21</th>
                 <th>11/14</th>
-                <th>Trançons à tuber</th>
                 <!--boites-->
                 <th>720FO</th>
                 <th>432FO</th>
@@ -72,9 +72,9 @@
                 <th>21/25</th>
                 <th>16/20</th>
                 <th>15/18</th>
+                <th>Trançons à tuber</th>
                 <th>18/21</th>
                 <th>11/14</th>
-                <th>Trançons à tuber</th>
                 <!--boites-->
                 <th>720FO</th>
                 <th>432FO</th>
