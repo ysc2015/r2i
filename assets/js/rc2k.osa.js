@@ -74,6 +74,7 @@
 				},
 				projet: {
 					create: function (obj, callback) {
+						console.log("obj.ref : "+obj.ref);
 						$.ajax({
 							method: "POST",
 							url: rc2k.osa.url + "api/switcher.php?controller=Projet&action=create",
