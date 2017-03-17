@@ -62,7 +62,7 @@ $columns = array(
     array( "db" => "t7.lineaire8 as t7_lineaire8", "dt" => 't7_lineaire8' ),*/
     //Aiguillage & Tirage
     //Cables
-    array( "db" => "if(t8.lineaire1>'0',t8.lineaire1,t7.lineaire1) as t8_lineaire1", "dt" => 't8_lineaire1' ),//288FO
+    array( "db" => "if(t8.lineaire1 is not null and t8.lineaire1 <> '' and t8.lineaire1 <> '0',t8.lineaire1,t7.lineaire1) as t8_lineaire1", "dt" => 't8_lineaire1' ),//288FO
     array( "db" => "if(t8.lineaire2>'0',t8.lineaire2,t7.lineaire2) as t8_lineaire2", "dt" => 't8_lineaire2' ),//144FO
     array( "db" => "if(t8.lineaire3>'0',t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),//72FO
     array( "db" => "if(t8.lineaire4>'0',t8.lineaire4,t7.lineaire4) as t8_lineaire4", "dt" => 't8_lineaire4' ),//48FO
