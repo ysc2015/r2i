@@ -94,6 +94,10 @@
 
 <script>
     var linears_dt;
+    function getZ(f) {
+        if(f == null || f == '') return 0;
+        return parseInt(f);
+    }
     $(document).ready(function() {
 
         linears_dt = $('#lineaires_table').DataTable( {
@@ -126,29 +130,29 @@
                 //CTR&CDI
                 //Aiguillage et Tirage
                 //Cables
-                { "data": "t6_lineaire1" },//720FO
-                { "data": "t6_lineaire2" },//432FO
-                { "data": "t6_lineaire3" },//288FO
-                { "data": "t6_lineaire4" },//48FO
-                { "data": "t8_lineaire3" },//72FO
-                { "data": "t8_lineaire4" },//48FO
+                { "data": "t6_lineaire1" },//720FO : 4
+                { "data": "t6_lineaire2" },//432FO : 5
+                { "data": "t6_lineaire3" },//288FO : 6
+                { "data": "t6_lineaire4" },//144FO : 7
+                { "data": "t8_lineaire3" },//72FO : 8
+                { "data": "t8_lineaire4" },//48FO : 9
                 //Tubage
-                { "data": "t6_lineaire9" },//21/25
-                { "data": "t6_lineaire10" },//16/20
-                { "data": "t6_lineaire11" },//15/18
-                { "data": "t6_lineaire12" },//Trançons à tuber
-                { "data": "t8_lineaire9" },//18/21
-                { "data": "t8_lineaire11" },//11/14
+                { "data": "t6_lineaire9" },//21/25 : 10
+                { "data": "t6_lineaire10" },//16/20 : 11
+                { "data": "t6_lineaire11" },//15/18 : 12
+                { "data": "t6_lineaire12" },//Trançons à tuber : 13
+                { "data": "t8_lineaire9" },//18/21 : 14
+                { "data": "t8_lineaire11" },//11/14 : 15
                 //Boites
-                { "data": "t6_lineaire5" },//720FO
-                { "data": "t6_lineaire6" },//432FO
-                { "data": "t6_lineaire7" },//288FO
-                { "data": "t6_lineaire8" },
-                { "data": "t8_lineaire7" },//72FO
-                { "data": "t8_lineaire8" },//48FO
+                { "data": "t6_lineaire5" },//720FO : 16
+                { "data": "t6_lineaire6" },//432FO : 17
+                { "data": "t6_lineaire7" },//288FO : 18
+                { "data": "t6_lineaire8" },//144FO : 19
+                { "data": "t8_lineaire7" },//72FO : 20
+                { "data": "t8_lineaire8" },//48FO : 21
                 //NRO
-                { "data": "t6_lineaire13" },//CTR
-                { "data": "t6_lineaire14" },//TOR
+                { "data": "t6_lineaire13" },//CTR : 22
+                { "data": "t6_lineaire14" },//TOR : 23
                 { "data": "zone" }
 
             ],
@@ -165,6 +169,33 @@
                         return full.lib_nro + '-' + full.zone;
                     }
                 },
+                {
+                    "targets": [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+                    "render": function ( data, type, full, meta ) {
+                        var d;
+
+                        switch (meta.col) {
+                            case 6 : d = getZ(full.t6_lineaire3) + getZ(full.t8_lineaire1);
+                                break;
+                            case 7 : d = getZ(full.t6_lineaire4) + getZ(full.t8_lineaire2);
+                                break;
+                            case 12 : d = getZ(full.t6_lineaire11) + getZ(full.t8_lineaire10);
+                                break;
+                            case 13 : d = getZ(full.t6_lineaire12) + getZ(full.t8_lineaire12);
+                                break;
+                            case 18 : d = getZ(full.t6_lineaire7) + getZ(full.t8_lineaire5);
+                                break;
+                            case 19 : d = getZ(full.t6_lineaire8) + getZ(full.t8_lineaire6);
+                                break;
+                            default : d = getZ(data);
+                                break;
+                        }
+
+                        return d;
+
+                    }
+                },
+                { "targets": [ 6,7,12,13,18,19 ], "visible": true, "orderable": false },
                 { "targets": [ 24 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]

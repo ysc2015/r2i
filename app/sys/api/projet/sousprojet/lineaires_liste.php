@@ -20,7 +20,7 @@ $columns = array(
     array( "db" => "t4.lr", "dt" => 'lr' ),
     array( "db" => "t4.lr_sur_pm", "dt" => 'lr_sur_pm' ),
     //CTR
-    //Aiguillage
+/*    //Aiguillage
     array( "db" => "t5.lineaire1 as t5_lineaire1", "dt" => 't5_lineaire1' ),
     array( "db" => "t5.lineaire2 as t5_lineaire2", "dt" => 't5_lineaire2' ),
     array( "db" => "t5.lineaire3 as t5_lineaire3", "dt" => 't5_lineaire3' ),
@@ -30,14 +30,13 @@ $columns = array(
     array( "db" => "t5.lineaire7 as t5_lineaire7", "dt" => 't5_lineaire7' ),
     array( "db" => "t5.lineaire8 as t5_lineaire8", "dt" => 't5_lineaire8' ),
     array( "db" => "t5.lineaire9 as t5_lineaire9", "dt" => 't5_lineaire9' ),
-    array( "db" => "t5.lineaire10 as t5_lineaire10", "dt" => 't5_lineaire10' ),
+    array( "db" => "t5.lineaire10 as t5_lineaire10", "dt" => 't5_lineaire10' ),*/
     //Aiguillage & Tirage
     //Cables
     array( "db" => "if(t6.lineaire1>0,t6.lineaire1,t5.lineaire1) as t6_lineaire1", "dt" => 't6_lineaire1' ),//720FO
     array( "db" => "if(t6.lineaire2>0,t6.lineaire2,t5.lineaire2) as t6_lineaire2", "dt" => 't6_lineaire2' ),//432FO
-    array( "db" => "if(t6.lineaire3>0,t6.lineaire3,t5.lineaire3) as t6_lineaire3_s", "dt" => 't6_lineaire3_s' ),//288FO
-    array( "db" => "(if(t6.lineaire3>0,t6.lineaire3,t5.lineaire3) + if(t8.lineaire1>0,t8.lineaire1,t7.lineaire1)) as t6_lineaire3", "dt" => 't6_lineaire3' ),//288FO
-    array( "db" => "if(t6.lineaire4>0,t6.lineaire4,t5.lineaire4) as t6_lineaire4", "dt" => 't6_lineaire4' ),//48FO
+    array( "db" => "if(t6.lineaire3>0,t6.lineaire3,t5.lineaire3) as t6_lineaire3", "dt" => 't6_lineaire3' ),//288FO
+    array( "db" => "if(t6.lineaire4>0,t6.lineaire4,t5.lineaire4) as t6_lineaire4", "dt" => 't6_lineaire4' ),//144FO
     //Tubage
     array( "db" => "t6.lineaire9 as t6_lineaire9", "dt" => 't6_lineaire9' ),//21/25
     array( "db" => "t6.lineaire10 as t6_lineaire10", "dt" => 't6_lineaire10' ),//16/20
@@ -52,7 +51,7 @@ $columns = array(
     array( "db" => "if(t6.lineaire13>0,t6.lineaire13,t5.lineaire9) as t6_lineaire13", "dt" => 't6_lineaire13' ),//CTR
     array( "db" => "if(t6.lineaire14>0,t6.lineaire14,t5.lineaire10) as t6_lineaire14", "dt" => 't6_lineaire14' ),//TOR
     //CDI
-    //Aiguillage
+    /*//Aiguillage
     array( "db" => "t7.lineaire1 as t7_lineaire1", "dt" => 't7_lineaire1' ),
     array( "db" => "t7.lineaire2 as t7_lineaire2", "dt" => 't7_lineaire2' ),
     array( "db" => "t7.lineaire3 as t7_lineaire3", "dt" => 't7_lineaire3' ),
@@ -60,10 +59,10 @@ $columns = array(
     array( "db" => "t7.lineaire5 as t7_lineaire5", "dt" => 't7_lineaire5' ),
     array( "db" => "t7.lineaire6 as t7_lineaire6", "dt" => 't7_lineaire6' ),
     array( "db" => "t7.lineaire7 as t7_lineaire7", "dt" => 't7_lineaire7' ),
-    array( "db" => "t7.lineaire8 as t7_lineaire8", "dt" => 't7_lineaire8' ),
+    array( "db" => "t7.lineaire8 as t7_lineaire8", "dt" => 't7_lineaire8' ),*/
     //Aiguillage & Tirage
     //Cables
-    array( "db" => "if(t8.lineaire1>0,t8.lineaire1,t7.lineaire1) as t8_lineaire1_s", "dt" => 't8_lineaire1_s' ),//288FO
+    array( "db" => "if(t8.lineaire1>0,t8.lineaire1,t7.lineaire1) as t8_lineaire1", "dt" => 't8_lineaire1' ),//288FO
     array( "db" => "if(t8.lineaire2>0,t8.lineaire2,t7.lineaire2) as t8_lineaire2", "dt" => 't8_lineaire2' ),//144FO
     array( "db" => "if(t8.lineaire3>0,t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),//72FO
     array( "db" => "if(t8.lineaire4>0,t8.lineaire4,t7.lineaire4) as t8_lineaire4", "dt" => 't8_lineaire4' ),//48FO
@@ -118,9 +117,6 @@ $left .= " left join sous_projet_transport_aiguillage t5 on t1.id_sous_projet = 
 $left .= " left join sous_projet_transport_tirage t6 on t1.id_sous_projet = t6.id_sous_projet";
 $left .= " left join sous_projet_distribution_aiguillage t7 on t1.id_sous_projet = t7.id_sous_projet";
 $left .= " left join sous_projet_distribution_tirage t8 on t1.id_sous_projet = t8.id_sous_projet";
-
-//TODO
-//ORDER BY ser1.lib_etat_retour as ctr_aiguillage_lib_etat_retour ASC\n\t\t\t LIMIT 0
 
 
 echo json_encode(@SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left,true));
