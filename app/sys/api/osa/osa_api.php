@@ -131,7 +131,7 @@ class OsaApi
                 }
             }
             //print_r($tablistetachereturn);
-          // echo json_encode($tablistetachereturn) ;
+           echo json_encode($tablistetachereturn) ;
 
 
 
