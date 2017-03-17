@@ -76,7 +76,7 @@
 					create: function (obj, callback) {
 						$.ajax({
 							method: "POST",
-							url: rc2k.osa.url + "api/projet.php",
+							url: rc2k.osa.url + "api/switcher.php?controller=Projet&action=create",
 							data: {
 								r2i_agent : true,
 								referant_projet: obj.ref,
@@ -92,8 +92,8 @@
 				tache : {
 					list : function(idp, callback){
 						$.ajax({
-							method: "POST",
-							url: rc2k.osa.url + "api/tache.php",
+							method: "GET",
+							url: rc2k.osa.url + "api/switcher.php?controller=Tache&action=R2ITaches",
 							data: {
 								r2i_list_tache: true,
 								r2i_all : true,
@@ -104,7 +104,7 @@
 					cloturer : function(idt, callback){
 						$.ajax({
 				            method: 'POST',
-				            url: rc2k.osa.url + 'api/tache.php',
+				            url: rc2k.osa.url + 'api/switcher.php?controller=Tache&action=cloturer',
 				            data: {
 				                cloturer: true,
 				                id: idt
@@ -114,7 +114,7 @@
 					affecter : function(id_users, id_tache, callback){
 						$.ajax({
 				            method: 'POST',
-				            url: rc2k.osa.url + 'api/affectation.php',
+				            url: rc2k.osa.url + 'api/switcher.php?controller=Tache&action=affecter',
 				            data: {
 				                add: true,
 				                users: id_users.join(';'),
