@@ -72,7 +72,10 @@
 				auth : function(token, callback){
 					rc2k.osa.token = token;
 					$.ajax({
-						'url':rc2k.osa.url + 'ws/auth/' + token
+						'url':rc2k.osa.url + 'ws/auth/' + token,
+						headers : {
+							R2I : rc2k.osa.token
+						}
 					}).done(callback);
 				},
 				projet: {
