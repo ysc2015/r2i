@@ -97,7 +97,7 @@ class OsaApi
         if($res === FALSE){
             ///
         }else{
-
+            var_dump($res);
             $resultat = json_decode($res) ;
 
 
