@@ -70,7 +70,10 @@
 			},
 			ws: {
 				auth : function(token, callback){
-					$.ajax({'url':rc2k.osa.url + 'ws/auth/' + token}).done(callback);
+					rc2k.osa.token = token;
+					$.ajax({
+						'url':rc2k.osa.url + 'ws/auth/' + token
+					}).done(callback);
 				},
 				projet: {
 					create: function (obj, callback) {
@@ -87,6 +90,9 @@
 								date_fin_projet: obj.dat,
 								id_filiale: obj.fil,
 								id_pole: obj.pol,
+							},
+							headers : {
+								R2I : rc2k.osa.token
 							}
 						}).done(callback);
 					}
@@ -100,6 +106,9 @@
 								r2i_list_tache: true,
 								r2i_all : true,
 								id: idp
+							},
+							headers : {
+								R2I : rc2k.osa.token
 							}
 						}).done(callback);
 					},
@@ -110,7 +119,10 @@
 				            data: {
 				                cloturer: true,
 				                id: idt
-				            }
+				            },
+							headers : {
+								R2I : rc2k.osa.token
+							}
 				        }).done(callback);
 					},
 					affecter : function(id_users, id_tache, callback){
@@ -123,7 +135,10 @@
 				                id_tache: id_tache,
 				                sites: [].join(';'),
 				                groups: [].join(';')
-				            }
+				            },
+							headers : {
+								R2I : rc2k.osa.token
+							}
 				        }).done(callback);
 					}
 				},
