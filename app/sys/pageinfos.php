@@ -154,6 +154,12 @@ ADM;
             "navigator"=>"<li>Avancement</li>")));
         break;
 
+    case "lineaire":
+        return json_decode(json_encode(array("header"=>"Suivi Linéaires",
+            "subheader"=>"Suivi Linéaires",
+            "navigator"=>"<li>Suivi</li>")));
+        break;
+
     case "myotplanning":
         return json_decode(json_encode(array("header"=>"Planning",
             "subheader"=>"(".strtoupper($connectedProfil->profil->entreprise->nom).")",
