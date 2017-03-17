@@ -175,8 +175,8 @@
                         var d;
 
                         if(meta.row == 0) {
-                            console.log(full.t6_lineaire3);
-                            console.log(full.t8_lineaire1);
+                            console.log('full.t6_lineaire3' + full.t6_lineaire3);
+                            console.log('full.t8_lineaire1' + full.t8_lineaire1);
                         }
 
                         switch (meta.col) {
