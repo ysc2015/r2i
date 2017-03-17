@@ -43,10 +43,10 @@ $columns = array(
     array( "db" => "t6.lineaire11 as t6_lineaire11", "dt" => 't6_lineaire11' ),//15/18
     array( "db" => "t6.lineaire12 as t6_lineaire12", "dt" => 't6_lineaire12' ),//Trançons à tuber
     //Boites
-    array( "db" => "if(t6.lineaire5>'0',t6.lineaire5,t5.lineaire5) as t6_lineaire5", "dt" => 't6_lineaire5' ),//720FO
-    array( "db" => "if(t6.lineaire6>'0',t6.lineaire6,t5.lineaire6) as t6_lineaire6", "dt" => 't6_lineaire6' ),//432FO
-    array( "db" => "if(t6.lineaire7>'0',t6.lineaire7,t5.lineaire7) as t6_lineaire7", "dt" => 't6_lineaire7' ),//288FO
-    array( "db" => "if(t6.lineaire8>'0',t6.lineaire8,t5.lineaire8) as t6_lineaire8", "dt" => 't6_lineaire8' ),//144FO
+    array( "db" => "if(t6.lineaire5 is not null and t6.lineaire5 <> '' and t6.lineaire5 <> '0',t6.lineaire5,t5.lineaire5) as t6_lineaire5", "dt" => 't6_lineaire5' ),//720FO
+    array( "db" => "if(t6.lineaire6 is not null and t6.lineaire6 <> '' and t6.lineaire6 <> '0',t6.lineaire6,t5.lineaire6) as t6_lineaire6", "dt" => 't6_lineaire6' ),//432FO
+    array( "db" => "if(t6.lineaire7 is not null and t6.lineaire7 <> '' and t6.lineaire7 <> '0',t6.lineaire7,t5.lineaire7) as t6_lineaire7", "dt" => 't6_lineaire7' ),//288FO
+    array( "db" => "if(t6.lineaire8 is not null and t6.lineaire8 <> '' and t6.lineaire8 <> '0',t6.lineaire8,t5.lineaire8) as t6_lineaire8", "dt" => 't6_lineaire8' ),//144FO
     //Tiroirs
     array( "db" => "if(t6.lineaire13>'0',t6.lineaire13,t5.lineaire9) as t6_lineaire13", "dt" => 't6_lineaire13' ),//CTR
     array( "db" => "if(t6.lineaire14>'0',t6.lineaire14,t5.lineaire10) as t6_lineaire14", "dt" => 't6_lineaire14' ),//TOR
@@ -63,19 +63,19 @@ $columns = array(
     //Aiguillage & Tirage
     //Cables
     array( "db" => "if(t8.lineaire1 is not null and t8.lineaire1 <> '' and t8.lineaire1 <> '0',t8.lineaire1,t7.lineaire1) as t8_lineaire1", "dt" => 't8_lineaire1' ),//288FO
-    array( "db" => "if(t8.lineaire2>'0',t8.lineaire2,t7.lineaire2) as t8_lineaire2", "dt" => 't8_lineaire2' ),//144FO
-    array( "db" => "if(t8.lineaire3>'0',t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),//72FO
-    array( "db" => "if(t8.lineaire4>'0',t8.lineaire4,t7.lineaire4) as t8_lineaire4", "dt" => 't8_lineaire4' ),//48FO
+    array( "db" => "if(t8.lineaire2 is not null and t8.lineaire2 <> '' and t8.lineaire2 <> '0',t8.lineaire2,t7.lineaire2) as t8_lineaire2", "dt" => 't8_lineaire2' ),//144FO
+    array( "db" => "if(t8.lineaire3 is not null and t8.lineaire3 <> '' and t8.lineaire3 <> '0',t8.lineaire3,t7.lineaire3) as t8_lineaire3", "dt" => 't8_lineaire3' ),//72FO
+    array( "db" => "if(t8.lineaire4 is not null and t8.lineaire4 <> '' and t8.lineaire4 <> '0',t8.lineaire4,t7.lineaire4) as t8_lineaire4", "dt" => 't8_lineaire4' ),//48FO
     //Tubage
     array( "db" => "t8.lineaire9 as t8_lineaire9", "dt" => 't8_lineaire9' ),//18/21
     array( "db" => "t8.lineaire10 as t8_lineaire10", "dt" => 't8_lineaire10' ),//15/18
     array( "db" => "t8.lineaire11 as t8_lineaire11", "dt" => 't8_lineaire11' ),//11/14
     array( "db" => "t8.lineaire12 as t8_lineaire12", "dt" => 't8_lineaire12' ),//Trançons à tuber
     //Boites
-    array( "db" => "if(t8.lineaire5>'0',t8.lineaire5,t7.lineaire5) as t8_lineaire5", "dt" => 't8_lineaire5' ),//288FO
-    array( "db" => "if(t8.lineaire6>'0',t8.lineaire6,t7.lineaire6) as t8_lineaire6", "dt" => 't8_lineaire6' ),//144FO
-    array( "db" => "if(t8.lineaire7>'0',t8.lineaire7,t7.lineaire7) as t8_lineaire7", "dt" => 't8_lineaire7' ),//72FO
-    array( "db" => "if(t8.lineaire8>'0',t8.lineaire8,t7.lineaire8) as t8_lineaire8", "dt" => 't8_lineaire8' )//48FO
+    array( "db" => "if(t8.lineaire5 is not null and t8.lineaire5 <> '' and t8.lineaire5 <> '0',t8.lineaire5,t7.lineaire5) as t8_lineaire5", "dt" => 't8_lineaire5' ),//288FO
+    array( "db" => "if(t8.lineaire6 is not null and t8.lineaire6 <> '' and t8.lineaire6 <> '0',t8.lineaire6,t7.lineaire6) as t8_lineaire6", "dt" => 't8_lineaire6' ),//144FO
+    array( "db" => "if(t8.lineaire7 is not null and t8.lineaire7 <> '' and t8.lineaire7 <> '0',t8.lineaire7,t7.lineaire7) as t8_lineaire7", "dt" => 't8_lineaire7' ),//72FO
+    array( "db" => "if(t8.lineaire8 is not null and t8.lineaire8 <> '' and t8.lineaire8 <> '0',t8.lineaire8,t7.lineaire8) as t8_lineaire8", "dt" => 't8_lineaire8' )//48FO
 
 
 );
