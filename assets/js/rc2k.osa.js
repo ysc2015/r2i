@@ -90,7 +90,7 @@
 								referant_projet: obj.ref,
 								nom_projet: obj.prj,
 								description_projet: obj.des,
-								date_fin_projet: obj.dat,
+								date_fin_projet: obj.dat.getFullYear() + "-" + (obj.dat.getMonth() + 1) + "-" + obj.dat.getDate(),
 								id_filiale: obj.fil,
 								id_pole: obj.pol,
 							},
