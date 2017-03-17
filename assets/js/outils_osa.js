@@ -49,7 +49,7 @@ console.log(liste_intervenant);
 
                                         },
                                         success : function(response){
-                                            console.log("idprojet " + id);
+                                            console.log("idprojet " + areponse["extra"]);
                                             rc2k.osa.ui.tache.create({
                                                 idp : areponse["extra"],
                                                 ide : idetape,
