@@ -33,10 +33,10 @@ $columns = array(
     array( "db" => "t5.lineaire10 as t5_lineaire10", "dt" => 't5_lineaire10' ),*/
     //Aiguillage & Tirage
     //Cables
-    array( "db" => "if(t6.lineaire1>'0',t6.lineaire1,t5.lineaire1) as t6_lineaire1", "dt" => 't6_lineaire1' ),//720FO
-    array( "db" => "if(t6.lineaire2>'0',t6.lineaire2,t5.lineaire2) as t6_lineaire2", "dt" => 't6_lineaire2' ),//432FO
-    array( "db" => "if(t6.lineaire3>'0',t6.lineaire3,t5.lineaire3) as t6_lineaire3", "dt" => 't6_lineaire3' ),//288FO
-    array( "db" => "if(t6.lineaire4>'0',t6.lineaire4,t5.lineaire4) as t6_lineaire4", "dt" => 't6_lineaire4' ),//144FO
+    array( "db" => "if(t6.lineaire1 is not null and t6.lineaire1 <> '' and t6.lineaire1 <> '0',t6.lineaire1,t5.lineaire1) as t6_lineaire1", "dt" => 't6_lineaire1' ),//720FO
+    array( "db" => "if(t6.lineaire2 is not null and t6.lineaire2 <> '' and t6.lineaire2 <> '0',t6.lineaire2,t5.lineaire2) as t6_lineaire2", "dt" => 't6_lineaire2' ),//432FO
+    array( "db" => "if(t6.lineaire3 is not null and t6.lineaire3 <> '' and t6.lineaire3 <> '0',t6.lineaire3,t5.lineaire3) as t6_lineaire3", "dt" => 't6_lineaire3' ),//288FO
+    array( "db" => "if(t6.lineaire4 is not null and t6.lineaire4 <> '' and t6.lineaire4 <> '0',t6.lineaire4,t5.lineaire4) as t6_lineaire4", "dt" => 't6_lineaire4' ),//144FO
     //Tubage
     array( "db" => "t6.lineaire9 as t6_lineaire9", "dt" => 't6_lineaire9' ),//21/25
     array( "db" => "t6.lineaire10 as t6_lineaire10", "dt" => 't6_lineaire10' ),//16/20

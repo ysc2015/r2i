@@ -174,6 +174,11 @@
                     "render": function ( data, type, full, meta ) {
                         var d;
 
+                        if(meta.row == 0) {
+                            console.log(full.t6_lineaire3);
+                            console.log(full.t8_lineaire1);
+                        }
+
                         switch (meta.col) {
                             case 6 : d = getZ(full.t6_lineaire3) + getZ(full.t8_lineaire1);
                                 break;
