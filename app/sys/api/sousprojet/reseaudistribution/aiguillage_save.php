@@ -47,6 +47,7 @@ if($sousProjet !== NULL) {
         }
 
         $fieldslist = rtrim($fieldslist,",");
+        $fieldslist .=",id_modificateur = :id_modificateur";
 
         if(!(/*$sousProjet->distributionaiguillage->plans == 3 &&*/ $sousProjet->distributionaiguillage->controle_plans == 2 && $sousProjet->distributionaiguillage->lien_plans != "")) {
             if(/*isset($da_plans) &&  */isset($da_controle_plans) && isset($da_lien_plans) && $da_plans == 3 && $da_controle_plans == 2 && $da_lien_plans != "") {
@@ -84,6 +85,8 @@ if($sousProjet !== NULL) {
             }
         }
 
+        $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
+        $stm->bindParam(':id_modificateur',$id_modificateur);
 
         $mailaction_new = true;
     } else {
@@ -103,6 +106,8 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
+        $fieldslist .=",date_insertion,id_createur";
+        $valueslist .=",:date_insertion,:id_createur";
 
         if(/*isset($da_plans) &&  */isset($da_controle_plans) && isset($da_lien_plans) /*&& $da_plans == 3*/ && $da_controle_plans == 2 && $da_lien_plans != "") {
             $fieldslist .=",date_controle_ok";
@@ -110,8 +115,16 @@ if($sousProjet !== NULL) {
             $stm = $db->prepare("insert into sous_projet_distribution_aiguillage ($fieldslist) values ($valueslist)");
             $dt = date('Y-m-d');
             $stm->bindParam(':date_controle_ok',$dt);
+            $date_insertion =  date('Y-m-d G:i:s');
+            $stm->bindParam(':date_insertion',$date_insertion);
+            $id_createur = intval($connectedProfil->profil->id_utilisateur);
+            $stm->bindParam(':id_createur',$id_createur);
         } else {
             $stm = $db->prepare("insert into sous_projet_distribution_aiguillage ($fieldslist) values ($valueslist)");
+            $date_insertion =  date('Y-m-d G:i:s');
+            $stm->bindParam(':date_insertion',$date_insertion);
+            $id_createur = intval($connectedProfil->profil->id_utilisateur);
+            $stm->bindParam(':id_createur',$id_createur);
         }
         $mailaction_new = true;
     }
