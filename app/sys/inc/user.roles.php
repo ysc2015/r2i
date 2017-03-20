@@ -138,7 +138,7 @@ class adm extends baseUser {
             array(
                 "dashboard1" => array("index"),
                 "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
-                "activitebei" => array("index")/*,
+                "activitebei" => array("index","designreseau")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
@@ -224,7 +224,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc","wiki");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc"/*,"wiki"*/);
     }
 
     //admin only menu
@@ -279,13 +279,13 @@ class adm extends baseUser {
         );
     }
     
-    function wiki() {
+   /* function wiki() {
     	Page::wiki(
     			array(
     					"wiki" => array("wiki")
     			)
     			);
-    }
+    }*/
 }
 
 class dov extends baseUser {
