@@ -68,7 +68,7 @@ console.log(liste_intervenant);
 
                     }else {
 
-                    console.log("idprojet 2 : " + id);
+                    console.log("idprojet 2 id  : " + id + " idetape : "+idetape);
                         rc2k.osa.ui.tache.create({
                             idp : id,
                             ide : idetape,
