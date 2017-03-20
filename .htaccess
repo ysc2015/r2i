@@ -69,7 +69,7 @@ RewriteRule  "api/typeequipe/typeequipe/(\w*\.php)"          "app/MY_ROUTER.php?
 #RewriteRule  "api/todelete/(\w*\.php)"          "app/MY_ROUTER.php?script=todelete/$1"  [QSA,L]
 
 #wiki api
-RewriteRule  "api/wiki/(\w*\.php)"          "app/MY_ROUTER.php?script=wiki/$1"  [QSA,L]
+#RewriteRule  "api/wiki/(\w*\.php)"          "app/MY_ROUTER.php?script=wiki/$1"  [QSA,L]
 
 #ext api
 RewriteRule  "api/ext/entreprise/(\w*\.php)"          "app/MY_ROUTER_EXT.php?script=ext/entreprise/$1"  [QSA,L]
