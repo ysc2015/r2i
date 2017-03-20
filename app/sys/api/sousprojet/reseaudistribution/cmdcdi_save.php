@@ -44,8 +44,12 @@ if($sousProjet !== NULL) {
         }
 
         $fieldslist = rtrim($fieldslist,",");
+        $fieldslist .=",id_modificateur = :id_modificateur";
 
         $stm = $db->prepare("update sous_projet_distribution_commande_cdi set $fieldslist where id_sous_projet=:id_sous_projet");
+        $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
+        $stm->bindParam(':id_modificateur',$id_modificateur);
+
         $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
@@ -64,8 +68,14 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
+        $fieldslist .=",date_insertion,id_createur";
+        $valueslist .=",:date_insertion,:id_createur";
 
         $stm = $db->prepare("insert into sous_projet_distribution_commande_cdi ($fieldslist) values ($valueslist)");
+        $date_insertion =  date('Y-m-d G:i:s');
+        $stm->bindParam(':date_insertion',$date_insertion);
+        $id_createur = intval($connectedProfil->profil->id_utilisateur);
+        $stm->bindParam(':id_createur',$id_createur);
         $mailaction_new = true;
     }
 } else {
