@@ -19,10 +19,38 @@
                 <th colspan="2" style="text-align: center;background-color: #44b4a6;">Tiroirs</th>
             </tr>
             <tr>
-                <th>Sous-projet</th>
-                <th>Ville</th>
-                <th>LR</th>
-                <th>LR sur PM Existant</th>
+                <th rowspan="2">Sous-projet</th>
+                <th rowspan="2">Ville</th>
+                <th rowspan="2">LR</th>
+                <th rowspan="2">LR sur PM Existant</th>
+                <!--CTR/CDI-->
+                <!--Aiguillage et Tirage-->
+                <!--cables-->
+                <th id="col-4"></th>
+                <th id="col-5"></th>
+                <th id="col-6"></th>
+                <th id="col-7"></th>
+                <th id="col-8"></th>
+                <th id="col-9"></th>
+                <!--tubage-->
+                <th id="col-10"></th>
+                <th id="col-11"></th>
+                <th id="col-12"></th>
+                <th id="col-13"></th>
+                <th id="col-14"></th>
+                <th id="col-15"></th>
+                <!--boites-->
+                <th id="col-16"></th>
+                <th id="col-17"></th>
+                <th id="col-18"></th>
+                <th id="col-19"></th>
+                <th id="col-20"></th>
+                <th id="col-21"></th>
+                <!--NRO-->
+                <th id="col-22"></th>
+                <th id="col-23"></th>
+            </tr>
+            <tr>
                 <!--CTR/CDI-->
                 <!--Aiguillage et Tirage-->
                 <!--cables-->
@@ -209,6 +237,36 @@
             ,
             "drawCallback": function( settings ) {
                 $('#lineaires_block').removeClass('block-opt-refresh');
+            },
+            "footerCallback": function ( row, data, start, end, display ) {
+                var api = this.api(), data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+
+                for(i=4;i<=23;i++) {
+
+                    total = api
+                        .column( i )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+
+                    $('#col-' + i).html(total);
+                }
+
+                console.log('pageTotal = ' + total );
+
+                // Update footer
+                /*$( api.column( 4 ).footer() ).html(
+                    '$'+pageTotal +' ( $'+ total +' total)'
+                );*/
             }
         } );
     } );
