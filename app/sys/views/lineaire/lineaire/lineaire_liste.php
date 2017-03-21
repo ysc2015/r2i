@@ -1,5 +1,5 @@
 <!-- Table lineaires sous projets -->
-<div class="block">
+<div class="block" id="lineaires_block">
     <div class="block-content table-responsive" style="overflow-x: scroll;">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
         <table id="lineaires_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
@@ -100,7 +100,9 @@
     }
     $(document).ready(function() {
 
-        linears_dt = $('#lineaires_table').DataTable( {
+        linears_dt = $('#lineaires_table').on('preXhr.dt', function ( e, settings, data ) {
+            $('#lineaires_block').addClass('block-opt-refresh');
+        }).DataTable( {
             "iDisplayLength":500,
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
@@ -206,7 +208,7 @@
             "order": [[0, 'desc']]
             ,
             "drawCallback": function( settings ) {
-                ;
+                $('#lineaires_block').removeClass('block-opt-refresh');
             }
         } );
     } );
