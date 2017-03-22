@@ -260,13 +260,6 @@
 
                     $('#col-' + i).html(total);
                 }
-
-                console.log('pageTotal = ' + total );
-
-                // Update footer
-                /*$( api.column( 4 ).footer() ).html(
-                    '$'+pageTotal +' ( $'+ total +' total)'
-                );*/
             }
         } );
     } );
