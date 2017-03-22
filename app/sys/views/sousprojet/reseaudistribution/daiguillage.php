@@ -162,6 +162,12 @@
                     <label for="da_lien_plans">Lien vers les plans <!--<span class="text-danger">*</span>--></label>
                     <textarea class="form-control" id="da_lien_plans" name="da_lien_plans" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->lien_plans:"")?></textarea>
                 </div>
+                <?php if($sousProjet->distributionaiguillage!==NULL && $sousProjet->distributionaiguillage->etat_retour==2) {?>
+                    <div class="col-md-4">
+                        <label for="da_retour_presta">Retour presta <!--<span class="text-danger">*</span>--></label>
+                        <textarea readonly class="form-control" id="da_retour_presta" name="da_retour_presta" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionaiguillage !== NULL?$sousProjet->distributionaiguillage->retour_presta:"")?></textarea>
+                    </div>
+                <?php } ?>
                 <div class="col-md-4">
                     <label for="da_ok">Retours Prestataires Validés <!--<span class="text-danger">*</span>--></label>
                     <select class="form-control " id="da_ok" name="da_ok">
