@@ -28,9 +28,15 @@ foreach( $_POST as $key => $value ) {
 
 $fieldslist = rtrim($fieldslist,",");
 $valueslist = rtrim($valueslist,",");
+$fieldslist .=",date_insertion,id_createur";
+$valueslist .=",:date_insertion,:id_createur";
 
 $stm = $db->prepare("insert into point_bloquant ($fieldslist) values ($valueslist)");
 
+$date_insertion =  date('Y-m-d G:i:s');
+$stm->bindParam(':date_insertion',$date_insertion);
+$id_createur = intval($connectedProfil->profil->id_utilisateur);
+$stm->bindParam(':id_createur',$id_createur);
 foreach( $_POST as $key => $value ) {
 
     if(strpos($key,$suffix) !== false) {
@@ -65,9 +71,24 @@ if($err == 0){
     if($stm->execute()){
         $lastInsertedId = $db->lastInsertId();
 
-        $stm1 = $db->prepare("insert into point_bloquant_type_de_blocage (id_point_bloquant) values ($lastInsertedId)");
-        $stm2 = $db->prepare("insert into point_bloquant_moyens_mis_en_oeuvre (id_point_bloquant) values ($lastInsertedId)");
-        $stm3 = $db->prepare("insert into point_bloquant_solutions_preconisees (id_point_bloquant) values ($lastInsertedId)");
+        $stm1 = $db->prepare("insert into point_bloquant_type_de_blocage (id_point_bloquant,date_insertion,id_createur) values ($lastInsertedId,:date_insertion,:id_createur)");
+        $stm2 = $db->prepare("insert into point_bloquant_moyens_mis_en_oeuvre (id_point_bloquant,date_insertion,id_createur) values ($lastInsertedId,:date_insertion,:id_createur)");
+        $stm3 = $db->prepare("insert into point_bloquant_solutions_preconisees (id_point_bloquant,date_insertion,id_createur) values ($lastInsertedId,:date_insertion,:id_createur)");
+
+        $date_insertion =  date('Y-m-d G:i:s');
+        $stm1->bindParam(':date_insertion',$date_insertion);
+        $id_createur = intval($connectedProfil->profil->id_utilisateur);
+        $stm1->bindParam(':id_createur',$id_createur);
+
+        $date_insertion =  date('Y-m-d G:i:s');
+        $stm2->bindParam(':date_insertion',$date_insertion);
+        $id_createur = intval($connectedProfil->profil->id_utilisateur);
+        $stm2->bindParam(':id_createur',$id_createur);
+
+        $date_insertion =  date('Y-m-d G:i:s');
+        $stm3->bindParam(':date_insertion',$date_insertion);
+        $id_createur = intval($connectedProfil->profil->id_utilisateur);
+        $stm3->bindParam(':id_createur',$id_createur);
 
         $stm1->execute();
         $stm2->execute();

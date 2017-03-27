@@ -32,8 +32,11 @@ if(true) {
     }
 
     $fieldslist = rtrim($fieldslist,",");
+    $fieldslist .=",id_modificateur = :id_modificateur";
 
     $stm = $db->prepare("update point_bloquant_moyens_mis_en_oeuvre set $fieldslist where id_point_bloquant=:id_point_bloquant");
+    $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
+    $stm->bindParam(':id_modificateur',$id_modificateur);
 
     foreach( $_POST as $key => $value ) {
 

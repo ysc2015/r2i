@@ -10,7 +10,12 @@ $insert = false;
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("insert into ordre_de_travail (id_sous_projet,id_etat_ot,type_entree,id_type_ordre_travail,type_ot,commentaire) values (:id_sous_projet,1,:type_entree,:id_type_ordre_travail,:type_ot,:commentaire)");
+$stm = $db->prepare("insert into ordre_de_travail (id_sous_projet,id_etat_ot,type_entree,id_type_ordre_travail,type_ot,commentaire,date_insertion,id_createur) values (:id_sous_projet,1,:type_entree,:id_type_ordre_travail,:type_ot,:commentaire,:date_insertion,:id_createur)");
+
+$date_insertion =  date('Y-m-d G:i:s');
+$stm->bindParam(':date_insertion',$date_insertion);
+$id_createur = intval($connectedProfil->profil->id_utilisateur);
+$stm->bindParam(':id_createur',$id_createur);
 
 if(isset($idsp) && !empty($idsp)){
     $stm->bindParam(':id_sous_projet',$idsp);
