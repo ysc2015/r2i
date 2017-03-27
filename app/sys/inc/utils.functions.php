@@ -834,7 +834,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
                     default :
                         break;
                 }
-                echo " tentree :  " .$tentree;
+
                 if($tentree !== "" ) {
                     switch($tentree) {
                         case "transportaiguillage" :
