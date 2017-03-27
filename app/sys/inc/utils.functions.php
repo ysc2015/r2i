@@ -794,6 +794,16 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
             $tentree = "";
 
             if($sousProjet !== NULL) {
+                $EFO_06_03_qt = 0;
+                $EFO_06_06_qt = 0;
+                $TFO_01_01_qt = 0;
+                $TFO_01_02_qt = 0;
+                $TFO_02_01_qt = 0;
+                $TFO_02_02_qt = 0;
+                $TFO_02_03_qt = 0;
+                $TFO_03_01_qt = 0;
+                $TFO_03_02_qt = 0;
+                $TFO_04_01_qt = 0;
                 switch($_POST['idtot']) {
                     case "1" :
                         $tentree = "transportaiguillage";
@@ -824,7 +834,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
                     default :
                         break;
                 }
-
+                echo " tentree :  " .$tentree;
                 if($tentree !== "" ) {
                     switch($tentree) {
                         case "transportaiguillage" :
@@ -895,8 +905,6 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
     }
     return -1;
 }
-
-
 function parse_loadExcelDEF_CABLE($db,$inputFileName,$templateFileName,$id) {
 
     $sousProjet = NULL;
