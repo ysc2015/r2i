@@ -1,5 +1,7 @@
 <?php
 
+define('OSA_SERVER','http://sd-83414.dedibox.fr/osa/');
+
 class OsaApi
 {
 
