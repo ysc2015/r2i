@@ -9,7 +9,7 @@ class OsaApi
         $token_ = $_GET['token'];
         curl_setopt_array($curl, array(
             //http://sd-83414.dedibox.fr
-            CURLOPT_URL => OSA_SERVER."osa/api/auth.php",
+            CURLOPT_URL => OSA_SERVER."/api/auth.php",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
