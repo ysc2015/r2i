@@ -14,7 +14,7 @@
 </div>
 <script>
     $(function () {
-        // Init page plugins & helpers
+        // Init page plugins & helpers-
         jQuery('#linked-pb').select2({
             allowClear: true,
             autocomplete: true
