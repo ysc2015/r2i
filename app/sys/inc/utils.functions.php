@@ -1074,7 +1074,7 @@ function loadExcelDEF_BPE_EBM($db,$inputFileName,$idressource) {
                         $tab[$i][3] = strval($read[9]);//nb_cad_sortant
                         $tab[$i][4] = strval(   $read[12]);//capa_cable_entrant
 
-                        $db->query("insert into testDEF_BPE (id,nom,capacite,nb_cdi_sortant,nb_cad_sortant,capa_cable_entrant) values(NULL,'" . $read[0] . "','" . $read[1] . "','" . $read[8] . "','" . $read[9] . "','" . $read[12] . "')");
+                        $db->query("insert into testDEF_BPE (nom,capacite,nb_cdi_sortant,nb_cad_sortant,capa_cable_entrant) values('" . $read[0] . "','" . $read[1] . "','" . $read[8] . "','" . $read[9] . "','" . $read[12] . "')");
 
 
                         $i++;
