@@ -278,7 +278,7 @@
                         $('#devis_restaure_btn').addClass('disabled');
                     }
                     console.log(" msg.add_new_devis :"+msg.add_new_devis);
-                    if(msg.add_new_devis == 1){
+                    if(msg.add_new_devis == 1 && ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8 && ot_dt.row('.selected').data().id_type_ordre_travail != 2 && ot_dt.row('.selected').data().id_type_ordre_travail != 6){ //TODO add condition mine (RR)
 
                         $("#linked-pb-wrapper").show();
                     }else{
