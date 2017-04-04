@@ -786,7 +786,11 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
             $stm->bindValue(':date_livraison',$date_livraison);
             $stm->bindValue(':ref_devis',$ref_devis);
             $stm->execute();
-            $id = $db->lastInsertId();
+
+
+            /*$id = $db->lastInsertId();
+
+
             if(isset($_POST['idsp']) && !empty($_POST['idsp'])){
                 $sousProjet = SousProjet::find($_POST['idsp']);
             }
@@ -894,7 +898,7 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
                 $update_statment->bindParam(':id',$id);
 
                 $update_statment->execute();
-            }
+            }*/
 
 
 
