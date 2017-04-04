@@ -7,7 +7,9 @@ $view = isset($_GET['view']) ? $_GET['view'] : 'dash';
 $subView = isset($_GET['subView']) ? $_GET['subView'] : '';
 
 if (!isLogged()) {
-    ResponseHelper::redirect('login.php');
+    //ResponseHelper::redirect('login.php');
+    include_once 'login.php';
+    exit();
 }
 ?>
 <html>
