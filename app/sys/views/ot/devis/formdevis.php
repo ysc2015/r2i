@@ -114,7 +114,7 @@
             </div></div>
         </div>
     </div>
-</div>
+
 <div class="row items-push">
     <!-- Table liste devis -->
     <div class="block">
