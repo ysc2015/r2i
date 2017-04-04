@@ -2,7 +2,7 @@
 session_start();
 error_reporting(E_ALL);
 include_once 'lang/en.php';
-$local = true;
+$local = false;
 if ($local) {
     $server = "localhost";
     $db_name = "syno";
