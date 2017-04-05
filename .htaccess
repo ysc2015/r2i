@@ -74,4 +74,5 @@ RewriteRule  "api/typeequipe/typeequipe/(\w*\.php)"          "app/MY_ROUTER.php?
 #ext api
 RewriteRule  "api/ext/entreprise/(\w*\.php)"          "app/MY_ROUTER_EXT.php?script=ext/entreprise/$1"  [QSA,L]
 RewriteRule  "api/ext/equipe/(\w*\.php)"          "app/MY_ROUTER_EXT.php?script=ext/equipe/$1"  [QSA,L]
+RewriteRule  "api/ext/nro/(\w*\.php)"          "app/MY_ROUTER_EXT.php?script=ext/nro/$1"  [QSA,L]
 
