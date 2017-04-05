@@ -21,7 +21,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                         </div>
                         
                         <select id="search_by" class="form-control input-sm">
-                            <option value="id_masque"><?php echo $lang["id_masque_label"]; ?></option><option value="val_masque"><?php echo $lang["val_masque_label"]; ?></option>
+                            <option value="id_masque"><?php echo $lang["id_masque_label"]; ?></option><option value="val_masque"><?php echo $lang["val_masque_label"]; ?></option><option value="contenue"><?php echo $lang["contenue_label"]; ?></option>
                         </select>
                     </div>
                 </form>
@@ -45,13 +45,13 @@ $nbrPages = ceil($nbr / $nbrPerPage);
             </div>
             
             <div class="mail-box-header">
-                <button class="btn btn-xs btn-primary" onclick="show_hide(0)">id_masque</button> <button class="btn btn-xs btn-primary" onclick="show_hide(1)">val_masque</button> 
+                <button class="btn btn-xs btn-primary" onclick="show_hide(0)">id_masque</button> <button class="btn btn-xs btn-primary" onclick="show_hide(1)">val_masque</button> <button class="btn btn-xs btn-primary" onclick="show_hide(2)">contenue</button> 
             </div>
 
             <div class="mail-box">
                 <table class="table table-bordered table-hover table-mail">
                     <thead>
-                        <tr><th></th><th id="cell_0_0">id_masque</th><th id="cell_0_1">val_masque</th><th>Action</th></tr>
+                        <tr><th></th><th id="cell_0_0">id_masque</th><th id="cell_0_1">val_masque</th><th id="cell_0_2">contenue</th><th>Action</th></tr>
                     </thead>
                     <tbody id="syno_masque_body_id">
                     </tbody>
@@ -75,7 +75,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
 
                         <p><?php echo $lang["syno_masque_modal_description"]; ?></p>
 
-                        <input id="id_admin" type="hidden" value=""> 
+                        <input id="id_masque" type="hidden" value=""> 
                         
                         <div class="form-group">
                             <label for="<?php echo $lang["id_masque_id"]; ?>"><?php echo $lang["id_masque_label"]; ?></label> 
@@ -85,6 +85,10 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                             <label for="<?php echo $lang["val_masque_id"]; ?>"><?php echo $lang["val_masque_label"]; ?></label> 
                             <input id="<?php echo $lang["val_masque_id"]; ?>" placeholder="<?php echo $lang["val_masque_placeholder"]; ?>" class="form-control " type="text" >
                         </div>
+                    <div class="form-group">
+                        <label for="<?php echo $lang["contenue_id"]; ?>"><?php echo $lang["contenue_label"]; ?></label> 
+                        <textarea id="<?php echo $lang["contenue_id"]; ?>" class="form-control"></textarea>
+                    </div>
                         <div>
                             <button id="btn_save" data-api="add" class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>Save</strong></button>
                         </div>
@@ -100,12 +104,14 @@ $nbrPages = ceil($nbr / $nbrPerPage);
     var maxPage = <?php echo $nbrPages; ?>;
     var apiName = 'syno_masque';
     var lastResponseData = null;
-    var hiddenColumns = [false,false];
+    var hiddenColumns = [false,false,false];
     
     function getData() {
         var obj = {
-            <?php echo $lang["id_masque_id"]; ?>: valById("<?php echo $lang["id_masque_id"]; ?>"),
+                        <?php echo $lang["id_masque_id"]; ?>: valById("<?php echo $lang["id_masque_id"]; ?>"),
             <?php echo $lang["val_masque_id"]; ?>: valById("<?php echo $lang["val_masque_id"]; ?>"),
+            <?php echo $lang["contenue_id"]; ?>: valById("<?php echo $lang["contenue_id"]; ?>"),
+
         };
         return obj;
     }
@@ -114,6 +120,11 @@ $nbrPages = ceil($nbr / $nbrPerPage);
         
         if (data.<?php echo $lang["val_masque_id"]; ?> == "") {
             showNotification("Error", ["<?php echo $lang["val_masque_empty_message"]; ?>"], "error");
+            return false;
+        }
+        
+        if (data.<?php echo $lang["contenue_id"]; ?> == "") {
+            showNotification("Error", ["<?php echo $lang["contenue_empty_message"]; ?>"], "error");
             return false;
         }
         
@@ -228,7 +239,8 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                         html += '<input value="' + response.data[i].id_masque + '" type="checkbox" class="i-checks">';
                         html += '</td>';
                         html += "<td id=\"cell_" + i + "_0\" class=\"mail-contact\">" + response.data[i].id_masque + "</td>";
-                        html += "<td id=\"cell_" + i + "_1\" class=\"mail-contact\">" + nullToStr(response.data[i].val_masque) + "</td>";
+                        html += "<td id=\"cell_" + i + "_1\" class=\"mail-contact\">" + response.data[i].val_masque + "</td>";
+                        html += "<td id=\"cell_" + i + "_2\" class=\"mail-contact\">" + response.data[i].contenue + "</td>";
 
                         html += '<td class="">' +
                                 '<button onclick="btn_edit_click(' + i + ');" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></button>' +
@@ -278,8 +290,9 @@ $nbrPages = ceil($nbr / $nbrPerPage);
     function btn_edit_click(index) {
         var data = lastResponseData[index];
         $('#btn_save').attr('data-api', 'update');
-        $("#<?php echo $lang["id_masque_id"]; ?>").val(data.id_masque);
+                $("#<?php echo $lang["id_masque_id"]; ?>").val(data.id_masque);
         $("#<?php echo $lang["val_masque_id"]; ?>").val(data.val_masque);
+        $("#<?php echo $lang["contenue_id"]; ?>").val(data.contenue);
 
         $('#modal-form').modal('show');
     }
