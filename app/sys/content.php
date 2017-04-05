@@ -222,7 +222,7 @@ switch ($page) {
         echo "<br><br>";
         break;
     case "lineaire":
-        $connectedProfil->lineaire();
+        $connectedProfil->lineaire();//
         echo "<br><br>";
         break;
     case "entreprise":
