@@ -46,7 +46,8 @@ if(isset($idsp) && !empty($idsp) && isset($iddevis) && !empty($iddevis) && isset
                 $tentree = "transporttirage";
                 break;
             case "3" :
-                $tentree = "transporttirage";//transportraccordement
+                //$tentree = "transporttirage";
+                $tentree = "transportraccordement";
                 break;
             case "4" :
                 $tentree = "transporttirage";
@@ -59,7 +60,8 @@ if(isset($idsp) && !empty($idsp) && isset($iddevis) && !empty($iddevis) && isset
                 $tentree = "distributiontirage";
                 break;
             case "7" :
-                $tentree = "distributiontirage";//distributionraccordement
+                //$tentree = "distributiontirage";
+                $tentree = "distributionraccordement";
                 break;
             case "8" :
                 $tentree = "distributiontirage";
