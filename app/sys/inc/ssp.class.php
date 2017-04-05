@@ -279,7 +279,7 @@ class SSP {
         );
     }
 
-    static function simpleJoin ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "",$ex=false )
+    static function simpleJoin ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "",$ex=false )//
     {
         $bindings = array();
         $db = self::db( $conn );
