@@ -224,7 +224,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc"/*,"wiki"*/);
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc"/*,"wiki"*/);
     }
 
     //admin only menu
@@ -371,7 +371,7 @@ class dov extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc");
     }
 }
 class pov extends baseUser {
@@ -457,7 +457,7 @@ class pov extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","menu_stt_titre","menu_stt_inc");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc");
     }
 }
 class bei extends baseUser {
