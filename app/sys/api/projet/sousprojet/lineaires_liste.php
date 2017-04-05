@@ -20,7 +20,7 @@ $columns = array(
     array( "db" => "t4.lr", "dt" => 'lr' ),
     array( "db" => "t4.lr_sur_pm", "dt" => 'lr_sur_pm' ),
     //CTR
-/*    //Aiguillage
+/*  //Aiguillage
     array( "db" => "t5.lineaire1 as t5_lineaire1", "dt" => 't5_lineaire1' ),
     array( "db" => "t5.lineaire2 as t5_lineaire2", "dt" => 't5_lineaire2' ),
     array( "db" => "t5.lineaire3 as t5_lineaire3", "dt" => 't5_lineaire3' ),
