@@ -3,7 +3,7 @@ $tableName = 'syno_masque';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
 switch ($action) {
-    case 'listForSelect':
+    case 'listForSelect':        
         $stmt = $pdo->query('SELECT id_masque as id,val_masque as lib FROM ' . $tableName);
         $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         break;
@@ -59,7 +59,8 @@ switch ($action) {
         break;
     case 'add':
         $data = array(
-          "val_masque" => $_POST[$lang["val_masque_id"]],);
+          "val_masque" => $_POST[$lang["val_masque_id"]],
+          "contenue" => $_POST[$lang["contenue_id"]],);
         $ret = DBHelper::insert($tableName, $data);
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_ADD_MSG'];
@@ -71,8 +72,21 @@ switch ($action) {
     case 'update':
         $admin = array(
           "id_masque" => $_POST[$lang["id_masque_id"]],
-          "val_masque" => $_POST[$lang["val_masque_id"]],);
+          "val_masque" => $_POST[$lang["val_masque_id"]],
+          "contenue" => $_POST[$lang["contenue_id"]]);
         $ret = DBHelper::update($tableName, 'id_masque=:id_masque', $admin);
+        if ($ret !== false) {
+            $response['msg'][] = $lang[$tableName . '_UPDATE_MSG'];
+        } else {
+            $response['err'] ++;
+            $response['msg'][] = 'Updating ' . $tableName . ' Error';
+        }
+        break;
+    case 'update_by_name':        
+        $admin = array(
+          "val_masque" => $_POST[$lang["val_masque_id"]],
+          "contenue" => $_POST[$lang["contenue_id"]],);
+        $ret = DBHelper::update($tableName, 'val_masque=:val_masque', $admin);
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_UPDATE_MSG'];
         } else {
