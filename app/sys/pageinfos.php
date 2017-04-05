@@ -95,11 +95,6 @@ ADM;
             }
         }
 
-        /*return json_decode(json_encode(array("header"=>"Sous projet",
-            "subheader"=>"Avancements",
-            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".($sousProjet !== NULL ? $nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone):"")."</li>")));
-        */
-
         return json_decode(json_encode(array("header"=>"Sous projet",
             "subheader"=>"Avancements",
             "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li>".($sousProjet !== NULL ? $nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone):"")."</li>".($btn!=""?"<li>".$btn."</li>":""))));
