@@ -28,7 +28,7 @@
                 </ul>
             </div>
         </li>
-        <?php if($connectedProfil->profil->profil->shortlib == "adm") {?>
+        <?php if($connectedProfil->profil->profil->shortlib == "adm" || $connectedProfil->profil->profil->shortlib == "pov") {?>
             <li>
                 <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
                 <button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">

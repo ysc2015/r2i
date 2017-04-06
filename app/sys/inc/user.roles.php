@@ -459,6 +459,24 @@ class pov extends baseUser {
     function sidebar() {
         Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc");
     }
+
+    //admin only menu
+
+    function utilisateur() {
+        Page::utilisateur(
+            array(
+                "free" => array("liste","nro")
+            )
+        );
+    }
+
+    function nro() {
+        Page::nro(
+            array(
+                "nro" => array("liste","update_vpi")
+            )
+        );
+    }
 }
 class bei extends baseUser {
 
