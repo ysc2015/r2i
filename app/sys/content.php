@@ -250,7 +250,7 @@ switch ($page) {
         echo "<br><br>";
         break;
     case "wiki":
-        $connectedProfil->wiki();
+        $connectedProfil->wk();
         echo "<br><br>";
         break;
     default : $connectedProfil->ressourceNotFound();break;
