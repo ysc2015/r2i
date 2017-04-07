@@ -21,7 +21,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                         </div>
                         
                         <select id="search_by" class="form-control input-sm">
-                            <option value="id_masque"><?php echo $lang["id_masque_label"]; ?></option><option value="nom"><?php echo $lang["nom_label"]; ?></option><option value="taille"><?php echo $lang["taille_label"]; ?></option><option value="etat"><?php echo $lang["etat_label"]; ?></option><option value="position"><?php echo $lang["position_label"]; ?></option><option value="couleur"><?php echo $lang["couleur_label"]; ?></option><option value="tubage"><?php echo $lang["tubage_label"]; ?></option><option value="tubage_taille"><?php echo $lang["tubage_taille_label"]; ?></option><option value="id_chambre_src"><?php echo $lang["id_chambre_src_label"]; ?></option><option value="id_chambre_dst"><?php echo $lang["id_chambre_dst_label"]; ?></option>
+                            <option value="id_masque"><?php echo $lang["id_masque_label"]; ?></option><option value="val_masque"><?php echo $lang["val_masque_label"]; ?></option><option value="contenue"><?php echo $lang["contenue_label"]; ?></option>
                         </select>
                     </div>
                 </form>
@@ -45,13 +45,13 @@ $nbrPages = ceil($nbr / $nbrPerPage);
             </div>
             
             <div class="mail-box-header">
-                <button class="btn btn-xs btn-primary" onclick="show_hide(0)">id_masque</button> <button class="btn btn-xs btn-primary" onclick="show_hide(1)">nom</button> <button class="btn btn-xs btn-primary" onclick="show_hide(2)">taille</button> <button class="btn btn-xs btn-primary" onclick="show_hide(3)">etat</button> <button class="btn btn-xs btn-primary" onclick="show_hide(4)">position</button> <button class="btn btn-xs btn-primary" onclick="show_hide(5)">couleur</button> <button class="btn btn-xs btn-primary" onclick="show_hide(6)">tubage</button> <button class="btn btn-xs btn-primary" onclick="show_hide(7)">tubage_taille</button> <button class="btn btn-xs btn-primary" onclick="show_hide(8)">id_chambre_src</button> <button class="btn btn-xs btn-primary" onclick="show_hide(9)">id_chambre_dst</button> 
+                <button class="btn btn-xs btn-primary" onclick="show_hide(0)">id_masque</button> <button class="btn btn-xs btn-primary" onclick="show_hide(1)">val_masque</button> <button class="btn btn-xs btn-primary" onclick="show_hide(2)">contenue</button> 
             </div>
 
             <div class="mail-box">
                 <table class="table table-bordered table-hover table-mail">
                     <thead>
-                        <tr><th></th><th id="cell_0_0">id_masque</th><th id="cell_0_1">nom</th><th id="cell_0_2">taille</th><th id="cell_0_3">etat</th><th id="cell_0_4">position</th><th id="cell_0_5">couleur</th><th id="cell_0_6">tubage</th><th id="cell_0_7">tubage_taille</th><th id="cell_0_8">id_chambre_src</th><th id="cell_0_9">id_chambre_dst</th><th>Action</th></tr>
+                        <tr><th></th><th id="cell_0_0">id_masque</th><th id="cell_0_1">val_masque</th><th id="cell_0_2">contenue</th><th>Action</th></tr>
                     </thead>
                     <tbody id="syno_masque_body_id">
                     </tbody>
@@ -82,41 +82,13 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                             <input id="<?php echo $lang["id_masque_id"]; ?>" placeholder="<?php echo $lang["id_masque_placeholder"]; ?>" class="form-control " type="text" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="<?php echo $lang["nom_id"]; ?>"><?php echo $lang["nom_label"]; ?></label> 
-                            <input id="<?php echo $lang["nom_id"]; ?>" placeholder="<?php echo $lang["nom_placeholder"]; ?>" class="form-control " type="text" >
+                            <label for="<?php echo $lang["val_masque_id"]; ?>"><?php echo $lang["val_masque_label"]; ?></label> 
+                            <input id="<?php echo $lang["val_masque_id"]; ?>" placeholder="<?php echo $lang["val_masque_placeholder"]; ?>" class="form-control " type="text" >
                         </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["taille_id"]; ?>"><?php echo $lang["taille_label"]; ?></label> 
-                            <input id="<?php echo $lang["taille_id"]; ?>" placeholder="<?php echo $lang["taille_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["etat_id"]; ?>"><?php echo $lang["etat_label"]; ?></label> 
-                            <input id="<?php echo $lang["etat_id"]; ?>" placeholder="<?php echo $lang["etat_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["position_id"]; ?>"><?php echo $lang["position_label"]; ?></label> 
-                            <input id="<?php echo $lang["position_id"]; ?>" placeholder="<?php echo $lang["position_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["couleur_id"]; ?>"><?php echo $lang["couleur_label"]; ?></label> 
-                            <input id="<?php echo $lang["couleur_id"]; ?>" placeholder="<?php echo $lang["couleur_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["tubage_id"]; ?>"><?php echo $lang["tubage_label"]; ?></label> 
-                            <input id="<?php echo $lang["tubage_id"]; ?>" placeholder="<?php echo $lang["tubage_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["tubage_taille_id"]; ?>"><?php echo $lang["tubage_taille_label"]; ?></label> 
-                            <input id="<?php echo $lang["tubage_taille_id"]; ?>" placeholder="<?php echo $lang["tubage_taille_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["id_chambre_src_id"]; ?>"><?php echo $lang["id_chambre_src_label"]; ?></label> 
-                            <input id="<?php echo $lang["id_chambre_src_id"]; ?>" placeholder="<?php echo $lang["id_chambre_src_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
-                        <div class="form-group">
-                            <label for="<?php echo $lang["id_chambre_dst_id"]; ?>"><?php echo $lang["id_chambre_dst_label"]; ?></label> 
-                            <input id="<?php echo $lang["id_chambre_dst_id"]; ?>" placeholder="<?php echo $lang["id_chambre_dst_placeholder"]; ?>" class="form-control " type="text" >
-                        </div>
+                    <div class="form-group">
+                        <label for="<?php echo $lang["contenue_id"]; ?>"><?php echo $lang["contenue_label"]; ?></label> 
+                        <textarea id="<?php echo $lang["contenue_id"]; ?>" class="form-control"></textarea>
+                    </div>
                         <div>
                             <button id="btn_save" data-api="add" class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>Save</strong></button>
                         </div>
@@ -132,20 +104,13 @@ $nbrPages = ceil($nbr / $nbrPerPage);
     var maxPage = <?php echo $nbrPages; ?>;
     var apiName = 'syno_masque';
     var lastResponseData = null;
-    var hiddenColumns = [false,false,false,false,false,false,false,false,false,false];
+    var hiddenColumns = [false,false,false];
     
     function getData() {
         var obj = {
                         <?php echo $lang["id_masque_id"]; ?>: valById("<?php echo $lang["id_masque_id"]; ?>"),
-            <?php echo $lang["nom_id"]; ?>: valById("<?php echo $lang["nom_id"]; ?>"),
-            <?php echo $lang["taille_id"]; ?>: valById("<?php echo $lang["taille_id"]; ?>"),
-            <?php echo $lang["etat_id"]; ?>: valById("<?php echo $lang["etat_id"]; ?>"),
-            <?php echo $lang["position_id"]; ?>: valById("<?php echo $lang["position_id"]; ?>"),
-            <?php echo $lang["couleur_id"]; ?>: valById("<?php echo $lang["couleur_id"]; ?>"),
-            <?php echo $lang["tubage_id"]; ?>: valById("<?php echo $lang["tubage_id"]; ?>"),
-            <?php echo $lang["tubage_taille_id"]; ?>: valById("<?php echo $lang["tubage_taille_id"]; ?>"),
-            <?php echo $lang["id_chambre_src_id"]; ?>: valById("<?php echo $lang["id_chambre_src_id"]; ?>"),
-            <?php echo $lang["id_chambre_dst_id"]; ?>: valById("<?php echo $lang["id_chambre_dst_id"]; ?>"),
+            <?php echo $lang["val_masque_id"]; ?>: valById("<?php echo $lang["val_masque_id"]; ?>"),
+            <?php echo $lang["contenue_id"]; ?>: valById("<?php echo $lang["contenue_id"]; ?>"),
 
         };
         return obj;
@@ -153,48 +118,13 @@ $nbrPages = ceil($nbr / $nbrPerPage);
     
     function checkData(data) {
         
-        if (data.<?php echo $lang["nom_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["nom_empty_message"]; ?>"], "error");
+        if (data.<?php echo $lang["val_masque_id"]; ?> == "") {
+            showNotification("Error", ["<?php echo $lang["val_masque_empty_message"]; ?>"], "error");
             return false;
         }
         
-        if (data.<?php echo $lang["taille_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["taille_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["etat_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["etat_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["position_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["position_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["couleur_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["couleur_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["tubage_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["tubage_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["tubage_taille_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["tubage_taille_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["id_chambre_src_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["id_chambre_src_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["id_chambre_dst_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["id_chambre_dst_empty_message"]; ?>"], "error");
+        if (data.<?php echo $lang["contenue_id"]; ?> == "") {
+            showNotification("Error", ["<?php echo $lang["contenue_empty_message"]; ?>"], "error");
             return false;
         }
         
@@ -309,15 +239,8 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                         html += '<input value="' + response.data[i].id_masque + '" type="checkbox" class="i-checks">';
                         html += '</td>';
                         html += "<td id=\"cell_" + i + "_0\" class=\"mail-contact\">" + response.data[i].id_masque + "</td>";
-                        html += "<td id=\"cell_" + i + "_1\" class=\"mail-contact\">" + response.data[i].nom + "</td>";
-                        html += "<td id=\"cell_" + i + "_2\" class=\"mail-contact\">" + response.data[i].taille + "</td>";
-                        html += "<td id=\"cell_" + i + "_3\" class=\"mail-contact\">" + response.data[i].etat + "</td>";
-                        html += "<td id=\"cell_" + i + "_4\" class=\"mail-contact\">" + response.data[i].position + "</td>";
-                        html += "<td id=\"cell_" + i + "_5\" class=\"mail-contact\">" + response.data[i].couleur + "</td>";
-                        html += "<td id=\"cell_" + i + "_6\" class=\"mail-contact\">" + response.data[i].tubage + "</td>";
-                        html += "<td id=\"cell_" + i + "_7\" class=\"mail-contact\">" + response.data[i].tubage_taille + "</td>";
-                        html += "<td id=\"cell_" + i + "_8\" class=\"mail-contact\">" + response.data[i].id_chambre_src + "</td>";
-                        html += "<td id=\"cell_" + i + "_9\" class=\"mail-contact\">" + response.data[i].id_chambre_dst + "</td>";
+                        html += "<td id=\"cell_" + i + "_1\" class=\"mail-contact\">" + response.data[i].val_masque + "</td>";
+                        html += "<td id=\"cell_" + i + "_2\" class=\"mail-contact\">" + response.data[i].contenue + "</td>";
 
                         html += '<td class="">' +
                                 '<button onclick="btn_edit_click(' + i + ');" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></button>' +
@@ -368,15 +291,8 @@ $nbrPages = ceil($nbr / $nbrPerPage);
         var data = lastResponseData[index];
         $('#btn_save').attr('data-api', 'update');
                 $("#<?php echo $lang["id_masque_id"]; ?>").val(data.id_masque);
-        $("#<?php echo $lang["nom_id"]; ?>").val(data.nom);
-        $("#<?php echo $lang["taille_id"]; ?>").val(data.taille);
-        $("#<?php echo $lang["etat_id"]; ?>").val(data.etat);
-        $("#<?php echo $lang["position_id"]; ?>").val(data.position);
-        $("#<?php echo $lang["couleur_id"]; ?>").val(data.couleur);
-        $("#<?php echo $lang["tubage_id"]; ?>").val(data.tubage);
-        $("#<?php echo $lang["tubage_taille_id"]; ?>").val(data.tubage_taille);
-        $("#<?php echo $lang["id_chambre_src_id"]; ?>").val(data.id_chambre_src);
-        $("#<?php echo $lang["id_chambre_dst_id"]; ?>").val(data.id_chambre_dst);
+        $("#<?php echo $lang["val_masque_id"]; ?>").val(data.val_masque);
+        $("#<?php echo $lang["contenue_id"]; ?>").val(data.contenue);
 
         $('#modal-form').modal('show');
     }
