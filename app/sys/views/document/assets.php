@@ -47,6 +47,7 @@
 <link rel="stylesheet" href="assets/js/plugins/select2/select2-bootstrap.css">
 <link rel="stylesheet" href="assets/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
 <link rel="stylesheet" href="assets/js/plugins/fullcalendar/fullcalendar.min.css">
+<link rel="stylesheet" href="assets/js/plugins/jstree/dist/themes/default/style.min.css">
 
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 <script src="assets/js/core/jquery.min.js"></script>
@@ -81,6 +82,7 @@
 <script src="assets/js/plugins/datatables/Select-1.2.0/js/dataTables.select.min.js"></script>
 <script src="assets/js/plugins/summernote/summernote.min.js"></script>
 <script src="assets/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="assets/js/plugins/jstree/dist/jstree.min.js"></script>
 <script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>
 

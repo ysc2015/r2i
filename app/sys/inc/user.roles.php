@@ -223,8 +223,16 @@ class adm extends baseUser {
         );
     }
 
+    function wk() {
+    	Page::wk(
+    			array(
+    					"wk" => array("wk")
+    			)
+    			);
+    }
+
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc"/*,"wiki"*/);
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc","wk");
     }
 
     //admin only menu
@@ -278,14 +286,6 @@ class adm extends baseUser {
             )
         );
     }
-    
-    /*function wiki() {
-    	Page::wiki(
-    			array(
-    					"wiki" => array("wiki")
-    			)
-    			);
-    }*/
 }
 
 class dov extends baseUser {
