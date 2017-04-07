@@ -1,10 +1,15 @@
 <?php
+
+$tableName = 'syno_masque';
+$response = array('err' => 0, 'msg' => array(), 'extra' => null);
+
+<?php
 $tableName = 'syno_masque';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
 switch ($action) {
-    case 'listForSelect':        
-        $stmt = $pdo->query('SELECT id_masque as id,val_masque as lib FROM ' . $tableName);
+    case 'listForSelect':
+        $stmt = $pdo->query('SELECT id_masque as id,nom as lib FROM ' . $tableName);
         $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 'list':
@@ -19,8 +24,8 @@ switch ($action) {
         } else {
             $page = 1;
         }
-        
-        if(isset($_POST['search_value']) && !empty($_POST['search_value'])) {
+
+        if (isset($_POST['search_value']) && !empty($_POST['search_value'])) {
             $search_for = '%' . $_POST['search_value'] . '%';
             $where = ' WHERE `' . $_POST['search_by'] . '` LIKE ' . $pdo->quote($search_for);
         }
@@ -28,10 +33,10 @@ switch ($action) {
         $nbr = DBHelper::count($tableName, $where);
         $nbrPages = ceil($nbr / $nbrPerPage);
         $from = ($page - 1) * $nbrPerPage;
-        
+
         $stmt = $pdo->query('SELECT COUNT(*) AS NBR FROM ' . $tableName . $where);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         $stmt = $pdo->query('SELECT * FROM ' . $tableName . $where . ' LIMIT ' . $from . ',10');
         $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $response['extra'] = array(
@@ -59,8 +64,15 @@ switch ($action) {
         break;
     case 'add':
         $data = array(
-          "val_masque" => $_POST[$lang["val_masque_id"]],
-          "contenue" => $_POST[$lang["contenue_id"]],);
+            "nom" => $_POST[$lang["nom_id"]],
+            "taille" => $_POST[$lang["taille_id"]],
+            "etat" => $_POST[$lang["etat_id"]],
+            "position" => $_POST[$lang["position_id"]],
+            "couleur" => $_POST[$lang["couleur_id"]],
+            "tubage" => $_POST[$lang["tubage_id"]],
+            "tubage_taille" => $_POST[$lang["tubage_taille_id"]],
+            "id_chambre_src" => $_POST[$lang["id_chambre_src_id"]],
+            "id_chambre_dst" => $_POST[$lang["id_chambre_dst_id"]],);
         $ret = DBHelper::insert($tableName, $data);
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_ADD_MSG'];
@@ -71,9 +83,16 @@ switch ($action) {
         break;
     case 'update':
         $admin = array(
-          "id_masque" => $_POST[$lang["id_masque_id"]],
-          "val_masque" => $_POST[$lang["val_masque_id"]],
-          "contenue" => $_POST[$lang["contenue_id"]]);
+            "id_masque" => $_POST[$lang["id_masque_id"]],
+            "nom" => $_POST[$lang["nom_id"]],
+            "taille" => $_POST[$lang["taille_id"]],
+            "etat" => $_POST[$lang["etat_id"]],
+            "position" => $_POST[$lang["position_id"]],
+            "couleur" => $_POST[$lang["couleur_id"]],
+            "tubage" => $_POST[$lang["tubage_id"]],
+            "tubage_taille" => $_POST[$lang["tubage_taille_id"]],
+            "id_chambre_src" => $_POST[$lang["id_chambre_src_id"]],
+            "id_chambre_dst" => $_POST[$lang["id_chambre_dst_id"]],);
         $ret = DBHelper::update($tableName, 'id_masque=:id_masque', $admin);
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_UPDATE_MSG'];
@@ -82,11 +101,20 @@ switch ($action) {
             $response['msg'][] = 'Updating ' . $tableName . ' Error';
         }
         break;
-    case 'update_by_name':        
+    case 'update_by_name':
         $admin = array(
-          "val_masque" => $_POST[$lang["val_masque_id"]],
-          "contenue" => $_POST[$lang["contenue_id"]],);
-        $ret = DBHelper::update($tableName, 'val_masque=:val_masque', $admin);
+            "id_masque" => $_POST[$lang["id_masque_id"]],
+            "nom" => $_POST[$lang["nom_id"]],
+            "taille" => $_POST[$lang["taille_id"]],
+            "etat" => $_POST[$lang["etat_id"]],
+            "position" => $_POST[$lang["position_id"]],
+            "couleur" => $_POST[$lang["couleur_id"]],
+            "tubage" => $_POST[$lang["tubage_id"]],
+            "tubage_taille" => $_POST[$lang["tubage_taille_id"]],
+            "id_chambre_src" => $_POST[$lang["id_chambre_src_id"]],
+            "id_chambre_dst" => $_POST[$lang["id_chambre_dst_id"]]);
+        
+        $ret = DBHelper::update($tableName, 'nom=:nom', $admin);
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_UPDATE_MSG'];
         } else {
