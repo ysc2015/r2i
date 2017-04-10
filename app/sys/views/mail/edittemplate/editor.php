@@ -67,6 +67,14 @@
                 <td>@nom_entreprise_stt</td>
                 <td>Le nom de l'entreprise STT</td>
             </tr>
+            <tr>
+                <td>@url_projet</td>
+                <td>Le lien ver le projet</td>
+            </tr>
+            <tr>
+                <td>@id_sous_projet</td>
+                <td>ID sous projet projet</td>
+            </tr>
 
 
         </table>
