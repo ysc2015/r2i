@@ -1540,11 +1540,47 @@ switch ($page) {
             </div>
             <div class="modal-footer">
                 <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
-                <button class="btn btn-sm btn-primary disabled" id="apply_fci_commande" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                <button class="btn btn-sm btn-primary" id="save_root_cat" type="button"><i class="fa fa-check"></i> Enregistrer</button>
             </div>
         </div>
     </div>
 </div>
 <!-- END ajouter catégorie Modal -->
+
+<script>
+    //wiki global JS code
+    $(document).ready(function() {
+
+        $("#save_root_cat").click(function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                method: "POST",
+                url: "api/wiki/add_root_cat.php",
+                dataType: "json",
+                data: {
+                    nom: $('#cat_name').val(),
+                    description: $('#cat_desc').val()
+                }
+            }).done(function (msg) {
+                console.log(msg);
+                if(msg.error == 0) {
+
+                    str_pcats='';
+
+                    get_categorie_menu();
+
+                    str_pcats+='<li><a id="show_root_cat_add" href="#" data-toggle="modal" data-target="#modal-add-cat0" data-backdrop="static" data-keyboard="false"><i class="si si-plus"></i><span class="sidebar-mini-hide">Ajouter (Racine)</span></a></li>';
+                    //str_pcats+='<li class=""><a href="" id="ajouter_categorie" data-toggle="modal" data-target="#modal-fromleft"><i class="fa fa-plus"></i> Ajouter</a></li>';
+
+                    $('#menu_categorie').html(str_pcats);
+                }
+
+                App.showMessage(msg,'#message_wiki_cat_add_root', null);
+            });
+        });
+
+    } );
+</script>
 
 

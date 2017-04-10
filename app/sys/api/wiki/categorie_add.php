@@ -27,6 +27,7 @@ if(isset($description) && !empty($description)){
     $err++;
     $message[] = "Description de la Catégorie invalide !";
 }
+
 if(isset($categorie)){
 	if(!empty($categorie) && $categorie!='0')
     	$stm->bindParam(':id_categorie_parent',$categorie);
@@ -41,9 +42,7 @@ if($insert == true && $err == 0){
         $message [] = "Enregistrement ajouté avec succès";
         $cate = Categorie::last();
 
-                      }
-
-                                else {
+    } else {
         $err++;
         $message [] = $stm->errorInfo();
     }
