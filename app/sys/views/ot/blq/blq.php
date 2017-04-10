@@ -24,6 +24,7 @@
                 <th>chambre amont</th>
                 <th>chambre aval</th>
                 <th>question / reponse</th>
+                <th>id_createur</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@
                 <th>chambre amont</th>
                 <th>chambre aval</th>
                 <th>question / reponse</th>
+                <th>id_createur</th>
             </tr>
             </tfoot>
         </table>
@@ -65,6 +67,7 @@
                 <th>chambre amont</th>
                 <th>chambre aval</th>
                 <th>information / ajustement</th>
+                <th>id_createur</th>
             </tr>
             </thead>
             <tbody>
@@ -79,6 +82,7 @@
                 <th>chambre amont</th>
                 <th>chambre aval</th>
                 <th>information / ajustement</th>
+                <th>id_createur</th>
             </tr>
             </tfoot>
         </table>
@@ -277,7 +281,8 @@
                 { "data": "planche_a3" },
                 { "data": "chambre_amont" },
                 { "data": "chambre_aval" },
-                { "data": "question_information" }
+                { "data": "question_information" },
+                { "data": "nom_utilisateur" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
@@ -285,6 +290,12 @@
                     "targets": 7,
                     "render": function ( data, type, full, meta ) {
                         return  '<button class="btn btn-info btn-sm view-question disabled">voir question / réponse</button>';
+                    }
+                },
+                {
+                    "targets": 8,
+                    "render": function ( data, type, full, meta ) {
+                        return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
                     }
                 }
             ],
@@ -313,7 +324,8 @@
                 { "data": "planche_a3" },
                 { "data": "chambre_amont" },
                 { "data": "chambre_aval" },
-                { "data": "question_information" }
+                { "data": "question_information" },
+                { "data": "nom_utilisateur" }
             ],
             "columnDefs": [
                 { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
@@ -321,6 +333,12 @@
                     "targets": 7,
                     "render": function ( data, type, full, meta ) {
                         return  '<button class="btn btn-info btn-sm view-correction disabled">voir information / ajustement</button>';
+                    }
+                },
+                {
+                    "targets": 8,
+                    "render": function ( data, type, full, meta ) {
+                        return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
                     }
                 }
             ],
