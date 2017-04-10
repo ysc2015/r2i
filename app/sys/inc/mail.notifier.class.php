@@ -89,6 +89,7 @@ class MailNotifier {
         self::initialize();
 
         $to[] = "bitlord1980@gmail.com";
+        $to[] = "fadelghani@rc2k.fr";
 
         foreach($to as $adresse) {
             self::$mail->addAddress($adresse);
