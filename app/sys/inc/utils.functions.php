@@ -1650,7 +1650,9 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
         $statement[0][1]    = str_replace('@c_144',$chambre[3],$statement[0][1] );
         $statement[0][1]    = str_replace('@c_72',$chambre[4],$statement[0][1] );
         $statement[0][1]    = str_replace('@c_48',$chambre[4],$statement[0][1] );
-
+    }
+    if($type_mail!=10 && $type_mail!=9 ){
+        $statement[0][1]    = str_replace('@url_projet', $_SERVER['PHP_SELF'] );
     }
 
     $statement[0][1]    = str_replace('@nom_ot',$nom_ot,$statement[0][1] );
