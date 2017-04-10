@@ -84,7 +84,7 @@ if($err == 0) {
 
         $mailaction_to =return_list_bei_du_nro($db,$sousProjet->projet->nro->id_nro);//à voir avec rabii
 
-
+        $mailaction_to[] = "fadelghani@rc2k.fr";
         if(count($mailaction_to)>0){
 
             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
