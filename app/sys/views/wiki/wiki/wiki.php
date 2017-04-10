@@ -38,11 +38,29 @@ $categorie = WikiCategorie::first(
 		</div>
 		<div class="row">
 			<div class="col-md-9">
-				<a href="?page=wiki&action=ajouterSujet"><button
+				<a href="?page=wiki&action=ajouterSujet">
+					<button
+						class="btn btn-success push-5-r push-10" type="button"
+						style="margin-left: 103px; margin-bottom: 20px !important">
+						<i class="fa fa-plus"></i> Ajouter sujet
+					</button>
+				</a>
+
+				<a href="?page=wiki&action=ajouterSujet">
+					<button
 						class="btn btn-info push-5-r push-10" type="button"
 						style="margin-left: 103px; margin-bottom: 20px !important">
-						<i class="fa fa-plus"></i>
-					</button></a>
+						<i class="fa fa-edit"></i> Modifier catégorie
+					</button>
+				</a>
+
+				<a href="?page=wiki&action=ajouterSujet">
+					<button
+						class="btn btn-default push-5-r push-10" type="button"
+						style="margin-left: 103px; margin-bottom: 20px !important">
+						<i class="fa fa-plus"></i> Ajouter sous catégorie
+					</button>
+				</a>
 
 				<ul class="list list-timeline pull-t" id="ul_sujets">
 
