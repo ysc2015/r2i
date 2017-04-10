@@ -1,4 +1,4 @@
-<div class="block block-themed" id="deot_block">
+<div class="block block-themed block-opt-hidden" id="deot_block">
     <div class="block-header bg-info">
         <ul class="block-options">
             <li>

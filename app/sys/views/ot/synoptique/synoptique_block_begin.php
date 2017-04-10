@@ -1,4 +1,4 @@
-<div class="block block-themed" id="synoptique_block">
+<div class="block block-themed block-opt-hidden" id="synoptique_block">
     <div class="block-header bg-info">
         <ul class="block-options">
             <li>
