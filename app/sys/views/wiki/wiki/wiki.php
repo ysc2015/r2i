@@ -120,6 +120,19 @@ $categorie = WikiCategorie::first(
 				<div class="block-content" id="wiki-cat-root-add-block">
 					<form class="js-validation-bootstrap form-horizontal" id="wiki_add_sous_cat">
 
+						<div class="form-group">
+							<div class="col-md-9">
+								<label for="sub_cat_name">Nom</label>
+								<input class="form-control" type="text" id="sub_cat_name" name="sub_cat_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-9">
+								<label for="sub_cat_desc">Déscription</label>
+								<textarea class="form-control" id="sub_cat_desc" name="sub_cat_desc" rows="6" placeholder="Description.."></textarea>
+							</div>
+						</div>
+
 						<div class='alert alert-success' id='message_wiki_add_sous_cat' role='alert' style="display: none;">
 						</div>
 					</form>
@@ -311,6 +324,42 @@ $categorie = WikiCategorie::first(
 			console.log('add-sous-cat-show');
 
 			wiki_sub_cat_added = false;
+
+			$("#wiki_add_sous_cat")[0].reset();
+		});
+
+		$("#save_sous_cat").click(function(e) {
+			e.preventDefault();
+			console.log('save_sous_cat');
+
+			$.ajax({
+				method: "POST",
+				url: "api/wiki/add_sous_cat.php",
+				dataType: "json",
+				data: {
+					idcat : get('idcat'),
+					nom : $('#sub_cat_name').val(),
+					desc : $('#sub_cat_desc').val()
+				}
+			}).done(function (msg) {
+
+				if(msg.error == 0) {
+
+					wiki_sub_cat_added = true;
+
+					$("#wiki_add_sous_cat")[0].reset();
+				}
+
+				App.showMessage(msg,'#message_wiki_add_sous_cat');
+			});
+		});
+
+		$('#modal-add-sous-cat').on('hidden.bs.modal', function () {
+
+			if(wiki_sub_cat_added) {
+
+				getCatSubjects(get('idcat'));//TODO get only sub cats
+			}
 		});
 
 		getCatSubjects(get('idcat'));
