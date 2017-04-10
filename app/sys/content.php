@@ -1574,9 +1574,14 @@ switch ($page) {
                     //str_pcats+='<li class=""><a href="" id="ajouter_categorie" data-toggle="modal" data-target="#modal-fromleft"><i class="fa fa-plus"></i> Ajouter</a></li>';
 
                     $('#menu_categorie').html(str_pcats);
+
+                    alert('Catégorie ajoutée !');
+
+                    window.location.reload();
                 }
 
-                App.showMessage(msg,'#message_wiki_cat_add_root', null);
+                //App.showMessage(msg,'#message_wiki_cat_add_root', null);
+
             });
         });
 
