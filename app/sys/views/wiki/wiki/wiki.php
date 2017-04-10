@@ -76,7 +76,7 @@ $categorie = WikiCategorie::first(
 
 <!-- ajouter sujet Modal -->
 <div class="modal fade" id="modal-add-sujet" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="block block-themed block-transparent remove-margin-b">
 				<div class="block-header bg-primary">
@@ -89,6 +89,20 @@ $categorie = WikiCategorie::first(
 				</div>
 				<div class="block-content" id="wiki-cat-root-add-block">
 					<form class="js-validation-bootstrap form-horizontal" id="wiki_add_sujet">
+
+						<div class="form-group">
+							<div class="col-md-6">
+								<label for="cat_subject_title">Titre</label>
+								<input class="form-control" type="text" id="cat_subject_title" name="cat_subject_title">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="js-ckeditor">Contenu</label>
+								<textarea class="form-control" id="js-ckeditor" name="ckeditor" required rows="30"></textarea>
+							</div>
+						</div>
 
 						<div class='alert alert-success' id='message_wiki_add_sujet' role='alert' style="display: none;">
 						</div>
@@ -261,7 +275,12 @@ $categorie = WikiCategorie::first(
 	}
 
 	var wiki_sub_cat_added = false;
-	var wiki_subject_updated = false;
+	var wiki_subject_added = false;
+
+	$(function () {
+		// Init page helpers (Summernote + CKEditor plugins)
+		//App.initHelpers(['summernote', 'ckeditor']);
+	});
 
 	$(document).ready(function() {
 
@@ -269,7 +288,9 @@ $categorie = WikiCategorie::first(
 			e.preventDefault();
 			console.log('add-sujet-show');
 
-			wiki_subject_updated = false;
+			wiki_subject_added = false;
+
+			$("#wiki_add_sujet")[0].reset();
 		});
 
 
