@@ -92,7 +92,7 @@ function tronconClick(obj) {
                 </svg> \
                </td><td>';
 
-            options = makeOptionsList(masque_options, data.masque_src, 'id_masque', 'val_masque');
+            options = makeOptionsList(masque_options, data.masque_src, 'id_masque', 'nom');
             html += '<select class="" onchange="updateTronconOnChange(' + data.id_troncon + ',this,\'masque_src\')">' + options + '</select> \
             </td><td class="leftBorder"></td><td></td></tr>\
             <tr><td style="height: 8px; padding: 0px;"><img width="174px" height="10px" src="assets/img/Biochem_reaction_arrow_forward_NNNN_horiz_med.svg.png" />\
@@ -135,7 +135,7 @@ function tronconClick(obj) {
             </svg>\
             </td><td>';
 
-            options = makeOptionsList(masque_options, data.masque_dst, 'id_masque', 'val_masque');
+            options = makeOptionsList(masque_options, data.masque_dst, 'id_masque', 'nom');
             html += '<select class="" onchange="updateTronconOnChange(' + data.id_troncon + ',this,\'masque_dst\')">' + options + '</select>\
             </td><td class="leftBorder"></td><td></td></tr><tr><td style="height: 8px; padding: 0px;">\
             <img width="174px" height="10px" src="assets/img/Biochem_reaction_arrow_forward_NNNN_horiz_med.svg.png" /></td>\
