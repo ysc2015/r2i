@@ -3,7 +3,7 @@
         display: none;
     }
 </style>
-<div class="block block-themed" id="retourpresta_block">
+<div class="block block-themed block-opt-hidden" id="retourpresta_block">
     <div class="block-header bg-info">
         <ul class="block-options">
             <li>
