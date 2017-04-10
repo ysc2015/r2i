@@ -250,7 +250,7 @@ switch ($page) {
         echo "<br><br>";
         break;
     case "wiki":
-        $connectedProfil->wk();
+        $connectedProfil->wiki();
         echo "<br><br>";
         break;
     default : $connectedProfil->ressourceNotFound();break;
@@ -1038,7 +1038,7 @@ switch ($page) {
 
             $('#sp_question_pbc_upload').hide();
 
-            $('body').on('click',"#blq_pbc_table tbody tr",function (){
+            $('body').on('click',"#blq_pbc_table tbody tr",function () {
                 if(true) { //TODO check if dt is not empty
                     if ( $(this).hasClass('selected') ) {
                         $(this).removeClass('selected');
