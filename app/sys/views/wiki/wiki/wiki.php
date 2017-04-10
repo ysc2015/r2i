@@ -30,7 +30,7 @@ $categorie = WikiCategorie::first(
 				</button>
 			</li>
 		</ul>
-		<h3 class="block-title"><?= $categorie->nom?></h3>
+		<h3 class="block-title" id="cat-title"><?= $categorie->nom?></h3>
 	</div>
 	<div class="block-content">
 		<div class="row">
@@ -38,7 +38,7 @@ $categorie = WikiCategorie::first(
 		</div>
 		<div class="row">
 			<div class="col-md-9">
-				<a data-toggle="modal" data-target="#modal-add-sujet" data-backdrop="static" data-keyboard="false">
+				<a id="add-sujet-show" data-toggle="modal" data-target="#modal-add-sujet" data-backdrop="static" data-keyboard="false">
 					<button
 						class="btn btn-success push-5-r push-10" type="button"
 						style="margin-left: 103px; margin-bottom: 20px !important">
@@ -46,7 +46,7 @@ $categorie = WikiCategorie::first(
 					</button>
 				</a>
 
-				<a data-toggle="modal" data-target="#modal-mod-cat" data-backdrop="static" data-keyboard="false">
+				<a id="mod-cat-show" data-toggle="modal" data-target="#modal-mod-cat" data-backdrop="static" data-keyboard="false">
 					<button
 						class="btn btn-info push-5-r push-10" type="button"
 						style="margin-left: 103px; margin-bottom: 20px !important">
@@ -54,7 +54,7 @@ $categorie = WikiCategorie::first(
 					</button>
 				</a>
 
-				<a data-toggle="modal" data-target="#modal-add-sous-cat" data-backdrop="static" data-keyboard="false">
+				<a id="add-sous-cat-show" data-toggle="modal" data-target="#modal-add-sous-cat" data-backdrop="static" data-keyboard="false">
 					<button
 						class="btn btn-default push-5-r push-10" type="button"
 						style="margin-left: 103px; margin-bottom: 20px !important">
@@ -150,6 +150,19 @@ $categorie = WikiCategorie::first(
 				<div class="block-content" id="wiki-cat-mod-block">
 					<form class="js-validation-bootstrap form-horizontal" id="wiki_mod_cat">
 
+						<div class="form-group">
+							<div class="col-md-9">
+								<label for="u_cat_name">Nom</label>
+								<input class="form-control" type="text" id="u_cat_name" name="u_cat_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-9">
+								<label for="u_cat_desc">Déscription</label>
+								<textarea class="form-control" id="u_cat_desc" name="u_cat_desc" rows="6" placeholder="Description.."></textarea>
+							</div>
+						</div>
+
 						<div class='alert alert-success' id='message_wiki_mod_cat' role='alert' style="display: none;">
 						</div>
 					</form>
@@ -157,7 +170,7 @@ $categorie = WikiCategorie::first(
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
-				<button class="btn btn-sm btn-primary" id="save_cat" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+				<button class="btn btn-sm btn-primary" id="update_cat" type="button"><i class="fa fa-check"></i> Enregistrer</button>
 			</div>
 		</div>
 	</div>
@@ -233,7 +246,72 @@ $categorie = WikiCategorie::first(
 		});
 		
 	}
+
+	var wiki_sub_cat_added = false;
+	var wiki_subject_updated = false;
+
 	$(document).ready(function() {
+
+		$("#add-sujet-show").click(function(e) {
+			e.preventDefault();
+			console.log('add-sujet-show');
+
+			wiki_subject_updated = false;
+		});
+
+
+		$("#mod-cat-show").click(function(e) {
+			e.preventDefault();
+			console.log('mod-cat-show');
+
+			$.ajax({
+				method: "POST",
+				url: "api/wiki/get_cat_infos.php",
+				dataType: "json",
+				data: {
+					idcat: get('idcat')
+				}
+			}).done(function (msg) {
+				console.log(msg);
+
+				$('#u_cat_name').val(msg.cat.nom);
+				$('#u_cat_desc').val(msg.cat.description);
+			});
+		});
+
+		$("#update_cat").click(function(e) {
+			e.preventDefault();
+			console.log('update_cat');
+
+			$.ajax({
+				method: "POST",
+				url: "api/wiki/cat_update.php",
+				dataType: "json",
+				data: {
+					idcat : get('idcat'),
+					nom : $('#u_cat_name').val(),
+					desc : $('#u_cat_desc').val()
+				}
+			}).done(function (msg) {
+
+				if(msg.error == 0) {
+
+					$('#cat-title').html($('#u_cat_name').val());
+				}
+
+				App.showMessage(msg,'#message_wiki_mod_cat');
+			});
+		});
+
+
+
+
+		$("#add-sous-cat-show").click(function(e) {
+			e.preventDefault();
+			console.log('add-sous-cat-show');
+
+			wiki_sub_cat_added = false;
+		});
 
 		getCatSubjects(get('idcat'));
 		
