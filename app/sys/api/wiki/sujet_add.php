@@ -16,7 +16,7 @@ $insert = false;
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("insert into wiki_sujet (titre,contenu,id_categorie,date_creation,date_dernier_mod,id_utilisateur) values (:titre,:contenu,:id_categorie,'".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."',:id_user)");
+$stm = $db->prepare("insert into wiki_sujet (titre,contenu,id_categorie,date_creation,date_dernier_mod,id_utilisateur) values (:titre,:contenu,:id_categorie,'".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."',:id_utilisateur)");
 
 if(isset($titre) && !empty($titre)){
     $stm->bindParam(':titre',$titre);
@@ -41,9 +41,9 @@ if(isset($categorie) && !empty($categorie) && $categorie!='0'){
     $message[] = "Catégorie du sujet invalide !";
 }
 
-$stm->bindParam(':id_user',$connectedProfil->profil->id_utilisateur);
+$stm->bindParam(':id_utilisateur',$connectedProfil->profil->id_utilisateur);
 
-if($insert == true && $err == 0){
+if($insert == true && $err == 0) {
     if($stm->execute()){
         $message [] = "Enregistrement ajouté avec succès";
         $sujet = Sujet::last();
@@ -56,7 +56,7 @@ if($insert == true && $err == 0){
     }
 }
 
-if(isset($files) && !empty($files)){
+if(isset($files) && !empty($files)) {
         $tab = explode(";",$files);
         $temp='';
         foreach($tab as $url)

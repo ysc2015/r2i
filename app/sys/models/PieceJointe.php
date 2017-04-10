@@ -5,5 +5,5 @@
  */
 
 class PieceJointe extends ActiveRecord\Model {
-    static $table_name = 'wiki_piecejointe';
+    static $table_name = 'wiki_piecejoint';
 }

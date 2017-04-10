@@ -1,19 +1,14 @@
 <?php
 /**
- * file: get_type_ot.php
+ * file: get_parent_categorie.php
  * User: rabii
  */
-/*require_once '../../../sys/libs/vendor/autoload.php';
-require_once '../../../sys/inc/config.php';
-require_once '../../../sys/language/fr/default.php';
-require_once "../../../sys/inc/ssp.class.php";
-require_once "../../../sys/libs/vendor/EditableGrid/EditableGrid.php";*/
 
 extract($_POST);
 
 extract($_GET);
 
-$categories = Categorie::all(
+$categories = WikiCategorie::all(
     array('conditions' => "id_categorie_parent IS NULL")
     
 );
