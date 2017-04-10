@@ -3,57 +3,61 @@
 
 <script>
 
-function get_liste_sujets(id) {
+	function get_liste_sujets(id) {
 
-	window.location.replace("?page=wiki&idcat="+id);
-}
-
-function get_categorie_menu(id_cat) {
-
-	var pcats,url="api/wiki/get_parent_categorie.php",idc='';
-
-	if(id_cat!==undefined) {
-
-		url="api/wiki/get_categorie_by_parent.php"; idc=id_cat;
+		window.location.replace("?page=wiki&idcat="+id);
 	}
 
-	$.ajax( {
-		url: url,
-		data: {id: idc},
-		async: false
-	}).done(function( data ) {
+	function get_categorie_menu(id_cat) {
 
-		pcats = jQuery.parseJSON( data );
+		var pcats,url="api/wiki/get_parent_categorie.php",idc='';
+
+		if(id_cat!==undefined) {
+
+			url="api/wiki/get_categorie_by_parent.php"; idc=id_cat;
+		}
+
+		$.ajax( {
+			url: url,
+			data: {id: idc},
+			async: false
+		}).done(function( data ) {
+
+			pcats = jQuery.parseJSON( data );
+
+		});
+
+		var i=0;
+
+		for(;i<pcats.length;i++) {
+			str_pcats+='<li class=""><a class="nav-submenu" data-toggle="nav-submenu"><span class="sidebar-mini-hide" id="idcat'+pcats[i].id+'">'+pcats[i].nom+'</span></a><ul>';
+			get_categorie_menu(pcats[i].id);
+			str_pcats+='</ul></li>';
+		}
+	}
+
+	$(document).ready(function() {
+
+		$('span[id^=\'idcat\']').on('click',function() {
+
+			var temp=$(this).attr('id');
+
+			if(temp!='' && temp.length>=6 && temp.substring(0,5)=='idcat' && temp.replace('idcat','')!='') {
+
+				get_liste_sujets(temp.replace('idcat',''));
+			}
+		});
 
 	});
 
-	var i=0;
+	var str_pcats='';
 
-	for(;i<pcats.length;i++) {
-		str_pcats+='<li class=""><a class="nav-submenu" data-toggle="nav-submenu"><span class="sidebar-mini-hide" id="idcat'+pcats[i].id+'">'+pcats[i].nom+'</span></a><ul>';
-		get_categorie_menu(pcats[i].id);
-		str_pcats+='</ul></li>';
-	}
-}
+	get_categorie_menu();
 
-$(document).ready(function() {
+	str_pcats+='<li><a href="javascript:void(0)"><i class="si si-plus"></i><span class="sidebar-mini-hide">Ajouter</span></a></li>';
+	//str_pcats+='<li class=""><a href="" id="ajouter_categorie" data-toggle="modal" data-target="#modal-fromleft"><i class="fa fa-plus"></i> Ajouter</a></li>';
 
-	$('span[id^=\'idcat\']').on('click',function() {
-
-	  var temp=$(this).attr('id');
-
-	  if(temp!='' && temp.length>=6 && temp.substring(0,5)=='idcat' && temp.replace('idcat','')!='') {
-
-		get_liste_sujets(temp.replace('idcat',''));
-	  }
-	});
-
-});
-
-var str_pcats='';
-
-get_categorie_menu();
-
-$('#menu_categorie').html(str_pcats);
+	$('#menu_categorie').html(str_pcats);
 
 </script>
+
