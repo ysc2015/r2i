@@ -30,7 +30,7 @@
 		var i=0;
 
 		for(;i<pcats.length;i++) {
-			str_pcats+='<li class=""><a class="nav-submenu" data-toggle="nav-submenu"><span class="sidebar-mini-hide" id="idcat'+pcats[i].id+'">'+pcats[i].nom+'</span></a><ul>';
+			str_pcats+='<li class=""><a class="nav-submenu" data-toggle="nav-submenu"><span class="sidebar-mini-hide catspan" id="idcat'+pcats[i].id+'">'+pcats[i].nom+'</span></a><ul>';
 			get_categorie_menu(pcats[i].id);
 			str_pcats+='</ul></li>';
 		}
@@ -39,6 +39,8 @@
 	$(document).ready(function() {
 
 		$('span[id^=\'idcat\']').on('click',function() {
+
+			console.log('chhh');
 
 			var temp=$(this).attr('id');
 
