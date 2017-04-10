@@ -3,10 +3,6 @@
 $tableName = 'syno_masque';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
-<?php
-$tableName = 'syno_masque';
-$response = array('err' => 0, 'msg' => array(), 'extra' => null);
-
 switch ($action) {
     case 'listForSelect':
         $stmt = $pdo->query('SELECT id_masque as id,nom as lib FROM ' . $tableName);
