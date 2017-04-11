@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td>@id_sous_projet</td>
-                <td>ID sous projet projet</td>
+                <td>ID sous projet </td>
             </tr>
 
 
