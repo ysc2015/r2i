@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-extract($_GET);
+extract($_POST);
 
 $table = array(
     "sous_projet as t1",
@@ -17,6 +17,7 @@ $columns = array(
     array( "db" => "t1.ville", "dt" => 'ville' ),
     array( "db" => "t1.plaque", "dt" => 'plaque' ),
     array( "db" => "t1.zone", "dt" => 'zone' ),
+    array( "db" => "t1.is_master", "dt" => 'is_master' ),
     array( "db" => "t2.id_nro", "dt" => 'id_nro' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t4.lr", "dt" => 'lr' ),
@@ -25,8 +26,15 @@ $columns = array(
     array( "db" => "scp1.lib_controle_plan as ctr_aiguillage_lib_controle_plan", "dt" => 'ctr_aiguillage_lib_controle_plan' ),
     array( "db" => "ot1.type_ot as ctr_aiguillage_ordre_de_travail", "dt" => 'ctr_aiguillage_ordre_de_travail' ),
     array( "db" => "ser1.lib_etat_retour as ctr_aiguillage_lib_etat_retour", "dt" => 'ctr_aiguillage_lib_etat_retour' ),
+
+    array( "db" => "t7.ref_commande_acces", "dt" => 'ref_commande_acces' ),
     array( "db" => "sca1.lib_commande_acces as ctr_aiguillage_lib_commande_acces", "dt" => 'ctr_aiguillage_lib_commande_acces' ),
     array( "db" => "sgf1.lib_go_ft as ctr_aiguillage_lib_go_ft", "dt" => 'ctr_aiguillage_lib_go_ft' ),
+
+    array( "db" => "t77.ref_commande_fin_travaux", "dt" => 'ref_commande_fin_travaux' ),
+    array( "db" => "sca11.lib_commande_acces as ctr_aiguillage_lib_commande_acces2", "dt" => 'ctr_aiguillage_lib_commande_acces2' ),
+    array( "db" => "sgf11.lib_go_ft as ctr_aiguillage_lib_go_ft2", "dt" => 'ctr_aiguillage_lib_go_ft2' ),
+
     array( "db" => "scp2.lib_controle_plan as ctr_tirage_lib_controle_plan", "dt" => 'ctr_tirage_lib_controle_plan' ),
     array( "db" => "ot2.type_ot as ctr_tirage_ordre_de_travail", "dt" => 'ctr_tirage_ordre_de_travail' ),
     array( "db" => "ser2.lib_etat_retour as ctr_tirage_lib_etat_retour", "dt" => 'ctr_tirage_lib_etat_retour' ),
@@ -37,8 +45,15 @@ $columns = array(
     array( "db" => "scp4.lib_controle_plan as cdi_aiguillage_lib_controle_plan", "dt" => 'cdi_aiguillage_lib_controle_plan' ),
     array( "db" => "ot4.type_ot as cdi_aiguillage_ordre_de_travail", "dt" => 'cdi_aiguillage_ordre_de_travail' ),
     array( "db" => "ser4.lib_etat_retour as cdi_aiguillage_lib_etat_retour", "dt" => 'cdi_aiguillage_lib_etat_retour' ),
+
+    array( "db" => "t12.ref_commande_acces as ref_commande_acces2", "dt" => 'ref_commande_acces2' ),
     array( "db" => "sca2.lib_commande_acces as cdi_aiguillage_lib_commande_acces", "dt" => 'cdi_aiguillage_lib_commande_acces' ),
     array( "db" => "sgf2.lib_go_ft as cdi_aiguillage_lib_go_ft", "dt" => 'cdi_aiguillage_lib_go_ft' ),
+
+    array( "db" => "t122.ref_commande_fin_travaux as ref_commande_fin_travaux2", "dt" => 'ref_commande_fin_travaux2' ),
+    array( "db" => "sca22.lib_commande_acces as ctr_aiguillage_lib_commande_acces22", "dt" => 'ctr_aiguillage_lib_commande_acces22' ),
+    array( "db" => "sgf22.lib_go_ft as ctr_aiguillage_lib_go_ft22", "dt" => 'ctr_aiguillage_lib_go_ft22' ),
+
     array( "db" => "scp5.lib_controle_plan as cdi_tirage_lib_controle_plan", "dt" => 'cdi_tirage_lib_controle_plan' ),
     array( "db" => "ot5.type_ot as cdi_tirage_ordre_de_travail", "dt" => 'cdi_tirage_ordre_de_travail' ),
     array( "db" => "ser5.lib_etat_retour as cdi_tirage_lib_etat_retour", "dt" => 'cdi_tirage_lib_etat_retour' ),
@@ -96,6 +111,8 @@ $left .= " left join sous_projet_transport_aiguillage t6 left join select_contro
 
 $left .= " left join sous_projet_transport_commande_ctr t7 left join select_commande_acces sca1 on t7.commandes_acces = sca1.id_commande_acces left join select_go_ft sgf1 on t7.go_ft=sgf1.id_go_ft on t1.id_sous_projet = t7.id_sous_projet";
 
+$left .= " left join sous_projet_transport_commande_fin_travaux t77 left join select_commande_acces sca11 on t77.commandes_fin_travaux = sca11.id_commande_acces left join select_go_ft sgf11 on t77.go_ft=sgf11.id_go_ft on t1.id_sous_projet = t77.id_sous_projet";
+
 $left .= " left join sous_projet_transport_tirage t8 left join select_controle_plan scp2 on t8.controle_plans=scp2.id_controle_plan left join ordre_de_travail ot2 on t8.id_sous_projet=ot2.id_sous_projet and ot2.id_type_ordre_travail IN (2,4) left join select_etat_retour ser2 on t8.etat_retour=ser2.id_etat_retour on t1.id_sous_projet = t8.id_sous_projet";
 
 $left .= " left join sous_projet_transport_raccordements t9 left join select_controle_plan scp3 on t9.controle_plans=scp3.id_controle_plan left join ordre_de_travail ot3 on t9.id_sous_projet=ot3.id_sous_projet and ot3.id_type_ordre_travail IN (3,4) left join select_etat_retour ser3 on t9.etat_retour=ser3.id_etat_retour on t1.id_sous_projet = t9.id_sous_projet";
@@ -106,6 +123,8 @@ $left .= " left join sous_projet_distribution_aiguillage t11 left join select_co
 
 $left .= " left join sous_projet_distribution_commande_cdi t12 left join select_commande_acces sca2 on t12.commandes_acces = sca2.id_commande_acces left join select_go_ft sgf2 on t12.go_ft=sgf2.id_go_ft on t1.id_sous_projet = t12.id_sous_projet";
 
+$left .= " left join sous_projet_transport_commande_fin_travaux t122 left join select_commande_acces sca22 on t122.commandes_fin_travaux = sca22.id_commande_acces left join select_go_ft sgf22 on t122.go_ft=sgf22.id_go_ft on t1.id_sous_projet = t122.id_sous_projet";
+
 $left .= " left join sous_projet_distribution_tirage t13 left join select_controle_plan scp5 on t13.controle_plans=scp5.id_controle_plan left join ordre_de_travail ot5 on t13.id_sous_projet=ot5.id_sous_projet and ot5.id_type_ordre_travail IN (6,8) left join select_etat_retour ser5 on t13.etat_retour=ser5.id_etat_retour on t1.id_sous_projet = t13.id_sous_projet";
 
 $left .= " left join sous_projet_distribution_raccordements t14 left join select_controle_plan scp6 on t14.controle_plans=scp6.id_controle_plan left join ordre_de_travail ot6 on t14.id_sous_projet=ot6.id_sous_projet and ot6.id_type_ordre_travail IN (7,8) left join select_etat_retour ser6 on t14.etat_retour=ser6.id_etat_retour on t1.id_sous_projet = t14.id_sous_projet";
@@ -115,5 +134,5 @@ $left .= " left join sous_projet_transport_recette t15 left join select_etat_rec
 $left .= " left join sous_projet_distribution_recette t16 left join select_etat_recette drec on t16.etat_recette=drec.id_etat_recette on t1.id_sous_projet = t16.id_sous_projet";
 
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,$left));
+echo json_encode(SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
