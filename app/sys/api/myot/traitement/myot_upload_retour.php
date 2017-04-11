@@ -239,12 +239,13 @@ if(isset($idot) && !empty($idot)) {
                  $nom_ot = $statement_ot['type_ot'];
 
                  $mailaction_nom_entreprise = $connectedProfil->profil->entreprise->nom;
-                 $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,$mailaction_phase,$mailaction_etape,5,$mailaction_nom_entreprise,$nom_ot);
+                 $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,$mailaction_phase,$mailaction_etape,5,$mailaction_nom_entreprise,$nom_ot,'','','','','','',$idsp);
                  $mailaction_object = $mailaction_html[1];
                  $mailaction_html =  $mailaction_html[0];
 
                   $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",5);
                  $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+                 $mailaction_to[] = "fadelghani@rc2k.fr";
                  if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                      $message[] = "Mail envoyé !";
                  } else {
