@@ -62,7 +62,7 @@
                 <th>Injection NetGeo</th>
 
                 <!--Commandes Fin Travaux-->
-                <th>Réf CMD Accès</th>
+                <th>Réf CMD Fin Travaux</th>
                 <th>Réalisation</th>
                 <th>Validation</th>
 
@@ -97,7 +97,7 @@
                 <th>Injection NetGeo</th>
 
                 <!--Commandes Fin Travaux-->
-                <th>Réf CMD Accès</th>
+                <th>Réf CMD Fin Travaux</th>
                 <th>Réalisation</th>
                 <th>Validation</th>
             </tr>
@@ -138,7 +138,7 @@
                 <th>Injection NetGeo</th>
 
                 <!--Commandes Fin Travaux-->
-                <th>Réf CMD Accès</th>
+                <th>Réf CMD Fin Travaux</th>
                 <th>Réalisation</th>
                 <th>Validation</th>
 
@@ -172,7 +172,7 @@
                 <th>Injection NetGeo</th>
 
                 <!--Commandes Fin Travaux-->
-                <th>Réf CMD Accès</th>
+                <th>Réf CMD Fin Travaux</th>
                 <th>Réalisation</th>
                 <th>Validation</th>
             </tr>
