@@ -68,7 +68,7 @@
                 <td>Le nom de l'entreprise STT</td>
             </tr>
             <tr>
-                <td>@url_projet</td>
+                <td>@url_projet  </td>
                 <td>Le lien ver le projet</td>
             </tr>
             <tr>
