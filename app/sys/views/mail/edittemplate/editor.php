@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <td>@url_projet  </td>
-                <td>Le lien ver le projet</td>
+                <td>Le lien ver la page en question</td>
             </tr>
             <tr>
                 <td>@id_sous_projet</td>
