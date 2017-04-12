@@ -27,8 +27,8 @@
             <li class="<?php echo ($view ==  'syno_alveole_diametre' ? 'active' : ''); ?>">
                 <a href="index.php?view=syno_alveole_diametre"><i class="fa fa-user-secret"></i> <span class="nav-label">alveole_diametre</span></a>
             </li>
-            <li class="<?php echo $view ==  'syno_chambre' ? 'active' : ''; ?>">
-                <a href="index.php?view=syno_chambre"><i class="fa fa-envelope"></i> <span class="nav-label">Chambre </span></a>
+            <li class="<?php echo $view ==  'chambre' ? 'active' : ''; ?>">
+                <a href="index.php?view=chambre"><i class="fa fa-envelope"></i> <span class="nav-label">Chambre </span></a>
             </li>
             <li class="<?php echo $view ==  'syno_diametre' ? 'active' : ''; ?>">
                 <a href="index.php?view=syno_diametre"><i class="fa fa-adn"></i> <span class="nav-label">Diametre </span></a>
