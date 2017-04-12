@@ -1,0 +1,32 @@
+.leftBorder {
+    border-left-color: black;
+    border-left-style: solid;
+    border-left-width: medium;
+}
+
+.topBorder {
+    border-top-color: black;
+    border-top-style: solid;
+    border-top-width: medium;
+}
+
+.rightBorder {
+    border-right-color: black;
+    border-right-style: solid;
+    border-right-width: medium;
+}
+
+.bottomBorder {
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: medium;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+
+    border-left: 60px solid green;
+}
