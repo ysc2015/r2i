@@ -31,8 +31,11 @@ $select_entreprise = "";
 
                                             $results = EntrepriseSTT::all();
                                             foreach($results as $result) {
-                                                if($ot->id_entreprise==$result->id_entreprise )$contact_entreprise = $result->contact_nom.' '.$result->contact_prenom;
-                                                $select_entreprise =  $result->nom;
+                                                if($ot->id_entreprise==$result->id_entreprise ){
+                                                    $contact_entreprise = $result->contact_nom.' '.$result->contact_prenom;
+                                                    $select_entreprise =  $result->nom;
+                                                }
+
                                             }
 
 $sel_etat_devis_html = "";
