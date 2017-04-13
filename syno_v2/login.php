@@ -9,7 +9,7 @@ if(isLogged()) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Debrid | Login</title>
+        <title>SNK | Login</title>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
         <!-- Toastr style -->
@@ -27,7 +27,7 @@ if(isLogged()) {
         <div class="middle-box text-center loginscreen animated fadeInDown">
             <div>
 
-                <h3>Welcome to Debrid Admin Area</h3>
+                <h3>Welcome to SNK Admin Area</h3>
                 <p>Login in. To see it in action.</p>
                 <form class="m-t" role="form">
                     <div class="form-group">
