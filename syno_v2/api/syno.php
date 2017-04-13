@@ -41,8 +41,9 @@ function getChambreGraph(Chambre $chambre_src,Chambre $chambre_dst) {
     }
 
     $stmt_troncon->execute([':chambre_src' => $chambre_src->id]);
+    $lines = $stmt_troncon->fetchAll(PDO::FETCH_ASSOC);
 
-    while($line = $stmt_troncon->fetch(PDO::FETCH_ASSOC)) {
+    foreach($lines as $line) {
         //echo $line['id_troncon'] . ' --> ';
         $dst = findChambre($line['chambre_dst']);
         if(getChambreGraph($dst,$chambre_dst)) {
