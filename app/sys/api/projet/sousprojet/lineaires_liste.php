@@ -11,6 +11,7 @@ $table = array(
 );
 $columns = array(
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
+    array( "db" => "t1.id_master_ctr", "dt" => 'id_master_ctr' ),
     array( "db" => "t1.dep", "dt" => 'dep' ),
     array( "db" => "t1.ville", "dt" => 'ville' ),
     array( "db" => "t1.plaque", "dt" => 'plaque' ),
