@@ -59,6 +59,7 @@ switch ($action) {
         break;
     case 'add':
         $data = array(
+          "id_alveole" => $_POST[$lang["id_alveole_id"]],
           "masque" => $_POST[$lang["masque_id"]],
           "taille" => $_POST[$lang["taille_id"]],
           "etat" => $_POST[$lang["etat_id"]],
