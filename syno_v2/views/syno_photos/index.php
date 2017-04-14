@@ -13,15 +13,20 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                 <form class="pull-right mail-search">
                     <div class="input-group">
                         <input type="text" class="form-control input-sm" id="search_value" placeholder="Search for">
-                        
+
                         <div class="input-group-btn">
                             <button id="btn_search" class="btn btn-sm btn-primary">
                                 Search
                             </button>
                         </div>
-                        
+
                         <select id="search_by" class="form-control input-sm">
-                            <option value="id"><?php echo $lang["id_label"]; ?></option><option value="org_name"><?php echo $lang["org_name_label"]; ?></option><option value="new_name"><?php echo $lang["new_name_label"]; ?></option><option value="id_chambre"><?php echo $lang["id_chambre_label"]; ?></option><option value="date_upload"><?php echo $lang["date_upload_label"]; ?></option><option value="id_user"><?php echo $lang["id_user_label"]; ?></option>
+                            <option value="id"><?php echo $lang["id_label"]; ?></option>
+                            <option value="org_name"><?php echo $lang["org_name_label"]; ?></option>
+                            <option value="new_name"><?php echo $lang["new_name_label"]; ?></option>
+                            <option value="id_chambre"><?php echo $lang["id_chambre_label"]; ?></option>
+                            <option value="date_upload"><?php echo $lang["date_upload_label"]; ?></option>
+                            <option value="id_user"><?php echo $lang["id_user_label"]; ?></option>
                         </select>
                     </div>
                 </form>
@@ -29,7 +34,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                 <h2>
                     <?php echo $lang['syno_photos_TITLE']; ?> 
                     <sup><span class="label label-info" id="nbrOf_syno_photos"><?php echo $nbr; ?></span>
-                    <span class="label label-primary" id="nPage"></span></sup> 
+                        <span class="label label-primary" id="nPage"></span></sup> 
                 </h2>
                 <div class="mail-tools tooltip-demo m-t-md">
                     <div class="btn-group pull-right">
@@ -43,7 +48,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                     <button id="btn_remove" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to trash"><i class="fa fa-trash-o"></i> </button>
                 </div>
             </div>
-            
+
             <div class="mail-box-header">
                 <button class="btn btn-xs btn-primary" onclick="show_hide(0)">id</button> <button class="btn btn-xs btn-primary" onclick="show_hide(1)">org_name</button> <button class="btn btn-xs btn-primary" onclick="show_hide(2)">new_name</button> <button class="btn btn-xs btn-primary" onclick="show_hide(3)">id_chambre</button> <button class="btn btn-xs btn-primary" onclick="show_hide(4)">date_upload</button> <button class="btn btn-xs btn-primary" onclick="show_hide(5)">id_user</button> 
             </div>
@@ -56,7 +61,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                     <tbody id="syno_photos_body_id">
                     </tbody>
                     <tfoot>
-                        
+
                     </tfoot>
                 </table>
             </div>
@@ -75,32 +80,39 @@ $nbrPages = ceil($nbr / $nbrPerPage);
 
                         <p><?php echo $lang["syno_photos_modal_description"]; ?></p>
 
-                        <input id="id_update" type="hidden" value=""> 
-                        
                         <div class="form-group">
                             <label for="<?php echo $lang["id_id"]; ?>"><?php echo $lang["id_label"]; ?></label> 
                             <input id="<?php echo $lang["id_id"]; ?>" placeholder="<?php echo $lang["id_placeholder"]; ?>" class="form-control " type="text" readonly>
                         </div>
+
                         <div class="form-group">
                             <label for="<?php echo $lang["org_name_id"]; ?>"><?php echo $lang["org_name_label"]; ?></label> 
                             <input id="<?php echo $lang["org_name_id"]; ?>" placeholder="<?php echo $lang["org_name_placeholder"]; ?>" class="form-control " type="text" >
                         </div>
+
                         <div class="form-group">
                             <label for="<?php echo $lang["new_name_id"]; ?>"><?php echo $lang["new_name_label"]; ?></label> 
-                            <input id="<?php echo $lang["new_name_id"]; ?>" placeholder="<?php echo $lang["new_name_placeholder"]; ?>" class="form-control " type="text" >
+                            <div id="<?php echo $lang["new_name_id"]; ?>">Sélectionner</div>
                         </div>
+
                         <div class="form-group">
-                            <label for="<?php echo $lang["id_chambre_id"]; ?>"><?php echo $lang["id_chambre_label"]; ?></label> 
-                            <input id="<?php echo $lang["id_chambre_id"]; ?>" placeholder="<?php echo $lang["id_chambre_placeholder"]; ?>" class="form-control " type="text" >
+                            <label for="<?php echo $lang["id_chambre_id"]; ?>">
+                                <?php echo $lang["id_chambre_label"]; ?>
+                            </label> 
+                            <select id="<?php echo $lang["id_chambre_id"]; ?>" class="form-control select2">
+                            </select>
                         </div>
+
                         <div class="form-group">
                             <label for="<?php echo $lang["date_upload_id"]; ?>"><?php echo $lang["date_upload_label"]; ?></label> 
-                            <input id="<?php echo $lang["date_upload_id"]; ?>" placeholder="<?php echo $lang["date_upload_placeholder"]; ?>" class="form-control " type="text" >
+                            <input readonly id="<?php echo $lang["date_upload_id"]; ?>" placeholder="<?php echo $lang["date_upload_placeholder"]; ?>" class="form-control " type="text" >
                         </div>
+
                         <div class="form-group">
                             <label for="<?php echo $lang["id_user_id"]; ?>"><?php echo $lang["id_user_label"]; ?></label> 
                             <input id="<?php echo $lang["id_user_id"]; ?>" placeholder="<?php echo $lang["id_user_placeholder"]; ?>" class="form-control " type="text" >
                         </div>
+
                         <div>
                             <button id="btn_save" data-api="add" class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>Save</strong></button>
                         </div>
@@ -116,99 +128,33 @@ $nbrPages = ceil($nbr / $nbrPerPage);
     var maxPage = <?php echo $nbrPages; ?>;
     var apiName = 'syno_photos';
     var lastResponseData = null;
-    var hiddenColumns = [false,false,false,false,false,false];
-    
+    var hiddenColumns = [false, false, false, false, false, false];
+
     function getData() {
         var obj = {
-                        <?php echo $lang["id_id"]; ?>: valById("<?php echo $lang["id_id"]; ?>"),
+            <?php echo $lang["id_id"]; ?>: valById("<?php echo $lang["id_id"]; ?>"),
             <?php echo $lang["org_name_id"]; ?>: valById("<?php echo $lang["org_name_id"]; ?>"),
             <?php echo $lang["new_name_id"]; ?>: valById("<?php echo $lang["new_name_id"]; ?>"),
             <?php echo $lang["id_chambre_id"]; ?>: valById("<?php echo $lang["id_chambre_id"]; ?>"),
             <?php echo $lang["date_upload_id"]; ?>: valById("<?php echo $lang["date_upload_id"]; ?>"),
             <?php echo $lang["id_user_id"]; ?>: valById("<?php echo $lang["id_user_id"]; ?>"),
-
         };
-        if($('#id_update').val() !== '') {
-            obj.id_update = $('#id_update').val();
-        }
         return obj;
     }
-    
+
     function checkData(data) {
-        
-        if (data.<?php echo $lang["org_name_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["org_name_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["new_name_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["new_name_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["id_chambre_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["id_chambre_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["date_upload_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["date_upload_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
-        if (data.<?php echo $lang["id_user_id"]; ?> == "") {
-            showNotification("Error", ["<?php echo $lang["id_user_empty_message"]; ?>"], "error");
-            return false;
-        }
-        
         return true;
     }
-    
+
     function updateAPI() {
-        var data = getData();
-        if (!checkData(data)) {
-            return;
-        }
-        $.ajax({
-            url: API_BASE_URL + apiName + '&action=update',
-            method: 'POST',
-            data: data,
-            success: function (response) {
-                if (response.err == 0) {
-                    showNotification('DONE', response.msg);
-                    listAPI(page);
-                }
-            },
-            error: function (response) {},
-            complete: function () {},
-            beforeSend: function () {}
-        });
+        uploader.startUpload();
     }
-    
+
+    var uploader;
     function addAPI() {
-        var data = getData();
-        if (!checkData(data)) {
-            return;
-        }
-        $.ajax({
-            url: API_BASE_URL + apiName + '&action=add',
-            method: 'POST',
-            data: data,
-            success: function (response) {
-                if (response.err == 0) {
-                    showNotification('DONE', response.msg);
-                    listAPI(page);
-                    var nbr = $('#nbrOf_syno_photos').text();
-                    nbr++;
-                    $('#nbrOf_syno_photos').text(nbr);
-                }
-            },
-            error: function (response) {},
-            complete: function () {},
-            beforeSend: function () {}
-        });
+        uploader.startUpload();
     }
-    
+
     function deleteAPI() {
         var elements = document.getElementsByClassName('i-checks');
         var ids = '';
@@ -245,14 +191,14 @@ $nbrPages = ceil($nbr / $nbrPerPage);
             });
         }
     }
-    
+
     function listAPI(page) {
         var objData = {};
         objData.page = page;
         var search_value = $('#search_value').val().trim();
         var search_by = $('#search_by').val();
-        
-        if(search_value != '') {
+
+        if (search_value != '') {
             objData.search_value = search_value;
             objData.search_by = search_by;
         }
@@ -265,18 +211,18 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                     lastResponseData = response.data;
                     $('#syno_photos_body_id').html('');
                     var html = '';
-                    var addedHtml = ["<span class='label label-", "primary" , "'><i class='fa fa-", 'check' , "'></i></span>"];
+                    var addedHtml = ["<span class='label label-", "primary", "'><i class='fa fa-", 'check', "'></i></span>"];
                     for (var i = 0; i < response.data.length; i++) {
                         html = '<tr id="id_' + i + '" class="">';
                         html += '<td class="check-mail">';
                         html += '<input value="' + response.data[i].id + '" type="checkbox" class="i-checks">';
                         html += '</td>';
                         html += "<td id=\"cell_" + i + "_0\" class=\"mail-contact\">" + response.data[i].id + "</td>";
-                        html += "<td id=\"cell_" + i + "_1\" class=\"mail-contact\">" + response.data[i].org_name + "</td>";
-                        html += "<td id=\"cell_" + i + "_2\" class=\"mail-contact\">" + response.data[i].new_name + "</td>";
-                        html += "<td id=\"cell_" + i + "_3\" class=\"mail-contact\">" + response.data[i].id_chambre + "</td>";
-                        html += "<td id=\"cell_" + i + "_4\" class=\"mail-contact\">" + response.data[i].date_upload + "</td>";
-                        html += "<td id=\"cell_" + i + "_5\" class=\"mail-contact\">" + response.data[i].id_user + "</td>";
+                        html += "<td id=\"cell_" + i + "_1\" class=\"mail-contact\">" + nullToStr(response.data[i].org_name) + "</td>";
+                        html += "<td id=\"cell_" + i + "_2\" class=\"mail-contact\">" + nullToStr(response.data[i].new_name) + "</td>";
+                        html += "<td id=\"cell_" + i + "_3\" class=\"mail-contact\">" + nullToStr(response.data[i].id_chambre) + "</td>";
+                        html += "<td id=\"cell_" + i + "_4\" class=\"mail-contact\">" + nullToStr(response.data[i].date_upload) + "</td>";
+                        html += "<td id=\"cell_" + i + "_5\" class=\"mail-contact\">" + nullToStr(response.data[i].id_user) + "</td>";
 
                         html += '<td class="">' +
                                 '<button onclick="btn_edit_click(' + i + ');" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></button>' +
@@ -292,8 +238,8 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                             radioClass: 'iradio_square-green',
                         });
                     }
-                    
-                    for(var i = 0 ; i < hiddenColumns.length; i++) {
+
+                    for (var i = 0; i < hiddenColumns.length; i++) {
                         show_hide(hiddenColumns[i]);
                     }
                     $('#nPage').text('Page : ' + page + ' - ' + response.extra.Pages);
@@ -305,7 +251,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
             beforeSend: function () {}
         });
     }
-    
+
     function nextPage() {
         if (page < maxPage)
         {
@@ -326,8 +272,7 @@ $nbrPages = ceil($nbr / $nbrPerPage);
     function btn_edit_click(index) {
         var data = lastResponseData[index];
         $('#btn_save').attr('data-api', 'update');
-        $('#id_update').val(data.id);
-                $("#<?php echo $lang["id_id"]; ?>").val(data.id);
+        $("#<?php echo $lang["id_id"]; ?>").val(data.id);
         $("#<?php echo $lang["org_name_id"]; ?>").val(data.org_name);
         $("#<?php echo $lang["new_name_id"]; ?>").val(data.new_name);
         $("#<?php echo $lang["id_chambre_id"]; ?>").val(data.id_chambre);
@@ -337,15 +282,51 @@ $nbrPages = ceil($nbr / $nbrPerPage);
         $('#modal-form').modal('show');
     }
 
+
     $(function () {
+        uploader = $("#<?php echo $lang["new_name_id"]; ?>").uploadFile({
+            url: "api/?api=upload",
+            autoSubmit: false,
+            sequential: true,
+            showProgress: true,
+            multiple: true,
+            dragDrop: true,
+            dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+            fileName: "pictures",
+            dynamicFormData: function () {
+                var data = {
+                    "id": $("#<?php echo $lang["id_id"]; ?>").val(),
+                    "chambre_id": $('#<?php echo $lang["id_chambre_id"]; ?>').val()
+                };
+                return data;
+            },
+            cancelStr: '<button class="btn btn-xs btn-danger">Cancel</button>',
+            multiDragErrorStr: "Plusieurs Drag &amp; Drop de fichiers ne sont pas autorisés.",
+            uploadStr: "<button class='btn btn-primary'>Téléchargez</button>",
+            allowedTypes: "jpg,png,gif,jpeg,tiff",
+            onSubmit: function (files) {
+                $('#loading_gif').show();
+            },
+            onSuccess: function (files, data, xhr, pd) {
+                $('#loading_gif').hide();
+                showNotification(data.msg, (data.err == 0 ? 'success' : 'danger'));
+                listAPI(page);
+                var nbr = $('#nbrOf_syno_photos').text();
+                nbr++;
+                $('#nbrOf_syno_photos').text(nbr);
+            }
+        });
+
+        makeOptionsFromAPI('syno_chambre', '<?php echo $lang["id_chambre_id"]; ?>');
+
         listAPI(page);
-        
+
         $('#btn_search').click(function () {
             event.preventDefault();
             event.stopPropagation();
             var search_value = $('#search_value').val().trim();
-        
-            if(search_value != '') {
+
+            if (search_value != '') {
                 page = 1;
                 listAPI(page);
             } else {
@@ -353,21 +334,21 @@ $nbrPages = ceil($nbr / $nbrPerPage);
                 listAPI(page);
             }
         });
-        
+
         var selectBtnValues = ['Select All', 'Deselect All'];
         var selectBtnSelectedIndex = 0;
         $('#btn_checkAll').click(function () {
-            if(selectBtnSelectedIndex == 0) {
-                iCheckToggleByClass('i-checks','check');
+            if (selectBtnSelectedIndex == 0) {
+                iCheckToggleByClass('i-checks', 'check');
                 $(this).html('<i class="fa fa-check"></i> ' + selectBtnValues[1]);
                 selectBtnSelectedIndex = 1;
             } else {
                 selectBtnSelectedIndex = 0;
-                iCheckToggleByClass('i-checks','uncheck');
+                iCheckToggleByClass('i-checks', 'uncheck');
                 $(this).html('<i class="fa fa-check"></i> ' + selectBtnValues[0]);
             }
-            
-            
+
+
         });
 
         $('#btn_prev').click(function () {
@@ -383,8 +364,9 @@ $nbrPages = ceil($nbr / $nbrPerPage);
         });
 
         $('#btn_save').click(function () {
-            var data_api = $('#btn_save').attr('data-api');
+            var data_api = $('#btn_save').attr('data-api');            
             if (data_api == 'add') {
+                console.log('ADD');
                 addAPI();
             } else {
                 updateAPI();
