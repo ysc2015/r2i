@@ -31,6 +31,10 @@ if($sousProjet !== NULL) {
         $sousProjet->is_master = 1;
         $sousProjet->save();
 
+        $ustm = $db->prepare("update sous_projet set id_master_ctr = $idsp where id_projet = $sousProjet->id_projet");
+
+        $ustm->execute();
+
         $message[] = "Maj réussite !";
     } else {
         $err++;
