@@ -18,7 +18,8 @@ $columns = array(
     array( "db" => "t1.question_information", "dt" => 'question_information' ),
     array( "db" => "t1.reponse_ajustement", "dt" => 'reponse_ajustement' ),
     array( "db" => "u.nom_utilisateur", "dt" => 'nom_utilisateur' ),
-    array( "db" => "u.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
+    array( "db" => "u.prenom_utilisateur", "dt" => 'prenom_utilisateur' ),
+    array( "db" => "t1.statut", "dt" => 'statut' )
 );
 
 $condition = "t1.id_ordre_de_travail=t2.id_ordre_de_travail";
