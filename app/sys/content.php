@@ -405,6 +405,7 @@ switch ($page) {
                                                 <th>chambre amont</th>
                                                 <th>chambre aval</th>
                                                 <th>question / reponse</th>
+                                                <th>ID Createur</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -419,6 +420,7 @@ switch ($page) {
                                                 <th>chambre amont</th>
                                                 <th>chambre aval</th>
                                                 <th>question / reponse</th>
+                                                <th>ID Createur</th>
                                             </tr>
                                             </tfoot>
                                         </table>
@@ -448,6 +450,7 @@ switch ($page) {
                                                 <th>chambre amont</th>
                                                 <th>chambre aval</th>
                                                 <th>information / ajustement</th>
+                                                <th>ID Createur</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -462,6 +465,7 @@ switch ($page) {
                                                 <th>chambre amont</th>
                                                 <th>chambre aval</th>
                                                 <th>information / ajustement</th>
+                                                <th>ID Createur</th>
                                             </tr>
                                             </tfoot>
                                         </table>
@@ -962,7 +966,8 @@ switch ($page) {
                     { "data": "planche_a3" },
                     { "data": "chambre_amont" },
                     { "data": "chambre_aval" },
-                    { "data": "question_information" }
+                    { "data": "question_information" },
+                    { "data": "nom_utilisateur" }
                 ],
                 "columnDefs": [
                     { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
@@ -970,6 +975,12 @@ switch ($page) {
                         "targets": 7,
                         "render": function ( data, type, full, meta ) {
                             return  '<button class="btn btn-info btn-sm view-question disabled">voir question / réponse</button>';
+                        }
+                    },
+                    {
+                        "targets": 8,
+                        "render": function ( data, type, full, meta ) {
+                            return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
                         }
                     }
                 ],
@@ -998,7 +1009,8 @@ switch ($page) {
                     { "data": "planche_a3" },
                     { "data": "chambre_amont" },
                     { "data": "chambre_aval" },
-                    { "data": "question_information" }
+                    { "data": "question_information" },
+                    { "data": "nom_utilisateur" }
                 ],
                 "columnDefs": [
                     { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
@@ -1006,6 +1018,12 @@ switch ($page) {
                         "targets": 7,
                         "render": function ( data, type, full, meta ) {
                             return  '<button class="btn btn-info btn-sm view-correction disabled">voir information / ajustement</button>';
+                        }
+                    },
+                    {
+                        "targets": 8,
+                        "render": function ( data, type, full, meta ) {
+                            return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
                         }
                     }
                 ],
