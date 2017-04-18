@@ -258,7 +258,7 @@
         //traitement blq rabii
         $(blq_pbc_btns.join(',')).addClass('disabled');
         $(blq_pbc_btns2.join(',')).addClass('disabled');
-        
+
         blq_pbc_dt = $('#blq_pbc_table').DataTable( {
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
