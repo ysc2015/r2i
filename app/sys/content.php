@@ -406,6 +406,7 @@ switch ($page) {
                                                 <th>chambre aval</th>
                                                 <th>question / reponse</th>
                                                 <th>ID Createur</th>
+                                                <th>Statut</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -421,12 +422,14 @@ switch ($page) {
                                                 <th>chambre aval</th>
                                                 <th>question / reponse</th>
                                                 <th>ID Createur</th>
+                                                <th>Statut</th>
                                             </tr>
                                             </tfoot>
                                         </table>
                                         <button id="add_pbc_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter info</button>
                                         <button id="mod_pbc_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier info</button>
                                         <button id="delete_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer info</button>
+                                        <button id="resolu_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Question résolu</button>
                                         <div id="sp_question_pbc_upload" class="row">
                                             <div class="col-md-6">
                                                 <label for="question_pbc_uploader" style="margin-top: 20px;">Attachments Question</label>
@@ -451,6 +454,7 @@ switch ($page) {
                                                 <th>chambre aval</th>
                                                 <th>information / ajustement</th>
                                                 <th>ID Createur</th>
+                                                <th>Statut</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -466,12 +470,14 @@ switch ($page) {
                                                 <th>chambre aval</th>
                                                 <th>information / ajustement</th>
                                                 <th>ID Createur</th>
+                                                <th>Statut</th>
                                             </tr>
                                             </tfoot>
                                         </table>
                                         <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
                                         <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
                                         <button id="delete_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer correction</button>
+                                        <button id="resolu_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Correction résolu</button>
                                     </div>
                                 </div>
                             </div>
@@ -736,14 +742,17 @@ switch ($page) {
     <div id="delete-blq-dialog-confirm" title="Supprimer cet élément?">
         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
     </div>
+    <div id="resolu-blq-dialog-confirm" title="Question Résolu?">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
+    </div>
     <script>
 
         var blq_ot_dt;
         var blq_pbc_dt;
         var blq_pbc_dt2;
         var blq_ot_btns = ["#add_pbc_show", "#add_pbc_show2"];
-        var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
-        var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
+        var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show","#resolu_pbc_show"];
+        var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2","#resolu_pbc_show2"];
         var update_info = false;
         var update_info2 = false;
         var type_info = 0;
@@ -967,7 +976,8 @@ switch ($page) {
                     { "data": "chambre_amont" },
                     { "data": "chambre_aval" },
                     { "data": "question_information" },
-                    { "data": "nom_utilisateur" }
+                    { "data": "nom_utilisateur" },
+                    { "data": "statut" }
                 ],
                 "columnDefs": [
                     { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
@@ -981,6 +991,13 @@ switch ($page) {
                         "targets": 8,
                         "render": function ( data, type, full, meta ) {
                             return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
+                        }
+                    },
+                    {
+                        "targets": 9,
+                        "render": function ( data, type, full, meta ) {
+                            if(full.statut == 1) return 'resolu';
+                            else return 'Non resolu';
                         }
                     }
                 ],
@@ -1010,7 +1027,8 @@ switch ($page) {
                     { "data": "chambre_amont" },
                     { "data": "chambre_aval" },
                     { "data": "question_information" },
-                    { "data": "nom_utilisateur" }
+                    { "data": "nom_utilisateur" },
+                    { "data": "statut" }
                 ],
                 "columnDefs": [
                     { "targets": [ 0,1,2 ], "visible": false, "searchable": false },
@@ -1024,6 +1042,13 @@ switch ($page) {
                         "targets": 8,
                         "render": function ( data, type, full, meta ) {
                             return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
+                        }
+                    },
+                    {
+                        "targets": 9,
+                        "render": function ( data, type, full, meta ) {
+                            if(full.statut == 1) return 'resolu';
+                            else return 'Non resolu';
                         }
                     }
                 ],
@@ -1295,19 +1320,73 @@ switch ($page) {
                     }
                 }
             });
+            $( "#resolu-blq-dialog-confirm" ).dialog({
+                appendTo : '#blq-modal',
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Oui": function() {
+                        var idblq = 0;
+                        if(type_info == 1) {
+                            idblq = blq_pbc_dt.row('.selected').data().id_blq_pbc;
+                        } else  if(type_info == 2) {
+                            idblq = blq_pbc_dt2.row('.selected').data().id_blq_pbc;
+                        }
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/ot/resolu_blq.php",
+                            dataType: "json",
+                            data: {
+                                idblq: idblq
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                switch (type_info) {
+                                    case 1 :
+                                        //blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                        blq_pbc_dt.draw(false);
+                                        break;
+                                    case 2 :
+                                        //blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                                        blq_pbc_dt2.draw(false);
+                                        break;
+                                    default : break;
+                                }
+                            }
+                            $( "#resolu-blq-dialog-confirm" ).dialog( "close" );
+                        });
+                    },
+                    Non: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
 
-            $('#delete_pbc_show').click(function (e){
+            $('#resolu_pbc_show').click(function (e){
                 e.preventDefault();
                 type_info = 1;
-                $("#delete-blq-dialog-confirm").dialog("open");
+                $("#resolu-blq-dialog-confirm").dialog("open");
             });
+
+            $('#delete_pbc_show').click(function (e){
+                            e.preventDefault();
+                            type_info = 1;
+                            $("#delete-blq-dialog-confirm").dialog("open");
+                        });
 
             $('#delete_pbc_show2').click(function (e){
                 e.preventDefault();
                 type_info = 2;
                 $("#delete-blq-dialog-confirm").dialog("open");
             });
-
+            $('#resolu_pbc_show2').click(function (e){
+                e.preventDefault();
+                type_info = 1;
+                $("#resolu-blq-dialog-confirm").dialog("open");
+            });
             $('#add-info').on('hidden.bs.modal', function () {
                 $('body').addClass('modal-open');
             });
