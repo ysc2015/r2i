@@ -437,7 +437,17 @@ class SSP {
                 $columns[$key]['db'] = isset($tmp[1]) ? $tmp[1] : $tmp[0];
             }
 
-            $from .= $k == 10 ? " SELECT  ".implode(", ", $pluck)."FROM $fromTables $leftJoint $where" : " SELECT  ".implode(", ", $pluck)."FROM $fromTables $leftJoint $where UNION ALL ";
+            //var_dump($pluck);
+
+            if(array_key_exists("extra_pluck",$v)) {
+                foreach(explode(",",$v["extra_pluck"]) as $val) {
+                    $pluck [] = $val. " ";
+                }
+            }
+
+            //var_dump($pluck);
+
+            $from .= $k == count($extra) ? " SELECT  ".implode(", ", $pluck)."FROM $fromTables $leftJoint $where" : " SELECT  ".implode(", ", $pluck)."FROM $fromTables $leftJoint $where UNION ALL ";
 
         }
 
@@ -462,6 +472,21 @@ class SSP {
         /*
          * Output
          */
+
+        //TODO add func parameter
+
+        if(array_key_exists("extra_pluck",$v)) {
+            $columns [] = array(
+                "db" => "date_retour_ok",
+                "dt" => "date_retour_ok"
+            );
+            $columns [] = array(
+                "db" => "etape",
+                "dt" => "etape"
+            );
+        }
+        //print_r($columns);
+        //var_dump($data);
         return array(
             "draw"            => isset ( $request['draw'] ) ?
                 intval( $request['draw'] ) :
