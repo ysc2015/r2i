@@ -5,7 +5,7 @@
  */
 
 $server = "localhost";
-$db_name = "r2i";
+$db_name = "r2i_dedibox";
 $user = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";;
 $password = ($_SERVER['SERVER_NAME'] == "localhost") ? "root" : "r2i";
 
