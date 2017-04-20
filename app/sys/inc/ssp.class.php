@@ -473,8 +473,6 @@ class SSP {
          * Output
          */
 
-        //TODO add func parameter
-
         foreach($extraCols as $col) {
             $columns [] = array(
                 "db" => $col,
