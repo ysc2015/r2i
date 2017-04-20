@@ -370,7 +370,7 @@ class SSP {
 			 $limit"
         );
     }
-    static function simpleJoinUnion ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "", $extra = array() )
+    static function simpleJoinUnion ( $request, $conn, $table, $primaryKey, $columns, $join, $leftJoint = "", $extra = array(), $extraCols = array() )
     {
         $bindings = array();
         $db = self::db( $conn );
@@ -475,16 +475,13 @@ class SSP {
 
         //TODO add func parameter
 
-        if(array_key_exists("extra_pluck",$v)) {
+        foreach($extraCols as $col) {
             $columns [] = array(
-                "db" => "date_retour_ok",
-                "dt" => "date_retour_ok"
-            );
-            $columns [] = array(
-                "db" => "etape",
-                "dt" => "etape"
+                "db" => $col,
+                "dt" => $col
             );
         }
+
         //print_r($columns);
         //var_dump($data);
         return array(
