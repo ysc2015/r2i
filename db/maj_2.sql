@@ -1,5 +1,5 @@
 
-
+/*
 ALTER TABLE  `blq_pbc` ADD  `date_action` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 ALTER TABLE `blq_pbc` ADD `flag` INT NOT NULL DEFAULT '0' AFTER `date_action`;
 
@@ -9,7 +9,7 @@ ALTER TABLE  `ordre_de_travail` ADD  `date_creation` DATE NULL DEFAULT NULL ;
 update `ordre_de_travail` set date_creation = date_debut WHERE 1;
 
 ALTER TABLE `blq_pbc` ADD `id_createur` INT NULL AFTER `flag`, ADD `type_question` INT NOT NULL DEFAULT '1' AFTER `id_createur`;
-
+*/
 ALTER TABLE `detaildevis`
   DROP `RFO_01_01_racc`,
   DROP `RFO_01_02_racc`,
@@ -157,3 +157,91 @@ ALTER TABLE `detaildevis` ADD `ITF_01_01_qt` INT NOT NULL AFTER `EFO_06_07_qt`, 
 ALTER TABLE `detaildevis` ADD `CGC_01_01_qt` INT NOT NULL AFTER `EGC_02_16_qt`, ADD `CGC_01_02_qt` INT NOT NULL AFTER `CGC_01_01_qt`, ADD `CGC_02_01_qt` INT NOT NULL AFTER `CGC_01_02_qt`, ADD `CGC_02_02_qt` INT NOT NULL AFTER `CGC_02_01_qt`, ADD `CGC_02_03_qt` INT NOT NULL AFTER `CGC_02_02_qt`, ADD `CGC_02_04_qt` INT NOT NULL AFTER `CGC_02_03_qt`, ADD `CGC_02_05_qt` INT NOT NULL AFTER `CGC_02_04_qt`, ADD `CGC_02_06_qt` INT NOT NULL AFTER `CGC_02_05_qt`, ADD `CGC_02_07_qt` INT NOT NULL AFTER `CGC_02_06_qt`, ADD `CGC_02_08_qt` INT NOT NULL AFTER `CGC_02_07_qt`, ADD `CGC_03_01_qt` INT NOT NULL AFTER `CGC_02_08_qt`, ADD `CGC_03_02_qt` INT NOT NULL AFTER `CGC_03_01_qt`, ADD `CGC_03_03_qt` INT NOT NULL AFTER `CGC_03_02_qt`, ADD `CGC_03_04_qt` INT NOT NULL AFTER `CGC_03_03_qt`, ADD `CGC_03_05_qt` INT NOT NULL AFTER `CGC_03_04_qt`, ADD `CGC_04_01_qt` INT NOT NULL AFTER `CGC_03_05_qt`, ADD `CGC_04_02_qt` INT NOT NULL AFTER `CGC_04_01_qt`;
 ALTER TABLE `detaildevis`  ADD `TGC_01_01_qt` INT NOT NULL  AFTER `CGC_04_02_qt`,  ADD `TGC_02_01_qt` INT NOT NULL  AFTER `TGC_01_01_qt`,  ADD `TGC_02_02_qt` INT NOT NULL  AFTER `TGC_02_01_qt`,  ADD `TGC_02_03_qt` INT NOT NULL  AFTER `TGC_02_02_qt`,  ADD `TGC_02_04_qt` INT NOT NULL  AFTER `TGC_02_03_qt`,  ADD `TGC_02_05_qt` INT NOT NULL  AFTER `TGC_02_04_qt`,  ADD `TGC_02_06_qt` INT NOT NULL  AFTER `TGC_02_05_qt`,  ADD `TGC_03_01_qt` INT NOT NULL  AFTER `TGC_02_06_qt`,  ADD `TGC_03_02_qt` INT NOT NULL  AFTER `TGC_03_01_qt`,  ADD `TGC_03_03_qt` INT NOT NULL  AFTER `TGC_03_02_qt`,  ADD `TGC_03_04_qt` INT NOT NULL  AFTER `TGC_03_03_qt`,  ADD `TGC_03_05_qt` INT NOT NULL  AFTER `TGC_03_04_qt`,  ADD `TGC_04_01_qt` INT NOT NULL  AFTER `TGC_03_05_qt`,  ADD `TGC_04_02_qt` INT NOT NULL  AFTER `TGC_04_01_qt`,  ADD `TGC_05_01_qt` INT NOT NULL  AFTER `TGC_04_02_qt`,  ADD `TGC_05_02_qt` INT NOT NULL  AFTER `TGC_05_01_qt`,  ADD `TGC_05_03_qt` INT NOT NULL  AFTER `TGC_05_02_qt`,  ADD `TGC_05_04_qt` INT NOT NULL  AFTER `TGC_05_03_qt`;
 ALTER TABLE `detaildevis` ADD `ref_devis` VARCHAR(30) NOT NULL AFTER `TGC_05_04_qt`, ADD `date_devis` DATE NOT NULL AFTER `ref_devis`, ADD `date_livraison` DATE NOT NULL AFTER `date_devis`;
+
+
+ALTER TABLE `detaildevis` CHANGE `date_devis` `date_devis` VARCHAR(30) NOT NULL;
+ALTER TABLE `detaildevis` CHANGE `date_livraison` `date_livraison` VARCHAR(30) NOT NULL;
+ALTER TABLE `detaildevis` ADD `etat_devis` INT NOT NULL AFTER `date_livraison`;
+
+--
+-- Structure de la table `etat_devis`
+--
+
+CREATE TABLE `etat_devis` (
+  `id_etat_devis` int(11) NOT NULL,
+  `lib_etat_devis` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `etat_devis`
+--
+
+INSERT INTO `etat_devis` (`id_etat_devis`, `lib_etat_devis`) VALUES
+(1, 'Enregistré'),
+(2, 'Converti en BDC'),
+(3, 'BDC en validation'),
+(4, 'BDC validé'),
+(9, 'BDC refusé'),
+(10, 'Supprimé');
+ALTER TABLE `detaildevis` drop INDEX id_ressource;
+ALTER TABLE `detaildevis` CHANGE `etat_devis` `etat_devis` INT(11) NOT NULL DEFAULT '1';
+/**
+Updating 'r2i':
+U r2i/app/sys/api/ot/ot/update_pb_files_list.php
+A r2i/app/sys/api/ot/devis/devis_liste.php
+U r2i/app/sys/api/ot/devis/get_details_devis_info.php
+U r2i/app/sys/api/ot/devis/save_details_devis.php
+U r2i/app/sys/inc/utils.functions.php
+U r2i/app/sys/views/ot/ot/liste.php
+U r2i/app/sys/views/ot/devis/formdevis.php
+A r2i/app/sys/models/EtatDevis.php
+U r2i/assets/css/edit_devis_css.css
+Updated to revision 1654.
+U r2i/app/sys/api/ot/devis/get_details_devis_chambre.php
+U r2i/app/sys/api/ot/devis/get_details_devis_etude.php
+U r2i/app/sys/api/ot/devis/get_details_devis_tst.php
+U r2i/app/sys/api/ot/devis/get_details_devis.php
+U r2i/app/sys/api/ot/devis/get_details_devis_tdgc.php
+U r2i/app/sys/api/ot/devis/get_details_devis_tranche.php
+U r2i/app/sys/api/ot/devis/get_details_devis_TRE.php
+A r2i/app/sys/api/ot/devis/devis_delete.php
+U r2i/app/sys/inc/user.roles.php
+U r2i/app/sys/views/ot/ot/liste.php
+U r2i/app/sys/views/ot/devis/formdevis.php
+U r2i/app/sys/api/ot/devis/devis_liste.php
+U r2i/app/sys/inc/utils.functions.php
+U r2i/app/sys/views/ot/devis/formdevis.php
+U r2i/app/sys/views/ot/ot/liste.php
+U r2i/app/sys/views/ot/devis/formdevis.php
+A r2i/app/sys/views/ot/devis/convert_bdc.php
+U r2i/app/sys/views/ot/ot/liste.php
+U r2i/app/sys/api/ot/devis/get_ids_to_supprime.php
+A r2i/app/sys/api/ot/devis/devis_convert_bdc.php
+U r2i/app/sys/api/ot/devis/get_details_devis_info.php
+U r2i/app/sys/api/ot/retourpresta/update_etat_retour.php
+U r2i/app/sys/inc/user.roles.php
+U r2i/app/sys/inc/utils.functions.php
+U r2i/app/sys/api/ot/devis/get_details_devis_chambre.php
+U r2i/app/sys/api/ot/devis/get_details_devis_etude.php
+U r2i/app/sys/api/ot/devis/get_details_devis_tst.php
+U r2i/app/sys/api/ot/devis/get_details_devis.php
+U r2i/app/sys/api/ot/devis/get_details_devis_tdgc.php
+U r2i/app/sys/api/ot/devis/get_details_devis_tranche.php
+U r2i/app/sys/api/ot/devis/get_details_devis_TRE.php
+U r2i/app/sys/api/ot/devis/get_details_devis_info.php
+U r2i/app/sys/views/ot/devis/formdevis.php
+U r2i/assets/js/edit_devis_js.js
+U r2i/assets/js/editablegrid/editablegrid.js
+########
+/opt/lampp/htdocs/r2i/app/sys/api/ot/ot/resolu_blq.php
+/opt/lampp/htdocs/r2i/app/sys/api/ot/ot/ot_blq_pbc_liste.php
+/opt/lampp/htdocs/r2i/app/sys/views/ot/blq/blq.php
+/opt/lampp/htdocs/r2i/app/sys/content.php
+ */
+
+ALTER TABLE  `sous_projet_taches_osa` ADD  `date_insertion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `blq_pbc` ADD `statut` INT NOT NULL DEFAULT '0' ;
+
+
+
