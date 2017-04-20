@@ -91,7 +91,7 @@ if($sousProjet !== NULL) {
         $stm->bindParam(':id_sous_projet',$ids);
 
         if($stm->execute()){
-            $message [] = "Enregistrement Charge BE fait avec succès"."update $table_name set date_charge_be = :date_charge_be where id_sous_projet =".$ids;
+            $message [] = "Enregistrement Charge BE fait avec succès";
         }else{
             $message[] = "Erreur requete non execute!";
             $err++;
