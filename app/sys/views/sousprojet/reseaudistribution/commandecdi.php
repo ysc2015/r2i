@@ -112,17 +112,74 @@
                     <button id="id_sous_projet_distribution_commande_cdi_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
                     <button id="id_sous_projet_distribution_commandecdi_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_distribution_commandecdi_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
+                    <button id="id_sous_projet_distribution_commandecdi_charge_be" class='btn btn-warning btn-sm' type="button">Charge BE prise en charge</button>
+
                 </div>
             </div>
         </div>
     </form>
+</div>
+<div id="charge-be-confirm_distribution_commande_cdi" title="Confirmer cette affectation ?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer cette affectation ?</p>
 </div>
 <script>
     var dcmd_formdata = {};
     $(document).ready(function() {
         var typeetape = "sous_projet_distribution_commande_cdi";
         var variable_etape = "distributioncmdcdi";
+        $( "#charge-be-confirm_distribution_commande_cdi" ).dialog({
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Oui": function() {
+                    $.ajax({
+                        method: "POST",
+                        url: "api/ot/ot/check_ot.php",
+                        data: {
+                            ids : get('idsousprojet'),
+                            tentree : "distributioncmdcdi"
+                        }
+                    }).done(function (msg) {
+                        var obj = JSON.parse(msg);
+                        console.log(msg);
+                        if(obj.error == 0) {
+                            $.ajax({
+                                method: "POST",
+                                url: "api/projet/sousprojet/update_charge_be_prise_en_charge.php",
+                                data: {
+                                    ids : get('idsousprojet'),
+                                    id_etape : get('idsousprojet'),
+                                    tentree : "distributioncmdcdi"
+                                }
+                            }).done(function (msg) {
+                                var obj = JSON.parse(msg);
+                                if(obj.error == 0) {
+                                    $( "#charge-be-confirm_distribution_commande_cdi" ).dialog( "close" );
+                                    App.showMessage(msg, '#message_distribution_commande_cdi');
+                                } else {
 
+                                }
+                            });
+                        } else {
+                            $( "#charge-be-confirm_distribution_commande_cdi" ).dialog( "close" );
+                            App.showMessage(msg, '#message_distribution_commande_cdi');
+
+                        }
+                    });
+                },
+                Non: function() {
+                    $( "#charge-be-confirm_distribution_commande_cdi" ).dialog( "close" );
+                }
+            }
+        });
+        $('#id_sous_projet_distribution_commandecdi_charge_be').click(function(e){
+            e.preventDefault();
+            $("#charge-be-confirm_distribution_commande_cdi").dialog("open");
+
+        });
         calculetache_osa(typeetape,get("idsousprojet"),variable_etape,"commandecdi_href","CMD Structurante CDI: ");
         var liste_intervenant = [];
         $("#id_sous_projet_distribution_commandecdi_btn_osa").click(function () {
