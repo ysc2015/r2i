@@ -104,5 +104,5 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-echo json_encode(SSP::simpleJoinUnion($_POST,$db,$table,"id_sous_projet",$columns,$condition,"",$tpl_extra_ssp_array));
+echo json_encode(SSP::simpleJoinUnion($_POST,$db,$table,"id_sous_projet",$columns,$condition,"",$tpl_extra_ssp_array,array("date_retour_ok","etape")));
 ?>
