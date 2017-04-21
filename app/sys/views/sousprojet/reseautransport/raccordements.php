@@ -181,7 +181,10 @@
                     <button id="id_sous_projet_transport_raccordemants_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button type="button" id="id_sous_projet_transport_raccordements_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false">Traiter Une tache OSA</button>
                     <button id="id_sous_projet_transport_raccordements_blq" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#blq-modal' data-backdrop="static" data-keyboard="false" type="button"><i class="fa fa-question push-5-r"></i> BLQ / PBC</button>
-                    <button id="id_sous_projet_transport_raccordements_charge_be" class='btn btn-warning btn-sm' type="button">Charge BE prise en charge</button>
+                    <label class="css-input switch switch-sm switch-success">
+                        <input id="id_sous_projet_transport_raccordements_charge_be" class="a2tcheckbox" type="checkbox" value="FALSE" <?= ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->date_charge_be !=NULL ?"checked" : "")?> ><span></span>
+                        Charge BE prise en charge : <span id="charge_be_message_transport_raccordements"><?= ($sousProjet->transportraccordement!==NULL && $sousProjet->transportraccordement->date_charge_be !=NULL ?" Le ".$sousProjet->transportraccordement->date_charge_be."" : "")?></span>
+                    </label>
                 </div>
             </div>
         </div>
@@ -446,6 +449,7 @@
 
         var typeetape = "sous_projet_transport_raccordements";
         var variable_etape = "transportraccordement";
+        var actif = null;
         $( "#charge-be-confirm_transport_raccordements" ).dialog({
             autoOpen: false,
             resizable: false,
@@ -459,26 +463,42 @@
                         url: "api/ot/ot/check_ot.php",
                         data: {
                             ids : get('idsousprojet'),
-                            tentree : "transportraccordement"
+                            tentree : "transporttirage"
                         }
                     }).done(function (msg) {
                         var obj = JSON.parse(msg);
-                        console.log("para");
                         console.log(msg);
                         if(obj.error == 0) {
+                            if($("#id_sous_projet_transport_raccordements_charge_be").is(':checked')){
+                                actif = 1;
+                            }else{
+                                actif = 0;
+                            }
                             $.ajax({
                                 method: "POST",
                                 url: "api/projet/sousprojet/update_charge_be_prise_en_charge.php",
                                 data: {
                                     ids : get('idsousprojet'),
                                     id_etape : get('idsousprojet'),
-                                    tentree : "transportraccordement"
+                                    tentree : "transportraccordement",
+                                    actif : actif
                                 }
                             }).done(function (msg) {
                                 var obj = JSON.parse(msg);
                                 if(obj.error == 0) {
-                                    $( "#charge-be-confirm_transport_raccordements" ).dialog( "close" );
-                                    App.showMessage(msg, '#message_transport_raccordements');
+                                    if(obj.date_charge_be == null){
+                                        $("#id_sous_projet_transport_raccordements_charge_be").prop('checked',false);
+                                        $( "#charge-be-confirm_transport_raccordements" ).dialog( "close" );
+                                        $("#charge_be_message_transport_raccordements").html("" );
+                                        App.showMessage(msg, '#message_transport_raccordements');
+
+                                    }else{
+                                        $("#id_sous_projet_transport_raccordements_charge_be").prop('checked',true);
+                                        $( "#charge-be-confirm_transport_raccordements" ).dialog( "close" );
+                                        $("#charge_be_message_transport_raccordements").html("Le " + obj.date_charge_be );
+                                        App.showMessage(msg, '#message_transport_raccordements');
+
+                                    }
                                 } else {
 
                                 }

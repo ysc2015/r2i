@@ -85,7 +85,10 @@
 
                     <button id="id_sous_projet_transport_design_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_transport_design_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
-                    <button id="id_sous_projet_transport_design_charge_be" class='btn btn-warning btn-sm' type="button">Charge BE prise en charge</button>
+                    <label class="css-input switch switch-sm switch-success">
+                        <input id="id_sous_projet_transport_design_charge_be" class="a2tcheckbox" type="checkbox" value="FALSE" <?= ($sousProjet->transportdesign!==NULL && $sousProjet->transportdesign->date_charge_be !=NULL ?"checked" : "")?> ><span></span>
+                        Charge BE prise en charge : <span id="charge_be_message_transport_design"><?= ($sousProjet->transportdesign!==NULL && $sousProjet->transportdesign->date_charge_be !=NULL ?" Le ".$sousProjet->transportdesign->date_charge_be."" : "")?></span>
+                    </label>
                 </div>
             </div>
         </div>
@@ -99,6 +102,7 @@
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_design";
         var variable_etape = "transportdesign";
+        var actif = null;
         $( "#charge-be-confirm_transport_design" ).dialog({
             autoOpen: false,
             resizable: false,
@@ -118,19 +122,36 @@
                         var obj = JSON.parse(msg);
                         console.log(msg);
                         if(obj.error == 0) {
+                            if($("#id_sous_projet_transport_design_charge_be").is(':checked')){
+                                actif = 1;
+                            }else{
+                                actif = 0;
+                            }
                             $.ajax({
                                 method: "POST",
                                 url: "api/projet/sousprojet/update_charge_be_prise_en_charge.php",
                                 data: {
                                     ids : get('idsousprojet'),
                                     id_etape : get('idsousprojet'),
-                                    tentree : "transportdesign"
+                                    tentree : "transportdesign",
+                                    actif : actif
                                 }
                             }).done(function (msg) {
                                 var obj = JSON.parse(msg);
                                 if(obj.error == 0) {
-                                    $( "#charge-be-confirm_transport_design" ).dialog( "close" );
-                                    App.showMessage(msg, '#message_transport_design');
+                                    if(obj.date_charge_be == null){
+                                        $("#id_sous_projet_transport_design_charge_be").prop('checked',false);
+                                        $( "#charge-be-confirm_transport_design" ).dialog( "close" );
+                                        $("#charge_be_message_transport_design").html("" );
+                                        App.showMessage(msg, '#message_transport_design');
+
+                                    }else{
+                                        $("#id_sous_projet_transport_design_charge_be").prop('checked',true);
+                                        $( "#charge-be-confirm_transport_design" ).dialog( "close" );
+                                        $("#charge_be_message_transport_design").html("Le " + obj.date_charge_be );
+                                        App.showMessage(msg, '#message_transport_design');
+
+                                    }
                                 } else {
 
                                 }
