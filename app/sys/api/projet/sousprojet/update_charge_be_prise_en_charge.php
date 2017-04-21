@@ -85,8 +85,9 @@ switch($tentree) {
 
 if($sousProjet !== NULL) {
 
+
         $stm = $db->prepare("update $table_name set date_charge_be = :date_charge_be where id_sous_projet =:id_sous_projet");
-        $dt = date('Y-m-d H:i:s:');
+        if($actif==0) $dt = date('Y-m-d H:i:s:');else $dt = NULL;
         $stm->bindParam(':date_charge_be',$dt);
         $stm->bindParam(':id_sous_projet',$ids);
 
@@ -100,4 +101,4 @@ if($sousProjet !== NULL) {
 
 
 }
-echo json_encode(array("error" => $err , "message" => $message  ));
+echo json_encode(array("error" => $err , "message" => $message ,"date_charge_be" => $dt ));
