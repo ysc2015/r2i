@@ -139,17 +139,7 @@
             modal: true,
             buttons: {
                 "Oui": function() {
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/ot/check_ot.php",
-                        data: {
-                            ids : get('idsousprojet'),
-                            tentree : "distributioncmdcdi"
-                        }
-                    }).done(function (msg) {
-                        var obj = JSON.parse(msg);
-                        console.log(msg);
-                        if(obj.error == 0) {
+
                             if($("#id_sous_projet_distribution_commandecdi_charge_be").is(':checked')){
                                 actif = 1;
                             }else{
@@ -181,15 +171,11 @@
 
                                     }
                                 } else {
-
+                                    $( "#charge-be-confirm_distribution_commande_cdi" ).dialog( "close" );
+                                    App.showMessage(msg, '#message_distribution_commande_cdi');
                                 }
                             });
-                        } else {
-                            $( "#charge-be-confirm_distribution_commande_cdi" ).dialog( "close" );
-                            App.showMessage(msg, '#message_distribution_commande_cdi');
 
-                        }
-                    });
                 },
                 Non: function() {
                     $( "#charge-be-confirm_distribution_commande_cdi" ).dialog( "close" );

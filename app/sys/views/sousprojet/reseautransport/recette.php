@@ -456,17 +456,7 @@
             modal: true,
             buttons: {
                 "Oui": function() {
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/ot/check_ot.php",
-                        data: {
-                            ids : get('idsousprojet'),
-                            tentree : "transportrecette"
-                        }
-                    }).done(function (msg) {
-                        var obj = JSON.parse(msg);
-                        console.log(msg);
-                        if(obj.error == 0) {
+
                             if($("#id_sous_projet_transport_recette_charge_be").is(':checked')){
                                 actif = 1;
                             }else{
@@ -498,15 +488,12 @@
 
                                     }
                                 } else {
+                                    $( "#charge-be-confirm_transport_recette" ).dialog( "close" );
+                                    App.showMessage(msg, '#message_transport_recette');
 
                                 }
                             });
-                        } else {
-                            $( "#charge-be-confirm_transport_recette" ).dialog( "close" );
-                            App.showMessage(msg, '#message_transport_recette');
 
-                        }
-                    });
                 },
                 Non: function() {
                     $( "#charge-be-confirm_transport_recette" ).dialog( "close" );

@@ -413,17 +413,6 @@
             modal: true,
             buttons: {
                 "Oui": function() {
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/ot/check_ot.php",
-                        data: {
-                            ids : get('idsousprojet'),
-                            tentree : "distributiontirage"
-                        }
-                    }).done(function (msg) {
-                        var obj = JSON.parse(msg);
-                        console.log(msg);
-                        if(obj.error == 0) {
                             if($("#id_sous_projet_distribution_tirage_charge_be").is(':checked')){
                                 actif = 1;
                             }else{
@@ -455,15 +444,12 @@
 
                                     }
                                 } else {
+                                    $( "#charge-be-confirm_distribution_tirage" ).dialog( "close" );
+                                    App.showMessage(msg, '#message_distribution_tirage');
 
                                 }
                             });
-                        } else {
-                            $( "#charge-be-confirm_distribution_tirage" ).dialog( "close" );
-                            App.showMessage(msg, '#message_distribution_tirage');
 
-                        }
-                    });
                 },
                 Non: function() {
                     $( "#charge-be-confirm_distribution_tirage" ).dialog( "close" );
