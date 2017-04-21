@@ -395,57 +395,43 @@
             modal: true,
             buttons: {
                 "Oui": function() {
+
+                    if ($("#id_sous_projet_distribution_aiguillage_charge_be").is(':checked')) {
+                        actif = 1;
+                    } else {
+                        actif = 0;
+                    }
                     $.ajax({
                         method: "POST",
-                        url: "api/ot/ot/check_ot.php",
+                        url: "api/projet/sousprojet/update_charge_be_prise_en_charge.php",
                         data: {
-                            ids : get('idsousprojet'),
-                            tentree : "distributionaiguillage"
+                            ids: get('idsousprojet'),
+                            id_etape: get('idsousprojet'),
+                            tentree: "distributionaiguillage",
+                            actif: actif
                         }
                     }).done(function (msg) {
                         var obj = JSON.parse(msg);
-                        console.log(msg);
-                        if(obj.error == 0) {
-                            if($("#id_sous_projet_distribution_aiguillage_charge_be").is(':checked')){
-                                actif = 1;
-                            }else{
-                                actif = 0;
+                        if (obj.error == 0) {
+                            if (obj.date_charge_be == null) {
+                                $("#id_sous_projet_distribution_aiguillage_charge_be").prop('checked', false);
+                                $("#charge-be-confirm_distribution_aiguillage").dialog("close");
+                                $("#charge_be_message_distribution_aiguillage").html("");
+                                App.showMessage(msg, '#message_distribution_aiguillage');
+
+                            } else {
+                                $("#id_sous_projet_distribution_aiguillage_charge_be").prop('checked', true);
+                                $("#charge-be-confirm_distribution_aiguillage").dialog("close");
+                                $("#charge_be_message_distribution_aiguillage").html("Le " + obj.date_charge_be);
+                                App.showMessage(msg, '#message_distribution_aiguillage');
+
                             }
-                            $.ajax({
-                                method: "POST",
-                                url: "api/projet/sousprojet/update_charge_be_prise_en_charge.php",
-                                data: {
-                                    ids : get('idsousprojet'),
-                                    id_etape : get('idsousprojet'),
-                                    tentree : "distributionaiguillage",
-                                    actif : actif
-                                }
-                            }).done(function (msg) {
-                                var obj = JSON.parse(msg);
-                                if(obj.error == 0) {
-                                    if(obj.date_charge_be == null){
-                                        $("#id_sous_projet_distribution_aiguillage_charge_be").prop('checked',false);
-                                        $( "#charge-be-confirm_distribution_aiguillage" ).dialog( "close" );
-                                        $("#charge_be_message_distribution_aiguillage").html("" );
-                                        App.showMessage(msg, '#message_distribution_aiguillage');
-
-                                    }else{
-                                        $("#id_sous_projet_distribution_aiguillage_charge_be").prop('checked',true);
-                                        $( "#charge-be-confirm_distribution_aiguillage" ).dialog( "close" );
-                                        $("#charge_be_message_distribution_aiguillage").html("Le " + obj.date_charge_be );
-                                        App.showMessage(msg, '#message_distribution_aiguillage');
-
-                                    }
-                                } else {
-
-                                }
-                            });
                         } else {
-                            $( "#charge-be-confirm_distribution_aiguillage" ).dialog( "close" );
+                            $("#charge-be-confirm_distribution_aiguillage").dialog("close");
                             App.showMessage(msg, '#message_distribution_aiguillage');
-
                         }
                     });
+
                 },
                 Non: function() {
                     $( "#charge-be-confirm_distribution_aiguillage" ).dialog( "close" );

@@ -441,17 +441,7 @@
             modal: true,
             buttons: {
                 "Oui": function() {
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/ot/check_ot.php",
-                        data: {
-                            ids : get('idsousprojet'),
-                            tentree : "distributionrecette"
-                        }
-                    }).done(function (msg) {
-                        var obj = JSON.parse(msg);
-                        console.log(msg);
-                        if(obj.error == 0) {
+
                             if($("#id_sous_projet_distribution_recette_charge_be").is(':checked')){
                                 actif = 1;
                             }else{
@@ -483,15 +473,12 @@
 
                                     }
                                 } else {
+                                    $( "#charge-be-confirm_distribution_recette" ).dialog( "close" );
+                                    App.showMessage(msg, '#message_distribution_recette');
 
                                 }
                             });
-                        } else {
-                            $( "#charge-be-confirm_distribution_recette" ).dialog( "close" );
-                            App.showMessage(msg, '#message_distribution_recette');
 
-                        }
-                    });
                 },
                 Non: function() {
                     $( "#charge-be-confirm_distribution_recette" ).dialog( "close" );

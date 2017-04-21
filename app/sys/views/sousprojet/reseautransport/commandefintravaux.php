@@ -149,17 +149,7 @@
             modal: true,
             buttons: {
                 "Oui": function() {
-                    $.ajax({
-                        method: "POST",
-                        url: "api/ot/ot/check_ot.php",
-                        data: {
-                            ids : get('idsousprojet'),
-                            tentree : "transportcmdfintravaux"
-                        }
-                    }).done(function (msg) {
-                        var obj = JSON.parse(msg);
-                        console.log(msg);
-                        if(obj.error == 0) {
+
                             if($("#id_sous_projet_transport_cmdfintravaux_charge_be").is(':checked')){
                                 actif = 1;
                             }else{
@@ -191,15 +181,12 @@
 
                                     }
                                 } else {
+                                    $( "#charge-be-confirm_transport_commande_fin_travaux" ).dialog( "close" );
+                                    App.showMessage(msg, '#message_transport_commande_fin_travaux');
 
                                 }
                             });
-                        } else {
-                            $( "#charge-be-confirm_transport_commande_fin_travaux" ).dialog( "close" );
-                            App.showMessage(msg, '#message_transport_commande_fin_travaux');
 
-                        }
-                    });
                 },
                 Non: function() {
                     $( "#charge-be-confirm_transport_commande_fin_travaux" ).dialog( "close" );
