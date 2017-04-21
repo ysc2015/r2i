@@ -86,5 +86,6 @@ $lang["transportcmcctr"] = "CMD Structurante CTR";
 $lang["transportcmdfintravaux"] = "Commandes Fin Travaux CTR";
 $lang["distributioncmdcdi"] = "CMD Structurante CDI";
 $lang["distributioncmdfintravaux"] = "Commandes Fin Travaux CDI";
+$lang["distributiondesign"] = "Distribution Design";
 
 
