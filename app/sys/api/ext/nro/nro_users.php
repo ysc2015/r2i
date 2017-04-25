@@ -18,7 +18,7 @@ $sql = "select a.* from (
     ) a
 ";
 
-if(isset($idn) && !empty($idn)) $sql .= "where a.id_nro IN ($idn)";
+if(isset($idn) && !empty($idn)) $sql .= "where a.lib_nro IN ($idn)";
 
 $stm = $db->prepare($sql);
 
