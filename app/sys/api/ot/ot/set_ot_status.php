@@ -237,7 +237,6 @@ if($err==0) {
                     $mailaction_cc[] = $connectedProfil->email_utilisateur;
                     $mailaction_cc = array_unique($mailaction_cc);
                     $mailaction_to = array_unique($mailaction_to);
-                    $mailaction_to[] = "fadelghani@rc2k.fr";
                     if(count($mailaction_to)) {
                         if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
                             $message[] = "Mail envoyé !";
