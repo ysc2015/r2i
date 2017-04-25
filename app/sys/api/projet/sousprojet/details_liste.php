@@ -59,8 +59,8 @@ $columns = array(
     array( "db" => "sgf2.lib_go_ft as cdi_aiguillage_lib_go_ft", "dt" => 'cdi_aiguillage_lib_go_ft' ),
 
     array( "db" => "t122.ref_commande_fin_travaux as ref_commande_fin_travaux2", "dt" => 'ref_commande_fin_travaux2' ),
-    array( "db" => "sca22.lib_commande_acces as ctr_aiguillage_lib_commande_acces22", "dt" => 'ctr_aiguillage_lib_commande_acces22' ),
-    array( "db" => "sgf22.lib_go_ft as ctr_aiguillage_lib_go_ft22", "dt" => 'ctr_aiguillage_lib_go_ft22' ),
+    array( "db" => "sca22.lib_commande_acces as cdi_aiguillage_lib_commande_acces22", "dt" => 'cdi_aiguillage_lib_commande_acces22' ),
+    array( "db" => "sgf22.lib_go_ft as cdi_aiguillage_lib_go_ft22", "dt" => 'cdi_aiguillage_lib_go_ft22' ),
 
     array( "db" => "scp5.lib_controle_plan as cdi_tirage_lib_controle_plan", "dt" => 'cdi_tirage_lib_controle_plan' ),
     array( "db" => "ot5.type_ot as cdi_tirage_ordre_de_travail", "dt" => 'cdi_tirage_ordre_de_travail' ),
@@ -135,7 +135,7 @@ $left .= " left join sous_projet_distribution_aiguillage t11 left join select_co
 
 $left .= " left join sous_projet_distribution_commande_cdi t12 left join select_commande_acces sca2 on t12.commandes_acces = sca2.id_commande_acces left join select_go_ft sgf2 on t12.go_ft=sgf2.id_go_ft on t1.id_sous_projet = t12.id_sous_projet";
 
-$left .= " left join sous_projet_transport_commande_fin_travaux t122 left join select_commande_acces sca22 on t122.commandes_fin_travaux = sca22.id_commande_acces left join select_go_ft sgf22 on t122.go_ft=sgf22.id_go_ft on t1.id_sous_projet = t122.id_sous_projet";
+$left .= " left join sous_projet_distribution_commande_fin_travaux t122 left join select_commande_acces sca22 on t122.commandes_fin_travaux = sca22.id_commande_acces left join select_go_ft sgf22 on t122.go_ft=sgf22.id_go_ft on t1.id_sous_projet = t122.id_sous_projet";
 
 $left .= " left join sous_projet_distribution_tirage t13 left join select_controle_plan scp5 on t13.controle_plans=scp5.id_controle_plan left join ordre_de_travail ot5 on t13.id_sous_projet=ot5.id_sous_projet and ot5.id_type_ordre_travail IN (6,8) left join select_etat_retour ser5 on t13.etat_retour=ser5.id_etat_retour on t1.id_sous_projet = t13.id_sous_projet";
 
