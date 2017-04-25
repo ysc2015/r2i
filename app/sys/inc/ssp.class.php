@@ -129,7 +129,7 @@ class SSP {
         }
         return $order;
     }
-    static function orderForUnion ( $request, $columns )
+    static function orderForUnion ( $request, $columns )//
     {
         $order = '';
         if ( isset($request['order']) && count($request['order']) ) {
