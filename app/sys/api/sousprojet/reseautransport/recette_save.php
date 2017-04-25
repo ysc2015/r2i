@@ -206,7 +206,7 @@ if($insert == true && $err == 0){
             )
         ) {
             //envoi de mail
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',4,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',4,'','','','','','','','',$sousProjet->projet->id_chef_projet,$ot->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
@@ -233,7 +233,7 @@ if($insert == true && $err == 0){
             if($trec_injection_netgeo==null) $trec_injection_netgeo = 0;
             $mailaction_email_sender = [];
             //envoi de mail
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',2,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
             $mailaction_cc  =return_list_mail_cc_notif_tache($db,$connectedProfil->email_utilisateur,2);
@@ -265,7 +265,7 @@ if($insert == true && $err == 0){
                 )
             )
         ) {
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',7,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Recette',7,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
