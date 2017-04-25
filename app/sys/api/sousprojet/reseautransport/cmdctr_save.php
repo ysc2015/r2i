@@ -185,7 +185,7 @@ if($insert == true && $err == 0){
                 ((isset($cctr_go_ft) && ($cctr_go_ft == 2) &&  $mailaction_entite->go_ft != $cctr_go_ft && $mailaction_entite != null))
             ) )  {
             //envoi de mail
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Commande',4,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Commande',4,'','','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
             $mailaction_cc =return_list_mail_cc_notif($db,"transportcmdctr",4);
@@ -204,7 +204,7 @@ if($insert == true && $err == 0){
             $mailaction_email_sender = [];
             //envoi de mail
 
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Commande',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Commande',2,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 

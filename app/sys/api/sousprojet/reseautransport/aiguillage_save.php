@@ -322,7 +322,7 @@ if($insert == true && $err == 0){
         && (  $mailaction_entite != null && ($mailaction_entite->controle_plans != $ta_controle_plans || $mailaction_entite->lien_plans != $ta_lien_plans) ) ) {
 
             //envoi de mail
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',4,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',4,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
@@ -342,7 +342,7 @@ if($insert == true && $err == 0){
             $mailaction_email_sender = [];
             //envoi de mail
 
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CTR','Aiguillage',2,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 

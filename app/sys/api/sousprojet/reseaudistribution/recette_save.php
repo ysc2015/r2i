@@ -233,7 +233,7 @@ if($insert == true && $err == 0){
             if($drec_intervenant_be==null ) $drec_intervenant_be = 0;
             if($drec_intervenant_free==null) $drec_intervenant_free = 0;
 
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',2,'','','','','','','',$sousProjet->projet->id_chef_projet);
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',2,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
@@ -265,7 +265,7 @@ if($insert == true && $err == 0){
                 )
             )
         ) {
-            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',7,'');
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',7,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
