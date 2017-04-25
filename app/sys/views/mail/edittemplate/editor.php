@@ -75,6 +75,10 @@
                 <td>@id_sous_projet</td>
                 <td>ID sous projet </td>
             </tr>
+            <tr>
+                <td>@commentaire_ot</td>
+                <td>Commentaire OT </td>
+            </tr>
 
 
         </table>

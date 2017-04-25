@@ -228,7 +228,7 @@ if($err==0) {
                     $boite = array($b720,$b432,$b288,$b144,$b48);
                     $chambre = array($c720,$c432,$c288,$c144,$c48);
 
-                    $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire,'',$ot->id_sous_projet);
+                    $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire,'',$ot->id_sous_projet,$ot->commentaire);
                     $mailaction_object = $mailaction_html[1];
                     $mailaction_html =  $mailaction_html[0];
                     $mailaction_to = return_list_mail_vpi_par_nro_ot($db, $sousProjet->projet->id_nro,$ot->id_equipe_stt, $ot->id_entreprise);

@@ -1613,7 +1613,7 @@ function get_email_by_id($db,$tabusers){
  * @param $type_mail
  * @return array
  */
-function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=null,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null,$id_sous_projet=null){
+function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=null,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null,$id_sous_projet=null,$commentaire_ot=null){
     $sql = "SELECT * FROM `mail_notification_template` where type = :type";
     $sqlstatement = $db->prepare($sql);
     $sqlstatement->bindValue(':type',$type_mail);
@@ -1655,6 +1655,7 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
     $statement[0][1]    = str_replace('@url_projet', '<a href="'.$_SERVER['HTTP_REFERER'].'" target="_blank">'.$_SERVER['HTTP_REFERER'].'</a> ',$statement[0][1] );
 
     $statement[0][1]    = str_replace('@id_sous_projet',$id_sous_projet,$statement[0][1] );
+    $statement[0][1]    = str_replace('@commentaire_ot',$commentaire_ot,$statement[0][1] );
 
     $statement[0][1]    = str_replace('@nom_ot',$nom_ot,$statement[0][1] );
     $statement[0][1]    = str_replace('@ville',$ville,$statement[0][1] );
