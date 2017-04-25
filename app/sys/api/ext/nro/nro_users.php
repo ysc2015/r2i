@@ -26,4 +26,6 @@ $stm->execute();
 
 $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
 
+echo $sql;
+
 echo json_encode($nu);
