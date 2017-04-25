@@ -297,8 +297,8 @@
                 { "data": "cdi_recette_etat_recette" },
                 //Commandes Fin Travaux
                 { "data": "ref_commande_fin_travaux2" },
-                { "data": "ctr_aiguillage_lib_commande_acces22" },
-                { "data": "ctr_aiguillage_lib_go_ft22" },
+                { "data": "cdi_aiguillage_lib_commande_acces22" },
+                { "data": "cdi_aiguillage_lib_go_ft22" },
                 //MISC
                 { "data": "zone" }
 
