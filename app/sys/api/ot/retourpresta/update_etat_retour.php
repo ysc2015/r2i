@@ -87,7 +87,7 @@ if($err == 0) {
         $mailaction_to[] = "fadelghani@rc2k.fr";
         if(count($mailaction_to)>0){
 
-            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
             //if(true){
                 $message[] = "Mail envoyé !";
             } else {

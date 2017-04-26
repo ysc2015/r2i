@@ -238,7 +238,7 @@ if($err==0) {
                     $mailaction_cc = array_unique($mailaction_cc);
                     $mailaction_to = array_unique($mailaction_to);
                     if(count($mailaction_to)) {
-                        if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+                        if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
                             $message[] = "Mail envoyé !";
                         } else {
                             $message[] = "Mail non envoyé !";
