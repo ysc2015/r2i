@@ -108,7 +108,7 @@ if($err == 0){
 
         if(count($mailaction_to)>0){
 
-            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc)) {
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
