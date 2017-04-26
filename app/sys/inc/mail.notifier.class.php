@@ -107,7 +107,7 @@ class MailNotifier {
         self::$mail->Subject = $subject;
 
         self::$mail->msgHTML($html, dirname(__FILE__));
-        if($from!=null) self::$mail->setFrom("fadelghan@rc2k.fr");
+        if($from!=null) self::$mail->setFrom($from);
         return self::$mail->send();
     }
 
