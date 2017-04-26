@@ -7,13 +7,15 @@
  */
 
 
+require_once "../../MY_ROUTER.php";
 
-require_once "mail.notifier.class.php";
-
-if(@MailNotifier::sendMail("my object","du text",["fadelghani@gmail.com","fadelghani@rc2k.fr"],array(),array(),"fadelghani@hotmail.com")) {
-    $message[] = "Mail envoyé !";
+if(MailNotifier::sendMail("my object","du text",["fadelghani@gmail.com","fadelghani@rc2k.fr"],array(),array(),"fadelghani@hotmail.com")) {
+    //$message[] = "Mail envoyé !";
+    echo "ENVOYé";
 } else {
-    $message[] = "Mail non envoyé !";
-    $err++;
+   // $message[] = "Mail non envoyé !";
+   // $err++;
+    echo "NON ENVOYE";
 }
 
+echo "alo";
