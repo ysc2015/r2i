@@ -10,10 +10,11 @@ $resolu = false;
 $err = 0;
 $message = array();
 
-$stm = $db->prepare("update blq_pbc set statut = 1 where id_blq_pbc=:id_blq_pbc");
+$stm = $db->prepare("update blq_pbc set statut = :statutpbc where id_blq_pbc=:id_blq_pbc");
 
 if(isset($idblq) && !empty($idblq)){
     $stm->bindParam(':id_blq_pbc',$idblq);
+    $stm->bindParam(':statutpbc',$statutpbc);
     $resolu = true;
 } else {
     $err++;
@@ -22,7 +23,7 @@ if(isset($idblq) && !empty($idblq)){
 
 if($resolu == true && $err == 0){
     if($stm->execute()){
-        $message [] = "Element résolu avec succès";
+        $message [] = "Element ".$idblq." résolu avec succès to ".$statutpbc." ";
     } else {
         $message [] = $stm->errorInfo();
     }

@@ -747,12 +747,16 @@ switch ($page) {
     </div>
     <script>
 
+        var statutpbccheckbox = null;
+        var idblq = 0;
+        var type_info = 0;
+        var statutpbc;
         var blq_ot_dt;
         var blq_pbc_dt;
         var blq_pbc_dt2;
         var blq_ot_btns = ["#add_pbc_show", "#add_pbc_show2"];
-        var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show","#resolu_pbc_show"];
-        var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2","#resolu_pbc_show2"];
+        var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
+        var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
         var update_info = false;
         var update_info2 = false;
         var type_info = 0;
@@ -996,10 +1000,11 @@ switch ($page) {
                     {
                         "targets": 9,
                         "render": function ( data, type, full, meta ) {
-                            if(full.statut == 1) return 'resolu';
-                            else return 'Non resolu';
+                            return '<label class="css-input switch switch-sm switch-success"> <input id="'+full.id_blq_pbc+'" class="pbcstatutcheckbox" type="checkbox" value="FALSE" '+(data == 1 ? 'checked=""' : '')+'><span></span></label>'
+
                         }
                     }
+
                 ],
                 "order": [[0, 'desc']]
                 ,
@@ -1047,8 +1052,8 @@ switch ($page) {
                     {
                         "targets": 9,
                         "render": function ( data, type, full, meta ) {
-                            if(full.statut == 1) return 'resolu';
-                            else return 'Non resolu';
+                            return '<label class="css-input switch switch-sm switch-success"> <input id="'+full.id_blq_pbc+'" class="pbcstatutcorrectioncheckbox" type="checkbox" value="FALSE" '+(data == 1 ? 'checked=""' : '')+'><span></span></label>'
+
                         }
                     }
                 ],
@@ -1080,7 +1085,33 @@ switch ($page) {
             } );
 
             $('#sp_question_pbc_upload').hide();
+            $('body').on('change',".pbcstatutcheckbox",function (e){
+                e.preventDefault();
+                type_info = 1;
+                idblq = $( this).attr('id');
+                statutpbccheckbox =  this;
+                if($(this).is(':checked')){
+                    statutpbc = 1;
+                }else{
+                    statutpbc = 0;
+                }
+                $("#resolu-blq-dialog-confirm").dialog("open");
 
+            });
+            $('body').on('change',".pbcstatutcorrectioncheckbox",function (e){
+                e.preventDefault();
+                type_info = 2;
+                idblq = $( this).attr('id');
+                statutpbccheckbox =  this;
+
+                if($(this).is(':checked')){
+                    statutpbc = 1;
+                }else{
+                    statutpbc = 0;
+                }
+                $("#resolu-blq-dialog-confirm").dialog("open");
+
+            });
             $('body').on('click',"#blq_pbc_table tbody tr",function () {
                 if(true) { //TODO check if dt is not empty
                     if ( $(this).hasClass('selected') ) {
@@ -1329,18 +1360,13 @@ switch ($page) {
                 modal: true,
                 buttons: {
                     "Oui": function() {
-                        var idblq = 0;
-                        if(type_info == 1) {
-                            idblq = blq_pbc_dt.row('.selected').data().id_blq_pbc;
-                        } else  if(type_info == 2) {
-                            idblq = blq_pbc_dt2.row('.selected').data().id_blq_pbc;
-                        }
                         $.ajax({
                             method: "POST",
                             url: "api/ot/ot/resolu_blq.php",
                             dataType: "json",
                             data: {
-                                idblq: idblq
+                                idblq: idblq,
+                                statutpbc: statutpbc
                             }
                         }).done(function (message) {
                             if(message.error == 0) {
@@ -1361,15 +1387,12 @@ switch ($page) {
                     },
                     Non: function() {
                         $( this ).dialog( "close" );
+                        statutpbccheckbox.prop('checked');
                     }
                 }
             });
 
-            $('#resolu_pbc_show').click(function (e){
-                e.preventDefault();
-                type_info = 1;
-                $("#resolu-blq-dialog-confirm").dialog("open");
-            });
+
 
             $('#delete_pbc_show').click(function (e){
                             e.preventDefault();
@@ -1382,11 +1405,7 @@ switch ($page) {
                 type_info = 2;
                 $("#delete-blq-dialog-confirm").dialog("open");
             });
-            $('#resolu_pbc_show2').click(function (e){
-                e.preventDefault();
-                type_info = 1;
-                $("#resolu-blq-dialog-confirm").dialog("open");
-            });
+
             $('#add-info').on('hidden.bs.modal', function () {
                 $('body').addClass('modal-open');
             });
@@ -1532,6 +1551,7 @@ switch ($page) {
                     },
                     Non: function() {
                         $( this ).dialog( "close" );
+
                     }
                 }
             });
