@@ -994,7 +994,7 @@ switch ($page) {
                     {
                         "targets": 8,
                         "render": function ( data, type, full, meta ) {
-                            return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
+                            return (full.nom_utilisateur !== null && full.prenom_utilisateur !== null ?  full.nom_utilisateur + ' ' + full.prenom_utilisateur  : 'n/d');
                         }
                     },
                     {
@@ -1046,7 +1046,9 @@ switch ($page) {
                     {
                         "targets": 8,
                         "render": function ( data, type, full, meta ) {
-                            return full.nom_utilisateur + ' ' + full.prenom_utilisateur  ;
+
+
+                            return (full.nom_utilisateur !== null && full.prenom_utilisateur !== null ?  full.nom_utilisateur + ' ' + full.prenom_utilisateur  : 'n/d');
                         }
                     },
                     {
