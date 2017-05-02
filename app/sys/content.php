@@ -1387,7 +1387,12 @@ switch ($page) {
                     },
                     Non: function() {
                         $( this ).dialog( "close" );
-                        statutpbccheckbox.prop('checked');
+
+                        if($("#"+idblq).is(':checked')){
+                            $( "#"+idblq ).prop('checked',false);
+                        }else{
+                            $( "#"+idblq ).prop('checked',true);
+                        }
                     }
                 }
             });
