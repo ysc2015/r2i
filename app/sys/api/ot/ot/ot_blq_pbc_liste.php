@@ -28,6 +28,10 @@ if(isset($idot) && isset($type)) {
     $condition .=" AND t1.id_ordre_de_travail=$idot AND t1.type=$type";
 }
 
+if(isset($nr)) {
+    $condition .=" AND t1.statut <> 1";
+}
+
 $left = "left join utilisateur u on t1.id_createur = u.id_utilisateur";
 
 

@@ -267,7 +267,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)
+                "url": 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)
             },
             "columns": [
                 { "data": "id_blq_pbc" },
@@ -303,7 +303,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)
+                "url": 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)
             },
             "columns": [
                 { "data": "id_blq_pbc" },
