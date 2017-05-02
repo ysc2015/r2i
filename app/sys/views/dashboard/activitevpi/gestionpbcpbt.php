@@ -72,7 +72,8 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/dashboard/activitevpi/gestion_travaux_pbc.php'
+                "url": 'api/dashboard/activitevpi/gestion_travaux_pbc.php',
+                "type":'POST'
             },
             "columns": [
                 { "data": "lib_nro" },

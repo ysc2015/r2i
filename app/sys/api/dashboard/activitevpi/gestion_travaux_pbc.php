@@ -4,9 +4,7 @@
  * User: rabii
  */
 
-extract($_POST);
-
-$table = array("ordre_de_travail as t1","sous_projet as t2","projet as t3","nro as t4","etat_ot as t5","select_type_ordre_travail as t6","entreprises_stt as t7","pci_in_nro as t8","pbc_no_rep as t9");
+$table = array("ordre_de_travail as t1","sous_projet as t2","projet as t3","nro as t4","etat_ot as t5","select_type_ordre_travail as t6","entreprises_stt as t7","pci_in_nro as t8","pbc_no_rep as t9","ot_steps_nok as t10");
 $columns = array(
     array( "db" => "t1.id_ordre_de_travail", "dt" => 'id_ordre_de_travail' ),
     array( "db" => "t1.type_ot", "dt" => 'type_ot' ),
@@ -19,10 +17,10 @@ $columns = array(
     array( "db" => "t2.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t2.zone", "dt" => 'zone' ),
     array( "db" => "t9.nbr_pbc", "dt" => 'nbr_pbc' ),
-    array( "db" => "t9.date_oldest", "dt" => 'date_oldest' ),
+    array( "db" => "t9.date_oldest", "dt" => 'date_oldest' )
 );
 
-$condition = "t1.id_sous_projet = t2.id_sous_projet AND t1.id_entreprise = t7.id_entreprise AND t1.id_etat_ot = t5.id_etat_ot AND t1.id_type_ordre_travail = t6.id_type_ordre_travail AND t1.id_ordre_de_travail = t9.id_ordre_de_travail AND t2.id_projet = t3.id_projet AND t3.id_nro = t4.id_nro AND t4.id_nro = t8.id_nro";
+$condition = "t1.id_sous_projet = t2.id_sous_projet AND t1.id_ordre_de_travail = t10.id_ordre_de_travail AND t1.id_entreprise = t7.id_entreprise AND t1.id_etat_ot = t5.id_etat_ot AND t1.id_type_ordre_travail = t6.id_type_ordre_travail AND t1.id_ordre_de_travail = t9.id_ordre_de_travail AND t2.id_projet = t3.id_projet AND t3.id_nro = t4.id_nro AND t4.id_nro = t8.id_nro";
 
 $condition .= " AND t6.system = 1";
 
@@ -60,5 +58,5 @@ switch($connectedProfil->profil->profil->shortlib) {
     default : break;
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,""));
+echo json_encode(SSP::simpleJoin($_POST,$db,$table,"id_ordre_de_travail",$columns,$condition));
 ?>
