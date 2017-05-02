@@ -117,8 +117,8 @@
                 $('#snk_show').addClass("disabled");
                 $('#foa_show').addClass("disabled");
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
-                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot=-1' ).load();
-                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot=-1' ).load();
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot=-1' ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=2&idot=-1' ).load();
 
             },
             "initComplete": function( settings ) {
@@ -154,8 +154,8 @@
                 $('#other_files_uploader_wrapper').hide();
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
-                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot=-1' ).load();
-                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot=-1' ).load();
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot=-1' ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=2&idot=-1' ).load();
 
                 selectedOT = 0;
             }
@@ -188,8 +188,8 @@
                 $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
-                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
-                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
 
                 selectedOT = ot_dt.row('.selected').data().id_ordre_de_travail;
             }
