@@ -429,7 +429,7 @@ switch ($page) {
                                         <button id="add_pbc_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter info</button>
                                         <button id="mod_pbc_show" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier info</button>
                                         <button id="delete_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer info</button>
-                                        <button id="resolu_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Question résolu</button>
+                                        <!--<button id="resolu_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Question résolu</button>-->
                                         <div id="sp_question_pbc_upload" class="row">
                                             <div class="col-md-6">
                                                 <label for="question_pbc_uploader" style="margin-top: 20px;">Attachments Question</label>
@@ -477,7 +477,7 @@ switch ($page) {
                                         <button id="add_pbc_show2" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter correction</button>
                                         <button id="mod_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#mod-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Modifier correction</button>
                                         <button id="delete_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-correction' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer correction</button>
-                                        <button id="resolu_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Correction résolu</button>
+                                        <!--<button id="resolu_pbc_show2" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Correction résolu</button>-->
                                     </div>
                                 </div>
                             </div>
@@ -742,7 +742,7 @@ switch ($page) {
     <div id="delete-blq-dialog-confirm" title="Supprimer cet élément?">
         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
     </div>
-    <div id="resolu-blq-dialog-confirm" title="Question Résolu?">
+    <div id="resolu-blq-dialog-confirm" title="Info">
         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
     </div>
     <script>
