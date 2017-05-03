@@ -46,55 +46,55 @@ $tpl_extra_ssp_array = array(
         "left" => " left join sous_projet_transport_commande_fin_travaux as ns on t1.id_sous_projet = ns.id_sous_projet left join sous_projet_transport_raccordements as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_ret_prevue AS date_fin_prev_step,'Recette CTR' AS etape"
     ),
-    7 => array(//CMD Fin Travaux CTR
+    /*7 => array(//CMD Fin Travaux CTR
         "tables" => array("sous_projet_transport_commande_fin_travaux as t10"),
         "condition" => " AND t1.id_sous_projet = t10.id_sous_projet AND t10.ok = 1 ",
         "left" => " left join sous_projet_transport_recette as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_ret_prevue AS date_fin_prev_step,'CMD Fin Travaux CTR' AS etape"
-    ),
+    ),*/
     //CDI
-    8 => array(//Design CDI
+    7 => array(//Design CDI
         "tables" => array("sous_projet_distribution_design as t11"),
         "condition" => " AND t1.id_sous_projet = t11.id_sous_projet AND t11.ok = 1 AND ( ns.intervenant_be < 1 OR ns.intervenant_be IS NULL OR ns.intervenant_be = '' ) ",
         "left" => " left join sous_projet_distribution_aiguillage as ns on t1.id_sous_projet = ns.id_sous_projet",
         "extra_pluck" => "t1.date_insertion AS date_fin_prev_step,'Design CDI' AS etape"
     ),
-    9 => array(//Aiguillage CDI
+    8 => array(//Aiguillage CDI
         "tables" => array("sous_projet_distribution_aiguillage as t12"),
         "condition" => " AND t1.id_sous_projet = t12.id_sous_projet AND t12.ok = 1 AND ( ns.intervenant_be < 1 OR ns.intervenant_be IS NULL OR ns.intervenant_be = '' ) ",
         "left" => " left join sous_projet_distribution_commande_cdi as ns on t1.id_sous_projet = ns.id_sous_projet left join sous_projet_distribution_design as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_fin AS date_fin_prev_step,'Aiguillage CDI' AS etape"
     ),
-    10 => array(//CMD Structurante CDI
+    9 => array(//CMD Structurante CDI
         "tables" => array("sous_projet_distribution_commande_cdi as t13"),
         "condition" => " AND t1.id_sous_projet = t13.id_sous_projet AND t13.ok = 1 AND ( ns.intervenant_be < 1 OR ns.intervenant_be IS NULL OR ns.intervenant_be = '' ) ",
         "left" => " left join sous_projet_distribution_tirage as ns on t1.id_sous_projet = ns.id_sous_projet left join sous_projet_distribution_aiguillage as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_ret_prevue AS date_fin_prev_step,'CMD Structurante CDI' AS etape"
     ),
-    11 => array(//Tirage CDI
+    10 => array(//Tirage CDI
         "tables" => array("sous_projet_distribution_tirage as t14"),
         "condition" => " AND t1.id_sous_projet = t14.id_sous_projet AND t14.ok = 1 AND ( ns.intervenant_be < 1 OR ns.intervenant_be IS NULL OR ns.intervenant_be = '' ) ",
         "left" => " left join sous_projet_distribution_raccordements as ns on t1.id_sous_projet = ns.id_sous_projet left join sous_projet_distribution_commande_cdi as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_fin_travaux_ft AS date_fin_prev_step,'Tirage CDI' AS etape"
     ),
-    12 => array(//Raccordement CDI
+    11 => array(//Raccordement CDI
         "tables" => array("sous_projet_distribution_raccordements as t15"),
         "condition" => " AND t1.id_sous_projet = t15.id_sous_projet AND t15.ok = 1 AND ( ns.intervenant_be < 1 OR ns.intervenant_be IS NULL OR ns.intervenant_be = '' ) ",
         "left" => " left join sous_projet_distribution_recette as ns on t1.id_sous_projet = ns.id_sous_projet left join sous_projet_distribution_tirage as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_ret_prevue AS date_fin_prev_step,'Raccordement CDI' AS etape"
     ),
-    13 => array(//Recette CDI
+    12 => array(//Recette CDI
         "tables" => array("sous_projet_distribution_recette as t16"),
         "condition" => " AND t1.id_sous_projet = t16.id_sous_projet AND t16.ok = 1 AND ( ns.intervenant_be < 1 OR ns.intervenant_be IS NULL OR ns.intervenant_be = '' ) ",
         "left" => " left join sous_projet_distribution_commande_fin_travaux as ns on t1.id_sous_projet = ns.id_sous_projet left join sous_projet_distribution_raccordements as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_ret_prevue AS date_fin_prev_step,'Recette CDI' AS etape"
-    ),
+    )/*,
     14 => array(//CMD Fin Travaux CDI
         "tables" => array("sous_projet_distribution_commande_fin_travaux as t17"),
         "condition" => " AND t1.id_sous_projet = t17.id_sous_projet AND t17.ok = 1 ",
         "left" => " left join sous_projet_distribution_recette as ps on t1.id_sous_projet = ps.id_sous_projet",
         "extra_pluck" => "ps.date_ret_prevue AS date_fin_prev_step,'CMD Fin Travaux CDI' AS etape"
-    )
+    )*/
 );
 
 $table = array("sous_projet as t1","projet as t2","nro as t3");
