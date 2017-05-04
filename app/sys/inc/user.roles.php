@@ -202,6 +202,7 @@ class adm extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
+                "fcomp" => array("fcomp"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis","delete","convert_bdc"),
                 "ebm" => array("formebm"),
@@ -223,16 +224,16 @@ class adm extends baseUser {
         );
     }
 
-    /*function wiki() {
+    function wiki() {
     	Page::wiki(
     			array(
     					"wiki" => array("wiki")
     			)
     			);
-    }*/
+    }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc"/*,"wiki"*/);
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc","wiki_titre","wiki");
     }
 
     //admin only menu
@@ -623,6 +624,7 @@ class vpi extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
+                "fcomp" => array("fcomp"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis","delete","convert_bdc"),
                 "ebm" => array("formebm"),
@@ -659,6 +661,7 @@ class pci extends baseUser {
         Page::pcip(
             array(
                 "ot" => array("liste"),
+                "fcomp" => array("fcomp"),
                 "blq" => array("blq"),
                 "deot" => array("deot"),
                 "infosot" => array("calendar"),

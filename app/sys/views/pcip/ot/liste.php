@@ -111,6 +111,7 @@
             ,
             "drawCallback": function( settings ) {
                 //console.log('drawCallback');
+                $('#fcomp_uploader_wrapper').hide();
                 displayDevis();
                 $('#devis_block_title').html('Devis');
                 $('#validate_start_ot').addClass("disabled");
@@ -130,6 +131,8 @@
                 }
             }
         } );
+
+        $('#fcomp_uploader_wrapper').hide();
 
         $('#validate_start_ot').addClass("disabled");
         $('#snk_show').addClass("disabled");
@@ -159,11 +162,17 @@
                 selectedOT = 0;
 
                 $('#other_files_uploader_wrapper').hide();
+
+                $('#fcomp_uploader_wrapper').hide();
             }
             else {
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
+                $('#fcomp_uploader_wrapper').show();
+                fcomp_uploader.reset();
+                fcomp_uploader = $("#fcomp_uploader").uploadFile(fcomp_uploader_options);
+                
                 $('#other_files_uploader_wrapper').show();
                 other_files_uploader.reset();
                 other_files_uploader = $("#other_files_uploader").uploadFile(other_files_uploader_options);
