@@ -90,7 +90,7 @@
         fcomp_uploader_options = merge_options(defaultUploaderStrLocalisation,fcomp_uploader_options);
         fcomp_uploader_options.showDelete = true;
         fcomp_uploader = $("#fcomp_uploader").uploadFile(fcomp_uploader_options);
-    });//
+    });
     $(document).ready(function() {
     } );
 </script>
