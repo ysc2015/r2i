@@ -103,6 +103,12 @@
                         ?>
                     </select>
                 </div>
+                <div class="col-md-6 fcomp-annexe">
+                    <label for="fcomp_uploader_wrapper3">Documents livrables complementaires </label>
+                    <div id="fcomp_uploader_wrapper3">
+                        <div id="fcomp_uploader3"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="alert alert-success" id="message_distribution_commande_cdi" role="alert" style="display: none;"></div>
@@ -127,6 +133,85 @@
 </div>
 <script>
     var dcmd_formdata = {};
+    var fcomp_uploader_options3 = {
+        url: "#",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:true,
+        showDownload:true,
+        allowedTypes: "pdf,zip,rar",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/ot/ot/load_fcomp.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'), types : '5'},
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        dynamicFormData: function()
+        {
+            var data ={
+                idot: ot_dt.row('.selected').data().id_ordre_de_travail
+            };
+            return data;
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
+    $(function () {
+        // Init page plugins & helpers
+
+        fcomp_uploader_options3 = merge_options(defaultUploaderStrLocalisation,fcomp_uploader_options3);
+        fcomp_uploader_options3.showDelete = false;
+        fcomp_uploader3 = $("#fcomp_uploader3").uploadFile(fcomp_uploader_options3);
+    });
     $(document).ready(function() {
         var typeetape = "sous_projet_distribution_commande_cdi";
         var variable_etape = "distributioncmdcdi";

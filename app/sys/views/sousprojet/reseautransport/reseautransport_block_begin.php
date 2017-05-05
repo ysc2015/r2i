@@ -2,6 +2,10 @@
     .retourpresta .ajax-upload-dragdrop {
         display: none;
     }
+
+    .fcomp-annexe .ajax-upload-dragdrop {
+        display: none;
+    }
 </style>
 <div class="block block-themed block-opt-hidden" id="rtransport_block">
     <div class="block-header bg-info">

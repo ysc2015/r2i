@@ -13,10 +13,11 @@ $ret = array();
 
 $err = 0;
 $message = array();
-$stm = $db->prepare("insert into ressource (id_ordre_de_travail,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation,id_utilisateur) values (:id_ordre_de_travail,'fcomp_file',:nom_fichier,:nom_fichier_disque,'sousprojets',:date_creation,".$connectedProfil->profil->id_utilisateur.")");
+$stm = $db->prepare("insert into ressource (id_ordre_de_travail,id_sous_projet,type_objet,nom_fichier,nom_fichier_disque,dossier,date_creation,id_utilisateur) values (:id_ordre_de_travail,:id_sous_projet,'fcomp_file',:nom_fichier,:nom_fichier_disque,'sousprojets',:date_creation,".$connectedProfil->profil->id_utilisateur.")");
 
-if(isset($idot) && !empty($idot)) {
+if(isset($idot) && !empty($idot) && isset($idsp) && !empty($idsp)) {
     $stm->bindParam(':id_ordre_de_travail',$idot);
+    $stm->bindParam(':id_sous_projet',$idsp);
     if (isset($_FILES["myfile"])) {
         $error = $_FILES["myfile"]["error"];
         if (!is_array($_FILES["myfile"]["name"])) {
