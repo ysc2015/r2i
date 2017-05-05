@@ -207,6 +207,7 @@
     }
     $(function () {
         // Init page plugins & helpers
+        //
 
         fcomp_uploader_options3 = merge_options(defaultUploaderStrLocalisation,fcomp_uploader_options3);
         fcomp_uploader_options3.showDelete = false;
