@@ -289,7 +289,7 @@
         var liste_intervenant = [];
         $("#id_sous_projet_transport_cmdfintravaux_btn_osa").click(function () {
             if($( "#cftrvx_intervenant_be" ).val()!="") liste_intervenant.push($( "#cftrvx_intervenant_be" ).val());
-            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide
+            appelscriptosa(typeetape,get("idsousprojet"),variable_etape,liste_intervenant);//1 = ide //
         });
         $("#id_sous_projet_transport_cmdfintravaux_list_tache").click(function () {
 

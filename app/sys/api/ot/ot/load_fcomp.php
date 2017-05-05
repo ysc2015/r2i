@@ -14,8 +14,6 @@ $stm = NULL;
 
 if(isset($idsp) && isset($types)) {
 
-    //echo "select r.* from ressource r inner join ordre_de_travail ot on r.id_ordre_de_travail = ot.id_ordre_de_travail where type_objet='fcomp_file' and id_sous_projet=:id_sous_projet and ot.id_type_ordre_travail IN ($types)";//id_type_ordre_travail IN ($types)
-
     $stm = $db->prepare("select r.* from ressource r inner join ordre_de_travail ot on r.id_ordre_de_travail = ot.id_ordre_de_travail where r.type_objet='fcomp_file' and r.id_sous_projet=:id_sous_projet and ot.id_type_ordre_travail IN ($types)");
 
     $stm->execute(array(':id_sous_projet' => $idsp));

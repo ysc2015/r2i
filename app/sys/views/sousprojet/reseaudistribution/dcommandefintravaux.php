@@ -201,7 +201,7 @@
         }
     }
     $(function () {
-        // Init page plugins & helpers
+        // Init page plugins & helpers //
 
         fcomp_uploader_options4 = merge_options(defaultUploaderStrLocalisation,fcomp_uploader_options4);
         fcomp_uploader_options4.showDelete = false;

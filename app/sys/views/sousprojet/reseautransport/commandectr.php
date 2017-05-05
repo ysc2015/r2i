@@ -222,7 +222,7 @@
     }
 
     $(function () {
-        // Init page plugins & helpers
+        // Init page plugins & helpers //
         jQuery('#cctr_ref_commande_acces').tagsinput({});
 
         fcomp_uploader_options1 = merge_options(defaultUploaderStrLocalisation,fcomp_uploader_options1);

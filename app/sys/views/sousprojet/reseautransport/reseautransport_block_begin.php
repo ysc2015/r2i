@@ -18,6 +18,7 @@
             </li>
         </ul>
         <?php
+        /**/
         $alerte = "";
         $sousProjet_master = SousProjet::first(
             array('conditions' =>
