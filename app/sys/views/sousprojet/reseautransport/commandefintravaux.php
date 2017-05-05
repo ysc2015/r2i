@@ -99,6 +99,12 @@
                         ?>
                     </select>
                 </div>
+                <div class="col-md-6 fcomp-annexe">
+                    <label for="fcomp_uploader_wrapper2">Documents livrables complementaires </label>
+                    <div id="fcomp_uploader_wrapper2">
+                        <div id="fcomp_uploader2"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="alert alert-success" id="message_transport_commande_fin_travaux" role="alert" style="display: none;"></div>
@@ -137,6 +143,85 @@
 </div>
 <script>
     var cmd_fin_trvx_formdata = {};
+    var fcomp_uploader_options2 = {
+        url: "#",
+        multiple:false,
+        dragDrop:true,
+        fileName: "myfile",
+        autoSubmit: true,
+        showDelete:true,
+        showDownload:true,
+        allowedTypes: "pdf,zip,rar",
+        onLoad:function(obj)
+        {
+            $.ajax({
+                cache: false,
+                url: "api/ot/ot/load_fcomp.php",
+                method:"POST",
+                data: {idsp:get('idsousprojet'), types : '2,3,4'},
+                dataType: "json",
+                success: function(data)
+                {
+                    for(var i=0;i<data.length;i++)
+                    {
+                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                    }
+                }
+            });
+        },
+        dynamicFormData: function()
+        {
+            var data ={
+                idot: ot_dt.row('.selected').data().id_ordre_de_travail
+            };
+            return data;
+        },
+        afterUploadAll:function(obj) {
+        },
+        downloadCallback:function(data,pd)
+        {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            location.href="api/file/download.php?id="+id;
+        },
+        deleteCallback: function (data, pd) {
+            var obj;
+            var id;
+            try {
+                obj = $.parseJSON(data);
+                id = obj[0].id;
+            } catch (e) {
+                var arr = (data + '').split("_");
+                id = arr[0];
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "api/file/delete.php",
+                data: {
+                    id: id
+                }
+            }).done(function (message) {
+                console.log(message);
+            });
+
+        }
+    }
+    $(function () {
+        // Init page plugins & helpers
+
+        fcomp_uploader_options2 = merge_options(defaultUploaderStrLocalisation,fcomp_uploader_options2);
+        fcomp_uploader_options2.showDelete = false;
+        fcomp_uploader2 = $("#fcomp_uploader2").uploadFile(fcomp_uploader_options2);
+    });
     $(document).ready(function() {
         var typeetape = "sous_projet_transport_commande_fin_travaux";
         var variable_etape = "transportcmdfintravaux";
