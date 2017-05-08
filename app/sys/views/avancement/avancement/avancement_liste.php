@@ -7,25 +7,25 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR-->
-                <th class="bg bg-success-light" colspan="24" style="text-align: center;">CTR</th>
+                <th class="bg bg-success-light" colspan="27" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="23" style="text-align: center;">CDI</th>
+                <th class="bg bg-warning-light" colspan="26" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR-->
-                <th colspan="6" style="text-align: center;">Aiguillage</th>
+                <th colspan="7" style="text-align: center;">Aiguillage</th>
                 <th colspan="3" style="text-align: center;">CMD Structurante</th>
-                <th colspan="5" style="text-align: center;">Tirage</th>
-                <th colspan="5" style="text-align: center;">Raccordement</th>
+                <th colspan="6" style="text-align: center;">Tirage</th>
+                <th colspan="6" style="text-align: center;">Raccordement</th>
                 <th colspan="1" style="text-align: center;">Recette</th>
                 <th colspan="3" style="text-align: center;">Commandes Fin Travaux</th>
                 <th colspan="1" rowspan="2" style="text-align: center;">Maitre CTR</th>
                 <!--CDI-->
-                <th colspan="6" style="text-align: center;">Aiguillage</th>
+                <th colspan="7" style="text-align: center;">Aiguillage</th>
                 <th colspan="3" style="text-align: center;">CMD Structurante</th>
-                <th colspan="5" style="text-align: center;">Tirage</th>
-                <th colspan="5" style="text-align: center;">Raccordement</th>
+                <th colspan="6" style="text-align: center;">Tirage</th>
+                <th colspan="6" style="text-align: center;">Raccordement</th>
                 <th colspan="1" style="text-align: center;">Recette</th>
                 <th colspan="3" style="text-align: center;">Commandes Fin Travaux</th>
             </tr>
@@ -44,6 +44,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--CMD Structurante-->
                 <th>Réf CMD Accès</th>
@@ -56,6 +57,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Raccordement-->
                 <th>Plans</th>
@@ -63,6 +65,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Recette-->
                 <th>Injection NetGeo</th>
@@ -85,6 +88,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--CMD Structurante-->
                 <th>Réf CMD Accès</th>
@@ -97,6 +101,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Raccordement-->
                 <th>Plans</th>
@@ -104,6 +109,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Recette-->
                 <th>Injection NetGeo</th>
@@ -132,6 +138,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--CMD Structurante-->
                 <th>Réf CMD Accès</th>
@@ -144,6 +151,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Raccordement-->
                 <th>Plans</th>
@@ -151,6 +159,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Recette-->
                 <th>Injection NetGeo</th>
@@ -172,6 +181,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--CMD Structurante-->
                 <th>Réf CMD Accès</th>
@@ -184,6 +194,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Raccordement-->
                 <th>Plans</th>
@@ -191,6 +202,7 @@
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
                 <th>Traitement Retour</th>
+                <th>pbc non résolus</th>
 
                 <!--Recette-->
                 <th>Injection NetGeo</th>
@@ -245,6 +257,7 @@
                 { "data": "ctr_aiguillage_ordre_de_travail_date_debut" },
                 { "data": "ctr_aiguillage_ordre_de_travail_date_fin" },
                 { "data": "ctr_aiguillage_lib_etat_retour" },
+                { "data": "ctr_aiguillage_bp_no_resolu" },
                 //CMD Structurante
                 { "data": "ref_commande_acces" },
                 { "data": "ctr_aiguillage_lib_commande_acces" },
@@ -255,12 +268,14 @@
                 { "data": "ctr_tirage_ordre_de_travail_date_debut" },
                 { "data": "ctr_tirage_ordre_de_travail_date_fin" },
                 { "data": "ctr_tirage_lib_etat_retour" },
+                { "data": "ctr_tirage_bp_no_resolu" },
                 //Raccordement
                 { "data": "ctr_raccord_lib_controle_plan" },
                 { "data": "ctr_raccord_ordre_de_travail" },
                 { "data": "ctr_raccord_ordre_de_travail_date_debut" },
                 { "data": "ctr_raccord_ordre_de_travail_date_fin" },
                 { "data": "ctr_raccord_lib_etat_retour" },
+                { "data": "ctr_raccord_bp_no_resolu" },
                 //Recette
                 { "data": "ctr_recette_etat_recette" },
                 //Commandes Fin Travaux
@@ -277,6 +292,7 @@
                 { "data": "cdi_aiguillage_ordre_de_travail_date_debut" },
                 { "data": "cdi_aiguillage_ordre_de_travail_date_fin" },
                 { "data": "cdi_aiguillage_lib_etat_retour" },
+                { "data": "cdi_aiguillage_bp_no_resolu" },
                 //CMD Structurante
                 { "data": "ref_commande_acces2" },
                 { "data": "cdi_aiguillage_lib_commande_acces" },
@@ -287,12 +303,14 @@
                 { "data": "cdi_tirage_ordre_de_travail_date_debut" },
                 { "data": "cdi_tirage_ordre_de_travail_date_fin" },
                 { "data": "cdi_tirage_lib_etat_retour" },
+                { "data": "cdi_tirage_bp_no_resolu" },
                 //Raccordement
                 { "data": "cdi_raccord_lib_controle_plan" },
                 { "data": "cdi_raccord_ordre_de_travail" },
                 { "data": "cdi_raccord_ordre_de_travail_date_debut" },
                 { "data": "cdi_raccord_ordre_de_travail_date_fin" },
                 { "data": "cdi_raccord_lib_etat_retour" },
+                { "data": "cdi_raccord_bp_no_resolu" },
                 //Recette
                 { "data": "cdi_recette_etat_recette" },
                 //Commandes Fin Travaux
@@ -306,7 +324,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 51 ],
+                    orderData: [ 0, 57 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -328,7 +346,7 @@
 
                     }
                 },
-                { "targets": [ 51 ], "visible": false, "searchable": true }
+                { "targets": [ 57 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
