@@ -28,7 +28,7 @@ $columns = array(
     array( "db" => "etat.lib_etat_ot", "dt" => 'lib_etat_ot' )
 );
 
-$condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro AND t1.id_etat_ot IN(3,4,5,6,8)";
+$condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
 
 if(isset($idsp)) {
     $condition .=" AND t1.id_sous_projet=$idsp";
@@ -42,11 +42,13 @@ switch($connectedProfil->profil->profil->shortlib) {
     case "stt" :
         $condition .=" AND t1.id_entreprise = ".$connectedProfil->profil->id_entreprise;
         $condition .=" AND t1.backlog <> 1 ";
+        $condition .=" AND t1.id_etat_ot IN(3,4,5,6,8) ";
         break;
     case "pci" :
         $table[] = "nro_utilisateur as t6";
         $condition .=" AND t4.id_nro = t6.id_nro AND t6.id_utilisateur = ".$connectedProfil->profil->id_utilisateur;
         $condition .=" AND t1.backlog <> 1 ";
+        $condition .=" AND t1.id_etat_ot IN(2,3,4,5,6,8) ";
         break;
 
     default : break;
