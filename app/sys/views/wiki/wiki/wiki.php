@@ -1,76 +1,67 @@
-<?php
+<div class="row">
+	<div class="col-md-3">
+		<nav id="sidebar2" style="background-color: #3d6f90;">
+			<!-- Sidebar Scroll Container -->
+			<div id="sidebar-scroll">
+				<!-- Sidebar Content -->
+				<!-- Adding .sidebar-mini-hide to an element will hide it when the sidebar is in mini mode -->
+				<div class="sidebar-content">
+					<!-- Side Header -->
+					<div class="side-header side-content bg-white-op">
+						<!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+						<button class="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
+							<i class="fa fa-times"></i>
+						</button>
+						<a class="h5 text-white" href="#">
+							<i class="fa text-primary">Catégories</i>
+						</a>
+					</div>
+					<!-- END Side Header -->
 
-extract($_GET);
-
-$categorie = WikiCategorie::first(
-	array('conditions' =>
-		array("id = ?", $idcat)
-	)
-);
-?>
-<div class="block block-themed" id="wikicat_block">
-	<div class="block-header bg-primary">
-		<ul class="block-options">
-			<li>
-				<button type="button" data-toggle="block-option"
-						data-action="fullscreen_toggle">
-					<i class="si si-size-fullscreen"></i>
-				</button>
-			</li>
-			<li>
-				<button type="button" data-toggle="block-option"
-						data-action="refresh_toggle" data-action-mode="demo">
-					<i class="si si-refresh"></i>
-				</button>
-			</li>
-			<li>
-				<button type="button" data-toggle="block-option"
-						data-action="content_toggle">
-					<i class="si si-arrow-up"></i>
-				</button>
-			</li>
-		</ul>
-		<h3 class="block-title" id="cat-title"><?= $categorie->nom?></h3>
-	</div>
-	<div class="block-content">
-		<div class="row">
-
-		</div>
-		<div class="row">
-			<div class="col-md-9">
-				<a id="add-sujet-show" data-toggle="modal" data-target="#modal-add-sujet" data-backdrop="static" data-keyboard="false">
-					<button
-						class="btn btn-success push-5-r push-10" type="button"
-						style="margin-left: 103px; margin-bottom: 20px !important">
-						<i class="fa fa-plus"></i> Ajouter sujet
-					</button>
-				</a>
-
-				<a id="mod-cat-show" data-toggle="modal" data-target="#modal-mod-cat" data-backdrop="static" data-keyboard="false">
-					<button
-						class="btn btn-info push-5-r push-10" type="button"
-						style="margin-left: 103px; margin-bottom: 20px !important">
-						<i class="fa fa-edit"></i> Modifier catégorie
-					</button>
-				</a>
-
-				<a id="add-sous-cat-show" data-toggle="modal" data-target="#modal-add-sous-cat" data-backdrop="static" data-keyboard="false">
-					<button
-						class="btn btn-default push-5-r push-10" type="button"
-						style="margin-left: 103px; margin-bottom: 20px !important">
-						<i class="fa fa-plus"></i> Ajouter sous catégorie
-					</button>
-				</a>
-
-				<ul class="list list-timeline pull-t" id="ul_sujets">
-
-				</ul>
-			</div>
-			<div class="col-md-3">
-				<div id="scats_container">
+					<!-- Side Content -->
+					<div class="side-content block block-transparent" id="cats-list" style="min-height: 300px;">
+						<ul class="nav-main">
+							<div id="menu_categorie"><?= /*getWikiCategoriesMenu()*/""?></div>
+						</ul>
+					</div>
+					<!-- END Side Content -->
 				</div>
+				<!-- Sidebar Content -->
+			</div>
+			<!-- END Sidebar Scroll Container -->
+		</nav>
+	</div>
+	<div class="col-md-9">
+
+		<div class="block block-themed" id="wikicat_block">
+			<div class="block-header bg-primary">
+				<ul class="block-options">
+					<li>
+						<button type="button" data-toggle="block-option"
+								data-action="fullscreen_toggle">
+							<i class="si si-size-fullscreen"></i>
+						</button>
+					</li>
+					<li>
+						<button type="button" data-toggle="block-option"
+								data-action="refresh_toggle" data-action-mode="demo">
+							<i class="si si-refresh"></i>
+						</button>
+					</li>
+					<li>
+						<button type="button" data-toggle="block-option"
+								data-action="content_toggle">
+							<i class="si si-arrow-up"></i>
+						</button>
+					</li>
+				</ul>
+				<h3 class="block-title" id="cat-title">Séléctionner une catégorie</h3>
+			</div>
+			<div class="block-content">
+
 			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -205,185 +196,53 @@ $categorie = WikiCategorie::first(
 <!-- END modifier cat Modal -->
 
 <script>
-	function timeCalcul(datec) {
 
-		var minutes=((new Date()).getTime()-datec.getTime())/60000.0;
-		var j,h;
-		if(minutes>=60.0)
-		{
-			h=minutes/60.0;
-			minutes%=60.0;
-		}
-		if(h>=24.0)
-		{
-			j=h/24.0;
-			h%=24.0;
-		}
+	function get_liste_sujets(id) {
 
-		var temp='';
-		if(j!==undefined) temp+=Number.parseInt(j)+' Jour(s) ';
-		if(h!==undefined) temp+=Number.parseInt(h)+' Heure(s) ';
-		temp+=Number.parseInt(minutes)+' Minute(s) ';
-		return temp;
+		window.location.replace("?page=wiki&idcat="+id);
 	}
-	
-	function getCatSubjects(idcat) {
-
-		$('#wikicat_block').addClass('block-opt-refresh');
-
-		$.ajax({
-			url: "api/wiki/sujet_liste.php",
-			type: 'POST',
-			data: {idcat: get('idcat')}
-		}).done(function( data ) {
-
-			$('#wikicat_block').removeClass('block-opt-refresh');
-
-			var obj = jQuery.parseJSON( data );
-			var tab = obj.wksubjects, scats = obj.wksubcats,i=0,str='',datec;
-			for(;i<tab.length;i++){
-				datec=new Date(tab[i].date_creation);
-				str+='<li><div class="list-timeline-time">'+timeCalcul(datec)+'</div><a href="?page=wiki&action=afficherSujet&id='+tab[i].id+'"><i class="fa fa-file-text-o list-timeline-icon bg-default"></i></a><div class="list-timeline-content"><p class="font-w600">'+tab[i].titre+'</p><p class="font-s13">Crée par : '+tab[i].prenom_utilisateur+' '+ tab[i].nom_utilisateur+'</p></div></li>';
-			}
-			if(i==0)
-				str+='<p class="font-s13">Pas de sujets !!</p>'
-			str+='<br/>';
-			$('#ul_sujets').html(str);
-
-			i = 0;
-
-			var html = '<div class="list-group">';
-			html += '<a class="list-group-item active" href="javascript:void(0)">';
-			html += '<span class="badge">'+scats.length+'</span>';
-			html += ' Sous catégories';
-			html += '</a>';
-
-
-			for(;i<scats.length;i++){
-				//html += '<div class="row"><a class="alert-link cat-list" href="?page=wiki&idcat='+scats[i].id+'">'+scats[i].nom+'</a></div>';
-
-				html += '<a class="list-group-item" href="?page=wiki&idcat='+scats[i].id+'">';
-				html += '<i class="fa fa-book push-5-r"></i> '+scats[i].nom;
-				html += '</a>';
-			}
-
-			html += '</div>';
-
-			$('#scats_container').html(html);
-		});
-		
-	}
-
-	var wiki_sub_cat_added = false;
-	var wiki_subject_added = false;
-
-	$(function () {
-		// Init page helpers (Summernote + CKEditor plugins)
-		//App.initHelpers(['summernote', 'ckeditor']);
-	});
 
 	$(document).ready(function() {
 
-		$("#add-sujet-show").click(function(e) {
-			e.preventDefault();
-			console.log('add-sujet-show');
+		$('#cats-list').addClass('block-opt-refresh');
 
-			wiki_subject_added = false;
+		$.ajax({
+			method: "POST",
+			url: "api/wiki/get_cats_tree.php",
+			dataType: "json"
+		}).done(function (msg) {
 
-			$("#wiki_add_sujet")[0].reset();
-		});
+			$('#cats-list').removeClass('block-opt-refresh');
 
+			if(msg.error == 0) {
 
-		$("#mod-cat-show").click(function(e) {
-			e.preventDefault();
-			console.log('mod-cat-show');
+				$('#menu_categorie').html(msg.html + '<li><a id="show_root_cat_add" href="#" data-toggle="modal" data-target="#modal-add-cat0" data-backdrop="static" data-keyboard="false"><i class="si si-plus"></i><span class="sidebar-mini-hide">Ajouter catégorie (Racine)</span></a></li>');
 
-			$.ajax({
-				method: "POST",
-				url: "api/wiki/get_cat_infos.php",
-				dataType: "json",
-				data: {
-					idcat: get('idcat')
-				}
-			}).done(function (msg) {
-				console.log(msg);
+				App.uiNav2();
 
-				$('#u_cat_name').val(msg.cat.nom);
-				$('#u_cat_desc').val(msg.cat.description);
-			});
-		});
-
-		$("#update_cat").click(function(e) {
-			e.preventDefault();
-			console.log('update_cat');
-
-			$.ajax({
-				method: "POST",
-				url: "api/wiki/cat_update.php",
-				dataType: "json",
-				data: {
-					idcat : get('idcat'),
-					nom : $('#u_cat_name').val(),
-					desc : $('#u_cat_desc').val()
-				}
-			}).done(function (msg) {
-
-				if(msg.error == 0) {
-
-					$('#cat-title').html($('#u_cat_name').val());
-				}
-
-				App.showMessage(msg,'#message_wiki_mod_cat');
-			});
-		});
-
-
-
-
-		$("#add-sous-cat-show").click(function(e) {
-			e.preventDefault();
-			console.log('add-sous-cat-show');
-
-			wiki_sub_cat_added = false;
-
-			$("#wiki_add_sous_cat")[0].reset();
-		});
-
-		$("#save_sous_cat").click(function(e) {
-			e.preventDefault();
-			console.log('save_sous_cat');
-
-			$.ajax({
-				method: "POST",
-				url: "api/wiki/add_sous_cat.php",
-				dataType: "json",
-				data: {
-					idcat : get('idcat'),
-					nom : $('#sub_cat_name').val(),
-					desc : $('#sub_cat_desc').val()
-				}
-			}).done(function (msg) {
-
-				if(msg.error == 0) {
-
-					wiki_sub_cat_added = true;
-
-					$("#wiki_add_sous_cat")[0].reset();
-				}
-
-				App.showMessage(msg,'#message_wiki_add_sous_cat');
-			});
-		});
-
-		$('#modal-add-sous-cat').on('hidden.bs.modal', function () {
-
-			if(wiki_sub_cat_added) {
-
-				getCatSubjects(get('idcat'));//TODO get only sub cats
+			} else {
+				console.log(msg.errormsg);
 			}
 		});
 
-		getCatSubjects(get('idcat'));
-		
+		$('span[id^=\'idcat\']').on('click',function() {
+
+			/*var temp=$(this).attr('id');
+
+			 if(temp!='' && temp.length>=6 && temp.substring(0,5)=='idcat' && temp.replace('idcat','')!='') {
+
+			 get_liste_sujets(temp.replace('idcat',''));
+			 }*/
+
+			console.log('test');
+		});
+
+		$('body').on('click', '#show_root_cat_add', function() {
+			//
+
+			$("#wiki_add_root_cat_form")[0].reset();
+		});
+
 	});
+
 </script>
