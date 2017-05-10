@@ -368,6 +368,39 @@ var App = function() {
         });
     };
 
+    // Wiki categories navigation functionality
+
+    var uiNav2 = function() {
+        // When a submenu link is clicked
+        jQuery('[data-toggle="nav-submenu-wiki"]').on('click', function(e){
+            // Stop default behaviour
+            e.stopPropagation();
+
+            // Get link
+            var $link = jQuery(this);
+
+            // Get link's parent
+            var $parentLi = $link.parent('li');
+
+            if ($parentLi.hasClass('open')) { // If submenu is open, close it..
+                $parentLi.removeClass('open');
+            } else { // .. else if submenu is closed, close all other (same level) submenus first before open it
+                $link
+                    .closest('ul')
+                    .find('> li')
+                    .removeClass('open');
+
+                $parentLi
+                    .addClass('open');
+            }
+
+            // Remove focus from submenu link
+            if ($lHtml.hasClass('no-focus')) {
+                $link.blur();
+            }
+        });
+    };
+
     // Blocks options functionality
     var uiBlocks = function() {
         // Init default icons fullscreen and content toggle buttons
@@ -1211,6 +1244,7 @@ var App = function() {
         activaTab:activaTab,
         showMessage:showMessage,
         getJsonObject:getJsonObject,
+        uiNav2 : uiNav2,
         init: function() {
             // Init all vital functions
             uiInit();

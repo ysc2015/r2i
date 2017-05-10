@@ -4,6 +4,42 @@
  * User: rabii
  */
 
+function getWikiCategoriesMenu($idcat = null,&$html = "") {
+
+    //TODO reflected search : search like %% -> get parents NULL -> so on
+
+    if($idcat === null) {
+
+        //echo "parent********";
+
+        $categories = WikiCategorie::all(
+            array('conditions' => "id_categorie_parent IS NULL")
+
+        );
+    } else {
+
+        //echo "child********";
+
+        $categories = WikiCategorie::all(
+            array('conditions' => array("id_categorie_parent=?",$idcat))
+
+        );
+    }
+
+    foreach($categories as $category) {
+
+        $html .="<li><a class=\"nav-submenu\" data-toggle=\"nav-submenu-wiki\"><span class=\"sidebar-mini-hide\" id=\"idcat$category->id)\">$category->nom</span></a><ul>";
+		getWikiCategoriesMenu($category->id,$html);
+		$html .="</ul></li>";
+
+    }
+
+    /*$html .= "<li><a id=\"show_root_cat_add\" href=\"#\" data-toggle=\"modal\" data-target=\"#modal-add-cat0\" data-backdrop=\"static\" data-keyboard=\"false\"><i class=\"si si-plus\"></i><span class=\"sidebar-mini-hide\">Ajouter catégorie (Racine)</span></a></li>";*/
+
+    return $html;
+
+}
+
 function getDuree($date_debut,$date_ret) {
     $now = new DateTime();
 
