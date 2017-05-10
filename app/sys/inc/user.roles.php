@@ -138,7 +138,7 @@ class adm extends baseUser {
             array(
                 "dashboard1" => array("index"),
                 "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
-                "activitebei" => array("statbei1")/*,
+                "activitebei" => array("statbei1","designreseau")/*,
                 "productiongenerale" => array("index"),*/
             )
         );
