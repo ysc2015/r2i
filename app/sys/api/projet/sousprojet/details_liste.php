@@ -82,8 +82,8 @@ $columns = array(
     array( "db" => "ser6.lib_etat_retour as cdi_raccord_lib_etat_retour", "dt" => 'cdi_raccord_lib_etat_retour' ),
     array( "db" => "bpu6.bp_no_resolu as cdi_raccord_bp_no_resolu", "dt" => 'cdi_raccord_bp_no_resolu' ),
 
-    array( "db" => "trec.lib_etat_recette as ctr_recette_etat_recette", "dt" => 'ctr_recette_etat_recette' ),
-    array( "db" => "drec.lib_etat_recette as cdi_recette_etat_recette", "dt" => 'cdi_recette_etat_recette' ),
+    array( "db" => "trec.lib_injection_netgeo as ctr_recette_injection_netgeo", "dt" => 'ctr_recette_injection_netgeo' ),
+    array( "db" => "drec.lib_injection_netgeo as cdi_recette_injection_netgeo", "dt" => 'cdi_recette_injection_netgeo' ),
 );
 
 $condition = "t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
@@ -151,9 +151,9 @@ $left .= " left join sous_projet_distribution_tirage t13 left join select_contro
 
 $left .= " left join sous_projet_distribution_raccordements t14 left join select_controle_plan scp6 on t14.controle_plans=scp6.id_controle_plan left join ordre_de_travail ot6 left join blq_pbc_unresolved bpu6 on ot6.id_ordre_de_travail = bpu6.id_ordre_de_travail on t14.id_sous_projet=ot6.id_sous_projet and ot6.id_type_ordre_travail IN (7,8) left join select_etat_retour ser6 on t14.etat_retour=ser6.id_etat_retour on t1.id_sous_projet = t14.id_sous_projet";
 
-$left .= " left join sous_projet_transport_recette t15 left join select_etat_recette trec on t15.etat_recette=trec.id_etat_recette on t1.id_sous_projet = t15.id_sous_projet";
+$left .= " left join sous_projet_transport_recette t15 left join select_injection_netgeo trec on t15.injection_netgeo=trec.id_injection_netgeo on t1.id_sous_projet = t15.id_sous_projet";
 
-$left .= " left join sous_projet_distribution_recette t16 left join select_etat_recette drec on t16.etat_recette=drec.id_etat_recette on t1.id_sous_projet = t16.id_sous_projet";
+$left .= " left join sous_projet_distribution_recette t16 left join select_injection_netgeo drec on t16.injection_netgeo=drec.id_injection_netgeo on t1.id_sous_projet = t16.id_sous_projet";
 
 
 echo json_encode(SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
