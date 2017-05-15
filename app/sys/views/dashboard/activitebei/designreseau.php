@@ -89,11 +89,12 @@ var designreseau_cdi_dt;
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/dashboard/activitebei/designreseau_ctr_liste.php'
+                "url": 'api/dashboard/activitebei/designreseau_ctr_liste.php',
+                "method":'POST'
             },
             "columns": [
                 { "data": "bei_nro" },
-                { "data": "date_fin" },
+                { "data": "date_ret_prevue" },
                 { "data": "bei_nro" }
             ],
             "columnDefs": [
@@ -138,11 +139,12 @@ var designreseau_cdi_dt;
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/dashboard/activitebei/designreseau_cdi_liste.php'
+                "url": 'api/dashboard/activitebei/designreseau_cdi_liste.php',
+                "method":'POST'
             },
             "columns": [
                 { "data": "bei_nro" },
-                { "data": "date_fin" },
+                { "data": "date_ret_prevue" },
                 { "data": "bei_nro" }
             ],
             "columnDefs": [

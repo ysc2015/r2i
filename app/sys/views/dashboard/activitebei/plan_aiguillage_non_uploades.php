@@ -7,7 +7,7 @@
  */
 
 ?>
-<div class="block block-themed" id="designreseau_block">
+<div class="block block-themed" id="plans_aiguillage_non_upload_block">
 
     <div class="block-content">
         <!-- Page Content -->
@@ -23,7 +23,7 @@
                             <tr><th colspan="3">Réseau de Transport</th></tr>
                             <tr>
                                 <th>Code Sous-projet</th>
-                                <th>Date fin Positionnement Adresse</th>
+                                <th>Date calculée de fin de design (3 jours ouvrés)</th>
                                 <th>BEI du NRO</th>
                             </tr>
                             </thead>
@@ -48,7 +48,7 @@
                             <tr><th colspan="3">Réseau de Distribution</th></tr>
                             <tr>
                                 <th>Code Sous-projet</th>
-                                <th>Date fin Positionnement Adresse</th>
+                                <th>Date calculée de fin de design (3 jours ouvrés)</th>
                                 <th>BEI du NRO</th>
                             </tr>
                             </thead>
