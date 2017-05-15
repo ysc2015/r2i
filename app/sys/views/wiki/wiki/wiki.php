@@ -220,25 +220,24 @@
 
 				App.uiNav2();
 
+				$('#menu_categorie').find("ul").each(function() {
+					if($( this ).html() == '') {
+
+						$( this ).prev().removeClass('nav-submenu');
+					}
+				});
+
+				$('a').on('click', 'span.open-cat', function(e) {
+					e.stopPropagation();
+					console.log('charge cat');
+				});
+
 			} else {
 				console.log(msg.errormsg);
 			}
 		});
 
-		$('span[id^=\'idcat\']').on('click',function() {
-
-			/*var temp=$(this).attr('id');
-
-			 if(temp!='' && temp.length>=6 && temp.substring(0,5)=='idcat' && temp.replace('idcat','')!='') {
-
-			 get_liste_sujets(temp.replace('idcat',''));
-			 }*/
-
-			console.log('test');
-		});
-
 		$('body').on('click', '#show_root_cat_add', function() {
-			//
 
 			$("#wiki_add_root_cat_form")[0].reset();
 		});
