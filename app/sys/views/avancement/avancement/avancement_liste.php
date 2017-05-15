@@ -277,7 +277,7 @@
                 { "data": "ctr_raccord_lib_etat_retour" },
                 { "data": "ctr_raccord_bp_no_resolu" },
                 //Recette
-                { "data": "ctr_recette_etat_recette" },
+                { "data": "ctr_recette_injection_netgeo" },
                 //Commandes Fin Travaux
                 { "data": "ref_commande_fin_travaux" },
                 { "data": "ctr_aiguillage_lib_commande_acces2" },
@@ -312,7 +312,7 @@
                 { "data": "cdi_raccord_lib_etat_retour" },
                 { "data": "cdi_raccord_bp_no_resolu" },
                 //Recette
-                { "data": "cdi_recette_etat_recette" },
+                { "data": "cdi_recette_injection_netgeo" },
                 //Commandes Fin Travaux
                 { "data": "ref_commande_fin_travaux2" },
                 { "data": "cdi_aiguillage_lib_commande_acces22" },
@@ -335,7 +335,7 @@
                     }
                 },
                 {
-                    "targets": 27,
+                    "targets": 30,
                     "data": "is_master",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
