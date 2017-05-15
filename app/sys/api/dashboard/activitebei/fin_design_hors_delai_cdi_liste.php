@@ -6,27 +6,7 @@
  * Time: 04:41 م
  */
 extract($_POST);
-function get_date_to_compare_ouvre($interval){
-    $date_to_day_plus_4_ouver = null;
-    $increment = $interval + 2 ;
-    $j = 0;
-    for($i = 1 ; $i <= $increment; $i++ ){
-        $date = date_create(date('Y-m-d'));
-        date_add($date, date_interval_create_from_date_string($i.' days'));
-        $date_to_day_plus_4_ouver  =  date_format($date, 'Y-m-d');
-        $date = strtotime($date_to_day_plus_4_ouver);
-        $date = date("l", $date);
-        $date = strtolower($date);
-        if($date == "saturday" || $date == "sunday") {
-            $j++;
-        }
 
-
-
-    }
-    $nbre_date_ajout = $j + $interval;
-    return date_add(date_create(date('Y-m-d')), date_interval_create_from_date_string($nbre_date_ajout.' days'));
-}
 $tat = get_date_to_compare_ouvre(5);
 $date_plus_4_jours = $tat->format('Y-m-d');
 
@@ -54,7 +34,7 @@ $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
 
 
 $condition .= " AND t5.date_debut <  '".$date_plus_4_jours."' ";
-$condition .= " group by t1.id_sous_projet  ";
+$condition .= " group by t1.id_sous_projet ";
 
 
 switch($connectedProfil->profil->profil->shortlib) {
