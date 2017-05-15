@@ -229,7 +229,7 @@
 
 				$('a').on('click', 'span.open-cat', function(e) {
 					e.stopPropagation();
-					console.log('charge cat');
+					console.log($( this ).attr('id').substring(5));
 				});
 
 			} else {

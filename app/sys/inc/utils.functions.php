@@ -34,8 +34,6 @@ function getWikiCategoriesMenu($idcat = null,&$html = "") {
 
     }
 
-    /*$html .= "<li><a id=\"show_root_cat_add\" href=\"#\" data-toggle=\"modal\" data-target=\"#modal-add-cat0\" data-backdrop=\"static\" data-keyboard=\"false\"><i class=\"si si-plus\"></i><span class=\"sidebar-mini-hide\">Ajouter catégorie (Racine)</span></a></li>";*/
-
     return $html;
 
 }
