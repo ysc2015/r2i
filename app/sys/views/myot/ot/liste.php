@@ -111,6 +111,7 @@
             ,
             "drawCallback": function( settings ) {
                 //console.log('drawCallback');
+                $("#blq_pbc_ext_filter").hide();
                 displayDevis();
                 $('#devis_block_title').html('Devis');
                 $('#validate_start_ot').addClass("disabled");
@@ -152,6 +153,7 @@
                 $('#link_lien_plans_wrapper1').hide();
                 $('#link_lien_plans_wrapper2').hide();
                 $('#other_files_uploader_wrapper').hide();
+                $("#blq_pbc_ext_filter").hide();
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot=-1' ).load();
                 blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot=-1' ).load();
@@ -160,6 +162,8 @@
                 selectedOT = 0;
             }
             else {
+                $("#blq_pbc_ext_filter").show();
+
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
@@ -188,8 +192,8 @@
                 $('#devis_block_title').html('Devis ' + ot_dt.row('.selected').data().type_ot);
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
-                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
-                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val() ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?nr&type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val() ).load();
 
                 selectedOT = ot_dt.row('.selected').data().id_ordre_de_travail;
             }
