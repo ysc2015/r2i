@@ -89,6 +89,28 @@
         <button id="details_pbc_show2" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#view-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-eye-open'>&nbsp;</span> Afficher détails</button>
     </div>
 </div>
+<br>
+<div class="row filter-pbc" id="blq_pbc_ext_filter" style="background-color: #e1ebf7">
+    <br>
+    <div class="col-md-2">
+        <label for="rep_ok">Réponse </label>
+        <select class="form-control " id="rep_ok" name="rep_ok">
+            <option value="" selected="">Tous</option>
+            <option value="1">Sans réponse</option>
+            <option value="2">Avec réponses</option>
+        </select>
+        <br>
+    </div>
+    <div class="col-md-2">
+        <label for="res_ok">Résolus </label>
+        <select class="form-control " id="res_ok" name="res_ok">
+            <option value="" selected="">Tous</option>
+            <option value="1">Oui</option>
+            <option value="2">Non</option>
+        </select>
+        <br>
+    </div>
+</div>
 <!-- voir question/correction Modal -->
 <div class="modal fade" id="question-correction" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -271,7 +293,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)
+                "url": 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val()
             },
             "columns": [
                 { "data": "id_blq_pbc" },
@@ -314,7 +336,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)
+                "url": 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val()
             },
             "columns": [
                 { "data": "id_blq_pbc" },
@@ -451,6 +473,15 @@
                 }
                 App.showMessage(message,'#message_save_rep');
             });
+        });
+
+        $('.filter-pbc').on('input', function() {
+            if(ot_dt.row('.selected').data()!=undefined) {
+
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+ot_dt.row('.selected').data().id_ordre_de_travail+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val() ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+ot_dt.row('.selected').data().id_ordre_de_travail+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val() ).load();
+
+            }
         });
 
     } );

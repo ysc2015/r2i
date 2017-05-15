@@ -200,6 +200,8 @@
                 $('#other_files_uploader_wrapper').hide();
                 $('#fcomp_uploader_wrapper').hide();
                 $("#devis_uploads").hide();
+                $("#blq_pbc_ext_filter").hide();
+
                 displayDevis();
                 displayEBM();
                 $('#devis_block_title').html('Suivi Facturation');
@@ -245,6 +247,7 @@
                 $('#linked-pb-wrapper').hide();
                 $('#linked-ch-wrapper').hide();
                 $("#devis_uploads").hide();
+                $("#blq_pbc_ext_filter").hide();
 
                 $('#retour_uploads').hide();
                 $('#link_lien_plans_wrapper1').hide();
@@ -253,6 +256,8 @@
                 $('#fcomp_uploader_wrapper').hide();
             }
             else {
+                $("#blq_pbc_ext_filter").show();
+
                 ot_dt.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
 
@@ -326,8 +331,8 @@
                 }
 
                 chambre_ot_dt.ajax.url( 'api/ot/chambreot/chambre_liste.php?idot='+ot_dt.row('.selected').data().id_ordre_de_travail ).load();
-                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
-                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
+                blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val() ).load();
+                blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(ot_dt.row('.selected').data()!=undefined?ot_dt.row('.selected').data().id_ordre_de_travail:-1)+'&rep='+$('#rep_ok').val()+'&resol='+$('#res_ok').val() ).load();
 
                 $.ajax({
                     method: "POST",
