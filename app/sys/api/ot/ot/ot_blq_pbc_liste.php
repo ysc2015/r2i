@@ -28,8 +28,36 @@ if(isset($idot) && isset($type)) {
     $condition .=" AND t1.id_ordre_de_travail=$idot AND t1.type=$type";
 }
 
-if(isset($nr)) {
+/*if(isset($nr)) { replaced but last update : filter avec rep, sans rep, resolus, non reolus ,...
     $condition .=" AND t1.statut <> 1";
+}*/
+
+if(isset($rep) && !empty($rep)) {
+
+    switch($rep) {
+
+        case "1" : $condition .= " AND (REPLACE(t1.reponse_ajustement, ' ', '') = '' OR t1.reponse_ajustement IS NULL) ";
+            break;
+        case "2" : $condition .= " AND (REPLACE(t1.reponse_ajustement, ' ', '') <> '' AND t1.reponse_ajustement IS NOT NULL) ";
+            break;
+
+        default : break;
+    }
+
+}
+
+if(isset($resol) && !empty($resol)) {
+
+    switch($resol) {
+
+        case "1" : $condition .=" AND t1.statut = 1";
+            break;
+        case "2" : $condition .=" AND t1.statut <> 1";
+            break;
+
+        default : break;
+    }
+
 }
 
 $left = "left join utilisateur u on t1.id_createur = u.id_utilisateur";
