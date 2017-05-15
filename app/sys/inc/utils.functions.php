@@ -28,7 +28,7 @@ function getWikiCategoriesMenu($idcat = null,&$html = "") {
 
     foreach($categories as $category) {
 
-        $html .="<li><a class=\"nav-submenu\" data-toggle=\"nav-submenu-wiki\"><span class=\"sidebar-mini-hide\" id=\"idcat$category->id)\">$category->nom</span></a><ul>";
+        $html .="<li><a class=\"nav-submenu\" data-toggle=\"nav-submenu-wiki\"><span class=\"open-cat\" style=\"cursor: pointer\" id=\"idcat$category->id\">$category->nom</span></a><ul>";
 		getWikiCategoriesMenu($category->id,$html);
 		$html .="</ul></li>";
 
