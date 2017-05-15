@@ -98,7 +98,8 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/dashboard/activitebei/plan_aiguillage_attributions_ctr_liste.php'
+                "url": 'api/dashboard/activitebei/plan_aiguillage_attributions_ctr_liste.php',
+                "method":'POST'
             },
             "columns": [
                 { "data": "bei_nro" },
@@ -147,7 +148,8 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/dashboard/activitebei/plan_aiguillage_attributions_cdi_liste.php'
+                "url": 'api/dashboard/activitebei/plan_aiguillage_attributions_cdi_liste.php',
+                "method":'POST'
             },
             "columns": [
                 { "data": "bei_nro" },

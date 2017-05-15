@@ -97,7 +97,8 @@ var fin_design_hors_delai_cdi_dt;
             "processing": true,
             "serverSide": true,
             "ajax": {
-            "url": 'api/dashboard/activitebei/fin_design_hors_delai_ctr_liste.php'
+            "url": 'api/dashboard/activitebei/fin_design_hors_delai_ctr_liste.php',
+                "method":'POST'
             },
             "columns": [
                 { "data": "bei_nro" },
@@ -146,7 +147,8 @@ var fin_design_hors_delai_cdi_dt;
             "processing": true,
             "serverSide": true,
             "ajax": {
-            "url": 'api/dashboard/activitebei/fin_design_hors_delai_cdi_liste.php'
+            "url": 'api/dashboard/activitebei/fin_design_hors_delai_cdi_liste.php',
+             "method":'POST'
             },
             "columns": [
                 { "data": "bei_nro" },
