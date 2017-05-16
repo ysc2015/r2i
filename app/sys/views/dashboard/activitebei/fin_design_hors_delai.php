@@ -29,7 +29,7 @@
                             <tr><th colspan="3">Réseau de Transport</th></tr>
                             <tr>
                                 <th>Code Sous-projet</th>
-                                <th>Date fin Positionnement Adresse</th>
+                                <th>Date calculée de fin de design (3 jours ouvrés)</th>
                                 <th>BEI du NRO</th>
                             </tr>
                             </thead>
@@ -39,7 +39,7 @@
 
                             <tr>
                                 <th>Code Sous-projet</th>
-                                <th>Date fin Positionnement Adresse</th>
+                                <th>Date calculée de fin de design (3 jours ouvrés) </th>
                                 <th>BEI du NRO</th>
                             </tr>
                             <tr><th colspan="3">Réseau de Transport</th></tr>
@@ -54,7 +54,7 @@
                             <tr><th colspan="3">Réseau de Distribution</th></tr>
                             <tr>
                                 <th>Code Sous-projet</th>
-                                <th>Date fin Positionnement Adresse</th>
+                                <th>Date calculée de fin de design (5 jours ouvrés)</th>
                                 <th>BEI du NRO</th>
                             </tr>
                             </thead>
@@ -64,7 +64,7 @@
 
                             <tr>
                                 <th>Code Sous-projet</th>
-                                <th>Date fin Positionnement Adresse</th>
+                                <th>Date calculée de fin de design (5 jours ouvrés)</th>
                                 <th>BEI du NRO</th>
                             </tr>
                             <tr><th colspan="3">Réseau de Transport</th></tr>
@@ -84,6 +84,9 @@ var fin_design_hors_delai_cdi_dt;
     $(function () {
         // Init page plugins & helpers
     });
+
+
+
 
     $(document).ready(function() {
 
@@ -106,8 +109,6 @@ var fin_design_hors_delai_cdi_dt;
                 { "data": "bei_nro" }
             ],
             "columnDefs": [
-
-
                 {
                     "targets": 2,
                     "data": "lib_nro",
@@ -117,18 +118,27 @@ var fin_design_hors_delai_cdi_dt;
                     else return "n/d";
                 }
                 },
-
                 {
                     "targets": 0,
                     orderData: [ 0, 1 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
-                    if(type == "display"){
-                        return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
-                    }
+                        if(type == "display"){
+                            return  '<a href="?page=sousprojet&idsousprojet='+full.id_sous_projet+'">'+full.lib_nro + '-' + full.zone+'</a>';
+                        }
 
-                    return full.lib_nro + '-' + full.zone;
-                }
+                        return full.lib_nro + '-' + full.zone;
+                    }
+                },
+                {
+                    "targets": 1,
+                    "data": "date_fin",
+                    "render": function ( data, type, full, meta ) {
+                        var dat = new Date(full.date_fin);
+
+                        if(full.date_fin != '0000-00-00')return   dat.addDays(3);
+                        else return '0000-00-00';
+                    }
                 }
             ],
             "order": [[0, 'desc']]
@@ -179,6 +189,16 @@ var fin_design_hors_delai_cdi_dt;
 
                     return full.lib_nro + '-' + full.zone;
                 }
+                },
+                {
+                    "targets": 1,
+                    "data": "date_fin",
+                    "render": function ( data, type, full, meta ) {
+                        var dat = new Date(full.date_fin);
+
+                        if(full.date_fin != '0000-00-00')return  dat.addDays(5);
+                        else return '0000-00-00';
+                    }
                 }
             ],
             "order": [[0, 'desc']]

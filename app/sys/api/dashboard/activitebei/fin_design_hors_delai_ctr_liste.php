@@ -7,7 +7,7 @@
  */
 extract($_POST);
 
- $tat = get_date_to_compare_ouvre(4);
+ $tat = get_date_to_compare_ouvre(date('Y-m-d'),4);
 $date_plus_4_jours = $tat->format('Y-m-d');
 
 
@@ -22,52 +22,17 @@ $columns = array(
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.id_nro", "dt" => 'id_nro' ),
-    array( "db" => "t5.date_debut", "dt" => 'date_fin' ),
+    //array( "db" => "DATE_ADD( t5.date_fin, INTERVAL 5 DAY) as date_fin", "dt" => 'date_fin' ),
+    array( "db" => "t5.date_fin", "dt" => 'date_fin' ),
     array( "db" => "t7.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t7.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
 );
 $condition  = " t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro ";
- $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
-
-
+$condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
 
 $condition .= " AND t5.date_debut <  '".$date_plus_4_jours."' ";
 $condition .= " group by t1.id_sous_projet ";
 
-
-switch($connectedProfil->profil->profil->shortlib) {
-
-    /*case "cdp" :
-        $condition .=" AND t2.id_chef_projet = ".$connectedProfil->profil->id_utilisateur;
-        break;*/
-
-    case "pci" :
-    case "bei" :
-        $arr = array(-1);
-        $stm_bei_pci = $db->prepare("select id_nro from nro_utilisateur where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
-        $stm_bei_pci->execute();
-        $nros = $stm_bei_pci->fetchAll();
-        foreach($nros as $nro) {
-            $arr[] = $nro['id_nro'];
-        }
-
-        $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
-        break;
-
-    case "vpi" :
-        $arr = array(-1);
-        $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
-        $stm->execute();
-        $nros = $stm->fetchAll();
-        foreach($nros as $nro) {
-            $arr[] = $nro['id_nro'];
-        }
-
-        $condition .=" AND t2.id_nro IN ( ".implode(",",$arr).")";
-        break;
-
-    default : break;
-}
 
 $left = " LEFT JOIN `nro_utilisateur` as t6 on t6.id_nro =  t3.id_nro ";
 $left .= " LEFT JOIN utilisateur as t7 on t7.id_utilisateur = t6.id_utilisateur ";

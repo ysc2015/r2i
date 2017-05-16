@@ -1759,12 +1759,12 @@ function getOTColorFromStatus($status) {
 
 }
 
-function get_date_to_compare_ouvre($interval){
+function get_date_to_compare_ouvre($date_to_change,$interval){
     $date_to_day_plus_4_ouver = null;
     $increment = $interval + 2 ;
     $j = 0;
     for($i = 1 ; $i <= $increment; $i++ ){
-        $date = date_create(date('Y-m-d'));
+        $date = date_create($date_to_change);
         date_add($date, date_interval_create_from_date_string($i.' days'));
         $date_to_day_plus_4_ouver  =  date_format($date, 'Y-m-d');
         $date = strtotime($date_to_day_plus_4_ouver);
