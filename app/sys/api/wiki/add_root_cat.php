@@ -23,11 +23,11 @@ if(isset($nom) && !empty($nom)){
 if(isset($description) && !empty($description)){
     $stm->bindParam(':description',$description);
 } else {
-    $err++;
-    $message[] = "Le champs Déscription est obligatoire !";
+    $description = "";
+    $stm->bindParam(':description',$description);
 }
 
-if($err == 0){
+if($err == 0) {
     if($stm->execute()){
         $message [] = "Enregistrement ajouté avec succès";
     } else {

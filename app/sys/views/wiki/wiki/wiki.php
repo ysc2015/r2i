@@ -195,6 +195,47 @@
 </div>
 <!-- END modifier cat Modal -->
 
+<!-- ajouter catégorie root Modal -->
+<div class="modal fade" id="modal-add-cat0" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="block block-themed block-transparent remove-margin-b" id="add_cat_block">
+				<div class="block-header bg-primary">
+					<ul class="block-options">
+						<li>
+							<button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title" id="wiki-cat-root-add-title">Ajouter catégorie (racine)</h3>
+				</div>
+				<div class="block-content" id="wiki-cat-root-add-block">
+					<form class="js-validation-bootstrap form-horizontal" id="wiki_add_root_cat_form">
+						<div class="form-group">
+							<div class="col-md-9">
+								<label for="cat_name">Nom <span class="text-danger">*</span></label>
+								<input class="form-control" type="text" id="cat_name" name="cat_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-9">
+								<label for="cat_desc">Déscription</label>
+								<textarea class="form-control" id="cat_desc" name="cat_desc" rows="6" placeholder="Description.."></textarea>
+							</div>
+						</div>
+						<div class='alert alert-success' id='message_wiki_cat_add_root' role='alert' style="display: none;">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+				<button class="btn btn-sm btn-primary" id="save_root_cat" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END ajouter catégorie root Modal -->
+
 <script>
 
 	function get_liste_sujets(id) {
@@ -202,7 +243,7 @@
 		window.location.replace("?page=wiki&idcat="+id);
 	}
 
-	$(document).ready(function() {
+	function getWikiCatsTree() {
 
 		$('#cats-list').addClass('block-opt-refresh');
 
@@ -236,10 +277,59 @@
 				console.log(msg.errormsg);
 			}
 		});
+	}
+
+	var wikiDidChange = false;
+
+	$(document).ready(function() {
+
+
+		getWikiCatsTree();
+
 
 		$('body').on('click', '#show_root_cat_add', function() {
 
+			wikiDidChange = false;
+
 			$("#wiki_add_root_cat_form")[0].reset();
+		});
+
+		$("#save_root_cat").click(function(e) {
+
+			e.preventDefault();
+
+			$('#add_cat_block').addClass('block-opt-refresh');
+
+			$.ajax({
+
+				method: "POST",
+				dataType: "json",
+				url: "api/wiki/add_root_cat.php",
+				data: {
+					nom : $('#cat_name').val(),
+					description : $('#cat_desc').val()
+				}
+
+			}).done(function (msg) {
+
+				$('#add_cat_block').removeClass('block-opt-refresh');
+
+				App.showMessage(msg,'#message_wiki_cat_add_root');
+
+				if(msg.error == 0) {
+
+					wikiDidChange = true;
+
+					$("#wiki_add_root_cat_form")[0].reset();
+
+				}
+
+			});
+		});
+
+		$('#modal-add-cat0').on('hidden.bs.modal', function () {
+
+			getWikiCatsTree();
 		});
 
 	});
