@@ -6,6 +6,12 @@
 
 extract($_POST);
 
+$categorie = WikiCategorie::first(
+    array('conditions' =>
+        array("id = ?", $idcat)
+    )
+);//id_categorie_parent
+
 $stm1 = $db->prepare("select ws.*,u.prenom_utilisateur,u.nom_utilisateur from wiki_sujet ws,utilisateur u where ws.id_utilisateur = u.id_utilisateur and id_categorie = $idcat order by date_creation desc");
 
 $stm1->execute();
@@ -14,5 +20,5 @@ $stm2 = $db->prepare("select wc.* from wiki_categorie wc where wc.id_categorie_p
 
 $stm2->execute();
 
-echo json_encode(array("wksubjects" => $stm1->fetchAll(PDO::FETCH_ASSOC), "wksubcats" => $stm2->fetchAll(PDO::FETCH_ASSOC)));
+echo json_encode(array("wksubjects" => $stm1->fetchAll(PDO::FETCH_ASSOC), "wksubcats" => $stm2->fetchAll(PDO::FETCH_ASSOC), "parentcat" => ($categorie->id_categorie_parent > 0 ? $categorie->id_categorie_parent : 0), "parentcatname" => ($categorie->id_categorie_parent > 0 ? $categorie->nom : 'n/d')));
 ?>

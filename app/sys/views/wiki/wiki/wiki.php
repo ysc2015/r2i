@@ -58,7 +58,52 @@
 				<h3 class="block-title" id="cat-title">Séléctionner une catégorie</h3>
 			</div>
 			<div class="block-content">
+				<?php
 
+				extract($_GET);
+
+				$categorie = WikiCategorie::first(
+					array('conditions' =>
+						array("id = ?", 14)//$idc
+					)
+				);
+				?>
+
+				<div class="row">
+					<div class="col-md-9">
+						<a id="add-sujet-show" data-toggle="modal" data-target="#modal-add-sujet" data-backdrop="static" data-keyboard="false">
+							<button
+								class="btn btn-success push-5-r push-10" type="button"
+								style="margin-left: 103px; margin-bottom: 20px !important">
+								<i class="fa fa-plus"></i> Ajouter sujet
+							</button>
+						</a>
+
+						<a id="mod-cat-show" data-toggle="modal" data-target="#modal-mod-cat" data-backdrop="static" data-keyboard="false">
+							<button
+								class="btn btn-info push-5-r push-10" type="button"
+								style="margin-left: 103px; margin-bottom: 20px !important">
+								<i class="fa fa-edit"></i> Modifier catégorie
+							</button>
+						</a>
+
+						<a id="add-sous-cat-show" data-toggle="modal" data-target="#modal-add-sous-cat" data-backdrop="static" data-keyboard="false">
+							<button
+								class="btn btn-default push-5-r push-10" type="button"
+								style="margin-left: 103px; margin-bottom: 20px !important">
+								<i class="fa fa-plus"></i> Ajouter sous catégorie
+							</button>
+						</a>
+
+						<ul class="list list-timeline pull-t" id="ul_sujets">
+
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<div id="scats_container">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -238,6 +283,28 @@
 
 <script>
 
+	function timeCalcul(datec) {
+
+		var minutes=((new Date()).getTime()-datec.getTime())/60000.0;
+		var j,h;
+		if(minutes>=60.0)
+		{
+			h=minutes/60.0;
+			minutes%=60.0;
+		}
+		if(h>=24.0)
+		{
+			j=h/24.0;
+			h%=24.0;
+		}
+
+		var temp='';
+		if(j!==undefined) temp+=Number.parseInt(j)+' Jour(s) ';
+		if(h!==undefined) temp+=Number.parseInt(h)+' Heure(s) ';
+		temp+=Number.parseInt(minutes)+' Minute(s) ';
+		return temp;
+	}
+
 	function get_liste_sujets(id) {
 
 		window.location.replace("?page=wiki&idcat="+id);
@@ -270,13 +337,69 @@
 
 				$('a').on('click', 'span.open-cat', function(e) {
 					e.stopPropagation();
-					console.log($( this ).attr('id').substring(5));
+
+					loadCat($( this ).attr('id').substring(5));
 				});
 
 			} else {
 				console.log(msg.errormsg);
 			}
 		});
+	}
+
+	function getCatSubjects(idcat) {
+
+		$('#wikicat_block').addClass('block-opt-refresh');
+
+		$.ajax({
+			url: "api/wiki/sujet_liste.php",
+			type: 'POST',
+			data: {idcat: idcat}
+		}).done(function( data ) {
+
+			$('#wikicat_block').removeClass('block-opt-refresh');
+
+			var obj = jQuery.parseJSON( data );
+			var tab = obj.wksubjects, scats = obj.wksubcats,i=0,str='',datec;
+			for(;i<tab.length;i++){
+				datec=new Date(tab[i].date_creation);
+				str+='<li><div class="list-timeline-time">'+timeCalcul(datec)+'</div><a href="?page=wiki&action=afficherSujet&id='+tab[i].id+'"><i class="fa fa-file-text-o list-timeline-icon bg-default"></i></a><div class="list-timeline-content"><p class="font-w600">'+tab[i].titre+'</p><p class="font-s13">Crée par : '+tab[i].prenom_utilisateur+' '+ tab[i].nom_utilisateur+'</p></div></li>';
+			}
+			if(i==0)
+				str+='<p class="font-s13">Pas de sujets !!</p>'
+			str+='<br/>';
+			$('#ul_sujets').html(str);
+
+			i = 0;
+
+			var html = '<div class="list-group">';
+			html += '<a class="list-group-item list-group-item-info'+(obj.parentcat > 0 ? ' list-sub-cats' :  '')+'" id="idpcat'+obj.parentcat+'" href="javascript:void(0)">';
+			html += ' Catégorie parente : '+obj.parentcatname;
+			html += '</a>';
+			html += '<a class="list-group-item active" href="javascript:void(0)">';
+			html += '<span class="badge">'+scats.length+'</span>';
+			html += ' Sous catégories';
+			html += '</a>';
+
+
+			for(;i<scats.length;i++){
+				//html += '<div class="row"><a class="alert-link cat-list" href="?page=wiki&idcat='+scats[i].id+'">'+scats[i].nom+'</a></div>';
+
+				html += '<a class="list-group-item list-sub-cats" id="idscat'+scats[i].id+'" href="javascript:void(0)">';
+				html += '<i class="fa fa-book push-5-r"></i> '+scats[i].nom;
+				html += '</a>';
+			}
+
+			html += '</div>';
+
+			$('#scats_container').html(html);
+		});
+
+	}
+
+	function loadCat(idcat) {
+
+		console.log('load cat : ' + idcat);
 	}
 
 	var wikiDidChange = false;
@@ -286,12 +409,19 @@
 
 		getWikiCatsTree();
 
+		getCatSubjects(3);
+
 
 		$('body').on('click', '#show_root_cat_add', function() {
 
 			wikiDidChange = false;
 
 			$("#wiki_add_root_cat_form")[0].reset();
+		});
+
+		$('body').on('click', '.list-sub-cats', function() {
+
+			loadCat($( this ).attr('id').substring(6));
 		});
 
 		$("#save_root_cat").click(function(e) {
