@@ -374,7 +374,7 @@
 
 			var html = '<div class="list-group">';
 			html += '<a class="list-group-item list-group-item-info'+(obj.parentcat > 0 ? ' list-sub-cats' :  '')+'" id="idpcat'+obj.parentcat+'" href="javascript:void(0)">';
-			html += ' Catégorie parente : '+obj.parentcatname;
+			html += ' Catégorie mère : '+obj.parentcatname;
 			html += '</a>';
 			html += '<a class="list-group-item active" href="javascript:void(0)">';
 			html += '<span class="badge">'+scats.length+'</span>';
