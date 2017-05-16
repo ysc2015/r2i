@@ -93,7 +93,7 @@ var designreseau_cdi_dt;
                 "method":'POST'
             },
             "columns": [
-                { "data": "bei_nro" },
+                { "data": "code_sous_projet" },
                 { "data": "date_ret_prevue" },
                 { "data": "bei_nro" }
             ],
@@ -143,7 +143,7 @@ var designreseau_cdi_dt;
                 "method":'POST'
             },
             "columns": [
-                { "data": "bei_nro" },
+                { "data": "code_sous_projet" },
                 { "data": "date_ret_prevue" },
                 { "data": "bei_nro" }
             ],
