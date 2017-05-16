@@ -4,7 +4,7 @@ extract($_GET);
 
 $categorie = WikiCategorie::first(
     array('conditions' =>
-        array("id = ?", $idc)
+        array("id = ?", 14)//$idc
     )
 );
 ?>
