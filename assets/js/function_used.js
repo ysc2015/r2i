@@ -30,5 +30,5 @@ Date.prototype.addDays = function(days) {
     date_to_return.setDate(date_to_return.getDate() + daystoadd);
     var jour = (date_to_return.getDate() < 10) ? "0"+date_to_return.getDate() : date_to_return.getDate();
     var mois = (date_to_return.getMonth() < 10) ? "0"+date_to_return.getMonth() : date_to_return.getMonth();
-    return date_to_return.getFullYear()+"-"+(date_to_return.getMonth() + 1)+"-"+date_to_return.getDate();
+    return date_to_return.getFullYear()+"-"+mois+"-"+jour;
 }
