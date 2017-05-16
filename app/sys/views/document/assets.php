@@ -85,6 +85,7 @@
 <script src="assets/js/plugins/jstree/dist/jstree.min.js"></script>
 <script src="assets/js/common.functions.js.php"></script>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/function_used.js"></script>
 
 <!--script OSA-->
 <script src="assets/js/rc2k.osa.js" ></script>
