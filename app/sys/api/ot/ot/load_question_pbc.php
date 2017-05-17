@@ -17,12 +17,16 @@ if(isset($idpbc) && !empty($idpbc) ){
     foreach($files as $file)
     {
         $filePath=__DIR__."/../../uploads/". $file['dossier'] . "/" .$file['nom_fichier_disque'];
-        $details = array();
-        $details['name']=$file['id_ressource']."_".$file['nom_fichier'];
-        $details['path']=$filePath;
-        $details['size']=filesize($filePath);
-        $details['id']=$file['id_ressource'];
-        $ret[] = $details;
+
+        if(@filesize($filePath)) {
+
+            $details = array();
+            $details['name']=$file['id_ressource']."_".$file['nom_fichier'];
+            $details['path']=$filePath;
+            $details['size']=@filesize($filePath);
+            $details['id']=$file['id_ressource'];
+            $ret[] = $details;
+        }
 
     }
 }

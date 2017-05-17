@@ -177,6 +177,14 @@ class adm extends baseUser {
         );
     }
 
+    function pbc() {
+        Page::pbc(
+            array(
+                "pbc" => array("pbc_list")
+            )
+        );
+    }
+
     function entreprise() {
         Page::entreprise(
             array(
@@ -233,7 +241,7 @@ class adm extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc","wiki_titre","wiki");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","menu_pbc","planning_titre","planning_view","planning_lineaire","menu_stt_titre","menu_stt_inc","wiki_titre","wiki");
     }
 
     //admin only menu
@@ -611,6 +619,14 @@ class vpi extends baseUser {
         );
     }
 
+    function pbc() {
+        Page::pbc(
+            array(
+                "pbc" => array("pbc_list")
+            )
+        );
+    }
+
     function pointbloquant() {
         Page::pointbloquant(
             array(
@@ -638,7 +654,7 @@ class vpi extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","planning_titre","planning_view");
+        Page::sidebar("dashboard","projet_titre","projet_liste","avancements_liste","pointbloquant_liste","menu_pbc","planning_titre","planning_view");
     }
 }
 class pci extends baseUser {
@@ -672,6 +688,14 @@ class pci extends baseUser {
         );
     }
 
+    function pbc() {
+        Page::pbc(
+            array(
+                "pbc" => array("pbc_list")
+            )
+        );
+    }
+
     function pointbloquant() {
         Page::pointbloquant(
             array(
@@ -682,7 +706,7 @@ class pci extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"pci_titre","pci_liste","pointbloquant_liste");
+        Page::sidebar(/*"dashboard",*/"pci_titre","pci_liste","pointbloquant_liste","menu_pbc");
     }
 }
 class stt extends baseUser {
@@ -705,6 +729,14 @@ class stt extends baseUser {
         );
     }
 
+    function pbc() {
+        Page::pbc(
+            array(
+                "pbc" => array("pbc_list")
+            )
+        );
+    }
+
     function myotplanning() {
         Page::myotplanning(
             array(
@@ -714,6 +746,6 @@ class stt extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar("myot_titre","myot_liste","myot_planning");
+        Page::sidebar("myot_titre","myot_liste","myot_planning","menu_pbc");
     }
 }
