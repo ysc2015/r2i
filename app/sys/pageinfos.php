@@ -27,6 +27,12 @@ switch($page)
             "navigator"=>"<li>Ordres de travail</li>")));
         break;
 
+    case "pbc":
+        return json_decode(json_encode(array("header"=>"BLQ / PBC",
+            "subheader"=>"",
+            "navigator"=>"<li>Liste</li>")));
+        break;
+
     case "pcip":
         return json_decode(json_encode(array("header"=>"Ordres de travail",
             "subheader"=>"",
