@@ -101,7 +101,7 @@ class Page {
             default :
                 foreach ($args[0] as $key => $value) {
                     include $views_folder."{$name}/{$key}/{$key}_block_begin.php";
-                    if($name == "sousprojet") {
+                    if($name == "sousprojet" and !in_array("quickaccess",$value)) {
                         $html='<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">';
 
                         foreach($value as $tab) {
@@ -122,7 +122,7 @@ class Page {
                             include $file;
                         }
                     }
-                    if($name == "sousprojet") {
+                    if($name == "sousprojet"  and !in_array("quickaccess",$value)) {
                         echo "</div>";
                     }
                     include $views_folder."{$name}/{$key}/{$key}_block_end.php";
@@ -197,6 +197,7 @@ class adm extends baseUser {
     function sousprojet() {
         Page::sousprojet(
             array(
+                "quickaccess" => array("quickaccess"),
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
@@ -347,6 +348,7 @@ class dov extends baseUser {
     function sousprojet() {
         Page::sousprojet(
             array(
+                "quickaccess" => array("quickaccess"),
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
@@ -433,6 +435,7 @@ class pov extends baseUser {
     function sousprojet() {
         Page::sousprojet(
             array(
+                "quickaccess" => array("quickaccess"),
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
@@ -509,6 +512,7 @@ class bei extends baseUser {
     function sousprojet() {
         Page::sousprojet(
             array(
+                "quickaccess" => array("quickaccess"),
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
@@ -556,6 +560,7 @@ class cdp extends baseUser {
     function sousprojet() {
         Page::sousprojet(
             array(
+                "quickaccess" => array("quickaccess"),
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),
@@ -610,6 +615,7 @@ class vpi extends baseUser {
     function sousprojet() {
         Page::sousprojet(
             array(
+                "quickaccess" => array("quickaccess"),
                 "infoszone" => array("nom","infoplaque","zone","siteorigine"),
                 "gestionplaque" => array("phase","traitementetude"),
                 "preparationplaque" => array("preparationcarto","positionnementadresses","surveyadressesterrain"),

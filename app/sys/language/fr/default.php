@@ -89,3 +89,7 @@ $lang["distributioncmdfintravaux"] = "Commandes Fin Travaux CDI";
 $lang["distributiondesign"] = "Distribution Design";
 
 
+
+$lang["quickaccess"] = "";
+
+
