@@ -1,5 +1,5 @@
 
-/*
+
 ALTER TABLE  `blq_pbc` ADD  `date_action` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 ALTER TABLE `blq_pbc` ADD `flag` INT NOT NULL DEFAULT '0' AFTER `date_action`;
 
@@ -9,7 +9,7 @@ ALTER TABLE  `ordre_de_travail` ADD  `date_creation` DATE NULL DEFAULT NULL ;
 update `ordre_de_travail` set date_creation = date_debut WHERE 1;
 
 ALTER TABLE `blq_pbc` ADD `id_createur` INT NULL AFTER `flag`, ADD `type_question` INT NOT NULL DEFAULT '1' AFTER `id_createur`;
-*/
+
 ALTER TABLE `detaildevis`
   DROP `RFO_01_01_racc`,
   DROP `RFO_01_02_racc`,
@@ -159,89 +159,119 @@ ALTER TABLE `detaildevis`  ADD `TGC_01_01_qt` INT NOT NULL  AFTER `CGC_04_02_qt`
 ALTER TABLE `detaildevis` ADD `ref_devis` VARCHAR(30) NOT NULL AFTER `TGC_05_04_qt`, ADD `date_devis` DATE NOT NULL AFTER `ref_devis`, ADD `date_livraison` DATE NOT NULL AFTER `date_devis`;
 
 
-ALTER TABLE `detaildevis` CHANGE `date_devis` `date_devis` VARCHAR(30) NOT NULL;
-ALTER TABLE `detaildevis` CHANGE `date_livraison` `date_livraison` VARCHAR(30) NOT NULL;
-ALTER TABLE `detaildevis` ADD `etat_devis` INT NOT NULL AFTER `date_livraison`;
+ALTER TABLE `detaildevis` ADD `RFO_01_23_qt_PEC` INT NOT NULL AFTER `RFO_01_13_PEC`;
 
---
--- Structure de la table `etat_devis`
---
+ALTER TABLE `sous_projet_distribution_commande_fin_travaux` CHANGE `ok_ft` `go_ft` INT(11) NOT NULL;
 
-CREATE TABLE `etat_devis` (
-  `id_etat_devis` int(11) NOT NULL,
-  `lib_etat_devis` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `sous_projet_transport_commande_fin_travaux` CHANGE `ok_ft` `go_ft` INT(11) NOT NULL;
 
---
--- Contenu de la table `etat_devis`
---
+ALTER TABLE `sous_projet_distribution_commande_fin_travaux` ADD `date_depot_cmd` DATE NULL DEFAULT NULL AFTER `date_transmission_tfx`;
 
-INSERT INTO `etat_devis` (`id_etat_devis`, `lib_etat_devis`) VALUES
-(1, 'Enregistré'),
-(2, 'Converti en BDC'),
-(3, 'BDC en validation'),
-(4, 'BDC validé'),
-(9, 'BDC refusé'),
-(10, 'Supprimé');
-ALTER TABLE `detaildevis` drop INDEX id_ressource;
-ALTER TABLE `detaildevis` CHANGE `etat_devis` `etat_devis` INT(11) NOT NULL DEFAULT '1';
-/**
-Updating 'r2i':
-U r2i/app/sys/api/ot/ot/update_pb_files_list.php
-A r2i/app/sys/api/ot/devis/devis_liste.php
-U r2i/app/sys/api/ot/devis/get_details_devis_info.php
-U r2i/app/sys/api/ot/devis/save_details_devis.php
-U r2i/app/sys/inc/utils.functions.php
-U r2i/app/sys/views/ot/ot/liste.php
-U r2i/app/sys/views/ot/devis/formdevis.php
-A r2i/app/sys/models/EtatDevis.php
-U r2i/assets/css/edit_devis_css.css
-Updated to revision 1654.
-U r2i/app/sys/api/ot/devis/get_details_devis_chambre.php
-U r2i/app/sys/api/ot/devis/get_details_devis_etude.php
-U r2i/app/sys/api/ot/devis/get_details_devis_tst.php
-U r2i/app/sys/api/ot/devis/get_details_devis.php
-U r2i/app/sys/api/ot/devis/get_details_devis_tdgc.php
-U r2i/app/sys/api/ot/devis/get_details_devis_tranche.php
-U r2i/app/sys/api/ot/devis/get_details_devis_TRE.php
-A r2i/app/sys/api/ot/devis/devis_delete.php
-U r2i/app/sys/inc/user.roles.php
-U r2i/app/sys/views/ot/ot/liste.php
-U r2i/app/sys/views/ot/devis/formdevis.php
-U r2i/app/sys/api/ot/devis/devis_liste.php
-U r2i/app/sys/inc/utils.functions.php
-U r2i/app/sys/views/ot/devis/formdevis.php
-U r2i/app/sys/views/ot/ot/liste.php
-U r2i/app/sys/views/ot/devis/formdevis.php
-A r2i/app/sys/views/ot/devis/convert_bdc.php
-U r2i/app/sys/views/ot/ot/liste.php
-U r2i/app/sys/api/ot/devis/get_ids_to_supprime.php
-A r2i/app/sys/api/ot/devis/devis_convert_bdc.php
-U r2i/app/sys/api/ot/devis/get_details_devis_info.php
-U r2i/app/sys/api/ot/retourpresta/update_etat_retour.php
-U r2i/app/sys/inc/user.roles.php
-U r2i/app/sys/inc/utils.functions.php
-U r2i/app/sys/api/ot/devis/get_details_devis_chambre.php
-U r2i/app/sys/api/ot/devis/get_details_devis_etude.php
-U r2i/app/sys/api/ot/devis/get_details_devis_tst.php
-U r2i/app/sys/api/ot/devis/get_details_devis.php
-U r2i/app/sys/api/ot/devis/get_details_devis_tdgc.php
-U r2i/app/sys/api/ot/devis/get_details_devis_tranche.php
-U r2i/app/sys/api/ot/devis/get_details_devis_TRE.php
-U r2i/app/sys/api/ot/devis/get_details_devis_info.php
-U r2i/app/sys/views/ot/devis/formdevis.php
-U r2i/assets/js/edit_devis_js.js
-U r2i/assets/js/editablegrid/editablegrid.js
-########
-/opt/lampp/htdocs/r2i/app/sys/api/ot/ot/resolu_blq.php
-/opt/lampp/htdocs/r2i/app/sys/api/ot/ot/ot_blq_pbc_liste.php
-/opt/lampp/htdocs/r2i/app/sys/views/ot/blq/blq.php
-/opt/lampp/htdocs/r2i/app/sys/content.php
- */
+ALTER TABLE `sous_projet_transport_commande_fin_travaux` ADD `date_depot_cmd` DATE NULL DEFAULT NULL AFTER `date_transmission_tfx`;
 
-ALTER TABLE  `sous_projet_taches_osa` ADD  `date_insertion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+INSERT INTO `type_notification` (`id_type_notification`, `lib_type_notification`) VALUES
+(6, 'validation des retours STT dans l''OT'),
+(7, 'validation d''une étape'),
+(8, 'ajout d''un point bloquant'),
+(9, 'Ajout d''un PBC (cron toutes les heures)'),
+(10, 'Réponse à un PBC ');
 
-ALTER TABLE `blq_pbc` ADD `statut` INT NOT NULL DEFAULT '0' ;
+ALTER TABLE `sous_projet` ADD `id_master_ctr` INT NULL DEFAULT NULL AFTER `is_master`;
+
+ALTER TABLE `sous_projet_distribution_aiguillage` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_distribution_raccordements` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_distribution_recette` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_distribution_tirage` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_transport_aiguillage` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_transport_raccordements` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_transport_recette` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_transport_tirage` ADD `date_retour_ok` DATETIME NULL DEFAULT NULL AFTER `date_controle_ok`;
+
+ALTER TABLE `sous_projet_distribution_design` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_distribution_aiguillage` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_distribution_commande_cdi` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_distribution_tirage` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_distribution_raccordements` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_distribution_recette` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_distribution_commande_fin_travaux` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_design` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_aiguillage` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_commande_ctr` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_tirage` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_raccordements` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_recette` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+ALTER TABLE `sous_projet_transport_commande_fin_travaux` ADD `date_charge_be` DATETIME NULL DEFAULT NULL ;
+
+ALTER TABLE `sous_projet`
+ADD `date_insertion` DATE NULL DEFAULT NULL AFTER `id_master_ctr`,
+ADD `date_last_modify` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE NOW(),
+ADD `id_createur` INT DEFAULT NULL  AFTER `date_last_modify`,
+ADD `id_modificateur` INT DEFAULT NULL  AFTER `id_createur`;
+
+UPDATE sous_projet AS sp
+INNER JOIN projet AS p ON sp.id_projet = p.id_projet
+SET sp.date_insertion = p.date_creation
+WHERE  1;
 
 
 
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_transport_aiguillage ta on ot.id_sous_projet = ta.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 1 AND ta.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_transport_tirage tt on ot.id_sous_projet = tt.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 2 AND tt.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_transport_raccordements tr on ot.id_sous_projet = tr.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 3 AND tr.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_transport_tirage tt on ot.id_sous_projet = tt.id_sous_projet
+    LEFT JOIN sous_projet_transport_raccordements tr on ot.id_sous_projet = tr.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 4 AND tt.ok <> 1 AND tr.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_transport_recette trec on ot.id_sous_projet = trec.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 9 AND trec.ok <> 1
+
+    UNION
+
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_distribution_aiguillage da on ot.id_sous_projet = da.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 5 AND da.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_distribution_tirage dt on ot.id_sous_projet = dt.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 6 AND dt.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_distribution_raccordements dr on ot.id_sous_projet = dr.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 7 AND dr.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_distribution_tirage dt on ot.id_sous_projet = dt.id_sous_projet
+    LEFT JOIN sous_projet_distribution_raccordements dr on ot.id_sous_projet = dr.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 8 AND dt.ok <> 1 AND dr.ok <> 1
+    UNION
+    SELECT ot.* FROM ordre_de_travail ot
+    INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
+    LEFT JOIN sous_projet_distribution_recette drec on ot.id_sous_projet = drec.id_sous_projet
+    WHERE ot.id_type_ordre_travail = 10 AND drec.ok <> 1
