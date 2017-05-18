@@ -9,7 +9,7 @@
                 <!--CTR-->
                 <th class="bg bg-success-light" colspan="42" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="29" style="text-align: center;">CDI</th>
+                <th class="bg bg-warning-light" colspan="41" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
@@ -23,9 +23,9 @@
                 <th colspan="1" rowspan="2" style="text-align: center;">Maitre CTR</th>
                 <!--CDI-->
                 <th colspan="10" style="text-align: center;">Aiguillage</th>
-                <th colspan="3" style="text-align: center;">CMD Structurante</th>
-                <th colspan="6" style="text-align: center;">Tirage</th>
-                <th colspan="6" style="text-align: center;">Raccordement</th>
+                <th colspan="5" style="text-align: center;">CMD Structurante</th>
+                <th colspan="11" style="text-align: center;">Tirage</th>
+                <th colspan="11" style="text-align: center;">Raccordement</th>
                 <th colspan="1" style="text-align: center;">Recette</th>
                 <th colspan="3" style="text-align: center;">Commandes Fin Travaux</th>
             </tr>
@@ -109,25 +109,37 @@
                 <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
+                <th>Date Traitement Ret terrain</th>
                 <th>Réf CMD Accès</th>
                 <th>Réalisation</th>
                 <th>Validation</th>
+                <th>Réalis. Ensemble CMD Struc</th>
 
                 <!--Tirage-->
+                <th>Date prév de fin tirage</th>
+                <th>Date prise en charge BE</th>
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
+                <th>Date upload Retour</th>
+                <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>Ret. Presta validé</th>
 
                 <!--Raccordement-->
+                <th>Date prév de fin tirage</th>
+                <th>Date prise en charge BE</th>
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
+                <th>Date upload Retour</th>
+                <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>Ret Presta Validé</th>
 
                 <!--Recette-->
                 <th>Injection NetGeo</th>
@@ -220,25 +232,37 @@
                 <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
+                <th>Date Traitement Ret terrain</th>
                 <th>Réf CMD Accès</th>
                 <th>Réalisation</th>
                 <th>Validation</th>
+                <th>Réalis. Ensemble CMD Struc</th>
 
                 <!--Tirage-->
+                <th>Date prév de fin tirage</th>
+                <th>Date prise en charge BE</th>
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
+                <th>Date upload Retour</th>
+                <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>Ret. Presta validé</th>
 
                 <!--Raccordement-->
+                <th>Date prév de fin tirage</th>
+                <th>Date prise en charge BE</th>
                 <th>Plans</th>
                 <th>OT</th>
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
+                <th>Date upload Retour</th>
+                <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>Ret Presta Validé</th>
 
                 <!--Recette-->
                 <th>Injection NetGeo</th>
@@ -346,25 +370,37 @@
                 { "data": "cdi_aiguillage_date_retour" },
                 { "data": "cdi_aiguillage_lib_etat_retour" },
                 { "data": "cdi_aiguillage_bp_no_resolu" },
-                { "data": "cdi_aiguillage_lib_ok" },
+                { "data": "cdi_aiguillage_lib_ok" },//55
                 //CMD Structurante
+                { "data": "traitement_retour_terrain2" },
                 { "data": "ref_commande_acces2" },
                 { "data": "cdi_aiguillage_lib_commande_acces" },
                 { "data": "cdi_aiguillage_lib_go_ft" },
+                { "data": "cdi_commande_acces_lib_ok" },//60
                 //Tirage
+                { "data": "cdi_tirage_date_ret_prevue" },
+                { "data": "cdi_tirage_date_charge_be" },
                 { "data": "cdi_tirage_lib_controle_plan" },
                 { "data": "cdi_tirage_ordre_de_travail" },
                 { "data": "cdi_tirage_ordre_de_travail_date_debut" },
                 { "data": "cdi_tirage_ordre_de_travail_date_fin" },
+                { "data": "cdi_tirage_date_retour" },
+                { "data": "cdi_tirage_date_retour" },
                 { "data": "cdi_tirage_lib_etat_retour" },
                 { "data": "cdi_tirage_bp_no_resolu" },
+                { "data": "cdi_tirage_lib_ok" },//71
                 //Raccordement
+                { "data": "cdi_raccord_date_ret_prevue" },
+                { "data": "cdi_raccord_date_charge_be" },
                 { "data": "cdi_raccord_lib_controle_plan" },
                 { "data": "cdi_raccord_ordre_de_travail" },
                 { "data": "cdi_raccord_ordre_de_travail_date_debut" },
                 { "data": "cdi_raccord_ordre_de_travail_date_fin" },
+                { "data": "cdi_raccord_date_retour" },
+                { "data": "cdi_raccord_date_retour" },
                 { "data": "cdi_raccord_lib_etat_retour" },
                 { "data": "cdi_raccord_bp_no_resolu" },
+                { "data": "cdi_raccord_ok" },//82
                 //Recette
                 { "data": "cdi_recette_injection_netgeo" },
                 //Commandes Fin Travaux
@@ -378,7 +414,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 75 ],
+                    orderData: [ 0, 87 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -479,7 +515,67 @@
                         return  (full.cdi_aiguillage_date_retour !== '0000-00-00' && full.cdi_aiguillage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
-                { "targets": [ 75 ], "visible": false, "searchable": true }
+                {
+                    "targets": 56,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.traitement_retour_terrain2 !== '0000-00-00' && full.traitement_retour_terrain2 !== null ? full.traitement_retour_terrain2 : 'n/d');
+                    }
+                },
+                {
+                    "targets": 61,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_tirage_date_ret_prevue !== '0000-00-00' && full.cdi_tirage_date_ret_prevue !== null ? full.cdi_tirage_date_ret_prevue : 'n/d');
+                    }
+                },
+                {
+                    "targets": 62,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_tirage_date_charge_be !== '0000-00-00 00:00:00' && full.cdi_tirage_date_charge_be !== null ? full.cdi_tirage_date_charge_be : 'n/d');
+                    }
+                },
+                {
+                    "targets": 67,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_tirage_date_retour !== '0000-00-00' && full.cdi_tirage_date_retour !== null ? full.cdi_tirage_date_retour : 'n/d');
+                    }
+                },
+                {
+                    "targets": 68,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_tirage_date_retour !== '0000-00-00' && full.cdi_tirage_date_retour !== null ? 'OUI' : 'NON');
+                    }
+                },
+                {
+                    "targets": 72,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_raccord_date_ret_prevue !== '0000-00-00' && full.cdi_raccord_date_ret_prevue !== null ? full.cdi_raccord_date_ret_prevue : 'n/d');
+                    }
+                },
+                {
+                    "targets": 73,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_raccord_date_charge_be !== '0000-00-00 00:00:00' && full.cdi_raccord_date_charge_be !== null ? full.cdi_raccord_date_charge_be : 'n/d');
+                    }
+                },
+                {
+                    "targets": 78,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_raccord_date_retour !== '0000-00-00' && full.cdi_raccord_date_retour !== null ? full.cdi_raccord_date_retour : 'n/d');
+                    }
+                },
+                {
+                    "targets": 79,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_raccord_date_retour !== '0000-00-00' && full.cdi_raccord_date_retour !== null ? 'OUI' : 'NON');
+                    }
+                },
+                {
+                    "targets": 82,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_raccord_ok === '1' ? 'OUI' : full.cdi_raccord_ok === '2' ? 'NON' : '');
+                    }
+                },
+                { "targets": [ 87 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
