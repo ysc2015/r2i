@@ -57,7 +57,7 @@
 				</ul>
 				<h3 class="block-title" id="cat-title">Séléctionner une catégorie</h3>
 			</div>
-			<div class="block-content">
+			<div class="block-content" id="cat-block-content">
 				<?php
 
 				extract($_GET);
@@ -400,6 +400,30 @@
 	function loadCat(idcat) {
 
 		console.log('load cat : ' + idcat);
+
+		$('#wikicat_block').addClass('block-opt-refresh');
+
+		$.ajax({
+
+			method: "POST",
+			dataType: "json",
+			url: "api/wiki/add_root_cat.php",
+			data: {
+				nom : $('#cat_name').val(),
+				description : $('#cat_desc').val()
+			}
+
+		}).done(function (msg) {
+
+			$('#wikicat_block').removeClass('block-opt-refresh');
+
+			if(msg.error == 0) {
+
+				$("#cat-block-content").html(msg.content);
+
+			}
+
+		});
 	}
 
 	var wikiDidChange = false;
@@ -409,7 +433,7 @@
 
 		getWikiCatsTree();
 
-		getCatSubjects(3);
+		//getCatSubjects(3);
 
 
 		$('body').on('click', '#show_root_cat_add', function() {
