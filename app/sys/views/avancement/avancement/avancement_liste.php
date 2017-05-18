@@ -9,7 +9,7 @@
                 <!--CTR-->
                 <th class="bg bg-success-light" colspan="42" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="26" style="text-align: center;">CDI</th>
+                <th class="bg bg-warning-light" colspan="29" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
@@ -22,7 +22,7 @@
                 <th colspan="3" style="text-align: center;">Commandes Fin Travaux</th>
                 <th colspan="1" rowspan="2" style="text-align: center;">Maitre CTR</th>
                 <!--CDI-->
-                <th colspan="7" style="text-align: center;">Aiguillage</th>
+                <th colspan="10" style="text-align: center;">Aiguillage</th>
                 <th colspan="3" style="text-align: center;">CMD Structurante</th>
                 <th colspan="6" style="text-align: center;">Tirage</th>
                 <th colspan="6" style="text-align: center;">Raccordement</th>
@@ -102,8 +102,11 @@
                 <th>OT</th>
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
+                <th>Date upload Retour</th>
+                <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
                 <th>Réf CMD Accès</th>
@@ -210,8 +213,11 @@
                 <th>OT</th>
                 <th>Date début OT</th>
                 <th>Date fin OT</th>
+                <th>Date upload Retour</th>
+                <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
                 <th>Réf CMD Accès</th>
@@ -328,7 +334,7 @@
                 { "data": "ctr_aiguillage_lib_commande_acces2" },
                 { "data": "ctr_aiguillage_lib_go_ft2" },
                 //Maitre CTR
-                { "data": "is_master" },
+                { "data": "is_master" }, //45
                 //CDI
                 //Aiguillage
                 { "data": "cdi_design_lib_ok" },
@@ -336,8 +342,11 @@
                 { "data": "cdi_aiguillage_ordre_de_travail" },
                 { "data": "cdi_aiguillage_ordre_de_travail_date_debut" },
                 { "data": "cdi_aiguillage_ordre_de_travail_date_fin" },
+                { "data": "cdi_aiguillage_date_retour" },
+                { "data": "cdi_aiguillage_date_retour" },
                 { "data": "cdi_aiguillage_lib_etat_retour" },
                 { "data": "cdi_aiguillage_bp_no_resolu" },
+                { "data": "cdi_aiguillage_lib_ok" },
                 //CMD Structurante
                 { "data": "ref_commande_acces2" },
                 { "data": "cdi_aiguillage_lib_commande_acces" },
@@ -369,7 +378,7 @@
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 72 ],
+                    orderData: [ 0, 75 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -458,7 +467,19 @@
 
                     }
                 },
-                { "targets": [ 72 ], "visible": false, "searchable": true }
+                {
+                    "targets": 51,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_aiguillage_date_retour !== '0000-00-00' && full.cdi_aiguillage_date_retour !== null ? full.cdi_aiguillage_date_retour : 'n/d');
+                    }
+                },
+                {
+                    "targets": 52,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.cdi_aiguillage_date_retour !== '0000-00-00' && full.cdi_aiguillage_date_retour !== null ? 'OUI' : 'NON');
+                    }
+                },
+                { "targets": [ 75 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
