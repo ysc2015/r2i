@@ -6,11 +6,14 @@
  * Time: 04:36 م
  */
 ?>
-<div class="block block-themed" id="designreseau_block">
+<div class="block block-themed" id="fin_design_hors_delai_block">
     <div class="block-header bg-primary-light">
         <ul class="block-options">
             <li>
                 <button id="activitebei_fin_design_hors_delai_block_refresh" type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+            </li>
+            <li>
+                <button id="activitebei_fin_design_hors_delai_block_reduce" type="button" data-toggle="block-option" data-action="content_toggle" data-action-mode="demo"><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
         <h3 class="block-title">Fin de Design Hors Délais</h3>
