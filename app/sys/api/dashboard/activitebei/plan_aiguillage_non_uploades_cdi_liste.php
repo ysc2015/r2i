@@ -8,7 +8,7 @@
 extract($_POST);
 //Liste des CDI pour lesquels le design est terminé mais pour lesquels les plans d’aiguillage ne sont pas « Contrôlés OK » ou « Lien vers les plans » est vide.
 
-$table = array("sous_projet as t1","nro as t3","`sous_projet_distribution_design` as t5","`sous_projet_distribution_aiguillage` as t9" );
+$table = array("sous_projet as t1","projet as t2","nro as t3","`sous_projet_distribution_design` as t5","`sous_projet_distribution_aiguillage` as t9" );
 $columns = array(
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
@@ -22,8 +22,8 @@ $columns = array(
     array( "db" => "t7.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t7.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
 );
-$condition  = " t1.id_projet=t3.id_nro ";
- $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
+$condition  = " t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro ";
+$condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
 $condition .= " AND t1.id_sous_projet=t9.id_sous_projet ";
 $condition .= " AND t5.ok = 1 ";
 $condition .= " AND t9.plans = 3 ";
