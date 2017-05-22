@@ -304,7 +304,7 @@ class dov extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
+                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod"),
                 "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
@@ -391,7 +391,7 @@ class pov extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
+                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod"),
                 "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
@@ -541,7 +541,7 @@ class cdp extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
+                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod"),
                 "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )
@@ -580,7 +580,7 @@ class vpi extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
+                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod"),
                 "activitebei" => array("index")/*,
                 "productiongenerale" => array("index"),*/
             )

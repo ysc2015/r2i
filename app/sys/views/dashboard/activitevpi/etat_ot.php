@@ -24,6 +24,7 @@
                             <th>commentaire</th>
                             <th>état</th>
                             <th>BKLOG</th>
+                            <th>BKLOG</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,6 +37,7 @@
                             <th>type</th>
                             <th>commentaire</th>
                             <th>état</th>
+                            <th>BKLOG</th>
                             <th>BKLOG</th>
                         </tr>
                         </tfoot>
@@ -55,7 +57,9 @@
 
     $(document).ready(function() {
 
-        etat_ot_dt = $('#ot_table').DataTable( {
+        etat_ot_dt = $('#ot_table').on('preXhr.dt', function ( e, settings, data ) {
+            $('#etatot_block').addClass('block-opt-refresh');
+        }).DataTable( {
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
             },
@@ -63,7 +67,8 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_liste_w_state.php'
+                "url": 'api/ot/ot/ot_liste_w_state.php',
+                "method" : 'POST'
             },
             "columns": [
                 { "data": "id_ordre_de_travail" },
@@ -72,14 +77,23 @@
                 { "data": "type_ot" },
                 { "data": "commentaire" },
                 { "data": "lib_etat_ot" },
-                { "data": "id_type_ordre_travail" }
+                { "data": "id_type_ordre_travail" },
+                { "data": "backlog" }
             ],
             "columnDefs": [
-                { "targets": [ 0,1,2,4,6 ], "visible": false, "searchable": false }
+                { "targets": [ 0,1,2,4,6 ], "visible": false, "searchable": false },
+                {
+                    "targets": 7,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.backlog === '1' ? 'OUI' : 'NON');
+                    }
+                }
             ],
             "order": [[6, 'asc']]
             ,
             "drawCallback": function( /*settings*/ ) {
+
+                $('#etatot_block').removeClass('block-opt-refresh');
             }
         } );
 

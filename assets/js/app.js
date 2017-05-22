@@ -534,11 +534,15 @@ var App = function() {
                             //dashboard
                             case 'activitevpi_block' :
                                 getPlansOk();
+                                getEtatOT();
                                 getPlannifOT();
                                 //TODO add further functions
                                 break;
                             case 'gestplansot_block' :
                                 getPlansOk();
+                                break;
+                            case 'etatot_block' :
+                                getEtatOT();
                                 break;
                             case 'gestiontrvx_block' :
                                 getPlannifOT();

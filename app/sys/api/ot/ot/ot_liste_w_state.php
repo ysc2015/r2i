@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-extract($_GET);
+extract($_POST);
 
 $table = array("ordre_de_travail as t1","select_type_ordre_travail as t2","sous_projet as t3","projet as t4","nro as t5");
 $columns = array(
@@ -16,6 +16,7 @@ $columns = array(
     array( "db" => "t1.type_ot", "dt" => 'type_ot' ),
     array( "db" => "t1.date_debut", "dt" => 'date_debut' ),
     array( "db" => "t1.date_fin", "dt" => 'date_fin' ),
+    array( "db" => "t1.backlog", "dt" => 'backlog' ),
     array( "db" => "t1.id_type_ordre_travail", "dt" => 'id_type_ordre_travail' ),
     array( "db" => "t2.lib_type_ordre_travail", "dt" => 'lib_type_ordre_travail' ),
     array( "db" => "t1.commentaire", "dt" => 'commentaire' ),
@@ -24,40 +25,42 @@ $columns = array(
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
 
-if(isset($tentree) && !empty($tentree)) {
+switch($connectedProfil->profil->profil->shortlib) {
 
-    /*$tbl = getTableNameForEntry($tentree,true);
-    $table[] = "$tbl as e";
+    /*case "cdp" :
+        $condition .=" AND t2.id_chef_projet = ".$connectedProfil->profil->id_utilisateur;
+        break;*/
 
-    $te = "";
+    case "pci" :
+    case "bei" :
+        $arr = array(-1);
+        $stm_bei_pci = $db->prepare("select id_nro from nro_utilisateur where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+        $stm_bei_pci->execute();
+        $nros = $stm_bei_pci->fetchAll();
+        foreach($nros as $nro) {
+            $arr[] = $nro['id_nro'];
+        }
 
-    if($tentree == "transportraccordement") $te = "transporttirage";
-    if($tentree == "distributionraccordement") $te = "distributiontirage";
-    $condition .=" AND t1.type_entree='".($te==""?$tentree:$te)."'";
+        $condition .=" AND t4.id_nro IN ( ".implode(",",$arr).")";
+        break;
 
-    $condition .=" AND t1.id_sous_projet = e.id_sous_projet AND (t1.id_type_ordre_travail > 10 OR (t1.id_type_ordre_travail <=10 AND e.ok <> 1))";*/
+    case "vpi" :
+        $arr = array(-1);
+        $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+        $stm->execute();
+        $nros = $stm->fetchAll();
+        foreach($nros as $nro) {
+            $arr[] = $nro['id_nro'];
+        }
 
-    if($tentree == "transportraccordement") $tentree = "transporttirage";
-    if($tentree == "distributionraccordement") $tentree = "distributiontirage";
-    $condition .=" AND t1.type_entree='$tentree'";
+        $condition .=" AND t4.id_nro IN ( ".implode(",",$arr).")";
+        break;
+
+    default : break;
 }
-
-if(isset($idsp)) {
-    $condition .=" AND t1.id_sous_projet=$idsp";
-}
-
-/*if(!isset($tab_imei)) {
-    switch($connectedProfil->profil->profil->shortlib) {
-        case "stt" :
-            $condition .=" AND t1.id_entreprise = ".$connectedProfil->profil->id_entreprise;
-            break;
-
-        default : break;
-    }
-}*/
 
 
 $left = "LEFT join etat_ot as etat ON t1.id_etat_ot = etat.id_etat_ot";
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,$left));
+echo json_encode(SSP::simpleJoin($_POST,$db,$table,"id_ordre_de_travail",$columns,$condition,$left));
 ?>
