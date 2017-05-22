@@ -22,13 +22,15 @@ $columns = array(
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t4.lr", "dt" => 'lr' ),
     array( "db" => "t4.lr_sur_pm", "dt" => 'lr_sur_pm' ),
-    array( "db" => "so1.lib_ok as ctr_design_lib_ok", "dt" => 'ctr_design_lib_ok' ),
+    //array( "db" => "so1.lib_ok as ctr_design_lib_ok", "dt" => 'ctr_design_lib_ok' ),
+    array( "db" => "t5.ok as ctr_design_lib_ok", "dt" => 'ctr_design_lib_ok' ),
     array( "db" => "scp1.lib_controle_plan as ctr_aiguillage_lib_controle_plan", "dt" => 'ctr_aiguillage_lib_controle_plan' ),
     array( "db" => "ot1.type_ot as ctr_aiguillage_ordre_de_travail", "dt" => 'ctr_aiguillage_ordre_de_travail' ),
     array( "db" => "ot1.date_debut as ctr_aiguillage_ordre_de_travail_date_debut", "dt" => 'ctr_aiguillage_ordre_de_travail_date_debut' ),
     array( "db" => "ot1.date_fin as ctr_aiguillage_ordre_de_travail_date_fin", "dt" => 'ctr_aiguillage_ordre_de_travail_date_fin' ),
     array( "db" => "ser1.lib_etat_retour as ctr_aiguillage_lib_etat_retour", "dt" => 'ctr_aiguillage_lib_etat_retour' ),
-    array( "db" => "t6.date_retour as ctr_aiguillage_date_retour", "dt" => 'ctr_aiguillage_date_retour' ),
+    //array( "db" => "t6.date_retour as ctr_aiguillage_date_retour", "dt" => 'ctr_aiguillage_date_retour' ),
+    array( "db" => "olsu1.date_retour as ctr_aiguillage_date_retour", "dt" => 'ctr_aiguillage_date_retour' ),
     array( "db" => "bpu1.bp_no_resolu as ctr_aiguillage_bp_no_resolu", "dt" => 'ctr_aiguillage_bp_no_resolu' ),
     array( "db" => "sota.lib_ok as ctr_aiguillage_lib_ok", "dt" => 'ctr_aiguillage_lib_ok' ),
 
@@ -152,9 +154,9 @@ if(isset($idp) && !empty($idp)) {
 
 $left = "left join sous_projet_zone t4 on t1.id_sous_projet = t4.id_sous_projet";
 
-$left .= " left join sous_projet_transport_design t5 left join select_ok so1 on t5.ok=so1.id_ok on t1.id_sous_projet = t5.id_sous_projet";//on t6.id_sous_projet=ot1.id_sous_projet and ot1.id_type_ordre_travail = 1
+$left .= " left join sous_projet_transport_design t5 on t1.id_sous_projet = t5.id_sous_projet";//left join sous_projet_transport_design t5 left join select_ok so1 on t5.ok=so1.id_ok on t1.id_sous_projet = t5.id_sous_projet
 
-$left .= " left join sous_projet_transport_aiguillage t6 left join select_ok sota on t6.ok=sota.id_ok left join select_controle_plan scp1 on t6.controle_plans=scp1.id_controle_plan left join ordre_de_travail ot1 left join blq_pbc_unresolved bpu1 on ot1.id_ordre_de_travail = bpu1.id_ordre_de_travail on t6.id_sous_projet=ot1.id_sous_projet and ot1.id_type_ordre_travail = 1 left join select_etat_retour ser1 on t6.etat_retour=ser1.id_etat_retour on t1.id_sous_projet = t6.id_sous_projet";
+$left .= " left join sous_projet_transport_aiguillage t6 left join select_ok sota on t6.ok=sota.id_ok left join select_controle_plan scp1 on t6.controle_plans=scp1.id_controle_plan left join ordre_de_travail ot1 left join ot_last_stt_upload olsu1 on ot1.id_ordre_de_travail = olsu1.id_ordre_de_travail and olsu1.id_type_ordre_travail = 1 left join blq_pbc_unresolved bpu1 on ot1.id_ordre_de_travail = bpu1.id_ordre_de_travail on t6.id_sous_projet=ot1.id_sous_projet and ot1.id_type_ordre_travail = 1 left join select_etat_retour ser1 on t6.etat_retour=ser1.id_etat_retour on t1.id_sous_projet = t6.id_sous_projet";
 
 $left .= " left join sous_projet_transport_commande_ctr t7 left join select_ok sotc on t7.ok=sotc.id_ok left join select_commande_acces sca1 on t7.commandes_acces = sca1.id_commande_acces left join select_go_ft sgf1 on t7.go_ft=sgf1.id_go_ft on t1.id_sous_projet = t7.id_sous_projet";
 
