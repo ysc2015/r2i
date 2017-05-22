@@ -19,10 +19,8 @@ Date.prototype.addDays = function(days) {
     for(var j=1; j <= days; j++ ){
         dat.setDate(dat.getDate() + days);
         n = weekday[dat.getDay()];
-        console.log("nn : "+ n);
         if(n == "saturday" || n == "sunday") {
             z++;
-            console.log(" zz "+ z);
         }
     }
     var daystoadd = days + z;
