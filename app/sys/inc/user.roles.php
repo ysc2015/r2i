@@ -137,7 +137,7 @@ class adm extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans","gestiontrvx","gestionpbcpbt","gestionfinprod"),
+                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod"),
                 "activitebei" => array("statbei1","designreseau","fin_design_hors_delai","plan_aiguillage_attributions","plan_aiguillage_non_uploades","commande_structurantes_attributions")/*,
                 "productiongenerale" => array("index"),*/
             )
