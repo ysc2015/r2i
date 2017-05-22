@@ -428,13 +428,13 @@
                     "targets": 9,
                     "render": function ( data, type, full, meta ) {
                         //return  (full.date_retour_ok !== '0000-00-00 00:00:00' && full.date_retour_ok !== null ? full.date_retour_ok.substring(0, 10) : 'n/d');
-                        return  (full.ctr_aiguillage_date_retour !== '0000-00-00' && full.ctr_aiguillage_date_retour !== null ? full.ctr_aiguillage_date_retour : 'n/d');
+                        return  (full.ctr_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.ctr_aiguillage_date_retour !== null ? full.ctr_aiguillage_date_retour : 'n/d');
                     }
                 },
                 {
                     "targets": 10,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_aiguillage_date_retour !== '0000-00-00' && full.ctr_aiguillage_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.ctr_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.ctr_aiguillage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
