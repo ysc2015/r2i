@@ -40,3 +40,7 @@ function getPBC_PBT() {
 
     gestion_travaux_pbc.ajax.url( 'api/dashboard/activitevpi/gestion_travaux_pbc.php' ).load();
 }
+
+function getEtatOT() {
+    etat_ot_dt.ajax.url( 'api/ot/ot/ot_liste_w_state.php' ).load();
+}
