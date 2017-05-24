@@ -48,6 +48,7 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
         $fieldslist .=",id_modificateur = :id_modificateur";
+        (isset($ta_intervenant_be))? $fieldslist .=",date_attribution_be = :date_attribution_be": $fieldslist.="" ;
         if(!(/*$sousProjet->transportaiguillage->plans == 3 &&*/ $sousProjet->transportaiguillage->controle_plans == 2 && $sousProjet->transportaiguillage->lien_plans != "")) {
             if(/*isset($ta_plans) && */ isset($ta_controle_plans) && isset($ta_lien_plans) /*&& $ta_plans == 3*/ && $ta_controle_plans == 2 && $ta_lien_plans != "") {
                 $fieldslist .=",date_controle_ok=:date_controle_ok";
@@ -105,6 +106,8 @@ if($sousProjet !== NULL) {
         $valueslist = rtrim($valueslist,",");
         $fieldslist .=",date_insertion,id_createur";
         $valueslist .=",:date_insertion,:id_createur";
+        (isset($ta_intervenant_be))? $fieldslist .=",date_attribution_be ": $fieldslist.="" ;
+        (isset($ta_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
         if(/*isset($ta_plans) && */ isset($ta_controle_plans) && isset($ta_lien_plans) /*&& $ta_plans == 3*/ && $ta_controle_plans == 2 && $ta_lien_plans != "") {
             $fieldslist .=",date_controle_ok";
             $valueslist .=",:date_controle_ok";
@@ -144,6 +147,8 @@ if(isset($ids) && !empty($ids)){
 
 if(isset($ta_intervenant_be)){
     $stm->bindParam(':intervenant_be',$ta_intervenant_be);
+    $dt_attribution = date('Y-m-d');
+    $stm->bindParam(':date_attribution_be',$dt_attribution);
     $insert = true;
 }
 

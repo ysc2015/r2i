@@ -45,6 +45,7 @@ if($sousProjet !== NULL) {
 
         $fieldslist = rtrim($fieldslist,",");
         $fieldslist .=",id_modificateur = :id_modificateur";
+        (isset($dcc_intervenant_be))? $fieldslist .=",date_attribution_be = :date_attribution_be": $fieldslist.="" ;
 
         $stm = $db->prepare("update sous_projet_distribution_commande_cdi set $fieldslist where id_sous_projet=:id_sous_projet");
         $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
@@ -70,6 +71,8 @@ if($sousProjet !== NULL) {
         $valueslist = rtrim($valueslist,",");
         $fieldslist .=",date_insertion,id_createur";
         $valueslist .=",:date_insertion,:id_createur";
+        (isset($dcc_intervenant_be))? $fieldslist .=",date_attribution_be ": $fieldslist.="" ;
+        (isset($dcc_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
 
         $stm = $db->prepare("insert into sous_projet_distribution_commande_cdi ($fieldslist) values ($valueslist)");
         $date_insertion =  date('Y-m-d G:i:s');
@@ -98,6 +101,8 @@ if(isset($ids) && !empty($ids)){
 
 if(isset($dcc_intervenant_be)){
     $stm->bindParam(':intervenant_be',$dcc_intervenant_be);
+    $dt_attribution = date('Y-m-d');
+    $stm->bindParam(':date_attribution_be',$dt_attribution);
     $insert = true;
 }
 
