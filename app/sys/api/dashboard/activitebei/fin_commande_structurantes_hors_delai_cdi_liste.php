@@ -1,12 +1,15 @@
 <?php
 /**
- * file: designreseau_ctr_liste.php
+ * Created by PhpStorm.
  * User: fadil
+ * Date: 23/05/17
+ * Time: 09:41 م
  */
-
 extract($_POST);
 
-$table = array("sous_projet as t1","projet as t2","nro as t3","`sous_projet_distribution_design` as t5","`sous_projet_plaque_pos_adresse` as t4","`sous_projet_transport_design` as t10" );
+
+
+$table = array("sous_projet as t1","projet as t2","nro as t3","`sous_projet_distribution_commande_cdi` as t5" );
 $columns = array(
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
@@ -17,26 +20,21 @@ $columns = array(
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.id_nro", "dt" => 'id_nro' ),
-    array( "db" => "t4.date_ret_prevue", "dt" => 'date_ret_prevue' ),
+    array( "db" => "t5.date_attribution_be", "dt" => 'date_attribution_be' ),
     array( "db" => "t7.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t7.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
 );
 $condition  = " t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
-$condition .= " AND t1.id_sous_projet=t4.id_sous_projet ";
 $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
-$condition .= " AND t1.id_sous_projet=t10.id_sous_projet ";
-$condition .= " AND t10.ok= 1 ";
-$condition .= " AND t4.ok= 1 ";
-
-$condition .= " AND (t5.intervenant_be=0 || t5.intervenant_be=NULL)  ";
+$condition .= " AND (t5.date_transmission_ca = NULL || t5.date_transmission_ca = '0000-00-00')";
+$condition .= " AND t5.intervenant_be!=0     ";
 $condition .= " group by t1.id_sous_projet ";
-
-
 
 
 $left = " LEFT JOIN `nro_utilisateur` as t6 on t6.id_nro =  t3.id_nro ";
 $left .= " LEFT JOIN utilisateur as t7 on t7.id_utilisateur = t6.id_utilisateur ";
 $left .= " LEFT JOIN profil_utilisateur as t8 on  t8.id_profil_utilisateur=t7.id_profil_utilisateur and t8.id_profil_utilisateur=4 ";
+
 
 echo json_encode(@SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
