@@ -275,3 +275,68 @@ WHERE  1;
     INNER JOIN select_type_ordre_travail tot on ot.id_type_ordre_travail = tot.id_type_ordre_travail
     LEFT JOIN sous_projet_distribution_recette drec on ot.id_sous_projet = drec.id_sous_projet
     WHERE ot.id_type_ordre_travail = 10 AND drec.ok <> 1
+
+/******************************************************************************************************/
+select n.lib_nro,s.zone,`e`.`id_sous_projet` AS `idsp`,(`r`.`date_creation` + interval 2 day) AS `date_r_p_j_p2`,'Aiguillage CTR' AS `etape`,'CTR' AS `type`,t7.nom_utilisateur , t7.prenom_utilisateur from `r2i`.`ressource` `r` join `r2i`.`sous_projet_transport_aiguillage` `e` join nro n join sous_projet s join projet p
+LEFT JOIN `nro_utilisateur` as t6 on t6.id_nro =  n.id_nro
+LEFT JOIN utilisateur as t7 on t7.id_utilisateur = t6.id_utilisateur
+LEFT JOIN profil_utilisateur as t8 on  t8.id_profil_utilisateur=t7.id_profil_utilisateur and t8.id_profil_utilisateur=4
+where
+s.id_projet = p.id_projet
+and p.id_nro = n.id_nro
+and s.id_sous_projet = e.id_sous_projet
+and ((`r`.`id_sous_projet` = `e`.`id_sous_projet`)
+and (`r`.`type_objet` = 'stt_retour_terrain')
+and (`r`.`id_type_ordre_travail` = 1)
+and ((`r`.`date_creation` + interval 2 day) < now())
+and (  e.intervenant_be = null || e.intervenant_be = 0 ) )
+group by e.id_sous_projet
+UNION
+select n.lib_nro,s.zone,`e`.`id_sous_projet` AS `idsp`,(`r`.`date_creation` + interval 2 day) AS `date_r_p_j_p2`,'Tirage CTR' AS `etape`,'CTR' AS `type`,t7.nom_utilisateur , t7.prenom_utilisateur from `r2i`.`ressource` `r` join `r2i`.`sous_projet_transport_tirage` `e` join nro n join sous_projet s join projet p
+LEFT JOIN `nro_utilisateur` as t6 on t6.id_nro =  n.id_nro
+LEFT JOIN utilisateur as t7 on t7.id_utilisateur = t6.id_utilisateur
+LEFT JOIN profil_utilisateur as t8 on  t8.id_profil_utilisateur=t7.id_profil_utilisateur and t8.id_profil_utilisateur=4
+where
+s.id_projet = p.id_projet
+and p.id_nro = n.id_nro
+and s.id_sous_projet = e.id_sous_projet
+and ((`r`.`id_sous_projet` = `e`.`id_sous_projet`)
+and (`r`.`type_objet` = 'stt_retour_terrain')
+and (`r`.`id_type_ordre_travail` IN (2,4))
+and ((`r`.`date_creation` + interval 2 day) < now())
+and (  e.intervenant_be = null || e.intervenant_be = 0 ) )
+group by e.id_sous_projet
+UNION
+select n.lib_nro,s.zone,`e`.`id_sous_projet` AS `idsp`,(`r`.`date_creation` + interval 2 day) AS `date_r_p_j_p2`,
+'Raccordement CTR' AS `etape`,'CTR' AS `type`,t7.nom_utilisateur , t7.prenom_utilisateur
+from `r2i`.`ressource` `r` join `r2i`.`sous_projet_transport_raccordements` `e` join nro n join sous_projet s join projet p
+LEFT JOIN `nro_utilisateur` as t6 on t6.id_nro =  n.id_nro
+LEFT JOIN utilisateur as t7 on t7.id_utilisateur = t6.id_utilisateur
+LEFT JOIN profil_utilisateur as t8 on  t8.id_profil_utilisateur=t7.id_profil_utilisateur and t8.id_profil_utilisateur=4
+where
+s.id_projet = p.id_projet
+and p.id_nro = n.id_nro
+and s.id_sous_projet = e.id_sous_projet
+and ((`r`.`id_sous_projet` = `e`.`id_sous_projet`)
+and (`r`.`type_objet` = 'stt_retour_terrain')
+and (`r`.`id_type_ordre_travail` = 3 )
+and ((`r`.`date_creation` + interval 2 day) < now())
+and (  e.intervenant_be = null || e.intervenant_be = 0 ) )
+group by e.id_sous_projet
+UNION
+select n.lib_nro,s.zone,`e`.`id_sous_projet` AS `idsp`,(`r`.`date_creation` + interval 2 day) AS `date_r_p_j_p2`,
+'Recette CTR' AS `etape`,'CTR' AS `type`,t7.nom_utilisateur , t7.prenom_utilisateur
+from `r2i`.`ressource` `r` join `r2i`.`sous_projet_transport_recette` `e` join nro n join sous_projet s join projet p
+LEFT JOIN `nro_utilisateur` as t6 on t6.id_nro =  n.id_nro
+LEFT JOIN utilisateur as t7 on t7.id_utilisateur = t6.id_utilisateur
+LEFT JOIN profil_utilisateur as t8 on  t8.id_profil_utilisateur=t7.id_profil_utilisateur and t8.id_profil_utilisateur=4
+where
+s.id_projet = p.id_projet
+and p.id_nro = n.id_nro
+and s.id_sous_projet = e.id_sous_projet
+and ((`r`.`id_sous_projet` = `e`.`id_sous_projet`)
+and (`r`.`type_objet` = 'stt_retour_terrain')
+and (`r`.`id_type_ordre_travail` = 9 )
+and ((`r`.`date_creation` + interval 2 day) < now())
+and (  e.intervenant_be = null || e.intervenant_be = 0 ) )
+group by e.id_sous_projet
