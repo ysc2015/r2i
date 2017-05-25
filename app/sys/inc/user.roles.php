@@ -211,14 +211,14 @@ class adm extends baseUser {
         Page::ot(
             array(
                 "ot" => array("liste","add","update"/*,"open_pblq"*/,"delete","link","link_pb"),
-                "fcomp" => array("fcomp"),
+                "planningot" => array("affecter"),
                 "deot" => array("deot"),
                 "devis" => array("formdevis","delete","convert_bdc"),
                 "ebm" => array("formebm"),
-                "retourpresta" => array("retourpresta"),
                 "chambreot" => array("liste","update","pointbloquant"),
-                "planningot" => array("affecter"),
                 /*"synoptique" => array("synoptique"),*/
+                "retourpresta" => array("retourpresta"),
+                "fcomp" => array("fcomp"),
                 "blq" => array("blq")
             )
         );
