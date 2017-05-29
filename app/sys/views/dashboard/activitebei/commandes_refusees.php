@@ -95,7 +95,7 @@ var commandes_refusees_cdi_dt;
             },
             "columns": [
                 { "data": "code_sous_projet" },
-                { "data": "date_transmission_ca" },
+                { "data": "date_refus_go_ft" },
                 { "data": "bei_nro" }
             ],
             "columnDefs": [
@@ -121,20 +121,20 @@ var commandes_refusees_cdi_dt;
 
                         return full.lib_nro + '-' + full.zone;
                     }
-                },
+                }/*,
                 {
                     "targets": 1,
                     orderData: [ 0, 1 ],
-                    "data": "date_transmission_ca",
+                    "data": "date_refus_go_ft",
                     "render": function ( data, type, full, meta ) {
-                        if(full.date_transmission_ca !=null   ) {
-                            var dat = new Date(full.date_transmission_ca);
+                        if(full.date_refus_go_ft !=null   ) {
+                            var dat = new Date(full.date_refus_go_ft);
                             return dat.addDays(5);
 
                         }
                         else return "N/D";
                     }
-                }
+                }*/
             ],
             "order": [[0, 'desc']]
             ,
@@ -157,7 +157,7 @@ var commandes_refusees_cdi_dt;
             },
             "columns": [
                 { "data": "code_sous_projet" },
-                { "data": "date_transmission_ca" },
+                { "data": "date_refus_go_ft" },
                 { "data": "bei_nro" }
             ],
             "columnDefs": [
@@ -183,19 +183,19 @@ var commandes_refusees_cdi_dt;
 
                         return full.lib_nro + '-' + full.zone;
                     }
-                },
+                }/*,
                 {
                     "targets": 1,
                     orderData: [ 0, 1 ],
-                    "data": "date_transmission_ca",
+                    "data": "date_refus_go_ft",
                     "render": function ( data, type, full, meta ) {
-                        if(full.date_transmission_ca !=null   ) {
-                            var dat = new Date(full.date_transmission_ca);
+                        if(full.date_refus_go_ft !=null   ) {
+                            var dat = new Date(full.date_refus_go_ft);
                             return dat.addDays(5);
                         }
                         else return "N/D";
                     }
-                }
+                }*/
             ],
             "order": [[0, 'desc']]
             ,
