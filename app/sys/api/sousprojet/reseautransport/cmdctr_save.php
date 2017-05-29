@@ -47,7 +47,9 @@ if($sousProjet !== NULL) {
 
         (isset($cctr_intervenant_be))? $fieldslist .=",date_attribution_be = :date_attribution_be": $fieldslist.="" ;
 
-
+        if(isset($cctr_go_ft) && $cctr_go_ft==3){
+            $fieldslist .=",date_refus_go_ft = :date_refus_go_ft";
+        }
         $stm = $db->prepare("update sous_projet_transport_commande_ctr set $fieldslist where id_sous_projet=:id_sous_projet");
         $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
         $stm->bindParam(':id_modificateur',$id_modificateur);
@@ -73,6 +75,10 @@ if($sousProjet !== NULL) {
         $valueslist .=",:date_insertion,:id_createur";
         (isset($cctr_intervenant_be))? $fieldslist .=",date_attribution_be ": $fieldslist.="" ;
         (isset($cctr_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
+        if(isset($cctr_go_ft) && $cctr_go_ft==3){
+            $fieldslist .=",date_refus_go_ft ";
+            $valueslist .=",:date_refus_go_ft ";
+        }
 
         $stm = $db->prepare("insert into sous_projet_transport_commande_ctr ($fieldslist) values ($valueslist)");
         $date_insertion =  date('Y-m-d G:i:s');
@@ -143,7 +149,11 @@ if(isset($cctr_ref_commande_acces)){
 
 if(isset($cctr_go_ft)){
     $stm->bindParam(':go_ft',$cctr_go_ft);
-    $insert = true;
+    if($cctr_go_ft==3){
+        $dt_date_refus_go_ft = date('Y-m-d');
+        $stm->bindParam(':date_refus_go_ft',$dt_date_refus_go_ft);
+    }
+        $insert = true;
 }
 
 if(isset($cctr_ok)){

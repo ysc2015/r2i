@@ -46,6 +46,9 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
         $fieldslist .=",id_modificateur = :id_modificateur";
         (isset($dcc_intervenant_be))? $fieldslist .=",date_attribution_be = :date_attribution_be": $fieldslist.="" ;
+        if(isset($dcc_go_ft) && $dcc_go_ft==3){
+            $fieldslist .=",date_refus_go_ft = :date_refus_go_ft";
+        }
 
         $stm = $db->prepare("update sous_projet_distribution_commande_cdi set $fieldslist where id_sous_projet=:id_sous_projet");
         $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
@@ -73,6 +76,11 @@ if($sousProjet !== NULL) {
         $valueslist .=",:date_insertion,:id_createur";
         (isset($dcc_intervenant_be))? $fieldslist .=",date_attribution_be ": $fieldslist.="" ;
         (isset($dcc_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
+
+        if(isset($dcc_go_ft) && $dcc_go_ft==3){
+            $fieldslist .=",date_refus_go_ft ";
+            $valueslist .=",:date_refus_go_ft ";
+        }
 
         $stm = $db->prepare("insert into sous_projet_distribution_commande_cdi ($fieldslist) values ($valueslist)");
         $date_insertion =  date('Y-m-d G:i:s');
@@ -143,6 +151,10 @@ if(isset($dcc_ref_commande_acces)){
 
 if(isset($dcc_go_ft)){
     $stm->bindParam(':go_ft',$dcc_go_ft);
+    if($dcc_go_ft==3){
+        $dt_date_refus_go_ft = date('Y-m-d');
+        $stm->bindParam(':date_refus_go_ft',$dt_date_refus_go_ft);
+    }
     $insert = true;
 }
 
@@ -258,7 +270,7 @@ if($insert == true && $err == 0){
                 ( $mailaction_entite!=null
                     && isset($dcc_ok)
                     && $dcc_ok == 1
-                    && $mailaction_entite->ok != $da_ok
+                    && $mailaction_entite->ok != $dcc_ok
 
                 )
             )
