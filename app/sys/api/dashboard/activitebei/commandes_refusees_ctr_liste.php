@@ -20,7 +20,7 @@ $columns = array(
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.id_nro", "dt" => 'id_nro' ),
-    array( "db" => "t5.date_transmission_ca", "dt" => 'date_transmission_ca' ),
+    array( "db" => "t5.date_refus_go_ft", "dt" => 'date_refus_go_ft' ),
     array( "db" => "t7.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t7.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
 );
