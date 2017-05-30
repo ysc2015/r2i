@@ -427,6 +427,12 @@
                     }
                 },
                 {
+                    "targets": 4,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.ctr_design_lib_ok === '1' ? 'OUI' : full.ctr_design_lib_ok === '2' ? 'NON' : '');
+                    }
+                },
+                {
                     "targets": 9,
                     "render": function ( data, type, full, meta ) {
                         //return  (full.date_retour_ok !== '0000-00-00 00:00:00' && full.date_retour_ok !== null ? full.date_retour_ok.substring(0, 10) : 'n/d');
