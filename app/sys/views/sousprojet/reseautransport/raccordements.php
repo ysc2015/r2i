@@ -279,7 +279,7 @@
         autoSubmit: true,
         showDelete:true,
         showDownload:true,
-        allowedTypes: "xlsx",
+        allowedTypes: "xlsx,xls",
         onLoad:function(obj)
         {
             $.ajax({
