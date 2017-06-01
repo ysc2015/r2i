@@ -9,7 +9,7 @@ extract($_POST);
 
 
 
-$table = array("sous_projet as t1","projet as t2","nro as t3","`sous_projet_distribution_commande_cdi` as t5" );
+$table = array("sous_projet as t1","projet as t2","nro as t3","`sous_projet_distribution_tirage` as t5" );
 $columns = array(
     array( "db" => "t1.id_sous_projet", "dt" => 'id_sous_projet' ),
     array( "db" => "t1.id_projet", "dt" => 'id_projet' ),
@@ -20,15 +20,16 @@ $columns = array(
     array( "db" => "t1.zone", "dt" => 'zone' ),
     array( "db" => "t3.lib_nro", "dt" => 'lib_nro' ),
     array( "db" => "t3.id_nro", "dt" => 'id_nro' ),
-    array( "db" => "t5.date_refus_go_ft", "dt" => 'date_refus_go_ft' ),
+    array( "db" => "t5.date_attribution_be", "dt" => 'date_attribution_be' ),
     array( "db" => "t7.nom_utilisateur", "dt" => 'nom_utilisateur' ),
     array( "db" => "t7.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
 );
 $condition  = " t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
 $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
-$condition .= " AND  t5.go_ft = 5  ";
-$condition .= " AND (t5.intervenant_be = 0 || t5.intervenant_be IS NULL || t5.intervenant_be = '' )  ";
-$condition .= " AND ((t5.date_refus_go_ft + interval 2 day) < now())";
+$condition .= " AND t5.controle_plans != 2 ";
+$condition .= " AND t5.lien_plans = '' ";
+$condition .= " AND (t5.intervenant_be != 0 && t5.intervenant_be IS NOT NULL && t5.intervenant_be != '' )  ";
+$condition .= " AND ((t5.date_attribution_be + interval 3 day) < now())";
 $condition .= " group by t1.id_sous_projet ";
 
 
