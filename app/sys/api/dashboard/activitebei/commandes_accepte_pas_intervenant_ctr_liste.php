@@ -27,8 +27,8 @@ $columns = array(
 $condition  = " t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro";
 $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
 $condition .= " AND t5.go_ft = 5 ";
-$condition .= " AND (t5.intervenant_be=0 || t5.intervenant_be=NULL)  ";
-//$condition .= " AND ((t5.date_refus_go_ft + interval 2 day) < now())";
+$condition .= " AND (t5.intervenant_be = 0 || t5.intervenant_be IS NULL || t5.intervenant_be = '' )  ";
+$condition .= " AND ((t5.date_refus_go_ft + interval 2 day) < now())";
 $condition .= " group by t1.id_sous_projet ";
 
 
