@@ -46,7 +46,8 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
         $fieldslist .=",id_modificateur = :id_modificateur";
         (isset($dcc_intervenant_be))? $fieldslist .=",date_attribution_be = :date_attribution_be": $fieldslist.="" ;
-        if(isset($dcc_go_ft) && $dcc_go_ft==3){
+        //if(isset($dcc_go_ft) && $dcc_go_ft==3){
+        if(isset($dcc_go_ft) ){
             $fieldslist .=",date_refus_go_ft = :date_refus_go_ft";
         }
 
@@ -77,7 +78,8 @@ if($sousProjet !== NULL) {
         (isset($dcc_intervenant_be))? $fieldslist .=",date_attribution_be ": $fieldslist.="" ;
         (isset($dcc_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
 
-        if(isset($dcc_go_ft) && $dcc_go_ft==3){
+        //if(isset($dcc_go_ft) && $dcc_go_ft==3){
+        if(isset($dcc_go_ft) ){
             $fieldslist .=",date_refus_go_ft ";
             $valueslist .=",:date_refus_go_ft ";
         }
@@ -151,10 +153,10 @@ if(isset($dcc_ref_commande_acces)){
 
 if(isset($dcc_go_ft)){
     $stm->bindParam(':go_ft',$dcc_go_ft);
-    if($dcc_go_ft==3){
+    //if($dcc_go_ft==3){
         $dt_date_refus_go_ft = date('Y-m-d');
         $stm->bindParam(':date_refus_go_ft',$dt_date_refus_go_ft);
-    }
+    //}
     $insert = true;
 }
 
