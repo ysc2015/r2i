@@ -204,7 +204,9 @@
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-12">
-                    <button id="id_sous_projet_distribution_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                    <?php if($connectedProfil->profil->profil->shortlib != "vpi" ) {?>
+                        <button id="id_sous_projet_distribution_aiguillage_btn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-check push-5-r"></i> Enregistrer</button>
+                    <?php } ?>
                     <button id="id_sous_projet_distribution_aiguillage_ot_btn" class="btn btn-info btn-sm" type="button"><i class="fa fa-calendar-o push-5-r"></i> Ordre de travail</button>
                     <button id="id_sous_projet_distribution_aiguillage_btn_osa" class="btn btn-primary btn-sm" type="button">Créer Une tache OSA</button>
                     <button id="id_sous_projet_distribution_aiguillage_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
