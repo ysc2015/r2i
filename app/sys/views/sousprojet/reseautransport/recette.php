@@ -197,11 +197,19 @@
                         )
                     );
                     ?>
-                    <?php if($sousProjet_master == NULL) {?>
+                    <?php if($sousProjet_master == NULL) {
+                        if($connectedProfil->profil->profil->shortlib != "vpi" ) {
+                        ?>
                         <button id="id_sous_projet_transport_recette_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
-                    <?php } else if($sousProjet_master->id_sous_projet == $sousProjet->id_sous_projet) {?>
+                        <?php
+                        }
+                    } else if($sousProjet_master->id_sous_projet == $sousProjet->id_sous_projet) {
+                        if($connectedProfil->profil->profil->shortlib != "vpi" ) {
+                        ?>
                         <button id="id_sous_projet_transport_recette_btn" class="btn btn-primary btn-sm" type="button">Enregistrer</button>
-                    <?php } else {?>
+                        <?php
+                        }
+                    } else {?>
                         <a href="?page=sousprojet&idsousprojet=<?=$sousProjet_master->id_sous_projet?>" class="btn btn-primary btn-sm" type="button">Maitre CTR</a>
                     <?php }?>
 
