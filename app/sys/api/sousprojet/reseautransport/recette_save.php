@@ -47,6 +47,7 @@ if($sousProjet !== NULL) {
         $fieldslist = rtrim($fieldslist,",");
         $fieldslist .=",id_modificateur = :id_modificateur";
         (isset($trec_intervenant_be))? $fieldslist .=",date_attribution_be = :date_attribution_be": $fieldslist.="" ;
+        (isset($trec_doe))? $fieldslist .=",date_attribution_doe = :date_attribution_doe": $fieldslist.="" ;
         $stm = $db->prepare("update sous_projet_transport_recette set $fieldslist where id_sous_projet=:id_sous_projet");
         $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
         $stm->bindParam(':id_modificateur',$id_modificateur);
@@ -72,6 +73,8 @@ if($sousProjet !== NULL) {
         $valueslist .=",:date_insertion,:id_createur";
         (isset($trec_intervenant_be))? $fieldslist .=",date_attribution_be ": $fieldslist.="" ;
         (isset($trec_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
+        (isset($trec_doe))? $fieldslist .=",date_attribution_doe ": $fieldslist.="" ;
+        (isset($trec_doe))? $valueslist .=",:date_attribution_doe ": $valueslist.="" ;
 
         $stm = $db->prepare("insert into sous_projet_transport_recette ($fieldslist) values ($valueslist)");
         $date_insertion =  date('Y-m-d G:i:s');
@@ -107,7 +110,10 @@ if(isset($trec_intervenant_be)){
 }
 
 if(isset($trec_doe)){
+
     $stm->bindParam(':doe',$trec_doe);
+    $dt_attribution_doe = date('Y-m-d');
+    $stm->bindParam(':date_attribution_doe',$dt_attribution_doe);
     $insert = true;
 }
 
