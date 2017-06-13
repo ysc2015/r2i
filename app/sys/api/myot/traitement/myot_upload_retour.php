@@ -4,7 +4,7 @@
  * User: rabii
  */
 
-ini_set("display_errors",'1');
+//ini_set("display_errors",'1');
 //sleep(2);
 
 $output_dir = __DIR__."/../../uploads/sousprojets/";
@@ -245,7 +245,7 @@ if(isset($idot) && !empty($idot)) {
 
                   $mailaction_cc =return_list_mail_cc_notif($db,"upload_retour",5);
                  $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
-
+                    $mailaction_cc[] = "fadelghani@rc2k.fr";
                  if(@   MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
                      $message[] = "Mail envoyé !";
                  } else {
