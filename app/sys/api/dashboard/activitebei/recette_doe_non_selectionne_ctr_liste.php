@@ -29,6 +29,7 @@ $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
 $condition .= " AND t1.id_sous_projet=t9.id_sous_projet ";
 $condition .= " AND ((t9.date_creation + interval 2 day) < now())";
 $condition .= " AND (t5.doe = 0 || t5.doe IS NULL || t5.doe = '' )  ";
+$condition .= " AND t9.type_objet = 'stt_retour_terrain'   ";
 $condition .= " group by t1.id_sous_projet ";
 
 
