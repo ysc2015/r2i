@@ -62,7 +62,7 @@
                                 <th>Date calculées J+2 retour presta (jours ouvrés)</th>
                                 <th>BEI du NRO</th>
                             </tr>
-                            <tr><th colspan="3">Réseau de Transport</th></tr>
+                            <tr><th colspan="3">Réseau de Distribution</th></tr>
                             </tfoot>
                         </table>
                     </div>
