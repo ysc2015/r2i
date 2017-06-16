@@ -137,7 +137,7 @@ class adm extends baseUser {
         Page::dashboard(
             array(
                 "dashboard1" => array("index"),
-                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod","retour_presta_non_valide","retour_presta_non_valide"),
+                "activitevpi" => array("gestionplans","etat_ot","gestiontrvx","gestionpbcpbt","gestionfinprod","retour_presta_non_valide"),
                 "activitebei" => array("statbei1","designreseau","fin_design_hors_delai","plan_aiguillage_attributions","plan_aiguillage_non_uploades","commande_structurantes_attributions","fin_commande_structurantes_hors_delai","saisie_reference_commande_acces","commandes_refusees","commandes_accepte_pas_intervenant","plans_tirage_non_uploades"/*,"donnees_reseau_non_remplies"*/,"recette_doe_non_selectionne","recette_Traitement_retours_terrain","commande_fin_travaux")/*,
                 "productiongenerale" => array("index"),*/
             )

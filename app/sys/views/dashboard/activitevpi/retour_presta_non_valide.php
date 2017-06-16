@@ -2,10 +2,10 @@
     <div class="block-header bg-primary-light">
         <ul class="block-options">
             <li>
-                <button id="activitebei_retour_presta_non_valide_block_refresh" type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                <button id="activitevpi_retour_presta_non_valide_block_refresh" type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
             </li>
             <li>
-                <button id="activitebei_retour_presta_non_valide_block_reduce" type="button" data-toggle="block-option" data-action="content_toggle" ><i class="si si-arrow-up"></i></button>
+                <button id="activitevpi_retour_presta_non_valide_block_reduce" type="button" data-toggle="block-option" data-action="content_toggle" ><i class="si si-arrow-up"></i></button>
             </li>
         </ul>
         <h3 class="block-title"> Retour presta non valide</h3>
