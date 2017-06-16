@@ -65,7 +65,7 @@ var retour_presta_non_valide_dt;
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/dashboard/activitebei/retour_presta_non_valide_liste.php',
+                "url": 'api/dashboard/activitevpi/retour_presta_non_valide_liste.php',
                 "method":'POST'
             },
             "columns": [
