@@ -25,5 +25,5 @@ $condition = "";
 $left = "";
 
 
-echo json_encode(@SSP::simpleJoin($_POST,$db,$table,"idsp",$columns,$condition,$left));
+echo json_encode(@SSP::simpleJoin($_POST,$db,$table,"id_sous_projet",$columns,$condition,$left));
 ?>
