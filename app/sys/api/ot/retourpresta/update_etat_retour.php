@@ -70,7 +70,7 @@ if($err == 0) {
             }else
                 $sousProjet->{$value}->etat_retour = $val;
 
-
+            $sousProjet->{$value}->date_retour = date('Y-m-d');
             $sousProjet->{$value}->save();
         }
     }
