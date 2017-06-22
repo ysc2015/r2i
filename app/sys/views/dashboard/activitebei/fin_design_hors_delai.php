@@ -140,7 +140,7 @@ var fin_design_hors_delai_cdi_dt;
                         var dat = new Date(full.date_fin);
 
                         if(full.date_fin != '0000-00-00')return   dat.addDays(3);
-                        else return '0000-00-00';
+                        else return 'N∕D';
                     }
                 }
             ],
@@ -200,7 +200,7 @@ var fin_design_hors_delai_cdi_dt;
                         var dat = new Date(full.date_fin);
 
                         if(full.date_fin != '0000-00-00')return  dat.addDays(5);
-                        else return '0000-00-00';
+                        else return 'N∕D';
                     }
                 }
             ],

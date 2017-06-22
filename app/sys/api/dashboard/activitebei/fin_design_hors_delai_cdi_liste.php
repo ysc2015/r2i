@@ -30,7 +30,8 @@ $columns = array(
 $condition  = " t1.id_projet=t2.id_projet AND t2.id_nro=t3.id_nro ";
 $condition .= " AND t1.id_sous_projet=t5.id_sous_projet ";
 
-$condition .= " AND t5.date_debut <  '".$date_plus_5_jours."' ";
+$condition .= " AND DATEDIFF(NOW(),t5.date_debut) > 4 ";
+$condition .= " AND t5.ok != 1 ";
 $condition .= " group by t1.id_sous_projet ";
 
 
