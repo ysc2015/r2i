@@ -15,13 +15,14 @@ $b432 = 0;
 $b288 = 0;
 $b144 = 0;
 $b48 = 0;
+$b72 = 0;
 
 $c720 = 0;
 $c432 = 0;
 $c288 = 0;
 $c144 = 0;
 $c48 = 0;
-
+$c72 = 0;
 $nberchambre = 0 ;
 $totallineaire = 0 ;
 
@@ -162,6 +163,7 @@ if($err==0) {
                                     $c288 = $sousProjet->{$value[0]}->lineaire3;
                                     $c144 = $sousProjet->{$value[0]}->lineaire4;
                                     $c48 = 0;
+                                    $c72 = 0;
                                     break;
                                 case "transporttirage" :
                                     $b720 = $sousProjet->{$value[0]}->lineaire5;
@@ -174,6 +176,7 @@ if($err==0) {
                                     $c288 = $sousProjet->{$value[0]}->lineaire3;
                                     $c144 = $sousProjet->{$value[0]}->lineaire4;
                                     $c48 = 0;
+                                    $c72 = 0;
                                     break;
                                 case "transportraccordement" :
                                     break;
@@ -181,21 +184,25 @@ if($err==0) {
                                     $b288 = $sousProjet->{$value[0]}->lineaire5;
                                     $b144 = $sousProjet->{$value[0]}->lineaire6;
                                     $b48 = $sousProjet->{$value[0]}->lineaire8;
+                                    $b72 = $sousProjet->{$value[0]}->lineaire7;
                                     $c720 = 0;
                                     $c432 = 0;
                                     $c288 = $sousProjet->{$value[0]}->lineaire1;
                                     $c144 = $sousProjet->{$value[0]}->lineaire2;
                                     $c48 = $sousProjet->{$value[0]}->lineaire4;
+                                    $c72 = $sousProjet->{$value[0]}->lineaire3;
                                     break;
                                 case "distributiontirage" :
                                     $b288 = $sousProjet->{$value[0]}->lineaire5;
                                     $b144 = $sousProjet->{$value[0]}->lineaire6;
                                     $b48 = $sousProjet->{$value[0]}->lineaire8;
+                                    $b72 = $sousProjet->{$value[0]}->lineaire7;
                                     $c720 = 0;
                                     $c432 = 0;
                                     $c288 = $sousProjet->{$value[0]}->lineaire1;
                                     $c144 = $sousProjet->{$value[0]}->lineaire2;
                                     $c48 = $sousProjet->{$value[0]}->lineaire4;
+                                    $c72 = $sousProjet->{$value[0]}->lineaire3;
                                     break;
                                 case "distributionraccordement" :
                                     break;
@@ -215,7 +222,7 @@ if($err==0) {
                         //svn
                         $sousProjet->{$value[0]}->date_transmission_plans = date('Y-m-d');
                         //envoi de mail
-                        $totallineaire = $c720 + $c432 + $c144 + $c48 ;
+                        $totallineaire = $c720 + $c432 + $c144 + $c48 + $c72 ;
 
 
                     } else {
@@ -225,8 +232,8 @@ if($err==0) {
 
                 }
                 if($status == 3 && strtotime($ot->date_fin) > strtotime($ot->date_creation)  ){
-                    $boite = array($b720,$b432,$b288,$b144,$b48);
-                    $chambre = array($c720,$c432,$c288,$c144,$c48);
+                    $boite = array($b720,$b432,$b288,$b144,$b48,$b72);
+                    $chambre = array($c720,$c432,$c288,$c144,$c48,$c72);
 
                     $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'','',3,'',$ot->type_ot,$ot->sousprojet->ville,$boite,$chambre,$nberchambre,$totallineaire,'',$ot->id_sous_projet,$ot->commentaire);
                     $mailaction_object = $mailaction_html[1];
