@@ -195,7 +195,7 @@
     var old_tr = null;
     var old_tr_class = '';
     var ot_affect_dt;
-    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter","#transmettre_ot","#bklog_ot"];
+    var ot_affect_btns = ["#affecter_ot_show","#annuler_affecter","#transmettre_ot","#bklog_ot","#mod_date_ot"];
     var planning = function() {
         var initContent = function(view) {
 
@@ -509,6 +509,10 @@
                                 $("#transmettre_ot").removeClass('disabled');
                             }
 
+                            if(/*ot_affect_dt.row('.selected').data().id_entreprise > 0 && ot_affect_dt.row('.selected').data().id_equipe_stt > 0 && */ot_affect_dt.row('.selected').data().date_debut !== null && ot_affect_dt.row('.selected').data().date_fin !== null ) {
+                                $("#mod_date_ot").removeClass('disabled');
+                            }
+
                             $("#bklog_ot").removeClass('disabled');
                         }
 
@@ -576,6 +580,52 @@
                             App.showMessage(message,'#message_annuler_affecter_ot');
                         });
                     });
+                    $("#mod_date_ot").click(function(e) {
+                        e.preventDefault();
+                        console.log('mod_date_ot');
+                        update = false;
+                        /*$.ajax({
+                            method: "POST",
+                            url: "api/ot/ot/set_ot_bklog.php",
+                            dataType: "json",
+                            data: {
+                                idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail,
+                                bklog: ot_affect_dt.row('.selected').data().backlog
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                ot_status_updated = true;
+                                ot_dt.draw(false);
+                            }
+                            App.showMessage(message,'#message_annuler_affecter_ot');
+                        });*/
+                    });
+                    $("#save_date_ot").click(function(e) {
+                        e.preventDefault();
+                        console.log('save_date_ot');
+                        $("#mod_date_ot_block_content").toggleClass('block-opt-refresh');
+                        $.ajax({
+                            method: "POST",
+                            url: "api/ot/ot/mod_date_ot.php",
+                            dataType: "json",
+                            data: {
+                                idot: ot_affect_dt.row('.selected').data().id_ordre_de_travail,
+                                date1: $("#mod_date_ot_debut").val(),
+                                date2: $("#mod_date_ot_fin").val(),
+                                ide: ot_affect_dt.row('.selected').data().id_entreprise,
+                                ideq: ot_affect_dt.row('.selected').data().id_equipe_stt
+                            }
+                        }).done(function (message) {
+                            $("#mod_date_ot_block_content").removeClass('block-opt-refresh');
+                            if(message.error == 0) {
+                                //$("#ot_affecter_form")[0].reset();
+                                /*$("#mod_date_ot_debut").val('');
+                                $("#mod_date_ot_fin").val('');*/
+                                update = true;
+                            }
+                            App.showMessage(message,'#message_mod_date_ot');
+                        });
+                    });
                     $("#save_ot_affecter").click(function() {
                         //console.log(ot_affect_dt.row('.selected').data().id_ordre_de_travail);
                         $.ajax({
@@ -637,6 +687,11 @@
                             ot_affect_dt.draw(false);
                         }
                         //console.log('hidden');
+                    });
+                    $('#mod-date-ot').on('hidden.bs.modal', function () {
+                        if(update) {
+                            ot_affect_dt.draw(false);
+                        }
                     });
                     $('#affecter-ot').on('shown.bs.modal', function () {
                         //console.log('shown');
