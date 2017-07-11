@@ -478,7 +478,7 @@
                 {
                     "targets": 25,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_date_retour !== '0000-00-00' && full.ctr_tirage_date_retour !== null ? full.ctr_tirage_date_retour : full.ctr_tirage_date_retour);
+                        return  (full.ctr_tirage_date_retour !== '0000-00-00' && full.ctr_tirage_date_retour !== null ? full.ctr_tirage_date_retour : 'n/d');
                     }
                 },
                 {
