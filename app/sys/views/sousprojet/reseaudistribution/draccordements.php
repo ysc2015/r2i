@@ -172,7 +172,7 @@
 
                     <label class="css-input switch switch-sm switch-success">
                         <input id="id_sous_projet_distribution_raccordements_charge_be" class="a2tcheckbox" type="checkbox" value="FALSE" <?= ($sousProjet->distributionraccordement!==NULL && $sousProjet->distributionraccordement->date_charge_be !=NULL ?"checked" : "")?> ><span></span>
-                        Charge BE prise en charge : <span id="charge_be_message_distribution_raccordements"><?= ($sousProjet->distributionraccordement!==NULL && $sousProjet->distributionraccordement->date_charge_be !=NULL ?" Le ".$sousProjet->distributionraccordement->date_charge_be."" : "")?></span>
+                        Prise en charge BE : <span id="charge_be_message_distribution_raccordements"><?= ($sousProjet->distributionraccordement!==NULL && $sousProjet->distributionraccordement->date_charge_be !=NULL ?" Le ".$sousProjet->distributionraccordement->date_charge_be."" : "")?></span>
                     </label>
                 </div>
             </div>

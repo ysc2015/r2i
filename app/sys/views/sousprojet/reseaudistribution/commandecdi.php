@@ -123,7 +123,7 @@
 
                     <label class="css-input switch switch-sm switch-success">
                         <input id="id_sous_projet_distribution_commandecdi_charge_be" class="a2tcheckbox" type="checkbox" value="FALSE" <?= ($sousProjet->distributioncmdcdi!==NULL && $sousProjet->distributioncmdcdi->date_charge_be !=NULL ?"checked" : "")?> ><span></span>
-                        Charge BE prise en charge : <span id="charge_be_message_distribution_commandecdi"><?= ($sousProjet->distributioncmdcdi!==NULL && $sousProjet->distributioncmdcdi->date_charge_be !=NULL ?" Le ".$sousProjet->distributioncmdcdi->date_charge_be."" : "")?></span>
+                        Prise en charge BE : <span id="charge_be_message_distribution_commandecdi"><?= ($sousProjet->distributioncmdcdi!==NULL && $sousProjet->distributioncmdcdi->date_charge_be !=NULL ?" Le ".$sousProjet->distributioncmdcdi->date_charge_be."" : "")?></span>
                     </label>
                 </div>
             </div>
