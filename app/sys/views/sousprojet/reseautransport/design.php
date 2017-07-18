@@ -95,7 +95,7 @@
                     <button id="id_sous_projet_transport_design_list_tache" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#liste_tache_osa' data-backdrop="static" data-keyboard="false" type="button">Traiter Une tache OSA</button>
                     <label class="css-input switch switch-sm switch-success">
                         <input id="id_sous_projet_transport_design_charge_be" class="a2tcheckbox" type="checkbox" value="FALSE" <?= ($sousProjet->transportdesign!==NULL && $sousProjet->transportdesign->date_charge_be !=NULL ?"checked" : "")?> ><span></span>
-                        Charge BE prise en charge : <span id="charge_be_message_transport_design"><?= ($sousProjet->transportdesign!==NULL && $sousProjet->transportdesign->date_charge_be !=NULL ?" Le ".$sousProjet->transportdesign->date_charge_be."" : "")?></span>
+                        Prise en charge BE : <span id="charge_be_message_transport_design"><?= ($sousProjet->transportdesign!==NULL && $sousProjet->transportdesign->date_charge_be !=NULL ?" Le ".$sousProjet->transportdesign->date_charge_be."" : "")?></span>
                     </label>
                 </div>
             </div>

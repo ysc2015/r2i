@@ -199,7 +199,7 @@
                     <button id="id_sous_projet_distribution_recette_blq" class='btn btn-primary btn-sm' data-toggle="modal" data-target='#blq-modal' data-backdrop="static" data-keyboard="false" type="button"><i class="fa fa-question push-5-r"></i> BLQ / PBC</button>
                      <label class="css-input switch switch-sm switch-success">
                         <input id="id_sous_projet_distribution_recette_charge_be" class="a2tcheckbox" type="checkbox" value="FALSE" <?= ($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->date_charge_be !=NULL ?"checked" : "")?> ><span></span>
-                        Charge BE prise en charge : <span id="charge_be_message_distribution_recette"><?= ($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->date_charge_be !=NULL ?" Le ".$sousProjet->distributionrecette->date_charge_be."" : "")?></span>
+                        Prise en charge BE : <span id="charge_be_message_distribution_recette"><?= ($sousProjet->distributionrecette!==NULL && $sousProjet->distributionrecette->date_charge_be !=NULL ?" Le ".$sousProjet->distributionrecette->date_charge_be."" : "")?></span>
                     </label>
                 </div>
             </div>
