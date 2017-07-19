@@ -26,8 +26,8 @@
             console.log(ot_dt.row('.selected').data().id_ordre_de_travail);
 
             //$('#ot_block').addClass('block-opt-refresh');
-            $('#linked-ch-wrapper').addClass('block-themed block-opt-refresh');
-            $('#linked-pb-wrapper').addClass('block-themed block-opt-refresh');
+            $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh');
+            $('#linked-pb-wrapper').addClass('block block-themed block-opt-refresh');
 
             $.ajax({
                 method: "POST",
