@@ -10,13 +10,18 @@
     });
 
     $(document).ready(function() {
-        /*$("#poches_select").change(function(e){
+         $("#poches_select").change(function(e){
 
-            ;
+             e.preventDefault();
 
-        });*/
+             if($("#poches_select").val() > 0) {
 
-        $("#open_poche").click(function(e){
+                 document.location.href = '?page=sousprojet&idsousprojet=' + $("#poches_select").val();
+             }
+
+        });
+
+        /*$("#open_poche").click(function(e){
 
             e.preventDefault();
 
@@ -25,6 +30,6 @@
                 document.location.href = '?page=sousprojet&idsousprojet=' + $("#poches_select").val();
             }
 
-        });
+        });*/
     } );
 </script>
