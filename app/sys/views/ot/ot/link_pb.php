@@ -25,7 +25,8 @@
 
             console.log(ot_dt.row('.selected').data().id_ordre_de_travail);
 
-            $('#ot_block').addClass('block-opt-refresh');
+            $('#linked-ch-wrapper').addClass('block-opt-refresh');
+            $('#linked-pb-wrapper').addClass('block-opt-refresh');
 
             $.ajax({
                 method: "POST",
@@ -39,7 +40,8 @@
                     objtype: getObjectTypeForEntryPB(get('tentree'))
                 }
             }).done(function (msg) {
-                $('#ot_block').removeClass('block-opt-refresh');
+                $('#linked-ch-wrapper').removeClass('block-opt-refresh');
+                $('#linked-pb-wrapper').removeClass('block-opt-refresh');
                 App.showMessage(msg,'#message_ot_link2');
                 displayDevis();
             });
