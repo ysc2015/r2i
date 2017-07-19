@@ -18,6 +18,7 @@ if(isset($idot) && !empty($idot)){
             $stm = $db->prepare("update ressource set id_ordre_de_travail=:id_ordre_de_travail where id_ressource = $idf");
             if($stm->execute(array(':id_ordre_de_travail' => $idot))) {
 
+
                 //traitement du devis pour l'enregistrement dans la base
                 $templateFile = __DIR__."/../../uploads/templates/Bordereaux de Prix FTTH_INT_HRZ_INDA.xlsx";
 
@@ -31,6 +32,12 @@ if(isset($idot) && !empty($idot)){
                 if($row->type_objet == "transport_racoord_pboite") {
                     loadExcelDEF_BPE_EBM_CTR($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 } else if($row->type_objet == "distribution_racoord_pboite") {
+                    $stm_debut_traitement_devis = $db->prepare("insert into etat_traitement_devis (id_ressource,id_ordre_traivail,id_user) values (:id_ressource,:id_ordre_traivail,:id_user)");
+                    $stm_debut_traitement_devis->bindParam(":id_ressource",$idf);
+                    $stm_debut_traitement_devis->bindParam(":id_ordre_traivail",$idot);
+                    $stm_debut_traitement_devis->bindParam(":id_user",$connectedProfil->profil->id_utilisateur);
+                    $stm_debut_traitement_devis->execute();
+
                     loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf,$idot,$connectedProfil);
                     loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 }
