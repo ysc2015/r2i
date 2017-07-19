@@ -12141,6 +12141,9 @@ a.list-group-item:focus {
 .block.block-opt-refresh .block-content {
   opacity: .15;
 }
+.block.block-opt-refresh.block-content {
+  opacity: .15;
+}
 .block.block-opt-refresh:after {
   position: absolute;
   top: 50%;

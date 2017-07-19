@@ -935,6 +935,9 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
             }*/
 
 
+        $stm_fin_traitement_devis = $db->prepare("update etat_traitement_devis set etat = :etat ");
+        $stm_fin_traitement_devis->bindValue (":etat",0);
+        $stm_fin_traitement_devis->execute();
 
         return json_encode($tabreturn);
 
