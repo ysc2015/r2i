@@ -49,8 +49,8 @@
                 url: "api/ot/ot/ot_add.php",
                 dataType: "json",
                 data: {
-                    idsp : get('idsousprojet'),
-                    tentree : get('tentree'),
+                    idsp : get('idsousprojet',ot_dt),
+                    tentree : get('tentree',ot_dt),
                     type_ot : $('#type_ot').val(),
                     type_ot_text : $('#type_ot option:selected').text(),
                     commentaire : $('#commentaire').val()

@@ -299,6 +299,7 @@
                         }
 
                     });
+                    console.log('api/ot/ot/ot_affect_liste.php?idsp='+get('idsousprojet',ot_dt)+'&tentree='+get('tentree',ot_dt));
                     ot_affect_dt = $('#ot_affect_table').DataTable( {
                         "language": {
                             "url": "assets/js/plugins/datatables/French.json"
@@ -307,7 +308,7 @@
                         "processing": true,
                         "serverSide": true,
                         "ajax": {
-                            "url": 'api/ot/ot/ot_affect_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree')
+                            "url": 'api/ot/ot/ot_affect_liste.php?idsp='+get('idsousprojet',ot_dt)+'&tentree='+get('tentree',ot_dt)
                         },
                         "columns": [
                             { "data": "id_ordre_de_travail" },

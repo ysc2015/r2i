@@ -73,49 +73,54 @@ switch ($page) {
         echo "<br><br>";
         break;
     case "ot":
-        if(isset($idsousprojet) && isset($tentree) && in_array($tentree,array("transportaiguillage","transporttirage","distributionaiguillage","distributiontirage","transportraccordement","distributionraccordement","transportrecette","distributionrecette"))) {
-            $sousProjet = SousProjet::first(
-                array('conditions' =>
-                    array("id_sous_projet = ?", $idsousprojet)
-                )
-            );
-        }
-        if($sousProjet !== NULL) {
-            switch($connectedProfil->profil->profil->shortlib) {
-                /*case "bei":
-                    if(in_array($connectedProfil->profil->id_utilisateur,explode("|",trim($sousProjet->users_in,"|")))) {
-                        $connectedProfil->ot();
-                    } else {
-                        $connectedProfil->ressourceAccessDenied();
-                    }
-                    break;*/
-                case "cdp":
-                    if($sousProjet->projet->id_chef_projet === $connectedProfil->profil->id_utilisateur ) {
-                        $connectedProfil->ot();
-                    } else {
-                        $connectedProfil->ressourceAccessDenied();
-                    }
-                    break;
-                case "vpi":
-                    $arr = array();
-                    $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
-                    $stm->execute();
-                    $nros = $stm->fetchAll();
-                    foreach($nros as $nro) {
-                        $arr[] = $nro['id_nro'];
-                    }
-                    if(in_array($sousProjet->projet->id_nro,$arr)) {
-                        $connectedProfil->ot();
-                    } else {
-                        $connectedProfil->ressourceAccessDenied();
-                    }
-                    break;
-                default:
-                    $connectedProfil->ot();
-                    break;
-            }
+        if($connectedProfil->profil->profil->shortlib == "pci") {
+            $connectedProfil->ot();
         } else {
-            $connectedProfil->ressourceNotFound();
+
+            if(isset($idsousprojet) && isset($tentree) && in_array($tentree,array("transportaiguillage","transporttirage","distributionaiguillage","distributiontirage","transportraccordement","distributionraccordement","transportrecette","distributionrecette"))) {
+                $sousProjet = SousProjet::first(
+                    array('conditions' =>
+                        array("id_sous_projet = ?", $idsousprojet)
+                    )
+                );
+            }
+            if($sousProjet !== NULL) {
+                switch($connectedProfil->profil->profil->shortlib) {
+                    /*case "bei":
+                        if(in_array($connectedProfil->profil->id_utilisateur,explode("|",trim($sousProjet->users_in,"|")))) {
+                            $connectedProfil->ot();
+                        } else {
+                            $connectedProfil->ressourceAccessDenied();
+                        }
+                        break;*/
+                    case "cdp":
+                        if($sousProjet->projet->id_chef_projet === $connectedProfil->profil->id_utilisateur ) {
+                            $connectedProfil->ot();
+                        } else {
+                            $connectedProfil->ressourceAccessDenied();
+                        }
+                        break;
+                    case "vpi":
+                        $arr = array();
+                        $stm = $db->prepare("select id_nro from nro where id_utilisateur = ".$connectedProfil->profil->id_utilisateur);
+                        $stm->execute();
+                        $nros = $stm->fetchAll();
+                        foreach($nros as $nro) {
+                            $arr[] = $nro['id_nro'];
+                        }
+                        if(in_array($sousProjet->projet->id_nro,$arr)) {
+                            $connectedProfil->ot();
+                        } else {
+                            $connectedProfil->ressourceAccessDenied();
+                        }
+                        break;
+                    default:
+                        $connectedProfil->ot();
+                        break;
+                }
+            } else {
+                $connectedProfil->ressourceNotFound();
+            }
         }
         echo "<br><br>";
         break;

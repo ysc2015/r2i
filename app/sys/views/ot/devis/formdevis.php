@@ -397,7 +397,7 @@ function call_back(){
                 url: "api/ot/devis/set_lineare_devis.php",
                 dataType: "json",
                 data: {
-                    idsp : get('idsousprojet'),
+                    idsp : get('idsousprojet',ot_dt),
                     iddevis: id_devis,
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail
                 }
@@ -438,7 +438,7 @@ function call_back(){
                 url: "api/ot/devis/set_lineare_devis.php",
                 dataType: "json",
                 data: {
-                    idsp : get('idsousprojet'),
+                    idsp : get('idsousprojet',ot_dt),
                     iddevis: id_devis,
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail
                 }
@@ -478,7 +478,7 @@ function call_back(){
                 url: "api/ot/devis/set_lineare_devis.php",
                 dataType: "json",
                 data: {
-                    idsp : get('idsousprojet'),
+                    idsp : get('idsousprojet',ot_dt),
                     iddevis: id_devis,
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail
                 }
