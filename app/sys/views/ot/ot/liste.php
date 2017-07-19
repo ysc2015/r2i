@@ -161,8 +161,8 @@
             url: "api/ot/ot/get_type_ot.php",
             dataType: "json",
             data: {
-                idsousprojet : get('idsousprojet'),
-                tentree : (get('tentree')=="transportraccordement"?"transporttirage":(get('tentree')=="distributionraccordement"?"distributiontirage":get('tentree')))
+                idsousprojet : get('idsousprojet',ot_dt),
+                tentree : (get('tentree',ot_dt)=="transportraccordement"?"transporttirage":(get('tentree',ot_dt)=="distributionraccordement"?"distributiontirage":get('tentree',ot_dt)))
             }
         }).done(function (msg) {
             //console.log(msg.html);
@@ -179,7 +179,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet')+'&tentree='+get('tentree')
+                "url": 'api/ot/ot/ot_liste.php?idsp='+get('idsousprojet',ot_dt)+'&tentree='+get('tentree',ot_dt)
             },
             "columns": [
                 { "data": "id_ordre_de_travail" },
@@ -214,7 +214,7 @@
                 blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot=-1' ).load();
 
                 devis_dt.ajax.url('api/ot/devis/devis_liste.php?idot=-1').load();
-                ot_affect_dt.draw(false);
+                if(get('idsousprojet') !== undefined) ot_affect_dt.draw(false);//temp fix pci need
             }
         } );
 
@@ -339,7 +339,7 @@
                     url: "api/ot/ot/get_ch_files_list.php",
                     dataType: "json",
                     data: {
-                        objtype: getObjectTypeForEntry(get('tentree')),
+                        objtype: getObjectTypeForEntry(get('tentree',ot_dt)),
                         idot : ot_dt.row('.selected').data().id_ordre_de_travail,
                         idsp : ot_dt.row('.selected').data().id_sous_projet
                     }
@@ -365,9 +365,9 @@
                             url: "api/ot/ot/get_pb_files_list.php",
                             dataType: "json",
                             data: {
-                                objtype: getObjectTypeForEntryPB(get('tentree')),
+                                objtype: getObjectTypeForEntryPB(get('tentree',ot_dt)),
                                 idot : ot_dt.row('.selected').data().id_ordre_de_travail,
-                                idsp : get('idsousprojet')
+                                idsp : get('idsousprojet',ot_dt)
                             }
                         }).done(function (data) {
                             var values = [];

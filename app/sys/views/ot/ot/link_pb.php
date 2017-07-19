@@ -37,8 +37,8 @@
                     idf: $('#linked-pb').val(),
                     idot : ot_dt.row('.selected').data().id_ordre_de_travail,
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail,
-                    idsp : get('idsousprojet'),
-                    objtype: getObjectTypeForEntryPB(get('tentree'))
+                    idsp : get('idsousprojet',ot_dt),
+                    objtype: getObjectTypeForEntryPB(get('tentree',ot_dt))
                 }
             }).done(function (msg) {
                 $('#linked-ch-wrapper').removeClass('block-opt-refresh');

@@ -29,9 +29,22 @@ function setDuree(selector1,selector2,d1,d2) {
     });
 }
 
-function get(name){
+function get(name,dt = null){
+    console.log('getttt dt ' + dt);
     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-        return decodeURIComponent(name[1]);
+        if(decodeURIComponent(name[1]) != undefined) return decodeURIComponent(name[1]);
+        else if(dt !== null) {
+
+            var ret;
+
+            switch (name) {
+                case 'idsousprojet' : ret = dt.row('.selected').data().id_sous_projet; break;
+                case 'tentree' : ret = dt.row('.selected').data().type_entree;  break;
+                default : break;
+            }
+
+            return ret;
+        } else return undefined;
 }
 
 function checkLinears(sel){

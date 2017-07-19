@@ -107,22 +107,29 @@ ADM;
         break;
 
     case "ot":
-        $nro = "";
-        $sousProjet = SousProjet::first(
-            array('conditions' =>
-                array("id_sous_projet = ?", $idsousprojet)
-            )
-        );
-        if($sousProjet !== NULL) {
-            if($sousProjet->projet !== NULL) {
-                if($sousProjet->projet->nro !== NULL) {
-                    $nro = $sousProjet->projet->nro->lib_nro;
+        if($connectedProfil->profil->profil->shortlib == "pci") {
+            return json_decode(json_encode(array("header"=>"Ordres de travail",
+                "subheader"=>"Gestion (bdc,ebm, ...)",
+                "navigator"=>"<li>Ordres de travail</li>")));
+        } else {
+
+            $nro = "";
+            $sousProjet = SousProjet::first(
+                array('conditions' =>
+                    array("id_sous_projet = ?", $idsousprojet)
+                )
+            );
+            if($sousProjet !== NULL) {
+                if($sousProjet->projet !== NULL) {
+                    if($sousProjet->projet->nro !== NULL) {
+                        $nro = $sousProjet->projet->nro->lib_nro;
+                    }
                 }
             }
+            return json_decode(json_encode(array("header"=>"Ordres de travail",
+                "subheader"=>"Ordres de travail",
+                "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">".$nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone)."</a></li><li>OT</li>")));
         }
-        return json_decode(json_encode(array("header"=>"Ordres de travail",
-            "subheader"=>"Ordres de travail",
-            "navigator"=>"<li><a class=\"link-effect\" href=\"?page=projet\">Projets</a></li><li><a class=\"link-effect\" href=\"?page=sousprojet&idsousprojet=$idsousprojet\">".$nro."-".(strlen($sousProjet->zone)==1?"0".$sousProjet->zone:$sousProjet->zone)."</a></li><li>OT</li>")));
         break;
 
     case "chambre":

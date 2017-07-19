@@ -135,7 +135,7 @@
                 dataType: "json",
                 method: "POST",
                 data: {
-                    idsp : get('idsousprojet'),
+                    idsp : get('idsousprojet',ot_dt),
                     typeot : ot_dt.row('.selected').data().type_ot,
                     idtot : ot_dt.row('.selected').data().id_type_ordre_travail,
                     val : etat_retour

@@ -694,6 +694,23 @@ class pci extends baseUser {
         );
     }
 
+    function ot() {
+        Page::ot(
+            array(
+                "ot" => array("liste","link","link_pb"),
+                "fcomp" => array("fcomp"),
+                "deot" => array("deot"),
+                "devis" => array("formdevis","delete","convert_bdc"),
+                "ebm" => array("formebm"),
+                "retourpresta" => array("retourpresta"),
+                "chambreot" => array("liste","update","pointbloquant"),
+                /*"planningot" => array("affecter"),*/
+                /*"synoptique" => array("synoptique"),*/
+                "blq" => array("blq")
+            )
+        );
+    }
+
     function pbc() {
         Page::pbc(
             array(
@@ -712,7 +729,7 @@ class pci extends baseUser {
     }
 
     function sidebar() {
-        Page::sidebar(/*"dashboard",*/"pci_titre","pci_liste","pointbloquant_liste","menu_pbc");
+        Page::sidebar(/*"dashboard",*/"pci_titre","pci_liste","pci_gestion","pointbloquant_liste","menu_pbc");
     }
 }
 class stt extends baseUser {

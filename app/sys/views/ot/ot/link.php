@@ -33,7 +33,7 @@
                 data: {
                     list: list,
                     idot : ot_dt.row('.selected').data().id_ordre_de_travail,
-                    objtype: getObjectTypeForEntry(get('tentree'))
+                    objtype: getObjectTypeForEntry(get('tentree',ot_dt))
                 }
             }).done(function (msg) {
                 if(msg.error == 0) {

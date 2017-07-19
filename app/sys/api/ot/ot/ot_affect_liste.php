@@ -27,14 +27,27 @@ $columns = array(
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail";
 
-if(isset($idsp)) {
-    $condition .=" AND t1.id_sous_projet=$idsp";
-}
+if($connectedProfil->profil->profil->shortlib == "pci") {
 
-if(isset($tentree)) {
-    if($tentree == "transportraccordement") $tentree = "transporttirage";
-    if($tentree == "distributionraccordement") $tentree = "distributiontirage";
-    $condition .=" AND t1.type_entree='$tentree'";
+    $table[] = "sous_projet as t3";
+    $table[] = "projet as t4";
+    $table[] = "nro as t5";
+    $table[] = "nro_utilisateur as t6";
+
+    $condition .= " AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
+    $condition .=" AND t4.id_nro = t6.id_nro AND t6.id_utilisateur = ".$connectedProfil->profil->id_utilisateur;
+    $condition .=" AND t1.backlog <> 1 ";
+    $condition .=" AND t1.id_etat_ot IN(2,3,4,5,6,8) ";
+} else {
+    if(isset($idsp)) {
+        $condition .=" AND t1.id_sous_projet=$idsp";
+    }
+
+    if(isset($tentree)) {
+        if($tentree == "transportraccordement") $tentree = "transporttirage";
+        if($tentree == "distributionraccordement") $tentree = "distributiontirage";
+        $condition .=" AND t1.type_entree='$tentree'";
+    }
 }
 
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_sous_projet",$columns,$condition,"left join entreprises_stt as es on t1.id_entreprise=es.id_entreprise
