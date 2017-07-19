@@ -3,13 +3,13 @@
         <ul class="block-options">
             <!--<li>
                 <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-            </li>-->
+            </li>
             <li>
                 <button id="open_poche" class='btn btn-info btn-sm' style="color: #000;"><span class='glyphicon glyphicon-folder-open'>&nbsp;</span> Ouvrir sous projet</button>
-            </li>
+            </li>-->
         </ul>
         <!--<h3 class="block-title"></h3>-->
-        <select class="js-select2 form-control" id="poches_select" name="poches_select" size="1" style="width: 80%;" data-placeholder="Séléctionner une poche..">
+        <select class="js-select2 form-control" id="poches_select" name="poches_select" size="1" style="width: 90%;" data-placeholder="Séléctionner une poche..">
             <option value="">&nbsp;</option>
             <?php
             $stm = $db->prepare("select sp.id_sous_projet,sp.zone,n.lib_nro from sous_projet sp , projet p, nro n where sp.id_projet = p.id_projet and p.id_nro = n.id_nro order by n.lib_nro,sp.zone asc");
