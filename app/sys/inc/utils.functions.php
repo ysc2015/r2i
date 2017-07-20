@@ -935,8 +935,11 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
             }*/
 
 
-        $stm_fin_traitement_devis = $db->prepare("update etat_traitement_devis set etat = :etat ");
+        $stm_fin_traitement_devis = $db->prepare("update etat_traitement_devis set etat = :etat where id_ressource = :id_ressource and id_ordre_traivail = :id_ordre_traivail and  id_user = :id_user ");
         $stm_fin_traitement_devis->bindValue (":etat",0);
+        $stm_fin_traitement_devis->bindParam (":id_ressource",$idressource);
+        $stm_fin_traitement_devis->bindParam (":id_ordre_traivail",$id_ordre_de_travail);
+        $stm_fin_traitement_devis->bindParam (":id_user",$connectedProfil->profil->id_utilisateur);
         $stm_fin_traitement_devis->execute();
 
         return json_encode($tabreturn);

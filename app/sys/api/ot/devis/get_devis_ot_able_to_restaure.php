@@ -10,7 +10,7 @@ $err = 0;
 $message = array();
 $restaure = 0;
 $add_new_devis= 0;
-
+$traitement_en_cours = 0 ;
 $stm = $db->prepare("select count(*) as nbre_devis_to_restaure from detaildevis dd 
 where dd.etat_devis =10 and dd.id_ordre_de_travail= :id_ordre_de_travail 
 and (select count(`iddevis`) from detaildevis as dd where dd.id_ordre_de_travail = :id_ordre_de_travail and etat_devis IN (3,4) ) < 1   ");
@@ -39,7 +39,16 @@ if(isset($id_ordre_de_travail) && !empty($id_ordre_de_travail)){
         $message [] = $stm->errorInfo();
     }
 
-    $stm_valide_new_devis = $db->prepare("select count(`iddevis`) as count_devis from detaildevis as dd where dd.id_ordre_de_travail = :id_ordre_de_travail 
+$stm_traitement_en_cours = $db->prepare("SELECT * FROM `etat_traitement_devis` where id_ordre_traivail = :id_ordre_traivail and id_user = :id_user") ;
+$stm_traitement_en_cours ->bindParam(":id_ordre_traivail",$id_ordre_de_travail);
+$stm_traitement_en_cours ->bindParam(":id_user",$connectedProfil->profil->id_utilisateur);
+if($stm_traitement_en_cours->execute()){
+    $stm_traitement_en_cours_liste =  $stm_traitement_en_cours->fetch(PDO::FETCH_ASSOC);
+    if($stm_traitement_en_cours_liste['etat'] == 1){
+        $traitement_en_cours = 1;
+    }
+}
+$stm_valide_new_devis = $db->prepare("select count(`iddevis`) as count_devis from detaildevis as dd where dd.id_ordre_de_travail = :id_ordre_de_travail 
     and etat_devis IN (3,4)  ");
 
     if(isset($id_ordre_de_travail) && !empty($id_ordre_de_travail)){
@@ -64,5 +73,5 @@ if(isset($id_ordre_de_travail) && !empty($id_ordre_de_travail)){
 }
 
 
-echo json_encode(array("error" => $err , "message" => $message,"restaure" => $restaure,"add_new_devis" => $add_new_devis));
+echo json_encode(array("error" => $err , "message" => $message,"restaure" => $restaure,"add_new_devis" => $add_new_devis,"traitement_en_cours"=>$traitement_en_cours));
 ?>
