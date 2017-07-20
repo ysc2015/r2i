@@ -45,8 +45,9 @@
         "#delete_ot","#open_pblq",
         "#linked-ch",
         "#link_ot","#linked-pb","#link_pb"];
+    var traitement_en_cours = 0;
     function displayDevis() {
-        console.log("displayDevis");
+        console.log(" function displayDevis");
         if(ot_dt.row('.selected').data()!== undefined) {
 
             id_ot = ot_dt.row('.selected').data().id_ordre_de_travail;
@@ -292,7 +293,7 @@
                     }
                 }).done(function (msg) {
                     console.log(msg);
-
+                    traitement_en_cours = msg.traitement_en_cours;
                     if(msg.restaure == 1){
                         $('#devis_restaure_btn').removeClass('disabled');
                     }else{
@@ -302,6 +303,13 @@
                     if(msg.add_new_devis == 1 && ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8 && ot_dt.row('.selected').data().id_type_ordre_travail != 2 && ot_dt.row('.selected').data().id_type_ordre_travail != 6){ //TODO add condition mine (RR)
 
                         $("#linked-pb-wrapper").show();
+                        if(traitement_en_cours==1){
+                            $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                            $('#linked-pb-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                        }else{
+                            $('#linked-ch-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                            $('#linked-pb-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                        }
                     }else{
                         $("#linked-pb-wrapper").hide();
                     }
@@ -359,6 +367,13 @@
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8) {
                     if(ot_dt.row('.selected').data().id_type_ordre_travail != 2 && ot_dt.row('.selected').data().id_type_ordre_travail != 6) {
                         $('#linked-pb-wrapper').show();
+                        if(traitement_en_cours==1){
+                            $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                            $('#linked-pb-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                        }else{
+                            $('#linked-ch-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                            $('#linked-pb-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                        }
                         $('#devis_block_title').html('Suivi Facturation ' + ot_dt.row('.selected').data().type_ot);
                         $.ajax({
                             method: "POST",
