@@ -29,6 +29,7 @@ if($stm->execute()){
                 array("id_utilisateur = ? ",$traitement['id_user'])
             )
         );
+        echo $connectedProfil->profil->nom_utilisateur."##".$connectedProfil->profil->prenom_utilisateur;
         loadExcelDEF_CABLE($db,$traitement['nom_fichier'],$traitement['id_ressource'],$traitement['id_ordre_traivail'],$Profil_execute);
 
     }
