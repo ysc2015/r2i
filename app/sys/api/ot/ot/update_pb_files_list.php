@@ -44,7 +44,7 @@ if(isset($idot) && !empty($idot)){
                 }
 
                 
-                $message[] = "Fichier Affecté !";
+                $message[] = "Fichier mis attente de traitement !";
             } else {
                 $err++;
                 $message [] = $stm->errorInfo();
