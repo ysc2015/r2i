@@ -19,7 +19,7 @@ require_once __DIR__."/../../sys/inc/ssp.class.php";
 $sql = "";
 $stm = NULL;
 $err =0;
-$sql = "select * from etat_traitement_devis where etat = 1 /*order by date_action DESC*/";
+$sql = "select * from etat_traitement_devis where etat = 1  order by date_action DESC ";
 $stm = $db->prepare($sql);
 
 

@@ -39,13 +39,13 @@ if(isset($id_ordre_de_travail) && !empty($id_ordre_de_travail)){
         $message [] = $stm->errorInfo();
     }
 
-$stm_traitement_en_cours = $db->prepare("SELECT * FROM `etat_traitement_devis` where id_ordre_traivail = :id_ordre_traivail and id_user = :id_user") ;
+$stm_traitement_en_cours = $db->prepare("SELECT * FROM `etat_traitement_devis` where id_ordre_traivail = :id_ordre_traivail and id_user = :id_user and etat = 1 order by date_action DESC") ;
 $stm_traitement_en_cours ->bindParam(":id_ordre_traivail",$id_ordre_de_travail);
 $stm_traitement_en_cours ->bindParam(":id_user",$connectedProfil->profil->id_utilisateur);
-echo $connectedProfil->profil->id_utilisateur;
+
 if($stm_traitement_en_cours->execute()){
     $stm_traitement_en_cours_liste =  $stm_traitement_en_cours->fetch(PDO::FETCH_ASSOC);
-    if($stm_traitement_en_cours_liste['etat'] == 1){
+     if($stm_traitement_en_cours_liste['etat'] == 1){
         $traitement_en_cours = 1;
     }
 }
