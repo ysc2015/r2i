@@ -302,7 +302,7 @@
                     }
                     console.log(" msg.add_new_devis :"+msg.add_new_devis);
                     if(msg.add_new_devis == 1 && ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=8 && ot_dt.row('.selected').data().id_type_ordre_travail != 2 && ot_dt.row('.selected').data().id_type_ordre_travail != 6){ //TODO add condition mine (RR)
-
+                    console.log( " traitement_en_cours : "+traitement_en_cours);
                         $("#linked-pb-wrapper").show();
                         if(traitement_en_cours==1){
                             $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh block-content');
