@@ -232,6 +232,7 @@
         $('#fcomp_uploader_wrapper').hide();
 
         $('#ot_table tbody').on( 'click', 'tr', function () {
+            traitement_en_cours = 0;
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
 
