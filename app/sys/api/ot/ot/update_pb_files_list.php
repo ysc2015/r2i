@@ -40,7 +40,7 @@ if(isset($idot) && !empty($idot)){
                     $stm_debut_traitement_devis->execute();
 
                    // loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf,$idot,$connectedProfil);
-                    loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
+                   // loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 }
 
                 
