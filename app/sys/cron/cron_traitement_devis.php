@@ -23,15 +23,18 @@ $stm = $db->prepare($sql);
 if($stm->execute()){
     $message [] = "cron existe";
     $devis_traiter = $stm->fetchAll();
-
+    $Profil_execute = null;
     foreach($devis_traiter as $traitement) {
+    echo $traitement['id_user'];
         $Profil_execute = Utilisateur::first(
             array('conditions' =>
-                array("id_utilisateur = ? ",$traitement['id_user'])
+                array("id_utilisateur = ?", $traitement['id_user'])
             )
         );
-        echo $Profil_execute->profil->nom_utilisateur."##".$Profil_execute->profil->prenom_utilisateur;
-        loadExcelDEF_CABLE($db,$traitement['nom_fichier'],$traitement['id_ressource'],$traitement['id_ordre_traivail'],$Profil_execute);
+
+
+        echo $Profil_execute->nom_utilisateur."##".$Profil_execute->prenom_utilisateur;
+         loadExcelDEF_CABLE($db,$traitement['nom_fichier'],$traitement['id_ressource'],$traitement['id_ordre_traivail'],$Profil_execute);
 
     }
 
