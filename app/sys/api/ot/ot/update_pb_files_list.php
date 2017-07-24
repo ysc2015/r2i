@@ -32,13 +32,14 @@ if(isset($idot) && !empty($idot)){
                 if($row->type_objet == "transport_racoord_pboite") {
                     loadExcelDEF_BPE_EBM_CTR($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 } else if($row->type_objet == "distribution_racoord_pboite") {
-                    $stm_debut_traitement_devis = $db->prepare("insert into etat_traitement_devis (id_ressource,id_ordre_traivail,id_user) values (:id_ressource,:id_ordre_traivail,:id_user)");
+                    $stm_debut_traitement_devis = $db->prepare("insert into etat_traitement_devis (id_ressource,id_ordre_traivail,id_user,nom_fichier) values (:id_ressource,:id_ordre_traivail,:id_user,:nom_fichier)");
                     $stm_debut_traitement_devis->bindParam(":id_ressource",$idf);
                     $stm_debut_traitement_devis->bindParam(":id_ordre_traivail",$idot);
                     $stm_debut_traitement_devis->bindParam(":id_user",$connectedProfil->profil->id_utilisateur);
+                    $stm_debut_traitement_devis->bindValue(":nom_fichier","".__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque);
                     $stm_debut_traitement_devis->execute();
 
-                    loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf,$idot,$connectedProfil);
+                   // loadExcelDEF_CABLE($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf,$idot,$connectedProfil);
                     loadExcelDEF_BPE_EBM($db,__DIR__."/../../uploads/". $row->dossier . "/" .$row->nom_fichier_disque,$idf);
                 }
 
