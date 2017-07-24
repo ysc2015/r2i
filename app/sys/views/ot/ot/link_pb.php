@@ -45,7 +45,7 @@
             }).done(function (msg) {
                 //$('#linked-ch-wrapper').removeClass('block block-themed block-opt-refresh block-content');
                 //$('#linked-pb-wrapper').removeClass('block block-themed block-opt-refresh block-content');
-                 App.showMessage(msg,'#message_ot_link2');
+                 App.showMessage(msg,'#message_ot_traitement_pds');
                 //displayDevis();
             });
         });
