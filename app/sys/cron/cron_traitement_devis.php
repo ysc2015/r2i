@@ -28,7 +28,7 @@ if($stm->execute()){
     $devis_traiter = $stm->fetchAll();
     $Profil_execute = null;
     foreach($devis_traiter as $traitement) {
-    echo $traitement['id_user'];
+
         $Profil_execute = Utilisateur::first(
             array('conditions' =>
                 array("id_utilisateur = ?", $traitement['id_user'])
