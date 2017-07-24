@@ -313,6 +313,11 @@
                         }
                     }else{
                         $("#linked-pb-wrapper").hide();
+                        if(traitement_en_cours==1){
+                            $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                        }else{
+                            $('#linked-ch-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                        }
                     }
 
 
