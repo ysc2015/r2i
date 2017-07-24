@@ -43,7 +43,7 @@ if($stm->execute()){
         
         //echo $Profil_execute->nom_utilisateur."##".$Profil_execute->prenom_utilisateur;
          loadExcelDEF_CABLE($db,$traitement['nom_fichier'],$traitement['id_ressource'],$traitement['id_ordre_traivail'],$connectedProfil);
-
+        loadExcelDEF_BPE_EBM($db,$traitement['nom_fichier'],$traitement['id_ressource']);
     }
 
 
