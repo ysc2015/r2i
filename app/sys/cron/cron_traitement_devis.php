@@ -22,7 +22,7 @@ $sql_commence_traitement = "SELECT * FROM `cron_etat_traitement_devis` where id 
 $stm_commence_traitement = $db->prepare($sql_commence_traitement);
 $stm_commence_traitement->execute();
 $commence_traitement = $stm_commence_traitement->fetch();
-if($commence_traitement->etat=='ON'){
+if($commence_traitement['etat']=='ON'){
     $sql = "";
     $stm = NULL;
     $sql = "select * from etat_traitement_devis where etat = 1  order by date_action DESC ";
