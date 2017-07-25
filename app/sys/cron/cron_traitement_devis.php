@@ -55,6 +55,8 @@ if($commence_traitement['etat']=='OFF'){
 
     }
 
+}else{
+    $message [] = "Cron en cours de traitement";
 }
 
 
