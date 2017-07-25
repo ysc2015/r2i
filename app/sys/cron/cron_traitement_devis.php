@@ -21,7 +21,7 @@ $sql_commence_traitement = "SELECT * FROM `cron_etat_traitement_devis` where id 
 
 $stm_commence_traitement = $db->prepare($sql_commence_traitement);
 $stm_commence_traitement->execute();
-$commence_traitement = $stm_commence_traitement->fetchAll();
+$commence_traitement = $stm_commence_traitement->fetch();
 if($commence_traitement->etat=='ON'){
     $sql = "";
     $stm = NULL;
