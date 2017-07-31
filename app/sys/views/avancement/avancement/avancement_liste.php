@@ -7,25 +7,25 @@
             <tr>
                 <th class="bg bg-info-light" colspan="4" style="text-align: center;">Site</th>
                 <!--CTR-->
-                <th class="bg bg-success-light" colspan="45" style="text-align: center;">CTR</th>
+                <th class="bg bg-success-light" colspan="48" style="text-align: center;">CTR</th>
                 <!--CDI-->
-                <th class="bg bg-warning-light" colspan="44" style="text-align: center;">CDI</th>
+                <th class="bg bg-warning-light" colspan="47" style="text-align: center;">CDI</th>
             </tr>
             <tr>
                 <th colspan="4" style="text-align: center;">Infos Sous Projet</th>
                 <!--CTR-->
-                <th colspan="11" style="text-align: center;">Aiguillage</th>
+                <th colspan="12" style="text-align: center;">Aiguillage</th>
                 <th colspan="5" style="text-align: center;">CMD Structurante</th>
-                <th colspan="12" style="text-align: center;">Tirage</th>
-                <th colspan="12" style="text-align: center;">Raccordement</th>
+                <th colspan="13" style="text-align: center;">Tirage</th>
+                <th colspan="13" style="text-align: center;">Raccordement</th>
                 <th colspan="1" style="text-align: center;">Recette</th>
                 <th colspan="3" style="text-align: center;">Commandes Fin Travaux</th>
                 <th colspan="1" rowspan="2" style="text-align: center;">Maitre CTR</th>
                 <!--CDI-->
-                <th colspan="11" style="text-align: center;">Aiguillage</th>
+                <th colspan="12" style="text-align: center;">Aiguillage</th>
                 <th colspan="5" style="text-align: center;">CMD Structurante</th>
-                <th colspan="12" style="text-align: center;">Tirage</th>
-                <th colspan="12" style="text-align: center;">Raccordement</th>
+                <th colspan="13" style="text-align: center;">Tirage</th>
+                <th colspan="13" style="text-align: center;">Raccordement</th>
                 <th colspan="1" style="text-align: center;">Recette</th>
                 <th colspan="3" style="text-align: center;">Commandes Fin Travaux</th>
             </tr>
@@ -48,6 +48,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
@@ -69,6 +70,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret. Presta validé</th>
 
                 <!--Raccordement-->
@@ -83,6 +85,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--Recette-->
@@ -110,6 +113,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
@@ -131,6 +135,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret. Presta validé</th>
 
                 <!--Raccordement-->
@@ -145,6 +150,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--Recette-->
@@ -178,6 +184,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
@@ -199,6 +206,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret. Presta validé</th>
 
                 <!--Raccordement-->
@@ -213,6 +221,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--Recette-->
@@ -239,6 +248,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--CMD Structurante-->
@@ -260,6 +270,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret. Presta validé</th>
 
                 <!--Raccordement-->
@@ -274,6 +285,7 @@
                 <th>Retour</th>
                 <th>Traitement Retour</th>
                 <th>pbc non résolus</th>
+                <th>pbc non répondus</th>
                 <th>Ret Presta Validé</th>
 
                 <!--Recette-->
@@ -291,6 +303,13 @@
 <!-- END Table détails sous projets -->
 
 <script>
+    function getCmdAcces(i) {
+        switch (i) {
+            case '1' : return 'En Cours';break;
+            case '2' : return 'Réalisée';break;
+            default : return '';break;
+        }
+    }
     var details_dt;
     $(document).ready(function() {
 
@@ -335,13 +354,14 @@
                 { "data": "ctr_aiguillage_date_retour" },
                 { "data": "ctr_aiguillage_lib_etat_retour" },
                 { "data": "ctr_aiguillage_bp_no_resolu" },
-                { "data": "ctr_aiguillage_ok" },//14
+                { "data": "ctr_aiguillage_bp_no_resolu" },
+                { "data": "ctr_aiguillage_ok" },//15
                 //CMD Structurante
                 { "data": "traitement_retour_terrain" },
                 { "data": "ref_commande_acces" },
-                { "data": "ctr_aiguillage_lib_commande_acces" },
+                { "data": "ctr_aiguillage_lib_commande_acces" },//18
                 { "data": "ctr_aiguillage_lib_go_ft" },
-                { "data": "ctr_commande_acces_ok" },//19
+                { "data": "ctr_commande_acces_ok" },//20
                 //Tirage
                 { "data": "ctr_tirage_date_ret_prevue" },
                 { "data": "ctr_tirage_date_charge_be" },
@@ -350,11 +370,12 @@
                 { "data": "ctr_tirage_ordre_de_travail_date_debut" },
                 { "data": "ctr_tirage_ordre_de_travail_date_fin" },
                 { "data": "ctr_tirage_date_retour" },
-                { "data": "ctr_tirage_date_retour_vpi" },//27
+                { "data": "ctr_tirage_date_retour_vpi" },//28
                 { "data": "ctr_tirage_date_retour" },
                 { "data": "ctr_tirage_lib_etat_retour" },
                 { "data": "ctr_tirage_bp_no_resolu" },
-                { "data": "ctr_tirage_ok" },//31
+                { "data": "ctr_tirage_bp_no_resolu" },
+                { "data": "ctr_tirage_ok" },//33
                 //Raccordement
                 { "data": "ctr_raccord_date_ret_prevue" },
                 { "data": "ctr_raccord_date_charge_be" },
@@ -363,20 +384,23 @@
                 { "data": "ctr_raccord_ordre_de_travail_date_debut" },
                 { "data": "ctr_raccord_ordre_de_travail_date_fin" },
                 { "data": "ctr_raccord_date_retour" },
-                { "data": "ctr_raccord_date_retour_vpi" },//39
+                { "data": "ctr_raccord_date_retour_vpi" },//41
                 { "data": "ctr_raccord_date_retour" },
                 { "data": "ctr_raccord_lib_etat_retour" },
                 { "data": "ctr_raccord_bp_no_resolu" },
-                { "data": "ctr_raccord_ok" },//43
+                { "data": "ctr_raccord_bp_no_resolu" },
+                { "data": "ctr_raccord_ok" },//46
                 //Recette
                 { "data": "ctr_recette_injection_netgeo" },
                 //Commandes Fin Travaux
                 { "data": "ref_commande_fin_travaux" },
-                { "data": "ctr_aiguillage_lib_commande_acces2" },
-                { "data": "ctr_aiguillage_lib_go_ft2" },//47
+                { "data": "ctr_aiguillage_lib_commande_acces2" },//49
+                { "data": "ctr_aiguillage_lib_go_ft2" },//50
                 //Maitre CTR
-                { "data": "is_master" }, //48
+                { "data": "is_master" }, //51
+
                 //CDI
+
                 //Aiguillage
                 { "data": "cdi_design_lib_ok" },
                 { "data": "cdi_aiguillage_lib_controle_plan" },
@@ -384,17 +408,18 @@
                 { "data": "cdi_aiguillage_ordre_de_travail_date_debut" },
                 { "data": "cdi_aiguillage_ordre_de_travail_date_fin" },
                 { "data": "cdi_aiguillage_date_retour" },
-                { "data": "cdi_aiguillage_date_retour_vpi" },//55
+                { "data": "cdi_aiguillage_date_retour_vpi" },//58
                 { "data": "cdi_aiguillage_date_retour" },
                 { "data": "cdi_aiguillage_lib_etat_retour" },
                 { "data": "cdi_aiguillage_bp_no_resolu" },
-                { "data": "cdi_aiguillage_ok" },//59
+                { "data": "cdi_aiguillage_bp_no_resolu" },
+                { "data": "cdi_aiguillage_ok" },//63
                 //CMD Structurante
                 { "data": "traitement_retour_terrain2" },
                 { "data": "ref_commande_acces2" },
-                { "data": "cdi_aiguillage_lib_commande_acces" },
+                { "data": "cdi_aiguillage_lib_commande_acces" },//66
                 { "data": "cdi_aiguillage_lib_go_ft" },
-                { "data": "cdi_commande_acces_ok" },//64
+                { "data": "cdi_commande_acces_ok" },//68
                 //Tirage
                 { "data": "cdi_tirage_date_ret_prevue" },
                 { "data": "cdi_tirage_date_charge_be" },
@@ -403,11 +428,12 @@
                 { "data": "cdi_tirage_ordre_de_travail_date_debut" },
                 { "data": "cdi_tirage_ordre_de_travail_date_fin" },
                 { "data": "cdi_tirage_date_retour" },
-                { "data": "cdi_tirage_date_retour_vpi" },//72
+                { "data": "cdi_tirage_date_retour_vpi" },//76
                 { "data": "cdi_tirage_date_retour" },
                 { "data": "cdi_tirage_lib_etat_retour" },
                 { "data": "cdi_tirage_bp_no_resolu" },
-                { "data": "cdi_tirage_ok" },//76
+                { "data": "cdi_tirage_bp_no_resolu" },
+                { "data": "cdi_tirage_ok" },//81
                 //Raccordement
                 { "data": "cdi_raccord_date_ret_prevue" },
                 { "data": "cdi_raccord_date_charge_be" },
@@ -416,25 +442,26 @@
                 { "data": "cdi_raccord_ordre_de_travail_date_debut" },
                 { "data": "cdi_raccord_ordre_de_travail_date_fin" },
                 { "data": "cdi_raccord_date_retour" },
-                { "data": "cdi_raccord_date_retour_vpi" },//84
+                { "data": "cdi_raccord_date_retour_vpi" },//89
                 { "data": "cdi_raccord_date_retour" },
                 { "data": "cdi_raccord_lib_etat_retour" },
                 { "data": "cdi_raccord_bp_no_resolu" },
-                { "data": "cdi_raccord_ok" },//88
+                { "data": "cdi_raccord_bp_no_resolu" },
+                { "data": "cdi_raccord_ok" },//94
                 //Recette
                 { "data": "cdi_recette_injection_netgeo" },
                 //Commandes Fin Travaux
                 { "data": "ref_commande_fin_travaux2" },
-                { "data": "cdi_aiguillage_lib_commande_acces22" },
+                { "data": "cdi_aiguillage_lib_commande_acces22" },//97
                 { "data": "cdi_aiguillage_lib_go_ft22" },
                 //MISC
-                { "data": "zone" }//93
+                { "data": "zone" }//99
 
             ],
             "columnDefs": [
                 {
                     "targets": 0,
-                    orderData: [ 0, 90 ],
+                    orderData: [ 0, 99 ],
                     "data": "lib_nro",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -471,97 +498,109 @@
                     }
                 },
                 {
-                    "targets": 14,
+                    "targets": 15,
                     "render": function ( data, type, full, meta ) {
                         return  (full.ctr_aiguillage_ok === '1' ? 'OUI' : full.ctr_aiguillage_ok === '2' ? 'NON' : '');
                     }
                 },
                 {
-                    "targets": 15,
+                    "targets": 16,
                     "render": function ( data, type, full, meta ) {
                         return  (full.traitement_retour_terrain !== '0000-00-00' && full.traitement_retour_terrain !== null ? full.traitement_retour_terrain : 'n/d');
                     }
                 },
                 {
-                    "targets": 19,
+                    "targets": 18,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_commande_acces_ok === '1' ? 'OUI' : full.ctr_commande_acces_ok === '2' ? 'NON' : '');
+                        return getCmdAcces(full.ctr_aiguillage_lib_commande_acces);
                     }
                 },
                 {
                     "targets": 20,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_date_ret_prevue !== '0000-00-00' && full.ctr_tirage_date_ret_prevue !== null ? full.ctr_tirage_date_ret_prevue : 'n/d');
+                        return  (full.ctr_commande_acces_ok === '1' ? 'OUI' : full.ctr_commande_acces_ok === '2' ? 'NON' : '');
                     }
                 },
                 {
                     "targets": 21,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_date_charge_be !== '0000-00-00 00:00:00' && full.ctr_tirage_date_charge_be !== null ? full.ctr_tirage_date_charge_be : 'n/d');
+                        return  (full.ctr_tirage_date_ret_prevue !== '0000-00-00' && full.ctr_tirage_date_ret_prevue !== null ? full.ctr_tirage_date_ret_prevue : 'n/d');
                     }
                 },
                 {
-                    "targets": 26,
+                    "targets": 22,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_date_retour !== '0000-00-00 00:00:00' && full.ctr_tirage_date_retour !== null ? full.ctr_tirage_date_retour : 'n/d');
+                        return  (full.ctr_tirage_date_charge_be !== '0000-00-00 00:00:00' && full.ctr_tirage_date_charge_be !== null ? full.ctr_tirage_date_charge_be : 'n/d');
                     }
                 },
                 {
                     "targets": 27,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_date_retour_vpi !== '0000-00-00' && full.ctr_tirage_date_retour_vpi !== null ? full.ctr_tirage_date_retour_vpi : 'n/d');
+                        return  (full.ctr_tirage_date_retour !== '0000-00-00 00:00:00' && full.ctr_tirage_date_retour !== null ? full.ctr_tirage_date_retour : 'n/d');
                     }
                 },
                 {
                     "targets": 28,
                     "render": function ( data, type, full, meta ) {
+                        return  (full.ctr_tirage_date_retour_vpi !== '0000-00-00' && full.ctr_tirage_date_retour_vpi !== null ? full.ctr_tirage_date_retour_vpi : 'n/d');
+                    }
+                },
+                {
+                    "targets": 29,
+                    "render": function ( data, type, full, meta ) {
                         return  (full.ctr_tirage_date_retour !== '0000-00-00 00:00:00' && full.ctr_tirage_date_retour !== null ? 'OUI' : 'NON');
-                    }
-                },
-                {
-                    "targets": 32,
-                    "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_ok === '1' ? 'OUI' : full.ctr_tirage_ok === '2' ? 'NON' : '');
-                    }
-                },
-                {
-                    "targets": 33,
-                    "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_raccord_date_ret_prevue !== '0000-00-00' && full.ctr_raccord_date_ret_prevue !== null ? full.ctr_raccord_date_ret_prevue : 'n/d');
                     }
                 },
                 {
                     "targets": 34,
                     "render": function ( data, type, full, meta ) {
+                        return  (full.ctr_tirage_ok === '1' ? 'OUI' : full.ctr_tirage_ok === '2' ? 'NON' : '');
+                    }
+                },
+                {
+                    "targets": 35,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.ctr_raccord_date_ret_prevue !== '0000-00-00' && full.ctr_raccord_date_ret_prevue !== null ? full.ctr_raccord_date_ret_prevue : 'n/d');
+                    }
+                },
+                {
+                    "targets": 36,
+                    "render": function ( data, type, full, meta ) {
                         return  (full.ctr_raccord_date_charge_be !== '0000-00-00 00:00:00' && full.ctr_raccord_date_charge_be !== null ? full.ctr_raccord_date_charge_be : 'n/d');
-                    }
-                },
-                {
-                    "targets": 38,
-                    "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_raccord_date_retour !== '0000-00-00 00:00:00' && full.ctr_raccord_date_retour !== null ? full.ctr_raccord_date_retour : 'n/d');
-                    }
-                },
-                {
-                    "targets": 39,
-                    "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_raccord_date_retour_vpi !== '0000-00-00' && full.ctr_raccord_date_retour_vpi !== null ? full.ctr_raccord_date_retour_vpi : 'n/d');
                     }
                 },
                 {
                     "targets": 40,
                     "render": function ( data, type, full, meta ) {
+                        return  (full.ctr_raccord_date_retour !== '0000-00-00 00:00:00' && full.ctr_raccord_date_retour !== null ? full.ctr_raccord_date_retour : 'n/d');
+                    }
+                },
+                {
+                    "targets": 41,
+                    "render": function ( data, type, full, meta ) {
+                        return  (full.ctr_raccord_date_retour_vpi !== '0000-00-00' && full.ctr_raccord_date_retour_vpi !== null ? full.ctr_raccord_date_retour_vpi : 'n/d');
+                    }
+                },
+                {
+                    "targets": 42,
+                    "render": function ( data, type, full, meta ) {
                         return  (full.ctr_raccord_date_retour !== '0000-00-00 00:00:00' && full.ctr_raccord_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
-                    "targets": 43,
+                    "targets": 46,
                     "render": function ( data, type, full, meta ) {
                         return  (full.ctr_raccord_ok === '1' ? 'OUI' : full.ctr_raccord_ok === '2' ? 'NON' : '');
                     }
                 },
                 {
-                    "targets": 48,
+                    "targets": 49,
+                    "render": function ( data, type, full, meta ) {
+                        return getCmdAcces(full.ctr_aiguillage_lib_commande_acces2);
+                    }
+                },
+                {
+                    "targets": 51,
                     "data": "is_master",
                     "render": function ( data, type, full, meta ) {
                         if(type == "display"){
@@ -573,114 +612,126 @@
                     }
                 },
                 {
-                    "targets": 54,
+                    "targets": 57,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.cdi_aiguillage_date_retour !== null ? full.cdi_aiguillage_date_retour : 'n/d');
                     }
                 },
                 {
-                    "targets": 55,
+                    "targets": 58,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_aiguillage_date_retour_vpi !== '0000-00-00' && full.cdi_aiguillage_date_retour_vpi !== null ? full.cdi_aiguillage_date_retour_vpi : 'n/d');
                     }
                 },
                 {
-                    "targets": 56,
+                    "targets": 59,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.cdi_aiguillage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
-                    "targets": 59,
+                    "targets": 63,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_aiguillage_ok === '1' ? 'OUI' : full.cdi_aiguillage_ok === '2' ? 'NON' : '');
                     }
                 },
                 {
-                    "targets": 60,
+                    "targets": 64,
                     "render": function ( data, type, full, meta ) {
                         return  (full.traitement_retour_terrain2 !== '0000-00-00' && full.traitement_retour_terrain2 !== null ? full.traitement_retour_terrain2 : 'n/d');
                     }
                 },
                 {
-                    "targets": 64,
+                    "targets": 66,
+                    "render": function ( data, type, full, meta ) {
+                        return getCmdAcces(full.cdi_aiguillage_lib_commande_acces);
+                    }
+                },
+                {
+                    "targets": 68,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_commande_acces_ok === '1' ? 'OUI' : full.cdi_commande_acces_ok === '2' ? 'NON' : '');
                     }
                 },
                 {
-                    "targets": 65,
+                    "targets": 69,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_tirage_date_ret_prevue !== '0000-00-00' && full.cdi_tirage_date_ret_prevue !== null ? full.cdi_tirage_date_ret_prevue : 'n/d');
                     }
                 },
                 {
-                    "targets": 66,
+                    "targets": 70,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_tirage_date_charge_be !== '0000-00-00 00:00:00' && full.cdi_tirage_date_charge_be !== null ? full.cdi_tirage_date_charge_be : 'n/d');
                     }
                 },
                 {
-                    "targets": 71,
+                    "targets": 75,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_tirage_date_retour !== '0000-00-00 00:00:00' && full.cdi_tirage_date_retour !== null ? full.cdi_tirage_date_retour : 'n/d');
                     }
                 },
                 {
-                    "targets": 72,
+                    "targets": 76,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_tirage_date_retour_vpi !== '0000-00-00' && full.cdi_tirage_date_retour_vpi !== null ? full.cdi_tirage_date_retour_vpi : 'n/d');
                     }
                 },
                 {
-                    "targets": 73,
+                    "targets": 77,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_tirage_date_retour !== '0000-00-00 00:00:00' && full.cdi_tirage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
-                    "targets": 76,
+                    "targets": 81,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_tirage_ok === '1' ? 'OUI' : full.cdi_tirage_ok === '2' ? 'NON' : '');
                     }
                 },
                 {
-                    "targets": 77,
+                    "targets": 82,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_raccord_date_ret_prevue !== '0000-00-00' && full.cdi_raccord_date_ret_prevue !== null ? full.cdi_raccord_date_ret_prevue : 'n/d');
                     }
                 },
                 {
-                    "targets": 78,
+                    "targets": 83,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_raccord_date_charge_be !== '0000-00-00 00:00:00' && full.cdi_raccord_date_charge_be !== null ? full.cdi_raccord_date_charge_be : 'n/d');
                     }
                 },
                 {
-                    "targets": 83,
+                    "targets": 88,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_raccord_date_retour !== '0000-00-00 00:00:00' && full.cdi_raccord_date_retour !== null ? full.cdi_raccord_date_retour : 'n/d');
                     }
                 },
                 {
-                    "targets": 84,
+                    "targets": 89,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_raccord_date_retour_vpi !== '0000-00-00' && full.cdi_raccord_date_retour_vpi !== null ? full.cdi_raccord_date_retour_vpi : 'n/d');
                     }
                 },
                 {
-                    "targets": 85,
+                    "targets": 90,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_raccord_date_retour !== '0000-00-00 00:00:00' && full.cdi_raccord_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
-                    "targets": 88,
+                    "targets": 94,
                     "render": function ( data, type, full, meta ) {
                         return  (full.cdi_raccord_ok === '1' ? 'OUI' : full.cdi_raccord_ok === '2' ? 'NON' : '');
                     }
                 },
-                { "targets": [ 93 ], "visible": false, "searchable": true }
+                {
+                    "targets": 97,
+                    "render": function ( data, type, full, meta ) {
+                        return getCmdAcces(full.cdi_aiguillage_lib_commande_acces22);
+                    }
+                },
+                { "targets": [ 99 ], "visible": false, "searchable": true }
             ],
             "order": [[0, 'desc']]
             ,
