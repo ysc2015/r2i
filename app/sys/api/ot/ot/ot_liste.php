@@ -24,27 +24,53 @@ $columns = array(
 
 $condition = "t1.id_type_ordre_travail=t2.id_type_ordre_travail";
 
-if($connectedProfil->profil->profil->shortlib == "pci") {
+if(!isset($tab_imei)) {
+    if($connectedProfil->profil->profil->shortlib == "pci") {
 
-    $table[] = "sous_projet as t3";
-    $table[] = "projet as t4";
-    $table[] = "nro as t5";
-    $table[] = "nro_utilisateur as t6";
+        $table[] = "sous_projet as t3";
+        $table[] = "projet as t4";
+        $table[] = "nro as t5";
+        $table[] = "nro_utilisateur as t6";
 
-    $condition .= " AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
-    $condition .=" AND t4.id_nro = t6.id_nro AND t6.id_utilisateur = ".$connectedProfil->profil->id_utilisateur;
-    $condition .=" AND t1.backlog <> 1 ";
-    $condition .=" AND t1.id_etat_ot IN(2,3,4,5,6,8) ";
-} else {
-    if(isset($tentree) && !empty($tentree)) {
+        $condition .= " AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
+        $condition .=" AND t4.id_nro = t6.id_nro AND t6.id_utilisateur = ".$connectedProfil->profil->id_utilisateur;
+        $condition .=" AND t1.backlog <> 1 ";
+        $condition .=" AND t1.id_etat_ot IN(2,3,4,5,6,8) ";
+    } else {
+        if(isset($tentree) && !empty($tentree)) {
 
-        if($tentree == "transportraccordement") $tentree = "transporttirage";
-        if($tentree == "distributionraccordement") $tentree = "distributiontirage";
-        $condition .=" AND t1.type_entree='$tentree'";
+            if($tentree == "transportraccordement") $tentree = "transporttirage";
+            if($tentree == "distributionraccordement") $tentree = "distributiontirage";
+            $condition .=" AND t1.type_entree='$tentree'";
+        }
+
+        if(isset($idsp)) {
+            $condition .=" AND t1.id_sous_projet=$idsp";
+        }
     }
+} else {
+    if($connectedProfil->profil->profil->shortlib == "pci") {
 
-    if(isset($idsp)) {
-        $condition .=" AND t1.id_sous_projet=$idsp";
+        $table[] = "sous_projet as t3";
+        $table[] = "projet as t4";
+        $table[] = "nro as t5";
+        $table[] = "nro_utilisateur as t6";
+
+        $condition .= " AND t1.id_sous_projet = t3.id_sous_projet AND t3.id_projet = t4.id_projet AND t4.id_nro = t5.id_nro";
+        $condition .=" AND t4.id_nro = t6.id_nro AND t6.id_utilisateur = ".$connectedProfil->profil->id_utilisateur;
+        $condition .=" AND t1.backlog <> 1 ";
+        $condition .=" AND t1.id_etat_ot IN(2,3,4,5,6,8) ";
+    } else {
+        if(isset($tentree) && !empty($tentree)) {
+
+            if($tentree == "transportraccordement") $tentree = "transporttirage";
+            if($tentree == "distributionraccordement") $tentree = "distributiontirage";
+            $condition .=" AND t1.type_entree='$tentree'";
+        }
+
+        if(isset($idsp)) {
+            $condition .=" AND t1.id_sous_projet=$idsp";
+        }
     }
 }
 
