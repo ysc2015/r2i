@@ -2,7 +2,7 @@
     <div class="row items-push">
         <div class="col-md-6">
             <div class="row retourpresta2">
-                <label for="devis_bon_cmd_uploader" style="margin-top: 20px;">Retour terrain</label>
+                <label for="stt_retour_uploader" style="margin-top: 20px;">Retour terrain</label>
                 <div id="stt_retour_uploader"></div>
             </div>
         </div>
@@ -11,7 +11,7 @@
             <textarea class="form-control" id="link_retour_stt" name="link_retour_stt" rows="6"></textarea>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="etat_retour_wrapper">
         <div id="ret_etat_retour_wrapper" class="col-md-3">
             <label for="ret_etat_retour">Etat Retour <!--<span class="text-danger">*</span>--></label>
             <select class="form-control " id="ret_etat_retour" name="ret_etat_retour">

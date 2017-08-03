@@ -8,7 +8,7 @@
 <div id="retour_uploads">
     <div class="row items-push">
         <div class="col-md-6">
-            <label for="devis_bon_cmd_uploader" style="margin-top: 20px;">Upload retour terrain</label>
+            <label for="stt_retour_uploader" style="margin-top: 20px;">Upload retour terrain</label>
             <div id="stt_retour_uploader"></div>
         </div>
         <div class="col-md-6">

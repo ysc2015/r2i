@@ -323,11 +323,21 @@
 
 
                 });
+
+                uploader3.reset();
+                uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
+                getRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#link_retour_stt');
+                $('#retour_uploads').show();
+
+
+
                 if(ot_dt.row('.selected').data().id_type_ordre_travail >=1 && ot_dt.row('.selected').data().id_type_ordre_travail <=10) {
-                    uploader3.reset();
+                    /*uploader3.reset();
                     uploader3 = $("#stt_retour_uploader").uploadFile(uploader3_options);
                     getRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#link_retour_stt');
-                    $('#retour_uploads').show();
+                    $('#retour_uploads').show();*/
+
+                    $('#etat_retour_wrapper').show();
 
                     if(ot_dt.row('.selected').data().id_type_ordre_travail == 9 || ot_dt.row('.selected').data().id_type_ordre_travail == 10) {
                         $('#ret_etat_retour_wrapper').hide();
@@ -339,7 +349,8 @@
                         $("#ret_etat_retour").val(etat_retour);
                     }
                 } else {
-                    $('#retour_uploads').hide();
+                    //$('#retour_uploads').hide();
+                    $('#etat_retour_wrapper').hide();
                     $('#link_lien_plans_wrapper1').hide();
                     $('#link_lien_plans_wrapper2').hide();
                 }
