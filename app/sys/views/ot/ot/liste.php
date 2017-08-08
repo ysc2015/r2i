@@ -256,6 +256,8 @@
                 $('#link_lien_plans_wrapper2').hide();
                 $('#other_files_uploader_wrapper').hide();
                 $('#fcomp_uploader_wrapper').hide();
+                $('#message_ot_traitement_pds').hide();
+
             }
             else {
                 $("#blq_pbc_ext_filter").show();
@@ -307,16 +309,28 @@
                         if(traitement_en_cours==1){
                             $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh block-content');
                             $('#linked-pb-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                            $("#message_ot_traitement_pds").show();
+                            $("#message_ot_traitement_pds").html("PDS En cours de traitement");
+
                         }else{
                             $('#linked-ch-wrapper').removeClass('block block-themed block-opt-refresh block-content');
                             $('#linked-pb-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                            $("#message_ot_traitement_pds").hide();
+                            $("#message_ot_traitement_pds").html("");
+
                         }
                     }else{
                         $("#linked-pb-wrapper").hide();
                         if(traitement_en_cours==1){
                             $('#linked-ch-wrapper').addClass('block block-themed block-opt-refresh block-content');
+                            $("#message_ot_traitement_pds").show();
+                            $("#message_ot_traitement_pds").html("PDS En cours de traitement");
+
                         }else{
                             $('#linked-ch-wrapper').removeClass('block block-themed block-opt-refresh block-content');
+                            $("#message_ot_traitement_pds").hide();
+                            $("#message_ot_traitement_pds").html("");
+
                         }
                     }
 
