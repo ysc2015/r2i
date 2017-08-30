@@ -718,17 +718,19 @@ function loadExcelDEF_CABLE($db,$inputFileName,$idressource,$id_ordre_de_travail
         $tab_pdb_E_pec = array_unique($tab_pdb_E_pec);
         $sheet_def_cable = $excel->getSheetByName("DEF_CABLE");
         $row_def_cable = 5;
-
-        while ($read_def_cable = getLine($sheet_def_cable, $row_def_cable, 20)) {
-            if( in_array($read_def_cable[0],$tab_pdb_E_pec) ){
-                foreach ($tab_pdb_E_pec as $val) {
-                    if ($val == $read_def_cable[0]) {
-                        $tab_pdb_E_pec_capacite[] =array($sheet_def_cable->getCellByColumnAndRow(0,$row_def_cable)->getValue(), $sheet_def_cable->getCellByColumnAndRow(1,$row_def_cable)->getValue());
+        if($sheet_def_cable !=  NULL){
+            while ($read_def_cable = getLine($sheet_def_cable, $row_def_cable, 20)) {
+                if( in_array($read_def_cable[0],$tab_pdb_E_pec) ){
+                    foreach ($tab_pdb_E_pec as $val) {
+                        if ($val == $read_def_cable[0]) {
+                            $tab_pdb_E_pec_capacite[] =array($sheet_def_cable->getCellByColumnAndRow(0,$row_def_cable)->getValue(), $sheet_def_cable->getCellByColumnAndRow(1,$row_def_cable)->getValue());
+                        }
                     }
                 }
+                $row_def_cable++;
             }
-            $row_def_cable++;
         }
+
 
         foreach ($tab_pdb_E_pec_capacite as $key ){
             switch ($key[1]){
