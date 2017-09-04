@@ -140,7 +140,7 @@ $total_EFO=0;
 if($stm->execute()) {
     if($stm->rowCount() > 0) {
         $row = $stm->fetch(PDO::FETCH_ASSOC);
-        print_r($row);die();
+
 
         $data[] = array(
             "EFO_0" => 'EFO_01_01',
