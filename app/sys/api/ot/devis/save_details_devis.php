@@ -10,6 +10,7 @@ extract($_POST);
 $sql = "";
 $sql2 = "";
 $message =[];
+$err = 0;
 if ($tablename=="TravauxRaccordementOptiqueMesure"){
     if($iddevis!=""){
         if($ligne < 10){
@@ -170,5 +171,5 @@ if ($tablename=="TravauxRaccordementOptiqueMesure"){
     }
 }
 
-
-return $message;
+echo json_encode(array("error" => $err , "message" => $message));
+//return $message;
