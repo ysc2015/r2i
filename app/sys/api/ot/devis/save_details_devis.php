@@ -54,7 +54,7 @@ if ($tablename=="TravauxRaccordementOptiqueMesure"){
         }
 
         if($stm->execute()){
-            $message [] = "Enregistrement fait avec succès";
+            $message [] = "Enregistrement fait avec succès : ".$sql;
         } else {
             $message [] = $stm->errorInfo();
         }
