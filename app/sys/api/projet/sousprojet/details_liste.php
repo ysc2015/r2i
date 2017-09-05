@@ -32,6 +32,7 @@ $columns = array(
     array( "db" => "t6.date_retour as ctr_aiguillage_date_retour_vpi", "dt" => 'ctr_aiguillage_date_retour_vpi' ),
     array( "db" => "olsu1.date_retour as ctr_aiguillage_date_retour", "dt" => 'ctr_aiguillage_date_retour' ),
     array( "db" => "bpu1.bp_no_resolu as ctr_aiguillage_bp_no_resolu", "dt" => 'ctr_aiguillage_bp_no_resolu' ),
+    array( "db" => "bpua1.bp_no_resolu as ctr_aiguillage_bp_unanswered", "dt" => 'ctr_aiguillage_bp_unanswered' ),
     //array( "db" => "sota.lib_ok as ctr_aiguillage_lib_ok", "dt" => 'ctr_aiguillage_lib_ok' ),
     array( "db" => "t6.ok as ctr_aiguillage_ok", "dt" => 'ctr_aiguillage_ok' ),
 
@@ -56,6 +57,7 @@ $columns = array(
     array( "db" => "olsu2.date_retour as ctr_tirage_date_retour", "dt" => 'ctr_tirage_date_retour' ),
     array( "db" => "ser2.lib_etat_retour as ctr_tirage_lib_etat_retour", "dt" => 'ctr_tirage_lib_etat_retour' ),
     array( "db" => "bpu2.bp_no_resolu as ctr_tirage_bp_no_resolu", "dt" => 'ctr_tirage_bp_no_resolu' ),
+    array( "db" => "bpua2.bp_no_resolu as ctr_tirage_bp_unanswered", "dt" => 'ctr_tirage_bp_unanswered' ),
     //array( "db" => "sott.lib_ok as ctr_tirage_lib_ok", "dt" => 'ctr_tirage_lib_ok' ),
     array( "db" => "t8.ok as ctr_tirage_ok", "dt" => 'ctr_tirage_ok' ),
 
@@ -69,6 +71,7 @@ $columns = array(
     array( "db" => "olsu3.date_retour as ctr_raccord_date_retour", "dt" => 'ctr_raccord_date_retour' ),
     array( "db" => "ser3.lib_etat_retour as ctr_raccord_lib_etat_retour", "dt" => 'ctr_raccord_lib_etat_retour' ),
     array( "db" => "bpu3.bp_no_resolu as ctr_raccord_bp_no_resolu", "dt" => 'ctr_raccord_bp_no_resolu' ),
+    array( "db" => "bpua3.bp_no_resolu as ctr_raccord_bp_unanswered", "dt" => 'ctr_raccord_bp_unanswered' ),
     //array( "db" => "sotr.lib_ok as ctr_raccord_lib_ok", "dt" => 'ctr_raccord_lib_ok' ),
     array( "db" => "t9.ok as ctr_raccord_ok", "dt" => 'ctr_raccord_ok' ),
 
@@ -81,6 +84,7 @@ $columns = array(
     array( "db" => "olsu4.date_retour as cdi_aiguillage_date_retour", "dt" => 'cdi_aiguillage_date_retour' ),
     array( "db" => "ser4.lib_etat_retour as cdi_aiguillage_lib_etat_retour", "dt" => 'cdi_aiguillage_lib_etat_retour' ),
     array( "db" => "bpu4.bp_no_resolu as cdi_aiguillage_bp_no_resolu", "dt" => 'cdi_aiguillage_bp_no_resolu' ),
+    array( "db" => "bpua4.bp_no_resolu as cdi_aiguillage_bp_unanswered", "dt" => 'cdi_aiguillage_bp_unanswered' ),
     //array( "db" => "soda.lib_ok as cdi_aiguillage_lib_ok", "dt" => 'cdi_aiguillage_lib_ok' ),
     array( "db" => "t11.ok as cdi_aiguillage_ok", "dt" => 'cdi_aiguillage_ok' ),
 
@@ -106,6 +110,7 @@ $columns = array(
     array( "db" => "olsu5.date_retour as cdi_tirage_date_retour", "dt" => 'cdi_tirage_date_retour' ),
     array( "db" => "ser5.lib_etat_retour as cdi_tirage_lib_etat_retour", "dt" => 'cdi_tirage_lib_etat_retour' ),
     array( "db" => "bpu5.bp_no_resolu as cdi_tirage_bp_no_resolu", "dt" => 'cdi_tirage_bp_no_resolu' ),
+    array( "db" => "bpua5.bp_no_resolu as cdi_tirage_bp_unanswered", "dt" => 'cdi_tirage_bp_unanswered' ),
     //array( "db" => "sodt.lib_ok as cdi_tirage_lib_ok", "dt" => 'cdi_tirage_lib_ok' ),
     array( "db" => "t13.ok as cdi_tirage_ok", "dt" => 'cdi_tirage_ok' ),
 
@@ -119,6 +124,7 @@ $columns = array(
     array( "db" => "olsu6.date_retour as cdi_raccord_date_retour", "dt" => 'cdi_raccord_date_retour' ),
     array( "db" => "ser6.lib_etat_retour as cdi_raccord_lib_etat_retour", "dt" => 'cdi_raccord_lib_etat_retour' ),
     array( "db" => "bpu6.bp_no_resolu as cdi_raccord_bp_no_resolu", "dt" => 'cdi_raccord_bp_no_resolu' ),
+    array( "db" => "bpua6.bp_no_resolu as cdi_raccord_bp_unanswered", "dt" => 'cdi_raccord_bp_unanswered' ),
     array( "db" => "t14.ok as cdi_raccord_ok", "dt" => 'cdi_raccord_ok' ),
 
     array( "db" => "trec.lib_injection_netgeo as ctr_recette_injection_netgeo", "dt" => 'ctr_recette_injection_netgeo' ),
