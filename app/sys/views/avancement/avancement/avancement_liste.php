@@ -354,7 +354,7 @@
                 { "data": "ctr_aiguillage_date_retour" },
                 { "data": "ctr_aiguillage_lib_etat_retour" },
                 { "data": "ctr_aiguillage_bp_no_resolu" },
-                { "data": "ctr_aiguillage_bp_no_resolu" },
+                { "data": "ctr_aiguillage_bp_unanswered" },
                 { "data": "ctr_aiguillage_ok" },//15
                 //CMD Structurante
                 { "data": "traitement_retour_terrain" },
@@ -374,7 +374,7 @@
                 { "data": "ctr_tirage_date_retour" },
                 { "data": "ctr_tirage_lib_etat_retour" },
                 { "data": "ctr_tirage_bp_no_resolu" },
-                { "data": "ctr_tirage_bp_no_resolu" },
+                { "data": "ctr_tirage_bp_unanswered" },
                 { "data": "ctr_tirage_ok" },//33
                 //Raccordement
                 { "data": "ctr_raccord_date_ret_prevue" },
@@ -388,7 +388,7 @@
                 { "data": "ctr_raccord_date_retour" },
                 { "data": "ctr_raccord_lib_etat_retour" },
                 { "data": "ctr_raccord_bp_no_resolu" },
-                { "data": "ctr_raccord_bp_no_resolu" },
+                { "data": "ctr_raccord_bp_unanswered" },
                 { "data": "ctr_raccord_ok" },//46
                 //Recette
                 { "data": "ctr_recette_injection_netgeo" },
@@ -412,7 +412,7 @@
                 { "data": "cdi_aiguillage_date_retour" },
                 { "data": "cdi_aiguillage_lib_etat_retour" },
                 { "data": "cdi_aiguillage_bp_no_resolu" },
-                { "data": "cdi_aiguillage_bp_no_resolu" },
+                { "data": "cdi_aiguillage_bp_unanswered" },
                 { "data": "cdi_aiguillage_ok" },//63
                 //CMD Structurante
                 { "data": "traitement_retour_terrain2" },
@@ -432,7 +432,7 @@
                 { "data": "cdi_tirage_date_retour" },
                 { "data": "cdi_tirage_lib_etat_retour" },
                 { "data": "cdi_tirage_bp_no_resolu" },
-                { "data": "cdi_tirage_bp_no_resolu" },
+                { "data": "cdi_tirage_bp_unanswered" },
                 { "data": "cdi_tirage_ok" },//81
                 //Raccordement
                 { "data": "cdi_raccord_date_ret_prevue" },
@@ -446,7 +446,7 @@
                 { "data": "cdi_raccord_date_retour" },
                 { "data": "cdi_raccord_lib_etat_retour" },
                 { "data": "cdi_raccord_bp_no_resolu" },
-                { "data": "cdi_raccord_bp_no_resolu" },
+                { "data": "cdi_raccord_bp_unanswered" },
                 { "data": "cdi_raccord_ok" },//94
                 //Recette
                 { "data": "cdi_recette_injection_netgeo" },
