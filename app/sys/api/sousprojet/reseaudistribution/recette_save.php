@@ -54,8 +54,9 @@ if($sousProjet !== NULL) {
     } else {
         $fieldslist = "id_sous_projet,";
         foreach( $_POST as $key => $value ) {
-
+        echo $key . "<br />";
             if(strpos($key,$suffix) !== false) {
+                echo $key . "<br />";
                 $paramcount++;
                 $arr = explode("_",$key);
                 array_shift($arr);
