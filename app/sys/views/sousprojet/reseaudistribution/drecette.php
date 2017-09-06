@@ -54,6 +54,28 @@
         </div>
         <div class="row items-push">
             <div class="form-group">
+
+                <div class="col-md-3">
+                    <label for="drec_a_netgeo">Avancement Netgeo </label><br />
+                    <input type="checkbox" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1"> Fichier Flag<br />
+                    <input type="checkbox" name="drec_fichier_certification" id="drec_fichier_certification" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_certification != 0 ? "checked" : "")?> value="1"> Fichier Certification<br />
+                    <input type="checkbox" name="drec_fichier_coupleur" id="drec_fichier_coupleur" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_coupleur != 0 ? "checked" : "")?> value="1"> Fichier Coupleur<br />
+                    <input type="checkbox" name="drec_base_netgeo" id="drec_base_netgeo" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->base_netgeo != 0 ? "checked" : "")?> value="1"> Base Netgeo<br />
+                    <input type="checkbox" name="drec_dedoe" id="drec_dedoe" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->dedoe != 0 ? "checked" : "")?> value="1">DEDOE
+                </div>
+                <div class="col-md-3">
+                    <label for="drec_code_certification">Code de Certification</label>
+                    <input  class="form-control" type="text" id="drec_code_certification" name="drec_code_certification" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->code_certification : "")?>" placeholder="Recette non plannifiée" placeholder="Code de Certification">
+                </div>
+                <div class="col-md-3">
+                    <label for="drec_lien_zip_complet">Liens vers le ZIP Complet</label>
+                    <textarea class="form-control" id="drec_lien_zip_complet" name="drec_lien_zip_complet" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->lien_zip_complet:"")?></textarea>
+                </div>
+
+            </div>
+        </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-4">
                     <label for="drec_date_recette">Date de début recette <!--<span class="text-danger">*</span>--></label>
                     <input readonly class="form-control" type="text" id="drec_date_recette" name="drec_date_recette" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->date_recette : "")?>" placeholder="Recette non plannifiée">

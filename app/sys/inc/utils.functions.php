@@ -1655,7 +1655,7 @@ function get_email_by_id($db,$tabusers){
  * @param $type_mail
  * @return array
  */
-function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=null,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null,$id_sous_projet=null,$commentaire_ot=null){
+function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=null,$type_mail,$nom_entreprise=null,$nom_ot=null,$ville=null,$boite=null,$chambre=null,$nberchambre=null,$totallineaire=null,$id_chef_equipe=null,$id_sous_projet=null,$commentaire_ot=null,$drec_code_certification=null,$drec_lien_zip_complet=null){
     $sql = "SELECT * FROM `mail_notification_template` where type = :type";
     $sqlstatement = $db->prepare($sql);
     $sqlstatement->bindValue(':type',$type_mail);
@@ -1703,14 +1703,17 @@ function get_content_html_mail_by_type($db,$code_sous_projet,$ctr_cdi,$etape=nul
     $statement[0][1]    = str_replace('@ville',$ville,$statement[0][1] );
     $statement[0][1]    = str_replace('@nombres_chambre',$nberchambre,$statement[0][1] );
     $statement[0][1]    = str_replace('@total_lineaire',$totallineaire,$statement[0][1] );
-
     $statement[0][1]    = str_replace('@num_tel_chef_equipe',$num_tel_chef_projet,$statement[0][1] );
+    $statement[0][1]    = str_replace('@code_certification',$drec_code_certification,$statement[0][1] );
+    $statement[0][1]    = str_replace('@lien_vers_zip',$drec_lien_zip_complet,$statement[0][1] );
 
     $statement[0][3]    = str_replace('@etape_sous_projet',$etape,$statement[0][3]);
     $statement[0][3]    = str_replace('@code_sous_projet',$code_sous_projet,$statement[0][3] );
     $statement[0][3]    = str_replace('@CDI_CTR',$ctr_cdi,$statement[0][3] );
     $statement[0][3]    = str_replace('@nom_entreprise_stt',$nom_entreprise,$statement[0][3] );
     $statement[0][3]    = str_replace('@nom_ot',$nom_ot,$statement[0][3] );
+    $statement[0][3]    = str_replace('@code_certification',$drec_code_certification,$statement[0][3] );
+    $statement[0][3]    = str_replace('@lien_vers_zip',$drec_lien_zip_complet,$statement[0][3] );
 
 
 
