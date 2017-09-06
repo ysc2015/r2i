@@ -65,7 +65,7 @@ if($sousProjet !== NULL) {
                 $fields[] = implode("_",$arr);
             }
         }
-
+        print_r($fieldslist);
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
         $fieldslist .=",date_insertion,id_createur";
