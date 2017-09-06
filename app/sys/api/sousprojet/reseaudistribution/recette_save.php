@@ -338,20 +338,35 @@ if($insert == true && $err == 0){
                 ||
                 ( $mailaction_entite!=null
                     && (
-                    ( isset($drec_fichier_flag) && $drec_fichier_flag == 1  && $mailaction_entite->fichier_flag != $drec_fichier_flag)
-                    ||
-                    ( isset($drec_fichier_certification) && $drec_fichier_certification == 1  && $mailaction_entite->fichier_certification != $drec_fichier_certification)
-                    ||
-                    ( isset($drec_fichier_coupleur) && $drec_fichier_coupleur == 1  && $mailaction_entite->fichier_coupleur != $drec_fichier_coupleur)
-                    ||
-                    ( isset($drec_base_netgeo) && $drec_base_netgeo == 1  && $mailaction_entite->base_netgeo != $drec_base_netgeo)
-                    ||
-                    ( isset($drec_dedoe) && $drec_dedoe == 1  && $mailaction_entite->base_netgeo != $drec_dedoe)
-                    ||
-                    ( isset($drec_code_certification) && $drec_code_certification != ""  && $mailaction_entite->code_certification != $drec_code_certification)
-                    ||
-                    ( isset($drec_lien_zip_complet) && $drec_lien_zip_complet != ""  && $mailaction_entite->lien_zip_complet != $drec_lien_zip_complet)
+                    ( isset($drec_fichier_flag) && $drec_fichier_flag == 1 )
+                    &&
+                    ( isset($drec_fichier_certification) && $drec_fichier_certification == 1  )
+                    &&
+                    ( isset($drec_fichier_coupleur) && $drec_fichier_coupleur == 1  )
+                    &&
+                    ( isset($drec_base_netgeo) && $drec_base_netgeo == 1  )
+                    &&
+                    ( isset($drec_dedoe) && $drec_dedoe == 1  )
+                    &&
+                    ( isset($drec_code_certification) && $drec_code_certification != ""  )
+                    &&
+                    ( isset($drec_lien_zip_complet) && $drec_lien_zip_complet != ""  )
                     )
+                    &&
+                        ($mailaction_entite->fichier_flag != $drec_fichier_flag
+                        ||
+                        $mailaction_entite->fichier_certification != $drec_fichier_certification
+                        ||
+                        $mailaction_entite->fichier_coupleur != $drec_fichier_coupleur
+                        ||
+                        $mailaction_entite->base_netgeo != $drec_base_netgeo
+                        ||
+                        $mailaction_entite->base_netgeo != $drec_dedoe
+                        ||
+                        $mailaction_entite->code_certification != $drec_code_certification
+                        ||
+                        $mailaction_entite->lien_zip_complet != $drec_lien_zip_complet
+                        )
                 )
             )
         ) {
