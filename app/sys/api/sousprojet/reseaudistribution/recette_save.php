@@ -32,8 +32,11 @@ if($sousProjet !== NULL) {
     if($sousProjet->distributionrecette !== NULL) {
         $mailaction_entite = $sousProjet->distributionrecette;
         foreach( $_POST as $key => $value ) {
+            echo $key . "<br />";
 
             if(strpos($key,$suffix) !== false) {
+                echo $key . "<br />";
+
                 $paramcount++;
                 $arr = explode("_",$key);
                 array_shift($arr);
