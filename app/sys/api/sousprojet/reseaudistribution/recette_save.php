@@ -35,7 +35,7 @@ if($sousProjet !== NULL) {
             echo $key . "<br />";
 
             if(strpos($key,$suffix) !== false) {
-                echo $key . "<br />";
+                echo $key . " ".$value."<br />";
 
                 $paramcount++;
                 $arr = explode("_",$key);
@@ -59,7 +59,7 @@ if($sousProjet !== NULL) {
         foreach( $_POST as $key => $value ) {
         echo $key . "<br />";
             if(strpos($key,$suffix) !== false) {
-                echo $key . "<br />";
+                echo $key . " ".$value."<br />";
                 $paramcount++;
                 $arr = explode("_",$key);
                 array_shift($arr);
