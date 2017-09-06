@@ -341,7 +341,7 @@ if($insert == true && $err == 0){
                     ( isset($drec_fichier_flag) && $drec_fichier_flag == 1  && $mailaction_entite->fichier_flag != $drec_fichier_flag)
                     ||
                     ( isset($drec_fichier_certification) && $drec_fichier_certification == 1  && $mailaction_entite->fichier_certification != $drec_fichier_certification)
-                    /*||
+                    ||
                     ( isset($drec_fichier_coupleur) && $drec_fichier_coupleur == 1  && $mailaction_entite->fichier_coupleur != $drec_fichier_coupleur)
                     ||
                     ( isset($drec_base_netgeo) && $drec_base_netgeo == 1  && $mailaction_entite->base_netgeo != $drec_base_netgeo)
@@ -350,7 +350,7 @@ if($insert == true && $err == 0){
                     ||
                     ( isset($drec_code_certification) && $drec_code_certification != ""  && $mailaction_entite->code_certification != $drec_code_certification)
                     ||
-                    ( isset($drec_lien_zip_complet) && $drec_lien_zip_complet != ""  && $mailaction_entite->lien_zip_complet != $drec_lien_zip_complet)*/
+                    ( isset($drec_lien_zip_complet) && $drec_lien_zip_complet != ""  && $mailaction_entite->lien_zip_complet != $drec_lien_zip_complet)
                     )
                 )
             )
