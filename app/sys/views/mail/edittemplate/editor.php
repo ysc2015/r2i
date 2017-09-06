@@ -79,7 +79,14 @@
                 <td>@commentaire_ot</td>
                 <td>Commentaire OT </td>
             </tr>
-
+            <tr>
+                <td>@code_certification</td>
+                <td>Code de Certification</td>
+            </tr>
+            <tr>
+                <td>@lien_vers_zip</td>
+                <td>Liens vers le ZIP Complet  </td>
+            </tr>
 
         </table>
     </div>

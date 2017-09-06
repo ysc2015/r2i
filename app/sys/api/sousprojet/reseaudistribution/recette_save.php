@@ -123,6 +123,28 @@ if(isset($drec_injection_netgeo)){
     $stm->bindParam(':injection_netgeo',$drec_injection_netgeo);
     $insert = true;
 }
+if(isset($drec_fichier_flag)){
+    $stm->bindParam(':fichier_flag',$drec_fichier_flag);
+    $insert = true;
+}if(isset($drec_fichier_certification)){
+    $stm->bindParam(':fichier_certification',$drec_fichier_certification);
+    $insert = true;
+}if(isset($drec_fichier_coupleur)){
+    $stm->bindParam(':fichier_coupleur',$drec_fichier_coupleur);
+    $insert = true;
+}if(isset($drec_base_netgeo)){
+    $stm->bindParam(':base_netgeo',$drec_base_netgeo);
+    $insert = true;
+}if(isset($drec_dedoe)){
+    $stm->bindParam(':dedoe',$drec_dedoe);
+    $insert = true;
+}if(isset($drec_code_certification)){
+    $stm->bindParam(':code_certification',$drec_code_certification);
+    $insert = true;
+}if(isset($drec_lien_zip_complet)){
+    $stm->bindParam(':lien_zip_complet',$drec_lien_zip_complet);
+    $insert = true;
+}
 
 if(isset($drec_id_entreprise)){
     $stm->bindParam(':id_entreprise',$drec_id_entreprise);
@@ -283,6 +305,61 @@ if($insert == true && $err == 0){
 
 
             if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+        }
+        //mail Avancement Netgeo
+        if($mailaction_new
+            &&
+            (
+                (   $mailaction_entite==null
+                    && isset($drec_fichier_flag)
+                    && $drec_fichier_flag == 1
+                    && isset($drec_fichier_certification)
+                    && $drec_fichier_certification == 1
+                    && isset($drec_fichier_coupleur)
+                    && $drec_fichier_coupleur == 1
+                    && isset($drec_base_netgeo)
+                    && $drec_base_netgeo == 1
+                    && isset($drec_dedoe)
+                    && $drec_dedoe == 1
+                    && isset($drec_code_certification)
+                    && $drec_code_certification != ""
+                    && isset($drec_lien_zip_complet)
+                    && $drec_lien_zip_complet != ""
+                )
+                ||
+                ( $mailaction_entite!=null
+                    && (
+                    ( isset($drec_fichier_flag) && $drec_fichier_flag == 1  && $mailaction_entite->fichier_flag != $drec_fichier_flag)
+                    ||
+                    ( isset($drec_fichier_certification) && $drec_fichier_certification == 1  && $mailaction_entite->fichier_certification != $drec_fichier_certification)
+                    ||
+                    ( isset($drec_fichier_coupleur) && $drec_fichier_coupleur == 1  && $mailaction_entite->fichier_coupleur != $drec_fichier_coupleur)
+                    ||
+                    ( isset($drec_base_netgeo) && $drec_base_netgeo == 1  && $mailaction_entite->base_netgeo != $drec_base_netgeo)
+                    ||
+                    ( isset($drec_dedoe) && $drec_dedoe == 1  && $mailaction_entite->base_netgeo != $drec_dedoe)
+                    ||
+                    ( isset($drec_code_certification) && $drec_code_certification != ""  && $mailaction_entite->code_certification != $drec_code_certification)
+                    ||
+                    ( isset($drec_lien_zip_complet) && $drec_lien_zip_complet != ""  && $mailaction_entite->lien_zip_complet != $drec_lien_zip_complet)
+                    )
+                )
+            )
+        ) {
+            $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',11,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet,'',$drec_code_certification,$drec_lien_zip_complet);
+            $mailaction_object = $mailaction_html[1];
+            $mailaction_html =  $mailaction_html[0];
+
+            $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",11);
+            $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+
+
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,["fadelghani@rc2k.fr"],array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
                 $message[] = "Mail envoyé !";
             } else {
                 $message[] = "Mail non envoyé !";
