@@ -355,7 +355,8 @@ if($insert == true && $err == 0){
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
-            $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",11);
+            //$mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",11);
+            $mailaction_cc = [];
             $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
 
 
