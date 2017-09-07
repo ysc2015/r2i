@@ -52,16 +52,14 @@
                 </div>
             </div>
         </div>
-        <div class="row items-push">
-            <div class="form-group">
-
                 <div class="col-md-3">
                     <label for="drec_fichier_flag">Avancement Netgeo </label><br />
-                    <input type="checkbox" class="chb" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1"> Fichier Flag<br />
-                    <input type="checkbox" class="chb" name="drec_fichier_certification" id="drec_fichier_certification" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_certification != 0 ? "checked" : "")?> value="1"> Fichier Certification<br />
-                    <input type="checkbox" class="chb" name="drec_fichier_coupleur" id="drec_fichier_coupleur" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_coupleur != 0 ? "checked" : "")?> value="1"> Fichier Coupleur<br />
-                    <input type="checkbox" class="chb" name="drec_base_netgeo" id="drec_base_netgeo" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->base_netgeo != 0 ? "checked" : "")?> value="1"> Base Netgeo<br />
-                    <input type="checkbox" class="chb" name="drec_dedoe" id="drec_dedoe" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->dedoe != 0 ? "checked" : "")?> value="1"> DEDOE
+                    <input type="checkbox" class="form-control-chb" name="tata" id="tata" value="toto">
+                    <input type="checkbox" class="form-control-chb" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1"> Fichier Flag<br />
+                    <input type="checkbox" class="form-control-chb"  name="drec_fichier_certification" id="drec_fichier_certification" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_certification != 0 ? "checked" : "")?> value="1"> Fichier Certification<br />
+                    <input type="checkbox" class="form-control-chb" name="drec_fichier_coupleur" id="drec_fichier_coupleur" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_coupleur != 0 ? "checked" : "")?> value="1"> Fichier Coupleur<br />
+                    <input type="checkbox" class="form-control-chb" name="drec_base_netgeo" id="drec_base_netgeo" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->base_netgeo != 0 ? "checked" : "")?> value="1"> Base Netgeo<br />
+                    <input type="checkbox" class="form-control-chb" name="drec_dedoe" id="drec_dedoe" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->dedoe != 0 ? "checked" : "")?> value="1"> DEDOE
                 </div>
                 <div class="col-md-3">
                     <label for="drec_code_certification">Code de Certification</label>
@@ -72,8 +70,7 @@
                     <textarea class="form-control" id="drec_lien_zip_complet" name="drec_lien_zip_complet" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->lien_zip_complet:"")?></textarea>
                 </div>
 
-            </div>
-        </div>
+
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-4">
@@ -232,7 +229,8 @@
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer cette affectation ?</p>
 </div>
 <script>
-    var drecette_formdata = {};
+     var drecette_formdata_chb = {};
+     var drecette_formdata = {};
     var recette_uploader2_options2 = {
         url: "api/sousprojet/reseaudistribution/upload_recette_file.php",
         multiple:true,
@@ -526,6 +524,9 @@
         $('#dist_recette_form *').filter('.form-control:enabled:not([readonly])').each(function(){
             drecette_formdata[$( this ).attr('name')] = $( this).val();
         });
+        $('#dist_recette_form *').filter('.form-control-chb:enabled:not([readonly])').each(function(){
+            drecette_formdata_chb[$( this ).attr('name')] = $( this).val();
+        });
         $("#id_sous_projet_distribution_recette_btn").click(function () {
 
             $("#message_distribution_recette").fadeOut();
@@ -534,6 +535,14 @@
             for (var key in drecette_formdata) {
                 drecette_formdata[key] = $('#'+key).val();
             }
+            for (var key in drecette_formdata_chb) {
+                if( $('input[name='+key+']').is(':checked') ){
+                    drecette_formdata[key] = $('#'+key).val();
+                }else{
+                    drecette_formdata[key] = 0;
+                }
+            }
+
             drecette_formdata['ids'] = get('idsousprojet');
 
             if($("#drec_ok").val() == 1) {

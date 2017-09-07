@@ -32,11 +32,7 @@ if($sousProjet !== NULL) {
     if($sousProjet->distributionrecette !== NULL) {
         $mailaction_entite = $sousProjet->distributionrecette;
         foreach( $_POST as $key => $value ) {
-            echo $key . "<br />";
-
             if(strpos($key,$suffix) !== false) {
-                echo $key . " ".$value."<br />";
-
                 $paramcount++;
                 $arr = explode("_",$key);
                 array_shift($arr);
@@ -56,20 +52,16 @@ if($sousProjet !== NULL) {
         $mailaction_new = true;
     } else {
         $fieldslist = "id_sous_projet,";
-        foreach( $_POST as $key => $value ) {
-        echo $key . "<br />";
-            if(strpos($key,$suffix) !== false) {
-                echo $key . " ".$value."<br />";
+         foreach( $_POST as $key => $value ) {
+             if(strpos($key,$suffix) !== false) {
                 $paramcount++;
                 $arr = explode("_",$key);
                 array_shift($arr);
                 $fieldslist .= implode("_",$arr).",";
                 $valueslist .= ":".implode("_",$arr).",";
-
                 $fields[] = implode("_",$arr);
             }
         }
-        print_r($fieldslist);
         $fieldslist = rtrim($fieldslist,",");
         $valueslist = rtrim($valueslist,",");
         $fieldslist .=",date_insertion,id_createur";
@@ -78,6 +70,7 @@ if($sousProjet !== NULL) {
         (isset($drec_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
         (isset($drec_doe))? $fieldslist .=",date_attribution_doe ": $fieldslist.="" ;
         (isset($drec_doe))? $valueslist .=",:date_attribution_doe ": $valueslist.="" ;
+        echo "insert into sous_projet_distribution_recette (".$fieldslist.") values (".$valueslist.")";
         $stm = $db->prepare("insert into sous_projet_distribution_recette ($fieldslist) values ($valueslist)");
         $date_insertion =  date('Y-m-d G:i:s');
         $stm->bindParam(':date_insertion',$date_insertion);
@@ -316,7 +309,7 @@ if($insert == true && $err == 0){
             }
         }
         //mail Avancement Netgeo
-        if($mailaction_new
+        if( $mailaction_new
             &&
             (
                 (   $mailaction_entite==null
@@ -370,24 +363,34 @@ if($insert == true && $err == 0){
                 )
             )
         ) {
-            echo "entre";
+
             $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',11,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet,'',$drec_code_certification,$drec_lien_zip_complet);
             $mailaction_object = $mailaction_html[1];
             $mailaction_html =  $mailaction_html[0];
 
             //$mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",11);
             $mailaction_cc = [];
-            $mailaction_to =return_list_mail_vpi_par_nro($db,$sousProjet->projet->nro->id_nro);
+
+            if(isset($drec_netgeo) && $drec_netgeo != ""){
+
+                $mailaction_to =get_email_by_id($db,[$drec_netgeo]);
 
 
-            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,["fadelghani@rc2k.fr"],array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
-                $message[] = "Mail envoyé !";
-            } else {
-                $message[] = "Mail non envoyé !";
+                if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
+                    $message[] = "Mail envoyé !";
+                } else {
+                    $message[] = "Mail non envoyé !";
+                    $err++;
+                }
+
+            }else{
+                $message[] = "Mail non envoyé absence du Netgeo !";
                 $err++;
+
             }
-        }
-        //setSousProjetUsers(SousProjet::find($ids));
+
+
+        }        //setSousProjetUsers(SousProjet::find($ids));
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();
