@@ -54,7 +54,6 @@
         </div>
                 <div class="col-md-3">
                     <label for="drec_fichier_flag">Avancement Netgeo </label><br />
-                    <input type="checkbox" class="form-control-chb" name="tata" id="tata" value="toto">
                     <input type="checkbox" class="form-control-chb" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1"> Fichier Flag<br />
                     <input type="checkbox" class="form-control-chb"  name="drec_fichier_certification" id="drec_fichier_certification" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_certification != 0 ? "checked" : "")?> value="1"> Fichier Certification<br />
                     <input type="checkbox" class="form-control-chb" name="drec_fichier_coupleur" id="drec_fichier_coupleur" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_coupleur != 0 ? "checked" : "")?> value="1"> Fichier Coupleur<br />
