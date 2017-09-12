@@ -500,6 +500,73 @@ switch ($page) {
         </div>
     </div>
     <!--end Gestion BLQ modal-->
+    <!--Gestion pdn integration netgeo-modal -->
+    <div class="modal fade" id="pdn_integration_netgeo-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="block-header bg-primary">
+                    <ul class="block-options">
+                        <li>
+                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                        </li>
+                    </ul>
+                    <h3 class="block-title">PBN Intégration netgeo</h3>
+                </div>
+                <div class="block-content">
+                    <div class="block block-themed " id="blq_block">
+                        <div class="block-header bg-info">
+                            <ul class="block-options">
+                                <li>
+                                    <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                                </li>
+                                <li>
+                                    <button type="button" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
+                                </li>
+                            </ul>
+                            <h3 class="block-title">PBN Intégration netgeo</h3>
+                        </div>
+                        <div class="block-content">
+                            <div class="block" id="blq2_block_content">
+
+                                <div class="block-content tab-content">
+                                    <div class="tab-pane active" id="btabs-alt-static-justified-q1">
+                                        <table id="blq_pbc_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Remarque</th>
+                                                <th>Code</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Remarque</th>
+                                                <th>Code</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                        <button id="add_pdn_integration_netgeo_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info-pdn_integration_netgeo' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter PBN Intégration netgeo</button>
+                                        <button id="delete_pdn_integration_netgeo_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info-pdn_integration_netgeo' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer info</button>
+                                        <!--<button id="resolu_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Question résolu</button>-->
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end gestion pdn_integration_netgeo-modal -->
     <!-- ajouter info/question Modal -->
     <div class="modal fade" id="add-info" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
