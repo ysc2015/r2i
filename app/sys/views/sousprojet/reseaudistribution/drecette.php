@@ -52,6 +52,8 @@
                 </div>
             </div>
         </div>
+        <div class="row items-push">
+            <div class="form-group">
                 <div class="col-md-3">
                     <label for="drec_fichier_flag">Avancement Netgeo </label><br />
                     <input type="checkbox" class="form-control-chb" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1"> Fichier Flag<br />
@@ -68,8 +70,24 @@
                     <label for="drec_lien_zip_complet">Liens vers le ZIP Complet</label>
                     <textarea class="form-control" id="drec_lien_zip_complet" name="drec_lien_zip_complet" rows="6" placeholder="Collez lien ici.."><?=($sousProjet->distributionrecette !== NULL?$sousProjet->distributionrecette->lien_zip_complet:"")?></textarea>
                 </div>
-
-
+        </div>
+            </div>
+        <div class="row items-push">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="row" style="padding-left: 10px;">
+                        <label for="fileuploader_recette2_flag_csv">Flag (fichier *.csv)</label>
+                        <div id="fileuploader_recette2_flag_csv"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row" style="padding-left: 10px;">
+                        <label for="fileuploader_recette2_fichier_certification">Fichier de certification (*.md5)</label>
+                        <div id="fileuploader_recette2_fichier_certification"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row items-push">
             <div class="form-group">
                 <div class="col-md-4">
@@ -374,71 +392,216 @@
 
         }
     };
-    var drec_fileuploader_retour_options = {
-        url: "api/myot/traitement/myot_upload_retour.php",
-        multiple:false,
-        dragDrop:true,
-        fileName: "myfile",
-        autoSubmit: true,
-        showDelete:false,
-        showDownload:true,
-        allowedTypes: "pdf,xls,xlsx",
-        onLoad:function(obj)
-        {
-            $.ajax({
-                cache: false,
-                url: "api/myot/traitement/load_retour_stt_etape.php",
-                method:"POST",
-                data: {idsp:get('idsousprojet'),etapes:'10'},//Recette Optique CDI
-                dataType: "json",
-                success: function(data)
-                {
-                    for(var i=0;i<data.length;i++)
-                    {
-                        obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
-                    }
-                }
-            });
-        },
-        afterUploadAll:function(obj) {
-        },
-        downloadCallback:function(data,pd)
-        {
-            var obj;
-            var id;
-            try {
-                obj = $.parseJSON(data);
-                id = obj[0].id;
-            } catch (e) {
-                var arr = (data + '').split("_");
-                id = arr[0];
-            }
+     var drec_fileuploader_retour_options = {
+         url: "api/myot/traitement/myot_upload_retour.php",
+         multiple:false,
+         dragDrop:true,
+         fileName: "myfile",
+         autoSubmit: true,
+         showDelete:false,
+         showDownload:true,
+         allowedTypes: "pdf,xls,xlsx",
+         onLoad:function(obj)
+         {
+             $.ajax({
+                 cache: false,
+                 url: "api/myot/traitement/load_retour_stt_etape.php",
+                 method:"POST",
+                 data: {idsp:get('idsousprojet'),etapes:'10'},//Recette Optique CDI
+                 dataType: "json",
+                 success: function(data)
+                 {
+                     for(var i=0;i<data.length;i++)
+                     {
+                         obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                     }
+                 }
+             });
+         },
+         afterUploadAll:function(obj) {
+         },
+         downloadCallback:function(data,pd)
+         {
+             var obj;
+             var id;
+             try {
+                 obj = $.parseJSON(data);
+                 id = obj[0].id;
+             } catch (e) {
+                 var arr = (data + '').split("_");
+                 id = arr[0];
+             }
 
-            location.href="api/file/download.php?id="+id;
-        },
-        deleteCallback: function (data, pd) {
-            var obj;
-            var id;
-            try {
-                obj = $.parseJSON(data);
-                id = obj[0].id;
-            } catch (e) {
-                var arr = (data + '').split("_");
-                id = arr[0];
-            }
+             location.href="api/file/download.php?id="+id;
+         },
+         deleteCallback: function (data, pd) {
+             var obj;
+             var id;
+             try {
+                 obj = $.parseJSON(data);
+                 id = obj[0].id;
+             } catch (e) {
+                 var arr = (data + '').split("_");
+                 id = arr[0];
+             }
 
-            $.ajax({
-                method: "POST",
-                url: "api/file/delete.php",
-                data: {
-                    id: id
-                }
-            }).done(function (message) {
-                console.log(message);
-            });
+             $.ajax({
+                 method: "POST",
+                 url: "api/file/delete.php",
+                 data: {
+                     id: id
+                 }
+             }).done(function (message) {
+                 console.log(message);
+             });
 
-        }
-    }
+         }
+     }
+     var drec_fileuploader_fichier_certification_options = {
+         url: "api/sousprojet/reseaudistribution/upload_recette_fichier_certification.php",
+         multiple:true,
+         dragDrop:true,
+         fileName: "myfile",
+         autoSubmit: true,
+         showDelete:true,
+         showDownload:true,
+         allowedTypes: "md5",
+         onLoad:function(obj)
+         {
+             $.ajax({
+                 cache: false,
+                 url: "api/sousprojet/reseaudistribution/load.php",
+                 method:"POST",
+                 data: {id_sous_projet:get('idsousprojet'),type_objet:'distribution_recette_fichier_certification'},
+                 dataType: "json",
+                 success: function(data)
+                 {
+                     for(var i=0;i<data.length;i++)
+                     {
+                         obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                     }
+                 }
+             });
+         },
+         dynamicFormData: function()
+         {
+             var data ={
+                 idsp: get('idsousprojet')
+             };
+             return data;
+         },
+         afterUploadAll:function(obj) {
+         },
+         downloadCallback:function(data,pd)
+         {
+             var obj;
+             var id;
+             try {
+                 obj = $.parseJSON(data);
+                 id = obj[0].id;
+             } catch (e) {
+                 var arr = (data + '').split("_");
+                 id = arr[0];
+             }
+
+             location.href="api/file/download.php?id="+id;
+         },
+         deleteCallback: function (data, pd) {
+             var obj;
+             var id;
+             try {
+                 obj = $.parseJSON(data);
+                 id = obj[0].id;
+             } catch (e) {
+                 var arr = (data + '').split("_");
+                 id = arr[0];
+             }
+
+             $.ajax({
+                 method: "POST",
+                 url: "api/file/delete_fichier_certification.php",
+                 data: {
+                     id: id
+                 }
+             }).done(function (message) {
+                 console.log(message);
+             });
+
+         }
+     }
+     var drec_fileuploader_flag_csv_options = {
+         url: "api/sousprojet/reseaudistribution/upload_recette_flag_csv.php",
+         multiple:true,
+         dragDrop:true,
+         fileName: "myfile",
+         autoSubmit: true,
+         showDelete:true,
+         showDownload:true,
+         allowedTypes: "csv",
+         onLoad:function(obj)
+         {
+             $.ajax({
+                 cache: false,
+                 url: "api/sousprojet/reseaudistribution/load.php",
+                 method:"POST",
+                 data: {id_sous_projet:get('idsousprojet'),type_objet:'distribution_recette_flag_csv'},
+                 dataType: "json",
+                 success: function(data)
+                 {
+                     for(var i=0;i<data.length;i++)
+                     {
+                         obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
+                     }
+                 }
+             });
+         },
+         dynamicFormData: function()
+         {
+             var data ={
+                 idsp: get('idsousprojet')
+             };
+             return data;
+         },
+         afterUploadAll:function(obj) {
+         },
+         downloadCallback:function(data,pd)
+         {
+             var obj;
+             var id;
+             try {
+                 obj = $.parseJSON(data);
+                 id = obj[0].id;
+             } catch (e) {
+                 var arr = (data + '').split("_");
+                 id = arr[0];
+             }
+
+             location.href="api/file/download.php?id="+id;
+         },
+         deleteCallback: function (data, pd) {
+             var obj;
+             var id;
+             try {
+                 obj = $.parseJSON(data);
+                 id = obj[0].id;
+             } catch (e) {
+                 var arr = (data + '').split("_");
+                 id = arr[0];
+             }
+
+             $.ajax({
+                 method: "POST",
+                 url: "api/file/delete_flag_csv.php",
+                 data: {
+                     id: id
+                 }
+             }).done(function (message) {
+                 console.log(message);
+             });
+
+         }
+     }
+
     $(function () {
         recette_uploader2_options2 = merge_options(defaultUploaderStrLocalisation,recette_uploader2_options2);
         recette_uploader2 = $("#fileuploader_recette2").uploadFile(recette_uploader2_options2);
@@ -448,6 +611,13 @@
 
         drec_fileuploader_retour_options = merge_options(defaultUploaderStrLocalisation,drec_fileuploader_retour_options);
         drec_fileuploader_retour = $("#drec_fileuploader_retour").uploadFile(drec_fileuploader_retour_options);
+
+        drec_fileuploader_fichier_certification_options = merge_options(defaultUploaderStrLocalisation,drec_fileuploader_fichier_certification_options);
+        drec_fileuploader_fichier_certification = $("#fileuploader_recette2_fichier_certification").uploadFile(drec_fileuploader_fichier_certification_options);
+
+        drec_fileuploader_flag_csv_options = merge_options(defaultUploaderStrLocalisation,drec_fileuploader_flag_csv_options);
+        drec_fileuploader_flag_csv = $("#fileuploader_recette2_flag_csv").uploadFile(drec_fileuploader_flag_csv_options);
+
 
     });
     $(document).ready(function() {
