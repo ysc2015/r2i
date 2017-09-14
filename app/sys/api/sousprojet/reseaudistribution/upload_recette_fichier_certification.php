@@ -97,12 +97,12 @@ if(isset($idsp) && !empty($idsp)) {
                         }
                         $row = $stm_flag_csv->fetch(PDO::FETCH_OBJ);
                         $file_fichier_certification = __DIR__."/../uploads/fichier_certification/" .$fileName;
-                        $file_fichier_flag = __DIR__."/../uploads/distribution_recette_flag_csv/" .$row->nom_fichier_disque;
+                        $file_fichier_flag = __DIR__."/../uploads/flag_csv/" .$row->nom_fichier_disque;
                         $tabfile_to_send =[];
                         $tabfile_to_send[0]['dossier'] = "fichier_certification";
                         $tabfile_to_send[0]['nom_fichier_disque'] = $fileName;
 
-                        $tabfile_to_send[1]['dossier'] = "distribution_recette_flag_csv";
+                        $tabfile_to_send[1]['dossier'] = "flag_csv";
                         $tabfile_to_send[1]['nom_fichier_disque'] = $row->nom_fichier_disque;
                         $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',12,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
                         $mailaction_object = $mailaction_html[1];

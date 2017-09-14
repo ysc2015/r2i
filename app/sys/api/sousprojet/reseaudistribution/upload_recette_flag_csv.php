@@ -37,7 +37,7 @@ if(isset($idsp) && !empty($idsp)) {
                 $ret[] = (move_uploaded_file($_FILES["myfile"]["tmp_name"], $output_dir . $fileName)?$details:[]);
 
                 $lastInsertedId = $db->lastInsertId();
-                $stm = $db->prepare("insert into flag_csv (id_sous_projet,id_ressource,type_entree,ref_flag_csv) values (:id_sous_projet,:id_ressource,'distribution_recette_flag_csv',:ref_flag_csv)");
+                $stm = $db->prepare("insert into flag_csv (id_sous_projet,id_ressource,type_entree,ref_flag_csv) values (:id_sous_projet,:id_ressource,'flag_csv',:ref_flag_csv)");
                 //  Read your Excel workbook
                 try {
                     $inputFileType = PHPExcel_IOFactory::identify($output_dir . $fileName);
@@ -100,12 +100,12 @@ if(isset($idsp) && !empty($idsp)) {
                     }
                     $row = $stm_fichier_certification->fetch(PDO::FETCH_OBJ);
                     $file_fichier_certification = __DIR__."/../uploads/fichier_certification/" .$row->nom_fichier_disque;
-                    $file_fichier_flag = __DIR__."/../uploads/distribution_recette_flag_csv/" .$fileName;
+                    $file_fichier_flag = __DIR__."/../uploads/flag_csv/" .$fileName;
                     $tabfile_to_send =[];
                     $tabfile_to_send[0]['dossier'] = "fichier_certification";
                     $tabfile_to_send[0]['nom_fichier_disque'] = $row->nom_fichier_disque;
 
-                    $tabfile_to_send[1]['dossier'] = "distribution_recette_flag_csv";
+                    $tabfile_to_send[1]['dossier'] = "flag_csv";
                     $tabfile_to_send[1]['nom_fichier_disque'] = $fileName;
 
                     $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',12,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
