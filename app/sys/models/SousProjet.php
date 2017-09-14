@@ -149,6 +149,19 @@ class SousProjet extends ActiveRecord\Model {
             'distributioncmdfintravaux',
             'class_name' => 'SousProjetDistributionCommandeFinTravaux',
             'foreign_key' => 'id_sous_projet'
+        ),
+        /**
+         * fichier certif
+         */
+        array(
+            'fichiercertification',
+            'class_name' => 'FichierCertification',
+            'foreign_key' => 'id_sous_projet'
+        ),
+        array(
+            'flagcsv',
+            'class_name' => 'FlagCsv',
+            'foreign_key' => 'id_sous_projet'
         )
     );
 }
