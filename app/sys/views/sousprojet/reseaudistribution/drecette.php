@@ -56,11 +56,11 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <label for="drec_fichier_flag">Avancement Netgeo </label><br />
-                    <input type="checkbox" class="form-control-chb" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1"> Fichier Flag<br />
-                    <input type="checkbox" class="form-control-chb"  name="drec_fichier_certification" id="drec_fichier_certification" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_certification != 0 ? "checked" : "")?> value="1"> Fichier Certification<br />
-                    <input type="checkbox" class="form-control-chb" name="drec_fichier_coupleur" id="drec_fichier_coupleur" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_coupleur != 0 ? "checked" : "")?> value="1"> Fichier Coupleur<br />
-                    <input type="checkbox" class="form-control-chb" name="drec_base_netgeo" id="drec_base_netgeo" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->base_netgeo != 0 ? "checked" : "")?> value="1"> Base Netgeo<br />
-                    <input type="checkbox" class="form-control-chb" name="drec_dedoe" id="drec_dedoe" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->dedoe != 0 ? "checked" : "")?> value="1"> DEDOE
+                    <input onclick="return false;" type="checkbox" class="form-control-chb" name="drec_fichier_flag" id="drec_fichier_flag" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_flag != 0 ? "checked" : "")?> value="1" > Fichier Flag<br />
+                    <input onclick="return false;" type="checkbox" class="form-control-chb"  name="drec_fichier_certification" id="drec_fichier_certification" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_certification != 0 ? "checked" : "")?> value="1" > Fichier Certification<br />
+                    <input onclick="return false;" type="checkbox" class="form-control-chb" name="drec_fichier_coupleur" id="drec_fichier_coupleur" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->fichier_coupleur != 0 ? "checked" : "")?> value="1"> Fichier Coupleur<br />
+                    <input onclick="return false;" type="checkbox" class="form-control-chb" name="drec_base_netgeo" id="drec_base_netgeo" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->base_netgeo != 0 ? "checked" : "")?> value="1"> Base Netgeo<br />
+                    <input onclick="return false;" type="checkbox" class="form-control-chb" name="drec_dedoe" id="drec_dedoe" <?=($sousProjet->distributionrecette !== NULL && $sousProjet->distributionrecette->dedoe != 0 ? "checked" : "")?> value="1"> DEDOE
                 </div>
                 <div class="col-md-3">
                     <label for="drec_code_certification">Code de Certification</label>
@@ -477,7 +477,7 @@
                  dataType: "json",
                  success: function(data)
                  {
-                     for(var i=0;i<data.length;i++)
+                      for(var i=0;i<data.length;i++)
                      {
                          obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"],data[i]["id"]);
                      }
@@ -487,11 +487,13 @@
          dynamicFormData: function()
          {
              var data ={
-                 idsp: get('idsousprojet')
+                 idsp: get('idsousprojet'),
+                 drec_netgeo:$('#drec_netgeo').val()
              };
              return data;
          },
          afterUploadAll:function(obj) {
+            // $("#drec_fichier_certification").attr("checked", true);
          },
          downloadCallback:function(data,pd)
          {
@@ -510,6 +512,7 @@
          deleteCallback: function (data, pd) {
              var obj;
              var id;
+             var idsp = get('idsousprojet');
              try {
                  obj = $.parseJSON(data);
                  id = obj[0].id;
@@ -522,9 +525,11 @@
                  method: "POST",
                  url: "api/file/delete_fichier_certification.php",
                  data: {
-                     id: id
+                     id: id,
+                     idsp:idsp
                  }
              }).done(function (message) {
+                // $("#drec_fichier_certification").attr("checked", false);
                  console.log(message);
              });
 
@@ -559,11 +564,14 @@
          dynamicFormData: function()
          {
              var data ={
-                 idsp: get('idsousprojet')
+                 idsp: get('idsousprojet'),
+                 drec_netgeo:$('#drec_netgeo').val()
              };
              return data;
          },
          afterUploadAll:function(obj) {
+           //  $("#drec_fichier_flag").attr("checked", true);
+
          },
          downloadCallback:function(data,pd)
          {
@@ -582,6 +590,8 @@
          deleteCallback: function (data, pd) {
              var obj;
              var id;
+             var idsp = get('idsousprojet');
+
              try {
                  obj = $.parseJSON(data);
                  id = obj[0].id;
@@ -594,9 +604,13 @@
                  method: "POST",
                  url: "api/file/delete_flag_csv.php",
                  data: {
-                     id: id
+                     id: id,
+                     idsp:idsp
+
                  }
              }).done(function (message) {
+               //  $("#drec_fichier_flag").attr("checked", false);
+
                  console.log(message);
              });
 

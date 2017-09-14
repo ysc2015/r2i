@@ -56,9 +56,92 @@ if(isset($idsp) && !empty($idsp)) {
                     $stm->bindValue(':ref_fichier_certification','ref to change');
                     //inject values SQL
                     $stm->execute();
+                $id_fichier_certification = $db->lastInsertId();
+                    //checked value fichier_certification sur la base
+                    /*
+
+                    if($sousProjet->distributionrecette !== NULL) {
+                        $fieldslist ="id_modificateur = :id_modificateur,fichier_certification = :fichier_certification,id_sous_projet=:id_sous_projet";
+
+                        $stm_coche_param = $db->prepare("update sous_projet_distribution_recette set $fieldslist where id_sous_projet=:id_sous_projet");
+                        $id_modificateur = intval($connectedProfil->profil->id_utilisateur);
+                        $stm_coche_param->bindParam(':id_modificateur',$id_modificateur);
+                        $stm_coche_param->bindValue(':fichier_certification',1);
+                        $stm_coche_param->bindParam(':id_sous_projet',$idsp);
+                        $stm_coche_param->execute();
+
+                    }else{
+                        $fieldslist ="id_sous_projet,date_insertion,id_createur,fichier_certification";
+                        $valueslist =":id_sous_projet,:date_insertion,:id_createur,:fichier_certification";
+                        $stm_coche_param = $db->prepare("insert into sous_projet_distribution_recette ($fieldslist) values ($valueslist)");
+                        $date_insertion =  date('Y-m-d G:i:s');
+                        $stm_coche_param->bindParam(':date_insertion',$date_insertion);
+                        $id_createur = intval($connectedProfil->profil->id_utilisateur);
+                        $stm_coche_param->bindParam(':id_createur',$id_createur);
+                        $stm_coche_param->bindValue(':fichier_certification',1);
+                        $stm_coche_param->bindParam(':id_sous_projet',$idsp);
+                        $stm_coche_param->execute();
+
+                    }*/
+
+                    $stm_flag_csv = $db->prepare("select * from flag_csv fc,ressource r where fc.id_sous_projet = :id_sous_projet  and r.id_ressource = fc.id_ressource order by date_creation desc limit 1 ");
+                    $stm_flag_csv->bindParam(":id_sous_projet",$idsp);
+                    $stm_flag_csv->execute();
+
+                    if($stm_flag_csv->rowCount()>0){
+
+                    //envoi de mail quand deux fichiers (fichier_flag & fichier certification )sont upload
+                        $sousProjet = NULL;
+                        if(isset($idsp) && !empty($idsp)){
+                            $sousProjet = SousProjet::find($idsp);
+                        }
+                        $row = $stm_flag_csv->fetch(PDO::FETCH_OBJ);
+                        $file_fichier_certification = __DIR__."/../uploads/fichier_certification/" .$fileName;
+                        $file_fichier_flag = __DIR__."/../uploads/distribution_recette_flag_csv/" .$row->nom_fichier_disque;
+                        $tabfile_to_send =[];
+                        $tabfile_to_send[0]['dossier'] = "fichier_certification";
+                        $tabfile_to_send[0]['nom_fichier_disque'] = $fileName;
+
+                        $tabfile_to_send[1]['dossier'] = "distribution_recette_flag_csv";
+                        $tabfile_to_send[1]['nom_fichier_disque'] = $row->nom_fichier_disque;
+                        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',12,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet);
+                        $mailaction_object = $mailaction_html[1];
+                        $mailaction_html =  $mailaction_html[0];
+
+                        $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",12);
+
+                        if(isset($drec_netgeo) && intval($drec_netgeo)  > 0){
+
+                            $mailaction_to =get_email_by_id($db,[$drec_netgeo]);
 
 
-            }
+                            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,$tabfile_to_send,$mailaction_cc,$connectedProfil->email_utilisateur)) {
+                                $message[] = "Mail envoyé !";
+                                $stm_update_flag_csv = $db->prepare("update flag_csv set mail_sent = :mail_sent  where id_flag_fichier = :id_flag_fichier");
+                                $stm_update_flag_csv->bindValue(":mail_sent",1);
+                                $stm_update_flag_csv->bindParam(":id_flag_fichier",$row->id_flag_fichier);
+                                $stm_update_flag_csv->execute();
+
+                                $stm_update_fichier_certification = $db->prepare("update fichier_certification set mail_sent = :mail_sent  where id_fichier_certification = :id_fichier_certification");
+                                $stm_update_fichier_certification->bindValue(":mail_sent",1);
+                                $stm_update_fichier_certification->bindParam(":id_fichier_certification",$id_fichier_certification);
+                                $stm_update_fichier_certification->execute();
+                            } else {
+                                $message[] = "Mail non envoyé !";
+                                $err++;
+                            }
+
+                        }else{
+                            $message[] = "Mail non envoyé absence du Netgeo !";
+                            $err++;
+
+                        }
+                    }else{
+                    }
+
+
+
+                }
 
         } else  {
             $fileCount = count($_FILES["myfile"]["name"]);
@@ -81,5 +164,5 @@ if(isset($idsp) && !empty($idsp)) {
         }
     }
 }
-
+$ret[]=$message;
 echo json_encode($ret);
