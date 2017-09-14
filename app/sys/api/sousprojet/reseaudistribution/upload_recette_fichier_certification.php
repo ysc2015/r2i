@@ -27,7 +27,7 @@ if(isset($idsp) && !empty($idsp)) {
 
             $stm->bindParam(':nom_fichier',$_FILES["myfile"]["name"]);
             $stm->bindParam(':nom_fichier_disque',$fileName);
-            $stm->bindParam(':date_creation',date('Y-m-d H:i:s'));
+            $stm->bindValue(':date_creation',date('Y-m-d H:i:s'));
 
             if($stm->execute()) {
                 $details = array();
