@@ -70,7 +70,6 @@ if($sousProjet !== NULL) {
         (isset($drec_intervenant_be))? $valueslist .=",:date_attribution_be ": $valueslist.="" ;
         (isset($drec_doe))? $fieldslist .=",date_attribution_doe ": $fieldslist.="" ;
         (isset($drec_doe))? $valueslist .=",:date_attribution_doe ": $valueslist.="" ;
-        echo "insert into sous_projet_distribution_recette (".$fieldslist.") values (".$valueslist.")";
         $stm = $db->prepare("insert into sous_projet_distribution_recette ($fieldslist) values ($valueslist)");
         $date_insertion =  date('Y-m-d G:i:s');
         $stm->bindParam(':date_insertion',$date_insertion);
