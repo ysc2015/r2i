@@ -92,7 +92,7 @@ if(isset($idsp) && !empty($idsp)) {
                 $stm_fichier_certification->execute();
 
                 if($stm_fichier_certification->rowCount()>0){
-                    echo "22222222". $drec_netgeo;
+
                     //envoi de mail quand deux fichiers (fichier_flag & fichier certification )sont upload
                     $sousProjet = NULL;
                     if(isset($idsp) && !empty($idsp)){
@@ -104,7 +104,7 @@ if(isset($idsp) && !empty($idsp)) {
                     $tabfile_to_send =[];
                     $tabfile_to_send[0]['dossier'] = "fichier_certification";
                     $tabfile_to_send[0]['nom_fichier_disque'] = $row->nom_fichier_disque;
-                    echo $drec_netgeo;
+
                     $tabfile_to_send[1]['dossier'] = "distribution_recette_flag_csv";
                     $tabfile_to_send[1]['nom_fichier_disque'] = $fileName;
 
@@ -115,7 +115,7 @@ if(isset($idsp) && !empty($idsp)) {
                     $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",12);
 
                     if(isset($drec_netgeo) && intval($drec_netgeo)  > 0){
-                    echo $drec_netgeo;
+
                         $mailaction_to =get_email_by_id($db,[$drec_netgeo]);
 
 
@@ -166,5 +166,5 @@ if(isset($idsp) && !empty($idsp)) {
         }
     }
 }
-
+$ret[]=$message;
 echo json_encode($ret);
