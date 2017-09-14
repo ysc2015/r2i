@@ -100,6 +100,8 @@ class MailNotifier {
 
         //Set attachement
         foreach($files as $file) {
+            echo self::$upload_dir.$file['dossier']."/".$file['nom_fichier_disque'];
+            echo "<br />";
             if(file_exists(self::$upload_dir.$file['dossier']."/".$file['nom_fichier_disque']))
                 self::$mail->addAttachment(self::$upload_dir.$file['dossier']."/".$file['nom_fichier_disque']);
         }
