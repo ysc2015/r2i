@@ -388,7 +388,69 @@ if($insert == true && $err == 0){
             }
 
 
-        }        //setSousProjetUsers(SousProjet::find($ids));
+        }
+
+        /**
+         * Quand le fichier flag + fichier certification + code certification validé
+         * Il y a un mail qui part vers l'utilisateur DOE
+         */
+        if ( $mailaction_new
+            &&
+            (
+                (   $mailaction_entite==null
+                    && isset($drec_fichier_flag)
+                    && $drec_fichier_flag == 1
+                    && isset($drec_fichier_certification)
+                    && $drec_fichier_certification == 1
+                    && isset($drec_code_certification)
+                    && $drec_code_certification != ""
+                )
+                ||
+                ( $mailaction_entite!=null
+                    && (
+                        ( isset($drec_fichier_flag) && $drec_fichier_flag == 1 )
+                        &&
+                        ( isset($drec_fichier_certification) && $drec_fichier_certification == 1  )
+                        &&
+                        ( isset($drec_code_certification) && $drec_code_certification != ""  )
+                    )
+                    &&
+                    ($mailaction_entite->fichier_flag != $drec_fichier_flag
+                        ||
+                        $mailaction_entite->fichier_certification != $drec_fichier_certification
+                        ||
+                        $mailaction_entite->code_certification != $drec_code_certification
+                    )
+                )
+            )
+        ) {
+
+        $mailaction_html = get_content_html_mail_by_type($db,$sousProjet->projet->nro->lib_nro."-".$sousProjet->zone,'CDI','Recette',13,'','','','','','','',$sousProjet->projet->id_chef_projet,$sousProjet->id_sous_projet,'',$drec_code_certification);
+        $mailaction_object = $mailaction_html[1];
+        $mailaction_html =  $mailaction_html[0];
+
+        $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",13);
+
+        if(isset($drec_doe) && $drec_doe != ""){
+
+            $mailaction_to =get_email_by_id($db,[$drec_doe]);
+
+
+            if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
+                $message[] = "Mail envoyé !";
+            } else {
+                $message[] = "Mail non envoyé !";
+                $err++;
+            }
+
+        }else{
+            $message[] = "Mail non envoyé absence de l'utilisateur DOE !";
+            $err++;
+
+        }
+
+
+    }
         $message [] = "Enregistrement fait avec succès";
     } else {
         $message [] = $stm->errorInfo();
