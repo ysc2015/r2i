@@ -530,26 +530,33 @@ switch ($page) {
 
                                 <div class="block-content tab-content">
                                     <div class="tab-pane active" id="btabs-alt-static-justified-q1">
-                                        <table id="blq_pbc_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
+                                        <table id="pbn_table" class="table table-bordered table-striped js-dataTable-full" width="100%">
                                             <thead>
                                             <tr>
-                                                <th>id</th>
+                                                <th>Id</th>
                                                 <th>Remarque</th>
-                                                <th>Code</th>
+                                                <th>ID SOUS PROJET</th>
+                                                <th>ID createur</th>
+                                                <th>Date création</th>
+                                                <th>Créateur</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
                                             </tbody>
                                             <tfoot>
                                             <tr>
-                                                <th>id</th>
+                                                <th>Id</th>
                                                 <th>Remarque</th>
-                                                <th>Code</th>
+                                                <th>ID SOUS PROJET</th>
+                                                <th>ID createur</th>
+                                                <th>Date création</th>
+                                                <th>Créateur</th>
                                             </tr>
                                             </tfoot>
                                         </table>
-                                        <button id="add_pdn_integration_netgeo_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-info-pdn_integration_netgeo' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Ajouter PBN Intégration netgeo</button>
-                                        <button id="delete_pdn_integration_netgeo_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info-pdn_integration_netgeo' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer info</button>
+                                        <button id="add_pdn_integration_netgeo_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-pbn' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Crée PBN </button>
+                                        <button id="delete_pdn_integration_netgeo_show" class=' disabled btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info-pdn_integration_netgeo' data-backdrop="static" data-keyboard="false" ><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer PBN</button>
                                         <!--<button id="resolu_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Question résolu</button>-->
 
                                     </div>
@@ -567,7 +574,44 @@ switch ($page) {
         </div>
     </div>
     <!-- end gestion pdn_integration_netgeo-modal -->
-    <!-- ajouter info/question Modal -->
+    <!-- debut ajout PBN-->
+    <div class="modal fade" id="add-pbn" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title" id="add-info-title"></h3>
+                    </div>
+                    <div class="block-content">
+                        <form class="js-validation-bootstrap form-horizontal" id="add_pbn_form">
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="pbn_information" id="add-info-type"></label>
+                                    <input type="hidden" name="id_sous_projet_pbn" id="id_sous_projet_pbn" value="<?=$idsousprojet?>">
+                                    <textarea class="form-control" id="pbn_information" name="pbn_information" rows="6"></textarea>
+                                </div>
+                            </div>
+
+                            <div class='alert alert-success' id='message_pbn_add' role='alert' style="display: none;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary" id="save_pbn" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fin aj modal out PBN-->
+    <!-- ajouter modal info/question Modal -->
     <div class="modal fade" id="add-info" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -829,6 +873,7 @@ switch ($page) {
         var statutpbc;
         var blq_ot_dt;
         var blq_pbc_dt;
+        var pbn_dt;
         var blq_pbc_dt2;
         var blq_ot_btns = ["#add_pbc_show", "#add_pbc_show2"];
         var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
@@ -1036,6 +1081,41 @@ switch ($page) {
                     blq_pbc_dt.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=1&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
                     blq_pbc_dt2.ajax.url( 'api/ot/ot/ot_blq_pbc_liste.php?type=2&idot='+(blq_ot_dt.row('.selected').data()!=undefined?blq_ot_dt.row('.selected').data().id_ordre_de_travail:-1) ).load();
                 }
+            } );
+            //blq_pbc_table
+            pbn_dt = $('#pbn_table').DataTable( {
+                "language": {
+                    "url": "assets/js/plugins/datatables/French.json"
+                },
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": 'api/sousprojet/reseaudistribution/pbn_liste.php?id_sous_projet='+get('idsousprojet')
+                },
+
+            "columns": [
+                    { "data": "id_pbn" },
+                    { "data": "text_pbn" },
+                    { "data": "id_sous_projet" },
+                    { "data": "id_createur" },
+                    { "data": "date_creation" },
+                    { "data": "nom_utilisateur" }
+                    ],
+                "columnDefs": [
+                    { "targets": [ 0,3 ], "visible": false, "searchable": false },
+                    {
+                        "targets": 5,
+                        "render": function ( data, type, full, meta ) {
+                            return (full.nom_utilisateur !== null && full.prenom_utilisateur !== null ?  full.nom_utilisateur + ' ' + full.prenom_utilisateur  : 'n/d');
+                        }
+                    }
+
+                ],
+                "order": [[0, 'desc']]
+                ,
+                "drawCallback": function( /*settings*/ ) {
+                 }
             } );
             blq_pbc_dt = $('#blq_pbc_table').DataTable( {
                 "language": {
@@ -1280,6 +1360,25 @@ switch ($page) {
                 $('#reponse_ajustement_block').show();
                 $('#add-info-title').html('Ajouter Information / Ajustement');
                 $('#add-info-type').html('Information <span class="text-danger">*</span>');
+            });
+
+            $('#save_pbn').click(function (){
+                console.log('save_pbn ' + type_info);
+                $.ajax({
+                    method: "POST",
+                    url: "api/sousprojet/reseaudistribution/add_pbn.php",
+                    dataType: "json",
+                    data: {
+                        pbn_information : $('#pbn_information').val(),
+                        id_sous_projet : $('#id_sous_projet_pbn').val()
+                    }
+                }).done(function (message) {
+                    if(message.error == 0) {
+                        pbn_dt.draw(false);
+                        $("#add_pbn_form")[0].reset();
+                    }
+                    App.showMessage(message,'#message_pbn_add');
+                });
             });
 
             $('#save_info').click(function (){
