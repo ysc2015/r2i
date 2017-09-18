@@ -316,7 +316,7 @@
         details_dt = $('#details_table').on('preXhr.dt', function ( e, settings, data ) {
             $('#listedetails_block').addClass('block-opt-refresh');
         }).DataTable( {
-            "iDisplayLength":500,
+            "iDisplayLength":1000,
             "language": {
                 "url": "assets/js/plugins/datatables/French.json"
             },
