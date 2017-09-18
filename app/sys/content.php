@@ -536,8 +536,8 @@ switch ($page) {
                                                 <th>Id</th>
                                                 <th>Remarque</th>
                                                 <th>ID SOUS PROJET</th>
-                                                <th>ID createur</th>
                                                 <th>Date création</th>
+                                                <th>Avancement Netgeo</th>
                                                 <th>Créateur</th>
 
                                             </tr>
@@ -549,8 +549,8 @@ switch ($page) {
                                                 <th>Id</th>
                                                 <th>Remarque</th>
                                                 <th>ID SOUS PROJET</th>
-                                                <th>ID createur</th>
                                                 <th>Date création</th>
+                                                <th>Avancement Netgeo</th>
                                                 <th>Créateur</th>
                                             </tr>
                                             </tfoot>
@@ -592,7 +592,20 @@ switch ($page) {
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="pbn_information" id="add-info-type"></label>
+                                    <label for="drec_pbn_avance_netgeo" id="add-info-type">Avancement Netgeo</label>
+                                    <select class="form-control " id="drec_pbn_avance_netgeo" name="drec_pbn_avance_netgeo">
+                                        <option value="" selected="">Sélectionnez un choix</option>
+                                        <?php
+                                        $results = AvancementNetgeo::all();
+                                        foreach($results as $result) {
+                                            echo "<option value=\"$result->id_avancement_netgeo\"  >$result->titre_avancement_netgeo </option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="pbn_information" id="add-txt-pbn"></label>
                                     <input type="hidden" name="id_sous_projet_pbn" id="id_sous_projet_pbn" value="<?=$idsousprojet?>">
                                     <textarea class="form-control" id="pbn_information" name="pbn_information" rows="6"></textarea>
                                 </div>
@@ -1098,12 +1111,12 @@ switch ($page) {
                     { "data": "id_pbn" },
                     { "data": "text_pbn" },
                     { "data": "id_sous_projet" },
-                    { "data": "id_createur" },
                     { "data": "date_creation" },
+                    { "data": "titre_avancement_netgeo" },
                     { "data": "nom_utilisateur" }
                     ],
                 "columnDefs": [
-                    { "targets": [ 0,3 ], "visible": false, "searchable": false },
+                    { "targets": [ 0,2,3 ], "visible": false, "searchable": false },
                     {
                         "targets": 5,
                         "render": function ( data, type, full, meta ) {
@@ -1369,6 +1382,7 @@ switch ($page) {
                     url: "api/sousprojet/reseaudistribution/add_pbn.php",
                     dataType: "json",
                     data: {
+                        drec_pbn_avance_netgeo : $('#drec_pbn_avance_netgeo').val(),
                         pbn_information : $('#pbn_information').val(),
                         id_sous_projet : $('#id_sous_projet_pbn').val()
                     }
