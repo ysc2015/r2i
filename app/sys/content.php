@@ -539,6 +539,7 @@ switch ($page) {
                                                 <th>Date création</th>
                                                 <th>Avancement Netgeo</th>
                                                 <th>Créateur</th>
+                                                <th>Statut</th>
 
                                             </tr>
                                             </thead>
@@ -552,12 +553,13 @@ switch ($page) {
                                                 <th>Date création</th>
                                                 <th>Avancement Netgeo</th>
                                                 <th>Créateur</th>
+                                                <th>Statut</th>
                                             </tr>
                                             </tfoot>
                                         </table>
                                         <button id="add_pdn_integration_netgeo_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-pbn' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Crée PBN </button>
-                                        <button id="delete_pdn_integration_netgeo_show" class=' disabled btn btn-danger btn-sm' data-toggle="modal" data-target='#delete-info-pdn_integration_netgeo' data-backdrop="static" data-keyboard="false" ><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer PBN</button>
-                                        <!--<button id="resolu_pbc_show" class='btn btn-danger btn-sm' data-toggle="modal" data-target='#resolu-info' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Question résolu</button>-->
+                                        <button id="delete_pdn_integration_netgeo_show" class=' disabled btn btn-danger btn-sm'    ><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer PBN</button>
+                                        <button id="flag_pdn_integration_netgeo_show" class='disabled btn btn-danger btn-sm' ><span class='glyphicon glyphicon-edit'>&nbsp;</span> PBN résolu</button>
 
                                     </div>
 
@@ -585,7 +587,7 @@ switch ($page) {
                                 <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
                             </li>
                         </ul>
-                        <h3 class="block-title" id="add-info-title"></h3>
+                        <h3 class="block-title" id="add-info-title">Avancement Netgeo</h3>
                     </div>
                     <div class="block-content">
                         <form class="js-validation-bootstrap form-horizontal" id="add_pbn_form">
@@ -878,6 +880,14 @@ switch ($page) {
     <div id="resolu-blq-dialog-confirm" title="Info">
         <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Confirmer ?</p>
     </div>
+    <!-- Dialog confirm pbn suppression -->
+    <div id="delete-pbn-dialog-confirm" title="Supprimer cet élément?">
+        <p><span class="ui-icon ui-icon-alert" style=" "></span>Confirmer ?</p>
+    </div>
+    <!-- Dialog confirm pbn suppression -->
+    <div id="flag-pbn-dialog-confirm" title="Pbn résolu?">
+        <p><span class="ui-icon ui-icon-alert" style=" "></span>Confirmer ?</p>
+    </div>
     <script>
 
         var statutpbccheckbox = null;
@@ -888,6 +898,7 @@ switch ($page) {
         var blq_pbc_dt;
         var pbn_dt;
         var blq_pbc_dt2;
+        var pbn_btns = ["#delete_pdn_integration_netgeo_show", "#flag_pdn_integration_netgeo_show"];
         var blq_ot_btns = ["#add_pbc_show", "#add_pbc_show2"];
         var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
         var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
@@ -1096,6 +1107,97 @@ switch ($page) {
                 }
             } );
             //blq_pbc_table
+
+            $( "#flag-pbn-dialog-confirm" ).dialog({
+                appendTo : '#pdn_integration_netgeo-modal',
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Oui": function() {
+                        var idpbn = 0;
+                        idpbn = pbn_dt.row('.selected').data().id_pbn;
+                        console.log(idpbn);
+                        $.ajax({
+                            method: "POST",
+                            url: "api/sousprojet/reseaudistribution/change_statut_pbn.php",
+                            dataType: "json",
+                            data: {
+                                idpbn: idpbn,
+                                statut : 1,
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                pbn_dt.draw(false);
+                            }
+                            $( "#flag-pbn-dialog-confirm" ).dialog( "close" );
+                        });
+                    },
+                    Non: function() {
+                        var idpbn = 0;
+                        idpbn = pbn_dt.row('.selected').data().id_pbn;
+                        console.log(idpbn);
+                        $.ajax({
+                            method: "POST",
+                            url: "api/sousprojet/reseaudistribution/change_statut_pbn.php",
+                            dataType: "json",
+                            data: {
+                                idpbn: idpbn,
+                                statut : 0,
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                pbn_dt.draw(false);
+                            }
+                            $( "#flag-pbn-dialog-confirm" ).dialog( "close" );
+                        });
+                    }
+                }
+            });
+            $( "#delete-pbn-dialog-confirm" ).dialog({
+                appendTo : '#pdn_integration_netgeo-modal',
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Oui": function() {
+                        var idpbn = 0;
+                        idpbn = pbn_dt.row('.selected').data().id_pbn;
+                        console.log(idpbn);
+                        $.ajax({
+                            method: "POST",
+                            url: "api/sousprojet/reseaudistribution/delete_pbn.php",
+                            dataType: "json",
+                            data: {
+                                idpbn: idpbn
+                            }
+                        }).done(function (message) {
+                            if(message.error == 0) {
+                                pbn_dt.draw(false);
+                            }
+                            $( "#delete-pbn-dialog-confirm" ).dialog( "close" );
+                        });
+                    },
+                    Non: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $('#pbn_table tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    $(pbn_btns.join(',')).addClass('disabled');
+                }
+                else {
+                    $('#pbn_table tbody tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $(pbn_btns.join(',')).removeClass('disabled');
+                }
+            });
             pbn_dt = $('#pbn_table').DataTable( {
                 "language": {
                     "url": "assets/js/plugins/datatables/French.json"
@@ -1113,7 +1215,8 @@ switch ($page) {
                     { "data": "id_sous_projet" },
                     { "data": "date_creation" },
                     { "data": "titre_avancement_netgeo" },
-                    { "data": "nom_utilisateur" }
+                    { "data": "nom_utilisateur" },
+                    {"data": "statut"}
                     ],
                 "columnDefs": [
                     { "targets": [ 0,2,3 ], "visible": false, "searchable": false },
@@ -1121,6 +1224,12 @@ switch ($page) {
                         "targets": 5,
                         "render": function ( data, type, full, meta ) {
                             return (full.nom_utilisateur !== null && full.prenom_utilisateur !== null ?  full.nom_utilisateur + ' ' + full.prenom_utilisateur  : 'n/d');
+                        }
+                    },
+                    {
+                        "targets":6,
+                        "render":function(data, type, full, meta){
+                            return(full.statut==0 ? "Non résolu " :"Résolu ");
                         }
                     }
 
@@ -1588,6 +1697,14 @@ switch ($page) {
                 }
             });
 
+            $("#flag_pdn_integration_netgeo_show").click(function (e){
+                e.preventDefault();
+              $("#flag-pbn-dialog-confirm").dialog("open");
+            });
+            $("#delete_pdn_integration_netgeo_show").click(function (e){
+                e.preventDefault();
+              $("#delete-pbn-dialog-confirm").dialog("open");
+            });
 
 
             $('#delete_pbc_show').click(function (e){
