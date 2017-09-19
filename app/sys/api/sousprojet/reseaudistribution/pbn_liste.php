@@ -15,7 +15,8 @@ $columns = array(
     array( "db" => "t1.date_creation", "dt" => 'date_creation' ),
     array( "db" => "t3.titre_avancement_netgeo", "dt" => 'titre_avancement_netgeo' ),
     array( "db" => "u.nom_utilisateur", "dt" => 'nom_utilisateur' ),
-    array( "db" => "u.prenom_utilisateur", "dt" => 'prenom_utilisateur' )
+    array( "db" => "u.prenom_utilisateur", "dt" => 'prenom_utilisateur' ),
+    array( "db" => "t1.statut", "dt" => 'statut' )
 
 );
 
