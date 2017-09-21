@@ -89,3 +89,7 @@ table.testgrid td {
 	font-weight: bold;
 }
 
+#texte-info-discution-pbn{
+	height: 500px;
+	overflow: scroll;
+}
