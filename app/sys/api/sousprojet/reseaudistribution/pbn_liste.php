@@ -32,5 +32,5 @@ $left = "left join utilisateur u on t1.id_createur = u.id_utilisateur";
 $left .= " left join pbn_discution t4 on t1.id_pbn = t4.id_pbn";
 
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,$left));
+echo @json_encode(SSP::simpleJoin($_GET,$db,$table,"id_ordre_de_travail",$columns,$condition,$left));
 ?>
