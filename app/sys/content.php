@@ -500,8 +500,8 @@ switch ($page) {
         </div>
     </div>
     <!--end Gestion BLQ modal-->
-    <!--Gestion pdn integration netgeo-modal -->
-    <div class="modal fade" id="pdn_integration_netgeo-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!--Gestion pbn integration netgeo-modal -->
+    <div class="modal fade" id="pbn_integration_netgeo-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="block-header bg-primary">
@@ -540,7 +540,7 @@ switch ($page) {
                                                 <th>Avancement Netgeo</th>
                                                 <th>Créateur</th>
                                                 <th>Statut</th>
-
+                                                <th>Question / Reponse</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -554,12 +554,14 @@ switch ($page) {
                                                 <th>Avancement Netgeo</th>
                                                 <th>Créateur</th>
                                                 <th>Statut</th>
+                                                <th>Question / Reponse</th>
                                             </tr>
                                             </tfoot>
                                         </table>
-                                        <button id="add_pdn_integration_netgeo_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-pbn' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Crée PBN </button>
-                                        <button id="delete_pdn_integration_netgeo_show" class=' disabled btn btn-danger btn-sm'    ><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer PBN</button>
-                                        <button id="flag_pdn_integration_netgeo_show" class='disabled btn btn-danger btn-sm' ><span class='glyphicon glyphicon-edit'>&nbsp;</span> PBN résolu</button>
+                                        <button id="add_pbn_integration_netgeo_show" class='btn btn-success btn-sm' data-toggle="modal" data-target='#add-pbn' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-plus'>&nbsp;</span> Crée PBN </button>
+                                        <button id="delete_pbn_integration_netgeo_show" class=' disabled btn btn-danger btn-sm'    ><span class='glyphicon glyphicon-remove'>&nbsp;</span> Supprimer PBN</button>
+                                        <button id="flag_pbn_integration_netgeo_show" class='disabled btn btn-danger btn-sm' ><span class='glyphicon glyphicon-edit'>&nbsp;</span> PBN résolu</button>
+                                        <button id="discution_pbn_integration_netgeo_show" class='disabled btn btn-primary btn-sm '  data-toggle="modal" data-target='#discution-pbn' data-backdrop="static" data-keyboard="false"><span class='glyphicon glyphicon-edit'>&nbsp;</span> Répondre PBN </button>
 
                                     </div>
 
@@ -575,7 +577,73 @@ switch ($page) {
             </div>
         </div>
     </div>
-    <!-- end gestion pdn_integration_netgeo-modal -->
+    <!-- end gestion pbn_integration_netgeo-modal -->
+    <!--debut liste discution Q/R PBN-->
+    <div class="modal fade" id="liste-discution-pbn-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title" id="add-info-title">QUESTION / RÉPONSE</h3>
+                    </div>
+                    <div class="block-content" id="texte-info-discution-pbn">
+
+
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--fin liste discution Q/R PBN-->
+    <!--debut modal discution pbn-->
+    <div class="modal fade" id="discution-pbn" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent remove-margin-b">
+                    <div class="block-header bg-primary">
+                        <ul class="block-options">
+                            <li>
+                                <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title" id="add-info-title">QUESTION / RÉPONSE</h3>
+                    </div>
+                    <div class="block-content">
+                        <form class="js-validation-bootstrap form-horizontal" id="discution_pbn_form">
+
+                            <div class="form-group">
+
+                                <div class="col-md-12">
+                                    <label for="pbn_information" id="add-txt-pbn">Votre Message</label>
+                                    <input type="hidden" name="id_pbn" id="id_pbn" value="">
+                                    <textarea class="form-control" id="pbn_discution_texte" name="pbn_discution_texte" rows="6"></textarea>
+                                </div>
+                            </div>
+
+                            <div class='alert alert-success' id='message_pbn_discution' role='alert' style="display: none;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary" id="save_discution_pbn" type="button"><i class="fa fa-check"></i> Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--fin modal discution pbn-->
     <!-- debut ajout PBN-->
     <div class="modal fade" id="add-pbn" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -898,7 +966,7 @@ switch ($page) {
         var blq_pbc_dt;
         var pbn_dt;
         var blq_pbc_dt2;
-        var pbn_btns = ["#delete_pdn_integration_netgeo_show", "#flag_pdn_integration_netgeo_show"];
+        var pbn_btns = ["#delete_pbn_integration_netgeo_show", "#flag_pbn_integration_netgeo_show","#discution_pbn_integration_netgeo_show"];
         var blq_ot_btns = ["#add_pbc_show", "#add_pbc_show2"];
         var blq_pbc_btns = ["#mod_pbc_show", "#delete_pbc_show"];
         var blq_pbc_btns2 = ["#mod_pbc_show2", "#delete_pbc_show2"];
@@ -1109,7 +1177,7 @@ switch ($page) {
             //blq_pbc_table
 
             $( "#flag-pbn-dialog-confirm" ).dialog({
-                appendTo : '#pdn_integration_netgeo-modal',
+                appendTo : '#pbn_integration_netgeo-modal',
                 autoOpen: false,
                 resizable: false,
                 height: "auto",
@@ -1157,7 +1225,7 @@ switch ($page) {
                 }
             });
             $( "#delete-pbn-dialog-confirm" ).dialog({
-                appendTo : '#pdn_integration_netgeo-modal',
+                appendTo : '#pbn_integration_netgeo-modal',
                 autoOpen: false,
                 resizable: false,
                 height: "auto",
@@ -1216,7 +1284,8 @@ switch ($page) {
                     { "data": "date_creation" },
                     { "data": "titre_avancement_netgeo" },
                     { "data": "nom_utilisateur" },
-                    {"data": "statut"}
+                    {"data": "statut"},
+                    {"data":"id_discution"}
                     ],
                 "columnDefs": [
                     { "targets": [ 0,2,3 ], "visible": false, "searchable": false },
@@ -1230,6 +1299,12 @@ switch ($page) {
                         "targets":6,
                         "render":function(data, type, full, meta){
                             return(full.statut==0 ? "Non résolu " :"Résolu ");
+                        }
+                    },
+                    {
+                        "targets":7,
+                        "render":function(data, type, full, meta){
+                            return (full.id_discution!=null && full.id_discution!=0  ? '<button class="btn btn-info btn-sm voir_info_pbn "  data-toggle="modal" data-target="#liste-discution-pbn-modal" data-backdrop="static" data-keyboard="false" >voir question / réponse</button>' : '<button class="btn btn-info btn-sm voir_info_pbn disabled">voir question / réponse</button>' )  ;
                         }
                     }
 
@@ -1443,7 +1518,32 @@ switch ($page) {
                     }
                 }
             });
+            $('body').on('click','.voir_info_pbn',function(e){
+                console.log("voir_info_pbn");
+                $.ajax({
+                    method: "POST",
+                    url: "api/sousprojet/reseaudistribution/list_discution_pbn.php",
+                    dataType: "json",
+                    data: {
+                        id_pbn : pbn_dt.row('.selected').data().id_pbn
+                    }
+                }).done(function (message) {
+                    if(message.error == 0) {
+                        var htmlresult = '';
+                         console.log(message.resultat);
+                        $("#texte-info-discution-pbn").html(message.resultat);
+                        var resultat = message.resultat;
+                        resultat.forEach(function (p) {
+                            htmlresult+='<label for="text1" id="label1">'+p[0]+'</label>';
+                            htmlresult+='<textarea readonly="" class="form-control"   rows="3">'+p[1]+'</textarea>';
+                            htmlresult+='<div   class="text-right small" >'+p[2]+'</div>';
 
+                        });
+                        $("#texte-info-discution-pbn").html(htmlresult);
+                    }
+
+                });
+            });
             $('body').on('click', '.view-question', function(e) {
                 e.stopPropagation();
                 console.log("view-question Clicked");
@@ -1483,7 +1583,26 @@ switch ($page) {
                 $('#add-info-title').html('Ajouter Information / Ajustement');
                 $('#add-info-type').html('Information <span class="text-danger">*</span>');
             });
-
+            $('#discution_pbn_integration_netgeo_show').click(function (){
+            $('#id_pbn').val(pbn_dt.row('.selected').data().id_pbn);
+            });
+            $('#save_discution_pbn').click(function (){
+                $.ajax({
+                    method: "POST",
+                    url: "api/sousprojet/reseaudistribution/add_discution_pbn.php",
+                    dataType: "json",
+                    data: {
+                        id_pbn : pbn_dt.row('.selected').data().id_pbn,
+                        pbn_discution_texte : $('#pbn_discution_texte').val()
+                    }
+                }).done(function (message) {
+                    if(message.error == 0) {
+                        //pbn_dt.draw(false);
+                        $("#discution_pbn_form")[0].reset();
+                    }
+                    App.showMessage(message,'#message_pbn_discution');
+                });
+            })
             $('#save_pbn').click(function (){
                 console.log('save_pbn ' + type_info);
                 $.ajax({
@@ -1697,11 +1816,11 @@ switch ($page) {
                 }
             });
 
-            $("#flag_pdn_integration_netgeo_show").click(function (e){
+            $("#flag_pbn_integration_netgeo_show").click(function (e){
                 e.preventDefault();
               $("#flag-pbn-dialog-confirm").dialog("open");
             });
-            $("#delete_pdn_integration_netgeo_show").click(function (e){
+            $("#delete_pbn_integration_netgeo_show").click(function (e){
                 e.preventDefault();
               $("#delete-pbn-dialog-confirm").dialog("open");
             });
