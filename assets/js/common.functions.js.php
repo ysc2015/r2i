@@ -157,8 +157,9 @@ function setOtStatus(idot,status,selector,dt) {
     });
 }
 
-function setRetourTerrain(idsp,idtot,selector,val,idot) {
-    console.log('tip script ' + idtot);
+function setRetourTerrain(idsp,idtot,selector,val,idot,selector2) {
+    //console.log('tip script ' + idtot);
+    $(selector2).addClass('block-opt-refresh');
     $.ajax({
         //url: "api/myot/traitement/update_retour_terrain.php",
         url: "api/myot/traitement/myot_upload_retour.php",
@@ -171,8 +172,7 @@ function setRetourTerrain(idsp,idtot,selector,val,idot) {
             idot: idot
         }
     }).done(function (msg) {
-        console.log('ffffffff');
-        console.log(msg);
+        $(selector2).removeClass('block-opt-refresh');
         App.showMessage(msg,selector);
     });
 }
