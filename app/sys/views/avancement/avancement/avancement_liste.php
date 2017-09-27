@@ -371,7 +371,7 @@
                 { "data": "ctr_tirage_ordre_de_travail_date_fin" },
                 { "data": "ctr_tirage_date_retour" },
                 { "data": "ctr_tirage_date_retour_vpi" },//28
-                { "data": "ctr_tirage_date_retour" },
+                { "data": "ctr_tirage_date_retour" },//29
                 { "data": "ctr_tirage_lib_etat_retour" },
                 { "data": "ctr_tirage_bp_no_resolu" },
                 { "data": "ctr_tirage_bp_unanswered" },
@@ -494,7 +494,7 @@
                 {
                     "targets": 11,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.ctr_aiguillage_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.ctr_aiguillage_date_retour !== '0000-00-00' && full.ctr_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.ctr_aiguillage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
@@ -548,7 +548,7 @@
                 {
                     "targets": 29,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_tirage_date_retour !== '0000-00-00 00:00:00' && full.ctr_tirage_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.ctr_tirage_date_retour !== '0000-00-00' && full.ctr_tirage_date_retour !== '0000-00-00 00:00:00' && full.ctr_tirage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
@@ -584,7 +584,7 @@
                 {
                     "targets": 42,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.ctr_raccord_date_retour !== '0000-00-00 00:00:00' && full.ctr_raccord_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.ctr_raccord_date_retour !== '0000-00-00' && full.ctr_raccord_date_retour !== '0000-00-00 00:00:00' && full.ctr_raccord_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
@@ -626,7 +626,7 @@
                 {
                     "targets": 59,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.cdi_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.cdi_aiguillage_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.cdi_aiguillage_date_retour !== '0000-00-00' && full.cdi_aiguillage_date_retour !== '0000-00-00 00:00:00' && full.cdi_aiguillage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
@@ -680,7 +680,7 @@
                 {
                     "targets": 77,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.cdi_tirage_date_retour !== '0000-00-00 00:00:00' && full.cdi_tirage_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.cdi_tirage_date_retour !== '0000-00-00' && full.cdi_tirage_date_retour !== '0000-00-00 00:00:00' && full.cdi_tirage_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
@@ -716,7 +716,7 @@
                 {
                     "targets": 90,
                     "render": function ( data, type, full, meta ) {
-                        return  (full.cdi_raccord_date_retour !== '0000-00-00 00:00:00' && full.cdi_raccord_date_retour !== null ? 'OUI' : 'NON');
+                        return  (full.cdi_raccord_date_retour !== '0000-00-00' && full.cdi_raccord_date_retour !== '0000-00-00 00:00:00' && full.cdi_raccord_date_retour !== null ? 'OUI' : 'NON');
                     }
                 },
                 {
