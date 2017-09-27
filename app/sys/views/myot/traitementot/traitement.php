@@ -155,7 +155,7 @@
         });
 
         $("#save_retour_link").click(function() {
-            setRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#message_stt_retour',$('#link_retour_stt').val(), ot_dt.row('.selected').data().id_ordre_de_travail);
+            setRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#message_stt_retour',$('#link_retour_stt').val(), ot_dt.row('.selected').data().id_ordre_de_travail,'#traitementot_block');
         });
 
     } );
