@@ -26,3 +26,8 @@ include_once __DIR__ . '/syno_troncon.php';
 include_once __DIR__ . '/syno_type_chambre.php';
 
 include_once __DIR__ . '/syno_type_reseau.php';
+
+include_once __DIR__ . '/point_bloquant.php';
+include_once __DIR__ . '/point_bloquant_moyens_mis_en_oeuvre.php';
+include_once __DIR__ . '/point_bloquant_solutions_preconisees.php';
+include_once __DIR__ . '/point_bloquant_type_de_blocage.php';
