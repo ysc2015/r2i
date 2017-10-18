@@ -16,6 +16,7 @@ $allApis = array(
     'upload' => 'upload.php',
     'photo' => 'photos.php',
     'photos' => 'photos.php',
+    'point_bloquant' => 'point_bloquant_api.php',
 );
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
