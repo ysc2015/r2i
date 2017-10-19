@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
 $tableName = 'point_bloquant';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
@@ -57,47 +60,58 @@ switch ($action) {
         }
 
         break;
-    case 'add': // to test
-	/*
-	sendPointBloquant(@Query("tab_imei") String imei,
-                  @Field("id_point_bloquant") long id_point_bloquant,
-                  @Field("date_controle") String date_controle,
-                  @Field("id_utilisateur") String id_utilisateur,
-                  @Field("id_entreprise") String id_entreprise,
-                  @Field("id_equipe_stt") String id_equipe_stt,
-                  @Field("adresse") String adresse,
-                  @Field("ref_chantier") String ref_chantier,
-                  @Field("nature_travaux") String nature_travaux,
-                  @Field("environement") int environement,
-                  @Field("synthese") String synthese);
-	*/
-		$date_insertion =  date('Y-m-d G:i:s');
+    case 'add':
+        $response = array();
+        $date_insertion =  date('Y-m-d G:i:s');
         $data = array(
-          "id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
-          "date_controle" => $_POST["date_controle"], // date_controle
-          "id_utilisateur" => $_POST["id_utilisateur"], // id_utilisateur
-          "id_entreprise" => $_POST["id_entreprise"],
-          "id_equipe_stt" => $_POST["id_equipe_stt"],
-          "adresse" => $_POST["adresse"],
-          "ref_chantier" => $_POST["ref_chantier"],
-          "nature_travaux" => $_POST["nature_travaux"],
-          "environement" => $_POST["environement"],
-          "id_createur" => $_POST["id_utilisateur"],
-          "synthese" => $_POST["synthese"],
-          "date_insertion" => $date_insertion,
-          );
+            "id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
+            "date_controle" => $_POST["date_controle"], // date_controle
+            "id_utilisateur" => $_POST["id_utilisateur"], // id_utilisateur
+            "id_entreprise" => $_POST["id_entreprise"],
+            "id_equipe_stt" => $_POST["id_equipe_stt"],
+            "adresse" => $_POST["adresse"],
+            "ref_chantier" => $_POST["ref_chantier"],
+            "nature_travaux" => $_POST["nature_travaux"],
+            "environement" => $_POST["environement"],
+            "id_createur" => $_POST["id_utilisateur"],
+            "synthese" => $_POST["synthese"],
+            "date_insertion" => $date_insertion
+        );
         $ret = DBHelper::insert($tableName, $data);
-		if($ret !== false)
-		{
-			$point_bloquant_type_de_blocage_data = array(
-				"id_point_bloquant" => $ret,
-				"date_insertion" => $date_insertion,
-				"id_createur" => $_POST["id_utilisateur"],
-			);
-			DBHelper::insert("point_bloquant_type_de_blocage", $point_bloquant_type_de_blocage_data);
-			DBHelper::insert("point_bloquant_moyens_mis_en_oeuvre", $point_bloquant_type_de_blocage_data);
-			DBHelper::insert("point_bloquant_solutions_preconisees", $point_bloquant_type_de_blocage_data);
-		}
+        if($ret !== false)
+        {
+            $response['info']['id_point_bloquant'] = $ret;
+            
+            $point_bloquant_type_de_blocage_data = array(
+                "id_point_bloquant" => $ret,
+                "date_insertion" => $date_insertion,
+                "id_createur" => $_POST["id_utilisateur"]
+            );
+            $id = DBHelper::insert("point_bloquant_type_de_blocage", $point_bloquant_type_de_blocage_data);
+            if($id !== false)
+                $response['info']['point_bloquant_type_de_blocage_id'] = $id;
+            else{
+                $response['info']['point_bloquant_type_de_blocage_id'] = Configuration::$db->errorInfo();
+            }
+            
+            $id = DBHelper::insert("point_bloquant_moyens_mis_en_oeuvre", $point_bloquant_type_de_blocage_data);
+            
+            if($id !== false)
+                $response['info']['point_bloquant_moyens_mis_en_oeuvre_id'] = $id;
+            else{
+                $response['info']['point_bloquant_moyens_mis_en_oeuvre_id'] = Configuration::$db->errorInfo();
+            }
+            $id = DBHelper::insert("point_bloquant_solutions_preconisees", $point_bloquant_type_de_blocage_data);
+            if($id !== false)
+                $response['info']['point_bloquant_solutions_preconisees_id'] = $id;
+            else{
+                $response['info']['point_bloquant_solutions_preconisees_id'] = Configuration::$db->errorInfo();
+            }
+        }
+        else
+        {
+            $response['info']['point_bloquant_solutions_preconisees_id'] = Configuration::$db->errorInfo();
+        }
 		
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_ADD_MSG'];
@@ -107,20 +121,52 @@ switch ($action) {
         }
         break;
     case 'update': // ---
-        $post_data = array(
-            'id_point_bloquant_update' => $_POST['id_point_bloquant_update'],
-
-			"id_point_bloquant" => $_POST["id_point_bloquant"],
-			"date_controle" => $_POST["date_controle"], // date_controle
-			"id_utilisateur" => $_POST["id_utilisateur"], // id_utilisateur
-			"id_entreprise" => $_POST["id_entreprise"],
-			"id_equipe_stt" => $_POST["id_equipe_stt"],
-			"adresse" => $_POST["adresse"],
-			"ref_chantier" => $_POST["ref_chantier"],
-			"nature_travaux" => $_POST["nature_travaux"],
-			"environement" => $_POST["environement"],
-			"synthese" => $_POST["synthese"]
-          );
+        if(!isset($_POST['id_point_bloquant_update']))
+        {
+            $response['msg'][] = 'Le parametre id n\est pas présent !';
+            $response['err'] ++;
+            break;
+        }
+        
+        $post_data['id_point_bloquant_update'] = $_POST['id_point_bloquant_update'];
+        
+        if(isset($_POST['date_controle']))
+        {
+            $post_data["date_controle"] = $_POST['date_controle'];
+        }
+        if(isset($_POST['id_utilisateur']))
+        {
+            $post_data["id_utilisateur"] = $_POST['id_utilisateur'];
+        }
+        if(isset($_POST['id_entreprise']))
+        {
+            $post_data["id_entreprise"] = $_POST['id_entreprise'];
+        }
+        if(isset($_POST['id_equipe_stt']))
+        {
+            $post_data["id_equipe_stt"] = $_POST['id_equipe_stt'];
+        }
+        if(isset($_POST['adresse']))
+        {
+            $post_data["adresse"] = $_POST['adresse'];
+        }
+        if(isset($_POST['ref_chantier']))
+        {
+            $post_data["ref_chantier"] = $_POST['ref_chantier'];
+        }
+        if(isset($_POST['nature_travaux']))
+        {
+            $post_data["nature_travaux"] = $_POST['nature_travaux'];
+        }
+        if(isset($_POST['environement']))
+        {
+            $post_data["environement"] = $_POST['environement'];
+        }
+        if(isset($_POST['synthese']))
+        {
+            $post_data["synthese"] = $_POST['synthese'];
+        }
+        
         $ret = DBHelper::update($tableName, 'id_point_bloquant=:id_point_bloquant_update', $post_data,array('id_point_bloquant_update'));
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_UPDATE_MSG'];
