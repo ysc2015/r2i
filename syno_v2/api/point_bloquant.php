@@ -19,7 +19,7 @@ switch ($action) {
         } else {
             $page = 1;
         }
-        
+
         if(isset($_POST['search_value']) && !empty($_POST['search_value'])) {
             $search_for = '%' . $_POST['search_value'] . '%';
             $where = ' WHERE `' . $_POST['search_by'] . '` LIKE ' . $pdo->quote($search_for);
@@ -28,10 +28,10 @@ switch ($action) {
         $nbr = DBHelper::count($tableName, $where);
         $nbrPages = ceil($nbr / $nbrPerPage);
         $from = ($page - 1) * $nbrPerPage;
-        
+
         $stmt = $pdo->query('SELECT COUNT(*) AS NBR FROM ' . $tableName . $where);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         $stmt = $pdo->query('SELECT * FROM ' . $tableName . $where . ' LIMIT ' . $from . ',10');
         $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $response['extra'] = array(
@@ -74,7 +74,8 @@ switch ($action) {
 		$date_insertion =  date('Y-m-d G:i:s');
         $data = array(
           "id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
-          "date_controle" => $_POST["date_controle"], // date_controle
+          "id_chambre" => $_POST["id_chambre"],         // id_chambre
+          "date_controle" => $_POST["date_controle"],   // date_controle
           "id_utilisateur" => $_POST["id_utilisateur"], // id_utilisateur
           "id_entreprise" => $_POST["id_entreprise"],
           "id_equipe_stt" => $_POST["id_equipe_stt"],
@@ -98,7 +99,7 @@ switch ($action) {
 			DBHelper::insert("point_bloquant_moyens_mis_en_oeuvre", $point_bloquant_type_de_blocage_data);
 			DBHelper::insert("point_bloquant_solutions_preconisees", $point_bloquant_type_de_blocage_data);
 		}
-		
+
         if ($ret !== false) {
             $response['msg'][] = $lang[$tableName . '_ADD_MSG'];
         } else {
