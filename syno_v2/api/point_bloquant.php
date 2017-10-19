@@ -72,7 +72,6 @@ switch ($action) {
                   @Field("synthese") String synthese);
 	*/
 		$date_insertion =  date('Y-m-d G:i:s');
-    echo $_POST["id_chambre"];
         $data = array(
           "id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
           "id_chambre" => $_POST["id_chambre"],         // id_chambre
@@ -102,10 +101,10 @@ switch ($action) {
 		}
 
         if ($ret !== false) {
-            $response['msg'][] = $lang[$tableName . '_ADD_MSG'];
+            $response['msg'][] = $lang[$tableName . '_ADD_MSG'. $_POST["id_chambre"];];
         } else {
             $response['err'] ++;
-            $response['msg'][] = 'Adding ' . $tableName . ' Error';
+            $response['msg'][] = 'Adding ' . $tableName . ' Error' . $_POST["id_chambre"];;
         }
         break;
     case 'update': // ---
