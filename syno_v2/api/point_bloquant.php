@@ -72,6 +72,7 @@ switch ($action) {
                   @Field("synthese") String synthese);
 	*/
 		$date_insertion =  date('Y-m-d G:i:s');
+    echo $_POST["id_chambre"];
         $data = array(
           "id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
           "id_chambre" => $_POST["id_chambre"],         // id_chambre
