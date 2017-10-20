@@ -64,7 +64,7 @@ switch ($action) {
         $response = array();
         $date_insertion =  date('Y-m-d G:i:s');
         $data = array(
-          "id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
+          //"id_point_bloquant" => $_POST["id_point_bloquant"], // int(255) AUTOINC
           "id_chambre" => $_POST["id_chambre"],         // id_chambre
           "date_controle" => $_POST["date_controle"], // date_controle
           "id_utilisateur" => $_POST["id_utilisateur"], // id_utilisateur
