@@ -83,10 +83,6 @@ switch ($action) {
         {
             $response['info']['id_point_bloquant'] = $ret;
 
-            $response['info']['id_chambre'] = $_POST["id_chambre"];
-            $response['info']['aaaa'] = "aaaaaa";
-
-
             $point_bloquant_type_de_blocage_data = array(
                 "id_point_bloquant" => $ret,
                 "date_insertion" => $date_insertion,
