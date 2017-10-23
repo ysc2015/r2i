@@ -6,6 +6,24 @@ $tableName = 'point_bloquant';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
 switch ($action) {
+    case 'listForeign':
+        $stmt = $pdo->query("SELECT * FROM point_bloquant");
+        $results = [];
+        while($line = $stmt->fetch(PDO::FETCH_OBJ))
+        {
+            $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_type_de_blocage WHERE id_point_bloquant=" . $line->id_point_bloquant); 
+            $line->typeBlocage = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+            
+            $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_solutions_preconisees WHERE id_point_bloquant=" . $line->id_point_bloquant); 
+            $line->solutionsPreconisees = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+            
+            $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_moyens_mis_en_oeuvre WHERE id_point_bloquant=" . $line->id_point_bloquant); 
+            $line->moyensOeuvre = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+            $results[] = $line;
+        }
+        ResponseHelper::sendResponse(json_encode(array('data' => $results)));
+        exit();
+        break;
     case 'listForSelect':
         $stmt = $pdo->query('SELECT id_point_bloquant as id,id_point_bloquant as lib FROM ' . $tableName);
         $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
