@@ -12,13 +12,33 @@ switch ($action) {
         while($line = $stmt->fetch(PDO::FETCH_OBJ))
         {
             $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_type_de_blocage WHERE id_point_bloquant=" . $line->id_point_bloquant); 
-            $line->typeBlocage = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+            $line->typeBlocage = $stmt_tmp->fetch(PDO::FETCH_OBJ);
+            if($line->typeBlocage) {
+                $line->tbId = $line->typeBlocage->id_point_bloquant_type_de_blocage;
+            } else {
+                $line->tbId = '';
+            }
             
             $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_solutions_preconisees WHERE id_point_bloquant=" . $line->id_point_bloquant); 
-            $line->solutionsPreconisees = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+            $line->solutionsPreconisees = $stmt_tmp->fetch(PDO::FETCH_OBJ);
+            
+            if($line->solutionsPreconisees)
+            {
+                $line->spId = $line->solutionsPreconisees->id_point_bloquant_solutions_preconisees;
+            }else{
+                $line->spId = '';
+            }
             
             $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_moyens_mis_en_oeuvre WHERE id_point_bloquant=" . $line->id_point_bloquant); 
-            $line->moyensOeuvre = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+            $line->moyensOeuvre = $stmt_tmp->fetch(PDO::FETCH_OBJ);
+            
+            if($line->moyensOeuvre)
+            {
+                $line->moId = $line->moyensOeuvre->id_point_bloquant_moyens_mis_en_oeuvre;
+            }else{
+                $line->moId = '';
+            }
+            
             $results[] = $line;
         }
         ResponseHelper::sendResponse(json_encode(array('data' => $results)));
