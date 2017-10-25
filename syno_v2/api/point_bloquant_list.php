@@ -18,7 +18,8 @@ $columns = array
     array( "db" => "ref_chantier", "dt" => 'ref_chantier' ),
     array( "db" => "nature_travaux", "dt" => 'nature_travaux' ),
     array( "db" => "environement", "dt" => 'environement' ),
-    array( "db" => "synthese", "dt" => 'synthese' )
+    array( "db" => "synthese", "dt" => 'synthese' ),
+    array( "db" => "id_chambre", "dt" => 'id_chambre')
 );
 
 echo json_encode(SSP::simple($_GET, Configuration::$db, $table, "id_point_bloquant", $columns));
