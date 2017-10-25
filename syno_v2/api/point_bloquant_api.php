@@ -24,8 +24,6 @@ $columns = array
     array( "db" => "id_modificateur", "dt" => 'id_modificateur' ),
 );
 
-echo json_encode();
-
 $tableName = 'point_bloquant';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
@@ -39,7 +37,7 @@ switch ($action) {
 			$_GET['columns'][0]['data'] = 'id_chambre';
 		}
 		
-		$result = SSP::simple($_GET, Configuration::$db, $table, "id_point_bloquant", $columns);
+		$result = SSP::simple($_GET, Configuration::$db, $tableName, "id_point_bloquant", $columns);
 		
 		foreach($result['data'] as $key => $value)
 		{
