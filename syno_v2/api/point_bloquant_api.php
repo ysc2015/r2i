@@ -2,51 +2,78 @@
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
+include_once __DIR__ . '/ssp.class.php';
+
+$columns = array
+(
+    array( "db" => "id_point_bloquant", "dt" => 'id_point_bloquant' ),
+    array( "db" => "id_sous_projet", "dt" => 'id_sous_projet' ),
+    array( "db" => "id_chambre", "dt" => 'id_chambre' ),
+    array( "db" => "date_controle", "dt" => 'date_controle' ),
+    array( "db" => "id_utilisateur", "dt" => 'id_utilisateur' ),
+    array( "db" => "id_entreprise", "dt" => 'id_entreprise' ),
+    array( "db" => "id_equipe_stt", "dt" => 'id_equipe_stt' ),
+    array( "db" => "adresse", "dt" => 'adresse' ),
+    array( "db" => "ref_chantier", "dt" => 'ref_chantier' ),
+    array( "db" => "nature_travaux", "dt" => 'nature_travaux' ),
+    array( "db" => "environement", "dt" => 'environement' ),
+    array( "db" => "synthese", "dt" => 'synthese' ),
+    array( "db" => "date_insertion", "dt" => 'date_insertion' ),
+    array( "db" => "date_last_modify", "dt" => 'date_last_modify' ),
+    array( "db" => "id_createur", "dt" => 'id_createur' ),
+    array( "db" => "id_modificateur", "dt" => 'id_modificateur' ),
+);
+
+echo json_encode();
+
 $tableName = 'point_bloquant';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
 switch ($action) {
-    case 'listForeign':
-		$query = "SELECT * FROM point_bloquant";
+    case 'listForeign':		
 		if(isset($_GET['id_chambre']) && !empty($_GET['id_chambre']))
 		{
-			$query .= " WHERE id_chambre=" . $_GET['id_chambre'];
+			$_GET['columns'][0]['search']['value'] = $_GET['id_chambre'];
+			$_GET['columns'][0]['searchable'] = true;
+			$_GET['columns'][0]['data'] = 'id_chambre';
 		}
-        $stmt = $pdo->query($query);
-        $results = [];
-        while($line = $stmt->fetch(PDO::FETCH_OBJ))
-        {
-            $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_type_de_blocage WHERE id_point_bloquant=" . $line->id_point_bloquant); 
-            $line->typeBlocage = $stmt_tmp->fetch(PDO::FETCH_OBJ);
-            if($line->typeBlocage) {
-                $line->tbId = $line->typeBlocage->id_point_bloquant_type_de_blocage;
+		
+		$result = SSP::simple($_GET, Configuration::$db, $table, "id_point_bloquant", $columns);
+		
+		foreach($result['data'] as $key => $value)
+		{
+			$id_point_bloquant = $value['id_point_bloquant'];
+			
+			$stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_type_de_blocage WHERE id_point_bloquant=" . $id_point_bloquant); 
+			$result['data'][$key]['typeBlocage'] = $stmt_tmp->fetch(PDO::FETCH_OBJ);
+			if($result['data'][$key]['typeBlocage']) {
+                $result['data'][$key]['tbId'] = $result['data']['typeBlocage']['id_point_bloquant_type_de_blocage'];
             } else {
-                $line->tbId = '';
+                $result['data'][$key]['tbId'] = '';
             }
+			
+			$stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_solutions_preconisees WHERE id_point_bloquant=" . $id_point_bloquant); 
+            $result['data'][$key]['solutionsPreconisees'] = $stmt_tmp->fetch(PDO::FETCH_OBJ);
             
-            $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_solutions_preconisees WHERE id_point_bloquant=" . $line->id_point_bloquant); 
-            $line->solutionsPreconisees = $stmt_tmp->fetch(PDO::FETCH_OBJ);
-            
-            if($line->solutionsPreconisees)
+            if($result['data'][$key]['solutionsPreconisees'])
             {
-                $line->spId = $line->solutionsPreconisees->id_point_bloquant_solutions_preconisees;
+                $result['data'][$key]['spId'] = $result['data']['solutionsPreconisees']['id_point_bloquant_solutions_preconisees'];
             }else{
-                $line->spId = '';
+                $result['data'][$key]['spId'] = '';
             }
+			
+			$stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_moyens_mis_en_oeuvre WHERE id_point_bloquant=" . $id_point_bloquant); 
+            $result['data'][$key]['moyensOeuvre'] = $stmt_tmp->fetch(PDO::FETCH_OBJ);
             
-            $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_moyens_mis_en_oeuvre WHERE id_point_bloquant=" . $line->id_point_bloquant); 
-            $line->moyensOeuvre = $stmt_tmp->fetch(PDO::FETCH_OBJ);
-            
-            if($line->moyensOeuvre)
+            if($result['data'][$key]['moyensOeuvre'])
             {
-                $line->moId = $line->moyensOeuvre->id_point_bloquant_moyens_mis_en_oeuvre;
+                $result['data'][$key]['moId'] = $result['data']['moyensOeuvre']['id_point_bloquant_moyens_mis_en_oeuvre'];
             }else{
-                $line->moId = '';
-            }
-            
-            $results[] = $line;
-        }
-        ResponseHelper::sendResponse(json_encode(array('data' => $results)));
+                $result['data'][$key]['moId'] = '';
+            }			
+		}
+		
+        ResponseHelper::sendResponse(json_encode($result));
         exit();
         break;
     case 'listForSelect':
