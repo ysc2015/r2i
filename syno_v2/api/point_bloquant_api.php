@@ -7,7 +7,12 @@ $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
 switch ($action) {
     case 'listForeign':
-        $stmt = $pdo->query("SELECT * FROM point_bloquant");
+		$query = "SELECT * FROM point_bloquant";
+		if(isset($_GET['id_chambre']) && !empty($_GET['id_chambre']))
+		{
+			$query .= " WHERE id_chambre=" . $_GET['id_chambre'];
+		}
+        $stmt = $pdo->query($query);
         $results = [];
         while($line = $stmt->fetch(PDO::FETCH_OBJ))
         {
