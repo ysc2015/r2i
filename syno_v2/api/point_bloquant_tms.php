@@ -4,6 +4,7 @@ ini_set('display_errors', true);
 
 include_once __DIR__ . '/ssp.class.php';
 
+$result = array();
 
 switch ($action) {
     case 'type':
