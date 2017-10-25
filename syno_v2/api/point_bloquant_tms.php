@@ -6,6 +6,11 @@ include_once __DIR__ . '/ssp.class.php';
 
 $result = array();
 
+if(!isset($_GET['tab_imei'])) {
+	ResponseHelper::sendResponse(json_encode($result));
+	exit();
+}
+
 switch ($action) {
     case 'type':
 
