@@ -17,16 +17,16 @@ switch ($action) {
 
     case 'solutions':
 
-        $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_solutions_preconisees");
-        $resul = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
+        $stmt_s = $pdo->query("SELECT * FROM point_bloquant_solutions_preconisees");
+        $result = $stmt_s->fetchAll(PDO::FETCH_OBJ);
 
     break;
 
     case 'moyens':
 
-        $stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_moyens_mis_en_oeuvre");
-        $result = $stmt_tmp->fetchAll(PDO::FETCH_OBJ);
-    
+        $stmt_m = $pdo->query("SELECT * FROM point_bloquant_moyens_mis_en_oeuvre");
+        $result = $stmt_m->fetchAll(PDO::FETCH_OBJ);
+
     break;
 
 }
