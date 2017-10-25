@@ -28,7 +28,18 @@ $tableName = 'point_bloquant';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
 switch ($action) {
-    case 'listForeign':		
+    case 'listForeign':
+		if(!isset($_GET['tab_imei']))
+		{
+			$response = array(
+				"draw" => 0,
+				"recordsTotal" => 0,
+				"recordsFiltered" => 0,
+				"data" => array()
+			);
+			ResponseHelper::sendResponse(json_encode($response));
+			exit();
+		}
 	
 		if(isset($_GET['id_chambre']) && !empty($_GET['id_chambre']))
 		{
