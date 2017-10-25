@@ -46,7 +46,7 @@ switch ($action) {
 			$stmt_tmp = $pdo->query("SELECT * FROM point_bloquant_type_de_blocage WHERE id_point_bloquant=" . $id_point_bloquant); 
 			$result['data'][$key]['typeBlocage'] = $stmt_tmp->fetch(PDO::FETCH_OBJ);
 			if($result['data'][$key]['typeBlocage']) {
-                $result['data'][$key]['tbId'] = $result['data']['typeBlocage']->id_point_bloquant_type_de_blocage;
+                $result['data'][$key]['tbId'] = $result['data'][$key]['typeBlocage']->id_point_bloquant_type_de_blocage;
             } else {
                 $result['data'][$key]['tbId'] = '';
             }
@@ -56,7 +56,7 @@ switch ($action) {
             
             if($result['data'][$key]['solutionsPreconisees'])
             {
-                $result['data'][$key]['spId'] = $result['data']['solutionsPreconisees']->id_point_bloquant_solutions_preconisees;
+                $result['data'][$key]['spId'] = $result['data'][$key]['solutionsPreconisees']->id_point_bloquant_solutions_preconisees;
             }else{
                 $result['data'][$key]['spId'] = '';
             }
@@ -66,7 +66,7 @@ switch ($action) {
             
             if($result['data'][$key]['moyensOeuvre'])
             {
-                $result['data'][$key]['moId'] = $result['data']['moyensOeuvre']->id_point_bloquant_moyens_mis_en_oeuvre;
+                $result['data'][$key]['moId'] = $result['data'][$key]['moyensOeuvre']->id_point_bloquant_moyens_mis_en_oeuvre;
             }else{
                 $result['data'][$key]['moId'] = '';
             }			
