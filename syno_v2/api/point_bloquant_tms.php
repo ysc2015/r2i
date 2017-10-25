@@ -8,12 +8,8 @@ $result = array();
 
 switch ($action) {
     case 'type':
-
-		if(isset($tab_imei))
-		{
       $stmt = $pdo->query("SELECT * FROM point_bloquant_type_de_blocage");
       $result = $stmt->fetch(PDO::FETCH_OBJ);
-		}
 
     break;
     case 'solutions':
