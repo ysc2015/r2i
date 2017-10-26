@@ -307,14 +307,7 @@ if($insert == true && $err == 0){
                 $err++;
             }
         }
-        echo  $drec_fichier_flag ;
-        echo '<br />'. $drec_fichier_certification;
-        echo '<br />'.  $drec_fichier_coupleur ;
-        echo '<br />'.  $drec_base_netgeo ;
-        echo '<br />'. $drec_dedoe ;
-        print_r($_POST);
-        echo '<br />'.  $drec_code_certification ;
-        echo '<br />'.  $drec_lien_zip_complet ;
+
         //mail Avancement Netgeo
         if( $mailaction_new
             &&
