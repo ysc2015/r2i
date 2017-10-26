@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="drec_code_certification">Code de Certification </label>
-                    <input  class="form-control " type="text" id="drec_code_certification" name="drec_code_certification" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->code_certification : "")?>" placeholder="Code de Certification"   <?=  (( $drec_flag_csv!=null && $drec_fichier_certification!=null ) && ($connectedProfil->profil->profil->shortlib == "adm" || $connectedProfil->profil->profil->shortlib == "pov")  ?  '' : 'readonly' ) ?>>
+                    <input  class="form-control form-control-chb" type="text" id="drec_code_certification" name="drec_code_certification" value="<?=($sousProjet->distributionrecette !== NULL ? $sousProjet->distributionrecette->code_certification : "")?>" placeholder="Code de Certification"   <?=  (( $drec_flag_csv!=null && $drec_fichier_certification!=null ) && ($connectedProfil->profil->profil->shortlib == "adm" || $connectedProfil->profil->profil->shortlib == "pov")  ?  '' : 'readonly' ) ?>>
                 </div>
                 <div class="col-md-3">
                     <label for="drec_lien_zip_complet">Liens vers le ZIP Complet</label>
@@ -715,6 +715,7 @@
         $('#dist_recette_form *').filter('.form-control-chb:enabled:not([readonly])').each(function(){
             drecette_formdata_chb[$( this ).attr('name')] = $( this).val();
         });
+        drecette_formdata_chb['drec_code_certification'] = $('drec_code_certification ').val();
         $("#id_sous_projet_distribution_recette_btn").click(function () {
 
             $("#message_distribution_recette").fadeOut();
