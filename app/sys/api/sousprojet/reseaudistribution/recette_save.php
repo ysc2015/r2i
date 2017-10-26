@@ -307,6 +307,13 @@ if($insert == true && $err == 0){
                 $err++;
             }
         }
+        echo  $drec_fichier_flag ;
+        echo '<br />'. $drec_fichier_certification;
+        echo '<br />'.  $drec_fichier_coupleur ;
+        echo '<br />'.  $drec_base_netgeo ;
+        echo '<br />'. $drec_dedoe ;
+        echo '<br />'.  $drec_code_certification ;
+        echo '<br />'.  $drec_lien_zip_complet ;
         //mail Avancement Netgeo
         if( $mailaction_new
             &&
@@ -368,7 +375,7 @@ if($insert == true && $err == 0){
             $mailaction_html =  $mailaction_html[0];
 
             $mailaction_cc =return_list_mail_cc_notif($db,"distributionrecette",11);
-echo "dede";
+
             if(isset($drec_netgeo) && $drec_netgeo != ""){
 
                 $mailaction_to =get_email_by_id($db,[$drec_netgeo]);
