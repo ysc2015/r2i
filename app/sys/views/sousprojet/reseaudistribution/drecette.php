@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="drec_injection_netgeo">Injection netgeo <!--<span class="text-danger">*</span>--></label>
-                    <select class="form-control" id="drec_injection_netgeo" name="drec_injection_netgeo">
+                    <select class="form-control " id="drec_injection_netgeo" name="drec_injection_netgeo">
                         <!--<option value="" selected="">Sélectionnez une valeur</option>-->
                         <?php
                         $results = SelectInjectionNetgeo::all();
