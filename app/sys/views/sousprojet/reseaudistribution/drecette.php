@@ -716,6 +716,7 @@
             drecette_formdata_chb[$( this ).attr('name')] = $( this).val();
         });
         drecette_formdata_chb['drec_code_certification'] = $('drec_code_certification ').val();
+        
         $("#id_sous_projet_distribution_recette_btn").click(function () {
 
             $("#message_distribution_recette").fadeOut();
