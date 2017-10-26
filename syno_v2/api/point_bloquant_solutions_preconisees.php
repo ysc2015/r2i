@@ -59,14 +59,14 @@ switch ($action) {
         break;
     case 'add':
         $data = array(
-          "id_point_bloquant" => $_POST["id_point_bloquant_id"]],
-          "aiguillage_au_compresseur" => $_POST["aiguillage_au_compresseur_id"]],
-          "observation_aiguillage_au_compresseur" => $_POST["observation_aiguillage_au_compresseur_id"]],
-          "aiguillage_avec_aiguille" => $_POST["aiguillage_avec_aiguille_id"]],
-          "observation_aiguillage_avec_aiguille_de_13mm" => $_POST["observation_aiguillage_avec_aiguille_de_13mm_id"]],
-          "aiguillage_aux_cannes" => $_POST["aiguillage_aux_cannes_id"]],
-          "observation_aiguillage_aux_cannes" => $_POST["observation_aiguillage_aux_cannes_id"]],
-          "hydrocurage" => $_POST["hydrocurage_id"]],
+          "id_point_bloquant" => $_POST["id_point_bloquant_id"],
+          "aiguillage_au_compresseur" => $_POST["aiguillage_au_compresseur_id"],
+          "observation_aiguillage_au_compresseur" => $_POST["observation_aiguillage_au_compresseur_id"],
+          "aiguillage_avec_aiguille" => $_POST["aiguillage_avec_aiguille_id"],
+          "observation_aiguillage_avec_aiguille_de_13mm" => $_POST["observation_aiguillage_avec_aiguille_de_13mm_id"],
+          "aiguillage_aux_cannes" => $_POST["aiguillage_aux_cannes_id"],
+          "observation_aiguillage_aux_cannes" => $_POST["observation_aiguillage_aux_cannes_id"],
+          "hydrocurage" => $_POST["hydrocurage_id"],
           "observation_hydrocurage" => $_POST["observation_hydrocurage_id"],
           "changement_de_parcourt" => $_POST["changement_de_parcourt_id"],
           "observation_changement_de_parcourt" => $_POST["observation_changement_de_parcourt_id"],
