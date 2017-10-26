@@ -9,6 +9,9 @@
         <div class="col-md-6">
             <label for="link_retour_stt" style="margin-top: 20px;">Lien retour terrain <!--<span class="text-danger">*</span>--></label>
             <textarea class="form-control" id="link_retour_stt" name="link_retour_stt" rows="6"></textarea>
+            <br>
+            <button id="save_retour_link" class='btn btn-info btn-sm'><span class='glyphicon glyphicon-check'>&nbsp;</span> Enregistrer</button>
+            <div class='alert alert-success' id='message_stt_retour' role='alert' style="display: none;"></div>
         </div>
     </div>
     <div class="row" id="etat_retour_wrapper">
@@ -77,7 +80,8 @@
             var data ={
                 idot: ot_dt.row('.selected').data().id_ordre_de_travail,
                 idsp: ot_dt.row('.selected').data().id_sous_projet,
-                idtot: ot_dt.row('.selected').data().id_type_ordre_travail
+                idtot: ot_dt.row('.selected').data().id_type_ordre_travail,
+                isfile: 'yes'
             };
             return data;
         },
@@ -152,6 +156,10 @@
         });
         $("#ret_etat_retour2").change(function() {
             etat_retour = $("#ret_etat_retour2").val();
+        });
+
+        $("#save_retour_link").click(function() {
+            setRetourTerrain(ot_dt.row('.selected').data().id_sous_projet,ot_dt.row('.selected').data().id_type_ordre_travail,'#message_stt_retour',$('#link_retour_stt').val(), ot_dt.row('.selected').data().id_ordre_de_travail,'#retourpresta_block');
         });
 
     } );

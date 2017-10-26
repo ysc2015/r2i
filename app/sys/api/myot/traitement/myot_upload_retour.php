@@ -250,6 +250,8 @@ if(isset($idot) && !empty($idot)) {
                 $sousProjet->{$value[0]}->save();
 
             }
+
+            $message[] = "Modification faite !";
         }
 
         /**

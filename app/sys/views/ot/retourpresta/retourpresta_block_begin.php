@@ -1,8 +1,8 @@
-<style>
+<!--<style>
     .retourpresta2 .ajax-upload-dragdrop {
         display: none;
     }
-</style>
+</style>-->
 <div class="block block-themed block-opt-hidden" id="retourpresta_block">
     <div class="block-header bg-info">
         <ul class="block-options">
