@@ -375,7 +375,7 @@ if($insert == true && $err == 0){
                 $mailaction_to =get_email_by_id($db,[$drec_netgeo]);
 
 
-                if(MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
+                if(@MailNotifier::sendMail($mailaction_object,$mailaction_html,$mailaction_to,array(),$mailaction_cc,$connectedProfil->email_utilisateur)) {
                     $message[] = "Mail envoyé !";
                 } else {
                     $message[] = "Mail non envoyé !";
