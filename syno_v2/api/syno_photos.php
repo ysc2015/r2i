@@ -2,7 +2,32 @@
 $tableName = 'syno_photos';
 $response = array('err' => 0, 'msg' => array(), 'extra' => null);
 
+$link = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '' . str_replace('api/index.php', 'assets/photos/', $_SERVER['PHP_SELF']);
+
+
 switch ($action) {
+	case 'getImage':
+		array(
+			'gif' => 'image/gif',
+			'jpeg' => 'image/jpeg',
+			'jpg' => 'image/jpeg',
+			'svg' => 'image/svg+xml',
+			'tif' => 'image/tiff',
+			'tiff' => 'image/tiff',
+			'webp' => 'image/webp',
+			'png' => 'image/png',
+			'bmp' => 'image/bmp'
+		);		
+		
+		break;
+	case 'listImageChambre':
+		if(!isset($_GET['tab_imei']) || !isset($_GET['id_chambre'])) exit();
+		$stmt = $pdo->query(
+		'SELECT id as id, CONCAT(' . $pdo->quote($link) . ', new_name) as image FROM ' . $tableName . ' WHERE id_chambre='. $_GET['id_chambre']);
+		
+        $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		break;
+	
     case 'listForSelect':
         $stmt = $pdo->query('SELECT id as id,org_name as lib FROM ' . $tableName);
         $response['data'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
