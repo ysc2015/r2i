@@ -72,24 +72,25 @@ switch ($action) {
 
 		$fileName = $row->nom_fichier;
 		$filePath = __DIR__ . DS . ".." . DS . ".." . DS . "app" . DS . "sys" . DS . "api" . DS . "uploads" . DS . $row->dossier . DS .$row->nom_fichier_disque;
-		echo $filePath ;
+		
 		
 		$ext = getFileExtension($row->nom_fichier_disque);
 		
 		if(!empty($ext))
 		{
 			$type = getFileMimeType($ext);
-			
 		}
 		
-		if (file_exists($filePath)) {
-			header('Content-Type: ' . $type);
+		header('Content-Type: ' . $type);
+		if($type == 'application/octet-stream')
+		{
 			header("Content-Transfer-Encoding: Binary");
 			header("Content-disposition: attachment; filename=\"" . $fileName . "\"");
-			ob_clean();
-			flush();
-			readfile($filePath);
 		}
+			
+		ob_clean();
+		flush();
+		readfile($filePath);
 		exit(0);
 		break;
 	
