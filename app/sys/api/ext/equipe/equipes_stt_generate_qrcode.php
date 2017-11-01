@@ -18,7 +18,7 @@ $filename = $PNG_TEMP_DIR.'test.png';
 $matrixPointSize = 6;
 $errorCorrectionLevel = 'L';
 
-QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+QRcode::png('R2I QR Code', $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
 
 
