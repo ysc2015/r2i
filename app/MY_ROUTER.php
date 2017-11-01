@@ -21,6 +21,7 @@ if(isset($_GET['tab_imei']) || isset($_GET['qgis'])){
     require_once __DIR__."/sys/inc/mail.notifier.class.php";
     require_once __DIR__."/sys/inc/ssp.class.php";
     require_once __DIR__."/sys/libs/vendor/EditableGrid/EditableGrid.php";
+    require_once __DIR__."/sys/libs/vendor/qrcode/qrlib.php";
 
     include __DIR__ . "/sys/api/" . $_GET['script'];
     exit(0);
@@ -35,6 +36,8 @@ if(isset($_GET['tab_imei']) || isset($_GET['qgis'])){
         require_once __DIR__."/sys/inc/mail.notifier.class.php";
         require_once __DIR__."/sys/inc/ssp.class.php";
         require_once __DIR__."/sys/libs/vendor/EditableGrid/EditableGrid.php";
+        require_once __DIR__."/sys/libs/vendor/qrcode/qrlib.php";
+
         if ($logged) {
 
             $connectedProfil = Utilisateur::first(

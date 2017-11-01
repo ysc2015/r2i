@@ -1,14 +1,14 @@
 <?php
 /**
- * file: equipes_liste.php
- * User: rabii
+ * file: equipes_stt_generate_qrcode.php
+ * User: fadil
  */
 
 
 
 $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'qrcode_equipe'.DIRECTORY_SEPARATOR;
 $PNG_WEB_DIR = 'qrcode_equipe/';
-include "qrlib.php";
+require_once __DIR__."/../../../../sys/libs/vendor/qrcode/qrlib.php";
 
 if (!file_exists($PNG_TEMP_DIR))
     mkdir($PNG_TEMP_DIR);
