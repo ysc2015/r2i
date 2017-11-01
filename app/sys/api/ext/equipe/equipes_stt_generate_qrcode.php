@@ -25,9 +25,9 @@ $equipestt_stm->execute();
 $equipestt_list = $equipestt_stm->fetchAll();
 foreach($equipestt_list as $equipestt){
 
-    $filename = $PNG_TEMP_DIR.$equipestt_list['nom'].'.png';
+    $filename = $PNG_TEMP_DIR.$equipestt['nom'].'.png';
 
-    QRcode::png($equipestt_list['imei'].'|'.$equipestt_list['mail'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+    QRcode::png($equipestt['imei'].'|'.$equipestt['mail'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
 
     echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><br />'.$filename.'<hr />';
