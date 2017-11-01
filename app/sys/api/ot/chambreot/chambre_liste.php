@@ -42,5 +42,14 @@ if(isset($type_objet))
 	$condition .= "  AND t2.type_objet='$type_objet'";
 }
 
-echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_chambre",$columns,$condition));
+$rows = SSP::simpleJoin($_GET,$db,$table,"id_chambre",$columns,$condition);
+
+$imei = isset($tab_imei) ? '&tab_imei=' . $tab_imei : '';
+
+foreach($rows['data'] as $key => $value)
+{
+	$rows['data'][$key]['link'] = 'api/file/download.php?id=' . $value['id_ressource'] . $imei;
+}
+
+echo json_encode($rows);
 ?>
