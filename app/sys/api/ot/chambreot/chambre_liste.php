@@ -32,5 +32,15 @@ if(isset($idot) && !empty($idot)) {
     $condition .= "  AND t2.id_ordre_de_travail=$idot";
 }
 
+if(isset($id_chambre))
+{
+	$condition .= "  AND t1.id_chambre=$id_chambre";
+}
+
+if(isset($type_objet))
+{
+	$condition .= "  AND t2.chambre_image='$type_objet'";
+}
+
 echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_chambre",$columns,$condition));
 ?>
