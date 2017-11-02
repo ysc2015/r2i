@@ -44,5 +44,5 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
 
 }
 
-
+print_r($content);
 echo json_encode($_GET,$reponse,$content);
