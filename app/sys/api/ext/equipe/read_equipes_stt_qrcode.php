@@ -17,9 +17,9 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
 
      if($equipestt_stm->rowCount() > 0) {
 
-        /* $table_entreprise = array(
+          $table_entreprise = array(
              id_equipe_stt =>  $equipestt_stm['id_entreprise'],
-             id_equipe_stt => $equipestt_stm['nom'],
+            // id_equipe_stt => $equipestt_stm['nom'],
              id_equipe_stt => $equipestt_stm['code_entreprise'],
              id_equipe_stt => $equipestt_stm['adresse_siege']
          );
@@ -28,12 +28,12 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
              $content =  array
                 (  id_equipe_stt => $equipestt_stm['id_equipe_stt'],
                   entreprise => $table_entreprise,
-                   nom =>  $equipestt_stm['nom'],
+               //    nom =>  $equipestt_stm['nom'],
                   prenom =>  $equipestt_stm['prenom'],
                   mail =>  $equipestt_stm['mail'],
                   tel =>  $equipestt_stm['tel']
                 );
-        */
+
 
 
 
