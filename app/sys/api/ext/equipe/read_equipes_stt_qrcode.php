@@ -16,7 +16,8 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
     $equipestt_stm->execute();
 
      if($equipestt_stm->rowCount() > 0) {
-         $table_entreprise = array(
+
+        /* $table_entreprise = array(
              id_equipe_stt =>  $equipestt_stm['id_entreprise'],
              id_equipe_stt => $equipestt_stm['nom'],
              id_equipe_stt => $equipestt_stm['code_entreprise'],
@@ -32,7 +33,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
                   mail =>  $equipestt_stm['mail'],
                   tel =>  $equipestt_stm['tel']
                 );
-
+        */
 
 
 
