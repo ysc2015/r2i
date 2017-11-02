@@ -16,9 +16,9 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
     $equipestt_stm->execute();
 
      if($equipestt_stm->rowCount() > 0) {
-         $reponse = "OUI";
+         echo "OUI";
      }else{
-         $reponse =  "NO";
+         echo "NO";
      }
 
 
