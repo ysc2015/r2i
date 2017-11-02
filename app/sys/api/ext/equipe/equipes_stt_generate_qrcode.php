@@ -30,7 +30,7 @@ foreach($equipestt_list as $equipestt){
     QRcode::png($equipestt['id_equipe_stt'].'|'.$equipestt['mail'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
 
-    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><br />'.$filename.'<hr />';
+    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><br />'.$equipestt['id_equipe_stt'].' || '.$filename.'<hr />';
 }
 
 //echo json_encode(SSP::simpleJoin($_GET,$db,$table,"id_equipe_stt",$columns,$condition,""));
