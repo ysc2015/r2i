@@ -19,7 +19,7 @@ $errorCorrectionLevel = 'L';
 
 
 $equipestt_stm = $db->prepare("SELECT t1.* from equipe_stt as t1
-                        where t1.id_equipe_types IN (SELECT equipe_types.id_equipe_types FROM equipe_types WHERE a2t = 1 AND equipe_types.id_equipe_types IS NOT NULL)");
+                        where t1.id_equipe_types IN (SELECT equipe_types.id_equipe_types FROM equipe_types WHERE a2t = 1 AND equipe_types.id_equipe_types IS NOT NULL) group by t1.id_equipe_types");
 $equipestt_stm->execute();
 
 $equipestt_list = $equipestt_stm->fetchAll();
