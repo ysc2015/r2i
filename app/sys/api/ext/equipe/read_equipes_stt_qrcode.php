@@ -14,13 +14,11 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
     $equipestt_stm = $db->prepare("SELECT t1.* from equipe_stt as t1
                         where t1.id_equipe_stt = $ide AND t1.mail = '$email' AND t1.id_equipe_types IN (SELECT equipe_types.id_equipe_types FROM equipe_types WHERE a2t = 1 AND equipe_types.id_equipe_types IS NOT NULL)");
     $equipestt_stm->execute();
-echo "SELECT t1.* from equipe_stt as t1
-                        where t1.id_equipe_stt = $ide AND t1.mail = '$email' AND t1.id_equipe_types IN (SELECT equipe_types.id_equipe_types FROM equipe_types WHERE a2t = 1 AND equipe_types.id_equipe_types IS NOT NULL)";
 
      if($equipestt_stm->rowCount() > 0) {
-         echo "OUI";
+         $reponse = "OUI";
      }else{
-         echo "NO";
+         $reponse =  "NO";
      }
 
 
