@@ -9,7 +9,7 @@ extract($_POST);
 extract($_GET);
 
 $reponse = "N";
-
+$content = [];
 if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
     $equipestt_stm = $db->prepare("SELECT * from equipe_stt as t1 ,entreprises_stt t2
                         where t2.id_entreprise = t1.id_entreprise AND t1.id_equipe_stt = $ide AND t1.mail = '$email' AND t1.id_equipe_types IN (SELECT equipe_types.id_equipe_types FROM equipe_types WHERE a2t = 1 AND equipe_types.id_equipe_types IS NOT NULL)");
