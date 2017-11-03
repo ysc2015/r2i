@@ -11,7 +11,7 @@ extract($_GET);
 $reponse = "N";
 $content = [];
 if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
-    $equipestt_stm = $db->prepare("SELECT * from equipe_stt as t1 ,entreprises_stt t2
+    $equipestt_stm = $db->prepare("SELECT t1.id_equipe_stt,t1.prenom,t1.mail,t1.tel, t1.nom as nom_equipe,t2.nom as nom_entreprise,t2.id_entreprise,t2.code_entreprise,t2.adresse_siege from equipe_stt as t1 ,entreprises_stt t2
                         where t2.id_entreprise = t1.id_entreprise AND t1.id_equipe_stt = $ide AND t1.mail = '$email' AND t1.id_equipe_types IN (SELECT equipe_types.id_equipe_types FROM equipe_types WHERE a2t = 1 AND equipe_types.id_equipe_types IS NOT NULL)");
      $equipestt_stm->execute();
 
@@ -20,7 +20,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
 
           $table_entreprise = array(
              "id_entreprise" =>  $equipestt_stm_liste->id_entreprise,
-             "nom" => $equipestt_stm_liste->nom ,
+             "nom" => $equipestt_stm_liste->nom_entreprise ,
              "code_entreprise" => $equipestt_stm_liste->code_entreprise,
              "adresse_siege" => $equipestt_stm_liste->adresse_siege
          );
@@ -29,7 +29,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
              $content =  array
                 (  "id_equipe_stt" => $equipestt_stm_liste->id_equipe_stt ,
                   "entreprise" => $table_entreprise,
-                   "nom" =>  $equipestt_stm_liste->nom,
+                   "nom" =>  $equipestt_stm_liste->nom_equipe,
                   "prenom" =>  $equipestt_stm_liste->prenom,
                   "mail"  =>  $equipestt_stm_liste->mail,
                   "tel" =>  $equipestt_stm_liste->tel
