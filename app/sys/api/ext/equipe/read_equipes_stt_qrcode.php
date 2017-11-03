@@ -8,7 +8,7 @@
 extract($_POST);
 extract($_GET);
 $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'qrcode_equipe'.DIRECTORY_SEPARATOR;
-$PNG_WEB_DIR = 'qrcode_equipe/';
+$PNG_WEB_DIR = 'qrcode_equipe';
 require_once __DIR__."/../../../../sys/libs/vendor/qrcode/qrlib.php";
 
 if (!file_exists($PNG_TEMP_DIR))
