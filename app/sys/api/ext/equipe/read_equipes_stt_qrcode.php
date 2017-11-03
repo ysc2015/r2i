@@ -7,6 +7,14 @@
 
 extract($_POST);
 extract($_GET);
+$PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'qrcode_equipe'.DIRECTORY_SEPARATOR;
+$PNG_WEB_DIR = 'qrcode_equipe/';
+require_once __DIR__."/../../../../sys/libs/vendor/qrcode/qrlib.php";
+
+if (!file_exists($PNG_TEMP_DIR))
+    mkdir($PNG_TEMP_DIR);
+$matrixPointSize = 6;
+$errorCorrectionLevel = 'L';
 
 $reponse = "N";
 $content = [];
@@ -18,7 +26,15 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
      if($equipestt_stm->rowCount() > 0) {
          $equipestt_stm_liste = $equipestt_stm->fetchObject();
 
-          $table_entreprise = array(
+         $filename = $PNG_TEMP_DIR.$equipestt_stm_liste->nom_equipe.'.png';
+
+         QRcode::png($equipestt_stm_liste->id_equipe_stt.'|'.$equipestt_stm_liste->mail, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+
+
+         echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><br />'.$filename.'<hr />';
+
+
+         $table_entreprise = array(
              "id_entreprise" =>  $equipestt_stm_liste->id_entreprise,
              "nom" => $equipestt_stm_liste->nom_entreprise ,
              "code_entreprise" => $equipestt_stm_liste->code_entreprise,
