@@ -49,7 +49,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
                   "prenom" =>  $equipestt_stm_liste->prenom,
                   "mail"  =>  $equipestt_stm_liste->mail,
                   "tel" =>  $equipestt_stm_liste->tel,
-                  "qrcode" =>  $PNG_WEB_DIR.$filename
+                  "qrcode" =>  ($filename)
                 );
 
 
