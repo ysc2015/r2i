@@ -48,7 +48,8 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
                    "nom" =>  $equipestt_stm_liste->nom_equipe,
                   "prenom" =>  $equipestt_stm_liste->prenom,
                   "mail"  =>  $equipestt_stm_liste->mail,
-                  "tel" =>  $equipestt_stm_liste->tel
+                  "tel" =>  $equipestt_stm_liste->tel,
+                  "qrcode" =>  $PNG_WEB_DIR.basename($filename)
                 );
 
 
