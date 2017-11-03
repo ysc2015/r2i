@@ -26,7 +26,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
      if($equipestt_stm->rowCount() > 0) {
          $equipestt_stm_liste = $equipestt_stm->fetchObject();
 
-         $filename = $PNG_TEMP_DIR.$equipestt_stm_liste->nom_equipe.'.png';
+         $filename = $PNG_TEMP_DIR.$equipestt_stm_liste->id_equipe_stt.'.png';
 
          QRcode::png($equipestt_stm_liste->id_equipe_stt.'|'.$equipestt_stm_liste->mail, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
