@@ -31,7 +31,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
          QRcode::png($equipestt_stm_liste->id_equipe_stt.'|'.$equipestt_stm_liste->mail, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
 
 
-         echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><br />'.$filename.'<hr />';
+        // echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><br />'.$filename.'<hr />';
 
 
          $table_entreprise = array(
