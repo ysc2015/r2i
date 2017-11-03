@@ -8,7 +8,7 @@
 extract($_POST);
 extract($_GET);
 $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'qrcode_equipe'.DIRECTORY_SEPARATOR;
-$PNG_WEB_DIR = 'qrcode_equipe';
+$PNG_WEB_DIR = 'qrcode_equipe/';
 require_once __DIR__."/../../../../sys/libs/vendor/qrcode/qrlib.php";
 
 if (!file_exists($PNG_TEMP_DIR))
@@ -49,7 +49,7 @@ if(isset($ide) && !empty($ide)&& isset($email) && !empty($email) ) {
                   "prenom" =>  $equipestt_stm_liste->prenom,
                   "mail"  =>  $equipestt_stm_liste->mail,
                   "tel" =>  $equipestt_stm_liste->tel,
-                  "qrcode" =>  $PNG_WEB_DIR.basename($filename)
+                  "qrcode" =>  $PNG_WEB_DIR.$filename
                 );
 
 
