@@ -9,7 +9,36 @@
 extract($_POST);
 extract($_GET);
 
-$sql = "select a.* from (
+$result = "NOK";
+$nro_count = 0;
+
+$nu = NULL;
+$USER = NULL;
+
+if(isset($idu) && !empty($idu)) {
+
+    $USER = Utilisateur::first(
+        array('conditions' =>
+            array("id_utilisateur = ?", $idu)
+        )
+    );
+
+} else if(isset($emailu) && !empty($emailu)) {
+
+    $USER = Utilisateur::first(
+        array('conditions' =>
+            array("email_utilisateur = ?", $emailu)
+        )
+    );
+
+}
+
+
+if($USER !== NULL) {
+
+    $result = "OK";
+
+    $sql = "select a.* from (
     select n.id_nro,n.lib_nro,u.id_utilisateur,u.email_utilisateur from nro n, utilisateur u
     where n.id_utilisateur = u.id_utilisateur
     union
@@ -18,25 +47,32 @@ $sql = "select a.* from (
     ) a
 ";
 
-if(isset($idu) && !empty($idu)) {
+    if(isset($idu) && !empty($idu)) {
 
-    $sql .= "where a.id_utilisateur = $idu ";
+        $sql .= "where a.id_utilisateur = $idu ";
 
-    $stm = $db->prepare($sql);
+        $stm = $db->prepare($sql);
 
-    $stm->execute();
+        $stm->execute();
 
-    $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-} else if(isset($emailu) && !empty($emailu)) {
+        $nro_count = $stm->rowCount();
 
-    $sql .= "where a.email_utilisateur = '$emailu' ";
+    } else if(isset($emailu) && !empty($emailu)) {
 
-    $stm = $db->prepare($sql);
+        $sql .= "where a.email_utilisateur = '$emailu' ";
 
-    $stm->execute();
+        $stm = $db->prepare($sql);
 
-    $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $stm->execute();
+
+        $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+        $nro_count = $stm->rowCount();
+    }
+
 }
 
-echo json_encode($nu == NULL ? array() : $nu);
+
+echo json_encode(array("result" => $result, "nro_count" => $nro_count, "nro_list" => ($nu == NULL ? array() : $nu)));
