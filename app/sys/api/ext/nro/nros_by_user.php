@@ -29,4 +29,4 @@ if(isset($idu) && !empty($idu)) {
     $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
 }
 
-echo json_encode($nu);
+echo json_encode($nu == NULL ? array() : $nu);
