@@ -20,7 +20,17 @@ $sql = "select a.* from (
 
 if(isset($idu) && !empty($idu)) {
 
-    $sql .= "where a.email_utilisateur = '$idu' ";
+    $sql .= "where a.id_utilisateur = $idu ";
+
+    $stm = $db->prepare($sql);
+
+    $stm->execute();
+
+    $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+} else if(isset($emailu) && !empty($emailu)) {
+
+    $sql .= "where a.email_utilisateur = '$emailu' ";
 
     $stm = $db->prepare($sql);
 
