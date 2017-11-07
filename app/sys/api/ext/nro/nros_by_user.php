@@ -18,12 +18,15 @@ $sql = "select a.* from (
     ) a
 ";
 
-if(isset($idu) && !empty($idu)) $sql .= "where a.id_utilisateur IN ($idu)";
+if(isset($idu) && !empty($idu)) {
 
-$stm = $db->prepare($sql);
+    $sql .= "where a.id_utilisateur IN ($idu)";
 
-$stm->execute();
+    $stm = $db->prepare($sql);
 
-$nu = $stm->fetchAll(PDO::FETCH_ASSOC);
+    $stm->execute();
+
+    $nu = $stm->fetchAll(PDO::FETCH_ASSOC);
+}
 
 echo json_encode($nu);
