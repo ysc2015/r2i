@@ -20,7 +20,7 @@ $sql = "select a.* from (
 
 if(isset($idu) && !empty($idu)) {
 
-    $sql .= "where a.email_utilisateur = $idu ";
+    $sql .= "where a.email_utilisateur IN ($idu) ";
 
     $stm = $db->prepare($sql);
 
