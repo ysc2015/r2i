@@ -8,8 +8,8 @@ $subView = isset($_GET['subView']) ? $_GET['subView'] : '';
 
 if (!isLogged()) {
     //ResponseHelper::redirect('login.php');
-    include_once 'login.php';
-    exit();
+    //include_once 'login.php';
+    //exit();
 }
 ?>
 <html>
